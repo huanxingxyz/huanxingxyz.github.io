@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android 应用版本更新 | 田鹏飞的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一个好的应用软件都是需要好的维护，从初出版本到最后精品，这个过程需要版本不停的更新，那么如何让用户第一时间获取最新的应用安装包呢？那么就要求我们从第一个版本就要实现升级模块这一功能。
+自动更新功能的实现原理，就是我们事先和后台协商好一个接口，我们在应用的主Activity里，去访问这个接口，如果需要更新，后台会返回一些数据(比 如，提示语；最新版本的url等)。然后我们给出提示框，用户点击开始下载">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 应用版本更新">
+<meta property="og:url" content="http://yoursite.com/2016/05/14/Android-应用版本更新/index.html">
+<meta property="og:site_name" content="田鹏飞的个人博客">
+<meta property="og:description" content="一个好的应用软件都是需要好的维护，从初出版本到最后精品，这个过程需要版本不停的更新，那么如何让用户第一时间获取最新的应用安装包呢？那么就要求我们从第一个版本就要实现升级模块这一功能。
+自动更新功能的实现原理，就是我们事先和后台协商好一个接口，我们在应用的主Activity里，去访问这个接口，如果需要更新，后台会返回一些数据(比 如，提示语；最新版本的url等)。然后我们给出提示框，用户点击开始下载">
+<meta property="og:updated_time" content="2016-05-13T16:08:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 应用版本更新">
+<meta name="twitter:description" content="一个好的应用软件都是需要好的维护，从初出版本到最后精品，这个过程需要版本不停的更新，那么如何让用户第一时间获取最新的应用安装包呢？那么就要求我们从第一个版本就要实现升级模块这一功能。
+自动更新功能的实现原理，就是我们事先和后台协商好一个接口，我们在应用的主Activity里，去访问这个接口，如果需要更新，后台会返回一些数据(比 如，提示语；最新版本的url等)。然后我们给出提示框，用户点击开始下载">
+  
+    <link rel="alternate" href="/atom.xml" title="田鹏飞的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">田鹏飞的个人博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">你若盛开，蝴蝶自来</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Android-应用版本更新" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/14/Android-应用版本更新/" class="article-date">
+  <time datetime="2016-05-13T16:04:55.000Z" itemprop="datePublished">2016-05-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android 应用版本更新
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一个好的应用软件都是需要好的维护，从初出版本到最后精品，这个过程需要版本不停的更新，那么如何让用户第一时间获取最新的应用安装包呢？那么就要求我们从第一个版本就要实现升级模块这一功能。</p>
+<p>自动更新功能的实现原理，就是我们事先和后台协商好一个接口，我们在应用的主Activity里，去访问这个接口，如果需要更新，后台会返回一些数据(比 如，提示语；最新版本的url等)。然后我们给出提示框，用户点击开始下载，下载完成开始覆盖安装程序，这样用户的应用就保持最新的拉。</p>
+<p>为了让大家容易理解，我像往常一样准备一个小例子，这里为了方便我就省去了和后台交互部分了。步骤分别如下：</p>
+<p>第一步：新建一个Android工程命名为:UpdateDemo.代码结构如下图所示：</p>
+<p>Android 软件自动更新功能的实现！！！</p>
+<p>第二步：新建一个UpdateManager.java类，负责软件更新功能模块，代码如下：</p>
+<p>001<br>package com.tutor.update;<br>002</p>
+<p>003<br>import java.io.File;<br>004<br>import java.io.FileOutputStream;<br>005<br>import java.io.IOException;<br>006<br>import java.io.InputStream;<br>007<br>import java.net.HttpURLConnection;<br>008<br>import java.net.MalformedURLException;<br>009<br>import java.net.URL;<br>010</p>
+<p>011</p>
+<p>012<br>import android.app.AlertDialog;<br>013<br>import android.app.Dialog;<br>014<br>import android.app.AlertDialog.Builder;<br>015<br>import android.content.Context;<br>016<br>import android.content.DialogInterface;<br>017<br>import android.content.Intent;<br>018<br>import android.content.DialogInterface.OnClickListener;<br>019<br>import android.net.Uri;<br>020<br>import android.os.Handler;<br>021<br>import android.os.Message;<br>022<br>import android.view.LayoutInflater;<br>023<br>import android.view.View;<br>024<br>import android.widget.ProgressBar;<br>025</p>
+<p>026<br>public class UpdateManager {<br>027</p>
+<p>028<br>    private Context mContext;<br>029</p>
+<p>030<br>    //提示语<br>031<br>    private String updateMsg = “有最新的软件包哦，亲快下载吧~”;<br>032</p>
+<p>033<br>    //返回的安装包url<br>034<br>    privateString apkUrl = “<a href="http://softfile.3g.qq.com:8080/msoft/179/24659/43549/qq_hd_mini_1.4.apk" target="_blank" rel="external">http://softfile.3g.qq.com:8080/msoft/179/24659/43549/qq_hd_mini_1.4.apk</a>“;<br>035</p>
+<p>036</p>
+<p>037<br>    private Dialog noticeDialog;<br>038</p>
+<p>039<br>    private Dialog downloadDialog;<br>040<br>     /<em> 下载包安装路径 </em>/<br>041<br>    private static final String savePath = “/sdcard/updatedemo/“;<br>042</p>
+<p>043<br>    private static final String saveFileName = savePath + “UpdateDemoRelease.apk”;<br>044</p>
+<p>045<br>    /<em> 进度条与通知ui刷新的handler和msg常量 </em>/<br>046<br>    private ProgressBar mProgress;<br>047</p>
+<p>048</p>
+<p>049<br>    private static final int DOWN_UPDATE = 1;<br>050</p>
+<p>051<br>    private static final int DOWN_OVER = 2;<br>052</p>
+<p>053<br>    private int progress;<br>054</p>
+<p>055<br>    private Thread downLoadThread;<br>056</p>
+<p>057<br>    private boolean interceptFlag = false;<br>058</p>
+<p>059<br>    private Handler mHandler = new Handler(){<br>060<br>        public void handleMessage(Message msg) {<br>061<br>            switch (msg.what) {<br>062<br>            case DOWN_UPDATE:<br>063<br>                mProgress.setProgress(progress);<br>064<br>                break;<br>065<br>            case DOWN_OVER:<br>066</p>
+<p>067<br>                installApk();<br>068<br>                break;<br>069<br>            default:<br>070<br>                break;<br>071<br>            }<br>072<br>        };<br>073<br>    };<br>074</p>
+<p>075<br>    public UpdateManager(Context context) {<br>076<br>        this.mContext = context;<br>077<br>    }<br>078</p>
+<p>079<br>    //外部接口让主Activity调用<br>080<br>    public void checkUpdateInfo(){<br>081<br>        showNoticeDialog();<br>082<br>    }<br>083</p>
+<p>084</p>
+<p>085<br>    private void showNoticeDialog(){<br>086<br>        AlertDialog.Builder builder = new Builder(mContext);<br>087<br>        builder.setTitle(“软件版本更新”);<br>088<br>        builder.setMessage(updateMsg);<br>089<br>        builder.setPositiveButton(“下载”, new OnClickListener() {<br>090<br>            @Override<br>091<br>            public void onClick(DialogInterface dialog, int which) {<br>092<br>                dialog.dismiss();<br>093<br>                showDownloadDialog();<br>094<br>            }<br>095<br>        });<br>096<br>        builder.setNegativeButton(“以后再说”, new OnClickListener() {<br>097<br>            @Override<br>098<br>            public void onClick(DialogInterface dialog, int which) {<br>099<br>                dialog.dismiss();<br>100<br>            }<br>101<br>        });<br>102<br>        noticeDialog = builder.create();<br>103<br>        noticeDialog.show();<br>104<br>    }<br>105</p>
+<p>106<br>    private void showDownloadDialog(){<br>107<br>        AlertDialog.Builder builder = new Builder(mContext);<br>108<br>        builder.setTitle(“软件版本更新”);<br>109</p>
+<p>110<br>        final LayoutInflater inflater = LayoutInflater.from(mContext);<br>111<br>        View v = inflater.inflate(R.layout.progress, null);<br>112<br>        mProgress = (ProgressBar)v.findViewById(R.id.progress);<br>113</p>
+<p>114<br>        builder.setView(v);<br>115<br>        builder.setNegativeButton(“取消”, new OnClickListener() {<br>116<br>            @Override<br>117<br>            public void onClick(DialogInterface dialog, int which) {<br>118<br>                dialog.dismiss();<br>119<br>                interceptFlag = true;<br>120<br>            }<br>121<br>        });<br>122<br>        downloadDialog = builder.create();<br>123<br>        downloadDialog.show();<br>124</p>
+<p>125<br>        downloadApk();<br>126<br>    }<br>127</p>
+<p>128<br>    private Runnable mdownApkRunnable = new Runnable() {<br>129<br>        @Override<br>130<br>        public void run() {<br>131<br>            try {<br>132<br>                URL url = new URL(apkUrl);<br>133</p>
+<p>134<br>                HttpURLConnection conn = (HttpURLConnection)url.openConnection();<br>135<br>                conn.connect();<br>136<br>                int length = conn.getContentLength();<br>137<br>                InputStream is = conn.getInputStream();<br>138</p>
+<p>139<br>                File file = new File(savePath);<br>140<br>                if(!file.exists()){<br>141<br>                    file.mkdir();<br>142<br>                }<br>143<br>                String apkFile = saveFileName;<br>144<br>                File ApkFile = new File(apkFile);<br>145<br>                FileOutputStream fos = new FileOutputStream(ApkFile);<br>146</p>
+<p>147<br>                int count = 0;<br>148<br>                byte buf[] = new byte[1024];<br>149</p>
+<p>150<br>                do{<br>151<br>                    int numread = is.read(buf);<br>152<br>                    count += numread;<br>153<br>                    progress =(int)(((float)count / length) * 100);<br>154<br>                    //更新进度<br>155<br>                    mHandler.sendEmptyMessage(DOWN_UPDATE);<br>156<br>                    if(numread &lt;= 0){<br>157<br>                        //下载完成通知安装<br>158<br>                        mHandler.sendEmptyMessage(DOWN_OVER);<br>159<br>                        break;<br>160<br>                    }<br>161<br>                    fos.write(buf,0,numread);<br>162<br>                }while(!interceptFlag);//点击取消就停止下载.<br>163</p>
+<p>164<br>                fos.close();<br>165<br>                is.close();<br>166<br>            } catch (MalformedURLException e) {<br>167<br>                e.printStackTrace();<br>168<br>            } catch(IOException e){<br>169<br>                e.printStackTrace();<br>170<br>            }<br>171</p>
+<p>172<br>        }<br>173<br>    };<br>174</p>
+<p>175<br>     /**<br>176</p>
+<pre><code>* 下载apk
+</code></pre><p>177</p>
+<pre><code>* @param url
+</code></pre><p>178<br>     */<br>179</p>
+<p>180<br>    private void downloadApk(){<br>181<br>        downLoadThread = new Thread(mdownApkRunnable);<br>182<br>        downLoadThread.start();<br>183<br>    }<br>184<br>     /**<br>185</p>
+<pre><code>* 安装apk
+</code></pre><p>186</p>
+<pre><code>* @param url
+</code></pre><p>187<br>     */<br>188<br>    private void installApk(){<br>189<br>        File apkfile = new File(saveFileName);<br>190<br>        if (!apkfile.exists()) {<br>191<br>            return;<br>192<br>        }<br>193<br>        Intent i = new Intent(Intent.ACTION_VIEW);<br>194<br>        i.setDataAndType(Uri.parse(“file://“+ apkfile.toString()), “application/vnd.android.package-archive”);<br>195<br>        mContext.startActivity(i);<br>196</p>
+<p>197<br>    }<br>198<br>}<br>第三步：在MainActivity.java也就是主Activity调用,代码如下:<br>01<br>package com.tutor.update;<br>02</p>
+<p>03<br>import android.app.Activity;<br>04<br>import android.os.Bundle;<br>05</p>
+<p>06<br>public class MainAcitivity extends Activity {<br>07</p>
+<p>08</p>
+<p>09<br>    private UpdateManager mUpdateManager;<br>10<br>    @Override<br>11<br>    public void onCreate(Bundle savedInstanceState) {<br>12<br>        super.onCreate(savedInstanceState);<br>13<br>        setContentView(R.layout.main);<br>14</p>
+<p>15<br>        //这里来检测版本是否需要更新<br>16<br>        mUpdateManager = new UpdateManager(this);<br>17<br>        mUpdateManager.checkUpdateInfo();<br>18<br>    }<br>19<br>}<br>第四步：添加程序所用的资源与权限：<br>下载的时候用到了ProgressBar,所以事先写了一个progress.xml布局文件，代码如下:</p>
+<p>01<br><!--?xml version="1.0" encoding="utf-8"?--><br>02</p>
+<p>03</p>
+<p>04</p>
+<p>05</p>
+<p>06</p>
+<p><linearlayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent" android:layout_height="wrap_content"><br>07</linearlayout></p>
+<p>08</p>
+<p>09</p>
+<p>10</p>
+<p>11</p>
+<p>12<br> <progressbar style="android:attr/progressBarStyleHorizontal;" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/progress"><br>13</progressbar></p>
+<p>14</p>
+<p>15</p>
+<p>16</p>
+<p>17<br> <br>18</p>
+<p>19</p>
+<p>20</p>
+<p>21</p>
+<p>22<br><br>下载的时候用到了网络部分，所以要在AndroidManifest.xml中添加网络权限，代码如下:<br>1</p>
+<p><uses-permission android:name="android.permission.INTERNET"></uses-permission><br>第五步:运行查看效果如下:<br>Android 软件自动更新功能的实现！！！     Android 软件自动更新功能的实现！！！</p>
+<p> 图一:提示有最新包                                                                                   图二：点击开始下载</p>
+<p>Android 软件自动更新功能的实现！！！</p>
+<p>图三：下载完开始安装，我这里模拟器空间不足了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/14/Android-应用版本更新/" data-id="cio5xy89j0003nbuowlyl3ovp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/14/Android-解析json/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android 解析json
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/14/Android-Notification的使用/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android Notification的使用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/博客/" style="font-size: 15px;">博客</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/14/Android-解析json/">Android 解析json</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/14/Android-应用版本更新/">Android 应用版本更新</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/14/Android-Notification的使用/">Android Notification的使用</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/13/Android-短信发送/">Android 短信发送</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/13/Java-RMI/">Java RMI</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 huanxingxyz<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
