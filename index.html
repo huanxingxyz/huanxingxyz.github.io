@@ -68,6 +68,88 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Android-Notification的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/14/Android-Notification的使用/" class="article-date">
+  <time datetime="2016-05-13T16:02:12.000Z" itemprop="datePublished">2016-05-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/14/Android-Notification的使用/">Android Notification的使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1：获取NotificationManager:<br>NotificationManager m_NotificationManager=(NotificationManager)this.getSystemService(NOTIFICATION_SERVICE);</p>
+<p>2:定义一个Notification:<br>  Notification  m_Notification=new Notification();</p>
+<p>3:设置Notification的各种属性：<br> //设置通知在状态栏显示的图标<br>m_Notification.icon=R.drawable.icon;<br> //当我们点击通知时显示的内容<br>m_Notification.tickerText=”Button1 通知内容…..”;</p>
+<p>通知时发出的默认声音<br>m_Notification.defaults=Notification.DEFAULT_SOUND;<br>//设置通知显示的参数<br>Intent   m_Intent=new Intent(NotificationDemo.this,DesActivity.class);<br>PendingIntent m_PendingIntent=PendingIntent.getActivity(NotificationDemo.this, 0, m_Intent, 0);<br>m_Notification.setLatestEventInfo(NotificationDemo.this, “Button1”, “Button1通知”,m_PendingIntent );<br>//这个可以理解为开始执行这个通知<br>m_NotificationManager.notify(0,m_Notification);</p>
+<p>4：既然可以增加同样我们也可以删除。当然是只是删除你自己增加的。<br>  m_NotificationManager.cancel(0);<br>  这里的0是一个ID号码，和notify第一个参数0一样。<br>这也就完成了，添加删除工作。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/14/Android-Notification的使用/" data-id="cio5wyjfy0001m5uo67d6nyn9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android-短信发送" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/13/Android-短信发送/" class="article-date">
+  <time datetime="2016-05-13T15:59:36.000Z" itemprop="datePublished">2016-05-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/13/Android-短信发送/">Android 短信发送</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 短信管理模块</span><br><span class="line">public void SMSclick(View view) &#123;</span><br><span class="line"></span><br><span class="line">Log.v(&quot;sms&quot;, &quot;sms&quot;);</span><br><span class="line">// 调用Android系统API发送短信</span><br><span class="line">Uri uri = Uri.parse(&quot;smsto:5556&quot;);</span><br><span class="line">Intent intent = new Intent(Intent.ACTION_SENDTO, uri);</span><br><span class="line">intent.putExtra(&quot;sms_body&quot;, &quot;android...&quot;);</span><br><span class="line">startActivity(intent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//发送短信管理模块</span><br><span class="line">public void SMSsend(View view)&#123;</span><br><span class="line">  </span><br><span class="line">    PendingIntent pi = PendingIntent.getActivity(this, 0,    new Intent(this, MainActivity.class), 0);</span><br><span class="line">  </span><br><span class="line">    SmsManager sms = SmsManager.getDefault();</span><br><span class="line">  </span><br><span class="line">    sms.sendTextMessage(&quot;5554&quot;, null, &quot;aa&quot;, pi, null);</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/13/Android-短信发送/" data-id="cio5wyjg50004m5uo0w3vl6jv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Java-RMI" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/05/13/Java-RMI/" class="article-date">
@@ -103,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Java-RMI/" data-id="cio5wpeji0004liuo3ootwluq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/13/Java-RMI/" data-id="cio5wyjgm000dm5uob212azm5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -154,7 +236,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Android-ListView优化几种写法详细介/" data-id="cio5wpejb0001liuorrkk6spx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/13/Android-ListView优化几种写法详细介/" data-id="cio5wyjfs0000m5uot3a6u74o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -231,7 +313,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Android开发遇到的Exception/" data-id="cio5wpejg0003liuoe6lujzgp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/13/Android开发遇到的Exception/" data-id="cio5wyjg70006m5uox36noffx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -271,7 +353,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/GridView常用属性/" data-id="cio5wpejx000dliuocfb1409p" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/13/GridView常用属性/" data-id="cio5wyjgb0008m5uo7n5q3bkw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -315,7 +397,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Android-应用添加快捷方式/" data-id="cio5wpej60000liuotoc2n6n5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/13/Android-应用添加快捷方式/" data-id="cio5wyjg30003m5uo9loq9u2w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -367,7 +449,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Hexo在github上构建的博客/" data-id="cio5wpejt000cliuozocsyg5r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/13/Hexo在github上构建的博客/" data-id="cio5wyjgf000bm5uo2kerjfyf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客/">博客</a></li></ul>
@@ -446,7 +528,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/12/markdown语法/" data-id="cio5wpek0000fliuo4gy645xf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/12/markdown语法/" data-id="cio5wyjgp000gm5uov8rapjd1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客/">博客</a></li></ul>
@@ -502,6 +584,14 @@
       <ul>
         
           <li>
+            <a href="/2016/05/14/Android-Notification的使用/">Android Notification的使用</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/13/Android-短信发送/">Android 短信发送</a>
+          </li>
+        
+          <li>
             <a href="/2016/05/13/Java-RMI/">Java RMI</a>
           </li>
         
@@ -511,14 +601,6 @@
         
           <li>
             <a href="/2016/05/13/Android开发遇到的Exception/">Android开发遇到的Exception</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/13/GridView常用属性/">GridView常用属性</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/13/Android-应用添加快捷方式/">Android 应用添加快捷方式</a>
           </li>
         
       </ul>
