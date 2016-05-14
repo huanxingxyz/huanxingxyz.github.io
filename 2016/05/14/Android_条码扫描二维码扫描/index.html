@@ -1,0 +1,306 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android_条码扫描二维码 | 田鹏飞的个人博客</title>
+  <meta name="author" content="huanxingxyz">
+  
+  <meta name="description" content="前言　　最近公司的Android项目需要用到摄像头做条码或二维码的扫描，Google一下，发现一个以Apache License 2.0 开源的 ZXing项目。Zxing项目里的Android实现太过复杂多余东西太多，得对其进行简化。
+前提条件　　下载源代码：点击这里
+　　编译核心库：Zxing的">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Android_条码扫描二维码"/>
+  <meta property="og:site_name" content="田鹏飞的个人博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">田鹏飞的个人博客</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header page-header-inverse ">		
+			<h1 class="title title-inverse "> Android_条码扫描二维码</h1>
+		</div>		
+	
+
+
+
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>前言<br>　　最近公司的Android项目需要用到摄像头做条码或二维码的扫描，Google一下，发现一个以Apache License 2.0 开源的 ZXing项目。Zxing项目里的Android实现太过复杂多余东西太多，得对其进行简化。</p>
+<p>前提条件<br>　　下载源代码：点击这里</p>
+<p>　　编译核心库：Zxing的主页上有介绍具体步骤，大家也可以参照这篇博文：android 条码识别软件开发全解析(续2详解绝杀！)</p>
+<p>导入项目<br>　　打开Eclipse 导入 源码中的 Android 项目，然后右击项目 选择“Build path”——》”Add External Archives” 把核心库 core.jar文件加入到项目中。</p>
+<p>此时编译一下项目，会发现报错,“ Multiple substitutions specified in non-positional format; did you mean to add the formatted=”false” attribute?”之类的。打开raw 下的Values 发现错误是在一个<string>上。这里把 “preferences_custom_product_search_summary” 里的  %s  %f  全部都改成  %1$s  %1$f（因为我们用不到多国语言，建议只保留默认的Value ，其他全部删除）。</string></p>
+<p>　　原因：由于新的SDK采用了新版本的aapt（Android项目编译器），这个版本的aapt编译起来会比老版本更加的严格，然后在Android最新的开发文档的描述String的部分，已经说明如何去设置 %s 等符号</p>
+<p>　　“If you need to format your strings using String.format(String, Object…) , then you can do so by putting your format arguments in the string resource. For example, with the following resource:</p>
+<p>　　<string name="welcome_messages">Hello, %1$s! You have %2$d new messages.</string></p>
+<p>　　In this example, the format string has two arguments: %1$s is a string and %2$d is a decimal number. You can format the string with arguements from your application…“</p>
+<p>　　经过以上步骤后项目应该就可以运行了。</p>
+<p>　　但是ZXing的android项目东西太多了，有很多是我们不需要的，得新建另一个项目简化它。</p>
+<p>简化<br>　　在开始前大致介绍一下简化ZXing需要用到各个包 、类的职责。</p>
+<p>CaptureActivity。这个是启动Activity 也就是扫描器（如果是第一安装，它还会跳转到帮助界面）。<br>CaptureActivityHandler 解码处理类，负责调用另外的线程进行解码。<br>DecodeThread 解码的线程。<br>com.google.zxing.client.android.camera 包，摄像头控制包。<br>ViewfinderView 自定义的View，就是我们看见的拍摄时中间的框框了。<br>新建另一个项目<br>　　新建另一个项目将启动的Activity命名为CaptureActivity，并导入核心库。项目新建完成后我们打开 CaptureActivity 的布局文件，我这里为main。把里面的XML修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">复制代码</span><br><span class="line">1 &lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">2 android:layout_width=&quot;fill_parent&quot; android:layout_height=&quot;fill_parent&quot;&gt;</span><br><span class="line">3 &lt;SurfaceView android:id=&quot;@+id/preview_view&quot;</span><br><span class="line">4 android:layout_width=&quot;fill_parent&quot; android:layout_height=&quot;fill_parent&quot;</span><br><span class="line">5 android:layout_centerInParent=&quot;true&quot;/&gt;</span><br><span class="line">6 </span><br><span class="line">7 &lt;com.Zxing.Demo.view.ViewfinderView</span><br><span class="line">8 android:id=&quot;@+id/viewfinder_view&quot; android:layout_width=&quot;fill_parent&quot;</span><br><span class="line">9 android:layout_height=&quot;fill_parent&quot; android:background=&quot;@android:color/transparent&quot;/&gt;</span><br><span class="line">10 &lt;TextView android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">11 android:id=&quot;@+id/txtResult&quot;</span><br><span class="line">12 android:layout_height=&quot;wrap_content&quot; android:text=&quot;@string/hello&quot;/&gt;</span><br><span class="line">13 </span><br><span class="line">14  &lt;/FrameLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>复制代码<br>　　可以看到在XML里面用到了 ViewfinderView 自定义view 。所以新建一个View 的包，然后把：ViewfinderView 和 ViewfinderResultPointCallback 靠到里面（记得对应修改XML里面的包）。</p>
+<p>打开 CaptureActivity 覆盖 onCreate 方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">复制代码</span><br><span class="line">1 @Override</span><br><span class="line">2 publicvoid onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">3 super.onCreate(savedInstanceState);</span><br><span class="line">4 setContentView(R.layout.main);</span><br><span class="line">5 //初始化 CameraManager</span><br><span class="line">6   CameraManager.init(getApplication());</span><br><span class="line">7 </span><br><span class="line">8 viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);</span><br><span class="line">9 txtResult = (TextView) findViewById(R.id.txtResult);</span><br><span class="line">10 hasSurface =false;</span><br><span class="line">11 inactivityTimer =new InactivityTimer(this);</span><br><span class="line">12 &#125;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+<p>  这里调用到的 CameraManager 类是控制摄像头的包里的类。新建一个camera包把：com.google.zxing.client.android.camera 里面的类全部拷入，另外我把PlanarYUVLuminanceSource也拷入到这个包里面。根据错误的提示来修正代码，主要是修改正包结构。（整个简化的流程都是如此：“根据错误提示，修改代码”）。</p>
+<p>　　在修改的过程中，有很多是关于R 资源的问题，在此我们需要将Values  里面的两个xml资源文件拷入项目中：colos.xml 和ids.xml 。 ctrl+b 一下看看error 是不是少了很多。在CameraManager中有些地方需要用到项目的配置，这里需要把配置直接写入代码中：<br>　　<br>　　<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">　　</span><br><span class="line"></span><br><span class="line">// SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);</span><br><span class="line">//是否使用前灯</span><br><span class="line">// if (prefs.getBoolean(PreferencesActivity.KEY_FRONT_LIGHT, false)) &#123;</span><br><span class="line">// FlashlightManager.enableFlashlight();</span><br><span class="line">// &#125;</span><br><span class="line">FlashlightManager.enableFlashlight();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> 　　使用摄像头需要加入相应的权限：</span><br></pre></td></tr></table></figure></p>
+<p><uses-permission android:name="android.permission.CAMERA"></uses-permission></p>
+<p><uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission></p>
+<p><uses-feature android:name="android.hardware.camera"></uses-feature></p>
+<p><uses-feature android:name="android.hardware.camera.autofocus"></uses-feature></p>
+<p><uses-permission android:name="android.permission.VIBRATE"></uses-permission></p>
+<uses-permission android:name="android.permission.FLASHLIGHT">
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　当View 和 camera 包里的错误修正完成后，我们继续来看CaptureActivity。</span><br><span class="line"></span><br><span class="line">覆盖onResume方法初始化摄像头：</span><br></pre></td></tr></table></figure>
+<p>复制代码<br>@Override<br>protectedvoid onResume() {<br>super.onResume();<br>SurfaceView surfaceView = (SurfaceView) findViewById(R.id.preview_view);<br>SurfaceHolder surfaceHolder = surfaceView.getHolder();<br>if (hasSurface) {<br>initCamera(surfaceHolder);<br>} else {<br>surfaceHolder.addCallback(this);<br>surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);<br>}<br>decodeFormats =null;<br>characterSet =null;</p>
+<p>playBeep =true;<br>AudioManager audioService = (AudioManager) getSystemService(AUDIO_SERVICE);<br>if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {<br>playBeep =false;<br>}<br>initBeepSound();<br>vibrate =true;<br>}</p>
+<p>复制代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">initCamera</span><br><span class="line">SurfaceHolder接口实现</span><br><span class="line">initCamera () 方法用于初始化摄像头，如果排除了所有的error ，运行项目时就可以看到大致扫描界面了。 surfaceHolder.addCallback(this);表示让CaptureActivity实现其callback接口。</span><br><span class="line"></span><br><span class="line">handler = new CaptureActivityHandler(this, decodeFormats,characterSet) 用于进行扫描解码处理。</span><br><span class="line"></span><br><span class="line">解码</span><br><span class="line">　　上面的步骤主要都是用于对摄像头的控制，而解码的真正工作入口是在CaptureActivityHandler 里面的。新建一个Decoding包把以下文件拷入包中：</span><br><span class="line"></span><br><span class="line">CaptureActivityHandler</span><br><span class="line">DecodeFormatManager</span><br><span class="line">DecodeHandler</span><br><span class="line">DecodeThread</span><br><span class="line">FinishListener</span><br><span class="line">InactivityTimer</span><br><span class="line">Intents</span><br><span class="line">由于我们的包结构和Zxing 项目的有所不同所以需要注意一下类的可访问性</span><br><span class="line"></span><br><span class="line">同样开始ctrl+B 编译一下，然后开始修正错误。</span><br><span class="line"></span><br><span class="line">　　在CaptureActivityHandler 里 把 handleMessage 里的部分方法先注释掉如：“decode_succeeded ”分支，这是解码成功时调用 CaptureActivity 展示解码的结果。</span><br><span class="line"></span><br><span class="line">在DecodeThread 类里，修改部分涉及Preference配置的代码：</span><br></pre></td></tr></table></figure>
+<p>复制代码<br>DecodeThread(CaptureActivity activity,<br>Vector<barcodeformat> decodeFormats,<br>String characterSet,<br>ResultPointCallback resultPointCallback) {</barcodeformat></p>
+<p>this.activity = activity;<br>handlerInitLatch =new CountDownLatch(1);</p>
+<p>hints =new Hashtable<decodehinttype, object="">(3);</decodehinttype,></p>
+<p>//// The prefs can’t change while the thread is running, so pick them up once here.<br>// if (decodeFormats == null || decodeFormats.isEmpty()) {<br>// SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);<br>// decodeFormats = new Vector<barcodeformat>();<br>// if (prefs.getBoolean(PreferencesActivity.KEY_DECODE_1D, true)) {<br>// decodeFormats.addAll(DecodeFormatManager.ONE_D_FORMATS);<br>// }<br>// if (prefs.getBoolean(PreferencesActivity.KEY_DECODE_QR, true)) {<br>// decodeFormats.addAll(DecodeFormatManager.QR_CODE_FORMATS);<br>// }<br>// if (prefs.getBoolean(PreferencesActivity.KEY_DECODE_DATA_MATRIX, true)) {<br>// decodeFormats.addAll(DecodeFormatManager.DATA_MATRIX_FORMATS);<br>// }<br>// }<br>if (decodeFormats ==null|| decodeFormats.isEmpty()) {<br>decodeFormats =new Vector<barcodeformat>();<br>decodeFormats.addAll(DecodeFormatManager.ONE_D_FORMATS);<br>decodeFormats.addAll(DecodeFormatManager.QR_CODE_FORMATS);<br>decodeFormats.addAll(DecodeFormatManager.DATA_MATRIX_FORMATS);</barcodeformat></barcodeformat></p>
+<p>}</p>
+<p>hints.put(DecodeHintType.POSSIBLE_FORMATS, decodeFormats);</p>
+<p>if (characterSet !=null) {<br>hints.put(DecodeHintType.CHARACTER_SET, characterSet);<br>}</p>
+<p>hints.put(DecodeHintType.NEED_RESULT_POINT_CALLBACK, resultPointCallback);<br>}<br>复制代码</p>
+<p>```</p>
+<p>这里是设置 解码的类型，我们现在默认将所有类型都加入。</p>
+<p>错误类型基本上都是：包结构、PreferencesActivity 的配置 、类可访问性的问题。根据错误提示耐心把错误解决。</p>
+<p>返回解码结果<br> 　　还记得在 CaptureActivityHandler 的 messagehandler 里注销掉的Case分支吗？现在CaptureActivity 里实现它。</p>
+<p>复制代码<br>publicvoid handleDecode(Result obj, Bitmap barcode) {<br>inactivityTimer.onActivity();<br>viewfinderView.drawResultBitmap(barcode);<br>playBeepSoundAndVibrate();<br>txtResult.setText(obj.getBarcodeFormat().toString() +”:”</p>
+<ul>
+<li>obj.getText());<br>}<br>复制代码<br>最后<br>　　ZXing的简化已基本完成，有几位是可以运行成功的？呵呵。</li>
+</ul>
+<p>下面是CaptureActivity的源码:</p>
+<p>CaputreActivity<br>简化过的包结构图：</p>
+<p>　</p>
+<p>　简化后的ZXing 更加方便我们了解ZXing项目 是如何解码的。只要仔细查看源码，进行单点跟踪调试，相信大家很容易能理解。</p>
+<p>顾客是上帝<br>   很多人留言要源码， 其实我这不是什么源码，我只是把ZXing的东西简化了一下而已。事实上我也不喜欢直接放源码项目，这样大家就不想读ZXing的源码了。</p>
+<p>下面是我简化的版本：Zxing简化</p>
+<p>很多人需要Core 核心包（其实ZXing的源码里面就有），这里提供下我写文章时的版本 1.6的：</p>
+<p>Zxing</p>
+</uses-permission>	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/05/14/Android_检查是否联网/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
+  		
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/05/14/Android-应用插件式开发解决方法/" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+
+    <!-- share -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">留言</h2>
+
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-05-14 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Android/">Android<span>12</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2016 huanxingxyz
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+</body>
+   </html>
