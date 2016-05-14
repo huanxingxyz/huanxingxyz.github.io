@@ -1,0 +1,261 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>基类和派生类的成员访问 | 田鹏飞的个人博客</title>
+  <meta name="author" content="huanxingxyz">
+  
+  <meta name="description" content="基类和派生类的成员访问
+＃includeusing namespace std;class Cbase{public:    Cbase(int x = 0, int y = 0, int z = 0):a(x), b(y), c(z){};    void display();    void d">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="基类和派生类的成员访问"/>
+  <meta property="og:site_name" content="田鹏飞的个人博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">田鹏飞的个人博客</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header page-header-inverse ">		
+			<h1 class="title title-inverse "> 基类和派生类的成员访问</h1>
+		</div>		
+	
+
+
+
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>基类和派生类的成员访问</p>
+<p>＃include<br>using namespace std;<br>class Cbase<br>{<br>public:<br>    Cbase(int x = 0, int y = 0, int z = 0):a(x), b(y), c(z){};<br>    void display();<br>    void display(int a, int b);<br>    void set();<br>    virtual void eval();<br>    static int sint;<br>protected:<br>    int c;<br>private:<br>    int a;<br>    int b;<br>};<br>class Cderive:public Cbase<br>{<br>public:<br>    Cderive(string x = “”, string y = “”, int z = 0):a(x),b(y), Cbase(z,z,z){};<br>    //隐藏了Cbase::set()的可见性<br>    void set(string x, string y);<br>    using Cbase::set;<br>    virtual void eval();<br>    virtual void cmp(Cderive* pb);<br>protected:<br>private:<br>    int nc;<br>    string a;<br>    string b;<br>};</p>
+<ol>
+<li>派生类中继承到的基类成员可以直接访问pulic成员</li>
+</ol>
+<p>就好像他是派生类的成员，<br>可以通过该类的一个对象访问，<br>Cderive der;<br>der.display();<br>也可以直接在成员函数里面访问。<br>void Cderive::set()<br>{<br>    display();<br>    a = “hello”;<br>    b = “ derived class”;<br>}<br>2.例外：当基类成员名在派生类中被重用时</p>
+<p>c++初学者常见的误解：希望基类和派生类的成员函数构成一个重载函数集<br>但是，试图在派生类中调用基类实例会导致一个编译时刻错误<br>Cderive der;<br>//Cbase::set()不可见<br>der.set();<br>虽然基类成员可以被直接访问，但他们仍然属于基类的域。一个名字的重载候选函数必须出现在同一个域中，因为在不同的类域中<br>所以可以出现相同原型的两个实例，但是这在同一个类域中将导致重复定义错误。<br>如果我们真想为基类和派生类的成员实例提供一个重载函数集合有两种方法：<br>1.在调用基类实例的派生类中写一个小的inline存根函数：<br>class Cderive:public Cbase<br>{<br>public:<br>    void set(string x, string y);<br>    void set(){Cbase::set();}<br>};<br>2.使用using声明：<br>class Cderive:public Cbase<br>{<br>public:<br>    void set(string x, string y);<br>    using Cbase::set;<br>};<br>using把基类中每一个被命名的成员都引入到派生类的域中（针对一个成员函数的using声明不能指定参数表，只能指定成员函数名。这意味着，如果函数在基类中被重载，则所有的重载实例都被加入到派生类的类域中，不能只增加基类的重载成员函数集中的一个实例）。<br>3.访问基类的protected成员的范围</p>
+<p>void Cderive::cmp(Cbase<em> pb)<br>{<br>    //自己的Cbase子对象的protected成员<br>    int mine = c;<br>    //不能直接访问另一个独立的Cbase对象的protected成员的权力<br>    int his = pb-&gt;c;<br>    if (mine == his)<br>        cout &lt;&lt; are=”” the=”” same=”” endl=””&gt;    else<br>        cout &lt;&lt; are=”” different=”” endl=””&gt;}<br>Cderive只能访问一个Cbase类对象的protected成员，他自己的Cbase子对象。<br>这种形式的成员访问限制不适用于自己类的其他对象。例如<br>void Cderive::cmp(Cderive</em> pd)<br>{<br>    //自己的Cbase子对象的protected成员<br>    int mine = c;<br>    //ok as well<br>    int his = pd-&gt;c;<br>    if (mine == his)<br>        cout &lt;&lt; are=”” the=”” same=”” endl=””&gt;    else<br>        cout &lt;&lt; are=”” different=”” endl=””&gt;}<br>派生类可以直接访问该类其他对象的protected基类成员，以及该类其他对象的protected和private成员。<br>4.基类指针访问派生类对象</p>
+<p>Cbase *pb = new Cderive;<br>pb-&gt;eval();<br>如果一个基类指针调用在Cbase中定义的虚拟函数，则调用派生的Cderive类实例。<br>除了“在Cbase基类中被声明，并且在Cderive派生类中被改写”的虚拟函数之外，没有办法通过pb直接访问Cderive的成员。<br>1.如果Cbase和Cderive都声明了一个同名的非虚拟函数或同名的数据成员，通过pb调用的总是Cbase的实例。<br>2.如果Cderive引入了一个在Cbase中不存在的虚拟函数，那么试图通过pd调用它将导致一个编译时刻错误。<br>3.试图通过pb访问Cderive的数据成员或非虚拟成员函数，也会产生一个编译时刻错误。<br>C++中基类指针只能访问在该类中被声明的数据成员和成员函数，包括虚拟成员函数，而与他实际指向的实际对象无关。把一个成员声明成虚拟的， 只推延了“在程序执行期间pd指向的实际类型，对于要调用的实例的解析过程”。<br>5.静态成员的继承访问</p>
+<p>如果基类定义了一个静态数据成员sint，派生类不会创建第二个sint的实例，所有的派生类对象都引用这个相同的，单一的，共享的静态成员。不论从基类派生了多少类sint只存在一个实例，我们可以通过派生类对象用成员访问语法来访问他。<br>Cbase <em>pb = new Cderive;<br>Cderive </em>pd = new Cderive;<br>cout &lt;&lt; pd-=””&gt;sint<pd->sint = 2048;<br>cout &lt;&lt; pb-=””&gt;sint &lt;<br>6.派生类访问基类的私有成员，基类必须显式的把派生类声明为一个friend</pd-></p>
+<p>class Cbase<br>{<br>    friend class Cderive;<br>public:<br>};<br>现在Cderive不但可以访问他自己的基类子对象的私有成员，而且还可以访问所有Cbase对象的私有和protected的成员。<br>如果从Cderive派生出一个Cchild类，Cchild类不继承Cderive与Cbase的友元关系，友元关系没有被继承。派生类没有成为“向他的基类授权友元的类的”友元。<br>Cchild没有对Cbase的访问特权。如果需要特权访问，则Cbase必须显式的向他授权。</p>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/05/14/Linux常用命令/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
+  		
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/05/14/Unity3D研究院之与Android相互传递消息/" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+
+    <!-- share -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">留言</h2>
+
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-05-14 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Java/">Java<span>2</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2016 huanxingxyz
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+</body>
+   </html>

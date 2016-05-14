@@ -1,0 +1,693 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>微信内置浏览器的JsAPI | 田鹏飞的个人博客</title>
+  <meta name="author" content="huanxingxyz">
+  
+  <meta name="description" content="之前有写过几篇关于微信内置浏览器（WebView）中特有的Javascript API（Javascript Interface）的文章，不过随着微信官方的调整，部分API已经不能直接使用，比如类似直接分享到朋友圈 WeixinJSBridge.invoke(‘shareTimeline’,data">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="微信内置浏览器的JsAPI"/>
+  <meta property="og:site_name" content="田鹏飞的个人博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">田鹏飞的个人博客</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header page-header-inverse ">		
+			<h1 class="title title-inverse "> 微信内置浏览器的JsAPI</h1>
+		</div>		
+	
+
+
+
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>之前有写过几篇关于微信内置浏览器（WebView）中特有的Javascript API（Javascript Interface）的文章，不过随着微信官方的调整，部分API已经不能直接使用，比如类似直接分享到朋友圈 WeixinJSBridge.invoke(‘shareTimeline’,data,callback) 这样的功能，直接调用，会得到一个访问拒绝的response。后来重新调研了下，整理出来了一个WeixinAPI的Javascript类库，分享出来，如果你对微信公众平台开发感兴趣，应该对你有用。<br>/**!</p>
+<ul>
+<li>微信内置浏览器的Javascript API，功能包括：<br>*</li>
+<li>1、分享到微信朋友圈</li>
+<li>2、分享给微信好友</li>
+<li>3、分享到腾讯微博</li>
+<li>4、隐藏/显示右上角的菜单入口</li>
+<li>5、隐藏/显示底部浏览器工具栏</li>
+<li>6、获取当前的网络状态</li>
+<li>7、调起微信客户端的图片播放组件<br>*</li>
+<li><p>@author zhaoxianlie(<a href="http://www.baidufe.com" target="_blank" rel="external">http://www.baidufe.com</a>)<br>*/<br>var WeixinApi = (function () { </p>
+<p> /<em> 这里省略了一堆代码……下面直接看调用接口 </em>/<br> return {</p>
+<pre><code>ready           :wxJsBridgeReady,
+shareToTimeline :weixinShareTimeline,
+shareToWeibo    :weixinShareWeibo,
+shareToFriend   :weixinSendAppMessage,
+showOptionMenu  :showOptionMenu,
+hideOptionMenu  :hideOptionMenu,
+showToolbar     :showToolbar,
+hideToolbar     :hideToolbar,
+getNetworkType  :getNetworkType,
+imagePreview    :imagePreview
+</code></pre><p> };    </p>
+</li>
+</ul>
+<p>});<br>下面，我们先来看一下这些API都应该怎么使用，先从最简单的入手。</p>
+<p>1、假如我希望一打开网页后，就隐藏掉右上角的PopUp菜单入口，并且隐藏掉浏览器下方的工具栏，同时还要获得当前的网络状态，那么，我们的代码可以这样来写：<br>// 所有功能必须包含在 WeixinApi.ready 中进行<br>WeixinApi.ready(function(Api){<br>    // 隐藏右上角popup菜单入口<br>    Api.hideOptionMenu();</p>
+<pre><code>// 隐藏浏览器下方的工具栏
+Api.hideToolbar();
+
+// 获取网络状态
+Api.getNetworkType(function(network){
+    // 拿到 network 以后，做任何你想做的事
+});
+</code></pre><p>});<br>如示例代码中的注释所示，所有的功能执行必须放在 WeixinApi.ready 方法中执行，就好比你用jQuery的时候，通常都需要使用 jQuery(document).ready(function(){ }) 一样。为什么要这样做？相信不用我解释大家都能明白，因为我们必须要保证在执行这些方法的时候，WeixinJsBridge API已经被加入到WebView上了！</p>
+<p>2、再来看一个有关分享的例子，假如用户在阅读我的文章（或在使用我的产品）的过程中，发现它很有意思或有价值，一般都会将其收藏或分享（给好友、朋友圈、微博等）出去，那现在我就希望能监测到用户的分享行为，比如：自定义用户可分享的内容、甚至是在用户分享之、分享被取消、分享失败、分享成功、以及整个分享操作过程结束，我们都去做点儿什么。那么，这个代码我们可以这样来写：<br>// 所有功能必须包含在 WeixinApi.ready 中进行<br>WeixinApi.ready(function(Api){</p>
+<pre><code>// 微信分享的数据
+var wxData = {
+    &quot;imgUrl&quot;:&apos;http://www.baidufe.com/fe/blog/static/img/weixin-qrcode-2.jpg&apos;,
+    &quot;link&quot;:&apos;http://www.baidufe.com&apos;,
+    &quot;desc&quot;:&apos;大家好，我是Alien，Web前端&amp;Android客户端码农，喜欢技术上的瞎倒腾！欢迎多交流&apos;,
+    &quot;title&quot;:&quot;大家好，我是赵先烈&quot;
+};
+
+// 分享的回调
+var wxCallbacks = {
+    // 分享操作开始之前
+    ready:function () {
+        // 你可以在这里对分享的数据进行重组
+    },
+    // 分享被用户自动取消
+    cancel:function (resp) {
+        // 你可以在你的页面上给用户一个小Tip，为什么要取消呢？
+    },
+    // 分享失败了
+    fail:function (resp) {
+        // 分享失败了，是不是可以告诉用户：不要紧，可能是网络问题，一会儿再试试？
+    },
+    // 分享成功
+    confirm:function (resp) {
+        // 分享成功了，我们是不是可以做一些分享统计呢？
+    },
+    // 整个分享过程结束
+    all:function (resp) {
+        // 如果你做的是一个鼓励用户进行分享的产品，在这里是不是可以给用户一些反馈了？
+    }
+};
+
+// 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+Api.shareToFriend(wxData, wxCallbacks);
+
+// 点击分享到朋友圈，会执行下面这个代码
+Api.shareToTimeline(wxData, wxCallbacks);
+
+// 点击分享到腾讯微博，会执行下面这个代码
+Api.shareToWeibo(wxData, wxCallbacks);
+</code></pre><p>});</p>
+<p>3、当然，如果你的业务需求相当复杂，比如，你的产品就是一个微信网页游戏（类似“2048数字游戏微信版”），你希望用户分享出去的数据是一个网页截屏、或者需要将用户当前的游戏状态回传到服务器动态生成可分享的内容；那么这种情况我们又该怎么做呢？来看下面这个示例代码吧：<br>// 所有功能必须包含在 WeixinApi.ready 中进行<br>WeixinApi.ready(function(Api){</p>
+<pre><code>// 分享的回调
+var wxCallbacks = {
+    // 分享过程需要异步执行
+    async : true,
+    // 分享操作开始之前
+    ready:function () {
+        var self = this;
+        // 假设你需要在这里发一个 ajax 请求去获取分享数据
+        $.post(yourServerUrl,yourPostData,function(responseData){
+            // 可以解析reponseData得到wxData
+            var wxData = responseData;
+            // 调用dataLoaded方法，会自动触发分享操作
+            // 注意，当且仅当 async为true时，wxCallbacks.dataLoaded才会被初始化，并调用
+            self.dataLoaded(wxData);
+        });
+    }
+    /* cancel、fail、confirm、all 方法同示例2，此处略掉 */
+};
+
+// 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+Api.shareToFriend({}, wxCallbacks);
+</code></pre><p>});<br>唯一的区别就是在wxCallbacks中，增加了配置项async为true，表示这个分享过程是异步调用的，其实就是指的ready方法异步执行，在这种情况下，我们需要在ready方法中显式地调用wxCallbacks的dataLoaded方法，以保证分享过程能继续往下执行。也许你会发现，这个wxCallbacks中，根本就没有配置dataLoaded方法啊！是的，当async为true时，WeixinApi中我会自动对其进行初始化，dataLoaded方法需要一个参数，表示需要分享出去的数据！</p>
+<p>4、当然，如果你非要去配置dataLoaded方法，也是没有问题的，你的配置也会被执行，不会被覆盖，执行顺序是：用户配置优先。</p>
+<p>上面是直接给出使用方法，也许你现在开始关心每个方法的参数列表是什么样的了？我们以分享到朋友圈的方法为例，来看看参数都有哪些配置项：<br>/**</p>
+<ul>
+<li>分享到微信朋友圈</li>
+<li>@param       {Object}    data       待分享的信息</li>
+<li>@p-config    {String}    appId      公众平台的appId（服务号可用）</li>
+<li>@p-config    {String}    imageUrl   图片地址</li>
+<li>@p-config    {String}    link       链接地址</li>
+<li>@p-config    {String}    desc       描述</li>
+<li>@p-config    {String}    title      分享的标题<br>*</li>
+<li>@param       {Object}    callbacks  相关回调方法</li>
+<li>@p-config    {Boolean}   async                   ready方法是否需要异步执行，默认false</li>
+<li>@p-config    {Function}  ready(argv)             就绪状态</li>
+<li>@p-config    {Function}  dataLoaded(data)        数据加载完成后调用，async为true时有用</li>
+<li>@p-config    {Function}  cancel(resp)    取消</li>
+<li>@p-config    {Function}  fail(resp)      失败</li>
+<li>@p-config    {Function}  confirm(resp)   成功</li>
+<li>@p-config    {Function}  all(resp)       无论成功失败都会执行的回调<br>*/<br>WeixinApi.shareToTimeline(data,callbacks);<br>分享给微信好友以及分享到腾讯微博的参数列表都一样，这里就不罗列了。</li>
+</ul>
+<p>5、如果你的文章中有很多图片，那么，点击图片直接调起微信客户端自带的图片播放组件，那必然是一件好事；对此，你可以这样来做：<br>// 调起微信客户端的图片播放组件进行播放<br>WeixinApi.ready(function(Api){<br>    var srcList = [];<br>    $.each($(‘img’),function(i,item){<br>       if(item.src) {<br>           srcList.push(item.src);<br>           $(item).click(function(e){<br>               // 通过这个API就能直接调起微信客户端的图片播放组件了<br>               Api.imagePreview(this.src,srcList);<br>           });<br>       }<br>    });<br>});<br>就这么一段儿简单的代码，一切都搞定了！不过，需要指出的是，Api.imagePreview的参数是会进行强检测的：<br>/**</p>
+<ul>
+<li>调起微信Native的图片播放组件。</li>
+<li>这里必须对参数进行强检测，如果参数不合法，直接会导致微信客户端crash<br>*</li>
+<li>@param {String} curSrc 当前播放的图片地址</li>
+<li>@param {Array} srcList 图片地址列表<br>*/<br>function imagePreview(curSrc,srcList) ;</li>
+</ul>
+<p>需要指出的是，微信公众平台对Android、iOS平台支持力度不统一，比较费劲，具体有：<br>iOS平台下，分享出去的数据wxData中，imageUrl可以是DataURI格式的；但在Android平台下，必须是全路径的图片地址<br>iOS平台下，分享的回调callback基本全都可以得到执行；但在Android平台下，分享到微信朋友圈的callback无法得到执行（ready方法除外）<br>iOS平台下，无法在非mp.weixin.qq.com域下的页面中通过WeixinJSBridge.invoke(‘profile’)的方式打开某微信号的资料页面；Android平台下则可以通过<a href="weixin://contacts/profile/微信ID" target="_blank" rel="external">的方式打开资料页；WinPhone下，则是通过<a href="weixin://profile/微信ID" target="_blank" rel="external">的方式打开。<br>期待官方能早日实现各平台API的统一吧！！！</a></a></p>
+<p>至于API内部是怎么实现的，如果感兴趣，那就看源码吧，使用过程中如遇到什么Bug，请来这里反馈。</p>
+<p>为了便于Api的维护与共享，已将其放到Github上了，大家这里走起：https://github.com/zxlie/WeixinApi </p>
+<p>/**!</p>
+<ul>
+<li>微信内置浏览器的Javascript API，功能包括：<br>*</li>
+<li>1、分享到微信朋友圈</li>
+<li>2、分享给微信好友</li>
+<li>3、分享到腾讯微博</li>
+<li>4、隐藏/显示右上角的菜单入口</li>
+<li>5、隐藏/显示底部浏览器工具栏</li>
+<li>6、获取当前的网络状态<br>*</li>
+<li>@author zhaoxianlie(http://www.baidufe.com)<br>*/<br>var WeixinApi = (function () {</li>
+</ul>
+<pre><code>/**
+ * 分享到微信朋友圈
+ * @param       {Object}    data       待分享的信息
+ * @p-config    {String}    appId      公众平台的appId（服务号可用）
+ * @p-config    {String}    imageUrl   图片地址
+ * @p-config    {String}    link       链接地址
+ * @p-config    {String}    desc       描述
+ * @p-config    {String}    title      分享的标题
+ *
+ * @param       {Object}    callbacks  相关回调方法
+ * @p-config    {Boolean}   async                   ready方法是否需要异步执行，默认false
+ * @p-config    {Function}  ready(argv)             就绪状态
+ * @p-config    {Function}  dataLoaded(data)        数据加载完成后调用，async为true时有用，也可以为空
+ * @p-config    {Function}  cancel(resp)    取消
+ * @p-config    {Function}  fail(resp)      失败
+ * @p-config    {Function}  confirm(resp)   成功
+ * @p-config    {Function}  all(resp)       无论成功失败都会执行的回调
+ */
+function weixinShareTimeline(data, callbacks) {
+    callbacks = callbacks || {};
+    var shareTimeline = function (theData) {
+        WeixinJSBridge.invoke(&apos;shareTimeline&apos;, {
+            &quot;appid&quot;:theData.appId ? theData.appId : &apos;&apos;,
+            &quot;img_url&quot;:theData.imgUrl,
+            &quot;link&quot;:theData.link,
+            &quot;desc&quot;:theData.title,
+            &quot;title&quot;:theData.desc, // 注意这里要分享出去的内容是desc
+            &quot;img_width&quot;:&quot;120&quot;,
+            &quot;img_height&quot;:&quot;120&quot;
+        }, function (resp) {
+            switch (resp.err_msg) {
+                // share_timeline:cancel 用户取消
+                case &apos;share_timeline:cancel&apos;:
+                    callbacks.cancel &amp;&amp; callbacks.cancel(resp);
+                    break;
+                // share_timeline:fail　发送失败
+                case &apos;share_timeline:fail&apos;:
+                    callbacks.fail &amp;&amp; callbacks.fail(resp);
+                    break;
+                // share_timeline:confirm 发送成功
+                case &apos;share_timeline:confirm&apos;:
+                    callbacks.confirm &amp;&amp; callbacks.confirm(resp);
+                    break;
+            }
+            // 无论成功失败都会执行的回调
+            callbacks.all &amp;&amp; callbacks.all(resp);
+        });
+    };
+    WeixinJSBridge.on(&apos;menu:share:timeline&apos;, function (argv) {
+        if (callbacks.async &amp;&amp; callbacks.ready) {
+            if(!callbacks.__dataLoadedFuncInited) {
+                var loadedCb = callbacks.dataLoaded || new Function();
+                callbacks.dataLoaded = function (newData) {
+                    loadedCb(newData);
+                    shareTimeline(newData);
+                };
+                callbacks.__dataLoadedFuncInited = true;
+            }
+            // 然后就绪
+            callbacks.ready &amp;&amp; callbacks.ready(argv);
+        } else {
+            // 就绪状态
+            callbacks.ready &amp;&amp; callbacks.ready(argv);
+            shareTimeline(data);
+        }
+    });
+}
+
+
+/**
+ * 发送给微信上的好友
+ * @param       {Object}    data       待分享的信息
+ * @p-config    {String}    appId      公众平台的appId（服务号可用）
+ * @p-config    {String}    imageUrl   图片地址
+ * @p-config    {String}    link       链接地址
+ * @p-config    {String}    desc       描述
+ * @p-config    {String}    title      分享的标题
+ *
+ * @param       {Object}    callbacks  相关回调方法
+ * @p-config    {Boolean}   async                   ready方法是否需要异步执行，默认false
+ * @p-config    {Function}  ready(argv)             就绪状态
+ * @p-config    {Function}  dataLoaded(data)        数据加载完成后调用，async为true时有用，也可以为空
+ * @p-config    {Function}  cancel(resp)    取消
+ * @p-config    {Function}  fail(resp)      失败
+ * @p-config    {Function}  confirm(resp)   成功
+ * @p-config    {Function}  all(resp)       无论成功失败都会执行的回调
+ */
+function weixinSendAppMessage(data, callbacks) {
+    callbacks = callbacks || {};
+    var sendAppMessage = function (theData) {
+        WeixinJSBridge.invoke(&apos;sendAppMessage&apos;, {
+            &quot;appid&quot;:theData.appId ? theData.appId : &apos;&apos;,
+            &quot;img_url&quot;:theData.imgUrl,
+            &quot;link&quot;:theData.link,
+            &quot;desc&quot;:theData.desc,
+            &quot;title&quot;:theData.title,
+            &quot;img_width&quot;:&quot;120&quot;,
+            &quot;img_height&quot;:&quot;120&quot;
+        }, function (resp) {
+            switch (resp.err_msg) {
+                // send_app_msg:cancel 用户取消
+                case &apos;send_app_msg:cancel&apos;:
+                    callbacks.cancel &amp;&amp; callbacks.cancel(resp);
+                    break;
+                // send_app_msg:fail　发送失败
+                case &apos;send_app_msg:fail&apos;:
+                    callbacks.fail &amp;&amp; callbacks.fail(resp);
+                    break;
+                // send_app_msg:confirm 发送成功
+                case &apos;send_app_msg:confirm&apos;:
+                    callbacks.confirm &amp;&amp; callbacks.confirm(resp);
+                    break;
+            }
+            // 无论成功失败都会执行的回调
+            callbacks.all &amp;&amp; callbacks.all(resp);
+        });
+    };
+    WeixinJSBridge.on(&apos;menu:share:appmessage&apos;, function (argv) {
+        if (callbacks.async &amp;&amp; callbacks.ready) {
+            if(!callbacks.__dataLoadedFuncInited) {
+                var loadedCb = callbacks.dataLoaded || new Function();
+                callbacks.dataLoaded = function (newData) {
+                    loadedCb(newData);
+                    sendAppMessage(newData);
+                };
+                callbacks.__dataLoadedFuncInited = true;
+            }
+            // 然后就绪
+            callbacks.ready &amp;&amp; callbacks.ready(argv);
+        } else {
+            // 就绪状态
+            callbacks.ready &amp;&amp; callbacks.ready(argv);
+            sendAppMessage(data);
+        }
+    });
+}
+
+
+/**
+ * 分享到腾讯微博
+ * @param       {Object}    data       待分享的信息
+ * @p-config    {String}    imageUrl   图片地址
+ * @p-config    {String}    link       链接地址
+ * @p-config    {String}    desc       描述
+ * @p-config    {String}    title      分享的标题
+ *
+ * @param       {Object}    callbacks  相关回调方法
+ * @p-config    {Boolean}   async                   ready方法是否需要异步执行，默认false
+ * @p-config    {Function}  ready(argv)             就绪状态
+ * @p-config    {Function}  dataLoaded(data)        数据加载完成后调用，async为true时有用，也可以为空
+ * @p-config    {Function}  cancel(resp)    取消
+ * @p-config    {Function}  fail(resp)      失败
+ * @p-config    {Function}  confirm(resp)   成功
+ * @p-config    {Function}  all(resp)       无论成功失败都会执行的回调
+ */
+function weixinShareWeibo(data, callbacks) {
+    callbacks = callbacks || {};
+    var shareWeibo = function (theData) {
+        WeixinJSBridge.invoke(&apos;shareWeibo&apos;, {
+            &quot;content&quot;:theData.desc,
+            &quot;link&quot;:theData.link,
+            &quot;img_url&quot;:theData.imgUrl,
+            &quot;title&quot;:theData.title,
+            &quot;img_width&quot;:&quot;120&quot;,
+            &quot;img_height&quot;:&quot;120&quot;
+        }, function (resp) {
+            switch (resp.err_msg) {
+                // share_weibo:cancel 用户取消
+                case &apos;share_weibo:cancel&apos;:
+                    callbacks.cancel &amp;&amp; callbacks.cancel(resp);
+                    break;
+                // share_weibo:fail　发送失败
+                case &apos;share_weibo:fail&apos;:
+                    callbacks.fail &amp;&amp; callbacks.fail(resp);
+                    break;
+                // share_weibo:confirm 发送成功
+                case &apos;share_weibo:confirm&apos;:
+                    callbacks.confirm &amp;&amp; callbacks.confirm(resp);
+                    break;
+            }
+            // 无论成功失败都会执行的回调
+            callbacks.all &amp;&amp; callbacks.all(resp);
+        });
+    };
+    WeixinJSBridge.on(&apos;menu:share:weibo&apos;, function (argv) {
+        if (callbacks.async &amp;&amp; callbacks.ready) {
+            if(!callbacks.__dataLoadedFuncInited) {
+                var loadedCb = callbacks.dataLoaded || new Function();
+                callbacks.dataLoaded = function (newData) {
+                    loadedCb(newData);
+                    shareWeibo(newData);
+                };
+                callbacks.__dataLoadedFuncInited = true;
+            }
+            // 然后就绪
+            callbacks.ready &amp;&amp; callbacks.ready(argv);
+        } else {
+            // 就绪状态
+            callbacks.ready &amp;&amp; callbacks.ready(argv);
+            shareWeibo(data);
+        }
+    });
+}
+
+
+/**
+ * 显示网页右上角的按钮
+ */
+function showOptionMenu() {
+    WeixinJSBridge.call(&apos;showOptionMenu&apos;);
+}
+
+
+
+
+/**
+ * 隐藏网页右上角的按钮
+ */
+function hideOptionMenu() {
+    WeixinJSBridge.call(&apos;hideOptionMenu&apos;);
+}
+
+
+/**
+ * 显示底部工具栏
+ */
+function showToolbar() {
+    WeixinJSBridge.call(&apos;showToolbar&apos;);
+}
+
+
+/**
+ * 隐藏底部工具栏
+ */
+function hideToolbar() {
+    WeixinJSBridge.call(&apos;hideToolbar&apos;);
+}
+
+
+/**
+ * 返回如下几种类型：
+ *
+ * network_type:wifi     wifi网络
+ * network_type:edge     非wifi,包含3G/2G
+ * network_type:fail     网络断开连接
+ * network_type:wwan     2g或者3g
+ *
+ * 使用方法：
+ * WeixinApi.getNetworkType(function(networkType){
+ *
+ * });
+ *
+ * @param callback
+ */
+function getNetworkType(callback) {
+    if (callback &amp;&amp; typeof callback == &apos;function&apos;) {
+        WeixinJSBridge.invoke(&apos;getNetworkType&apos;, {}, function (e) {
+            // 在这里拿到e.err_msg，这里面就包含了所有的网络类型
+            callback(e.err_msg);
+        });
+    }
+}
+
+
+/**
+ * 当页面加载完毕后执行，使用方法：
+ * WeixinApi.ready(function(Api){
+ *     // 从这里只用Api即是WeixinApi
+ * });
+ * @param readyCallback
+ */
+function wxJsBridgeReady(readyCallback) {
+    if (readyCallback &amp;&amp; typeof readyCallback == &apos;function&apos;) {
+        var Api = this;
+        var wxReadyFunc = function () {
+            readyCallback(Api);
+        };
+        if (typeof window.WeixinJSBridge == &quot;undefined&quot;){
+            if (document.addEventListener) {
+                document.addEventListener(&apos;WeixinJSBridgeReady&apos;, wxReadyFunc, false);
+            } else if (document.attachEvent) {
+                document.attachEvent(&apos;WeixinJSBridgeReady&apos;, wxReadyFunc);
+                document.attachEvent(&apos;onWeixinJSBridgeReady&apos;, wxReadyFunc);
+            }
+        }else{
+            wxReadyFunc();
+        }
+    }
+}
+
+
+return {
+    version         :&quot;1.2&quot;,
+    ready           :wxJsBridgeReady,
+    shareToTimeline :weixinShareTimeline,
+    shareToWeibo    :weixinShareWeibo,
+    shareToFriend   :weixinSendAppMessage,
+    showOptionMenu  :showOptionMenu,
+    hideOptionMenu  :hideOptionMenu,
+    showToolbar     :showToolbar,
+    hideToolbar     :hideToolbar,
+    getNetworkType  :getNetworkType
+};
+</code></pre><p>})();</p>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/05/14/Unity3D转换eclipse/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
+  		
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/05/14/Unity3D第一人称射击游戏（推荐）/" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+
+    <!-- share -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">留言</h2>
+
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-05-14 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/微信-Js/">微信 Js<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2016 huanxingxyz
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+</body>
+   </html>

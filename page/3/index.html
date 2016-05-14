@@ -107,6 +107,196 @@
 	
 	<!-- display as entry -->	
 		<h3 class="title">
+			<div class="date"> 2016-05-13 </div>
+			<div class="article-title"><a href="/2016/05/13/Android-ListView优化几种写法详细介/" >Android ListView优化几种写法详细介</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>详细出处参考：<a href="http://www.jb51.net/article/31886.htm" target="_blank" rel="external">http://www.jb51.net/article/31886.htm</a></p>
+<p>一个显示一个垂直的滚动子项的列表视图在android开发中，使用listview的地方很多，用它来展现数据，成一个垂直的视图。使用listview是一个标准的适配器模式，用数据–，界面–xml以及适配器–adapter，数据被适配器按照需要的方式展现出来，xml描写了数据如何展现，activity中控制这些活动。 </p>
+<p>其中使用自定义的adapter，会要重写getView方法，在getView方法产生给用户item的视图以及数据。 </p>
+<p>这里有一个优化的地方，就是重用view，这样减少内存消耗，同时加快item加载速度。<br>在getView中优化的地方，大家想必都非常情况，下面我总结了三种优化的写法，请大家指正。<br>第一：<br>重用了convertView，很大程度上的减少了内存的消耗。通过判断convertView是否为null，是的话就需要产生一个视图出来，然后给这个视图数据，最后将这个视图返回给底层，呈献给用户。<br>特点：如果当前的convertView为null，则通过LayoutInflat产生一个view。 </p>
+<p>复制代码 代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ViewCode </span><br><span class="line">publicViewgetView(intposition,ViewconvertView,ViewGroupparent) </span><br><span class="line">&#123; </span><br><span class="line">if(convertView==null) </span><br><span class="line">&#123; </span><br><span class="line">convertView=LayoutInflater.from(context).inflate(R.layout.section_list_item1,null); </span><br><span class="line">&#125; </span><br><span class="line">TextViewtv_name=(TextView)convertView.findViewById(R.id.contact_contactinfoitem_tv_name); </span><br><span class="line">TextViewtv_phone=(TextView)convertView.findViewById(R.id.contact_contactinfoitem_tv_phoneNum); </span><br><span class="line">ContactInfo1confo=contacts.get(position); </span><br><span class="line">if(confo!=null)&#123;//toseteveryitem&apos;stext </span><br><span class="line">tv_name.setText(confo.getContactName()); </span><br><span class="line">tv_phone.setText(confo.getContact_Phone()); </span><br><span class="line">&#125; </span><br><span class="line">returnconvertView; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二：<br>上面的写法会有一个缺点，就是每次在getVIew的时候，都需要重新的findViewById，重新找到控件，然后进行控件的赋值以及事件相应设置。这样其实在做重复的事情，因为的geiview中，其实包含有这些控件，而且这些控件的id还都是一样的，也就是其实只要在view中findViewById一次，后面无需要每次都要findViewById了。<br>下面给出第二种写法<br>写发的特点，通常有一个内部类classViewHolder,这个ViewHolder,用来标识view中一些控件，方便进行一些事件相应操作的设置，比如onClick等等，这样可以不用每次都要findViewById了，减少了性能的消耗。同时重用了convertView，很大程度上的减少了内存的消耗。<br>复制代码 代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">ViewCode </span><br><span class="line">publicViewgetView(intposition,ViewconvertView,ViewGroupparent) </span><br><span class="line">&#123; </span><br><span class="line">ViewHolderholder; </span><br><span class="line">if(convertView==null)&#123; </span><br><span class="line">convertView=LayoutInflater.from(context).inflate(R.layout.section_list_item1,null); </span><br><span class="line">holder=newViewHolder(); </span><br><span class="line">holder.tv_name=(TextView)convertView.findViewById(R.id.contact_contactinfoitem_tv_name); </span><br><span class="line">holder.tv_phone=(TextView)convertView.findViewById(R.id.contact_contactinfoitem_tv_phoneNum); </span><br><span class="line">convertView.setTag(holder); </span><br><span class="line">&#125; </span><br><span class="line">else </span><br><span class="line">&#123; </span><br><span class="line">holder=(ViewHolder)convertView.getTag(); </span><br><span class="line">&#125; </span><br><span class="line">ContactInfo1confo=contacts.get(position); </span><br><span class="line">Log.i(&quot;my&quot;,&quot;confo&quot;+confo.getContactName()); </span><br><span class="line">if(confo!=null)&#123;//toseteveryitem&apos;stext </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">holder.tv_name.setText(confo.getContactName()); </span><br><span class="line">holder.tv_phone.setText(confo.getContact_Phone()); </span><br><span class="line">&#125; </span><br><span class="line">returnconvertView; </span><br><span class="line">&#125; </span><br><span class="line">classViewHolder </span><br><span class="line">&#123; </span><br><span class="line">TextViewtv_name,tv_phone; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第三：<br>　个人觉得这个写法是最舒服的，最舒服的意思是看着代码有一种很爽，看的很清晰。<br>特点，使用了内部类classViewHolder、重用了convertView。<br>区别第二种写法是，使用了一个临时变量Viewview=convertView，然后修改view，最后返回view<br>复制代码 代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">ViewCode </span><br><span class="line">@Override </span><br><span class="line">publicViewgetView(intposition,ViewconvertView,ViewGroupparent) </span><br><span class="line">&#123; </span><br><span class="line">Viewview=convertView; </span><br><span class="line">ViewHolderholder; </span><br><span class="line">if(view==null)&#123; </span><br><span class="line">view=LayoutInflater.from(context).inflate(R.layout.section_list_item1,null); </span><br><span class="line">holder=newViewHolder(); </span><br><span class="line">holder.tv_name=(TextView)view.findViewById(R.id.contact_contactinfoitem_tv_name); </span><br><span class="line">holder.tv_phone=(TextView)view.findViewById(R.id.contact_contactinfoitem_tv_phoneNum); </span><br><span class="line">view.setTag(holder); </span><br><span class="line">&#125; </span><br><span class="line">else </span><br><span class="line">&#123; </span><br><span class="line">holder=(ViewHolder)view.getTag(); </span><br><span class="line">&#125; </span><br><span class="line">ContactInfo1confo=contacts.get(position); </span><br><span class="line">Log.i(&quot;my&quot;,&quot;confo&quot;+confo.getContactName()); </span><br><span class="line">if(confo!=null)&#123;//toseteveryitem&apos;stext </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">holder.tv_name.setText(confo.getContactName()); </span><br><span class="line">holder.tv_phone.setText(confo.getContact_Phone()); </span><br><span class="line">&#125; </span><br><span class="line">returnview; </span><br><span class="line">&#125; </span><br><span class="line">classViewHolder </span><br><span class="line">&#123; </span><br><span class="line">TextViewtv_name,tv_phone; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上就是集中写法，供新手学习和总结。<br>源代码如下：LisViewTest.zip<br>根据楼下朋友提供的建议，发现还有优化的地方，最新更新如下：<br>复制代码 代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">ViewCode </span><br><span class="line">@Override </span><br><span class="line">publicViewgetView(intposition,ViewconvertView,ViewGroupparent) </span><br><span class="line">&#123; </span><br><span class="line">Viewview=convertView; </span><br><span class="line">ViewHolderholder; </span><br><span class="line">if(view==null)&#123; </span><br><span class="line">view=LayoutInflater.from(context).inflate(R.layout.section_list_item1,null); </span><br><span class="line">holder=newViewHolder(); </span><br><span class="line">holder.tv_name=(TextView)view.findViewById(R.id.contact_contactinfoitem_tv_name); </span><br><span class="line">holder.tv_phone=(TextView)view.findViewById(R.id.contact_contactinfoitem_tv_phoneNum); </span><br><span class="line">view.setTag(holder); </span><br><span class="line">&#125; </span><br><span class="line">else </span><br><span class="line">&#123; </span><br><span class="line">holder=(ViewHolder)view.getTag(); </span><br><span class="line">&#125; </span><br><span class="line">ContactInfo1confo=contacts.get(position); </span><br><span class="line">Log.i(&quot;my&quot;,&quot;confo&quot;+confo.getContactName()); </span><br><span class="line">if(confo!=null)&#123;//toseteveryitem&apos;stext </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">holder.tv_name.setText(confo.getContactName()); </span><br><span class="line">holder.tv_phone.setText(confo.getContact_Phone()); </span><br><span class="line">&#125; </span><br><span class="line">returnview; </span><br><span class="line">&#125; </span><br><span class="line">&lt;fontcolor=&quot;\&quot;#0000ff\&quot;&quot;&gt;&lt;/font&gt;staticclassViewHolder </span><br><span class="line">&#123; </span><br><span class="line">TextViewtv_name,tv_phone; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：staticclassViewHolder<br>这里设置ViewHolder为static，也就是静态的，静态类只会在第一次加载时会耗费比较长时间，但是后面就可以很好帮助加载，同时保证了内存中只有一个ViewHolder，节省了内存的开销。<br>非常感谢大家提出建议以及大家的关注！<br>详细出处参考：<a href="http://www.jb51.net/article/31886.htm" target="_blank" rel="external">http://www.jb51.net/article/31886.htm</a></p>
+
+	
+	</div>
+  <a type="button" href="/2016/05/13/Android-ListView优化几种写法详细介/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-05-13 </div>
+			<div class="article-title"><a href="/2016/05/13/Android_开发遇到的Exception/" >Android_开发遇到的Exception</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<ol>
+<li>在使用BaseAdapter的问题</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">java.lang.IllegalArgumentException: The observer is null.</span><br><span class="line">at android.database.Observable.unregisterObserver(Observable.java:64)</span><br><span class="line">at android.widget.BaseAdapter.unregisterDataSetObserver(BaseAdapter.java:42)</span><br><span class="line">at android.widget.AbsListView.onDetachedFromWindow(AbsListView.java:2872)</span><br><span class="line">at android.view.View.dispatchDetachedFromWindow(View.java:11908)</span><br><span class="line">at android.view.ViewGroup.dispatchDetachedFromWindow(ViewGroup.java:2647)</span><br><span class="line">at android.view.ViewGroup.dispatchDetachedFromWindow(ViewGroup.java:2645)</span><br><span class="line">at android.view.ViewGroup.dispatchDetachedFromWindow(ViewGroup.java:2645)</span><br><span class="line">at android.view.ViewGroup.dispatchDetachedFromWindow(ViewGroup.java:2645)</span><br><span class="line">at android.view.ViewGroup.dispatchDetachedFromWindow(ViewGroup.java:2645)</span><br><span class="line">at android.view.ViewGroup.dispatchDetachedFromWindow(ViewGroup.java:2645)</span><br><span class="line">at android.view.ViewGroup.dispatchDetachedFromWindow(ViewGroup.java:2645)</span><br><span class="line">at android.view.ViewGroup.dispatchDetachedFromWindow(ViewGroup.java:2645)</span><br><span class="line">at android.view.ViewGroup.dispatchDetachedFromWindow(ViewGroup.java:2645)</span><br><span class="line">at android.view.ViewRootImpl.dispatchDetachedFromWindow(ViewRootImpl.java:2685)</span><br><span class="line">at android.view.ViewRootImpl.doDie(ViewRootImpl.java:4044)</span><br><span class="line">at android.view.ViewRootImpl.die(ViewRootImpl.java:4027)</span><br><span class="line">at android.view.WindowManagerImpl.removeViewImmediate(WindowManagerImpl.java:375)</span><br><span class="line">at android.view.WindowManagerImpl$CompatModeWrapper.removeViewImmediate(WindowManagerImpl.java:170)</span><br><span class="line">at android.app.ActivityThread.handleDestroyActivity(ActivityThread.java:3352)</span><br><span class="line">at android.app.ActivityThread.access$1200(ActivityThread.java:140)</span><br><span class="line">at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1266)</span><br><span class="line">at android.os.Handler.dispatchMessage(Handler.java:99)</span><br><span class="line">at android.os.Looper.loop(Looper.java:137)</span><br><span class="line">at android.app.ActivityThread.main(ActivityThread.java:4914)</span><br><span class="line">at java.lang.reflect.Method.invokeNative(Native Method)</span><br><span class="line">at java.lang.reflect.Method.invoke(Method.java:511)</span><br><span class="line">at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:808)</span><br><span class="line">at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:575)</span><br><span class="line">at dalvik.system.NativeStart.main(Native Method)</span><br></pre></td></tr></table></figure>
+<p>解决方法，继承BaseAdapter的时候写入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void unregisterDataSetObserver(DataSetObserver observer) &#123;</span><br><span class="line">if (observer != null) &#123;</span><br><span class="line">       super.unregisterDataSetObserver(observer);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p> 2.从网上新下载一个项目，导入到eclipse中运行时，报错：<br>java.lang.NoClassDefFoundError: com.baidu.mapapi.BMapManager<br>解决方案：<br>一、右击项目-&gt;properties-&gt;Java Build Path-&gt;Order and Export，在需要引用的包前面打勾。<br>二、Project-&gt;Clean…<br>问题解决，重新运行后就没什么问题了</p>
+<hr>
+<p>3.华为手机debug需要打开log开关<br> 方法：<br>1、在拨号界面输入：<em>#</em>#2846579#<em>#</em>  进入测试菜单界面<br>2、Project Menu–后台设置–LOG设置<br>3、LOG开关–LOG打开   LOG级别设置–VERBOSE<br>4、Dump&amp;Log– 全部选中<br>5、重启手机，重启Eclipse</p>
+<hr>
+<p>4.未知异常</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">java.lang.UnsatisfiedLinkError: Couldn&apos;t load zbar from loader dalvik.system.PathClassLoader[DexPathList[[zip file &quot;/data/app/com.haigou.client-1.apk&quot;],nativeLibraryDirectories=[/data/app-lib/com.haigou.client-1, /vendor/lib, /system/lib]]]: findLibrary returned null</span><br><span class="line"> at java.lang.Runtime.loadLibrary(Runtime.java:358)</span><br><span class="line"> at java.lang.System.loadLibrary(System.java:526)</span><br><span class="line"> at com.zbar.lib.ZbarManager.&lt;clinit&gt;(ZbarManager.java:15)</span><br><span class="line"> at com.zbar.lib.decode.DecodeHandler.decode(DecodeHandler.java:56)</span><br><span class="line"> at com.zbar.lib.decode.DecodeHandler.handleMessage(DecodeHandler.java:38)</span><br><span class="line"> at android.os.Handler.dispatchMessage(Handler.java:102)</span><br><span class="line"> at android.os.Looper.loop(Looper.java:136)</span><br><span class="line"> at com.zbar.lib.decode.DecodeThread.run(DecodeThread.java:44)</span><br></pre></td></tr></table></figure>
+<p>解决方式： .so文件拷贝到armeabi-v7a</p>
+<hr>
+<p> 5.未知异常<br> import com.sun.image.codec.jpeg.JPEGCodec不通过 找不到包<br> 在Eclipse中处理图片，需要引入两个包：<br>import com.sun.image.codec.jpeg.JPEGCodec;<br>import com.sun.image.codec.jpeg.JPEGImageEncoder;<br>报错:<br>Access restriction: The type JPEGImageEncoder is not accessible due to restriction on required library C:\Java\jre1.6.0_07\lib\rt.jar</p>
+<p>此时解决办法：<br>Eclipse默认把这些受访问限制的API设成了ERROR。只要把Windows-Preferences-Java-Complicer-Errors/Warnings里面的Deprecated and restricted API中的Forbidden references(access rules)选为Warning就可以编译通过。</p>
+<hr>
+<p>6.未知异常</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Don&apos;t call setOnClickListener for an AdapterView</span><br></pre></td></tr></table></figure>
+<p>不能再AdapterView不能设置onClickListener，否则会直接抛出异常</p>
+<hr>
+<p>7.eclipse项目导入异常<br> 1，右键项目名称</p>
+<p>  BuildPath —&gt; Configure Build Paht…中，然后上面有几个选项卡找到 Libraries中出现红色叉号的包为路径错误的包。<br>  到classpath中修改相应包的当前路径。然后回到eclipse中F5刷新工程。<br>不行的话可以试试clean项目;<br>project—&gt;clean<br>如果你的eclipse项目有红色叹号，而Libraries中没有出现红色叉号的包，我是这样做的。<br>1，先把eclipse转换到Markers视图，windows—-&gt;show view —-&gt;markers<br>会发现这些报错内容，<br>Archive for required library: ‘XXXXXXXX001’ in project ‘xxxxxxxxx’ cannot be read or is not a valid ZIP file<br>2，用记事本打开项目根目录的.classpath文件，找到“<classpathentry kind="”lib”" path="”XXXXXXXXX001”/">”这一行，删掉<br>保存，刷新后，这个报错就没有了，从而红色叹号也没有了。</classpathentry></p>
+<hr>
+<p>8.eclipse打包时字符串多国语言处理<br> 打包时字符串多国语言问题(Checks for incomplete translations where not all st<br>Android Lint Preference  –  ignore all</p>
+<hr>
+<p>9.未知异常</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">java.lang.IllegalArgumentException: View=com.android.internal.policy.impl.PhoneWindow$DecorView&#123;4278dfe8 V.E..... R.....ID 0,0-1248,288&#125; not attached to window manager</span><br><span class="line"> at android.view.WindowManagerGlobal.findViewLocked(WindowManagerGlobal.java:370)</span><br><span class="line"> at android.view.WindowManagerGlobal.removeView(WindowManagerGlobal.java:299)</span><br><span class="line"> at android.view.WindowManagerImpl.removeViewImmediate(WindowManagerImpl.java:84)</span><br><span class="line"> at android.app.Dialog.dismissDialog(Dialog.java:329)</span><br><span class="line"> at android.app.Dialog.dismiss(Dialog.java:312)</span><br><span class="line"> at android.app.Dialog.cancel(Dialog.java:1114)</span><br><span class="line"> at com.haigou.activity.MainActivity$WebHandler.handleMessage(MainActivity.java:964)</span><br><span class="line"> at android.os.Handler.dispatchMessage(Handler.java:102)</span><br><span class="line"> at android.os.Looper.loop(Looper.java:136)</span><br><span class="line"> at android.app.ActivityThread.main(ActivityThread.java:5034)</span><br><span class="line"> at java.lang.reflect.Method.invokeNative(Native Method)</span><br><span class="line"> at java.lang.reflect.Method.invoke(Method.java:515)</span><br><span class="line"> at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:807)</span><br><span class="line"> at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:623)</span><br><span class="line"> at dalvik.system.NativeStart.main(Native Method)</span><br></pre></td></tr></table></figure>
+<p> 异步消息造成的问题</p>
+<hr>
+<p>10.未知异常<br>Conversion to Dalvik format failed: Unable to execute dex:<br>两个包有内容重复或冲突之类,同一项目中多次引用或者多次导包导致冲突</p>
+<hr>
+<p>11.未知异常<br>Installation error: INSTALL_FAILED_INSUFFICIENT_STORAGE</p>
+<hr>
+<p>选择你的应用，右键选择【run as】–【run configurations】–【target】–【Additional Emulator Command Line Options】，填写“-partition-size 256”</p>
+<hr>
+<p>12.addview() 不执行removeView会报出异常，addView后，你要添加的view就一直存在添加view的容器中，不removeView不会有什么情况，是不过在你要想在addView上次的view之前必须先把removeView 掉，否则会提示你view已存在异常。</p>
+<hr>
+
+	
+	</div>
+  <a type="button" href="/2016/05/13/Android_开发遇到的Exception/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-05-13 </div>
+			<div class="article-title"><a href="/2016/05/13/GridView常用属性/" >GridView常用属性</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h3 id="属性名称"><a href="#属性名称" class="headerlink" title="属性名称"></a>属性名称</h3><p>描述<br>android:columnWidth<br>设置列的宽度。<br>android:gravity<br>设置此组件中的内容在组件中的位置。可选的值有：top、bottom、left、right、center_vertical、fill_vertical、center_horizontal、fill_horizontal、center、fill、clip_vertical可以多选，用“|”分开。<br>android:horizontalSpacing<br>两列之间的间距。<br>android:numColumns<br>设置列数。<br>android:stretchMode<br>缩放模式。<br>android:verticalSpacing<br>两行之间的间距。</p>
+<hr>
+
+	
+	</div>
+  <a type="button" href="/2016/05/13/GridView常用属性/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-05-13 </div>
+			<div class="article-title"><a href="/2016/05/13/Android-应用添加快捷方式/" >Android 应用添加快捷方式</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>添加快捷方式需要向Luncher发送请求生成快捷方式</p>
+<p>系统的broadcast receiver</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;receiver                </span><br><span class="line">    android:name=&quot;com.android.launcher2.InstallShortcutReceiver&quot;                </span><br><span class="line">    android:permission=&quot;com.android.launcher.permission.INSTALL_SHORTCUT&quot;&gt;                </span><br><span class="line">    &lt;intent-filter&gt;                    </span><br><span class="line">        &lt;action android:name=&quot;com.android.launcher.action.INSTALL_SHORTCUT&quot; /&gt;                </span><br><span class="line">    &lt;/intent-filter&gt;            </span><br><span class="line">&lt;/receiver&gt;</span><br></pre></td></tr></table></figure>
+<p>所以需要在桌面上创建快捷方式就需要权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=&quot;com.android.launcher.permission.INSTALL_SHORTCUT&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>创建快捷方式代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public void createShortCut()&#123;     </span><br><span class="line">    //创建快捷方式的Intent                     </span><br><span class="line">    Intent shortcutintent = new Intent(&quot;com.android.launcher.action.INSTALL_SHORTCUT&quot;);                     </span><br><span class="line">    //不允许重复创建                     </span><br><span class="line">    shortcutintent.putExtra(&quot;duplicate&quot;, false);                     </span><br><span class="line">    //需要现实的名称                     </span><br><span class="line">    shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_NAME, getString(R.string.shortcutname));     </span><br><span class="line">    //快捷图片                    </span><br><span class="line">    Parcelable icon = Intent.ShortcutIconResource.fromContext(getApplicationContext(), R.drawable.icon);     </span><br><span class="line">    shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, icon);     </span><br><span class="line">    //点击快捷图片，运行的程序主入口                     </span><br><span class="line">    shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, new Intent(getApplicationContext() , EnterActivity.class));                     </span><br><span class="line">    //发送广播。OK                     </span><br><span class="line">    sendBroadcast(shortcutintent);     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+	
+	</div>
+  <a type="button" href="/2016/05/13/Android-应用添加快捷方式/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-05-13 </div>
+			<div class="article-title"><a href="/2016/05/13/Hexo在github上构建的博客/" >Hexo在github上构建的博客</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p><a href="http://blog.fens.me/hexo-blog-github/" target="_blank" rel="external">参考资料</a></p>
+<p>##Hexo介绍<br>Hexo 是一个简单地、轻量地、基于Node的一个静态博客框架。通过Hexo我们可以快速创建自己的博客，仅需要几条命令就可以完成。</p>
+<p>发布时，Hexo可以部署在自己的Node服务器上面，也可以部署github上面。对于个人用户来说，部署在github上好处颇多，不仅可以省去服务器的成本，还可以减少各种系统运维的麻烦事(系统管理、备份、网络)。所以，基于github的个人站点，正在开始流行起来….</p>
+<p>Hexo的官方网站：<a href="http://hexo.io/" target="_blank" rel="external">http://hexo.io/</a> ，也是基于Github构建的网站。</p>
+<p>1.安装brewhome</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -e &quot;$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)&quot;</span><br></pre></td></tr></table></figure>
+<p>2.安装nodejs </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br></pre></td></tr></table></figure>
+<p>3.修改hexo根目录下_config.yml文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: github</span><br><span class="line">  repo: git@github.com:xxxx/xxxx.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<p>  注意  branch 应该不写或者写成page分支，不应该推送到master主分支</p>
+<p>  4.绑定域名<br>  购买域名，并指向github page的地址</p>
+<p>  注意：cn域名需要进行审核操作，com域名只需邮箱确认</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://bce.baidu.com/product/bcd.html?t=cp:nsem|pf:pc|pp:ge-bcd|pu:bcdcore|kw:1132</span><br></pre></td></tr></table></figure>
+<p>  5,注意</p>
+<p>   GitHub Help - Generating SSH Keys </p>
+<p>GitHub Help - Error Permission denied (publickey)</p>
+<p>曾经遇到过这个错误，注意需要http格式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://github.com/huanxingxyz/github.io.git</span><br></pre></td></tr></table></figure>
+<p>  一些还不错的hexo主题模版，下载到themes目录下，deploy时修改发布即可</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.zhihu.com/question/24422335</span><br></pre></td></tr></table></figure>
+<hr>
+<p>常见问题</p>
+<p>  cd 进到你使用的theme对应的目录，再进到layout/和layout/_partial/下.<br>分别执行rm .DS_Store</p>
+<hr>
+
+	
+	</div>
+  <a type="button" href="/2016/05/13/Hexo在github上构建的博客/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
 			<div class="date"> 2016-05-12 </div>
 			<div class="article-title"><a href="/2016/05/12/markdown语法/" >MarkDown语法</a></div>						
 		</h3>
@@ -215,15 +405,23 @@
 		<h4>标签云</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
+			<li><a href="/tags/Java/">Java<span>2</span></a></li>
+		
+			<li><a href="/tags/Unity3D/">Unity3D<span>1</span></a></li>
+		
+			<li><a href="/tags/Unity3D-游戏/">Unity3D,游戏<span>1</span></a></li>
+		
 			<li><a href="/tags/Android/">Android<span>16</span></a></li>
 		
-			<li><a href="/tags/Androis/">Androis<span>1</span></a></li>
-		
-			<li><a href="/tags/Java/">Java<span>1</span></a></li>
+			<li><a href="/tags/微信-Js/">微信 Js<span>1</span></a></li>
 		
 			<li><a href="/tags/博客/">博客<span>2</span></a></li>
 		
-			<li><a href="/tags/Unity3D-游戏/">Unity3D,游戏<span>1</span></a></li>
+			<li><a href="/tags/Android-Unity3D/">Android Unity3D<span>1</span></a></li>
+		
+			<li><a href="/tags/Androis/">Androis<span>1</span></a></li>
+		
+			<li><a href="/tags/Linux/">Linux<span>1</span></a></li>
 		
 		 
 		</ul>
@@ -237,23 +435,23 @@
   <ul class="entry list-unstyled">
     
       <li>
-        <a href="/2016/05/14/Unity3D第一人称射击游戏（推荐）/" ><i class="fa fa-file-o"></i>Unity3D第一人称射击游戏（推荐）</a>
+        <a href="/2016/05/14/Linux常用命令/" ><i class="fa fa-file-o"></i>Linux常用命令</a>
       </li>
     
       <li>
-        <a href="/2016/05/14/Android-功能开发笔记/" ><i class="fa fa-file-o"></i>Android_功能开发笔记</a>
+        <a href="/2016/05/14/基类和派生类的成员访问/" ><i class="fa fa-file-o"></i>基类和派生类的成员访问</a>
       </li>
     
       <li>
-        <a href="/2016/05/14/Android中通过来电转移实现“电话已关机”-“此号码已停机”等/" ><i class="fa fa-file-o"></i>Android中通过来电转移实现“电话已关机”,“此号...</a>
+        <a href="/2016/05/14/Unity3D研究院之与Android相互传递消息/" ><i class="fa fa-file-o"></i>Unity3D研究院之与Android相互传递消息</a>
       </li>
     
       <li>
-        <a href="/2016/05/14/Android-自动接听来电/" ><i class="fa fa-file-o"></i>Android_自动接听来电</a>
+        <a href="/2016/05/14/Unity3D转换eclipse/" ><i class="fa fa-file-o"></i>Unity3D转换eclipse</a>
       </li>
     
       <li>
-        <a href="/2016/05/14/Android_检查是否联网/" ><i class="fa fa-file-o"></i>Android_检查是否联网</a>
+        <a href="/2016/05/14/微信内置浏览器的JsAPI/" ><i class="fa fa-file-o"></i>微信内置浏览器的JsAPI</a>
       </li>
     
   </ul>

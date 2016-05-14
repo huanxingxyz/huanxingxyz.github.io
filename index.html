@@ -108,6 +108,691 @@
 	<!-- display as entry -->	
 		<h3 class="title">
 			<div class="date"> 2016-05-14 </div>
+			<div class="article-title"><a href="/2016/05/14/Linux常用命令/" >Linux常用命令</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>wget http:// 网上下载<br>ctrl+c 取消<br>cd /data 打开根目录下的data文件夹<br>cd data 打开当前目录下的data文件夹<br>tap键自动补齐文件名<br>ls 列出当前目录文件<br>ls -l 列出详细信息</p>
+<p>cd..  返回上一级<br>apt-get 安装<br>find / -name 文件名 搜索文件</p>
+<p>退出vi  在最后一行输入  ：q</p>
+<p>解压<br>tar zxvf</p>
+<p>env 显示环境变量<br>配置环境变量：<br>JDK<br>export JAVA_HOME=/data/jdk/jdk1.8.0<br>export JRE_HOME=${JAVA_HOME}/jre<br>export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib<br>export PATH=${JAVA_HOME}/bin:$PATH</p>
+<p>TOMCAT<br>export TOMCAT_HOME=/data/tomcat/apache-tomcat-7<br>              jdk /data/jdk/jdk1.8.0</p>
+<p>配置环境变量<br>vi .bash_profile</p>
+<p>查看环境变量<br>env | grep jdk</p>
+
+	
+	</div>
+  <a type="button" href="/2016/05/14/Linux常用命令/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-05-14 </div>
+			<div class="article-title"><a href="/2016/05/14/基类和派生类的成员访问/" >基类和派生类的成员访问</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>基类和派生类的成员访问</p>
+<p>＃include<br>using namespace std;<br>class Cbase<br>{<br>public:<br>    Cbase(int x = 0, int y = 0, int z = 0):a(x), b(y), c(z){};<br>    void display();<br>    void display(int a, int b);<br>    void set();<br>    virtual void eval();<br>    static int sint;<br>protected:<br>    int c;<br>private:<br>    int a;<br>    int b;<br>};<br>class Cderive:public Cbase<br>{<br>public:<br>    Cderive(string x = “”, string y = “”, int z = 0):a(x),b(y), Cbase(z,z,z){};<br>    //隐藏了Cbase::set()的可见性<br>    void set(string x, string y);<br>    using Cbase::set;<br>    virtual void eval();<br>    virtual void cmp(Cderive* pb);<br>protected:<br>private:<br>    int nc;<br>    string a;<br>    string b;<br>};</p>
+<ol>
+<li>派生类中继承到的基类成员可以直接访问pulic成员</li>
+</ol>
+<p>就好像他是派生类的成员，<br>可以通过该类的一个对象访问，<br>Cderive der;<br>der.display();<br>也可以直接在成员函数里面访问。<br>void Cderive::set()<br>{<br>    display();<br>    a = “hello”;<br>    b = “ derived class”;<br>}<br>2.例外：当基类成员名在派生类中被重用时</p>
+<p>c++初学者常见的误解：希望基类和派生类的成员函数构成一个重载函数集<br>但是，试图在派生类中调用基类实例会导致一个编译时刻错误<br>Cderive der;<br>//Cbase::set()不可见<br>der.set();<br>虽然基类成员可以被直接访问，但他们仍然属于基类的域。一个名字的重载候选函数必须出现在同一个域中，因为在不同的类域中<br>所以可以出现相同原型的两个实例，但是这在同一个类域中将导致重复定义错误。<br>如果我们真想为基类和派生类的成员实例提供一个重载函数集合有两种方法：<br>1.在调用基类实例的派生类中写一个小的inline存根函数：<br>class Cderive:public Cbase<br>{<br>public:<br>    void set(string x, string y);<br>    void set(){Cbase::set();}<br>};<br>2.使用using声明：<br>class Cderive:public Cbase<br>{<br>public:<br>    void set(string x, string y);<br>    using Cbase::set;<br>};<br>using把基类中每一个被命名的成员都引入到派生类的域中（针对一个成员函数的using声明不能指定参数表，只能指定成员函数名。这意味着，如果函数在基类中被重载，则所有的重载实例都被加入到派生类的类域中，不能只增加基类的重载成员函数集中的一个实例）。<br>3.访问基类的protected成员的范围</p>
+<p>void Cderive::cmp(Cbase<em> pb)<br>{<br>    //自己的Cbase子对象的protected成员<br>    int mine = c;<br>    //不能直接访问另一个独立的Cbase对象的protected成员的权力<br>    int his = pb-&gt;c;<br>    if (mine == his)<br>        cout &lt;&lt; are=”” the=”” same=”” endl=””&gt;    else<br>        cout &lt;&lt; are=”” different=”” endl=””&gt;}<br>Cderive只能访问一个Cbase类对象的protected成员，他自己的Cbase子对象。<br>这种形式的成员访问限制不适用于自己类的其他对象。例如<br>void Cderive::cmp(Cderive</em> pd)<br>{<br>    //自己的Cbase子对象的protected成员<br>    int mine = c;<br>    //ok as well<br>    int his = pd-&gt;c;<br>    if (mine == his)<br>        cout &lt;&lt; are=”” the=”” same=”” endl=””&gt;    else<br>        cout &lt;&lt; are=”” different=”” endl=””&gt;}<br>派生类可以直接访问该类其他对象的protected基类成员，以及该类其他对象的protected和private成员。<br>4.基类指针访问派生类对象</p>
+<p>Cbase *pb = new Cderive;<br>pb-&gt;eval();<br>如果一个基类指针调用在Cbase中定义的虚拟函数，则调用派生的Cderive类实例。<br>除了“在Cbase基类中被声明，并且在Cderive派生类中被改写”的虚拟函数之外，没有办法通过pb直接访问Cderive的成员。<br>1.如果Cbase和Cderive都声明了一个同名的非虚拟函数或同名的数据成员，通过pb调用的总是Cbase的实例。<br>2.如果Cderive引入了一个在Cbase中不存在的虚拟函数，那么试图通过pd调用它将导致一个编译时刻错误。<br>3.试图通过pb访问Cderive的数据成员或非虚拟成员函数，也会产生一个编译时刻错误。<br>C++中基类指针只能访问在该类中被声明的数据成员和成员函数，包括虚拟成员函数，而与他实际指向的实际对象无关。把一个成员声明成虚拟的， 只推延了“在程序执行期间pd指向的实际类型，对于要调用的实例的解析过程”。<br>5.静态成员的继承访问</p>
+<p>如果基类定义了一个静态数据成员sint，派生类不会创建第二个sint的实例，所有的派生类对象都引用这个相同的，单一的，共享的静态成员。不论从基类派生了多少类sint只存在一个实例，我们可以通过派生类对象用成员访问语法来访问他。<br>Cbase <em>pb = new Cderive;<br>Cderive </em>pd = new Cderive;<br>cout &lt;&lt; pd-=””&gt;sint<pd->sint = 2048;<br>cout &lt;&lt; pb-=””&gt;sint &lt;<br>6.派生类访问基类的私有成员，基类必须显式的把派生类声明为一个friend</pd-></p>
+<p>class Cbase<br>{<br>    friend class Cderive;<br>public:<br>};<br>现在Cderive不但可以访问他自己的基类子对象的私有成员，而且还可以访问所有Cbase对象的私有和protected的成员。<br>如果从Cderive派生出一个Cchild类，Cchild类不继承Cderive与Cbase的友元关系，友元关系没有被继承。派生类没有成为“向他的基类授权友元的类的”友元。<br>Cchild没有对Cbase的访问特权。如果需要特权访问，则Cbase必须显式的向他授权。</p>
+
+	
+	</div>
+  <a type="button" href="/2016/05/14/基类和派生类的成员访问/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-05-14 </div>
+			<div class="article-title"><a href="/2016/05/14/Unity3D研究院之与Android相互传递消息/" >Unity3D研究院之与Android相互传递消息</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>原创文章如需转载请注明：转载自雨松MOMO独立域名博客，欢迎大家来访！！雨松MOMO程序研究院本文链接地址:Unity3D研究院之与Android相互传递消息（十九）<br>          上一篇文章我们学习了Unity向Android发送消息，如果Android又能给Unity回馈消息那么这就玩美了。恰好Unity for Andoid 和 IOS一样都是可以相互与Unity发送与接收消息，这篇文章MOMO就和大家好好聊聊Android向Unity发送消息的方法。在读本片博文之前，建议大家读一下我上一篇文章Unity3D研究院之打开Activity与调用JAVA代码传递参数（十八），有关数据打包方面在上一篇中已经说的很清楚，这里就不再赘述。<br>我们在项目中创建两个Activity一个是主Activity一个是新打开的Activity和内容方面与上一篇文章类似。<br>UnityTestActivity.java 主Activity ，提供一个接口方法StartActivity()，它是由Unity中调用</p>
+<p>package com.xys;   </p>
+<p>import android.content.Context;<br>import android.content.Intent;<br>import android.os.Bundle;   </p>
+<p>import com.unity3d.player.UnityPlayerActivity;   </p>
+<p>public class UnityTestActivity extends UnityPlayerActivity {<br>    /<em>* Called when the activity is first created. </em>/   </p>
+<pre><code>Context mContext = null;   
+@Override   
+public void onCreate(Bundle savedInstanceState) {   
+    super.onCreate(savedInstanceState);   
+    mContext = this;   
+
+}   
+
+public void StartActivity0(String name)   
+{   
+    Intent intent = new Intent(mContext,TestActivity0.class);   
+    intent.putExtra(&quot;name&quot;, name);   
+    this.startActivity(intent);   
+}   
+</code></pre><p>}   </p>
+<p>接着是TestActivity.java 打开这个界面后，程序将在这里向Unity发送消息。 </p>
+<p>package com.xys;   </p>
+<p>import com.unity3d.player.UnityPlayer;   </p>
+<p>import android.app.Activity;<br>import android.os.Bundle;<br>import android.view.View;<br>import android.view.View.OnClickListener;<br>import android.widget.Button;<br>import android.widget.EditText;<br>import android.widget.TextView;   </p>
+<p>public class TestActivity0 extends Activity {   </p>
+<pre><code>@Override   
+public void onCreate(Bundle savedInstanceState) {   
+    super.onCreate(savedInstanceState);   
+    setContentView(R.layout.main);   
+
+    TextView text = (TextView)this.findViewById(R.id.textView1);   
+    text.setText(this.getIntent().getStringExtra(&quot;name&quot;));   
+
+    final EditText edit = (EditText)this.findViewById(R.id.edit);   
+
+    Button close = (Button)this.findViewById(R.id.button0);   
+    close.setOnClickListener(new OnClickListener() {   
+
+        @Override   
+        public void onClick(View v) {   
+            //注释1   
+            UnityPlayer.UnitySendMessage(&quot;Main Camera&quot;,&quot;messgae&quot;,edit.getText().toString());   
+            TestActivity0.this.finish();   
+        }   
+    });   
+}   
+</code></pre><p>}   </p>
+<p> 需要在程序头引入包import com.unity3d.player.UnityPlayer; 因为向Unity发送消息的静态方法写在这里。<br>注释1：意思是点击发送按钮后，程序将向Unity发送消息。UnityPlayer.UnitySendMessage() 参数1表示发送游戏对象的名称，参数2表示对象绑定的脚本接收该消息的方法，参数3表示本条消息发送的字符串信息，这个方法与IOS发送消息的方式非常相像。<br>接着，我们打开Unity工程将Android插件打包好复制在Unity工程当中，详细打包过程请看上一章，将脚本Test.cs绑定在Main Camera对象中，此时由于UnityPlayer.UnitySendMessage()方法发送消息给MainCamera对象，所以需要在Main Camera对象绑定的脚本中去接收这个消息，也就是说要在Test.cs脚本中接收。</p>
+<p>下面我们看看Test.cs脚本</p>
+<p>using UnityEngine;<br>using System.Collections;   </p>
+<p>public class Test : MonoBehaviour<br>{   </p>
+<pre><code>//请输入一个字符串   
+private string stringToEdit = &quot;Please enter a string&quot;;   
+
+void Update ()   
+{   
+    //点击手机返回键关闭应用程序   
+    if (Input.GetKeyDown(KeyCode.Escape) ¦¦ Input.GetKeyDown(KeyCode.Home) )   
+    {   
+        Application.Quit();   
+    }   
+}   
+
+void OnGUI()   
+{   
+    //绘制一个输入框接收用户输入   
+    stringToEdit = GUILayout.TextField (stringToEdit, GUILayout.Width(300),GUILayout.Height(100));   
+
+    //一个提交按钮   
+    if(GUILayout.Button(&quot;commit&quot;,GUILayout.Height(50)))   
+    {   
+        //注解1   
+          using (AndroidJavaClass jc = new AndroidJavaClass(&quot;com.unity3d.player.UnityPlayer&quot;))   
+        {   
+             using( AndroidJavaObject jo = jc.GetStatic&lt;AndroidJavaObject&gt;(&quot;currentActivity&quot;))   
+            {   
+                //调用Android插件中UnityTestActivity中StartActivity0方法，stringToEdit表示它的参数   
+                  jo.Call(&quot;StartActivity0&quot;,stringToEdit);   
+            }   
+
+        }   
+
+    }   
+
+}   
+//注解2   
+void messgae(string str)   
+{   
+    stringToEdit = str;   
+}   
+</code></pre><p>}   </p>
+<p>注解1：让代码放置在using中是为了告诉垃圾回收站及时的回收垃圾，建议这样来写代码。AndroidJavaClass表示一个java类，AndroidJavaObject表示一个java对象，在上一章已经明确说明。另外还有一些其它的方法，比如调用静态方法等，都在API中写的很清楚，大家可以查阅学习。<br>注解2：刚刚调用的方法UnityPlayer.UnitySendMessage()参数2为”message”，所以程序将调用 Main Camera对象的Test.cs脚本的message方法，参数为Android传递过来的。最后在这里修改了stringToEdit变量刷新了屏幕的UI。</p>
+<pre><code> 打开程序后将启动Unity画面，如上图在这里我们写了输入框接收用户的键盘输入，最后用户点击commit按钮程序将打开Android的Activity，并且将字符串“Please enter a string”做为参数传递给了新Activity。
+
+
+
+
+如上图所示，在新打开的Activity中已经看到Please enter a string字符串已经显示在界面当中，在布局文件中同样写了Android的高级控件 输入框与按钮，在输入框中输入字符串“xuanyusong”（任意输入）,点击保存按钮将把”xuanyusong”刚刚输入的字符串传递给Unity。
+</code></pre><p>如上图所示，此时在Unity中字符串“xuanyusong”已经显示在输入框中，那么这样就比较完美了实现发送与接收消息。希望大家继续支持雨松MOMO程序研究院。</p>
+
+	
+	</div>
+  <a type="button" href="/2016/05/14/Unity3D研究院之与Android相互传递消息/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-05-14 </div>
+			<div class="article-title"><a href="/2016/05/14/Unity3D转换eclipse/" >Unity3D转换eclipse</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>这个过程非常复杂。步骤一定要谨记</p>
+<p>1，建立一个unity3d工程，然后自己丢点模型进去吧。然后设置导出时候的包名字（重要，后面解析），build一下。就会发现工程目录下面的temp文件夹里面多了一个文件夹，如果不build是没有的，如果你关闭了unity的话这个文件夹也会消失，这个现象费了我一天的时间，看官网英文教程漏一个单词都不行啊。</p>
+<p>2，拷贝temp文件夹里面的StagingArea出来，然后以这个文件夹为source建立一个eclipse工程，就是建立eclipse选create project from exiting source啦。</p>
+<p>3 右键这个以stagingarea文件夹为基础的工程，选择Properties -》android-》Is Library 设置为资料</p>
+<p>4，新建一个新的eclipse工程（包名称与unity3d设置的导出工程文件名要一致，否则直接报错），导入上一个工程作为library，就是同样在已经建立好的工程上右键，在同样的地方点选add，就可以看见啦，然后导入。</p>
+<p>5 导入jar包，右键工程属性，java build path-》添加jar到library，Unity安装目录\Editor\Data\PlaybackEngines\androidplayer\bin\classes.jar</p>
+<p>6; 复制stagingArea工程里面的assets所有文件到新建立的文件中，（必须）我们就完成了unity和eclipse的合体了。</p>
+<p>7.我们来直接一activity的样子运行一下Unity做好的工程吧</p>
+<p>package com.Unity3D.EclipseIntegration;</p>
+<p>import android.os.Bundle;</p>
+<p>import com.unity3d.player.UnityPlayerActivity;</p>
+<p>public class EclipseIntegration extends UnityPlayerActivity</p>
+<p>{</p>
+<p>@Overridepublic</p>
+<p>void onCreate(Bundle savedInstanceState) {</p>
+<p>super.onCreate(savedInstanceState);</p>
+<p>//setContentView(R.layout.main);需要注息这一句，否则会被遮挡。因为继承了unityplayerActivity，所以会直接显示unity的工程啦</p>
+<p>}}</p>
+
+	
+	</div>
+  <a type="button" href="/2016/05/14/Unity3D转换eclipse/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-05-14 </div>
+			<div class="article-title"><a href="/2016/05/14/微信内置浏览器的JsAPI/" >微信内置浏览器的JsAPI</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>之前有写过几篇关于微信内置浏览器（WebView）中特有的Javascript API（Javascript Interface）的文章，不过随着微信官方的调整，部分API已经不能直接使用，比如类似直接分享到朋友圈 WeixinJSBridge.invoke(‘shareTimeline’,data,callback) 这样的功能，直接调用，会得到一个访问拒绝的response。后来重新调研了下，整理出来了一个WeixinAPI的Javascript类库，分享出来，如果你对微信公众平台开发感兴趣，应该对你有用。<br>/**!</p>
+<ul>
+<li>微信内置浏览器的Javascript API，功能包括：<br>*</li>
+<li>1、分享到微信朋友圈</li>
+<li>2、分享给微信好友</li>
+<li>3、分享到腾讯微博</li>
+<li>4、隐藏/显示右上角的菜单入口</li>
+<li>5、隐藏/显示底部浏览器工具栏</li>
+<li>6、获取当前的网络状态</li>
+<li>7、调起微信客户端的图片播放组件<br>*</li>
+<li><p>@author zhaoxianlie(<a href="http://www.baidufe.com" target="_blank" rel="external">http://www.baidufe.com</a>)<br>*/<br>var WeixinApi = (function () { </p>
+<p> /<em> 这里省略了一堆代码……下面直接看调用接口 </em>/<br> return {</p>
+<pre><code>ready           :wxJsBridgeReady,
+shareToTimeline :weixinShareTimeline,
+shareToWeibo    :weixinShareWeibo,
+shareToFriend   :weixinSendAppMessage,
+showOptionMenu  :showOptionMenu,
+hideOptionMenu  :hideOptionMenu,
+showToolbar     :showToolbar,
+hideToolbar     :hideToolbar,
+getNetworkType  :getNetworkType,
+imagePreview    :imagePreview
+</code></pre><p> };    </p>
+</li>
+</ul>
+<p>});<br>下面，我们先来看一下这些API都应该怎么使用，先从最简单的入手。</p>
+<p>1、假如我希望一打开网页后，就隐藏掉右上角的PopUp菜单入口，并且隐藏掉浏览器下方的工具栏，同时还要获得当前的网络状态，那么，我们的代码可以这样来写：<br>// 所有功能必须包含在 WeixinApi.ready 中进行<br>WeixinApi.ready(function(Api){<br>    // 隐藏右上角popup菜单入口<br>    Api.hideOptionMenu();</p>
+<pre><code>// 隐藏浏览器下方的工具栏
+Api.hideToolbar();
+
+// 获取网络状态
+Api.getNetworkType(function(network){
+    // 拿到 network 以后，做任何你想做的事
+});
+</code></pre><p>});<br>如示例代码中的注释所示，所有的功能执行必须放在 WeixinApi.ready 方法中执行，就好比你用jQuery的时候，通常都需要使用 jQuery(document).ready(function(){ }) 一样。为什么要这样做？相信不用我解释大家都能明白，因为我们必须要保证在执行这些方法的时候，WeixinJsBridge API已经被加入到WebView上了！</p>
+<p>2、再来看一个有关分享的例子，假如用户在阅读我的文章（或在使用我的产品）的过程中，发现它很有意思或有价值，一般都会将其收藏或分享（给好友、朋友圈、微博等）出去，那现在我就希望能监测到用户的分享行为，比如：自定义用户可分享的内容、甚至是在用户分享之、分享被取消、分享失败、分享成功、以及整个分享操作过程结束，我们都去做点儿什么。那么，这个代码我们可以这样来写：<br>// 所有功能必须包含在 WeixinApi.ready 中进行<br>WeixinApi.ready(function(Api){</p>
+<pre><code>// 微信分享的数据
+var wxData = {
+    &quot;imgUrl&quot;:&apos;http://www.baidufe.com/fe/blog/static/img/weixin-qrcode-2.jpg&apos;,
+    &quot;link&quot;:&apos;http://www.baidufe.com&apos;,
+    &quot;desc&quot;:&apos;大家好，我是Alien，Web前端&amp;Android客户端码农，喜欢技术上的瞎倒腾！欢迎多交流&apos;,
+    &quot;title&quot;:&quot;大家好，我是赵先烈&quot;
+};
+
+// 分享的回调
+var wxCallbacks = {
+    // 分享操作开始之前
+    ready:function () {
+        // 你可以在这里对分享的数据进行重组
+    },
+    // 分享被用户自动取消
+    cancel:function (resp) {
+        // 你可以在你的页面上给用户一个小Tip，为什么要取消呢？
+    },
+    // 分享失败了
+    fail:function (resp) {
+        // 分享失败了，是不是可以告诉用户：不要紧，可能是网络问题，一会儿再试试？
+    },
+    // 分享成功
+    confirm:function (resp) {
+        // 分享成功了，我们是不是可以做一些分享统计呢？
+    },
+    // 整个分享过程结束
+    all:function (resp) {
+        // 如果你做的是一个鼓励用户进行分享的产品，在这里是不是可以给用户一些反馈了？
+    }
+};
+
+// 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+Api.shareToFriend(wxData, wxCallbacks);
+
+// 点击分享到朋友圈，会执行下面这个代码
+Api.shareToTimeline(wxData, wxCallbacks);
+
+// 点击分享到腾讯微博，会执行下面这个代码
+Api.shareToWeibo(wxData, wxCallbacks);
+</code></pre><p>});</p>
+<p>3、当然，如果你的业务需求相当复杂，比如，你的产品就是一个微信网页游戏（类似“2048数字游戏微信版”），你希望用户分享出去的数据是一个网页截屏、或者需要将用户当前的游戏状态回传到服务器动态生成可分享的内容；那么这种情况我们又该怎么做呢？来看下面这个示例代码吧：<br>// 所有功能必须包含在 WeixinApi.ready 中进行<br>WeixinApi.ready(function(Api){</p>
+<pre><code>// 分享的回调
+var wxCallbacks = {
+    // 分享过程需要异步执行
+    async : true,
+    // 分享操作开始之前
+    ready:function () {
+        var self = this;
+        // 假设你需要在这里发一个 ajax 请求去获取分享数据
+        $.post(yourServerUrl,yourPostData,function(responseData){
+            // 可以解析reponseData得到wxData
+            var wxData = responseData;
+            // 调用dataLoaded方法，会自动触发分享操作
+            // 注意，当且仅当 async为true时，wxCallbacks.dataLoaded才会被初始化，并调用
+            self.dataLoaded(wxData);
+        });
+    }
+    /* cancel、fail、confirm、all 方法同示例2，此处略掉 */
+};
+
+// 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+Api.shareToFriend({}, wxCallbacks);
+</code></pre><p>});<br>唯一的区别就是在wxCallbacks中，增加了配置项async为true，表示这个分享过程是异步调用的，其实就是指的ready方法异步执行，在这种情况下，我们需要在ready方法中显式地调用wxCallbacks的dataLoaded方法，以保证分享过程能继续往下执行。也许你会发现，这个wxCallbacks中，根本就没有配置dataLoaded方法啊！是的，当async为true时，WeixinApi中我会自动对其进行初始化，dataLoaded方法需要一个参数，表示需要分享出去的数据！</p>
+<p>4、当然，如果你非要去配置dataLoaded方法，也是没有问题的，你的配置也会被执行，不会被覆盖，执行顺序是：用户配置优先。</p>
+<p>上面是直接给出使用方法，也许你现在开始关心每个方法的参数列表是什么样的了？我们以分享到朋友圈的方法为例，来看看参数都有哪些配置项：<br>/**</p>
+<ul>
+<li>分享到微信朋友圈</li>
+<li>@param       {Object}    data       待分享的信息</li>
+<li>@p-config    {String}    appId      公众平台的appId（服务号可用）</li>
+<li>@p-config    {String}    imageUrl   图片地址</li>
+<li>@p-config    {String}    link       链接地址</li>
+<li>@p-config    {String}    desc       描述</li>
+<li>@p-config    {String}    title      分享的标题<br>*</li>
+<li>@param       {Object}    callbacks  相关回调方法</li>
+<li>@p-config    {Boolean}   async                   ready方法是否需要异步执行，默认false</li>
+<li>@p-config    {Function}  ready(argv)             就绪状态</li>
+<li>@p-config    {Function}  dataLoaded(data)        数据加载完成后调用，async为true时有用</li>
+<li>@p-config    {Function}  cancel(resp)    取消</li>
+<li>@p-config    {Function}  fail(resp)      失败</li>
+<li>@p-config    {Function}  confirm(resp)   成功</li>
+<li>@p-config    {Function}  all(resp)       无论成功失败都会执行的回调<br>*/<br>WeixinApi.shareToTimeline(data,callbacks);<br>分享给微信好友以及分享到腾讯微博的参数列表都一样，这里就不罗列了。</li>
+</ul>
+<p>5、如果你的文章中有很多图片，那么，点击图片直接调起微信客户端自带的图片播放组件，那必然是一件好事；对此，你可以这样来做：<br>// 调起微信客户端的图片播放组件进行播放<br>WeixinApi.ready(function(Api){<br>    var srcList = [];<br>    $.each($(‘img’),function(i,item){<br>       if(item.src) {<br>           srcList.push(item.src);<br>           $(item).click(function(e){<br>               // 通过这个API就能直接调起微信客户端的图片播放组件了<br>               Api.imagePreview(this.src,srcList);<br>           });<br>       }<br>    });<br>});<br>就这么一段儿简单的代码，一切都搞定了！不过，需要指出的是，Api.imagePreview的参数是会进行强检测的：<br>/**</p>
+<ul>
+<li>调起微信Native的图片播放组件。</li>
+<li>这里必须对参数进行强检测，如果参数不合法，直接会导致微信客户端crash<br>*</li>
+<li>@param {String} curSrc 当前播放的图片地址</li>
+<li>@param {Array} srcList 图片地址列表<br>*/<br>function imagePreview(curSrc,srcList) ;</li>
+</ul>
+<p>需要指出的是，微信公众平台对Android、iOS平台支持力度不统一，比较费劲，具体有：<br>iOS平台下，分享出去的数据wxData中，imageUrl可以是DataURI格式的；但在Android平台下，必须是全路径的图片地址<br>iOS平台下，分享的回调callback基本全都可以得到执行；但在Android平台下，分享到微信朋友圈的callback无法得到执行（ready方法除外）<br>iOS平台下，无法在非mp.weixin.qq.com域下的页面中通过WeixinJSBridge.invoke(‘profile’)的方式打开某微信号的资料页面；Android平台下则可以通过<a href="weixin://contacts/profile/微信ID" target="_blank" rel="external">的方式打开资料页；WinPhone下，则是通过<a href="weixin://profile/微信ID" target="_blank" rel="external">的方式打开。<br>期待官方能早日实现各平台API的统一吧！！！</a></a></p>
+<p>至于API内部是怎么实现的，如果感兴趣，那就看源码吧，使用过程中如遇到什么Bug，请来这里反馈。</p>
+<p>为了便于Api的维护与共享，已将其放到Github上了，大家这里走起：https://github.com/zxlie/WeixinApi </p>
+<p>/**!</p>
+<ul>
+<li>微信内置浏览器的Javascript API，功能包括：<br>*</li>
+<li>1、分享到微信朋友圈</li>
+<li>2、分享给微信好友</li>
+<li>3、分享到腾讯微博</li>
+<li>4、隐藏/显示右上角的菜单入口</li>
+<li>5、隐藏/显示底部浏览器工具栏</li>
+<li>6、获取当前的网络状态<br>*</li>
+<li>@author zhaoxianlie(http://www.baidufe.com)<br>*/<br>var WeixinApi = (function () {</li>
+</ul>
+<pre><code>/**
+ * 分享到微信朋友圈
+ * @param       {Object}    data       待分享的信息
+ * @p-config    {String}    appId      公众平台的appId（服务号可用）
+ * @p-config    {String}    imageUrl   图片地址
+ * @p-config    {String}    link       链接地址
+ * @p-config    {String}    desc       描述
+ * @p-config    {String}    title      分享的标题
+ *
+ * @param       {Object}    callbacks  相关回调方法
+ * @p-config    {Boolean}   async                   ready方法是否需要异步执行，默认false
+ * @p-config    {Function}  ready(argv)             就绪状态
+ * @p-config    {Function}  dataLoaded(data)        数据加载完成后调用，async为true时有用，也可以为空
+ * @p-config    {Function}  cancel(resp)    取消
+ * @p-config    {Function}  fail(resp)      失败
+ * @p-config    {Function}  confirm(resp)   成功
+ * @p-config    {Function}  all(resp)       无论成功失败都会执行的回调
+ */
+function weixinShareTimeline(data, callbacks) {
+    callbacks = callbacks || {};
+    var shareTimeline = function (theData) {
+        WeixinJSBridge.invoke(&apos;shareTimeline&apos;, {
+            &quot;appid&quot;:theData.appId ? theData.appId : &apos;&apos;,
+            &quot;img_url&quot;:theData.imgUrl,
+            &quot;link&quot;:theData.link,
+            &quot;desc&quot;:theData.title,
+            &quot;title&quot;:theData.desc, // 注意这里要分享出去的内容是desc
+            &quot;img_width&quot;:&quot;120&quot;,
+            &quot;img_height&quot;:&quot;120&quot;
+        }, function (resp) {
+            switch (resp.err_msg) {
+                // share_timeline:cancel 用户取消
+                case &apos;share_timeline:cancel&apos;:
+                    callbacks.cancel &amp;&amp; callbacks.cancel(resp);
+                    break;
+                // share_timeline:fail　发送失败
+                case &apos;share_timeline:fail&apos;:
+                    callbacks.fail &amp;&amp; callbacks.fail(resp);
+                    break;
+                // share_timeline:confirm 发送成功
+                case &apos;share_timeline:confirm&apos;:
+                    callbacks.confirm &amp;&amp; callbacks.confirm(resp);
+                    break;
+            }
+            // 无论成功失败都会执行的回调
+            callbacks.all &amp;&amp; callbacks.all(resp);
+        });
+    };
+    WeixinJSBridge.on(&apos;menu:share:timeline&apos;, function (argv) {
+        if (callbacks.async &amp;&amp; callbacks.ready) {
+            if(!callbacks.__dataLoadedFuncInited) {
+                var loadedCb = callbacks.dataLoaded || new Function();
+                callbacks.dataLoaded = function (newData) {
+                    loadedCb(newData);
+                    shareTimeline(newData);
+                };
+                callbacks.__dataLoadedFuncInited = true;
+            }
+            // 然后就绪
+            callbacks.ready &amp;&amp; callbacks.ready(argv);
+        } else {
+            // 就绪状态
+            callbacks.ready &amp;&amp; callbacks.ready(argv);
+            shareTimeline(data);
+        }
+    });
+}
+
+
+/**
+ * 发送给微信上的好友
+ * @param       {Object}    data       待分享的信息
+ * @p-config    {String}    appId      公众平台的appId（服务号可用）
+ * @p-config    {String}    imageUrl   图片地址
+ * @p-config    {String}    link       链接地址
+ * @p-config    {String}    desc       描述
+ * @p-config    {String}    title      分享的标题
+ *
+ * @param       {Object}    callbacks  相关回调方法
+ * @p-config    {Boolean}   async                   ready方法是否需要异步执行，默认false
+ * @p-config    {Function}  ready(argv)             就绪状态
+ * @p-config    {Function}  dataLoaded(data)        数据加载完成后调用，async为true时有用，也可以为空
+ * @p-config    {Function}  cancel(resp)    取消
+ * @p-config    {Function}  fail(resp)      失败
+ * @p-config    {Function}  confirm(resp)   成功
+ * @p-config    {Function}  all(resp)       无论成功失败都会执行的回调
+ */
+function weixinSendAppMessage(data, callbacks) {
+    callbacks = callbacks || {};
+    var sendAppMessage = function (theData) {
+        WeixinJSBridge.invoke(&apos;sendAppMessage&apos;, {
+            &quot;appid&quot;:theData.appId ? theData.appId : &apos;&apos;,
+            &quot;img_url&quot;:theData.imgUrl,
+            &quot;link&quot;:theData.link,
+            &quot;desc&quot;:theData.desc,
+            &quot;title&quot;:theData.title,
+            &quot;img_width&quot;:&quot;120&quot;,
+            &quot;img_height&quot;:&quot;120&quot;
+        }, function (resp) {
+            switch (resp.err_msg) {
+                // send_app_msg:cancel 用户取消
+                case &apos;send_app_msg:cancel&apos;:
+                    callbacks.cancel &amp;&amp; callbacks.cancel(resp);
+                    break;
+                // send_app_msg:fail　发送失败
+                case &apos;send_app_msg:fail&apos;:
+                    callbacks.fail &amp;&amp; callbacks.fail(resp);
+                    break;
+                // send_app_msg:confirm 发送成功
+                case &apos;send_app_msg:confirm&apos;:
+                    callbacks.confirm &amp;&amp; callbacks.confirm(resp);
+                    break;
+            }
+            // 无论成功失败都会执行的回调
+            callbacks.all &amp;&amp; callbacks.all(resp);
+        });
+    };
+    WeixinJSBridge.on(&apos;menu:share:appmessage&apos;, function (argv) {
+        if (callbacks.async &amp;&amp; callbacks.ready) {
+            if(!callbacks.__dataLoadedFuncInited) {
+                var loadedCb = callbacks.dataLoaded || new Function();
+                callbacks.dataLoaded = function (newData) {
+                    loadedCb(newData);
+                    sendAppMessage(newData);
+                };
+                callbacks.__dataLoadedFuncInited = true;
+            }
+            // 然后就绪
+            callbacks.ready &amp;&amp; callbacks.ready(argv);
+        } else {
+            // 就绪状态
+            callbacks.ready &amp;&amp; callbacks.ready(argv);
+            sendAppMessage(data);
+        }
+    });
+}
+
+
+/**
+ * 分享到腾讯微博
+ * @param       {Object}    data       待分享的信息
+ * @p-config    {String}    imageUrl   图片地址
+ * @p-config    {String}    link       链接地址
+ * @p-config    {String}    desc       描述
+ * @p-config    {String}    title      分享的标题
+ *
+ * @param       {Object}    callbacks  相关回调方法
+ * @p-config    {Boolean}   async                   ready方法是否需要异步执行，默认false
+ * @p-config    {Function}  ready(argv)             就绪状态
+ * @p-config    {Function}  dataLoaded(data)        数据加载完成后调用，async为true时有用，也可以为空
+ * @p-config    {Function}  cancel(resp)    取消
+ * @p-config    {Function}  fail(resp)      失败
+ * @p-config    {Function}  confirm(resp)   成功
+ * @p-config    {Function}  all(resp)       无论成功失败都会执行的回调
+ */
+function weixinShareWeibo(data, callbacks) {
+    callbacks = callbacks || {};
+    var shareWeibo = function (theData) {
+        WeixinJSBridge.invoke(&apos;shareWeibo&apos;, {
+            &quot;content&quot;:theData.desc,
+            &quot;link&quot;:theData.link,
+            &quot;img_url&quot;:theData.imgUrl,
+            &quot;title&quot;:theData.title,
+            &quot;img_width&quot;:&quot;120&quot;,
+            &quot;img_height&quot;:&quot;120&quot;
+        }, function (resp) {
+            switch (resp.err_msg) {
+                // share_weibo:cancel 用户取消
+                case &apos;share_weibo:cancel&apos;:
+                    callbacks.cancel &amp;&amp; callbacks.cancel(resp);
+                    break;
+                // share_weibo:fail　发送失败
+                case &apos;share_weibo:fail&apos;:
+                    callbacks.fail &amp;&amp; callbacks.fail(resp);
+                    break;
+                // share_weibo:confirm 发送成功
+                case &apos;share_weibo:confirm&apos;:
+                    callbacks.confirm &amp;&amp; callbacks.confirm(resp);
+                    break;
+            }
+            // 无论成功失败都会执行的回调
+            callbacks.all &amp;&amp; callbacks.all(resp);
+        });
+    };
+    WeixinJSBridge.on(&apos;menu:share:weibo&apos;, function (argv) {
+        if (callbacks.async &amp;&amp; callbacks.ready) {
+            if(!callbacks.__dataLoadedFuncInited) {
+                var loadedCb = callbacks.dataLoaded || new Function();
+                callbacks.dataLoaded = function (newData) {
+                    loadedCb(newData);
+                    shareWeibo(newData);
+                };
+                callbacks.__dataLoadedFuncInited = true;
+            }
+            // 然后就绪
+            callbacks.ready &amp;&amp; callbacks.ready(argv);
+        } else {
+            // 就绪状态
+            callbacks.ready &amp;&amp; callbacks.ready(argv);
+            shareWeibo(data);
+        }
+    });
+}
+
+
+/**
+ * 显示网页右上角的按钮
+ */
+function showOptionMenu() {
+    WeixinJSBridge.call(&apos;showOptionMenu&apos;);
+}
+
+
+
+
+/**
+ * 隐藏网页右上角的按钮
+ */
+function hideOptionMenu() {
+    WeixinJSBridge.call(&apos;hideOptionMenu&apos;);
+}
+
+
+/**
+ * 显示底部工具栏
+ */
+function showToolbar() {
+    WeixinJSBridge.call(&apos;showToolbar&apos;);
+}
+
+
+/**
+ * 隐藏底部工具栏
+ */
+function hideToolbar() {
+    WeixinJSBridge.call(&apos;hideToolbar&apos;);
+}
+
+
+/**
+ * 返回如下几种类型：
+ *
+ * network_type:wifi     wifi网络
+ * network_type:edge     非wifi,包含3G/2G
+ * network_type:fail     网络断开连接
+ * network_type:wwan     2g或者3g
+ *
+ * 使用方法：
+ * WeixinApi.getNetworkType(function(networkType){
+ *
+ * });
+ *
+ * @param callback
+ */
+function getNetworkType(callback) {
+    if (callback &amp;&amp; typeof callback == &apos;function&apos;) {
+        WeixinJSBridge.invoke(&apos;getNetworkType&apos;, {}, function (e) {
+            // 在这里拿到e.err_msg，这里面就包含了所有的网络类型
+            callback(e.err_msg);
+        });
+    }
+}
+
+
+/**
+ * 当页面加载完毕后执行，使用方法：
+ * WeixinApi.ready(function(Api){
+ *     // 从这里只用Api即是WeixinApi
+ * });
+ * @param readyCallback
+ */
+function wxJsBridgeReady(readyCallback) {
+    if (readyCallback &amp;&amp; typeof readyCallback == &apos;function&apos;) {
+        var Api = this;
+        var wxReadyFunc = function () {
+            readyCallback(Api);
+        };
+        if (typeof window.WeixinJSBridge == &quot;undefined&quot;){
+            if (document.addEventListener) {
+                document.addEventListener(&apos;WeixinJSBridgeReady&apos;, wxReadyFunc, false);
+            } else if (document.attachEvent) {
+                document.attachEvent(&apos;WeixinJSBridgeReady&apos;, wxReadyFunc);
+                document.attachEvent(&apos;onWeixinJSBridgeReady&apos;, wxReadyFunc);
+            }
+        }else{
+            wxReadyFunc();
+        }
+    }
+}
+
+
+return {
+    version         :&quot;1.2&quot;,
+    ready           :wxJsBridgeReady,
+    shareToTimeline :weixinShareTimeline,
+    shareToWeibo    :weixinShareWeibo,
+    shareToFriend   :weixinSendAppMessage,
+    showOptionMenu  :showOptionMenu,
+    hideOptionMenu  :hideOptionMenu,
+    showToolbar     :showToolbar,
+    hideToolbar     :hideToolbar,
+    getNetworkType  :getNetworkType
+};
+</code></pre><p>})();</p>
+
+	
+	</div>
+  <a type="button" href="/2016/05/14/微信内置浏览器的JsAPI/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-05-14 </div>
 			<div class="article-title"><a href="/2016/05/14/Unity3D第一人称射击游戏（推荐）/" >Unity3D第一人称射击游戏（推荐）</a></div>						
 		</h3>
 	
@@ -455,189 +1140,6 @@
 	<!-- display as entry -->	
 		<h3 class="title">
 			<div class="date"> 2016-05-14 </div>
-			<div class="article-title"><a href="/2016/05/14/Android_检查是否联网/" >Android_检查是否联网</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>检查是否联网</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static boolean isNetworkAvailable(Activity mActivity) &#123;</span><br><span class="line"> Context context = mActivity.getApplicationContext();</span><br><span class="line"> ConnectivityManager connectivity = (ConnectivityManager) context</span><br><span class="line">   .getSystemService(Context.CONNECTIVITY_SERVICE);</span><br><span class="line"> if (connectivity == null) &#123;</span><br><span class="line">  return false;</span><br><span class="line"> &#125; else &#123;</span><br><span class="line">  NetworkInfo[] info = connectivity.getAllNetworkInfo();</span><br><span class="line">  if (info != null) &#123;</span><br><span class="line">   for (int i = 0; i &lt; info.length; i++) &#123;</span><br><span class="line">    if (info[i].getState() == NetworkInfo.State.CONNECTED) &#123;</span><br><span class="line">     return true;</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void HttpTest(final Activity mActivity) &#123;</span><br><span class="line"> if (!isNetworkAvailable(mActivity)) &#123;</span><br><span class="line">  showToast(mActivity);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void showToast(Activity mActivity) &#123;</span><br><span class="line"> Vibrator mVibrator01 = (Vibrator) mActivity.getApplication()</span><br><span class="line">   .getSystemService(Service.VIBRATOR_SERVICE);</span><br><span class="line"> mVibrator01.vibrate(new long[] &#123; 100, 10, 100, 1000 &#125;, -1);</span><br><span class="line"> Toast.makeText(mActivity, &quot;请检查是否联网&quot;, 500).show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中还要加上手机震动和联网的权限：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt; </span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.VIBRATE&quot;/&gt;</span><br></pre></td></tr></table></figure>
-
-	
-	</div>
-  <a type="button" href="/2016/05/14/Android_检查是否联网/#more" class="btn btn-default more">阅读此文</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-05-14 </div>
-			<div class="article-title"><a href="/2016/05/14/Android_消息推送/" >Android 消息推送</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>1.引言</p>
-<p>　　所谓的消息推送就是从服务器端向移动终端发送连接，传输一定的信息。比如一些新闻客户端，每隔一段时间收到一条或者多条通知，这就是从服务器端传来的推送消息；还比如常用的一些IM软件如微信、GTalk等，都具有服务器推送功能。</p>
-<p>　　推送方法如下：</p>
-<p>　　1)通过SMS进行服务器端和客户端的交流通信。</p>
-<p>　　在Android平台上，你可以通过拦截SMS消息并且解析消息内容来了解服务器的意图，可以实现完全的实时操作。但是问题是这个方案的成本相对比较高，且依赖于运营商。</p>
-<p>　　2)循环主动定时获取</p>
-<p>　　这种方法需要客户端来做一个定时或者周期性的访问服务器端接口，以获得最新的消息。轮询的频率太慢可能导致某些消息的延迟，太快则会大量消耗网络带宽和电池。</p>
-<p>　　3)持久连接</p>
-<p>　　这个方案可以解决由轮询带来的性能问题，但是还是会消耗手机的电池。我们需要开一个服务来保持和服务器端的持久连接（苹果就和谷歌的C2DM是这种机制）。但是对于Android系统，当系统可用资源较低，系统会强制关闭我们的服务或者是应用，这种情况下连接会强制中断。（Apple的推送服务之所以工作的很好，是因为每一台手机仅仅保持一个与服务器之间的连接，事实上C2DM也是这么工作的。即所有的推送服务都是经由一个代理服务器完成的，这种情况下只需要和一台服务器保持持久连接即可。C2DM=Cloud to Device Messaging）。</p>
-<p>　　相比之下第三种还是最可行的。为软件编写系统服务或开机启动功能；或者如果系统资源较低，服务被关闭后可以在onDestroy ()方法里面再重启该服务，进而实现持久连接的方式。</p>
-<p>　　C2DM内置于Android的2.2系统上，无法兼容老的1.6到2.1系统；且依赖于Google官方提供的C2DM服务器，由于国内的网络环境，这个服务经常不可用。</p>
-<p>　　建立在TCP协议之上的XMPP协议，不仅可提供可这种持久连接的功能，能实现服务器和客户机的双工通信，还能不依赖与系统版本和google服务器的限制，提供了比较好的解决方案。</p>
-<ol>
-<li>XMPP协议</li>
-</ol>
-<p>　　XMPP全称Extensible Messaging and Presence Protocol，前身是Jabber项目，是一种以XML为基础的开放式即时通讯协议。XMPP因为被Google Talk和网易泡泡应用而被广大网民所接触。XMPP的关键特色是，分散式的即时通讯系统，以及使用XML串流。XMPP目前被IETF国际标准组织完成了标准化工作。</p>
-<p>　　Android push notification(androidpn) 是一个基于XMPP协议的java开源实现，它包含了完整的客户端和服务器端。该服务器端基本是在另外一个开源工程openfire基础上修改实现的。</p>
-<p>　　androidpn客户端需要用到一个基于java的开源XMPP协议包asmack，这个包同样也是基于openfire下的另外一个开源项目smack，不过我们不需要自己编译，可以直接把androidpn客户端里面的asmack.jar拿来使用。客户端利用asmack中提供的XMPPConnection类与服务器建立持久连接，并通过该连接进行用户注册和登录认证，同样也是通过这条连接，接收服务器发送的通知。</p>
-<p>　　androidpn服务器端也是java语言实现的，基于openfire开源工程，不过它的Web部分采用的是spring框架，这一点与openfire是不同的。Androidpn服务器包含两个部分，一个是侦听在5222端口上的XMPP服务，负责与客户端的XMPPConnection类进行通信，作用是用户注册和身份认证，并发送推送通知消息。另外一部分是Web服务器，采用一个轻量级的HTTP服务器，负责接收用户的Web请求。服务器的这两方式，意义非凡：当相应的TCP端口被防火墙封闭，可以使用轮询的方式进行访问，因此又有助于通过防火墙。</p>
-
-	
-	</div>
-  <a type="button" href="/2016/05/14/Android_消息推送/#more" class="btn btn-default more">阅读此文</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-05-14 </div>
-			<div class="article-title"><a href="/2016/05/14/Json_反序列化/" >Json反序列化</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<pre><code>  /**
- * 由字符串反序列化成实体类  针对的是一个实体，此实体中的属性不包括自定义的类型，如Teacher类型，或者List&lt;Teacher&gt;类型 
- * @param source 传入json中的字符串
- * @param beanClass 实体类的类型
- * @return 实体类
- */
-public static Object getObjFromJsonArrStr(String source,Class beanClass)
-{
-    JSONObject jsonObject = (JSONObject) JSONSerializer.toJSON(source);
-    return  JSONObject.toBean(jsonObject,beanClass);       
-}
-/**
- * 由字符串反序列化成实体类  针对的是一个实体，此实体中的属性包括自定义的类型，如Teacher类型，或者List&lt;Teacher&gt;类型
- * @param jsonArrStr
- * @param clazz
- * @param classMap
- * @return
- */
-public static Object getObjFromJsonArrStr(String jsonArrStr, Class clazz, Map classMap) 
-{ 
-    JSONObject jsonObj = JSONObject.fromObject(jsonArrStr);  
-            return JSONObject.toBean(jsonObj, clazz, classMap);            
-}
-
-
-/**
- * 将string转换成listBean
- * @param jsonArrStr 需要反序列化的字符串
- * @param clazz 被反序列化之后的类
- * @return 实体list
- */
-@SuppressWarnings(&quot;unchecked&quot;)
-public static List getListFromJsonArrStr(String jsonArrStr, Class clazz) {  
-    JSONArray jsonArr = JSONArray.fromObject(jsonArrStr);  
-    List list = new ArrayList(); 
-    for (int i = 0; i &lt; jsonArr.size(); i++) 
-    { 
-        list.add(JSONObject.toBean(jsonArr.getJSONObject(i), clazz));  
-    } 
-    return list; 
-}
-
-/**
- * 将string转换成listBean 属性中包含实体类等 如List&lt;Student&gt; 而Student中含有属性List&lt;Teacher&gt;
- * @param jsonArrStr 需要反序列化的字符串
- * @param clazz 反序列化后的类
- * @param classMap 将属性中包含的如Teacher加入到一个Map中，格式如map.put(&quot;teacher&quot;,Teacher.class)
- * @return 反序列化后的字符串
- * 使用示例：
-    Map classMap = new HashMap();
-    //必须要对Parent进行初始化 否则不识别
-    Teacher p = new Teacher();
-    classMap.put(&quot;teacher&quot;, p.getClass());
-    List mlist = JSONTransfer.getListFromJsonArrStr(resultStr, Student.class, classMap);
- */
-@SuppressWarnings(&quot;unchecked&quot;)
-public static List getListFromJsonArrStr(String jsonArrStr, Class clazz, Map classMap) 
-{ 
-   JSONArray jsonArr = JSONArray.fromObject(jsonArrStr);  
-   List list = new ArrayList(); 
-   for (int i = 0; i &lt; jsonArr.size(); i++) 
-   {          
-       list.add(JSONObject.toBean(jsonArr.getJSONObject(i), clazz, classMap));  
-   } 
-   return list; 
-}
-
-/**
- * 序列化操作，无论是单个的对象，还是list，抑或是list中的属性仍包含list，都可以直接序列化成String类型
- * @param obj 需要被序列化的对象
- * @return 序列化之后的字符串
- */
-@SuppressWarnings(&quot;unchecked&quot;)
-public static String getJsonArrStrFromList(Object obj) 
-{
-    //返回結果
-    String jsonStr = null; 
-    //判空
-    if (obj == null) {  
-        return &quot;{}&quot;; 
-    } 
-    //Json配置     
-    JsonConfig jsonCfg = new JsonConfig(); 
-
-    //注册日期处理器 
-    jsonCfg.registerJsonValueProcessor(java.util.Date.class, 
-            new JsonDateValueProcessor(SystemConstants.DateFormat)); 
-
-    //判断是否是list
-    if (objinstanceof Collection || obj instanceof Object[]) {  
-        jsonStr = JSONArray.fromObject(obj, jsonCfg).toString();  
-    }else { 
-        jsonStr = JSONObject.fromObject(obj, jsonCfg).toString();  
-    }    
-    return jsonStr;
-}
-</code></pre><p>关于Java序列化，ITEye上有一篇讨论的帖子比较好</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;http://www.iteye.com/topic/14707&quot;&gt;http://www.iteye.com/topic/14707&lt;/a&gt;</span><br></pre></td></tr></table></figure>
-	
-	</div>
-  <a type="button" href="/2016/05/14/Json_反序列化/#more" class="btn btn-default more">阅读此文</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-05-14 </div>
 			<div class="article-title"><a href="/2016/05/14/Android_Afinal框架/" >Android_Afinal框架</a></div>						
 		</h3>
 	
@@ -675,134 +1177,6 @@ public static String getJsonArrStrFromList(Object obj)
 	
 	</div>
   <a type="button" href="/2016/05/14/Android_Afinal框架/#more" class="btn btn-default more">阅读此文</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-05-14 </div>
-			<div class="article-title"><a href="/2016/05/14/Android_条码扫描二维码扫描/" >Android_条码扫描二维码</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>前言<br>　　最近公司的Android项目需要用到摄像头做条码或二维码的扫描，Google一下，发现一个以Apache License 2.0 开源的 ZXing项目。Zxing项目里的Android实现太过复杂多余东西太多，得对其进行简化。</p>
-<p>前提条件<br>　　下载源代码：点击这里</p>
-<p>　　编译核心库：Zxing的主页上有介绍具体步骤，大家也可以参照这篇博文：android 条码识别软件开发全解析(续2详解绝杀！)</p>
-<p>导入项目<br>　　打开Eclipse 导入 源码中的 Android 项目，然后右击项目 选择“Build path”——》”Add External Archives” 把核心库 core.jar文件加入到项目中。</p>
-<p>此时编译一下项目，会发现报错,“ Multiple substitutions specified in non-positional format; did you mean to add the formatted=”false” attribute?”之类的。打开raw 下的Values 发现错误是在一个<string>上。这里把 “preferences_custom_product_search_summary” 里的  %s  %f  全部都改成  %1$s  %1$f（因为我们用不到多国语言，建议只保留默认的Value ，其他全部删除）。</string></p>
-<p>　　原因：由于新的SDK采用了新版本的aapt（Android项目编译器），这个版本的aapt编译起来会比老版本更加的严格，然后在Android最新的开发文档的描述String的部分，已经说明如何去设置 %s 等符号</p>
-<p>　　“If you need to format your strings using String.format(String, Object…) , then you can do so by putting your format arguments in the string resource. For example, with the following resource:</p>
-<p>　　<string name="welcome_messages">Hello, %1$s! You have %2$d new messages.</string></p>
-<p>　　In this example, the format string has two arguments: %1$s is a string and %2$d is a decimal number. You can format the string with arguements from your application…“</p>
-<p>　　经过以上步骤后项目应该就可以运行了。</p>
-<p>　　但是ZXing的android项目东西太多了，有很多是我们不需要的，得新建另一个项目简化它。</p>
-<p>简化<br>　　在开始前大致介绍一下简化ZXing需要用到各个包 、类的职责。</p>
-<p>CaptureActivity。这个是启动Activity 也就是扫描器（如果是第一安装，它还会跳转到帮助界面）。<br>CaptureActivityHandler 解码处理类，负责调用另外的线程进行解码。<br>DecodeThread 解码的线程。<br>com.google.zxing.client.android.camera 包，摄像头控制包。<br>ViewfinderView 自定义的View，就是我们看见的拍摄时中间的框框了。<br>新建另一个项目<br>　　新建另一个项目将启动的Activity命名为CaptureActivity，并导入核心库。项目新建完成后我们打开 CaptureActivity 的布局文件，我这里为main。把里面的XML修改为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">复制代码</span><br><span class="line">1 &lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">2 android:layout_width=&quot;fill_parent&quot; android:layout_height=&quot;fill_parent&quot;&gt;</span><br><span class="line">3 &lt;SurfaceView android:id=&quot;@+id/preview_view&quot;</span><br><span class="line">4 android:layout_width=&quot;fill_parent&quot; android:layout_height=&quot;fill_parent&quot;</span><br><span class="line">5 android:layout_centerInParent=&quot;true&quot;/&gt;</span><br><span class="line">6 </span><br><span class="line">7 &lt;com.Zxing.Demo.view.ViewfinderView</span><br><span class="line">8 android:id=&quot;@+id/viewfinder_view&quot; android:layout_width=&quot;fill_parent&quot;</span><br><span class="line">9 android:layout_height=&quot;fill_parent&quot; android:background=&quot;@android:color/transparent&quot;/&gt;</span><br><span class="line">10 &lt;TextView android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">11 android:id=&quot;@+id/txtResult&quot;</span><br><span class="line">12 android:layout_height=&quot;wrap_content&quot; android:text=&quot;@string/hello&quot;/&gt;</span><br><span class="line">13 </span><br><span class="line">14  &lt;/FrameLayout&gt;</span><br></pre></td></tr></table></figure>
-<p>复制代码<br>　　可以看到在XML里面用到了 ViewfinderView 自定义view 。所以新建一个View 的包，然后把：ViewfinderView 和 ViewfinderResultPointCallback 靠到里面（记得对应修改XML里面的包）。</p>
-<p>打开 CaptureActivity 覆盖 onCreate 方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">复制代码</span><br><span class="line">1 @Override</span><br><span class="line">2 publicvoid onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">3 super.onCreate(savedInstanceState);</span><br><span class="line">4 setContentView(R.layout.main);</span><br><span class="line">5 //初始化 CameraManager</span><br><span class="line">6   CameraManager.init(getApplication());</span><br><span class="line">7 </span><br><span class="line">8 viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);</span><br><span class="line">9 txtResult = (TextView) findViewById(R.id.txtResult);</span><br><span class="line">10 hasSurface =false;</span><br><span class="line">11 inactivityTimer =new InactivityTimer(this);</span><br><span class="line">12 &#125;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
-<p>  这里调用到的 CameraManager 类是控制摄像头的包里的类。新建一个camera包把：com.google.zxing.client.android.camera 里面的类全部拷入，另外我把PlanarYUVLuminanceSource也拷入到这个包里面。根据错误的提示来修正代码，主要是修改正包结构。（整个简化的流程都是如此：“根据错误提示，修改代码”）。</p>
-<p>　　在修改的过程中，有很多是关于R 资源的问题，在此我们需要将Values  里面的两个xml资源文件拷入项目中：colos.xml 和ids.xml 。 ctrl+b 一下看看error 是不是少了很多。在CameraManager中有些地方需要用到项目的配置，这里需要把配置直接写入代码中：<br>　　<br>　　<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">　　</span><br><span class="line"></span><br><span class="line">// SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);</span><br><span class="line">//是否使用前灯</span><br><span class="line">// if (prefs.getBoolean(PreferencesActivity.KEY_FRONT_LIGHT, false)) &#123;</span><br><span class="line">// FlashlightManager.enableFlashlight();</span><br><span class="line">// &#125;</span><br><span class="line">FlashlightManager.enableFlashlight();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> 　　使用摄像头需要加入相应的权限：</span><br></pre></td></tr></table></figure></p>
-<p><uses-permission android:name="android.permission.CAMERA"></uses-permission></p>
-<p><uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission></p>
-<p><uses-feature android:name="android.hardware.camera"></uses-feature></p>
-<p><uses-feature android:name="android.hardware.camera.autofocus"></uses-feature></p>
-<p><uses-permission android:name="android.permission.VIBRATE"></uses-permission></p>
-<uses-permission android:name="android.permission.FLASHLIGHT">
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　当View 和 camera 包里的错误修正完成后，我们继续来看CaptureActivity。</span><br><span class="line"></span><br><span class="line">覆盖onResume方法初始化摄像头：</span><br></pre></td></tr></table></figure>
-<p>复制代码<br>@Override<br>protectedvoid onResume() {<br>super.onResume();<br>SurfaceView surfaceView = (SurfaceView) findViewById(R.id.preview_view);<br>SurfaceHolder surfaceHolder = surfaceView.getHolder();<br>if (hasSurface) {<br>initCamera(surfaceHolder);<br>} else {<br>surfaceHolder.addCallback(this);<br>surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);<br>}<br>decodeFormats =null;<br>characterSet =null;</p>
-<p>playBeep =true;<br>AudioManager audioService = (AudioManager) getSystemService(AUDIO_SERVICE);<br>if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {<br>playBeep =false;<br>}<br>initBeepSound();<br>vibrate =true;<br>}</p>
-<p>复制代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">initCamera</span><br><span class="line">SurfaceHolder接口实现</span><br><span class="line">initCamera () 方法用于初始化摄像头，如果排除了所有的error ，运行项目时就可以看到大致扫描界面了。 surfaceHolder.addCallback(this);表示让CaptureActivity实现其callback接口。</span><br><span class="line"></span><br><span class="line">handler = new CaptureActivityHandler(this, decodeFormats,characterSet) 用于进行扫描解码处理。</span><br><span class="line"></span><br><span class="line">解码</span><br><span class="line">　　上面的步骤主要都是用于对摄像头的控制，而解码的真正工作入口是在CaptureActivityHandler 里面的。新建一个Decoding包把以下文件拷入包中：</span><br><span class="line"></span><br><span class="line">CaptureActivityHandler</span><br><span class="line">DecodeFormatManager</span><br><span class="line">DecodeHandler</span><br><span class="line">DecodeThread</span><br><span class="line">FinishListener</span><br><span class="line">InactivityTimer</span><br><span class="line">Intents</span><br><span class="line">由于我们的包结构和Zxing 项目的有所不同所以需要注意一下类的可访问性</span><br><span class="line"></span><br><span class="line">同样开始ctrl+B 编译一下，然后开始修正错误。</span><br><span class="line"></span><br><span class="line">　　在CaptureActivityHandler 里 把 handleMessage 里的部分方法先注释掉如：“decode_succeeded ”分支，这是解码成功时调用 CaptureActivity 展示解码的结果。</span><br><span class="line"></span><br><span class="line">在DecodeThread 类里，修改部分涉及Preference配置的代码：</span><br></pre></td></tr></table></figure>
-<p>复制代码<br>DecodeThread(CaptureActivity activity,<br>Vector<barcodeformat> decodeFormats,<br>String characterSet,<br>ResultPointCallback resultPointCallback) {</barcodeformat></p>
-<p>this.activity = activity;<br>handlerInitLatch =new CountDownLatch(1);</p>
-<p>hints =new Hashtable<decodehinttype, object="">(3);</decodehinttype,></p>
-<p>//// The prefs can’t change while the thread is running, so pick them up once here.<br>// if (decodeFormats == null || decodeFormats.isEmpty()) {<br>// SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);<br>// decodeFormats = new Vector<barcodeformat>();<br>// if (prefs.getBoolean(PreferencesActivity.KEY_DECODE_1D, true)) {<br>// decodeFormats.addAll(DecodeFormatManager.ONE_D_FORMATS);<br>// }<br>// if (prefs.getBoolean(PreferencesActivity.KEY_DECODE_QR, true)) {<br>// decodeFormats.addAll(DecodeFormatManager.QR_CODE_FORMATS);<br>// }<br>// if (prefs.getBoolean(PreferencesActivity.KEY_DECODE_DATA_MATRIX, true)) {<br>// decodeFormats.addAll(DecodeFormatManager.DATA_MATRIX_FORMATS);<br>// }<br>// }<br>if (decodeFormats ==null|| decodeFormats.isEmpty()) {<br>decodeFormats =new Vector<barcodeformat>();<br>decodeFormats.addAll(DecodeFormatManager.ONE_D_FORMATS);<br>decodeFormats.addAll(DecodeFormatManager.QR_CODE_FORMATS);<br>decodeFormats.addAll(DecodeFormatManager.DATA_MATRIX_FORMATS);</barcodeformat></barcodeformat></p>
-<p>}</p>
-<p>hints.put(DecodeHintType.POSSIBLE_FORMATS, decodeFormats);</p>
-<p>if (characterSet !=null) {<br>hints.put(DecodeHintType.CHARACTER_SET, characterSet);<br>}</p>
-<p>hints.put(DecodeHintType.NEED_RESULT_POINT_CALLBACK, resultPointCallback);<br>}<br>复制代码</p>
-<p>```</p>
-<p>这里是设置 解码的类型，我们现在默认将所有类型都加入。</p>
-<p>错误类型基本上都是：包结构、PreferencesActivity 的配置 、类可访问性的问题。根据错误提示耐心把错误解决。</p>
-<p>返回解码结果<br> 　　还记得在 CaptureActivityHandler 的 messagehandler 里注销掉的Case分支吗？现在CaptureActivity 里实现它。</p>
-<p>复制代码<br>publicvoid handleDecode(Result obj, Bitmap barcode) {<br>inactivityTimer.onActivity();<br>viewfinderView.drawResultBitmap(barcode);<br>playBeepSoundAndVibrate();<br>txtResult.setText(obj.getBarcodeFormat().toString() +”:”</p>
-<ul>
-<li>obj.getText());<br>}<br>复制代码<br>最后<br>　　ZXing的简化已基本完成，有几位是可以运行成功的？呵呵。</li>
-</ul>
-<p>下面是CaptureActivity的源码:</p>
-<p>CaputreActivity<br>简化过的包结构图：</p>
-<p>　</p>
-<p>　简化后的ZXing 更加方便我们了解ZXing项目 是如何解码的。只要仔细查看源码，进行单点跟踪调试，相信大家很容易能理解。</p>
-<p>顾客是上帝<br>   很多人留言要源码， 其实我这不是什么源码，我只是把ZXing的东西简化了一下而已。事实上我也不喜欢直接放源码项目，这样大家就不想读ZXing的源码了。</p>
-<p>下面是我简化的版本：Zxing简化</p>
-<p>很多人需要Core 核心包（其实ZXing的源码里面就有），这里提供下我写文章时的版本 1.6的：</p>
-<p>Zxing</p>
-</uses-permission>
-	
-	</div>
-  <a type="button" href="/2016/05/14/Android_条码扫描二维码扫描/#more" class="btn btn-default more">阅读此文</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2016-05-14 </div>
-			<div class="article-title"><a href="/2016/05/14/Android-应用插件式开发解决方法/" >Android 应用插件式开发解决方法</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>Android应用插件式开发解决方法</p>
-<p>一、现实需求描述</p>
-<p>一般的，一个Android应用在开发到了一定阶段以后，功能模块将会越来越多，APK安装包也越来越大，用户在使用过程中也没有办法选择性的加载自己需要的功能模块。此时可能就需要考虑如何分拆整个应用了。<br>二、解决方案提出</p>
-<p>一般有两种方式，一种是将应用按照功能分拆成多个应用，用户需要哪个就下载哪个，都需要就都下载。应用之间，可以在代码层面做一定的关联，以共享部分信息。另一种方式，类似于其他平台插件的方式，用户可以在主应用中可以选择性的下载需要的插件，不需要该功能，则不需要下载。<br>第一种方式，只需要开发多个应用就够了。第二种方式稍微复杂，需要做很多额外的工作。这里我们简单讨论第二种方式的大致实现方法。<br>三、实现方法概述</p>
-<p>有人可能会想到，是否可以像其他平台那样，下载一个类似于dll文件，或者jar包，就能自动识别并且加载该功能？可惜的是，在Android平台上是不允许直接动态加载jar包的，作者也没有想到类似办法。所以，想实现这种功能，还是要以独立APK的方式来加载。和第一种方式不同的是，从设计的角度，具体的插件是没有独立运行的入口的，也不允许有桌面图标存在，必须从主应用中打开，关闭后回到主应用（插件既然是APK，它安装完怎么会没有入口？怎么会没有桌面图标？QQ的跑酷等游戏不就是插件？不是就有图标入口？）。从用户的角度看，可以在应用中加载需要的功能并且使用，也就类似于其他平台插件的方式了。<br>为了实现这种方式，从设计的角度，就需要考虑清楚哪些功能作为独立的插件提供给用户，这里不再详述。下面从开发的角度说明大致需要做的工作。<br>Ø  主应用中需要开发的框架功能：<br>识别具体的插件是否已经安装（根据插件的package名）<br>如果已经安装要判断是否需要升级（服务器端获取最新的版本和本地的比较）<br>下载并且安装（或者升级）插件<br>卸载该插件<br>Ø  插件APK开发中需要注意的事项：<br>Manifest文件中不要提供启动的入口<br>Ø  主应用和插件之间交互的提示：<br>最好是使用相同的android:sharedUserId，插件可以方便的获取主应用的资源、数据库等等。<br>主应用可以以Intent方式启动具体的插件，同时带入Map类型参数或者json串参数，在插件APK中解析具体参数，实现业务逻辑。<br>三、其他说明</p>
-<p>本博客内容并没有具体说明如何去实现，没有代码级别的说明。但是通过上面介绍的方式，开发者基本已经可以理解如何实现插件式的Android应用了。具体的，在开发过程中可能还会遇到很多问题，需要开发者自己摸索和完善。</p>
-<p>///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////<br>框架已经放出：<br>Logo<br>android-application-plug-ins-frame-work<br>安卓应用程序插件化开发框架 -AAP Framework</p>
-<pre><code>在android的项目开发中，都会遇到后期功能拓展增强与主程序代码变更的现实矛盾，也就是程序的灵活度。
-由于linux平台的安全机制，再加上dalvik的特殊机制，各种权限壁垒，使得开发一个灵活多变的程序，变得比较困难，不像pc平台下那么容易。
-瞅瞅elipse的插件，瞅瞅360的插件，在android下，我们一开始很难写好一个主程序，然后通过插件机制来应对以后的功能拓展，于是程序变得不那么灵活多变了。
-比如一款android下的安全软件，新版本增加了一个功能，如短信拦截，往往会因为一个模块的增加，而重新编译一个apk包，这样周而复始，哪怕只增加50kb的功能代码，用户也需要升级一个完整的apk，往往是5~6M的体积。
-
-最近思来想去，想到一个方法，既然tencent qq在android下面可以以apk的形式来换皮肤，这资源文件的拓展都可以这样简便的搞，为何功能性的拓展就不可以？
-</code></pre><p>想出来了两种解决方案。<br>先来说说第一种。</p>
-<p>demo下载在最后</p>
-<p>先说分析思路。<br>     android下，默认的情况是，每个apk相互独立的，基本上每个应用都是一个dalvik虚拟机，都有一个uid，再配合上linux本身的权限机制，使得apk互通很难直接进行。但作为一个独立应用的集成，不管多少个apk，都可以并为一个单独的dalvik虚拟机，直观的反映给开发人员就是在shell下列出进程，那几个apk同时加载后，会一个进程存在。<br>     这主要就是工程的清单文件 Mainfest中配置了，只需要一句话，以我的测试demo为例：<br>复制代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">....</span><br><span class="line"></span><br><span class="line">&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">      package=&quot;org.igeek.plugintest.main&quot;</span><br><span class="line">      &lt;!-- 就是这句关键代码 --&gt;</span><br><span class="line">      android:sharedUserId=&quot;org.igeek.plugintest&quot;</span><br><span class="line">      android:versionCode=&quot;1&quot;      </span><br><span class="line">      android:versionName=&quot;1.0&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p>复制代码</p>
-<pre><code>在上面的代码中，android:sharedUserId是指共用一个uid，也就是，凡是这个属性相同的工程，都会共用同一个uid，这样，权限壁垒就消除了，dalvik也会融合为一个，可以测试一下，写几个工程，没有这个属性和有这个属性的情况下，同时运行，在列出当前进程，就直观的说明了。
-</code></pre><p>   程序拓展的插件化，当然需要一个主程序，主程序是实现基本功能，以及UI，还有插件的检索以及插件的调用。<br>   这里贴出我demo中的主activity代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">复制代码</span><br><span class="line">  1 public class AndoirdpluginActivity extends ActivityGroup implements OnClickListener ,OnScrollCompleteListener&#123;</span><br><span class="line">  2     private LinearLayout llMainLayout;</span><br><span class="line">  3     </span><br><span class="line">  4     //workspace，看看luncher的源码，这个就是桌面那个多屏的实现</span><br><span class="line">  5     private WorkSpace wkMain;</span><br><span class="line">  6     private Button btnFindPlugins;</span><br><span class="line">  7     private CheckBox chbAttachMain;</span><br><span class="line">  8     </span><br><span class="line">  9     private LocalActivityManager m_ActivityManager;</span><br><span class="line"> 10     </span><br><span class="line"> 11     //这个bean的集合，就相当于插件的描述集合</span><br><span class="line"> 12 //每个bean也就是一个插件的各种描述</span><br><span class="line"> 13     private List&lt;PluginBean&gt; plugins;</span><br><span class="line"> 14     </span><br><span class="line"> 15     @Override</span><br><span class="line"> 16     public void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line"> 17         super.onCreate(savedInstanceState);</span><br><span class="line"> 18         setContentView(R.layout.main);</span><br><span class="line"> 19         </span><br><span class="line"> 20         llMainLayout=(LinearLayout) findViewById(R.id.main_llMainLayout);</span><br><span class="line"> 21         wkMain=(WorkSpace) findViewById(R.id.main_wkMain);</span><br><span class="line"> 22         btnFindPlugins=(Button) findViewById(R.id.main_btnFindPlugins);</span><br><span class="line"> 23         chbAttachMain=(CheckBox) findViewById(R.id.main_chbAttachMain);</span><br><span class="line"> 24         </span><br><span class="line"> 25         m_ActivityManager = getLocalActivityManager();</span><br><span class="line"> 26         </span><br><span class="line"> 27         wkMain.setOnScrollCompleteLinstenner(this);</span><br><span class="line"> 28         btnFindPlugins.setOnClickListener(this);</span><br><span class="line"> 29     &#125;</span><br><span class="line"> 30 </span><br><span class="line"> 31     @Override</span><br><span class="line"> 32     public void onClick(View v) &#123;</span><br><span class="line"> 33         attachPlugin(findPlugins());</span><br><span class="line"> 34         btnFindPlugins.setVisibility(View.GONE);</span><br><span class="line"> 35     &#125;</span><br><span class="line"> 36     </span><br><span class="line"> 37     /**</span><br><span class="line"> 38      * 加载插件列表</span><br><span class="line"> 39      * @param plugins</span><br><span class="line"> 40 */</span><br><span class="line"> 41     private void attachPlugin(final List&lt;PluginBean&gt; plugins)&#123;</span><br><span class="line"> 42         Log.e(&quot;ydt&quot;, &quot;   &quot;);</span><br><span class="line"> 43         Log.e(&quot;ydt&quot;, &quot;----- 列出插件&quot;);</span><br><span class="line"> 44         this.plugins=plugins;</span><br><span class="line"> 45         for(final PluginBean plugin:plugins)&#123;</span><br><span class="line"> 46             Button btn=new Button(this);</span><br><span class="line"> 47             btn.setTextColor(Color.RED);</span><br><span class="line"> 48             btn.setText(plugin.getLabel());</span><br><span class="line"> 49             </span><br><span class="line"> 50             llMainLayout.addView(btn);</span><br><span class="line"> 51             //添加事件</span><br><span class="line"> 52             btn.setOnClickListener(new OnClickListener() &#123;</span><br><span class="line"> 53                 </span><br><span class="line"> 54                 @Override</span><br><span class="line"> 55                 public void onClick(View v) &#123;</span><br><span class="line"> 56                     boolean isAttack=chbAttachMain.isChecked();</span><br><span class="line"> 57                     </span><br><span class="line"> 58                     Intent it=new Intent();</span><br><span class="line"> 59                     it.setAction(plugin.getPakageName());</span><br><span class="line"> 60                     </span><br><span class="line"> 61                     //是否附加为view</span><br><span class="line"> 62                     if(isAttack)&#123;</span><br><span class="line"> 63                         //这里偷下懒，这是演示插件作为view附加到主程序中的</span><br><span class="line"> 64                         for(PluginBean plugin:plugins)&#123;</span><br><span class="line"> 65                             </span><br><span class="line"> 66                             Intent itt=new Intent();</span><br><span class="line"> 67                             itt.setAction(plugin.getPakageName());</span><br><span class="line"> 68                             ViewGroup view=(ViewGroup) (m_ActivityManager.startActivity(&quot;&quot;, itt)).getDecorView();</span><br><span class="line"> 69                             wkMain.addView(view);</span><br><span class="line"> 70                         &#125;</span><br><span class="line"> 71                         //一次性附加完毕算了，然后把按钮都删了，看着清净，这几个不是重点</span><br><span class="line"> 72                         llMainLayout.removeAllViews();</span><br><span class="line"> 73                         chbAttachMain.setVisibility(View.GONE);</span><br><span class="line"> 74                         wkMain.setToScreen(0);</span><br><span class="line"> 75                     &#125;else&#123;</span><br><span class="line"> 76                         //这里，不会把插件的窗体附加到主程序中，纯粹无用的演示</span><br><span class="line"> 77                         startActivity(it);</span><br><span class="line"> 78                     &#125;</span><br><span class="line"> 79                 &#125;</span><br><span class="line"> 80             &#125;);</span><br><span class="line"> 81             </span><br><span class="line"> 82         &#125;</span><br><span class="line"> 83     &#125;</span><br><span class="line"> 84     </span><br><span class="line"> 85     /**</span><br><span class="line"> 86      * 查找插件</span><br><span class="line"> 87      * @return</span><br><span class="line"> 88 */</span><br><span class="line"> 89     private List&lt;PluginBean&gt; findPlugins()&#123;</span><br><span class="line"> 90         </span><br><span class="line"> 91         List&lt;PluginBean&gt; plugins=new ArrayList&lt;PluginBean&gt;();</span><br><span class="line"> 92         </span><br><span class="line"> 93         </span><br><span class="line"> 94         //遍历包名，来获取插件</span><br><span class="line"> 95         PackageManager pm=getPackageManager();</span><br><span class="line"> 96         </span><br><span class="line"> 97         </span><br><span class="line"> 98         List&lt;PackageInfo&gt; pkgs=pm.getInstalledPackages(PackageManager.GET_UNINSTALLED_PACKAGES);</span><br><span class="line"> 99         for(PackageInfo pkg    :pkgs)&#123;</span><br><span class="line">100             //包名</span><br><span class="line">101             String packageName=pkg.packageName;</span><br><span class="line">102             String sharedUserId= pkg.sharedUserId;</span><br><span class="line">103             </span><br><span class="line">104             //sharedUserId是开发时约定好的，这样判断是否为自己人</span><br><span class="line">105             if(!&quot;org.igeek.plugintest&quot;.equals(sharedUserId)||&quot;org.igeek.plugintest.main&quot;.equals(packageName))</span><br><span class="line">106                 continue;</span><br><span class="line">107             </span><br><span class="line">108             //进程名</span><br><span class="line">109             String prcessName=pkg.applicationInfo.processName;</span><br><span class="line">110             </span><br><span class="line">111             //label，也就是appName了</span><br><span class="line">112             String label=pm.getApplicationLabel(pkg.applicationInfo).toString();</span><br><span class="line">113             </span><br><span class="line">114             PluginBean plug=new PluginBean();</span><br><span class="line">115             plug.setLabel(label);</span><br><span class="line">116             plug.setPakageName(packageName);</span><br><span class="line">117             </span><br><span class="line">118             plugins.add(plug);</span><br><span class="line">119         &#125;</span><br><span class="line">120         </span><br><span class="line">121         </span><br><span class="line">122         return plugins;</span><br><span class="line">123         </span><br><span class="line">124     &#125;</span><br><span class="line">125 </span><br><span class="line">126  </span><br><span class="line">127     /**</span><br><span class="line">128      * WorkSpace滚动到那个屏，会触发这个事件</span><br><span class="line">129      * 而worksapce中每一屏又是一个插件</span><br><span class="line">130      * 这个事件是用来列出当前屏幕插件所提供的应用，并且让用户调用</span><br><span class="line">131 */</span><br><span class="line">132     @Override</span><br><span class="line">133     public void onScrollComplete(final ScrollEvent e) &#123;</span><br><span class="line">134         try &#123;</span><br><span class="line">135             final Context context = createPackageContext(plugins.get(e.curScreen).getPakageName(), Context.CONTEXT_INCLUDE_CODE|Context.CONTEXT_IGNORE_SECURITY);</span><br><span class="line">136             llMainLayout.removeAllViews();</span><br><span class="line">137             //这几行，通过反射获取了当前插件的描述信息，如同大部分框架的xml一样，这里算是模拟了一下IOC控制反转</span><br><span class="line">138             Class clazz=context.getClassLoader().loadClass(plugins.get(e.curScreen).getPakageName()+&quot;.PluginApplication&quot;);</span><br><span class="line">139             Object o=clazz.newInstance();</span><br><span class="line">140             Map&lt;String,List&lt;String&gt;&gt;  r=(Map&lt;String, List&lt;String&gt;&gt;) clazz.getMethod(&quot;getDesciption&quot;).invoke(o);</span><br><span class="line">141             List&lt;String&gt; classes=r.get(&quot;classes&quot;);</span><br><span class="line">142             List&lt;String&gt; methods=r.get(&quot;methods&quot;);</span><br><span class="line">143             </span><br><span class="line">144             </span><br><span class="line">145             //这里，根据获得的插件所提供的功能，来生成几个按钮显示，供我们调用</span><br><span class="line">146             for(final String clas:classes)&#123;</span><br><span class="line">147                 for(final String method:methods)&#123;</span><br><span class="line">148                     Button btn=new Button(this);</span><br><span class="line">149                     </span><br><span class="line">150                     btn.setText(clas+&quot; -&gt; &quot;+method+&quot; 执行&quot;);</span><br><span class="line">151                     </span><br><span class="line">152                     </span><br><span class="line">153                     //点击后，就执行插件所提供的方法</span><br><span class="line">154                     btn.setOnClickListener(new OnClickListener() &#123;</span><br><span class="line">155                         </span><br><span class="line">156                         @Override</span><br><span class="line">157                         public void onClick(View v) &#123;</span><br><span class="line">158                             try &#123;</span><br><span class="line">159                                 Class c=context.getClassLoader().loadClass(plugins.get(e.curScreen).getPakageName()+&quot;.&quot;+clas);</span><br><span class="line">160                                 Object o1=c.newInstance();</span><br><span class="line">161                                 </span><br><span class="line">162                                 //这里注意，context实际上就是句柄，这里如果涉及到窗体，plugin的句柄其实是不行的，因为它没有可以</span><br><span class="line">163 //依附的窗体</span><br><span class="line">164                                 </span><br><span class="line">165 //这个context是plugin的，通过测试，dialog这类行不通,Toast是可以的，因为</span><br><span class="line">166 //Toast是依附于屏幕主窗口的</span><br><span class="line">167 //c.getMethod(method,Context.class).invoke(o1,context); </span><br><span class="line">168                                                         </span><br><span class="line">169 //这里则传递的是主程序的句柄</span><br><span class="line">170                                 c.getMethod(method,Context.class).invoke(o1,AndoirdpluginActivity.this);</span><br><span class="line">171                             </span><br><span class="line">172                             &#125; catch (Exception e) &#123;</span><br><span class="line">173                                 // TODO Auto-generated catch block</span><br><span class="line">174                                 e.printStackTrace();</span><br><span class="line">175                             &#125; </span><br><span class="line">176                         &#125;</span><br><span class="line">177                     &#125;);</span><br><span class="line">178                     llMainLayout.addView(btn);</span><br><span class="line">179                 &#125;</span><br><span class="line">180             &#125;</span><br><span class="line">181             </span><br><span class="line">182         </span><br><span class="line">183         &#125; catch (Exception e1) &#123;</span><br><span class="line">184             // TODO Auto-generated catch block</span><br><span class="line">185             e1.printStackTrace();</span><br><span class="line">186         &#125;</span><br><span class="line">187     </span><br><span class="line">188     &#125;</span><br><span class="line">189 &#125;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
-<pre><code>看注释吧，主要有两点
-</code></pre><p>插件的扫描<br>        这种方案是，每个插件以一个单独的apk发布，这样可以在程序中很灵活的知道是否有新的插件，提示用户下载安装，插件的apk清单描述为Action为非Luncher，Category为Default。<br>        主程序侦听packgeManager的安装完成广播，之后扫描同包名（插件当然得这么定义了，只要通过packgeManager能判断是否为自己的插件就行）的apk，之后列出来，让用户选择是否加载。</p>
-<p>插件的加载与调用<br>         在获取包后，通过调用系统的api可以得到 sharedUserId 与主程序相同的apk的context，也就是句柄，获得了句柄，通过这个context可以得到classloader，之后就简单了，如何知道这个插件提供什么功能？<br>         这个可以用xml描述，比如这个xml是插件apk的一个资源，就像spring这个框架一样。xml中描述了这个插件有哪些类，提供哪些方法，这些方法需要传入什么参数，返回什么类型。我的demo中为了方便，是用接口，每个插件有一个类提供一个相同的方法，来获取一个map集合，获得这个插件的描述。</p>
-<pre><code>ok,到这里就知道加载的插件提供什么功能了。
-
-在上面贴出来的代码中，是循环遍历每个插件，并把每个插件提供的功能以Button的方式显示给用户，点击按钮，就执行了插件的功能，执行时，并不是activity转向（这样就无意义了），而是在主程序自身的context句柄中执行，也就是在自身的窗体中执行。
-代码中有一段注释，说明，如果插件有用到context时，记得传递进去的是主程序的context，这样窗体才能附加到这个句柄中，如果传递的是插件的context，它没有一个窗体实例，是无法将一些窗体附加进去的，无任何效果。
-</code></pre><p>这里只提供思路，有时间的话研究一下，看能不能搞个通用的框架出来。还有另一种方法，不通过apk形式，以后会写出来。<br>      这里有一些待验证的问题，比如插件的权限问题，如果插件需要的一些权限在主程序中没有声明，会是个什么情况，能不能实时申请呢？这个需要高人指点。或者在主程序中把能声明的权限预先声明了也不错。还有就是native层代码的问题，如果插件包含了native层代码，会是个什么情况，这也需要验证。</p>
-<p>这是demo下载：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://files.cnblogs.com/hangxin1940/android_plugin_program.rar</span><br></pre></td></tr></table></figure>
-
-	
-	</div>
-  <a type="button" href="/2016/05/14/Android-应用插件式开发解决方法/#more" class="btn btn-default more">阅读此文</a>
 </div>
 
 		
@@ -856,13 +1230,21 @@ public static String getJsonArrStrFromList(Object obj)
 		<h4>标签云</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Android/">Android<span>16</span></a></li>
-		
 			<li><a href="/tags/Unity3D-游戏/">Unity3D,游戏<span>1</span></a></li>
 		
-			<li><a href="/tags/Java/">Java<span>1</span></a></li>
+			<li><a href="/tags/Java/">Java<span>2</span></a></li>
 		
 			<li><a href="/tags/Androis/">Androis<span>1</span></a></li>
+		
+			<li><a href="/tags/Android/">Android<span>16</span></a></li>
+		
+			<li><a href="/tags/Android-Unity3D/">Android Unity3D<span>1</span></a></li>
+		
+			<li><a href="/tags/Unity3D/">Unity3D<span>1</span></a></li>
+		
+			<li><a href="/tags/Linux/">Linux<span>1</span></a></li>
+		
+			<li><a href="/tags/微信-Js/">微信 Js<span>1</span></a></li>
 		
 			<li><a href="/tags/博客/">博客<span>2</span></a></li>
 		
@@ -878,23 +1260,23 @@ public static String getJsonArrStrFromList(Object obj)
   <ul class="entry list-unstyled">
     
       <li>
-        <a href="/2016/05/14/Unity3D第一人称射击游戏（推荐）/" ><i class="fa fa-file-o"></i>Unity3D第一人称射击游戏（推荐）</a>
+        <a href="/2016/05/14/Linux常用命令/" ><i class="fa fa-file-o"></i>Linux常用命令</a>
       </li>
     
       <li>
-        <a href="/2016/05/14/Android-功能开发笔记/" ><i class="fa fa-file-o"></i>Android_功能开发笔记</a>
+        <a href="/2016/05/14/基类和派生类的成员访问/" ><i class="fa fa-file-o"></i>基类和派生类的成员访问</a>
       </li>
     
       <li>
-        <a href="/2016/05/14/Android中通过来电转移实现“电话已关机”-“此号码已停机”等/" ><i class="fa fa-file-o"></i>Android中通过来电转移实现“电话已关机”,“此号...</a>
+        <a href="/2016/05/14/Unity3D研究院之与Android相互传递消息/" ><i class="fa fa-file-o"></i>Unity3D研究院之与Android相互传递消息</a>
       </li>
     
       <li>
-        <a href="/2016/05/14/Android-自动接听来电/" ><i class="fa fa-file-o"></i>Android_自动接听来电</a>
+        <a href="/2016/05/14/Unity3D转换eclipse/" ><i class="fa fa-file-o"></i>Unity3D转换eclipse</a>
       </li>
     
       <li>
-        <a href="/2016/05/14/Android_检查是否联网/" ><i class="fa fa-file-o"></i>Android_检查是否联网</a>
+        <a href="/2016/05/14/微信内置浏览器的JsAPI/" ><i class="fa fa-file-o"></i>微信内置浏览器的JsAPI</a>
       </li>
     
   </ul>
