@@ -1,0 +1,252 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android_自动接听来电 | 田鹏飞的个人博客</title>
+  <meta name="author" content="huanxingxyz">
+  
+  <meta name="description" content="之前做的程序是4.1以下的，分别用2种方式处理，即可实现自动接听电话的功能，最近到了款4.1的机子，发现自动接听不起作用了，会抛一个异常：java.lang.SecurityException: Permission Denial: not allowed to send broadcast and">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Android_自动接听来电"/>
+  <meta property="og:site_name" content="田鹏飞的个人博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">田鹏飞的个人博客</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header page-header-inverse ">		
+			<h1 class="title title-inverse "> Android_自动接听来电</h1>
+		</div>		
+	
+
+
+
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>之前做的程序是4.1以下的，分别用2种方式处理，即可实现自动接听电话的功能，最近到了款4.1的机子，发现自动接听不起作用了，会抛一个异常：<br>java.lang.SecurityException: Permission Denial: not allowed to send broadcast android.intent.action.HEADSET_PLUG from pid=19412, uid=10075</p>
+<p>最后解决方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public void autoAnswerPhone() &#123;</span><br><span class="line">try &#123;</span><br><span class="line">Log.i(TAG,&quot;autoAnswerPhone&quot;);</span><br><span class="line">ITelephony itelephony = getITelephony();</span><br><span class="line">//itelephony.silenceRinger();</span><br><span class="line">itelephony.answerRingingCall();</span><br><span class="line">&#125; catch (Exception e) &#123;</span><br><span class="line">e.printStackTrace();</span><br><span class="line">try &#123;</span><br><span class="line">Log.e(TAG, &quot;用于Android2.3及2.3以上的版本上&quot;);</span><br><span class="line">Intent intent = new Intent(&quot;android.intent.action.MEDIA_BUTTON&quot;);</span><br><span class="line">KeyEvent keyEvent = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_HEADSETHOOK);</span><br><span class="line">intent.putExtra(&quot;android.intent.extra.KEY_EVENT&quot;,keyEvent);</span><br><span class="line">sendOrderedBroadcast(intent,&quot;android.permission.CALL_PRIVILEGED&quot;);</span><br><span class="line">intent = new Intent(&quot;android.intent.action.MEDIA_BUTTON&quot;);</span><br><span class="line">keyEvent = new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_HEADSETHOOK);</span><br><span class="line">intent.putExtra(&quot;android.intent.extra.KEY_EVENT&quot;,keyEvent);</span><br><span class="line">sendOrderedBroadcast(intent,&quot;android.permission.CALL_PRIVILEGED&quot;);</span><br><span class="line">Intent localIntent1 = new Intent(Intent.ACTION_HEADSET_PLUG);</span><br><span class="line">localIntent1.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);</span><br><span class="line">localIntent1.putExtra(&quot;state&quot;, 1);</span><br><span class="line">localIntent1.putExtra(&quot;microphone&quot;, 1);</span><br><span class="line">localIntent1.putExtra(&quot;name&quot;, &quot;Headset&quot;);</span><br><span class="line">sendOrderedBroadcast(localIntent1,</span><br><span class="line">&quot;android.permission.CALL_PRIVILEGED&quot;);</span><br><span class="line">Intent localIntent2 = new Intent(Intent.ACTION_MEDIA_BUTTON);</span><br><span class="line">KeyEvent localKeyEvent1 = new KeyEvent(KeyEvent.ACTION_DOWN,</span><br><span class="line">KeyEvent.KEYCODE_HEADSETHOOK);</span><br><span class="line">localIntent2.putExtra(&quot;android.intent.extra.KEY_EVENT&quot;,</span><br><span class="line">localKeyEvent1);</span><br><span class="line">sendOrderedBroadcast(localIntent2,</span><br><span class="line">&quot;android.permission.CALL_PRIVILEGED&quot;);</span><br><span class="line">Intent localIntent3 = new Intent(Intent.ACTION_MEDIA_BUTTON);</span><br><span class="line">KeyEvent localKeyEvent2 = new KeyEvent(KeyEvent.ACTION_UP,</span><br><span class="line">KeyEvent.KEYCODE_HEADSETHOOK);</span><br><span class="line">localIntent3.putExtra(&quot;android.intent.extra.KEY_EVENT&quot;,</span><br><span class="line">localKeyEvent2);</span><br><span class="line">sendOrderedBroadcast(localIntent3,</span><br><span class="line">&quot;android.permission.CALL_PRIVILEGED&quot;);</span><br><span class="line">Intent localIntent4 = new Intent(Intent.ACTION_HEADSET_PLUG);</span><br><span class="line">localIntent4.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);</span><br><span class="line">localIntent4.putExtra(&quot;state&quot;, 0);</span><br><span class="line">localIntent4.putExtra(&quot;microphone&quot;, 1);</span><br><span class="line">localIntent4.putExtra(&quot;name&quot;, &quot;Headset&quot;);</span><br><span class="line">sendOrderedBroadcast(localIntent4,</span><br><span class="line">&quot;android.permission.CALL_PRIVILEGED&quot;);</span><br><span class="line">&#125; catch (Exception e2) &#123;</span><br><span class="line">e2.printStackTrace();</span><br><span class="line">Intent meidaButtonIntent = new Intent(Intent.ACTION_MEDIA_BUTTON); </span><br><span class="line">          KeyEvent keyEvent = new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_HEADSETHOOK); </span><br><span class="line">          meidaButtonIntent.putExtra(Intent.EXTRA_KEY_EVENT,keyEvent); </span><br><span class="line">          sendOrderedBroadcast(meidaButtonIntent, null);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/05/14/Android中通过来电转移实现“电话已关机”-“此号码已停机”等/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
+  		
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/05/14/Android_检查是否联网/" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+
+    <!-- share -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">留言</h2>
+
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-05-14 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Androis/">Androis<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2016 huanxingxyz
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+</body>
+   </html>

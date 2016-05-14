@@ -3,15 +3,16 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Android 短信发送 | 田鹏飞的个人博客</title>
+  <title>Android_功能开发笔记 | 田鹏飞的个人博客</title>
   <meta name="author" content="huanxingxyz">
   
-  <meta name="description" content="12345678910// 短信管理模块public void SMSclick(View view) &amp;#123;Log.v(&amp;quot;sms&amp;quot;, &amp;quot;sms&amp;quot;);// 调用Android系统API发送短信Uri uri = Uri.parse(&amp;quot;smsto">
+  <meta name="description" content="1，重力感应感应器编程 
+ a.获取系统服务（SENSOR_SERVICE)返回一个SensorManager 对象sensormanager = (SensorManager)getSystemSeriver(SENSOR_SERVICE);b.通过SensorManager对象获取相应的Sens">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Android 短信发送"/>
+  <meta property="og:title" content="Android_功能开发笔记"/>
   <meta property="og:site_name" content="田鹏飞的个人博客"/>
 
   
@@ -91,7 +92,7 @@
 
 	
 		<div class="page-header page-header-inverse ">		
-			<h1 class="title title-inverse "> Android 短信发送</h1>
+			<h1 class="title title-inverse "> Android_功能开发笔记</h1>
 		</div>		
 	
 
@@ -111,8 +112,14 @@
 	<div class="mypage">		
 	  		
 
-	  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 短信管理模块</span><br><span class="line">public void SMSclick(View view) &#123;</span><br><span class="line"></span><br><span class="line">Log.v(&quot;sms&quot;, &quot;sms&quot;);</span><br><span class="line">// 调用Android系统API发送短信</span><br><span class="line">Uri uri = Uri.parse(&quot;smsto:5556&quot;);</span><br><span class="line">Intent intent = new Intent(Intent.ACTION_SENDTO, uri);</span><br><span class="line">intent.putExtra(&quot;sms_body&quot;, &quot;android...&quot;);</span><br><span class="line">startActivity(intent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//发送短信管理模块</span><br><span class="line">public void SMSsend(View view)&#123;</span><br><span class="line">  </span><br><span class="line">    PendingIntent pi = PendingIntent.getActivity(this, 0,    new Intent(this, MainActivity.class), 0);</span><br><span class="line">  </span><br><span class="line">    SmsManager sms = SmsManager.getDefault();</span><br><span class="line">  </span><br><span class="line">    sms.sendTextMessage(&quot;5554&quot;, null, &quot;aa&quot;, pi, null);</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>	  
+	  <p>1，重力感应<br>感应器编程 </p>
+<p> a.获取系统服务（SENSOR_SERVICE)返回一个SensorManager 对象<br>sensormanager = (SensorManager)getSystemSeriver(SENSOR_SERVICE);<br>b.通过SensorManager对象获取相应的Sensor类型的对象<br>sensorObject = sensormanager.getDefaultSensor(sensor Type);<br>c.声明一个SensorEventListener 对象用于侦听Sensor 事件，并重载onSensorChanged方法<br>SensorEventListener sensorListener = new SensorEventListener(){<br>};<br>d.注册相应的SensorService<br>sensormanager.registerListener(sensorListener, sensorObject, Sensor TYPE);<br>e.销毁相应的SensorService<br>sensormanager.unregisterListener(sensorListener, sensorObject);</p>
+<p>f: SensorListener 接口是传感器应用程序的中心。它包括两个必需方法：<br>　　 onSensorChanged(int sensor,float values[]) 方法在传感器值更改时调用。<br>该方法只对受此应用程序监视的传感器调用(更多内容见下文)。该方法的参数包括：一个整数，指示更改的传感器;一个浮点值数组，表示传感器数据本身。有些传感器只提供一个数据值，另一些则提供三个浮点值。方向和加速表传感器都提供三个数据值。</p>
+<p>layoutInflater = (LayoutInflater)context.getSystemService(Context.Layout_inflater_service);<br>利用上下文对象取得布局服务<br>View convertView = layoutInflater.inflate(listviewItem, null);</p>
+<p>Android aidl服务通信<br>远程对象Ibender是代理对象<br>系统内部的服务也需要进行aidl实现</p>
+<p>为activity应用主题需要在application里面进行添加theme</p>
+<p>1,强制执行单任务模式<br>如果应用程序跳转走后再次启动的话，可能会在设备上产生多个activity的实例，会可能导致异常<br>确保设备上只有一个actuvity执行<br>android:launchMode=”singleInstance”<br>使得所有的activity作为一个任务，共享信息非常方便<br>android:lanuchMode=”sigleTask”<br>2，强制纵屏<br>android:screenOrientation=”portrait”<br>强制横屏<br>android:screenOrientation=”landscape”<br>在硬键盘滑出时，先前的情况还是会导致activity的关闭和重新启动，所以可以采用第三种办法，告知Android系统处理应用程序方向和键盘滑出事件，可以在activity元素属性中添加如下代码：<br>android:configChanges=”orientation|keyboardHidden”<br>该方法可以单独使用，也可以和screenOrdientation属性结合在一起使用，视应用程序要求而定<br>3，声音转换为文本<br>Google功能<br>RecongizerIntent<br>4，设置线程优先级<br>可以在myThread.start()前，调用myThread.setPriority(priority）为线程设置不同的优先级，这里的priority不能大于常量Thread.MAX_PRIORITY(该值为10)，也不能小于1<br>5，有时候当一个组件完成或被杀死后，开发者希望由它产生的线程也被杀死<br>方法一：mythread.interrupt()<br>方法二：mythread.setDaemon(true)将所有生成的线程声明为守护线程，这样可以确保如果应用程序的主线程被杀死，那么该应用程序的所有守护线程可也以都被杀死<br>方法三：可以在run（）方法中使用while（isRunning）并且从循环外部isRunning=false的方法来杀死线程，但是这种方法的确定是不能有效的控制线程停止的时间<br>6，倒数计时器<br>CountDownTimer<br>7,使用搜索键<br>8,使用手势<br>simpleongestureListener（）</p>
+	  
 	</div>
 
 	<div>
@@ -121,13 +128,13 @@
 <ul class="pagination">
 	 
 				
-    	<li class="prev"><a href="/2016/05/14/Android-Notification的使用/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
+    	<li class="prev"><a href="/2016/05/14/Unity3D第一人称射击游戏（推荐）/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
   		
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2016/05/13/Java-RMI/" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2016/05/14/Android中通过来电转移实现“电话已关机”-“此号码已停机”等/" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -178,7 +185,7 @@
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	2016-05-13 
+	2016-05-14 
 	</div>
 	
 
