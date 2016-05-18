@@ -1,257 +1,237 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
   <title>Android_功能开发笔记 | 田鹏飞的个人博客</title>
-  <meta name="author" content="huanxingxyz">
-  
-  <meta name="description" content="1，重力感应感应器编程 
- a.获取系统服务（SENSOR_SERVICE)返回一个SensorManager 对象sensormanager = (SensorManager)getSystemSeriver(SENSOR_SERVICE);b.通过SensorManager对象获取相应的Sens">
-  
-  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <meta property="og:title" content="Android_功能开发笔记"/>
-  <meta property="og:site_name" content="田鹏飞的个人博客"/>
-
+  <meta name="description" content="1，重力感应感应器编程 
+ a.获取系统服务（SENSOR_SERVICE)返回一个SensorManager 对象sensormanager = (SensorManager)getSystemSeriver(SENSOR_SERVICE);b.通过SensorManager对象获取相应的Sensor类型的对象sensorObject = sensormanager.getDefaultSens">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android_功能开发笔记">
+<meta property="og:url" content="http://yoursite.com/2016/05/14/Android-功能开发笔记/index.html">
+<meta property="og:site_name" content="田鹏飞的个人博客">
+<meta property="og:description" content="1，重力感应感应器编程 
+ a.获取系统服务（SENSOR_SERVICE)返回一个SensorManager 对象sensormanager = (SensorManager)getSystemSeriver(SENSOR_SERVICE);b.通过SensorManager对象获取相应的Sensor类型的对象sensorObject = sensormanager.getDefaultSens">
+<meta property="og:updated_time" content="2016-05-14T14:07:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android_功能开发笔记">
+<meta name="twitter:description" content="1，重力感应感应器编程 
+ a.获取系统服务（SENSOR_SERVICE)返回一个SensorManager 对象sensormanager = (SensorManager)getSystemSeriver(SENSOR_SERVICE);b.通过SensorManager对象获取相应的Sensor类型的对象sensorObject = sensormanager.getDefaultSens">
   
-    <meta property="og:image" content="undefined"/>
-  
-
+    <link rel="alternate" href="/atom.xml" title="田鹏飞的个人博客" type="application/atom+xml">
   
   
-    <link href="/favicon.png" rel="icon">
+    <link rel="icon" href="/favicon.png">
   
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
-  <script src="/js/jquery-2.0.3.min.js"></script>
-
-  <!-- analytics -->
   
-
-
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
 
 </head>
 
- <body>  
-  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-	<span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-       <a class="navbar-brand" href="/">田鹏飞的个人博客</a>
-      <div class="collapse navbar-collapse nav-menu">
-		<ul class="nav navbar-nav">
-		  
-		  <li>
-			<a href="/archives" title="All the articles.">
-			  <i class="fa fa-archive"></i>Archives
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/categories" title="All the categories.">
-			  <i class="fa fa-folder"></i>Categories
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/tags" title="All the tags.">
-			  <i class="fa fa-tags"></i>Tags
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/about" title="About me.">
-			  <i class="fa fa-user"></i>About
-			</a>
-		  </li>
-		  
-		</ul>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">田鹏飞的个人博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">你若盛开，蝴蝶自来</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
       </div>
-    </div> <!-- container -->
-</nav>
-<div class="clearfix"></div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Android-功能开发笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/14/Android-功能开发笔记/" class="article-date">
+  <time datetime="2016-05-14T14:07:29.000Z" itemprop="datePublished">2016-05-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android_功能开发笔记
+    </h1>
+  
 
-  <div class="container">
-  	<div class="content">
-    	 
-
-
-	
-		<div class="page-header page-header-inverse ">		
-			<h1 class="title title-inverse "> Android_功能开发笔记</h1>
-		</div>		
-	
-
-
-
-
-
-
-<div class="row post">
-	<!-- cols -->
-	
-	<div id="top_meta"></div>
-	<div class="col-md-9">
-	
-
-	<!-- content -->
-	<div class="mypage">		
-	  		
-
-	  <p>1，重力感应<br>感应器编程 </p>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1，重力感应<br>感应器编程 </p>
 <p> a.获取系统服务（SENSOR_SERVICE)返回一个SensorManager 对象<br>sensormanager = (SensorManager)getSystemSeriver(SENSOR_SERVICE);<br>b.通过SensorManager对象获取相应的Sensor类型的对象<br>sensorObject = sensormanager.getDefaultSensor(sensor Type);<br>c.声明一个SensorEventListener 对象用于侦听Sensor 事件，并重载onSensorChanged方法<br>SensorEventListener sensorListener = new SensorEventListener(){<br>};<br>d.注册相应的SensorService<br>sensormanager.registerListener(sensorListener, sensorObject, Sensor TYPE);<br>e.销毁相应的SensorService<br>sensormanager.unregisterListener(sensorListener, sensorObject);</p>
 <p>f: SensorListener 接口是传感器应用程序的中心。它包括两个必需方法：<br>　　 onSensorChanged(int sensor,float values[]) 方法在传感器值更改时调用。<br>该方法只对受此应用程序监视的传感器调用(更多内容见下文)。该方法的参数包括：一个整数，指示更改的传感器;一个浮点值数组，表示传感器数据本身。有些传感器只提供一个数据值，另一些则提供三个浮点值。方向和加速表传感器都提供三个数据值。</p>
 <p>layoutInflater = (LayoutInflater)context.getSystemService(Context.Layout_inflater_service);<br>利用上下文对象取得布局服务<br>View convertView = layoutInflater.inflate(listviewItem, null);</p>
 <p>Android aidl服务通信<br>远程对象Ibender是代理对象<br>系统内部的服务也需要进行aidl实现</p>
 <p>为activity应用主题需要在application里面进行添加theme</p>
 <p>1,强制执行单任务模式<br>如果应用程序跳转走后再次启动的话，可能会在设备上产生多个activity的实例，会可能导致异常<br>确保设备上只有一个actuvity执行<br>android:launchMode=”singleInstance”<br>使得所有的activity作为一个任务，共享信息非常方便<br>android:lanuchMode=”sigleTask”<br>2，强制纵屏<br>android:screenOrientation=”portrait”<br>强制横屏<br>android:screenOrientation=”landscape”<br>在硬键盘滑出时，先前的情况还是会导致activity的关闭和重新启动，所以可以采用第三种办法，告知Android系统处理应用程序方向和键盘滑出事件，可以在activity元素属性中添加如下代码：<br>android:configChanges=”orientation|keyboardHidden”<br>该方法可以单独使用，也可以和screenOrdientation属性结合在一起使用，视应用程序要求而定<br>3，声音转换为文本<br>Google功能<br>RecongizerIntent<br>4，设置线程优先级<br>可以在myThread.start()前，调用myThread.setPriority(priority）为线程设置不同的优先级，这里的priority不能大于常量Thread.MAX_PRIORITY(该值为10)，也不能小于1<br>5，有时候当一个组件完成或被杀死后，开发者希望由它产生的线程也被杀死<br>方法一：mythread.interrupt()<br>方法二：mythread.setDaemon(true)将所有生成的线程声明为守护线程，这样可以确保如果应用程序的主线程被杀死，那么该应用程序的所有守护线程可也以都被杀死<br>方法三：可以在run（）方法中使用while（isRunning）并且从循环外部isRunning=false的方法来杀死线程，但是这种方法的确定是不能有效的控制线程停止的时间<br>6，倒数计时器<br>CountDownTimer<br>7,使用搜索键<br>8,使用手势<br>simpleongestureListener（）</p>
-	  
-	</div>
 
-	<div>
-  	<center>
-	<div class="pagination">
-<ul class="pagination">
-	 
-				
-    	<li class="prev"><a href="/2016/05/14/Unity3D第一人称射击游戏（推荐）/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
-  		
-
-        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
-
-		
-		   <li class="next"><a href="/2016/05/14/Android中通过来电转移实现“电话已关机”-“此号码已停机”等/" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a></li>         
-        
-	
-</ul>
-</div>
-
-    </center>
-	</div>
-
-    <!-- share -->
-    
-        
-    <div class="bdsharebuttonbox">
-        <a href="#" class="bds_more" data-cmd="more"></a>
-        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
-        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
-        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
-        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
-        <a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a>
-        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
-        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+      
     </div>
-    <script>
-        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
-        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-    </script>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/14/Android-功能开发笔记/" data-id="ciocq1ee10001chs6yiyzck7i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 
-
-        
-
-    
-	
-	<!-- comment -->
-	
-<section id="comment">
-  <h2 class="title">留言</h2>
-
-  
-</section>
-
-	</div> <!-- col-md-9/col-md-12 -->
-		
-	
-	<div id="side_meta">
-		<div class="col-md-3" id="post_meta"> 
-
-	<!-- date -->
-	
-	<div class="meta-widget">
-	<i class="fa fa-clock-o"></i>
-	2016-05-14 
-	</div>
-	
-
-	<!-- categories -->
-    
-
-	<!-- tags -->
-	
-	<div class="meta-widget">
-	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
-    <ul id="tags" class="tag_box list-unstyled collapse in">	  
-	    
-  <li><a href="/tags/Android/">Android<span>18</span></a></li>
-    </ul>
-	</div>
-		
-
-	<!-- toc -->
-	<div class="meta-widget">
-	
-	</div>
-	
-    <hr>
-	
-</div><!-- col-md-3 -->
-
-	</div>
-		
-
-</div><!-- row -->
-
-
-
-	</div>
+    </footer>
   </div>
-  <div class="container-narrow">
-  <footer> <p>
-  &copy; 2016 huanxingxyz
   
-      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
-</p> </footer>
-</div> <!-- container-narrow -->
+    
+<nav id="article-nav">
   
+    <a href="/2016/05/14/Unity3D第一人称射击游戏（推荐）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Unity3D第一人称射击游戏（推荐）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/14/Android中通过来电转移实现“电话已关机”-“此号码已停机”等/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android中通过来电转移实现“电话已关机”,“此号码已停机”等</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D-游戏/">Unity3D,游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信-Js/">微信 Js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情/">心情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/测试/">测试</a></li></ul>
+    </div>
+  </div>
 
 
   
-<a id="gotop" href="#">   
-  <span>▲</span> 
-</a>
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Unity3D/" style="font-size: 10px;">Unity3D</a> <a href="/tags/Unity3D-游戏/" style="font-size: 10px;">Unity3D,游戏</a> <a href="/tags/博客/" style="font-size: 15px;">博客</a> <a href="/tags/微信-Js/" style="font-size: 10px;">微信 Js</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/测试/" style="font-size: 10px;">测试</a>
+    </div>
+  </div>
 
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/main.js"></script>
-<script src="/js/search.js"></script> 
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li></ul>
+    </div>
+  </div>
 
 
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/18/Junit4在android开发中的运用/">Junit4在android开发中的运用</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/16/流程图绘制和基本符号/">流程图绘制和基本符号</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/14/心情/">心情</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/14/Linux常用命令/">Linux常用命令</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/14/基类和派生类的成员访问/">基类和派生类的成员访问</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 huanxingxyz<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
 </body>
-   </html>
+</html>

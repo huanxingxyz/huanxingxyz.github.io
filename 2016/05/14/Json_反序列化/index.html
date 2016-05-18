@@ -1,121 +1,113 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
   <title>Json反序列化 | 田鹏飞的个人博客</title>
-  <meta name="author" content="huanxingxyz">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="/**
  * 由字符串反序列化成实体类  针对的是一个实体，此实体中的属性不包括自定义的类型，如Teacher类型，或者List&amp;lt;Teacher&amp;gt;类型 
  * @param source 传入json中的字符串
  * @param beanClass 实体类的类型
- * @return ">
+ * @return 实体类
+ */
+public static Object getObjFromJsonArrSt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Json反序列化">
+<meta property="og:url" content="http://yoursite.com/2016/05/14/Json_反序列化/index.html">
+<meta property="og:site_name" content="田鹏飞的个人博客">
+<meta property="og:description" content="/**
+ * 由字符串反序列化成实体类  针对的是一个实体，此实体中的属性不包括自定义的类型，如Teacher类型，或者List&amp;lt;Teacher&amp;gt;类型 
+ * @param source 传入json中的字符串
+ * @param beanClass 实体类的类型
+ * @return 实体类
+ */
+public static Object getObjFromJsonArrSt">
+<meta property="og:updated_time" content="2016-05-14T14:00:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Json反序列化">
+<meta name="twitter:description" content="/**
+ * 由字符串反序列化成实体类  针对的是一个实体，此实体中的属性不包括自定义的类型，如Teacher类型，或者List&amp;lt;Teacher&amp;gt;类型 
+ * @param source 传入json中的字符串
+ * @param beanClass 实体类的类型
+ * @return 实体类
+ */
+public static Object getObjFromJsonArrSt">
+  
+    <link rel="alternate" href="/atom.xml" title="田鹏飞的个人博客" type="application/atom+xml">
   
   
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <meta property="og:title" content="Json反序列化"/>
-  <meta property="og:site_name" content="田鹏飞的个人博客"/>
-
-  
-    <meta property="og:image" content="undefined"/>
-  
-
+    <link rel="icon" href="/favicon.png">
   
   
-    <link href="/favicon.png" rel="icon">
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
-  <script src="/js/jquery-2.0.3.min.js"></script>
-
-  <!-- analytics -->
+  <link rel="stylesheet" href="/css/style.css">
   
-
-
 
 </head>
 
- <body>  
-  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-	<span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-       <a class="navbar-brand" href="/">田鹏飞的个人博客</a>
-      <div class="collapse navbar-collapse nav-menu">
-		<ul class="nav navbar-nav">
-		  
-		  <li>
-			<a href="/archives" title="All the articles.">
-			  <i class="fa fa-archive"></i>Archives
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/categories" title="All the categories.">
-			  <i class="fa fa-folder"></i>Categories
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/tags" title="All the tags.">
-			  <i class="fa fa-tags"></i>Tags
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/about" title="About me.">
-			  <i class="fa fa-user"></i>About
-			</a>
-		  </li>
-		  
-		</ul>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">田鹏飞的个人博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">你若盛开，蝴蝶自来</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
       </div>
-    </div> <!-- container -->
-</nav>
-<div class="clearfix"></div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Json_反序列化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/14/Json_反序列化/" class="article-date">
+  <time datetime="2016-05-14T13:26:18.000Z" itemprop="datePublished">2016-05-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Json反序列化
+    </h1>
+  
 
-  <div class="container">
-  	<div class="content">
-    	 
-
-
-	
-		<div class="page-header page-header-inverse ">		
-			<h1 class="title title-inverse "> Json反序列化</h1>
-		</div>		
-	
-
-
-
-
-
-
-<div class="row post">
-	<!-- cols -->
-	
-	<div id="top_meta"></div>
-	<div class="col-md-9">
-	
-
-	<!-- content -->
-	<div class="mypage">		
-	  		
-
-	  <pre><code>  /**
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>  /**
  * 由字符串反序列化成实体类  针对的是一个实体，此实体中的属性不包括自定义的类型，如Teacher类型，或者List&lt;Teacher&gt;类型 
  * @param source 传入json中的字符串
  * @param beanClass 实体类的类型
@@ -212,139 +204,139 @@ public static String getJsonArrStrFromList(Object obj)
     return jsonStr;
 }
 </code></pre><p>关于Java序列化，ITEye上有一篇讨论的帖子比较好</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;http://www.iteye.com/topic/14707&quot;&gt;http://www.iteye.com/topic/14707&lt;/a&gt;</span><br></pre></td></tr></table></figure>	  
-	</div>
-
-	<div>
-  	<center>
-	<div class="pagination">
-<ul class="pagination">
-	 
-				
-    	<li class="prev"><a href="/2016/05/14/Android_消息推送/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
-  		
-
-        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
-
-		
-		   <li class="next"><a href="/2016/05/14/Android-应用插件式开发解决方法/" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a></li>         
-        
-	
-</ul>
-</div>
-
-    </center>
-	</div>
-
-    <!-- share -->
-    
-        
-    <div class="bdsharebuttonbox">
-        <a href="#" class="bds_more" data-cmd="more"></a>
-        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
-        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
-        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
-        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
-        <a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a>
-        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
-        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;http://www.iteye.com/topic/14707&quot;&gt;http://www.iteye.com/topic/14707&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+      
     </div>
-    <script>
-        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
-        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-    </script>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/14/Json_反序列化/" data-id="ciocq1efi000xchs6sbokv2ma" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 
-
-        
-
-    
-	
-	<!-- comment -->
-	
-<section id="comment">
-  <h2 class="title">留言</h2>
-
-  
-</section>
-
-	</div> <!-- col-md-9/col-md-12 -->
-		
-	
-	<div id="side_meta">
-		<div class="col-md-3" id="post_meta"> 
-
-	<!-- date -->
-	
-	<div class="meta-widget">
-	<i class="fa fa-clock-o"></i>
-	2016-05-14 
-	</div>
-	
-
-	<!-- categories -->
-    
-
-	<!-- tags -->
-	
-	<div class="meta-widget">
-	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
-    <ul id="tags" class="tag_box list-unstyled collapse in">	  
-	    
-  <li><a href="/tags/Android/">Android<span>18</span></a></li>
-    </ul>
-	</div>
-		
-
-	<!-- toc -->
-	<div class="meta-widget">
-	
-	</div>
-	
-    <hr>
-	
-</div><!-- col-md-3 -->
-
-	</div>
-		
-
-</div><!-- row -->
-
-
-
-	</div>
+    </footer>
   </div>
-  <div class="container-narrow">
-  <footer> <p>
-  &copy; 2016 huanxingxyz
   
-      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
-</p> </footer>
-</div> <!-- container-narrow -->
+    
+<nav id="article-nav">
   
+    <a href="/2016/05/14/Android-自动接听来电/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android_自动接听来电
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/14/Android_条码扫描二维码扫描/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android_条码扫描二维码</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D-游戏/">Unity3D,游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信-Js/">微信 Js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情/">心情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/测试/">测试</a></li></ul>
+    </div>
+  </div>
 
 
   
-<a id="gotop" href="#">   
-  <span>▲</span> 
-</a>
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Unity3D/" style="font-size: 10px;">Unity3D</a> <a href="/tags/Unity3D-游戏/" style="font-size: 10px;">Unity3D,游戏</a> <a href="/tags/博客/" style="font-size: 15px;">博客</a> <a href="/tags/微信-Js/" style="font-size: 10px;">微信 Js</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/测试/" style="font-size: 10px;">测试</a>
+    </div>
+  </div>
 
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/main.js"></script>
-<script src="/js/search.js"></script> 
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li></ul>
+    </div>
+  </div>
 
 
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/18/Junit4在android开发中的运用/">Junit4在android开发中的运用</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/16/流程图绘制和基本符号/">流程图绘制和基本符号</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/14/心情/">心情</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/14/Linux常用命令/">Linux常用命令</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/14/基类和派生类的成员访问/">基类和派生类的成员访问</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 huanxingxyz<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
 </body>
-   </html>
+</html>
