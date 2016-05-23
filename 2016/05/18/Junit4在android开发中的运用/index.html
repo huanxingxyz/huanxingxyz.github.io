@@ -5,20 +5,18 @@
   
   <title>Junit4在android开发中的运用 | 田鹏飞的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="###背景
-最近参与了一个Anroid医疗项目，其中项目底层有很多基础类及通讯类，而且很多涉及复杂的字节操作还有多线程同步及状态机处理。这样的项目做一下TDD还是必要的，尽量项目前期把风险降低一些。
+  <meta name="description" content="背景最近参与了一个Anroid医疗项目，其中项目底层有很多基础类及通讯类，而且很多涉及复杂的字节操作还有多线程同步及状态机处理。这样的项目做一下TDD还是必要的，尽量项目前期把风险降低一些。
 现在的问题是本人使用的是IntelliJ开发的Android项目，刚开始还真不知道怎么下手。在参考了一些资料后，总结了一下IntelliJ中配置JUnit测试环境的步骤，希望对大家有帮助。
 环境：
-操">
+操作系统：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Junit4在android开发中的运用">
 <meta property="og:url" content="http://yoursite.com/2016/05/18/Junit4在android开发中的运用/index.html">
 <meta property="og:site_name" content="田鹏飞的个人博客">
-<meta property="og:description" content="###背景
-最近参与了一个Anroid医疗项目，其中项目底层有很多基础类及通讯类，而且很多涉及复杂的字节操作还有多线程同步及状态机处理。这样的项目做一下TDD还是必要的，尽量项目前期把风险降低一些。
+<meta property="og:description" content="背景最近参与了一个Anroid医疗项目，其中项目底层有很多基础类及通讯类，而且很多涉及复杂的字节操作还有多线程同步及状态机处理。这样的项目做一下TDD还是必要的，尽量项目前期把风险降低一些。
 现在的问题是本人使用的是IntelliJ开发的Android项目，刚开始还真不知道怎么下手。在参考了一些资料后，总结了一下IntelliJ中配置JUnit测试环境的步骤，希望对大家有帮助。
 环境：
-操">
+操作系统：">
 <meta property="og:image" content="http://img1.tuicool.com/QNvQbq2.png!web">
 <meta property="og:image" content="http://img1.tuicool.com/QNvQbq2.png!web">
 <meta property="og:image" content="http://img1.tuicool.com/qMniUb.png!web">
@@ -27,14 +25,13 @@
 <meta property="og:image" content="http://img0.tuicool.com/nYfyam.png!web">
 <meta property="og:image" content="http://img0.tuicool.com/2yuqM3.png!web">
 <meta property="og:image" content="http://img0.tuicool.com/6zayU3b.png!web">
-<meta property="og:updated_time" content="2016-05-18T10:25:28.000Z">
+<meta property="og:updated_time" content="2016-05-23T11:55:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Junit4在android开发中的运用">
-<meta name="twitter:description" content="###背景
-最近参与了一个Anroid医疗项目，其中项目底层有很多基础类及通讯类，而且很多涉及复杂的字节操作还有多线程同步及状态机处理。这样的项目做一下TDD还是必要的，尽量项目前期把风险降低一些。
+<meta name="twitter:description" content="背景最近参与了一个Anroid医疗项目，其中项目底层有很多基础类及通讯类，而且很多涉及复杂的字节操作还有多线程同步及状态机处理。这样的项目做一下TDD还是必要的，尽量项目前期把风险降低一些。
 现在的问题是本人使用的是IntelliJ开发的Android项目，刚开始还真不知道怎么下手。在参考了一些资料后，总结了一下IntelliJ中配置JUnit测试环境的步骤，希望对大家有帮助。
 环境：
-操">
+操作系统：">
 <meta name="twitter:image" content="http://img1.tuicool.com/QNvQbq2.png!web">
   
     <link rel="alternate" href="/atom.xml" title="田鹏飞的个人博客" type="application/atom+xml">
@@ -110,8 +107,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>###背景</p>
-<p>最近参与了一个Anroid医疗项目，其中项目底层有很多基础类及通讯类，而且很多涉及复杂的字节操作还有多线程同步及状态机处理。这样的项目做一下TDD还是必要的，尽量项目前期把风险降低一些。</p>
+        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>最近参与了一个Anroid医疗项目，其中项目底层有很多基础类及通讯类，而且很多涉及复杂的字节操作还有多线程同步及状态机处理。这样的项目做一下TDD还是必要的，尽量项目前期把风险降低一些。</p>
 <p>现在的问题是本人使用的是IntelliJ开发的Android项目，刚开始还真不知道怎么下手。在参考了一些资料后，总结了一下IntelliJ中配置JUnit测试环境的步骤，希望对大家有帮助。</p>
 <p>环境：</p>
 <p>操作系统：Windows 7</p>
@@ -167,7 +163,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/18/Junit4在android开发中的运用/" data-id="ciojyg2nd0017jgs6si1698bv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/18/Junit4在android开发中的运用/" data-id="ciojyjuwy001ok3s6tochwqnv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/测试/">测试</a></li></ul>
