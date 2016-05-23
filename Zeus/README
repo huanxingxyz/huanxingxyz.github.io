@@ -1,0 +1,6 @@
+车险服务基础平台
+
+zeus_api:对外提供jar包，包含接口文件和DTO形式的参数。
+zeus_service:zeus_api中接口的实现。底层车险服务业务逻辑实现。以Dubbo的形式对上层应用和api开放平台提供服务。
+zeus_common:车险基础平台中通用的常量，工具类，异常，日志等。后期会跟基础代码库Tiny合并。
+zeus_interface:与保险公司对接的逻辑。

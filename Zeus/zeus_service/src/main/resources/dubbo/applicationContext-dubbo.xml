@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="
+     http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+     http://code.alibabatech.com/schema/dubbo
+     http://code.alibabatech.com/schema/dubbo/dubbo.xsd">	
+
+	<dubbo:application name="zeus_service" owner="zeus"  />
+	<dubbo:registry protocol="zookeeper" address="${zkServer}"></dubbo:registry>
+	<dubbo:protocol name="dubbo" port="20880"/>
+	<dubbo:provider timeout="100000" retries="0"/>
+
+    <!--车险支持城市列表-->
+    <dubbo:service interface="com.zhlh.zeus.api.InsureCityRService" ref="insureCityRService" />
+    <!--车辆查询-->
+    <dubbo:service interface="com.zhlh.zeus.api.VehicleInfoRService" ref="vehicleInfoRService" />
+    <!--询价接口-->
+    <dubbo:service interface="com.zhlh.zeus.api.QuotePriceRService" ref="quotePriceRService" />
+    <!--身份采集-->
+    <dubbo:service interface="com.zhlh.zeus.api.IdentityCollectRService" ref="identityCollectRService" />
+    <!--核保接口-->
+    <dubbo:service interface="com.zhlh.zeus.api.InsureConfirmRService" ref="insureConfirmRService" />
+    <!--支付接口-->
+    <dubbo:service interface="com.zhlh.zeus.api.LuobarPayRService" ref="luoberPayRService" />
+    <!--询价结果(民生)-->
+    <dubbo:service interface="com.zhlh.zeus.api.QuoteResultRService" ref="quoteResultRService" />
+
+
+    <!--盗刷险核保-->
+    <dubbo:service interface="com.zhlh.zeus.api.IndividualAccountLossInsuRService" ref="individualAccountLossInsuRService" />
+    <!--盗刷险退保-->
+    <dubbo:service interface="com.zhlh.zeus.api.InsuranceSurrenderRService" ref="insuranceSurrenderRService" />
+
+
+</beans>

@@ -1,0 +1,69 @@
+//渠道配置文件
+[
+  {
+    code: "WxSys",
+    autoIdentityCollection: true,
+    restricts: [
+     
+      {
+		//英大
+        insurerCode: "I00002",
+        rules: {
+          //什么都不写：没有任何限制，任何情况下为：true。
+          //ALL, 定义缺省所有的规则，如果规则表有限制，但没有定义ALL，缺省规则为：false；
+          //市的优先级大于省，省优先级大于ALL缺省规则
+          
+          ALL: true	
+          //京: true,	
+          //苏A: true,	
+          //苏: false
+        }
+      }
+     /*
+     ,
+      {
+        //太保
+        insurerCode: "I00001",
+        rules: {
+          //京: true, 
+        }
+      },
+    */
+    /*
+      {
+        //福德
+        insurerCode: "I00004",
+        rules: { 
+          //京: true,
+        }
+      },*/
+     /*
+      {
+        //阳光
+        insurerCode: "I00019",
+        rules: { 
+          //京: true,
+        }
+      },
+     
+      {
+        //国寿
+        insurerCode: "I00003",
+        rules: { 
+          //京: true,
+        }
+      }
+      */
+      
+      ,{
+        //人保
+        insurerCode: "I00027",
+        rules: { 
+          ALL: true,
+          京: true
+        }
+      }
+      
+    ]
+  }
+]

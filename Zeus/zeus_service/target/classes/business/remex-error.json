@@ -1,0 +1,185 @@
+//remex异常信息配置文件
+//服务异常类型代码：A01  参数异常类型代码：A02
+//changeCode:与ErrorCode类中保持一致
+[
+  {
+    "errorType": "A01",
+    "errorMsg": "保单的签单日期不在代理人的有效期内",
+    "changeCode": "1002",
+    "changeErrMsg": "协议过期，请联系管理员"
+  },
+  {
+    "errorType": "A01",
+    "errorMsg": "该车已经在其他公司投保了同类型的险种",
+    "changeCode": "1002",
+    "changeErrMsg": "该车已经在其他公司投保了同类型的险种"
+  },
+  {
+    "errorType": "A02",
+    "errorMsg": "新能源车辆应当以车船税标志“M”上传",
+    "changeCode": "3000",
+    "changeErrMsg": "新能源车辆应当以车船税标志“M”上传"
+  },
+  {
+    "errorType": "A02",
+    "errorMsg": "未传送车辆过户标志",
+    "changeCode": "3000",
+    "changeErrMsg": "车主名称与上张保单不一致"
+  },
+  {
+    "errorType": "A01",
+    "errorMsg": "无法连通新创建的Socket服务端",
+    "changeCode": "1002",
+    "changeErrMsg": "网络异常，请稍后再试"
+  },
+  {
+    "errorType": "A02",
+    "errorMsg": "精友车型查询返回报文被篡改",
+    "changeCode": "3000",
+    "changeErrMsg": "请求报文中缺少字段"
+  },
+  {
+    "errorType": "A02",
+    "errorMsg": "查询参数不正确（核定载客）",
+    "changeCode": "3000",
+    "changeErrMsg": "返回座位数错误"
+  },
+  {
+    "errorType": "A01",
+    "errorMsg": "查询结果为空",
+    "changeCode": "1002",
+    "changeErrMsg": "查询结果为空"
+  },
+  {
+    "errorType": "A02",
+    "errorMsg": "能源种类不允许为空",
+    "changeCode": "3000",
+    "changeErrMsg": "请填写能源种类"
+  },
+  {
+    "errorType": "A01",
+    "errorMsg": "商业险保费计算标准服务主计算流程报错",
+    "changeCode": "1002",
+    "changeErrMsg": "服务异常，请稍后再试"
+  },
+  {
+    "errorType": "A01",
+    "errorMsg": "For input string",
+    "changeCode": "1002",
+    "changeErrMsg": "服务异常，请稍后再试"
+  },
+  {
+    "errorType": "A01",
+    "errorMsg": "解析交强险平台返回投保预确认失败",
+    "changeCode": "1002",
+    "changeErrMsg": "服务异常，请稍后再试"
+  },
+  {
+    "errorType": "A02",
+    "errorMsg": "该车在交管无数据，请将新车标志位改为1",
+    "changeCode": "3000",
+    "changeErrMsg": "新车用户请选择新车标志"
+  },
+  {
+    "errorType": "A02",
+    "errorMsg": "起保日期必须在当前日期的规定时间范围内",
+    "changeCode": "3000",
+    "changeErrMsg": "起保日期填写错误"
+  },
+  {
+    "errorType": "A01",
+    "errorMsg": "Read timed out",
+    "changeCode": "1002",
+    "changeErrMsg": "网络异常,请稍后再试"
+  },
+  {
+    "errorType": "A01",
+    "errorMsg": "unable to find valid certification",
+    "changeCode": "1002",
+    "changeErrMsg": "证书错误，请联系管理员"
+  },
+  {
+    "errorType": "A02",
+    "errorMsg": "核定载质量和核定载客人数不能同时为0",
+    "changeCode": "3000",
+    "changeErrMsg": "核定载质量和核定载客人数不能同时为0"
+  },
+  {
+    "errorType": "A01",
+    "errorMsg": "系统内部异常",
+    "changeCode": "1002",
+    "changeErrMsg": "服务异常，请稍后再试"
+  },
+  {
+    "errorType": "A01",
+    "errorMsg": "太保系统繁忙",
+    "changeCode": "1002",
+    "changeErrMsg": "服务异常，请稍后再试"
+  },
+  {
+    "errorType": "A01",
+    "errorMsg": "渠道合规性校验出错",
+    "changeCode": "1002",
+    "changeErrMsg": "服务异常，请稍后再试"
+  },
+  {
+    "errorType": "A01",
+    "errorMsg": "代理点其业务来源均不正确",
+    "changeCode": "1002",
+    "changeErrMsg": "服务异常，请稍后再试"
+  },
+  {
+    "errorType": "A01",
+    "errorMsg": "生效时间必须晚于系统时间60分钟",
+    "changeCode": "1002",
+    "changeErrMsg": "24点系统禁止出单"
+  },
+  {
+    "errorType": "A01",
+    "errorMsg": "调用后端服务失败",
+    "changeCode": "1002",
+    "changeErrMsg": "服务异常，请稍后再试"
+  },
+  {
+    "errorType": "A01",
+    "errorMsg": "Remote host closed connection",
+    "changeCode": "1002",
+    "changeErrMsg": "服务异常，请稍后再试"
+  },
+  {
+    "errorType": "A02",
+    "errorMsg": "核保未通过!核保信息为:null;R2:Rule0022:客户名称一致性",
+    "changeCode": "3000",
+    "changeErrMsg": "客户名称传值错误"
+  },
+  {
+    "errorType": "A02",
+    "errorMsg": "全车盗抢险的保额不能大于车辆实际价格",
+    "changeCode": "3000",
+    "changeErrMsg": "全车盗抢险的保额不能大于车辆实际价格"
+  },
+  {
+    "errorType": "A02",
+    "errorMsg": "投保人的证号码已存在",
+    "changeCode": "3000",
+    "changeErrMsg": "投保人的证号码错误，请更换投保人证件号码"
+  },
+  {
+    "errorType": "A02",
+    "errorMsg": "解析交强险平台返回投保预确认失败",
+    "changeCode": "3000",
+    "changeErrMsg": "上传的投保人姓名、证件号、手机号码与身份证采集的投保人姓名、证件号、手机号码不一致"
+  },
+  {
+    "errorType": "A01",
+    "errorMsg": "系统异常",
+    "changeCode": "1002",
+    "changeErrMsg": "服务异常，请稍后再试"
+  },
+  {
+    "errorType": "A01",
+    "errorMsg": "未查到有效的执行机构映射关系",
+    "changeCode": "1002",
+    "changeErrMsg": "未查到有效的执行机构映射关系，请联系管理员"
+  }
+]

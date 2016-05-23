@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+        <modelVersion>4.0.0</modelVersion>
+
+        <groupId>com.zhlh.zeus</groupId>
+        <artifactId>zeus_service_deploy</artifactId>
+        <packaging>pom</packaging>
+        <version>1.0.0</version>
+
+    <modules>
+        <module>zeus_service</module>
+        <module>zeus_common</module>
+        <module>zeus_interface</module>
+    </modules>
+</project>
