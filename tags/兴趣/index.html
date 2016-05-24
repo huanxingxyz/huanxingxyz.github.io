@@ -3,24 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Unity3D转换eclipse | 田鹏飞的个人博客</title>
+  <title>Tag: 兴趣 | 田鹏飞的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这个过程非常复杂。步骤一定要谨记
-1，建立一个unity3d工程，然后自己丢点模型进去吧。然后设置导出时候的包名字（重要，后面解析），build一下。就会发现工程目录下面的temp文件夹里面多了一个文件夹，如果不build是没有的，如果你关闭了unity的话这个文件夹也会消失，这个现象费了我一天的时间，看官网英文教程漏一个单词都不行啊。
-2，拷贝temp文件夹里面的StagingArea出来，然后">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Unity3D转换eclipse">
-<meta property="og:url" content="http://yoursite.com/2016/05/14/Unity3D转换eclipse/index.html">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="田鹏飞的个人博客">
+<meta property="og:url" content="http://yoursite.com/tags/兴趣/index.html">
 <meta property="og:site_name" content="田鹏飞的个人博客">
-<meta property="og:description" content="这个过程非常复杂。步骤一定要谨记
-1，建立一个unity3d工程，然后自己丢点模型进去吧。然后设置导出时候的包名字（重要，后面解析），build一下。就会发现工程目录下面的temp文件夹里面多了一个文件夹，如果不build是没有的，如果你关闭了unity的话这个文件夹也会消失，这个现象费了我一天的时间，看官网英文教程漏一个单词都不行啊。
-2，拷贝temp文件夹里面的StagingArea出来，然后">
-<meta property="og:updated_time" content="2016-05-14T14:13:42.000Z">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Unity3D转换eclipse">
-<meta name="twitter:description" content="这个过程非常复杂。步骤一定要谨记
-1，建立一个unity3d工程，然后自己丢点模型进去吧。然后设置导出时候的包名字（重要，后面解析），build一下。就会发现工程目录下面的temp文件夹里面多了一个文件夹，如果不build是没有的，如果你关闭了unity的话这个文件夹也会消失，这个现象费了我一天的时间，看官网英文教程漏一个单词都不行啊。
-2，拷贝temp文件夹里面的StagingArea出来，然后">
+<meta name="twitter:title" content="田鹏飞的个人博客">
+<meta name="twitter:description">
   
     <link rel="alternate" href="/atom.xml" title="田鹏飞的个人博客" type="application/atom+xml">
   
@@ -73,80 +66,39 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Unity3D转换eclipse" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/14/Unity3D转换eclipse/" class="article-date">
-  <time datetime="2016-05-14T14:13:20.000Z" itemprop="datePublished">2016-05-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      Unity3D转换eclipse
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/05/24/兴趣视频教程/" class="archive-article-date">
+  <time datetime="2016-05-24T14:58:51.000Z" itemprop="datePublished">5月 24</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/05/24/兴趣视频教程/">兴趣视频教程</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这个过程非常复杂。步骤一定要谨记</p>
-<p>1，建立一个unity3d工程，然后自己丢点模型进去吧。然后设置导出时候的包名字（重要，后面解析），build一下。就会发现工程目录下面的temp文件夹里面多了一个文件夹，如果不build是没有的，如果你关闭了unity的话这个文件夹也会消失，这个现象费了我一天的时间，看官网英文教程漏一个单词都不行啊。</p>
-<p>2，拷贝temp文件夹里面的StagingArea出来，然后以这个文件夹为source建立一个eclipse工程，就是建立eclipse选create project from exiting source啦。</p>
-<p>3 右键这个以stagingarea文件夹为基础的工程，选择Properties -》android-》Is Library 设置为资料</p>
-<p>4，新建一个新的eclipse工程（包名称与unity3d设置的导出工程文件名要一致，否则直接报错），导入上一个工程作为library，就是同样在已经建立好的工程上右键，在同样的地方点选add，就可以看见啦，然后导入。</p>
-<p>5 导入jar包，右键工程属性，java build path-》添加jar到library，Unity安装目录\Editor\Data\PlaybackEngines\androidplayer\bin\classes.jar</p>
-<p>6; 复制stagingArea工程里面的assets所有文件到新建立的文件中，（必须）我们就完成了unity和eclipse的合体了。</p>
-<p>7.我们来直接一activity的样子运行一下Unity做好的工程吧</p>
-<p>package com.Unity3D.EclipseIntegration;</p>
-<p>import android.os.Bundle;</p>
-<p>import com.unity3d.player.UnityPlayerActivity;</p>
-<p>public class EclipseIntegration extends UnityPlayerActivity</p>
-<p>{</p>
-<p>@Overridepublic</p>
-<p>void onCreate(Bundle savedInstanceState) {</p>
-<p>super.onCreate(savedInstanceState);</p>
-<p>//setContentView(R.layout.main);需要注息这一句，否则会被遮挡。因为继承了unityplayerActivity，所以会直接显示unity的工程啦</p>
-<p>}}</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Unity3D转换eclipse/" data-id="ciolkjukr001dtquoqz6uddp0" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity3D/">Unity3D</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2016/05/14/Unity3D研究院之与Android相互传递消息/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Unity3D研究院之与Android相互传递消息
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/05/14/微信内置浏览器的JsAPI/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">微信内置浏览器的JsAPI</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
 </section>
         

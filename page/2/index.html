@@ -68,6 +68,291 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Unity3D第一人称射击游戏（推荐）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/14/Unity3D第一人称射击游戏（推荐）/" class="article-date">
+  <time datetime="2016-05-14T14:08:26.000Z" itemprop="datePublished">2016-05-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/14/Unity3D第一人称射击游戏（推荐）/">Unity3D第一人称射击游戏（推荐）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>第一部分：简介</p>
+<p>这个教程中，我们详细了解下如何制作一个简单的第一人称射击游戏（FPS）。其中将介绍一些基本的3D游戏编程的概念和一些关于怎样如游戏程序员般思考的技巧。</p>
+<p>前提</p>
+<p>这个教程假定你已经熟悉软件Unity基本操作，掌握了基本的脚本概念。</p>
+<p>创建新工程</p>
+<p>下载FPS_Tutorial.zip压缩文件，解压，在Unity中打开工程文件。</p>
+<p>从Unity安装目录导入Standard Assets资源包。</p>
+<p>导入工程后，你会在Unity工程面板中的“Standard Assets”文件夹下看见这些资源内容。当我们导入新资源时，最好安装按照资源功能对其分组，例如：火箭、爆炸、音频等。</p>
+<p>设置游戏环境</p>
+<p>导入资源后，你会注意到在工程面板中有许多文件夹。</p>
+<p>工程面板中，从文件夹“Object/mainLevelMesh”中选择“mainLevelMesh”。</p>
+<p>在参数面板，FBXImporter选项中，你会发现“Generate Colliders”选项，勾选此选项。如果不做这一步，游戏中玩家会穿越地面直接掉下深渊（实际是开启“碰撞”，产生交互）</p>
+<p>把“mainLevelMesh”拖放到场景中。</p>
+<p>场景中不需要添加灯光，这关全部场景已经全部应用了灯光贴图。整个场景对所有灯光进行了灯光贴图渲染，使用了“预烘焙阴影”。灯光贴图对显示效果有很大帮助，特别是复杂灯光环境。</p>
+<p>下面可以在场景中添加一个角色了。</p>
+<p>添加主要角色</p>
+<p>下面在场景中增加一个可以操控的角色物体。Unity针对第一人称射击游戏预置了许多内置的控制器，在工程面板Standard Assets-&gt;Prefabs下。</p>
+<p>添加第一人称控制器，点击工程面板Standard Assets旁边的小三角，弹出资源列表。找到Prefabs文件夹，点击小三角形，弹出资源列表。把“First person controller”拖到场景里。</p>
+<p>这时场景中会出现一个代表玩家的圆柱体，三个大箭头代表物体在3D空间中的位置（如果没有看见箭头，选择物体，按“W”键），白色面代表物体当前视角。现在FPS控制器处于默认视角位置，通过移动它可以改变游戏视野。把角色移动到游戏环境关卡地面上面的位置。</p>
+<p>Main Camera现在已经没有用处了，可以删掉了。</p>
+<p>点击“Play”键，现在应该可以通过使用鼠标和键盘在本关卡地形中四处移动了（光标或者“W,A,S,D”）</p>
+<p>现在我们创建了一个非常简单的FSP，下面我们给角色添加武器。</p>
+<p>增加武器</p>
+<p>下面我们将给游戏角色一个类似榴弹的物体，可以在游戏中发射。要实现这个功能，需要创建一些脚本语言来在Unity中告知这个武器如何动作。</p>
+<p>那么我们具体要实现什么呢？我们要使游戏角色能在摄像机的任意位置开火。但是，我们还是首先来思考一下游戏角色和武器。游戏角色游戏中是第一人称的视角，所以摄像机的位置与眼睛平行。如果玩家使用武器射击，武器应该是在角色的手部位置开火而不是眼睛的位置。这样我们就要增加一个“game object”（游戏物体）来代表榴弹发射器，同时把它放置在游戏角色手持武器时武器所处的位置。这样就保证了开火的位置没有问题。</p>
+<p>创建武器发射器</p>
+<p>首先，创建一个“game object”代表榴弹发射器。游戏物体是3D世界中的任一物体（角色、关卡、声音），零件就是游戏物体的属性。因此我们还需要对游戏物体添加零件：</p>
+<p>从主菜单栏选择GameObject&gt;Great Empty，并在层级面板中（Hierarchy）命名为“Launcher”。注意，空物体在场景中是看不见的，只是用它来作放置飞弹发射器。</p>
+<p>现在在场景中把视野推近到FPS控制器，便于我们放置武器发射器。</p>
+<p>层级面板中选择FPS控制器，确保鼠标处于场景视图中，按“F”键。使窗口以当前选择的物体为中心。</p>
+<p>层级面板中选择发射器，主菜单栏选择Game Object&gt;Move to view。注意发射器如何移动到FPS控制器附近的。然后使用手柄，把发射器移动到大概角色手部的位置。</p>
+<p>注意：可以通过设置这个物体的位置来设定游戏角色是左撇子还是右撇子，不需要写代码。</p>
+<p>使Unity窗口模式是“2by3”模式（window&gt;Layouts&gt;2by3），点击播放键（play）。确保层级面板中点选了发射器，四处移动角色，同时观察场景窗口。你将发现发射器并没有随着角色一起运动（现在再次点击播放键停止运行游戏）</p>
+<p>下面来解决这个问题，层级面板中，把发射器拖放到FPS控制器下面的主摄像机上。弹出的对话框点击“是”。再次运行游戏，观察场景窗口，发射器已经和角色运动一致了。这样我们就把发射器与摄像机关联起来了。</p>
+<p>创建飞弹</p>
+<p>下面我们来创建在玩家点击开火键时能够发射出来的飞弹。</p>
+<p>我们先用一个简单物体-球体-代替飞弹。Unity主菜单栏点击Assets&gt;Creat&gt;Prefab创建一个预制（Prefab）物体，命名为“Missile”</p>
+<p>创建一个球体（GameObject&gt;Create Object&gt;Sphere）</p>
+<p>层级面板中，拖放球体到飞弹预制物体上（Missile），这时预制物体图标会变化。你可以从层级面板中删除球体。</p>
+<p>技巧：游戏运行中产生的任何游戏物体都应该是预制物体（Prefab）。</p>
+<p>编写飞弹发射器脚本</p>
+<p>FPS控制器是一个包含了几个游戏物体和部件的预制物体。FPS控制器本身是一个只能沿Y轴旋转的圆柱体，因此，如果我们直接把发射器脚本赋予FPS控制器的话，是实现不了上下开火的。所以我们把脚本赋予控制器中的能够四周转动的主摄像机。</p>
+<p>下面我们来编写第一个描述发射器行为的JavaScript代码。</p>
+<p>点击Assets&gt;Greate&gt;JavaScript，创建一个空的JavaScript文档。一个名为“NewBehaviourScript”资源将会出现在工程面板中，把它更名为“MissileLauncher”</p>
+<p>技巧：通过Unity&gt;Preferences点击External Script Editor，可以自定义外部脚本编辑器。</p>
+<p>工程面板中创建一个“WeaponScripts”文件夹，放置我们所有的武器脚本。把MissileLauncher脚本和飞弹预制物体（Missile Prefab）拖到这个文件中。</p>
+<p>我们来看看飞弹发射器的完整JavaScript脚本。</p>
+<p>进一步思考一下，我们到底想实现什么效果？我们要检测玩家是否按了开火键，然后产生一枚飞弹，然后把它沿着玩家朝向的方向按照一定的速度发射出去。我们仔细的解剖一下脚本：</p>
+<p>var projectile: Rigibody;</p>
+<p>var speed=20;</p>
+<p>function Update( )</p>
+<p>{</p>
+<p>这是脚本的开头部分，定义了一些属性，开启了“Update”的功能</p>
+<p>if(Input.GetButtonDown(“Fire1”))</p>
+<p>首先我们要检测玩家是否按了开火键，“开火1”映射的是鼠标左键和当前配置的键盘上的按键（可以通过主菜单栏的Editor&gt;Project Settings&gt;Input设定）</p>
+<p>{</p>
+<p>var instantiatedProjectile: Rigidbody=Instantiate(</p>
+<p>projectile, transform.position,transform.rotation);</p>
+<p>我们用变量来定义产生的物体。变量的类型是Rigibody（刚体），因为飞弹是具有物理属性的。</p>
+<p>Unity中产生新物体使用的函数是Instantiate，它有三个参数，分别是：产生的物体、产生物体的3D空间位置、物体的旋转。它还有另一个语法结构，参照API手册，这里我们只使用这种结构。</p>
+<p>第一个参数，projectile，代表我们想创建的物体。那么到底发射什么物体？具体产生的物体是可以手动设定的。实现方法：把Projectile定义为函数的外部变量，这样就可以在参数面板中显示出来。发射的物体也可以通过代码来创建，但如果你想使一个变量可调的话，还是用上面的方法。</p>
+<p>第二个参数，transform.position，使产生的物体与发射器的空间位置一致。为什么就是发射器呢？因为如果要使飞弹产生的位置没有问题，脚本就要关联给发射器。（transform读取的transform数据就是被赋予脚本的游戏物体transform数据）</p>
+<p>第三个参数transform.rotation，与第二个类似，只是它的值与发射器的旋转值是一样的。</p>
+<p>instantiatedProjectile.Vellocity=</p>
+<p>transform.TransformDirection(Vector3(0,0,speed));</p>
+<p>代码的下一部分使飞弹产生运动。为了实现运动，我们要赋予飞弹一个速度，但是在哪个方向上（X，Y，Z）产生速度呢？在场景中，点击FPS控制器，出现运动箭头（如果没有出现，按“W”键），其中一个箭头是红色、一个是绿色、一个是蓝色。红色代表X轴，绿色代表Y轴，蓝色代表Z轴。因为蓝色指向的方向，与玩家面朝的方向一致，所以我们要在Z轴上给飞弹一个速度。</p>
+<p>（Velocity）速度是instantiatedProjectile的一个属性。我们怎么知道的呢？因为instantiatedProjectile是刚体的一种，如果我们看看API手册，我们就会知道速度是刚体的属性中的一种。同时也看看刚体的其它属性。要设置速度，我们就必须在各个轴向上设定数值。但还有个小问题。3D空间中的物体一般使用两种坐标模型：本地坐标系和世界坐标系。在本地坐标系中，物体的轴向只与物体本身有关。在世界坐标系中，轴向是绝对的，例如：向上，对所有物体来讲向上的方向都是一样的。Rigidbody.Vellocity刚体物体速度必须使用世界坐标系。因此，定义速度时，需要把本地坐标系中的Z轴（朝前的方向）向转换成世界坐标系中的相应方向。可以用函数transform.TransformDirection，它有三个向量作为自变量。变量speed也应该定义成外部变量，便于后面在编辑器中直接调节数值。</p>
+<p>Physics.IgnoreCollision(instantiatedProjectile.collider,</p>
+<p>transform.root.collider);</p>
+<p>}</p>
+<p>}</p>
+<p>最后，我们要关闭飞弹与游戏角色之间的碰撞。如果不这样做的话，飞弹产生的时候就可能与角色发生碰撞。可以在API手册IgnoreCollision下查询详细信息。</p>
+<p>MissileLauncher.js全部完整代码如下：</p>
+<p>var projectile : Rigidbody;</p>
+<p>var speed = 20;</p>
+<p>function Update()</p>
+<p>{</p>
+<p>if( Input.GetButtonDown( “Fire1″ ) )</p>
+<p>{</p>
+<p>var instantiatedProjectile : Rigidbody = Instantiate(</p>
+<p>projectile, transform.position, transform.rotation );</p>
+<p>instantiatedProjectile.velocity =</p>
+<p>transform.TransformDirection( Vector3( 0, 0, speed ) );</p>
+<p>Physics.IgnoreCollision( instantiatedProjectile. collider,</p>
+<p>transform.root.collider );</p>
+<p>}</p>
+<p>}</p>
+<p>把脚本MissileLauncher赋予FPS控制器中的发射器。在层级面板中点击发射器，检查一下参数面板下面是否显示了MissileLauncher script。</p>
+<p>先前创建的飞弹的预制物体还没有与脚本中的变量projectile创建关联，我们需要在编辑器中创建一下。变量projectile只能与刚体关联，因此，首先我们要赋予飞弹一个Rigidbody。</p>
+<p>工程面板中点击飞弹，然后从主菜单栏选择Components&gt;Physics&gt;Rigidbody。这样将会给我们想开火发射的飞弹一个刚体属性。我们必须确保想在游戏中发射的物体类型与脚本中外部变量要求的物体类型是同一类型的物体。</p>
+<p>创建飞弹与脚本中变量projectile的链接。首先在层级面板中点击发射器，然后把飞弹的预制物体从工程面板中拖拽放置在发射器参数面板中MissileLauncher script部分上。</p>
+<p>运行游戏的话，你会发现点击开火键可以发出一个受重力影响的小球了。</p>
+<p>飞弹爆炸</p>
+<p>下面，当飞弹与其他物体发生碰撞时，增加一个爆炸效果。要实现这个效果，我们要编写一段新脚本赋予飞弹。</p>
+<p>创建一个新脚本，命名为Projectile。拖放到工程面板的WeaponScripts文件夹下。</p>
+<p>那么我们想要脚本Projectile实现什么样的效果呢？我们要检测飞弹是否发生碰撞，然后在碰撞点产生一个爆炸效果。代码如下：</p>
+<p>var explosion : GameObject;</p>
+<p>function OnCollisionEnter( collision : Collision )</p>
+<p>{</p>
+<p>函数OnCollisionEnter内的程序代码的作用是计算被赋予脚本的物体是否与其他物体发生碰撞。</p>
+<p>var contact: ContactPoint=collision.contacts[0];</p>
+<p>在函数OnCollisionEnter中我们主要是要实现在3D空间中飞弹发生碰撞的点产生一个新爆炸。那么在何处了碰撞的呢？函数OnCollisionEnter就有个记录这个信息的功能。碰撞发生的点的信息储存在变量ContactPoint中。</p>
+<p>var rotation=Quaternion.FromToRotation(Vector3.up,contact.normal);</p>
+<p>var instantiatedExplosion:GameObject=Instantiate(</p>
+<p>explosion,contact.point,rotation);</p>
+<p>这里我们使用函数Instantiate来创建一个爆炸。我们已经知道函数instatiate有三个参数：（1）产生的物体（2）物体的3D空间位置（3）物体的旋转。</p>
+<p>第一个参数，后面我们将会赋给一个带粒子系统的游戏物体。同时我们还想通过编辑器来实现这个功能，所以我们把变量设置为外部变量。</p>
+<p>第二个参数，爆炸产生的点的位置，就是碰撞发生的位置。</p>
+<p>第三个参数，爆炸旋转的设置，需要解释一下。我们需要爆炸体的Y轴方向与飞弹和其他物体发生碰撞的那个表面的法线方向一致。这就是说如果是墙面那么爆炸就面向外，如果是地板就朝上。那么实际上我们就是要使爆炸体在本地坐标系的Y轴与飞弹与之碰撞的物体的表面法线方向（世界坐标系）一致。</p>
+<p>Destroy（gameObject）;</p>
+<p>}</p>
+<p>最后，我们要让飞弹碰撞后就从游戏中消失，通过函数Destroy（）实现，它的参数是gameObject（gameObject代表被赋予这个脚本的物体）。</p>
+<p>Projectile.js全部代码如下：</p>
+<p>var explosion : GameObject;</p>
+<p>function OnCollisionEnter( collision : Collision )</p>
+<p>{</p>
+<p>var contact : ContactPoint = collision.contacts[0];</p>
+<p>var rotation = Quaternion.FromToRotation( Vector3.up, contact.normal );</p>
+<p>var instantiatedExplosion : GameObject = Instantiate(</p>
+<p>explosion, contact.point, rotation );</p>
+<p>Destroy( gameObject );</p>
+<p>}</p>
+<p>把脚本赋予飞弹预制物体（Missile prefab）。</p>
+<p>下面我们要创建飞弹发生碰撞时所产生爆炸的爆炸效果物体。</p>
+<p>首先，创建一个新的预制物体（命名为Explosion）用来存放爆炸效果资源。</p>
+<p>标准资源包中（standard asset）有个不错的爆炸预制物体，粒子系统和灯光都设置好了。把这个爆炸预制物体（在Standard Assets/Particles/explosion中）拖放到层级面板。</p>
+<p>调节这个爆炸效果的各个参数直到你觉得满意，然后把它从层级面板中拖放到工程面板中的爆炸预制物体（Explosion Prefab）中。</p>
+<p>现在把爆炸配置给飞弹：</p>
+<p>点选飞弹预制物体（Missile Prefab），在参数面板Explosion变量栏，拖放工程面板中的爆炸到上面。</p>
+<p>定义爆炸的行为</p>
+<p>下面我们要再创建一个脚本来定义爆炸自身的特性。</p>
+<p>创建一个新的脚本-Explosion，放在Weapons文件夹中，双击脚本进行编辑。</p>
+<p>脚本中另一个常用函数称为Start（）。当它配置给的物体是在游戏中产生的时候，函数Start（）中的代码只被执行一次。我们要实现的效果就是在一定时间后，在游戏中删除爆炸。我们通过函数Destroy（）的第二个参数实现，它的作用是定义执行删除前的时间长度。</p>
+<p>var explosionTime=1.0;</p>
+<p>function Start( )</p>
+<p>{</p>
+<p>Destroy(gameObject,explosionTime);</p>
+<p>}</p>
+<p>变量explosionTime设置成外部变量，方便调节。</p>
+<p>新建脚本插入以上代码时，要删除函数Update（）。</p>
+<p>把脚本Explosion赋予给爆炸预制物体。</p>
+<p>音效</p>
+<p>目前的游戏世界太安静了，让我们给爆炸效果增加点音效。</p>
+<p>首先，给爆炸预制（Prefab）添加一段音频。</p>
+<p>给爆炸添加音效前，我们首先要添加一个音源部件（Audio Source），在主菜单点击Component—Audio—Audio Source。你会发现音源部件有一个Audio Clip的属性。</p>
+<p>把“RocketLauncherImpact”音效添加给爆炸预制体的AudioClip外部变量。Unity支持多种音频格式。</p>
+<p>运行游戏，发射飞弹的时候就有声音了！</p>
+<p>添加图形界面</p>
+<p>下面我们来添加GUI，有点像头部显示设备（ＨＵＤ）。我们要做的ＧＵＩ非常简单，就一个准星。</p>
+<p>添加一个准星：</p>
+<p>工程栏中创建一个ＧＵＩ的文件夹。</p>
+<p>创建一个新脚本，命名为“准星”（Ｃｒｏｓｓｈａｉｒ），拖到ＧＵＩ文件夹。</p>
+<p>Ｃｒｏｓｓｈａｉｒ中写入下面的脚本：</p>
+<p>var crosshairTexture:Texture2D;</p>
+<p>var position:Rect;</p>
+<p>function Start( )</p>
+<p>{</p>
+<p>position=Rect((Screen .with-crosshairTexture.with)/2,(Screen.height-crosshairTexture.height)/2,crosshairTexture,crosshairTexture.height);</p>
+<p>}</p>
+<p>function OnGUI( )</p>
+<p>{</p>
+<p>Gui.DrawTexture(position,crosshairTexture);</p>
+<p>}</p>
+<p>首先我们设定了两个变量。第一个变量是定义我们将要用可选的方式来选择图形纹理。第二个变量定义了一个方形区间，它是图形纹理在屏幕上的位置范围。</p>
+<p>在start( ) 中函数用来设定图形纹理在屏幕上的位置。函数中，有四个参数，用来定义方形区域的大小和位置。第一个参数定义了方形区域的左边框，第二个是底边框，第三和第四个参数定义了宽和高。</p>
+<p>OnGUI( )函数中，使用GUI类程序来让图形显示在屏幕上。DrawTexture( )函数的参数position和crosshairTexture将使准星显示在屏幕的中央位置。</p>
+<p>保存脚本。</p>
+<p>创建一个新的空物体，命名为“GUI”。</p>
+<p>把脚本“Crosshair”赋予给GUI物体。</p>
+<p>点选GUI物体，把在文件夹Texturelaim下的欲使用的图形拖放到参数面板变量Crosshair Texture中。</p>
+<p>运行游戏，屏幕中就会有准星显示了。</p>
+<p>物理特效：</p>
+<p>现在，我们想要游戏中的物体效果越真实越好，这是通过添加物理特效实现的。在这一节中，我们将在环境中添加一些物体，他们能被飞弹击中后有相应的反应。首先有几个新概念要解释下。</p>
+<p>校正（Update）</p>
+<p>先前，我们在函数Update（）中写入代码，这样可以在每一帧都执行其中的代码。其中有个例子是检测玩家点击开火键。帧速并不是一个固定值，它是根据场景复杂度等因素来定的。各帧之间的时间差会导致不稳定的物体反应。因此，如果想在场景中添加有物理反应的物体（刚体等），代码就应该写在函数FixedUpdate（）中。Unity中deltaTime的值用来测定渲染两个连续帧的所用时间。</p>
+<p>一般而言，函数Update与FixedUpdate之间的区别如下：</p>
+<p>Update（）-其中的代码通常用于角色行为、游戏逻辑等。这个函数中的deltaTime值并不是固定的。</p>
+<p>FixedUpdate（）-其中的代码通常用于刚体物体（物理属性的行为）。函数中deltaTime的值通常是固定的。</p>
+<p>FixedUpdate函数被调用的频率是主菜单中Edit-Project Settings-Time的FixedTimestep属性确定的，当然也是可以更改的。第二个属性Time Scale是读取每秒的帧速和相应的倒数值。</p>
+<p>技巧：定义FixedTimestep值时，要注意把握好一个平衡：值越小，物理效果越真实越好，但影响游戏运行速度。应该同时确保游戏运行速度和物理效果的真实性。</p>
+<p>最后说一下yield，它相当于暂停当前正在执行的函数。</p>
+<p>回到游戏，我们想实现的效果：</p>
+<p>使玩家可以发射飞弹（已经实现了）。</p>
+<p>如果飞弹与其它刚体物体发生碰撞，检测其范围类是否有其它被赋予刚体属性的物体。</p>
+<p>对爆炸冲击力范围内的每个刚体物体，均给予一个upwards方向上的力，使它们对飞弹产生反应。</p>
+<p>让我们看看修改后的爆炸脚本（Explosion Javascript）</p>
+<p>var explosionTime = 1.0;</p>
+<p>var explosionRadius = 5.0;</p>
+<p>var explosionPower = 2000.0;</p>
+<p>function Start()</p>
+<p>{</p>
+<p>//Destroy the explosion in x seconds,</p>
+<p>//this will give the particle system and audio enough time to finish playing</p>
+<p>Destroy( gameObject, explosionTime );</p>
+<p>//Find all nearby colliders</p>
+<p>var colliders : Collider[] = Physics.OverlapSphere( transform.position,</p>
+<p>explosionRadius );</p>
+<p>首先检测下飞弹落点周围是否有带碰撞器的物体。函数Physics.OverlapSphere（）有两个参数：3D位置和半径值，然后返回一组检测到的在半径内的碰撞器的数组。</p>
+<p>//Apply a force to all surrounding rigid bodies.</p>
+<p>for( var hit in colliders )</p>
+<p>{</p>
+<p>一旦得到这些数组后，就会对每个对应碰撞器的刚体物体一个在特定方向上的力。</p>
+<p>if( hit.rigidbody )</p>
+<p>{</p>
+<p>hit.rigidbody.AddExplosionForce( explosionPower,</p>
+<p>transform.position, explosionRadius );</p>
+<p>}</p>
+<p>}</p>
+<p>然后我们在飞弹的炸点处，向上的方向增加一个力（ExplosionPower）。但是，爆炸效果是随着距离而递减的，作用力大小不能在整个半径内都一样。圆周位置的刚体物体受到的作用力应该比炸点中心处小。函数把这种效果也考虑在内的。通过调节外部变量explosionPower和explosionRadius的值，可以较容易的得到想要的效果。</p>
+<p>//If we have a particle emitter attached, emit particles for .5 seconds</p>
+<p>if( particleEmitter )</p>
+<p>{</p>
+<p>particleEmitter.emit = true;</p>
+<p>yield WaitForSeconds( 0.5 );</p>
+<p>particleEmitter.emit = false;</p>
+<p>}</p>
+<p>}</p>
+<p>如果一个粒子发射器也添加到了爆炸预制中的话，然后就开始发射粒子，0.5秒后停止发射（yield）。</p>
+<p>完整爆炸脚本如下：</p>
+<p>var explosionTime = 1.0;</p>
+<p>var explosionRadius = 5.0;</p>
+<p>var explosionPower = 2000.0;</p>
+<p>function Start()</p>
+<p>{</p>
+<p>//Destroy the explosion in x seconds,</p>
+<p>//this will give the particle system and audio enough time to finish playing</p>
+<p>Destroy( gameObject, explosionTime );</p>
+<p>//Find all nearby colliders</p>
+<p>var colliders : Collider[] = Physics.OverlapSphere( transform.position,</p>
+<p>explosionRadius );</p>
+<p>//Apply a force to all surrounding rigid bodies.</p>
+<p>for( var hit in colliders )</p>
+<p>{</p>
+<p>if( hit.rigidbody )</p>
+<p>{</p>
+<p>hit.rigidbody.AddExplosionForce( explosionPower,</p>
+<p>transform.position, explosionRadius );</p>
+<p>}</p>
+<p>}</p>
+<p>//If we have a particle emitter attached, emit particles for .5 seconds</p>
+<p>if( particleEmitter )</p>
+<p>{</p>
+<p>particleEmitter.emit = true;</p>
+<p>yield WaitForSeconds( 0.5 );</p>
+<p>particleEmitter.emit = false;</p>
+<p>}</p>
+<p>}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/14/Unity3D第一人称射击游戏（推荐）/" data-id="ciolkjukp001btquowc9514lb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity3D-游戏/">Unity3D,游戏</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Android-功能开发笔记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/05/14/Android-功能开发笔记/" class="article-date">
@@ -101,7 +386,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android-功能开发笔记/" data-id="ciojyyvt50003les6eu8a5wr3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android-功能开发笔记/" data-id="ciolkjuil0003tquoui2yibjs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -145,7 +430,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android中通过来电转移实现“电话已关机”-“此号码已停机”等/" data-id="ciojyyvuz000ules6u4hilqls" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android中通过来电转移实现“电话已关机”-“此号码已停机”等/" data-id="ciolkjuk0000rtquokst2jdej" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -186,7 +471,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android-自动接听来电/" data-id="ciojyyvtn000dles61oz27w4b" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android-自动接听来电/" data-id="ciolkjujc000dtquof4tbiboq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -228,7 +513,100 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android_检查是否联网/" data-id="ciojyyvuu000qles6kdmyi9h1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android_检查是否联网/" data-id="ciolkjujw000ntquovyklt7hv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android_条码扫描二维码扫描" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/14/Android_条码扫描二维码扫描/" class="article-date">
+  <time datetime="2016-05-14T13:26:18.000Z" itemprop="datePublished">2016-05-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/14/Android_条码扫描二维码扫描/">Android_条码扫描二维码</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前言<br>　　最近公司的Android项目需要用到摄像头做条码或二维码的扫描，Google一下，发现一个以Apache License 2.0 开源的 ZXing项目。Zxing项目里的Android实现太过复杂多余东西太多，得对其进行简化。</p>
+<p>前提条件<br>　　下载源代码：点击这里</p>
+<p>　　编译核心库：Zxing的主页上有介绍具体步骤，大家也可以参照这篇博文：android 条码识别软件开发全解析(续2详解绝杀！)</p>
+<p>导入项目<br>　　打开Eclipse 导入 源码中的 Android 项目，然后右击项目 选择“Build path”——》”Add External Archives” 把核心库 core.jar文件加入到项目中。</p>
+<p>此时编译一下项目，会发现报错,“ Multiple substitutions specified in non-positional format; did you mean to add the formatted=”false” attribute?”之类的。打开raw 下的Values 发现错误是在一个<string>上。这里把 “preferences_custom_product_search_summary” 里的  %s  %f  全部都改成  %1$s  %1$f（因为我们用不到多国语言，建议只保留默认的Value ，其他全部删除）。</string></p>
+<p>　　原因：由于新的SDK采用了新版本的aapt（Android项目编译器），这个版本的aapt编译起来会比老版本更加的严格，然后在Android最新的开发文档的描述String的部分，已经说明如何去设置 %s 等符号</p>
+<p>　　“If you need to format your strings using String.format(String, Object…) , then you can do so by putting your format arguments in the string resource. For example, with the following resource:</p>
+<p>　　<string name="welcome_messages">Hello, %1$s! You have %2$d new messages.</string></p>
+<p>　　In this example, the format string has two arguments: %1$s is a string and %2$d is a decimal number. You can format the string with arguements from your application…“</p>
+<p>　　经过以上步骤后项目应该就可以运行了。</p>
+<p>　　但是ZXing的android项目东西太多了，有很多是我们不需要的，得新建另一个项目简化它。</p>
+<p>简化<br>　　在开始前大致介绍一下简化ZXing需要用到各个包 、类的职责。</p>
+<p>CaptureActivity。这个是启动Activity 也就是扫描器（如果是第一安装，它还会跳转到帮助界面）。<br>CaptureActivityHandler 解码处理类，负责调用另外的线程进行解码。<br>DecodeThread 解码的线程。<br>com.google.zxing.client.android.camera 包，摄像头控制包。<br>ViewfinderView 自定义的View，就是我们看见的拍摄时中间的框框了。<br>新建另一个项目<br>　　新建另一个项目将启动的Activity命名为CaptureActivity，并导入核心库。项目新建完成后我们打开 CaptureActivity 的布局文件，我这里为main。把里面的XML修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">复制代码</span><br><span class="line">1 &lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">2 android:layout_width=&quot;fill_parent&quot; android:layout_height=&quot;fill_parent&quot;&gt;</span><br><span class="line">3 &lt;SurfaceView android:id=&quot;@+id/preview_view&quot;</span><br><span class="line">4 android:layout_width=&quot;fill_parent&quot; android:layout_height=&quot;fill_parent&quot;</span><br><span class="line">5 android:layout_centerInParent=&quot;true&quot;/&gt;</span><br><span class="line">6 </span><br><span class="line">7 &lt;com.Zxing.Demo.view.ViewfinderView</span><br><span class="line">8 android:id=&quot;@+id/viewfinder_view&quot; android:layout_width=&quot;fill_parent&quot;</span><br><span class="line">9 android:layout_height=&quot;fill_parent&quot; android:background=&quot;@android:color/transparent&quot;/&gt;</span><br><span class="line">10 &lt;TextView android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">11 android:id=&quot;@+id/txtResult&quot;</span><br><span class="line">12 android:layout_height=&quot;wrap_content&quot; android:text=&quot;@string/hello&quot;/&gt;</span><br><span class="line">13 </span><br><span class="line">14  &lt;/FrameLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>复制代码<br>　　可以看到在XML里面用到了 ViewfinderView 自定义view 。所以新建一个View 的包，然后把：ViewfinderView 和 ViewfinderResultPointCallback 靠到里面（记得对应修改XML里面的包）。</p>
+<p>打开 CaptureActivity 覆盖 onCreate 方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">复制代码</span><br><span class="line">1 @Override</span><br><span class="line">2 publicvoid onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">3 super.onCreate(savedInstanceState);</span><br><span class="line">4 setContentView(R.layout.main);</span><br><span class="line">5 //初始化 CameraManager</span><br><span class="line">6   CameraManager.init(getApplication());</span><br><span class="line">7 </span><br><span class="line">8 viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);</span><br><span class="line">9 txtResult = (TextView) findViewById(R.id.txtResult);</span><br><span class="line">10 hasSurface =false;</span><br><span class="line">11 inactivityTimer =new InactivityTimer(this);</span><br><span class="line">12 &#125;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+<p>  这里调用到的 CameraManager 类是控制摄像头的包里的类。新建一个camera包把：com.google.zxing.client.android.camera 里面的类全部拷入，另外我把PlanarYUVLuminanceSource也拷入到这个包里面。根据错误的提示来修正代码，主要是修改正包结构。（整个简化的流程都是如此：“根据错误提示，修改代码”）。</p>
+<p>　　在修改的过程中，有很多是关于R 资源的问题，在此我们需要将Values  里面的两个xml资源文件拷入项目中：colos.xml 和ids.xml 。 ctrl+b 一下看看error 是不是少了很多。在CameraManager中有些地方需要用到项目的配置，这里需要把配置直接写入代码中：<br>　　<br>　　<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">　　</span><br><span class="line"></span><br><span class="line">// SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);</span><br><span class="line">//是否使用前灯</span><br><span class="line">// if (prefs.getBoolean(PreferencesActivity.KEY_FRONT_LIGHT, false)) &#123;</span><br><span class="line">// FlashlightManager.enableFlashlight();</span><br><span class="line">// &#125;</span><br><span class="line">FlashlightManager.enableFlashlight();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> 　　使用摄像头需要加入相应的权限：</span><br></pre></td></tr></table></figure></p>
+<p><uses-permission android:name="android.permission.CAMERA"></uses-permission></p>
+<p><uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission></p>
+<p><uses-feature android:name="android.hardware.camera"></uses-feature></p>
+<p><uses-feature android:name="android.hardware.camera.autofocus"></uses-feature></p>
+<p><uses-permission android:name="android.permission.VIBRATE"></uses-permission></p>
+<uses-permission android:name="android.permission.FLASHLIGHT">
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　当View 和 camera 包里的错误修正完成后，我们继续来看CaptureActivity。</span><br><span class="line"></span><br><span class="line">覆盖onResume方法初始化摄像头：</span><br></pre></td></tr></table></figure>
+<p>复制代码<br>@Override<br>protectedvoid onResume() {<br>super.onResume();<br>SurfaceView surfaceView = (SurfaceView) findViewById(R.id.preview_view);<br>SurfaceHolder surfaceHolder = surfaceView.getHolder();<br>if (hasSurface) {<br>initCamera(surfaceHolder);<br>} else {<br>surfaceHolder.addCallback(this);<br>surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);<br>}<br>decodeFormats =null;<br>characterSet =null;</p>
+<p>playBeep =true;<br>AudioManager audioService = (AudioManager) getSystemService(AUDIO_SERVICE);<br>if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {<br>playBeep =false;<br>}<br>initBeepSound();<br>vibrate =true;<br>}</p>
+<p>复制代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">initCamera</span><br><span class="line">SurfaceHolder接口实现</span><br><span class="line">initCamera () 方法用于初始化摄像头，如果排除了所有的error ，运行项目时就可以看到大致扫描界面了。 surfaceHolder.addCallback(this);表示让CaptureActivity实现其callback接口。</span><br><span class="line"></span><br><span class="line">handler = new CaptureActivityHandler(this, decodeFormats,characterSet) 用于进行扫描解码处理。</span><br><span class="line"></span><br><span class="line">解码</span><br><span class="line">　　上面的步骤主要都是用于对摄像头的控制，而解码的真正工作入口是在CaptureActivityHandler 里面的。新建一个Decoding包把以下文件拷入包中：</span><br><span class="line"></span><br><span class="line">CaptureActivityHandler</span><br><span class="line">DecodeFormatManager</span><br><span class="line">DecodeHandler</span><br><span class="line">DecodeThread</span><br><span class="line">FinishListener</span><br><span class="line">InactivityTimer</span><br><span class="line">Intents</span><br><span class="line">由于我们的包结构和Zxing 项目的有所不同所以需要注意一下类的可访问性</span><br><span class="line"></span><br><span class="line">同样开始ctrl+B 编译一下，然后开始修正错误。</span><br><span class="line"></span><br><span class="line">　　在CaptureActivityHandler 里 把 handleMessage 里的部分方法先注释掉如：“decode_succeeded ”分支，这是解码成功时调用 CaptureActivity 展示解码的结果。</span><br><span class="line"></span><br><span class="line">在DecodeThread 类里，修改部分涉及Preference配置的代码：</span><br></pre></td></tr></table></figure>
+<p>复制代码<br>DecodeThread(CaptureActivity activity,<br>Vector<barcodeformat> decodeFormats,<br>String characterSet,<br>ResultPointCallback resultPointCallback) {</barcodeformat></p>
+<p>this.activity = activity;<br>handlerInitLatch =new CountDownLatch(1);</p>
+<p>hints =new Hashtable<decodehinttype, object="">(3);</decodehinttype,></p>
+<p>//// The prefs can’t change while the thread is running, so pick them up once here.<br>// if (decodeFormats == null || decodeFormats.isEmpty()) {<br>// SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);<br>// decodeFormats = new Vector<barcodeformat>();<br>// if (prefs.getBoolean(PreferencesActivity.KEY_DECODE_1D, true)) {<br>// decodeFormats.addAll(DecodeFormatManager.ONE_D_FORMATS);<br>// }<br>// if (prefs.getBoolean(PreferencesActivity.KEY_DECODE_QR, true)) {<br>// decodeFormats.addAll(DecodeFormatManager.QR_CODE_FORMATS);<br>// }<br>// if (prefs.getBoolean(PreferencesActivity.KEY_DECODE_DATA_MATRIX, true)) {<br>// decodeFormats.addAll(DecodeFormatManager.DATA_MATRIX_FORMATS);<br>// }<br>// }<br>if (decodeFormats ==null|| decodeFormats.isEmpty()) {<br>decodeFormats =new Vector<barcodeformat>();<br>decodeFormats.addAll(DecodeFormatManager.ONE_D_FORMATS);<br>decodeFormats.addAll(DecodeFormatManager.QR_CODE_FORMATS);<br>decodeFormats.addAll(DecodeFormatManager.DATA_MATRIX_FORMATS);</barcodeformat></barcodeformat></p>
+<p>}</p>
+<p>hints.put(DecodeHintType.POSSIBLE_FORMATS, decodeFormats);</p>
+<p>if (characterSet !=null) {<br>hints.put(DecodeHintType.CHARACTER_SET, characterSet);<br>}</p>
+<p>hints.put(DecodeHintType.NEED_RESULT_POINT_CALLBACK, resultPointCallback);<br>}<br>复制代码</p>
+<p>```</p>
+<p>这里是设置 解码的类型，我们现在默认将所有类型都加入。</p>
+<p>错误类型基本上都是：包结构、PreferencesActivity 的配置 、类可访问性的问题。根据错误提示耐心把错误解决。</p>
+<p>返回解码结果<br> 　　还记得在 CaptureActivityHandler 的 messagehandler 里注销掉的Case分支吗？现在CaptureActivity 里实现它。</p>
+<p>复制代码<br>publicvoid handleDecode(Result obj, Bitmap barcode) {<br>inactivityTimer.onActivity();<br>viewfinderView.drawResultBitmap(barcode);<br>playBeepSoundAndVibrate();<br>txtResult.setText(obj.getBarcodeFormat().toString() +”:”</p>
+<ul>
+<li>obj.getText());<br>}<br>复制代码<br>最后<br>　　ZXing的简化已基本完成，有几位是可以运行成功的？呵呵。</li>
+</ul>
+<p>下面是CaptureActivity的源码:</p>
+<p>CaputreActivity<br>简化过的包结构图：</p>
+<p>　</p>
+<p>　简化后的ZXing 更加方便我们了解ZXing项目 是如何解码的。只要仔细查看源码，进行单点跟踪调试，相信大家很容易能理解。</p>
+<p>顾客是上帝<br>   很多人留言要源码， 其实我这不是什么源码，我只是把ZXing的东西简化了一下而已。事实上我也不喜欢直接放源码项目，这样大家就不想读ZXing的源码了。</p>
+<p>下面是我简化的版本：Zxing简化</p>
+<p>很多人需要Core 核心包（其实ZXing的源码里面就有），这里提供下我写文章时的版本 1.6的：</p>
+<p>Zxing</p>
+</uses-permission>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/14/Android_条码扫描二维码扫描/" data-id="ciolkjujt000jtquoivpu7z4t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -290,64 +668,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android_Afinal框架/" data-id="ciojyyvts000fles6jxcnrywv" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Android_消息推送" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/14/Android_消息推送/" class="article-date">
-  <time datetime="2016-05-14T13:26:18.000Z" itemprop="datePublished">2016-05-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/14/Android_消息推送/">Android 消息推送</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.引言</p>
-<p>　　所谓的消息推送就是从服务器端向移动终端发送连接，传输一定的信息。比如一些新闻客户端，每隔一段时间收到一条或者多条通知，这就是从服务器端传来的推送消息；还比如常用的一些IM软件如微信、GTalk等，都具有服务器推送功能。</p>
-<p>　　推送方法如下：</p>
-<p>　　1)通过SMS进行服务器端和客户端的交流通信。</p>
-<p>　　在Android平台上，你可以通过拦截SMS消息并且解析消息内容来了解服务器的意图，可以实现完全的实时操作。但是问题是这个方案的成本相对比较高，且依赖于运营商。</p>
-<p>　　2)循环主动定时获取</p>
-<p>　　这种方法需要客户端来做一个定时或者周期性的访问服务器端接口，以获得最新的消息。轮询的频率太慢可能导致某些消息的延迟，太快则会大量消耗网络带宽和电池。</p>
-<p>　　3)持久连接</p>
-<p>　　这个方案可以解决由轮询带来的性能问题，但是还是会消耗手机的电池。我们需要开一个服务来保持和服务器端的持久连接（苹果就和谷歌的C2DM是这种机制）。但是对于Android系统，当系统可用资源较低，系统会强制关闭我们的服务或者是应用，这种情况下连接会强制中断。（Apple的推送服务之所以工作的很好，是因为每一台手机仅仅保持一个与服务器之间的连接，事实上C2DM也是这么工作的。即所有的推送服务都是经由一个代理服务器完成的，这种情况下只需要和一台服务器保持持久连接即可。C2DM=Cloud to Device Messaging）。</p>
-<p>　　相比之下第三种还是最可行的。为软件编写系统服务或开机启动功能；或者如果系统资源较低，服务被关闭后可以在onDestroy ()方法里面再重启该服务，进而实现持久连接的方式。</p>
-<p>　　C2DM内置于Android的2.2系统上，无法兼容老的1.6到2.1系统；且依赖于Google官方提供的C2DM服务器，由于国内的网络环境，这个服务经常不可用。</p>
-<p>　　建立在TCP协议之上的XMPP协议，不仅可提供可这种持久连接的功能，能实现服务器和客户机的双工通信，还能不依赖与系统版本和google服务器的限制，提供了比较好的解决方案。</p>
-<ol>
-<li>XMPP协议</li>
-</ol>
-<p>　　XMPP全称Extensible Messaging and Presence Protocol，前身是Jabber项目，是一种以XML为基础的开放式即时通讯协议。XMPP因为被Google Talk和网易泡泡应用而被广大网民所接触。XMPP的关键特色是，分散式的即时通讯系统，以及使用XML串流。XMPP目前被IETF国际标准组织完成了标准化工作。</p>
-<p>　　Android push notification(androidpn) 是一个基于XMPP协议的java开源实现，它包含了完整的客户端和服务器端。该服务器端基本是在另外一个开源工程openfire基础上修改实现的。</p>
-<p>　　androidpn客户端需要用到一个基于java的开源XMPP协议包asmack，这个包同样也是基于openfire下的另外一个开源项目smack，不过我们不需要自己编译，可以直接把androidpn客户端里面的asmack.jar拿来使用。客户端利用asmack中提供的XMPPConnection类与服务器建立持久连接，并通过该连接进行用户注册和登录认证，同样也是通过这条连接，接收服务器发送的通知。</p>
-<p>　　androidpn服务器端也是java语言实现的，基于openfire开源工程，不过它的Web部分采用的是spring框架，这一点与openfire是不同的。Androidpn服务器包含两个部分，一个是侦听在5222端口上的XMPP服务，负责与客户端的XMPPConnection类进行通信，作用是用户注册和身份认证，并发送推送通知消息。另外一部分是Web服务器，采用一个轻量级的HTTP服务器，负责接收用户的Web请求。服务器的这两方式，意义非凡：当相应的TCP端口被防火墙封闭，可以使用轮询的方式进行访问，因此又有助于通过防火墙。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android_消息推送/" data-id="ciojyyvvd0014les614z59dpd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android_Afinal框架/" data-id="ciolkjujp000htquoy5y0w517" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -482,7 +803,7 @@ public static String getJsonArrStrFromList(Object obj)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Json_反序列化/" data-id="ciojyyvv80010les6rjm5674w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Json_反序列化/" data-id="ciolkjukm0017tquojfvguwd2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -494,9 +815,9 @@ public static String getJsonArrStrFromList(Object obj)
 
 
   
-    <article id="post-Android_条码扫描二维码扫描" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Android_消息推送" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/05/14/Android_条码扫描二维码扫描/" class="article-date">
+    <a href="/2016/05/14/Android_消息推送/" class="article-date">
   <time datetime="2016-05-14T13:26:18.000Z" itemprop="datePublished">2016-05-14</time>
 </a>
     
@@ -508,7 +829,7 @@ public static String getJsonArrStrFromList(Object obj)
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/14/Android_条码扫描二维码扫描/">Android_条码扫描二维码</a>
+      <a class="article-title" href="/2016/05/14/Android_消息推送/">Android 消息推送</a>
     </h1>
   
 
@@ -516,66 +837,30 @@ public static String getJsonArrStrFromList(Object obj)
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前言<br>　　最近公司的Android项目需要用到摄像头做条码或二维码的扫描，Google一下，发现一个以Apache License 2.0 开源的 ZXing项目。Zxing项目里的Android实现太过复杂多余东西太多，得对其进行简化。</p>
-<p>前提条件<br>　　下载源代码：点击这里</p>
-<p>　　编译核心库：Zxing的主页上有介绍具体步骤，大家也可以参照这篇博文：android 条码识别软件开发全解析(续2详解绝杀！)</p>
-<p>导入项目<br>　　打开Eclipse 导入 源码中的 Android 项目，然后右击项目 选择“Build path”——》”Add External Archives” 把核心库 core.jar文件加入到项目中。</p>
-<p>此时编译一下项目，会发现报错,“ Multiple substitutions specified in non-positional format; did you mean to add the formatted=”false” attribute?”之类的。打开raw 下的Values 发现错误是在一个<string>上。这里把 “preferences_custom_product_search_summary” 里的  %s  %f  全部都改成  %1$s  %1$f（因为我们用不到多国语言，建议只保留默认的Value ，其他全部删除）。</string></p>
-<p>　　原因：由于新的SDK采用了新版本的aapt（Android项目编译器），这个版本的aapt编译起来会比老版本更加的严格，然后在Android最新的开发文档的描述String的部分，已经说明如何去设置 %s 等符号</p>
-<p>　　“If you need to format your strings using String.format(String, Object…) , then you can do so by putting your format arguments in the string resource. For example, with the following resource:</p>
-<p>　　<string name="welcome_messages">Hello, %1$s! You have %2$d new messages.</string></p>
-<p>　　In this example, the format string has two arguments: %1$s is a string and %2$d is a decimal number. You can format the string with arguements from your application…“</p>
-<p>　　经过以上步骤后项目应该就可以运行了。</p>
-<p>　　但是ZXing的android项目东西太多了，有很多是我们不需要的，得新建另一个项目简化它。</p>
-<p>简化<br>　　在开始前大致介绍一下简化ZXing需要用到各个包 、类的职责。</p>
-<p>CaptureActivity。这个是启动Activity 也就是扫描器（如果是第一安装，它还会跳转到帮助界面）。<br>CaptureActivityHandler 解码处理类，负责调用另外的线程进行解码。<br>DecodeThread 解码的线程。<br>com.google.zxing.client.android.camera 包，摄像头控制包。<br>ViewfinderView 自定义的View，就是我们看见的拍摄时中间的框框了。<br>新建另一个项目<br>　　新建另一个项目将启动的Activity命名为CaptureActivity，并导入核心库。项目新建完成后我们打开 CaptureActivity 的布局文件，我这里为main。把里面的XML修改为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">复制代码</span><br><span class="line">1 &lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">2 android:layout_width=&quot;fill_parent&quot; android:layout_height=&quot;fill_parent&quot;&gt;</span><br><span class="line">3 &lt;SurfaceView android:id=&quot;@+id/preview_view&quot;</span><br><span class="line">4 android:layout_width=&quot;fill_parent&quot; android:layout_height=&quot;fill_parent&quot;</span><br><span class="line">5 android:layout_centerInParent=&quot;true&quot;/&gt;</span><br><span class="line">6 </span><br><span class="line">7 &lt;com.Zxing.Demo.view.ViewfinderView</span><br><span class="line">8 android:id=&quot;@+id/viewfinder_view&quot; android:layout_width=&quot;fill_parent&quot;</span><br><span class="line">9 android:layout_height=&quot;fill_parent&quot; android:background=&quot;@android:color/transparent&quot;/&gt;</span><br><span class="line">10 &lt;TextView android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">11 android:id=&quot;@+id/txtResult&quot;</span><br><span class="line">12 android:layout_height=&quot;wrap_content&quot; android:text=&quot;@string/hello&quot;/&gt;</span><br><span class="line">13 </span><br><span class="line">14  &lt;/FrameLayout&gt;</span><br></pre></td></tr></table></figure>
-<p>复制代码<br>　　可以看到在XML里面用到了 ViewfinderView 自定义view 。所以新建一个View 的包，然后把：ViewfinderView 和 ViewfinderResultPointCallback 靠到里面（记得对应修改XML里面的包）。</p>
-<p>打开 CaptureActivity 覆盖 onCreate 方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">复制代码</span><br><span class="line">1 @Override</span><br><span class="line">2 publicvoid onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">3 super.onCreate(savedInstanceState);</span><br><span class="line">4 setContentView(R.layout.main);</span><br><span class="line">5 //初始化 CameraManager</span><br><span class="line">6   CameraManager.init(getApplication());</span><br><span class="line">7 </span><br><span class="line">8 viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);</span><br><span class="line">9 txtResult = (TextView) findViewById(R.id.txtResult);</span><br><span class="line">10 hasSurface =false;</span><br><span class="line">11 inactivityTimer =new InactivityTimer(this);</span><br><span class="line">12 &#125;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
-<p>  这里调用到的 CameraManager 类是控制摄像头的包里的类。新建一个camera包把：com.google.zxing.client.android.camera 里面的类全部拷入，另外我把PlanarYUVLuminanceSource也拷入到这个包里面。根据错误的提示来修正代码，主要是修改正包结构。（整个简化的流程都是如此：“根据错误提示，修改代码”）。</p>
-<p>　　在修改的过程中，有很多是关于R 资源的问题，在此我们需要将Values  里面的两个xml资源文件拷入项目中：colos.xml 和ids.xml 。 ctrl+b 一下看看error 是不是少了很多。在CameraManager中有些地方需要用到项目的配置，这里需要把配置直接写入代码中：<br>　　<br>　　<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">　　</span><br><span class="line"></span><br><span class="line">// SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);</span><br><span class="line">//是否使用前灯</span><br><span class="line">// if (prefs.getBoolean(PreferencesActivity.KEY_FRONT_LIGHT, false)) &#123;</span><br><span class="line">// FlashlightManager.enableFlashlight();</span><br><span class="line">// &#125;</span><br><span class="line">FlashlightManager.enableFlashlight();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> 　　使用摄像头需要加入相应的权限：</span><br></pre></td></tr></table></figure></p>
-<p><uses-permission android:name="android.permission.CAMERA"></uses-permission></p>
-<p><uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission></p>
-<p><uses-feature android:name="android.hardware.camera"></uses-feature></p>
-<p><uses-feature android:name="android.hardware.camera.autofocus"></uses-feature></p>
-<p><uses-permission android:name="android.permission.VIBRATE"></uses-permission></p>
-<uses-permission android:name="android.permission.FLASHLIGHT">
+        <p>1.引言</p>
+<p>　　所谓的消息推送就是从服务器端向移动终端发送连接，传输一定的信息。比如一些新闻客户端，每隔一段时间收到一条或者多条通知，这就是从服务器端传来的推送消息；还比如常用的一些IM软件如微信、GTalk等，都具有服务器推送功能。</p>
+<p>　　推送方法如下：</p>
+<p>　　1)通过SMS进行服务器端和客户端的交流通信。</p>
+<p>　　在Android平台上，你可以通过拦截SMS消息并且解析消息内容来了解服务器的意图，可以实现完全的实时操作。但是问题是这个方案的成本相对比较高，且依赖于运营商。</p>
+<p>　　2)循环主动定时获取</p>
+<p>　　这种方法需要客户端来做一个定时或者周期性的访问服务器端接口，以获得最新的消息。轮询的频率太慢可能导致某些消息的延迟，太快则会大量消耗网络带宽和电池。</p>
+<p>　　3)持久连接</p>
+<p>　　这个方案可以解决由轮询带来的性能问题，但是还是会消耗手机的电池。我们需要开一个服务来保持和服务器端的持久连接（苹果就和谷歌的C2DM是这种机制）。但是对于Android系统，当系统可用资源较低，系统会强制关闭我们的服务或者是应用，这种情况下连接会强制中断。（Apple的推送服务之所以工作的很好，是因为每一台手机仅仅保持一个与服务器之间的连接，事实上C2DM也是这么工作的。即所有的推送服务都是经由一个代理服务器完成的，这种情况下只需要和一台服务器保持持久连接即可。C2DM=Cloud to Device Messaging）。</p>
+<p>　　相比之下第三种还是最可行的。为软件编写系统服务或开机启动功能；或者如果系统资源较低，服务被关闭后可以在onDestroy ()方法里面再重启该服务，进而实现持久连接的方式。</p>
+<p>　　C2DM内置于Android的2.2系统上，无法兼容老的1.6到2.1系统；且依赖于Google官方提供的C2DM服务器，由于国内的网络环境，这个服务经常不可用。</p>
+<p>　　建立在TCP协议之上的XMPP协议，不仅可提供可这种持久连接的功能，能实现服务器和客户机的双工通信，还能不依赖与系统版本和google服务器的限制，提供了比较好的解决方案。</p>
+<ol>
+<li>XMPP协议</li>
+</ol>
+<p>　　XMPP全称Extensible Messaging and Presence Protocol，前身是Jabber项目，是一种以XML为基础的开放式即时通讯协议。XMPP因为被Google Talk和网易泡泡应用而被广大网民所接触。XMPP的关键特色是，分散式的即时通讯系统，以及使用XML串流。XMPP目前被IETF国际标准组织完成了标准化工作。</p>
+<p>　　Android push notification(androidpn) 是一个基于XMPP协议的java开源实现，它包含了完整的客户端和服务器端。该服务器端基本是在另外一个开源工程openfire基础上修改实现的。</p>
+<p>　　androidpn客户端需要用到一个基于java的开源XMPP协议包asmack，这个包同样也是基于openfire下的另外一个开源项目smack，不过我们不需要自己编译，可以直接把androidpn客户端里面的asmack.jar拿来使用。客户端利用asmack中提供的XMPPConnection类与服务器建立持久连接，并通过该连接进行用户注册和登录认证，同样也是通过这条连接，接收服务器发送的通知。</p>
+<p>　　androidpn服务器端也是java语言实现的，基于openfire开源工程，不过它的Web部分采用的是spring框架，这一点与openfire是不同的。Androidpn服务器包含两个部分，一个是侦听在5222端口上的XMPP服务，负责与客户端的XMPPConnection类进行通信，作用是用户注册和身份认证，并发送推送通知消息。另外一部分是Web服务器，采用一个轻量级的HTTP服务器，负责接收用户的Web请求。服务器的这两方式，意义非凡：当相应的TCP端口被防火墙封闭，可以使用轮询的方式进行访问，因此又有助于通过防火墙。</p>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　当View 和 camera 包里的错误修正完成后，我们继续来看CaptureActivity。</span><br><span class="line"></span><br><span class="line">覆盖onResume方法初始化摄像头：</span><br></pre></td></tr></table></figure>
-<p>复制代码<br>@Override<br>protectedvoid onResume() {<br>super.onResume();<br>SurfaceView surfaceView = (SurfaceView) findViewById(R.id.preview_view);<br>SurfaceHolder surfaceHolder = surfaceView.getHolder();<br>if (hasSurface) {<br>initCamera(surfaceHolder);<br>} else {<br>surfaceHolder.addCallback(this);<br>surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);<br>}<br>decodeFormats =null;<br>characterSet =null;</p>
-<p>playBeep =true;<br>AudioManager audioService = (AudioManager) getSystemService(AUDIO_SERVICE);<br>if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {<br>playBeep =false;<br>}<br>initBeepSound();<br>vibrate =true;<br>}</p>
-<p>复制代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">initCamera</span><br><span class="line">SurfaceHolder接口实现</span><br><span class="line">initCamera () 方法用于初始化摄像头，如果排除了所有的error ，运行项目时就可以看到大致扫描界面了。 surfaceHolder.addCallback(this);表示让CaptureActivity实现其callback接口。</span><br><span class="line"></span><br><span class="line">handler = new CaptureActivityHandler(this, decodeFormats,characterSet) 用于进行扫描解码处理。</span><br><span class="line"></span><br><span class="line">解码</span><br><span class="line">　　上面的步骤主要都是用于对摄像头的控制，而解码的真正工作入口是在CaptureActivityHandler 里面的。新建一个Decoding包把以下文件拷入包中：</span><br><span class="line"></span><br><span class="line">CaptureActivityHandler</span><br><span class="line">DecodeFormatManager</span><br><span class="line">DecodeHandler</span><br><span class="line">DecodeThread</span><br><span class="line">FinishListener</span><br><span class="line">InactivityTimer</span><br><span class="line">Intents</span><br><span class="line">由于我们的包结构和Zxing 项目的有所不同所以需要注意一下类的可访问性</span><br><span class="line"></span><br><span class="line">同样开始ctrl+B 编译一下，然后开始修正错误。</span><br><span class="line"></span><br><span class="line">　　在CaptureActivityHandler 里 把 handleMessage 里的部分方法先注释掉如：“decode_succeeded ”分支，这是解码成功时调用 CaptureActivity 展示解码的结果。</span><br><span class="line"></span><br><span class="line">在DecodeThread 类里，修改部分涉及Preference配置的代码：</span><br></pre></td></tr></table></figure>
-<p>复制代码<br>DecodeThread(CaptureActivity activity,<br>Vector<barcodeformat> decodeFormats,<br>String characterSet,<br>ResultPointCallback resultPointCallback) {</barcodeformat></p>
-<p>this.activity = activity;<br>handlerInitLatch =new CountDownLatch(1);</p>
-<p>hints =new Hashtable<decodehinttype, object="">(3);</decodehinttype,></p>
-<p>//// The prefs can’t change while the thread is running, so pick them up once here.<br>// if (decodeFormats == null || decodeFormats.isEmpty()) {<br>// SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);<br>// decodeFormats = new Vector<barcodeformat>();<br>// if (prefs.getBoolean(PreferencesActivity.KEY_DECODE_1D, true)) {<br>// decodeFormats.addAll(DecodeFormatManager.ONE_D_FORMATS);<br>// }<br>// if (prefs.getBoolean(PreferencesActivity.KEY_DECODE_QR, true)) {<br>// decodeFormats.addAll(DecodeFormatManager.QR_CODE_FORMATS);<br>// }<br>// if (prefs.getBoolean(PreferencesActivity.KEY_DECODE_DATA_MATRIX, true)) {<br>// decodeFormats.addAll(DecodeFormatManager.DATA_MATRIX_FORMATS);<br>// }<br>// }<br>if (decodeFormats ==null|| decodeFormats.isEmpty()) {<br>decodeFormats =new Vector<barcodeformat>();<br>decodeFormats.addAll(DecodeFormatManager.ONE_D_FORMATS);<br>decodeFormats.addAll(DecodeFormatManager.QR_CODE_FORMATS);<br>decodeFormats.addAll(DecodeFormatManager.DATA_MATRIX_FORMATS);</barcodeformat></barcodeformat></p>
-<p>}</p>
-<p>hints.put(DecodeHintType.POSSIBLE_FORMATS, decodeFormats);</p>
-<p>if (characterSet !=null) {<br>hints.put(DecodeHintType.CHARACTER_SET, characterSet);<br>}</p>
-<p>hints.put(DecodeHintType.NEED_RESULT_POINT_CALLBACK, resultPointCallback);<br>}<br>复制代码</p>
-<p>```</p>
-<p>这里是设置 解码的类型，我们现在默认将所有类型都加入。</p>
-<p>错误类型基本上都是：包结构、PreferencesActivity 的配置 、类可访问性的问题。根据错误提示耐心把错误解决。</p>
-<p>返回解码结果<br> 　　还记得在 CaptureActivityHandler 的 messagehandler 里注销掉的Case分支吗？现在CaptureActivity 里实现它。</p>
-<p>复制代码<br>publicvoid handleDecode(Result obj, Bitmap barcode) {<br>inactivityTimer.onActivity();<br>viewfinderView.drawResultBitmap(barcode);<br>playBeepSoundAndVibrate();<br>txtResult.setText(obj.getBarcodeFormat().toString() +”:”</p>
-<ul>
-<li>obj.getText());<br>}<br>复制代码<br>最后<br>　　ZXing的简化已基本完成，有几位是可以运行成功的？呵呵。</li>
-</ul>
-<p>下面是CaptureActivity的源码:</p>
-<p>CaputreActivity<br>简化过的包结构图：</p>
-<p>　</p>
-<p>　简化后的ZXing 更加方便我们了解ZXing项目 是如何解码的。只要仔细查看源码，进行单点跟踪调试，相信大家很容易能理解。</p>
-<p>顾客是上帝<br>   很多人留言要源码， 其实我这不是什么源码，我只是把ZXing的东西简化了一下而已。事实上我也不喜欢直接放源码项目，这样大家就不想读ZXing的源码了。</p>
-<p>下面是我简化的版本：Zxing简化</p>
-<p>很多人需要Core 核心包（其实ZXing的源码里面就有），这里提供下我写文章时的版本 1.6的：</p>
-<p>Zxing</p>
-</uses-permission>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android_条码扫描二维码扫描/" data-id="ciojyyvur000oles6nfrwihuo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android_消息推送/" data-id="ciolkjujy000ptquo6g8q5vh0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -644,64 +929,7 @@ public static String getJsonArrStrFromList(Object obj)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android-应用插件式开发解决方法/" data-id="ciojyyvt80006les69r4iwqbs" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Android-解析json" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/14/Android-解析json/" class="article-date">
-  <time datetime="2016-05-13T16:11:34.000Z" itemprop="datePublished">2016-05-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/14/Android-解析json/">Android 解析json</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>###JSON的定义：<br>       一种轻量级的数据交换格式，具有良好的可读和便于快速编写的特性。业内主流技术为其提供了完整的解决方案（有点类似于正则表达式 ，获得了当今大部分语言的支持），从而可以在不同平台间进行数据交换。JSON采用兼容性很高的文本格式，同时也具备类似于C语言体系的行为。 – Json.org</p>
-<p>JSON Vs XML</p>
-<p>1.JSON和XML的数据可读性基本相同</p>
-<p>2.JSON和XML同样拥有丰富的解析手段</p>
-<p>3.JSON相对于XML来讲，数据的体积小</p>
-<p>4.JSON与JavaScript的交互更加方便</p>
-<p>5.JSON对数据的描述性比XML较差</p>
-<p>6.JSON的速度要远远快于XML</p>
-<p>android2.3提供的json解析类 </p>
-<p>android的json解析部分都在包org.json下，主要有以下几个类：<br>JSONObject：可以看作是一个json对象,这是系统中有关JSON定义的基本单元，其包含一对儿(Key/Value)数值。它对外部(External：   应用toString()方法输出的数值)调用的响应体现为一个标准的字符串（例如：{“JSON”: “Hello, World”}，最外被大括号包裹，其中的Key和Value被冒号”:”分隔）。其对于内部(Internal)行为的操作格式略微，例如：初始化一个JSONObject实例，引用内部的put()方法添加数值：new JSONObject().put(“JSON”, “Hello, World!”)，在Key和Value之间是以逗号”,”分隔。Value的类型包括：Boolean、JSONArray、JSONObject、Number、String或者默认值JSONObject.NULL object 。</p>
-<p>JSONStringer：json文本构建类 ，根据官方的解释，这个类可以帮助快速和便捷的创建JSON text。其最大的优点在于可以减少由于 格式的错误导致程序异常，引用这个类可以自动严格按照JSON语法规则（syntax rules）创建JSON text。每个JSONStringer实体只能对应创建一个JSON text。。其最大的优点在于可以减少由于格式的错误导致程序异常，引用这个类可以自动严格按照JSON语法规则（syntax rules）创建JSON text。每个JSONStringer实体只能对应创建一个JSON text。</p>
-<p>JSONArray：它代表一组有序的数值。将其转换为String输出(toString)所表现的形式是用方括号包裹，数值以逗号”,”分隔（例如：     [value1,value2,value3]，大家可以亲自利用简短的代码更加直观的了解其格式）。这个类的内部同样具有查询行为，     get()和opt()两种方法都可以通过index索引返回指定的数值，put()方法用来添加或者替换数值。同样这个类的value类型可以包括：Boolean、JSONArray、JSONObject、Number、String或者默认值JSONObject.NULL object。</p>
-<p>JSONTokener：json解析类<br>JSONException：json中用到的异常 </p>
-<p>JSONObject, JSONArray来构建json文本   </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">代码  </span><br><span class="line">// 假设现在要创建这样一个json文本  </span><br><span class="line">//  &#123;  </span><br><span class="line">//      &quot;phone&quot; : [&quot;12345678&quot;, &quot;87654321&quot;], // 数组  </span><br><span class="line">//      &quot;name&quot; : &quot;yuanzhifei89&quot;, // 字符串  </span><br><span class="line">//      &quot;age&quot; : 100, // 数值  </span><br><span class="line">//      &quot;address&quot; : &#123; &quot;country&quot; : &quot;china&quot;, &quot;province&quot; : &quot;jiangsu&quot; &#125;, // 对象  </span><br><span class="line">//      &quot;married&quot; : false // 布尔值  </span><br><span class="line">//  &#125;</span><br></pre></td></tr></table></figure>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">try &#123;  </span><br><span class="line">    // 首先最外层是&#123;&#125;，是创建一个对象  </span><br><span class="line">    JSONObject person = new JSONObject();  </span><br><span class="line">    // 第一个键phone的值是数组，所以需要创建数组对象  </span><br><span class="line">    JSONArray phone = new JSONArray();  </span><br><span class="line">    phone.put(&quot;12345678&quot;).put(&quot;87654321&quot;);  </span><br><span class="line">    person.put(&quot;phone&quot;, phone);  </span><br><span class="line">  </span><br><span class="line">    person.put(&quot;name&quot;, &quot;yuanzhifei89&quot;);  </span><br><span class="line">    person.put(&quot;age&quot;, 100);  </span><br><span class="line">    // 键address的值是对象，所以又要创建一个对象  </span><br><span class="line">    JSONObject address = new JSONObject();  </span><br><span class="line">    address.put(&quot;country&quot;, &quot;china&quot;);  </span><br><span class="line">    address.put(&quot;province&quot;, &quot;jiangsu&quot;);  </span><br><span class="line">    person.put(&quot;address&quot;, address);    </span><br><span class="line">    person.put(&quot;married&quot;, false);  </span><br><span class="line">&#125; catch (JSONException ex) &#123;  </span><br><span class="line">    // 键为null或使用json不支持的数字格式(NaN, infinities)  </span><br><span class="line">    throw new RuntimeException(ex);  </span><br><span class="line">&#125; </span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">getType和optType api的使用   </span><br><span class="line">getType可以将要获取的键的值转换为指定的类型，如果无法转换或没有值则抛出JSONException </span><br><span class="line">optType也是将要获取的键的值转换为指定的类型，无法转换或没有值时返回用户提供或这默认提供的值 </span><br><span class="line">代码  </span><br><span class="line">try &#123;  </span><br><span class="line">    // 所有使用的对象都是用上面创建的对象  </span><br><span class="line">    // 将第一个电话号码转换为数值和将名字转换为数值  </span><br><span class="line">    phone.getLong(0);  </span><br><span class="line">    person.getLong(&quot;name&quot;); // 会抛异常，因为名字无法转换为long        </span><br><span class="line">    phone.optLong(0); // 代码内置的默认值  </span><br><span class="line">    phone.optLong(0, 1000); // 用户提供的默认值  </span><br><span class="line">    person.optLong(&quot;name&quot;);  </span><br><span class="line">    person.optLong(&quot;name&quot;, 1000); // 不像上面那样抛异常，而是返回1000  </span><br><span class="line">&#125; catch (JSONException ex) &#123;  </span><br><span class="line">    // 异常处理代码  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">除了上面的两个类，还可以使用JSONStringer来构建json文本  </span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">Java代码  </span><br><span class="line">try &#123;  </span><br><span class="line">    JSONStringer jsonText = new JSONStringer();  </span><br><span class="line">    // 首先是&#123;，对象开始。object和endObject必须配对使用  </span><br><span class="line">    jsonText.object();  </span><br><span class="line">      </span><br><span class="line">    jsonText.key(&quot;phone&quot;);  </span><br><span class="line">    // 键phone的值是数组。array和endArray必须配对使用  </span><br><span class="line">    jsonText.array();  </span><br><span class="line">    jsonText.value(&quot;12345678&quot;).value(&quot;87654321&quot;);  </span><br><span class="line">    jsonText.endArray();  </span><br><span class="line">      </span><br><span class="line">    jsonText.key(&quot;name&quot;);  </span><br><span class="line">    jsonText.value(&quot;yuanzhifei89&quot;);  </span><br><span class="line">    jsonText.key(&quot;age&quot;);  </span><br><span class="line">    jsonText.value(100);  </span><br><span class="line">      </span><br><span class="line">    jsonText.key(&quot;address&quot;);  </span><br><span class="line">    // 键address的值是对象  </span><br><span class="line">    jsonText.object();  </span><br><span class="line">    jsonText.key(&quot;country&quot;);  </span><br><span class="line">    jsonText.value(&quot;china&quot;);  </span><br><span class="line">    jsonText.key(&quot;province&quot;);  </span><br><span class="line">    jsonText.value(&quot;jiangsu&quot;);  </span><br><span class="line">    jsonText.endObject();  </span><br><span class="line">      </span><br><span class="line">    jsonText.key(&quot;married&quot;);  </span><br><span class="line">    jsonText.value(false);  </span><br><span class="line">      </span><br><span class="line">    // &#125;，对象结束  </span><br><span class="line">    jsonText.endObject();  </span><br><span class="line">&#125; catch (JSONException ex) &#123;  </span><br><span class="line">    throw new RuntimeException(ex);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>json文本解析类JSONTokener<br>按照RFC4627规范将json文本解析为相应的对象。  </p>
-<p>对于将json文本解析为对象，只需要用到该类的两个api： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">构造函数  </span><br><span class="line">public Object nextValue();  </span><br><span class="line">代码  </span><br><span class="line">//  &#123;  </span><br><span class="line">//      &quot;phone&quot; : [&quot;12345678&quot;, &quot;87654321&quot;], // 数组  </span><br><span class="line">//      &quot;name&quot; : &quot;yuanzhifei89&quot;, // 字符串  </span><br><span class="line">//      &quot;age&quot; : 100, // 数值  </span><br><span class="line">//      &quot;address&quot; : &#123; &quot;country&quot; : &quot;china&quot;, &quot;province&quot; : &quot;jiangsu&quot; &#125;, // 对象  </span><br><span class="line">//      &quot;married&quot; : false // 布尔值  </span><br><span class="line">//  &#125;  </span><br><span class="line">  </span><br><span class="line">private static final String JSON =   </span><br><span class="line">&quot;&#123;&quot; +  </span><br><span class="line">    &quot;   \&quot;phone\&quot; : [\&quot;12345678\&quot;, \&quot;87654321\&quot;],&quot; +  </span><br><span class="line">    &quot;   \&quot;name\&quot; : \&quot;yuanzhifei89\&quot;,&quot; +  </span><br><span class="line">    &quot;   \&quot;age\&quot; : 100,&quot; +  </span><br><span class="line">    &quot;   \&quot;address\&quot; : &#123; \&quot;country\&quot; : \&quot;china\&quot;, \&quot;province\&quot; : \&quot;jiangsu\&quot; &#125;,&quot; +  </span><br><span class="line">    &quot;   \&quot;married\&quot; : false,&quot; +  </span><br><span class="line">&quot;&#125;&quot;;  </span><br><span class="line">  </span><br><span class="line">try &#123;  </span><br><span class="line">    JSONTokener jsonParser = new JSONTokener(JSON);  </span><br><span class="line">    // 此时还未读取任何json文本，直接读取就是一个JSONObject对象。  </span><br><span class="line">    // 如果此时的读取位置在&quot;name&quot; : 了，那么nextValue就是&quot;yuanzhifei89&quot;（String）  </span><br><span class="line">    JSONObject person = (JSONObject) jsonParser.nextValue();  </span><br><span class="line">    // 接下来的就是JSON对象的操作了  </span><br><span class="line">    person.getJSONArray(&quot;phone&quot;);  </span><br><span class="line">    person.getString(&quot;name&quot;);  </span><br><span class="line">    person.getInt(&quot;age&quot;);  </span><br><span class="line">    person.getJSONObject(&quot;address&quot;);  </span><br><span class="line">    person.getBoolean(&quot;married&quot;);  </span><br><span class="line">&#125; catch (JSONException ex) &#123;  </span><br><span class="line">    // 异常处理代码  </span><br><span class="line">&#125;  </span><br><span class="line">其它的api基本就是用来查看json文本中的文本的 </span><br><span class="line"></span><br><span class="line">代码  </span><br><span class="line">try &#123;  </span><br><span class="line">    JSONTokener jsonParser = new JSONTokener(JSON);  </span><br><span class="line">    // 继续向下读8个json文本中的字符。此时刚开始，即在&#123;处  </span><br><span class="line">    jsonParser.next(8); //&#123;    &quot;phone。tab算一个字符  </span><br><span class="line">      </span><br><span class="line">    // 继续向下读1个json文本中的字符  </span><br><span class="line">    jsonParser.next(); //&quot;  </span><br><span class="line">      </span><br><span class="line">    // 继续向下读取一个json文本中的字符。该字符不是空白、同时也不是注视中的字符  </span><br><span class="line">    jsonParser.nextClean(); //:  </span><br><span class="line">      </span><br><span class="line">    // 返回当前的读取位置到第一次遇到&apos;a&apos;之间的字符串（不包括a）。  </span><br><span class="line">    jsonParser.nextString(&apos;a&apos;); //  [&quot;12345678&quot;, &quot;87654321&quot;],    &quot;n（前面有两个空格）  </span><br><span class="line">      </span><br><span class="line">    // 返回当前读取位置到第一次遇到字符串中(如&quot;0089&quot;)任意字符之间的字符串，同时该字符是trimmed的。（此处就是第一次遇到了89）  </span><br><span class="line">    jsonParser.nextTo(&quot;0089&quot;); //me&quot; : &quot;yuanzhifei  </span><br><span class="line">      </span><br><span class="line">    // 读取位置撤销一个  </span><br><span class="line">    jsonParser.back();  </span><br><span class="line">    jsonParser.next(); //i  </span><br><span class="line">      </span><br><span class="line">    // 读取位置前进到指定字符串处（包括字符串）  </span><br><span class="line">    jsonParser.skipPast(&quot;address&quot;);  </span><br><span class="line">    jsonParser.next(8); //&quot; : &#123; &quot;c  </span><br><span class="line">      </span><br><span class="line">    // 读取位置前进到执行字符处（不包括字符）  </span><br><span class="line">    jsonParser.skipTo(&apos;m&apos;);  </span><br><span class="line">    jsonParser.next(8); //married&quot;  </span><br><span class="line">&#125; catch (JSONException ex) &#123;  </span><br><span class="line">    // 异常处理代码  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br></pre></td><td class="code"><pre><span class="line">      以下是一个标准的JSON请求实现过程：</span><br><span class="line"></span><br><span class="line">01</span><br><span class="line">HttpPost request = newHttpPost(url); </span><br><span class="line">02</span><br><span class="line">// 先封装一个 JSON 对象 </span><br><span class="line">03</span><br><span class="line">JSONObject param = newJSONObject(); </span><br><span class="line">04</span><br><span class="line">param.put(&quot;name&quot;, &quot;rarnu&quot;); </span><br><span class="line">05</span><br><span class="line">param.put(&quot;password&quot;, &quot;123456&quot;); </span><br><span class="line">06</span><br><span class="line">// 绑定到请求 Entry </span><br><span class="line">07</span><br><span class="line">StringEntity se = newStringEntity(param.toString());  </span><br><span class="line">08</span><br><span class="line">request.setEntity(se); </span><br><span class="line">09</span><br><span class="line">// 发送请求 </span><br><span class="line">10</span><br><span class="line">HttpResponse httpResponse = newDefaultHttpClient().execute(request); </span><br><span class="line">11</span><br><span class="line">// 得到应答的字符串，这也是一个 JSON 格式保存的数据 </span><br><span class="line">12</span><br><span class="line">String retSrc = EntityUtils.toString(httpResponse.getEntity()); </span><br><span class="line">13</span><br><span class="line">// 生成 JSON 对象 </span><br><span class="line">14</span><br><span class="line">JSONObject result = newJSONObject( retSrc); </span><br><span class="line">15</span><br><span class="line">String token = result.get(&quot;token&quot;);</span><br><span class="line"></span><br><span class="line">        下面这个是自己修改别人的小例子，主要是加一些注释和讲解，这个例子主要是使用android进行json解析。 </span><br><span class="line">1</span><br><span class="line">单数据&#123;&apos;singer&apos;:&#123;&apos;id&apos;:01,&apos;name&apos;:&apos;tom&apos;,&apos;gender&apos;:&apos;男&apos;&#125;&#125;</span><br><span class="line">2</span><br><span class="line">多个数据&#123;&quot;singers&quot;:[</span><br><span class="line">3</span><br><span class="line">        &#123;&apos;id&apos;:02,&apos;name&apos;:&apos;tom&apos;,&apos;gender&apos;:&apos;男&apos;&#125;,</span><br><span class="line">4</span><br><span class="line">         &#123;&apos;id&apos;:03,&apos;name&apos;:&apos;jerry,&apos;gender&apos;:&apos;男&apos;&#125;,</span><br><span class="line">5</span><br><span class="line">&#123;&apos;id&apos;:04,&apos;name&apos;:&apos;jim,&apos;gender&apos;:&apos;男&apos;&#125;,</span><br><span class="line">6</span><br><span class="line">&#123;&apos;id&apos;:05,&apos;name&apos;:&apos;lily,&apos;gender&apos;:&apos;女&apos;&#125;]&#125;</span><br><span class="line">        下面的类主要是解析单个数据parseJson（）和多个数据的方法parseJsonMulti（）: </span><br><span class="line">01</span><br><span class="line">public class JsonActivity extends Activity &#123; </span><br><span class="line">02</span><br><span class="line">    /** Called when the activity is first created. */ </span><br><span class="line">03</span><br><span class="line">    private TextView tvJson; </span><br><span class="line">04</span><br><span class="line">    private Button btnJson; </span><br><span class="line">05</span><br><span class="line">    private Button btnJsonMulti; </span><br><span class="line">06</span><br><span class="line">    @Override </span><br><span class="line">07</span><br><span class="line">    public void onCreate(Bundle savedInstanceState) &#123; </span><br><span class="line">08</span><br><span class="line">        super.onCreate(savedInstanceState); </span><br><span class="line">09</span><br><span class="line">        setContentView(R.layout.main); </span><br><span class="line">10</span><br><span class="line">        tvJson = (TextView) this.findViewById(R.id.tvJson); </span><br><span class="line">11</span><br><span class="line">        btnJson = (Button) this.findViewById(R.id.btnJson); </span><br><span class="line">12</span><br><span class="line">        btnJsonMulti = (Button) this.findViewById(R.id.btnJsonMulti); </span><br><span class="line">13</span><br><span class="line">        btnJson.setOnClickListener(new View.OnClickListener() &#123; </span><br><span class="line">14</span><br><span class="line">            @Override </span><br><span class="line">15</span><br><span class="line">            public void onClick(View v) &#123; </span><br><span class="line">16</span><br><span class="line">                // url </span><br><span class="line">17</span><br><span class="line">                // String strUrl = &quot;http://10.158.166.110:8080/AndroidServer/JsonServlet&quot;; </span><br><span class="line">18</span><br><span class="line">                String strUrl = ServerPageUtil.getStrUrl(UrlsOfServer.JSON_SINGER); </span><br><span class="line">19</span><br><span class="line">                //获得返回的Json字符串 </span><br><span class="line">20</span><br><span class="line">                String strResult = connServerForResult(strUrl); </span><br><span class="line">21</span><br><span class="line">                //解析Json字符串 </span><br><span class="line">22</span><br><span class="line">                parseJson(strResult); </span><br><span class="line">23</span><br><span class="line">            &#125; </span><br><span class="line">24</span><br><span class="line">        &#125;); </span><br><span class="line">25</span><br><span class="line">        btnJsonMulti.setOnClickListener(new View.OnClickListener() &#123; </span><br><span class="line">26</span><br><span class="line">            @Override </span><br><span class="line">27</span><br><span class="line">            public void onClick(View v) &#123; </span><br><span class="line">28</span><br><span class="line">                String strUrl = ServerPageUtil.getStrUrl(UrlsOfServer.JSON_SINGERS); </span><br><span class="line">29</span><br><span class="line">                String strResult = connServerForResult(strUrl); </span><br><span class="line">30</span><br><span class="line">                //获得多个Singer </span><br><span class="line">31</span><br><span class="line">                parseJsonMulti(strResult); </span><br><span class="line">32</span><br><span class="line">            &#125; </span><br><span class="line">33</span><br><span class="line">        &#125;); </span><br><span class="line">34</span><br><span class="line">    &#125; </span><br><span class="line">35</span><br><span class="line">    private String connServerForResult(String strUrl) &#123; </span><br><span class="line">36</span><br><span class="line">        // HttpGet对象 </span><br><span class="line">37</span><br><span class="line">        HttpGet httpRequest = new HttpGet(strUrl); </span><br><span class="line">38</span><br><span class="line">        String strResult = &quot;&quot;; </span><br><span class="line">39</span><br><span class="line">        try &#123; </span><br><span class="line">40</span><br><span class="line">            // HttpClient对象 </span><br><span class="line">41</span><br><span class="line">            HttpClient httpClient = new DefaultHttpClient(); </span><br><span class="line">42</span><br><span class="line">            // 获得HttpResponse对象 </span><br><span class="line">43</span><br><span class="line">            HttpResponse httpResponse = httpClient.execute(httpRequest); </span><br><span class="line">44</span><br><span class="line">            if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) &#123; </span><br><span class="line">45</span><br><span class="line">                // 取得返回的数据 </span><br><span class="line">46</span><br><span class="line">                strResult = EntityUtils.toString(httpResponse.getEntity()); </span><br><span class="line">47</span><br><span class="line">            &#125; </span><br><span class="line">48</span><br><span class="line">        &#125; catch (ClientProtocolException e) &#123; </span><br><span class="line">49</span><br><span class="line">            tvJson.setText(&quot;protocol error&quot;); </span><br><span class="line">50</span><br><span class="line">            e.printStackTrace(); </span><br><span class="line">51</span><br><span class="line">        &#125; catch (IOException e) &#123; </span><br><span class="line">52</span><br><span class="line">            tvJson.setText(&quot;IO error&quot;); </span><br><span class="line">53</span><br><span class="line">            e.printStackTrace(); </span><br><span class="line">54</span><br><span class="line">        &#125; </span><br><span class="line">55</span><br><span class="line">        return strResult; </span><br><span class="line">56</span><br><span class="line">    &#125; </span><br><span class="line">57</span><br><span class="line">    // 普通Json数据解析 </span><br><span class="line">58</span><br><span class="line">    private void parseJson(String strResult) &#123; </span><br><span class="line">59</span><br><span class="line">        try &#123; </span><br><span class="line">60</span><br><span class="line">            JSONObject jsonObj = new JSONObject(strResult).getJSONObject(&quot;singer&quot;); </span><br><span class="line">61</span><br><span class="line">            int id = jsonObj.getInt(&quot;id&quot;); </span><br><span class="line">62</span><br><span class="line">            String name = jsonObj.getString(&quot;name&quot;); </span><br><span class="line">63</span><br><span class="line">            String gender = jsonObj.getString(&quot;gender&quot;); </span><br><span class="line">64</span><br><span class="line">            tvJson.setText(&quot;ID号&quot;+id + &quot;, 姓名：&quot; + name + &quot;,性别：&quot; + gender); </span><br><span class="line">65</span><br><span class="line">        &#125; catch (JSONException e) &#123; </span><br><span class="line">66</span><br><span class="line">            System.out.println(&quot;Json parse error&quot;); </span><br><span class="line">67</span><br><span class="line">            e.printStackTrace(); </span><br><span class="line">68</span><br><span class="line">        &#125; </span><br><span class="line">69</span><br><span class="line">    &#125; </span><br><span class="line">70</span><br><span class="line">    //解析多个数据的Json</span><br><span class="line">71</span><br><span class="line">    private void parseJsonMulti(String strResult) &#123; </span><br><span class="line">72</span><br><span class="line">        try &#123; </span><br><span class="line">73</span><br><span class="line">            JSONArray jsonObjs = new JSONObject(strResult).getJSONArray(&quot;singers&quot;); </span><br><span class="line">74</span><br><span class="line">            String s = &quot;&quot;; </span><br><span class="line">75</span><br><span class="line">            for(int i = 0; i &lt; jsonObjs.length() ; i++)&#123; </span><br><span class="line">76</span><br><span class="line">                JSONObject jsonObj = ((JSONObject)jsonObjs.opt(i)) </span><br><span class="line">77</span><br><span class="line">                .getJSONObject(&quot;singer&quot;); </span><br><span class="line">78</span><br><span class="line">                int id = jsonObj.getInt(&quot;id&quot;); </span><br><span class="line">79</span><br><span class="line">                String name = jsonObj.getString(&quot;name&quot;); </span><br><span class="line">80</span><br><span class="line">                String gender = jsonObj.getString(&quot;gender&quot;); </span><br><span class="line">81</span><br><span class="line">                s +=  &quot;ID号&quot;+id + &quot;, 姓名：&quot; + name + &quot;,性别：&quot; + gender+ &quot;\n&quot; ; </span><br><span class="line">82</span><br><span class="line">            &#125; </span><br><span class="line">83</span><br><span class="line">            tvJson.setText(s); </span><br><span class="line">84</span><br><span class="line">        &#125; catch (JSONException e) &#123; </span><br><span class="line">85</span><br><span class="line">            System.out.println(&quot;Jsons parse error !&quot;); </span><br><span class="line">86</span><br><span class="line">            e.printStackTrace(); </span><br><span class="line">87</span><br><span class="line">        &#125; </span><br><span class="line">88</span><br><span class="line">    &#125; </span><br><span class="line">89</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android-解析json/" data-id="ciojyyvup000nles6l2qcifch" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android-应用插件式开发解决方法/" data-id="ciolkjuin0004tquowfglvwjn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -716,7 +944,7 @@ public static String getJsonArrStrFromList(Object obj)
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">__('next') &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">__('next') &raquo;</a>
   </nav>
 </section>
         
@@ -729,7 +957,7 @@ public static String getJsonArrStrFromList(Object obj)
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D-游戏/">Unity3D,游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信-Js/">微信 Js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情/">心情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/测试/">测试</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D-游戏/">Unity3D,游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兴趣/">兴趣</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信-Js/">微信 Js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情/">心情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/测试/">测试</a></li></ul>
     </div>
   </div>
 
@@ -739,7 +967,7 @@ public static String getJsonArrStrFromList(Object obj)
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Unity3D/" style="font-size: 10px;">Unity3D</a> <a href="/tags/Unity3D-游戏/" style="font-size: 10px;">Unity3D,游戏</a> <a href="/tags/博客/" style="font-size: 15px;">博客</a> <a href="/tags/微信-Js/" style="font-size: 10px;">微信 Js</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/测试/" style="font-size: 10px;">测试</a>
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Unity3D/" style="font-size: 10px;">Unity3D</a> <a href="/tags/Unity3D-游戏/" style="font-size: 10px;">Unity3D,游戏</a> <a href="/tags/兴趣/" style="font-size: 10px;">兴趣</a> <a href="/tags/博客/" style="font-size: 15px;">博客</a> <a href="/tags/微信-Js/" style="font-size: 10px;">微信 Js</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/测试/" style="font-size: 10px;">测试</a>
     </div>
   </div>
 
@@ -761,6 +989,10 @@ public static String getJsonArrStrFromList(Object obj)
       <ul>
         
           <li>
+            <a href="/2016/05/24/兴趣视频教程/">兴趣视频教程</a>
+          </li>
+        
+          <li>
             <a href="/2016/05/23/Idea快捷键/">Idea快捷键</a>
           </li>
         
@@ -774,10 +1006,6 @@ public static String getJsonArrStrFromList(Object obj)
         
           <li>
             <a href="/2016/05/14/心情/">心情</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/14/Linux常用命令/">Linux常用命令</a>
           </li>
         
       </ul>
