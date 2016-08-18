@@ -341,7 +341,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Unity3D第一人称射击游戏（推荐）/" data-id="cis0exhko001816uoqo02ia3f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Unity3D第一人称射击游戏（推荐）/" data-id="cis0f3ghg001g1quov8n6vhgq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity3D-游戏/">Unity3D,游戏</a></li></ul>
@@ -386,7 +386,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android-功能开发笔记/" data-id="cis0exhim000116uofd41ychz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android-功能开发笔记/" data-id="cis0f3gfc00011quo6x4iszip" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -430,7 +430,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android中通过来电转移实现“电话已关机”-“此号码已停机”等/" data-id="cis0exhjy000o16uofx7da6n6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android中通过来电转移实现“电话已关机”-“此号码已停机”等/" data-id="cis0f3ggk000u1quo0m8k9692" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -471,7 +471,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android-自动接听来电/" data-id="cis0exhjb000916uorfwjs0ww" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android-自动接听来电/" data-id="cis0f3gfv00091quo8m1vhcd6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -483,9 +483,9 @@
 
 
   
-    <article id="post-Android_消息推送" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Android_Afinal框架" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/05/14/Android_消息推送/" class="article-date">
+    <a href="/2016/05/14/Android_Afinal框架/" class="article-date">
   <time datetime="2016-05-14T13:26:18.000Z" itemprop="datePublished">2016-05-14</time>
 </a>
     
@@ -497,7 +497,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/14/Android_消息推送/">Android 消息推送</a>
+      <a class="article-title" href="/2016/05/14/Android_Afinal框架/">Android_Afinal框架</a>
     </h1>
   
 
@@ -505,30 +505,37 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1.引言</p>
-<p>　　所谓的消息推送就是从服务器端向移动终端发送连接，传输一定的信息。比如一些新闻客户端，每隔一段时间收到一条或者多条通知，这就是从服务器端传来的推送消息；还比如常用的一些IM软件如微信、GTalk等，都具有服务器推送功能。</p>
-<p>　　推送方法如下：</p>
-<p>　　1)通过SMS进行服务器端和客户端的交流通信。</p>
-<p>　　在Android平台上，你可以通过拦截SMS消息并且解析消息内容来了解服务器的意图，可以实现完全的实时操作。但是问题是这个方案的成本相对比较高，且依赖于运营商。</p>
-<p>　　2)循环主动定时获取</p>
-<p>　　这种方法需要客户端来做一个定时或者周期性的访问服务器端接口，以获得最新的消息。轮询的频率太慢可能导致某些消息的延迟，太快则会大量消耗网络带宽和电池。</p>
-<p>　　3)持久连接</p>
-<p>　　这个方案可以解决由轮询带来的性能问题，但是还是会消耗手机的电池。我们需要开一个服务来保持和服务器端的持久连接（苹果就和谷歌的C2DM是这种机制）。但是对于Android系统，当系统可用资源较低，系统会强制关闭我们的服务或者是应用，这种情况下连接会强制中断。（Apple的推送服务之所以工作的很好，是因为每一台手机仅仅保持一个与服务器之间的连接，事实上C2DM也是这么工作的。即所有的推送服务都是经由一个代理服务器完成的，这种情况下只需要和一台服务器保持持久连接即可。C2DM=Cloud to Device Messaging）。</p>
-<p>　　相比之下第三种还是最可行的。为软件编写系统服务或开机启动功能；或者如果系统资源较低，服务被关闭后可以在onDestroy ()方法里面再重启该服务，进而实现持久连接的方式。</p>
-<p>　　C2DM内置于Android的2.2系统上，无法兼容老的1.6到2.1系统；且依赖于Google官方提供的C2DM服务器，由于国内的网络环境，这个服务经常不可用。</p>
-<p>　　建立在TCP协议之上的XMPP协议，不仅可提供可这种持久连接的功能，能实现服务器和客户机的双工通信，还能不依赖与系统版本和google服务器的限制，提供了比较好的解决方案。</p>
-<ol>
-<li>XMPP协议</li>
-</ol>
-<p>　　XMPP全称Extensible Messaging and Presence Protocol，前身是Jabber项目，是一种以XML为基础的开放式即时通讯协议。XMPP因为被Google Talk和网易泡泡应用而被广大网民所接触。XMPP的关键特色是，分散式的即时通讯系统，以及使用XML串流。XMPP目前被IETF国际标准组织完成了标准化工作。</p>
-<p>　　Android push notification(androidpn) 是一个基于XMPP协议的java开源实现，它包含了完整的客户端和服务器端。该服务器端基本是在另外一个开源工程openfire基础上修改实现的。</p>
-<p>　　androidpn客户端需要用到一个基于java的开源XMPP协议包asmack，这个包同样也是基于openfire下的另外一个开源项目smack，不过我们不需要自己编译，可以直接把androidpn客户端里面的asmack.jar拿来使用。客户端利用asmack中提供的XMPPConnection类与服务器建立持久连接，并通过该连接进行用户注册和登录认证，同样也是通过这条连接，接收服务器发送的通知。</p>
-<p>　　androidpn服务器端也是java语言实现的，基于openfire开源工程，不过它的Web部分采用的是spring框架，这一点与openfire是不同的。Androidpn服务器包含两个部分，一个是侦听在5222端口上的XMPP服务，负责与客户端的XMPPConnection类进行通信，作用是用户注册和身份认证，并发送推送通知消息。另外一部分是Web服务器，采用一个轻量级的HTTP服务器，负责接收用户的Web请求。服务器的这两方式，意义非凡：当相应的TCP端口被防火墙封闭，可以使用轮询的方式进行访问，因此又有助于通过防火墙。</p>
+        <p>Afinal简介<br>Afinal是一个android的ioc，orm框架，内置了四大模块功能：FinalAcitivity,FinalBitmap,FinalDb,FinalHttp。通过finalActivity，我们可以通过注解的方式进行绑定ui和事件。通过finalBitmap，我们可以方便的加载bitmap图片，而无需考虑oom等问题。通过finalDB模块，我们一行代码就可以对android的sqlite数据库进行增删改查。通过FinalHttp模块，我们可以以ajax形式请求http数据。详情请通过以下网址查看。 — More…</p>
+<p>Afinal 是一个android的sqlite orm 和 ioc 框架。同时封装了android中的http框架，使其更加简单易用；<br>使用finalBitmap，无需考虑bitmap在android中加载的时候oom的问题和快速滑动的时候图片加载位置错位等问题。<br>Afinal的宗旨是简洁，快速。约定大于配置的方式。尽量一行代码完成所有事情。<br>目前Afinal主要有四大模块：</p>
+<p>FinalDB模块：android中的orm框架，一行代码就可以进行增删改查。支持一对多，多对一等查询。</p>
+<p>FinalActivity模块：android中的ioc框架，完全注解方式就可以进行UI绑定和事件绑定。无需findViewById和setClickListener等。</p>
+<p>FinalHttp模块：通过httpclient进行封装http数据请求，支持ajax方式加载。</p>
+<p>FinalBitmap模块：通过FinalBitmap，imageview加载bitmap的时候无需考虑bitmap加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象。FinalBitmap可以配置线程加载线程数量，缓存大小，缓存路径，加载显示动画等。FinalBitmap的内存管理使用lru算法，没有使用弱引用（android2.3以后google已经不建议使用弱引用，android2.3后强行回收软引用和弱引用，详情查看android官方文档），更好的管理bitmap内存。FinalBitmap可以自定义下载器，用来扩展其他协议显示网络图片，比如ftp等。同时可以自定义bitmap显示器，在imageview显示图片的时候播放动画等（默认是渐变动画显示）。</p>
+<p>使用afinal快速开发框架需要有以下权限：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;</span><br><span class="line">2</span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>第一个是访问网络<br>第二个是访问sdcard<br>访问网络是请求网络图片的时候需要或者是http数据请求时候需要，访问sdcard是图片缓存的需要。<br>FinalDB使用方法</p>
+<p>关于finalDb的更多介绍，请点击这里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">FinalDb db = FinalDb.create(this);</span><br><span class="line">2</span><br><span class="line">User user = new User(); //这里需要注意的是User对象必须有id属性，或者有通过@ID注解的属性</span><br><span class="line">3</span><br><span class="line">user.setEmail(&quot;mail@tsz.net&quot;);</span><br><span class="line">4</span><br><span class="line">user.setName(&quot;michael yang&quot;);</span><br><span class="line">5</span><br><span class="line">db.save(user);</span><br><span class="line">FinalActivity使用方法：</span><br></pre></td></tr></table></figure>
+<p>完全注解方式就可以进行UI绑定和事件绑定<br>无需findViewById和setClickListener等<br>01<br>public class AfinalDemoActivity extends FinalActivity {<br>02</p>
+<p>03<br>    //无需调用findViewById和setOnclickListener等<br>04<br>    @ViewInject(id=R.id.button,click=”btnClick”) Button button;<br>05<br>    @ViewInject(id=R.id.textView) TextView textView;<br>06</p>
+<p>07<br>    public void onCreate(Bundle savedInstanceState) {<br>08<br>       super.onCreate(savedInstanceState);<br>09<br>       setContentView(R.layout.main);<br>10<br>    }<br>11</p>
+<p>12<br>    public void btnClick(View v){<br>13<br>       textView.setText(“text set form button”);<br>14<br>    }<br>15<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">FinalHttp使用方法：</span><br><span class="line"></span><br><span class="line">普通get方法</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">01</span><br><span class="line">FinalHttp fh = new FinalHttp();</span><br><span class="line">02</span><br><span class="line">fh.get(&quot;http://www.yangfuhai.com&quot;, new AjaxCallBack()&#123;</span><br><span class="line">03</span><br><span class="line"></span><br><span class="line">04</span><br><span class="line">    @Override</span><br><span class="line">05</span><br><span class="line">    public void onLoading(long count, long current) &#123; //每1秒钟自动被回调一次</span><br><span class="line">06</span><br><span class="line">            textView.setText(current+&quot;/&quot;+count);</span><br><span class="line">07</span><br><span class="line">    &#125;</span><br><span class="line">08</span><br><span class="line"></span><br><span class="line">09</span><br><span class="line">    @Override</span><br><span class="line">10</span><br><span class="line">    public void onSuccess(String t) &#123;</span><br><span class="line">11</span><br><span class="line">            textView.setText(t==null?&quot;null&quot;:t);</span><br><span class="line">12</span><br><span class="line">    &#125;</span><br><span class="line">13</span><br><span class="line"></span><br><span class="line">14</span><br><span class="line">    @Override</span><br><span class="line">15</span><br><span class="line">    public void onStart() &#123;</span><br><span class="line">16</span><br><span class="line">        //开始http请求的时候回调</span><br><span class="line">17</span><br><span class="line">    &#125;</span><br><span class="line">18</span><br><span class="line"></span><br><span class="line">19</span><br><span class="line">    @Override</span><br><span class="line">20</span><br><span class="line">    public void onFailure(Throwable t, String strMsg) &#123;</span><br><span class="line">21</span><br><span class="line">        //加载失败的时候回调</span><br><span class="line">22</span><br><span class="line">    &#125;</span><br><span class="line">23</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>使用FinalHttp上传文件 或者 提交数据 到服务器（post方法）</p>
+<p>文件上传到服务器，服务器如何接收，请查看这里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">01</span><br><span class="line">AjaxParams params = new AjaxParams();</span><br><span class="line">02</span><br><span class="line">  params.put(&quot;username&quot;, &quot;michael yang&quot;);</span><br><span class="line">03</span><br><span class="line">  params.put(&quot;password&quot;, &quot;123456&quot;);</span><br><span class="line">04</span><br><span class="line">  params.put(&quot;email&quot;, &quot;test@tsz.net&quot;);</span><br><span class="line">05</span><br><span class="line">  params.put(&quot;profile_picture&quot;, new File(&quot;/mnt/sdcard/pic.jpg&quot;)); // 上传文件</span><br><span class="line">06</span><br><span class="line">  params.put(&quot;profile_picture2&quot;, inputStream); // 上传数据流</span><br><span class="line">07</span><br><span class="line">  params.put(&quot;profile_picture3&quot;, new ByteArrayInputStream(bytes)); // 提交字节流</span><br><span class="line">08</span><br><span class="line"></span><br><span class="line">09</span><br><span class="line">  FinalHttp fh = new FinalHttp();</span><br><span class="line">10</span><br><span class="line">  fh.post(&quot;http://www.yangfuhai.com&quot;, params, new AjaxCallBack()&#123;</span><br><span class="line">11</span><br><span class="line">        @Override</span><br><span class="line">12</span><br><span class="line">        public void onLoading(long count, long current) &#123;</span><br><span class="line">13</span><br><span class="line">                textView.setText(current+&quot;/&quot;+count);</span><br><span class="line">14</span><br><span class="line">        &#125;</span><br><span class="line">15</span><br><span class="line"></span><br><span class="line">16</span><br><span class="line">        @Override</span><br><span class="line">17</span><br><span class="line">        public void onSuccess(String t) &#123;</span><br><span class="line">18</span><br><span class="line">            textView.setText(t==null?&quot;null&quot;:t);</span><br><span class="line">19</span><br><span class="line">        &#125;</span><br><span class="line">20</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p>使用FinalHttp下载文件：</p>
+<p>支持断点续传，随时停止下载任务 或者 开始任务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">01</span><br><span class="line">FinalHttp fh = newFinalHttp(); </span><br><span class="line">02</span><br><span class="line">    //调用download方法开始下载</span><br><span class="line">03</span><br><span class="line">    HttpHandler handler = fh.download(&quot;http://www.xxx.com/下载路径/xxx.apk&quot;, //这里是下载的路径</span><br><span class="line">04</span><br><span class="line">    true,//true:断点续传 false:不断点续传（全新下载）</span><br><span class="line">05</span><br><span class="line">    &quot;/mnt/sdcard/testapk.apk&quot;, //这是保存到本地的路径</span><br><span class="line">06</span><br><span class="line">    newAjaxCallBack() &#123; </span><br><span class="line">07</span><br><span class="line">                @Override </span><br><span class="line">08</span><br><span class="line">                public void onLoading(long count, longcurrent) &#123; </span><br><span class="line">09</span><br><span class="line">                     textView.setText(&quot;下载进度：&quot;+current+&quot;/&quot;+count); </span><br><span class="line">10</span><br><span class="line">                &#125; </span><br><span class="line">11</span><br><span class="line"></span><br><span class="line">12</span><br><span class="line">                @Override </span><br><span class="line">13</span><br><span class="line">                public voidonSuccess(File t) &#123; </span><br><span class="line">14</span><br><span class="line">                    textView.setText(t==null?&quot;null&quot;:t.getAbsoluteFile().toString()); </span><br><span class="line">15</span><br><span class="line">                &#125; </span><br><span class="line">16</span><br><span class="line"></span><br><span class="line">17</span><br><span class="line">            &#125;); </span><br><span class="line">18</span><br><span class="line"></span><br><span class="line">19</span><br><span class="line"></span><br><span class="line">20</span><br><span class="line">   //调用stop()方法停止下载</span><br><span class="line">21</span><br><span class="line">   handler.stop();</span><br></pre></td></tr></table></figure>
+<p>FinalBitmap 使用方法</p>
+<p>加载网络图片就一行代码 fb.display(imageView,url) ,更多的display重载请看帮助文档</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">view sourceprint?</span><br><span class="line">01</span><br><span class="line">private GridView gridView;</span><br><span class="line">02</span><br><span class="line">    private FinalBitmap fb;</span><br><span class="line">03</span><br><span class="line">    @Override</span><br><span class="line">04</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">05</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">06</span><br><span class="line">        setContentView(R.layout.images);</span><br><span class="line">07</span><br><span class="line"></span><br><span class="line">08</span><br><span class="line">        gridView = (GridView) findViewById(R.id.gridView);</span><br><span class="line">09</span><br><span class="line">        gridView.setAdapter(mAdapter);</span><br><span class="line">10</span><br><span class="line"></span><br><span class="line">11</span><br><span class="line">        fb = FinalBitmap.create(this);//初始化FinalBitmap模块</span><br><span class="line">12</span><br><span class="line">        fb.configLoadingImage(R.drawable.downloading);</span><br><span class="line">13</span><br><span class="line">        //这里可以进行其他十几项的配置，也可以不用配置，配置之后必须调用init()函数,才生效</span><br><span class="line">14</span><br><span class="line">        //fb.configBitmapLoadThreadSize(int size)</span><br><span class="line">15</span><br><span class="line">        //fb.configBitmapMaxHeight(bitmapHeight)</span><br><span class="line">16</span><br><span class="line">    &#125;</span><br><span class="line">17</span><br><span class="line"></span><br><span class="line">18</span><br><span class="line"></span><br><span class="line">19</span><br><span class="line">///////////////////////////adapter getView////////////////////////////////////////////</span><br><span class="line">20</span><br><span class="line"></span><br><span class="line">21</span><br><span class="line">public View getView(int position, View convertView, ViewGroup parent) &#123;</span><br><span class="line">22</span><br><span class="line">    ImageView iv;</span><br><span class="line">23</span><br><span class="line">    if(convertView == null)&#123;</span><br><span class="line">24</span><br><span class="line">        convertView = View.inflate(BitmapCacheActivity.this,R.layout.image_item, null);</span><br><span class="line">25</span><br><span class="line">        iv = (ImageView) convertView.findViewById(R.id.imageView);</span><br><span class="line">26</span><br><span class="line">        iv.setScaleType(ScaleType.CENTER_CROP);</span><br><span class="line">27</span><br><span class="line">        convertView.setTag(iv);</span><br><span class="line">28</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">29</span><br><span class="line">        iv = (ImageView) convertView.getTag();</span><br><span class="line">30</span><br><span class="line">    &#125;</span><br><span class="line">31</span><br><span class="line">    //bitmap加载就这一行代码，display还有其他重载，详情查看源码</span><br><span class="line">32</span><br><span class="line">    fb.display(iv,Images.imageUrls[position]);</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android_消息推送/" data-id="cis0exhk2000s16uo0eceo3yt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android_Afinal框架/" data-id="cis0f3gg6000i1quo6ytji2ui" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -618,7 +625,49 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android_条码扫描二维码扫描/" data-id="cis0exhk6000u16uoq9o5753h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android_条码扫描二维码扫描/" data-id="cis0f3ghr001u1quorzj9rwhd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android_检查是否联网" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/14/Android_检查是否联网/" class="article-date">
+  <time datetime="2016-05-14T13:26:18.000Z" itemprop="datePublished">2016-05-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/14/Android_检查是否联网/">Android_检查是否联网</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>检查是否联网</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static boolean isNetworkAvailable(Activity mActivity) &#123;</span><br><span class="line"> Context context = mActivity.getApplicationContext();</span><br><span class="line"> ConnectivityManager connectivity = (ConnectivityManager) context</span><br><span class="line">   .getSystemService(Context.CONNECTIVITY_SERVICE);</span><br><span class="line"> if (connectivity == null) &#123;</span><br><span class="line">  return false;</span><br><span class="line"> &#125; else &#123;</span><br><span class="line">  NetworkInfo[] info = connectivity.getAllNetworkInfo();</span><br><span class="line">  if (info != null) &#123;</span><br><span class="line">   for (int i = 0; i &lt; info.length; i++) &#123;</span><br><span class="line">    if (info[i].getState() == NetworkInfo.State.CONNECTED) &#123;</span><br><span class="line">     return true;</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void HttpTest(final Activity mActivity) &#123;</span><br><span class="line"> if (!isNetworkAvailable(mActivity)) &#123;</span><br><span class="line">  showToast(mActivity);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void showToast(Activity mActivity) &#123;</span><br><span class="line"> Vibrator mVibrator01 = (Vibrator) mActivity.getApplication()</span><br><span class="line">   .getSystemService(Service.VIBRATOR_SERVICE);</span><br><span class="line"> mVibrator01.vibrate(new long[] &#123; 100, 10, 100, 1000 &#125;, -1);</span><br><span class="line"> Toast.makeText(mActivity, &quot;请检查是否联网&quot;, 500).show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中还要加上手机震动和联网的权限：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt; </span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.VIBRATE&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/14/Android_检查是否联网/" data-id="cis0f3gg9000m1quo5sp2gxso" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -753,7 +802,7 @@ public static String getJsonArrStrFromList(Object obj)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Json_反序列化/" data-id="cis0exhks001c16uoc8mgyg5c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Json_反序列化/" data-id="cis0f3ggo000z1quob71u8xsx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -765,9 +814,9 @@ public static String getJsonArrStrFromList(Object obj)
 
 
   
-    <article id="post-Android_检查是否联网" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Android_消息推送" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/05/14/Android_检查是否联网/" class="article-date">
+    <a href="/2016/05/14/Android_消息推送/" class="article-date">
   <time datetime="2016-05-14T13:26:18.000Z" itemprop="datePublished">2016-05-14</time>
 </a>
     
@@ -779,7 +828,7 @@ public static String getJsonArrStrFromList(Object obj)
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/14/Android_检查是否联网/">Android_检查是否联网</a>
+      <a class="article-title" href="/2016/05/14/Android_消息推送/">Android 消息推送</a>
     </h1>
   
 
@@ -787,79 +836,30 @@ public static String getJsonArrStrFromList(Object obj)
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>检查是否联网</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static boolean isNetworkAvailable(Activity mActivity) &#123;</span><br><span class="line"> Context context = mActivity.getApplicationContext();</span><br><span class="line"> ConnectivityManager connectivity = (ConnectivityManager) context</span><br><span class="line">   .getSystemService(Context.CONNECTIVITY_SERVICE);</span><br><span class="line"> if (connectivity == null) &#123;</span><br><span class="line">  return false;</span><br><span class="line"> &#125; else &#123;</span><br><span class="line">  NetworkInfo[] info = connectivity.getAllNetworkInfo();</span><br><span class="line">  if (info != null) &#123;</span><br><span class="line">   for (int i = 0; i &lt; info.length; i++) &#123;</span><br><span class="line">    if (info[i].getState() == NetworkInfo.State.CONNECTED) &#123;</span><br><span class="line">     return true;</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void HttpTest(final Activity mActivity) &#123;</span><br><span class="line"> if (!isNetworkAvailable(mActivity)) &#123;</span><br><span class="line">  showToast(mActivity);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void showToast(Activity mActivity) &#123;</span><br><span class="line"> Vibrator mVibrator01 = (Vibrator) mActivity.getApplication()</span><br><span class="line">   .getSystemService(Service.VIBRATOR_SERVICE);</span><br><span class="line"> mVibrator01.vibrate(new long[] &#123; 100, 10, 100, 1000 &#125;, -1);</span><br><span class="line"> Toast.makeText(mActivity, &quot;请检查是否联网&quot;, 500).show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中还要加上手机震动和联网的权限：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt; </span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.VIBRATE&quot;/&gt;</span><br></pre></td></tr></table></figure>
+        <p>1.引言</p>
+<p>　　所谓的消息推送就是从服务器端向移动终端发送连接，传输一定的信息。比如一些新闻客户端，每隔一段时间收到一条或者多条通知，这就是从服务器端传来的推送消息；还比如常用的一些IM软件如微信、GTalk等，都具有服务器推送功能。</p>
+<p>　　推送方法如下：</p>
+<p>　　1)通过SMS进行服务器端和客户端的交流通信。</p>
+<p>　　在Android平台上，你可以通过拦截SMS消息并且解析消息内容来了解服务器的意图，可以实现完全的实时操作。但是问题是这个方案的成本相对比较高，且依赖于运营商。</p>
+<p>　　2)循环主动定时获取</p>
+<p>　　这种方法需要客户端来做一个定时或者周期性的访问服务器端接口，以获得最新的消息。轮询的频率太慢可能导致某些消息的延迟，太快则会大量消耗网络带宽和电池。</p>
+<p>　　3)持久连接</p>
+<p>　　这个方案可以解决由轮询带来的性能问题，但是还是会消耗手机的电池。我们需要开一个服务来保持和服务器端的持久连接（苹果就和谷歌的C2DM是这种机制）。但是对于Android系统，当系统可用资源较低，系统会强制关闭我们的服务或者是应用，这种情况下连接会强制中断。（Apple的推送服务之所以工作的很好，是因为每一台手机仅仅保持一个与服务器之间的连接，事实上C2DM也是这么工作的。即所有的推送服务都是经由一个代理服务器完成的，这种情况下只需要和一台服务器保持持久连接即可。C2DM=Cloud to Device Messaging）。</p>
+<p>　　相比之下第三种还是最可行的。为软件编写系统服务或开机启动功能；或者如果系统资源较低，服务被关闭后可以在onDestroy ()方法里面再重启该服务，进而实现持久连接的方式。</p>
+<p>　　C2DM内置于Android的2.2系统上，无法兼容老的1.6到2.1系统；且依赖于Google官方提供的C2DM服务器，由于国内的网络环境，这个服务经常不可用。</p>
+<p>　　建立在TCP协议之上的XMPP协议，不仅可提供可这种持久连接的功能，能实现服务器和客户机的双工通信，还能不依赖与系统版本和google服务器的限制，提供了比较好的解决方案。</p>
+<ol>
+<li>XMPP协议</li>
+</ol>
+<p>　　XMPP全称Extensible Messaging and Presence Protocol，前身是Jabber项目，是一种以XML为基础的开放式即时通讯协议。XMPP因为被Google Talk和网易泡泡应用而被广大网民所接触。XMPP的关键特色是，分散式的即时通讯系统，以及使用XML串流。XMPP目前被IETF国际标准组织完成了标准化工作。</p>
+<p>　　Android push notification(androidpn) 是一个基于XMPP协议的java开源实现，它包含了完整的客户端和服务器端。该服务器端基本是在另外一个开源工程openfire基础上修改实现的。</p>
+<p>　　androidpn客户端需要用到一个基于java的开源XMPP协议包asmack，这个包同样也是基于openfire下的另外一个开源项目smack，不过我们不需要自己编译，可以直接把androidpn客户端里面的asmack.jar拿来使用。客户端利用asmack中提供的XMPPConnection类与服务器建立持久连接，并通过该连接进行用户注册和登录认证，同样也是通过这条连接，接收服务器发送的通知。</p>
+<p>　　androidpn服务器端也是java语言实现的，基于openfire开源工程，不过它的Web部分采用的是spring框架，这一点与openfire是不同的。Androidpn服务器包含两个部分，一个是侦听在5222端口上的XMPP服务，负责与客户端的XMPPConnection类进行通信，作用是用户注册和身份认证，并发送推送通知消息。另外一部分是Web服务器，采用一个轻量级的HTTP服务器，负责接收用户的Web请求。服务器的这两方式，意义非凡：当相应的TCP端口被防火墙封闭，可以使用轮询的方式进行访问，因此又有助于通过防火墙。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android_检查是否联网/" data-id="cis0exhjk000e16uokztf01vv" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Android_Afinal框架" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/14/Android_Afinal框架/" class="article-date">
-  <time datetime="2016-05-14T13:26:18.000Z" itemprop="datePublished">2016-05-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/14/Android_Afinal框架/">Android_Afinal框架</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Afinal简介<br>Afinal是一个android的ioc，orm框架，内置了四大模块功能：FinalAcitivity,FinalBitmap,FinalDb,FinalHttp。通过finalActivity，我们可以通过注解的方式进行绑定ui和事件。通过finalBitmap，我们可以方便的加载bitmap图片，而无需考虑oom等问题。通过finalDB模块，我们一行代码就可以对android的sqlite数据库进行增删改查。通过FinalHttp模块，我们可以以ajax形式请求http数据。详情请通过以下网址查看。 — More…</p>
-<p>Afinal 是一个android的sqlite orm 和 ioc 框架。同时封装了android中的http框架，使其更加简单易用；<br>使用finalBitmap，无需考虑bitmap在android中加载的时候oom的问题和快速滑动的时候图片加载位置错位等问题。<br>Afinal的宗旨是简洁，快速。约定大于配置的方式。尽量一行代码完成所有事情。<br>目前Afinal主要有四大模块：</p>
-<p>FinalDB模块：android中的orm框架，一行代码就可以进行增删改查。支持一对多，多对一等查询。</p>
-<p>FinalActivity模块：android中的ioc框架，完全注解方式就可以进行UI绑定和事件绑定。无需findViewById和setClickListener等。</p>
-<p>FinalHttp模块：通过httpclient进行封装http数据请求，支持ajax方式加载。</p>
-<p>FinalBitmap模块：通过FinalBitmap，imageview加载bitmap的时候无需考虑bitmap加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象。FinalBitmap可以配置线程加载线程数量，缓存大小，缓存路径，加载显示动画等。FinalBitmap的内存管理使用lru算法，没有使用弱引用（android2.3以后google已经不建议使用弱引用，android2.3后强行回收软引用和弱引用，详情查看android官方文档），更好的管理bitmap内存。FinalBitmap可以自定义下载器，用来扩展其他协议显示网络图片，比如ftp等。同时可以自定义bitmap显示器，在imageview显示图片的时候播放动画等（默认是渐变动画显示）。</p>
-<p>使用afinal快速开发框架需要有以下权限：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;</span><br><span class="line">2</span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<p>第一个是访问网络<br>第二个是访问sdcard<br>访问网络是请求网络图片的时候需要或者是http数据请求时候需要，访问sdcard是图片缓存的需要。<br>FinalDB使用方法</p>
-<p>关于finalDb的更多介绍，请点击这里</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">FinalDb db = FinalDb.create(this);</span><br><span class="line">2</span><br><span class="line">User user = new User(); //这里需要注意的是User对象必须有id属性，或者有通过@ID注解的属性</span><br><span class="line">3</span><br><span class="line">user.setEmail(&quot;mail@tsz.net&quot;);</span><br><span class="line">4</span><br><span class="line">user.setName(&quot;michael yang&quot;);</span><br><span class="line">5</span><br><span class="line">db.save(user);</span><br><span class="line">FinalActivity使用方法：</span><br></pre></td></tr></table></figure>
-<p>完全注解方式就可以进行UI绑定和事件绑定<br>无需findViewById和setClickListener等<br>01<br>public class AfinalDemoActivity extends FinalActivity {<br>02</p>
-<p>03<br>    //无需调用findViewById和setOnclickListener等<br>04<br>    @ViewInject(id=R.id.button,click=”btnClick”) Button button;<br>05<br>    @ViewInject(id=R.id.textView) TextView textView;<br>06</p>
-<p>07<br>    public void onCreate(Bundle savedInstanceState) {<br>08<br>       super.onCreate(savedInstanceState);<br>09<br>       setContentView(R.layout.main);<br>10<br>    }<br>11</p>
-<p>12<br>    public void btnClick(View v){<br>13<br>       textView.setText(“text set form button”);<br>14<br>    }<br>15<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">FinalHttp使用方法：</span><br><span class="line"></span><br><span class="line">普通get方法</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">01</span><br><span class="line">FinalHttp fh = new FinalHttp();</span><br><span class="line">02</span><br><span class="line">fh.get(&quot;http://www.yangfuhai.com&quot;, new AjaxCallBack()&#123;</span><br><span class="line">03</span><br><span class="line"></span><br><span class="line">04</span><br><span class="line">    @Override</span><br><span class="line">05</span><br><span class="line">    public void onLoading(long count, long current) &#123; //每1秒钟自动被回调一次</span><br><span class="line">06</span><br><span class="line">            textView.setText(current+&quot;/&quot;+count);</span><br><span class="line">07</span><br><span class="line">    &#125;</span><br><span class="line">08</span><br><span class="line"></span><br><span class="line">09</span><br><span class="line">    @Override</span><br><span class="line">10</span><br><span class="line">    public void onSuccess(String t) &#123;</span><br><span class="line">11</span><br><span class="line">            textView.setText(t==null?&quot;null&quot;:t);</span><br><span class="line">12</span><br><span class="line">    &#125;</span><br><span class="line">13</span><br><span class="line"></span><br><span class="line">14</span><br><span class="line">    @Override</span><br><span class="line">15</span><br><span class="line">    public void onStart() &#123;</span><br><span class="line">16</span><br><span class="line">        //开始http请求的时候回调</span><br><span class="line">17</span><br><span class="line">    &#125;</span><br><span class="line">18</span><br><span class="line"></span><br><span class="line">19</span><br><span class="line">    @Override</span><br><span class="line">20</span><br><span class="line">    public void onFailure(Throwable t, String strMsg) &#123;</span><br><span class="line">21</span><br><span class="line">        //加载失败的时候回调</span><br><span class="line">22</span><br><span class="line">    &#125;</span><br><span class="line">23</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>使用FinalHttp上传文件 或者 提交数据 到服务器（post方法）</p>
-<p>文件上传到服务器，服务器如何接收，请查看这里</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">01</span><br><span class="line">AjaxParams params = new AjaxParams();</span><br><span class="line">02</span><br><span class="line">  params.put(&quot;username&quot;, &quot;michael yang&quot;);</span><br><span class="line">03</span><br><span class="line">  params.put(&quot;password&quot;, &quot;123456&quot;);</span><br><span class="line">04</span><br><span class="line">  params.put(&quot;email&quot;, &quot;test@tsz.net&quot;);</span><br><span class="line">05</span><br><span class="line">  params.put(&quot;profile_picture&quot;, new File(&quot;/mnt/sdcard/pic.jpg&quot;)); // 上传文件</span><br><span class="line">06</span><br><span class="line">  params.put(&quot;profile_picture2&quot;, inputStream); // 上传数据流</span><br><span class="line">07</span><br><span class="line">  params.put(&quot;profile_picture3&quot;, new ByteArrayInputStream(bytes)); // 提交字节流</span><br><span class="line">08</span><br><span class="line"></span><br><span class="line">09</span><br><span class="line">  FinalHttp fh = new FinalHttp();</span><br><span class="line">10</span><br><span class="line">  fh.post(&quot;http://www.yangfuhai.com&quot;, params, new AjaxCallBack()&#123;</span><br><span class="line">11</span><br><span class="line">        @Override</span><br><span class="line">12</span><br><span class="line">        public void onLoading(long count, long current) &#123;</span><br><span class="line">13</span><br><span class="line">                textView.setText(current+&quot;/&quot;+count);</span><br><span class="line">14</span><br><span class="line">        &#125;</span><br><span class="line">15</span><br><span class="line"></span><br><span class="line">16</span><br><span class="line">        @Override</span><br><span class="line">17</span><br><span class="line">        public void onSuccess(String t) &#123;</span><br><span class="line">18</span><br><span class="line">            textView.setText(t==null?&quot;null&quot;:t);</span><br><span class="line">19</span><br><span class="line">        &#125;</span><br><span class="line">20</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-<p>使用FinalHttp下载文件：</p>
-<p>支持断点续传，随时停止下载任务 或者 开始任务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">01</span><br><span class="line">FinalHttp fh = newFinalHttp(); </span><br><span class="line">02</span><br><span class="line">    //调用download方法开始下载</span><br><span class="line">03</span><br><span class="line">    HttpHandler handler = fh.download(&quot;http://www.xxx.com/下载路径/xxx.apk&quot;, //这里是下载的路径</span><br><span class="line">04</span><br><span class="line">    true,//true:断点续传 false:不断点续传（全新下载）</span><br><span class="line">05</span><br><span class="line">    &quot;/mnt/sdcard/testapk.apk&quot;, //这是保存到本地的路径</span><br><span class="line">06</span><br><span class="line">    newAjaxCallBack() &#123; </span><br><span class="line">07</span><br><span class="line">                @Override </span><br><span class="line">08</span><br><span class="line">                public void onLoading(long count, longcurrent) &#123; </span><br><span class="line">09</span><br><span class="line">                     textView.setText(&quot;下载进度：&quot;+current+&quot;/&quot;+count); </span><br><span class="line">10</span><br><span class="line">                &#125; </span><br><span class="line">11</span><br><span class="line"></span><br><span class="line">12</span><br><span class="line">                @Override </span><br><span class="line">13</span><br><span class="line">                public voidonSuccess(File t) &#123; </span><br><span class="line">14</span><br><span class="line">                    textView.setText(t==null?&quot;null&quot;:t.getAbsoluteFile().toString()); </span><br><span class="line">15</span><br><span class="line">                &#125; </span><br><span class="line">16</span><br><span class="line"></span><br><span class="line">17</span><br><span class="line">            &#125;); </span><br><span class="line">18</span><br><span class="line"></span><br><span class="line">19</span><br><span class="line"></span><br><span class="line">20</span><br><span class="line">   //调用stop()方法停止下载</span><br><span class="line">21</span><br><span class="line">   handler.stop();</span><br></pre></td></tr></table></figure>
-<p>FinalBitmap 使用方法</p>
-<p>加载网络图片就一行代码 fb.display(imageView,url) ,更多的display重载请看帮助文档</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">view sourceprint?</span><br><span class="line">01</span><br><span class="line">private GridView gridView;</span><br><span class="line">02</span><br><span class="line">    private FinalBitmap fb;</span><br><span class="line">03</span><br><span class="line">    @Override</span><br><span class="line">04</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">05</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">06</span><br><span class="line">        setContentView(R.layout.images);</span><br><span class="line">07</span><br><span class="line"></span><br><span class="line">08</span><br><span class="line">        gridView = (GridView) findViewById(R.id.gridView);</span><br><span class="line">09</span><br><span class="line">        gridView.setAdapter(mAdapter);</span><br><span class="line">10</span><br><span class="line"></span><br><span class="line">11</span><br><span class="line">        fb = FinalBitmap.create(this);//初始化FinalBitmap模块</span><br><span class="line">12</span><br><span class="line">        fb.configLoadingImage(R.drawable.downloading);</span><br><span class="line">13</span><br><span class="line">        //这里可以进行其他十几项的配置，也可以不用配置，配置之后必须调用init()函数,才生效</span><br><span class="line">14</span><br><span class="line">        //fb.configBitmapLoadThreadSize(int size)</span><br><span class="line">15</span><br><span class="line">        //fb.configBitmapMaxHeight(bitmapHeight)</span><br><span class="line">16</span><br><span class="line">    &#125;</span><br><span class="line">17</span><br><span class="line"></span><br><span class="line">18</span><br><span class="line"></span><br><span class="line">19</span><br><span class="line">///////////////////////////adapter getView////////////////////////////////////////////</span><br><span class="line">20</span><br><span class="line"></span><br><span class="line">21</span><br><span class="line">public View getView(int position, View convertView, ViewGroup parent) &#123;</span><br><span class="line">22</span><br><span class="line">    ImageView iv;</span><br><span class="line">23</span><br><span class="line">    if(convertView == null)&#123;</span><br><span class="line">24</span><br><span class="line">        convertView = View.inflate(BitmapCacheActivity.this,R.layout.image_item, null);</span><br><span class="line">25</span><br><span class="line">        iv = (ImageView) convertView.findViewById(R.id.imageView);</span><br><span class="line">26</span><br><span class="line">        iv.setScaleType(ScaleType.CENTER_CROP);</span><br><span class="line">27</span><br><span class="line">        convertView.setTag(iv);</span><br><span class="line">28</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">29</span><br><span class="line">        iv = (ImageView) convertView.getTag();</span><br><span class="line">30</span><br><span class="line">    &#125;</span><br><span class="line">31</span><br><span class="line">    //bitmap加载就这一行代码，display还有其他重载，详情查看源码</span><br><span class="line">32</span><br><span class="line">    fb.display(iv,Images.imageUrls[position]);</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android_Afinal框架/" data-id="cis0exhjs000i16uos50t9cl7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android_消息推送/" data-id="cis0f3gga000o1quoaun5p4rq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -928,7 +928,7 @@ public static String getJsonArrStrFromList(Object obj)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android-应用插件式开发解决方法/" data-id="cis0exhiw000416uoxdj60cyc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android-应用插件式开发解决方法/" data-id="cis0f3gfq00051quo8om8279s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
