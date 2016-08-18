@@ -98,7 +98,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/24/兴趣视频教程/" data-id="cis0fbict00192suog660x6ts" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/24/兴趣视频教程/" data-id="cis0fskct001f5quov6emwap9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/兴趣/">兴趣</a></li></ul>
@@ -155,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/23/Idea快捷键/" data-id="cis0fbicl00112suo3ozz7cux" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/23/Idea快捷键/" data-id="cis0fskc5000w5quo3ns38ybj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/">IDE</a></li></ul>
@@ -193,7 +193,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/16/流程图绘制和基本符号/" data-id="cis0fbidd001o2suo2dlbqwoq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/16/流程图绘制和基本符号/" data-id="cis0fskd9001w5quoqdxbc2ae" class="article-share-link">Share</a>
       
       
     </footer>
@@ -203,9 +203,9 @@
 
 
   
-    <article id="post-学习" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Android_应用安装" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/05/14/学习/" class="article-date">
+    <a href="/2016/05/14/Android_应用安装/" class="article-date">
   <time datetime="2016-05-14T14:57:12.000Z" itemprop="datePublished">2016-05-14</time>
 </a>
     
@@ -213,28 +213,64 @@
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/14/学习/">师傅的博客</a>
-    </h1>
-  
-
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#跟师傅学习，好榜样～</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://fpliu-blog.chinacloudsites.cn/index</span><br></pre></td></tr></table></figure>
+        <hr>
+<p>title: Android应用安装<br>date: 2016-08-18 22:57:12<br>tags:— Android</p>
+<p>一、关键词解释：</p>
+<ol>
+<li>SQLite：<br>SQLite是android系统自带的一款轻量级数据库，可以存储一些临时文件</li>
+<li>签名:<br>就像一些重大决定和文件需要我们手动签名一样，实际上在Android的世界里，签名起着一个应用的识别和告知其作者身份的作用，自己应用的无缝升级，ContentProvider的使用，都依赖签名</li>
+<li>SharePreference(share prefs):<br>存储数据类型：SharePreference是一个轻量级的存储机制。只能存储一些基本类型，boolean，int，float，long，String<br>路径：路径为data/data/包名/share_prefs/文件名.xml。<br>存储形式：以xml为载体，存储时类似于Map，key-value键值对。</li>
+<li>静默安装：<br>静默安装顾名思义，就是静静的，默默的装上一个应用，在安装的过程当中用户是不知情的</li>
+<li>ContentProvider：<br>Android四大组件，可以允许两个独立应用互相暴露、使用数据<br>二、 Android的安装方式</li>
+<li>系统应用安装：<br>PackageManagerService处理各种应用的安装，卸载，管理等工作，开机时由systemServer启动此服务<br>(源文件路径：android\frameworks\base\services\java\com\android\server\PackageManagerService.java)<br>PackageManagerService服务启动的流程：<br>a. 首先扫描安装“system\framework”目录下的jar包<br>scanDirLI(mFrameworkDir,PackageParser.PARSE_IS_SYSTEM scanMode | SCAN_NO_DEX);<br>b. 第二步扫描安装“system\app”目录下的各个系统应用<br>scanDirLI(mSystemAppDir,PackageParser.PARSE_IS_SYSTEM, scanMode);<br>c. 第三步扫描“data\app”目录，即用户安装的第三方应用 scanDirLI(mAppInstallDir, 0, scanMode);<br>d. 第四步扫描” data\app-private”目录，即安装DRM保护的APK文件（目前没有遇到过此类的应用）</li>
+<li>从market上下载应用：<br>a. 当应用在手机市场下载完成之后，会自动调用public voidinstallPackage(final Uri packageURI, final IPackageInstallObserver observer,final int flags)接口<br>b. 将apk文件复制到临时目录下，解析临时文件，获取应用包名<br>c. 判断如果带有参数INSTALL_REPLACE_EXISTING<br>d. 之后则与开机应用安装流程相同</li>
+<li>adb工具安装：<br>与market安装调用的接口相同</li>
+<li>静默安装：<br>a. apk签名必须与系统签名一致<br>b. 必须root<br>请注意：以上两项满足其一，然后编辑android工程中的Manifest.XML文件，添加权限android.permission.INSTALL_PACKAGES即</li>
+<li>系统应用安装和第三方安装（adb安装）区别:<br>实际上系统应用安装和第三方安装没有办法去做比较，只是阶段不一罢了，实际上第三方安装最后也是要走到系统安装这一步的，只不过当我们在使用第三方安装的 时 候，先走第三方安装阶段，然后是系统应用安装阶段，只有一点例外，就是系统应用不会走第三方安装，例如：系统版本更新，摄像头、计算器，键盘升级等<br>三、 Android覆盖安装与安装区别<br>Android覆盖安装与安装区别<br>正常安装（删除旧版本APK之后重新进行安装）    覆盖安装（不删除之前的旧版本包，直接安装）<br>SQLite的数据也会被删除    SQLite的数据不会丢失<br>shared_prefs中的数据会被删除    shared_prefs中的数据不会丢失<br>4.4之前的版本不会比较apk的Version_code    4.4以上版本比较apk的Version_code<br>四、测试需要注意的点以及会引发的问题</li>
+<li>容易引发的问题<br>a. SQLite数据不会丢失，当覆盖安装时，会对比SQLite数据库信息，但是没有比对上不会在界面上提示报错<br>b. Shared prefs中的数据有保存，那么之前用户设置的一些东西都会保存<br>c. Android版本比较多，而且比较复杂，市场持有度又都非常高，导致版本的更新和对低版本的支持成为问题，例如：android4.4之后覆盖安装会对比Version_code</li>
+<li>测试人员需要注意的点<br>a. SQLite数据库更新后，如果没有对比成功则覆盖安装失败且用户无感知，这个是个很大的问题，所以在之后的测试当中，需要关注是否有public voidonUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)的逻辑来更新SQLite<br>b. Shared prefs中的数据保存会保存之前用户的一些设置历史，那么新的版本和旧的版本之间的功能更新，减去，如果恰巧历史数据保存的正好是功能改动的部分，那么就可能会出现问题<br>c. Android的版本问题一直都是BUG出现最多的地方，覆盖安装的问题在与Android4.4之前，覆盖安装不会判断version_code，所以安装可以不考虑，但是在4.4之后会判断version_code,如果比之前的小，是不可以安装的</li>
+<li>解决方式<br>a.查看代码当中的是否有void onUpdate（）方法，可以使用静态代码扫描的方式来解决<br>b.查看代码中是否有使用到sharePreference对象，如果有，是否有逻辑使得sharePreference正常更新<br>c.查看Android的系统版本，如果&gt;4.4，那么使用adb命令：adb install apk路径，查看是否会报错，同时也可以加入静态代码扫描的规则中。<br>五、iOS的安装与覆盖安装：<br>iOS的安装和升级同一都走AppleStore，所以具有非常好的封装性，而且是闭源的，所以覆盖安装和正常的安装都是在APPleStore的监督之下完成的，基本相同</li>
+</ol>
+<p>作者：头条号 / 老急说<br>链接：<a href="http://toutiao.com/a6319976585891332354/" target="_blank" rel="external">http://toutiao.com/a6319976585891332354/</a><br>来源：头条号（今日头条旗下创作平台）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/学习/" data-id="cis0fbicx001c2suoq6hkrb1o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android_应用安装/" data-id="cis0fskdf00205quokpzexoa4" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习，师傅/">学习，师傅</a></li></ul>
+    </footer>
+  </div>
+  
+</article>
 
+
+  
+    <article id="post-面试" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/14/面试/" class="article-date">
+  <time datetime="2016-05-14T14:57:12.000Z" itemprop="datePublished">2016-05-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>title: 面试<br>date: 2016-08-18 22:57:12<br>tags:— 面试</p>
+<p>一、核心要求点<br>1、 《基本标准》<br>（1）前沿的技术和行业知识，具备专研精神的人<br>（2）技术原理，有深入研究和兴趣，比如java的主流框架，应用层面到原理层面<br>（3）基本功扎实，基础知识要非常扎实，代码能力强，精通一线技术<br>Case1、spring的反射原理，AOP的使用<br>Case2、hashmap的实现原理，怎么解决hash冲突<br>（4）技术难点攻关，解决问题和逻辑分析能力强<br>2、 《软性要求》<br>（1）认同阿里价值观，要自信，但不能浮夸吹牛<br>3、 《忌讳方向》<br>（1）停留在应用层面的人<br>（2）思路混乱，对自己做的项目都描述不清、模凌两可的人</p>
+<p>二、面试准备工作<br>（1）对主流的一些技术准备下，网上资料也很多，包括基础的一些技术知识；<br>（2）过往重点项目梳理，包括项目整体的逻辑思路、核心难点、关键技术如何实现，以及深入到底层和开源方面的一些研究，也就是项目里边涉及到的每个核心技术点背后的深层机制；<br>（3）沟通表达能力不要太差，思路不要太混乱，且也不要太浮夸；<br>三、通常面试失败原因<br>1、 脱离一线技术，简历无亮点；<br>2、 代码能力一般，技术单一；<br>3、 太注重股票或薪资要求过高；<br>4、 不自信，沟通表达能力一般；<br>四、某同学-JAVA-面试心得整理<br>1、对项目要非常熟悉，项目每个功能(特别是重要模块)的实现细节要非常熟悉，要对模块并发，扩展等问题要了解。一般情况下，面试官会在功能实现基础上考察多线程并发，分布式，以及横向纵向扩展等问题。<br>2、对项目特点相关的行业解决方案要熟悉，比如支付宝付款分布式事务问题，比如电商网站的订单重复提交如何去重等，这些都是经典解决方案，需要了解。如果你做的是LBS或者O2O的项目，像地图数据结构抽象也是经典的问题。<br>3、然后面试官会喜欢问些软素质问题，比如：项目遇到最大困难是什么，怎么解决的，你觉得自己在什么方面最有自信。<br>4、一般在个别较难问题没回答上来时，也会问一些简单的java基础，缓解下面试人员紧张的情绪，然后再问较难的问题。<br>【通常问题】<br>1、对于涉及到的规模、业务和结构，如何串联的，整个逻辑思路；<br>2、技术细节的实现，比如支付会涉及的清算、交易、网关等可能会出现的问题；3、对于底层的原理，并发等有所了解。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/14/面试/" data-id="cis0fskd8001u5quoeg056cnn" class="article-share-link">Share</a>
+      
+      
     </footer>
   </div>
   
@@ -272,11 +308,110 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/心情/" data-id="cis0fbid7001j2suo4ondcvxu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/心情/" data-id="cis0fskd4001s5quo7jxu4wyk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心情/">心情</a></li></ul>
 
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/14/学习/" class="article-date">
+  <time datetime="2016-05-14T14:57:12.000Z" itemprop="datePublished">2016-05-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/14/学习/">师傅的博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#跟师傅学习，好榜样～</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://fpliu-blog.chinacloudsites.cn/index</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/14/学习/" data-id="cis0fskd3001p5quoylwu6955" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习，师傅/">学习，师傅</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-《Effective java》-----读书笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/14/《Effective java》-----读书笔记/" class="article-date">
+  <time datetime="2016-05-14T14:57:12.000Z" itemprop="datePublished">2016-05-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>title: 《Effective java》—–读书笔记<br>date: 2016-08-18 22:57:12<br>tags:— Java</p>
+<p>2015年进步很小，看的书也不是很多，感觉自己都要废了，2016是沉淀的一年，在这一年中要不断学习、看书，努力提升自己！预计在2016年要看12本书，主要涉及java基础、Spring研究、java并发、JVM、分布式之类的。在今年面试的时候深受打击，到处都是问分布式、集群的？难道现在工作两三年的都这么牛逼了？都在搞分布式、集群之类的？<br>2016书单如下：<br>1、深入理解Java虚拟机：JVM高级特性与最佳实践—（已看，预计今年看三遍）<br>2、Oracle查询优化改写技巧与案例—（已看）<br>3、Effective Java—（已看）<br>4、Spring3.x企业应用开发实战<br>5、Spring技术内幕：深入解析Spring架构与设计原理—（这本书在去年已经看了一遍了，今年在好好研究下）<br>6、Java并发编程的艺术<br>7、Java并发编程实战—（这本书在去年已经看了一遍了，今年在好好研究下）<br>8、型网站系统与Java中间件实践<br>9、分布式服务框架原理与实践<br>10、大型分布式网站架构设计与实践<br>11、从Paxos到Zookeeper分布式一致性原理与实践<br>12、高性能mysql<br>目前已经看完了三本书：深入理解Java虚拟机：JVM高级特性与最佳实践、Oracle查询优化改写技巧与案例、Effective Java。其中深入理解jvm这本书确实是一本神书，看完之后真的有种豁然开朗的感觉，期待三遍之后给我醍醐灌顶的感觉。Oracle查询优化，感觉一般般。Effective java，四大圣经之一不做解释。<br>各位，有什么好书，麻烦推荐下，LZ不胜感激！<br>LZ没看一本书，都会做一些笔记，当然这些仅仅只是笔记而已！刚刚开始有点儿简陋，不要介意，如果对你还有点儿帮助，LZ一心满意足了！<br>二、：创建和销毁对象<br>2.1.考虑用静态工厂方法替换构造器<br>1.2.用私有构造器或者枚举类型强化Singleton属性<br>1.4.通过私有构造器强化不可实例化的能力。<br>1.5.避免创建不必要的对象。<br>优先使用基本类型而不是装箱基本类型，要当心无意识的自动装箱。<br>1.6.消除过期的对象引用<br>如果一个栈先是增长，再是收缩，那么，从栈中弹出来的对象将不会被当做垃圾回收，即使使用栈的程序不再引用这些对象，他们也不会被回收。这是因为，栈内部维护这对这些对象的过期引用。所谓过期引用则是指永远也不会再被解除的引用。<br>一般来说，对于过期引用我们都是清空这些引用即可（也就是set null）,但是这样势必会导致程序变得异常混乱，最好的办法则是让包含该引用的变量结束生命周期。<br>出现内存溢出常见的来源有：1、过期引用，2、缓存，3、监听器和其他回调。对于缓存我们通常的做法则是定时地清除一些没有用的项，想想缓存里面保存了几年了无用的项是不是都觉得恶心？回调则是只保存他们的弱引用，例如只将他们保存成WeakHashMap的键。<br>可以借助Heap剖析工具分析内存泄漏的问题<br>四、类和接口<br>4.1、使类和成员的可访问行最小化<br>良好的模块设计可以将所有的实现细节隐藏，把他的API与具体的实现清晰地隔离开来，模块与模块之间只通过他们的API进行通信，一个模块不需要知道其他模块的内部工作情况—信息隐藏。<br>4.2、使可变性最小化<br>1）为了使类不可变，需要遵循如下规则：<br>1.不要提供任何会修改对象状态的方法<br>2.保证类不会被扩展<br>3.所有域都要是final，且为私有<br>4.确保对于任何可变组件的互斥访问。<br>2）不可变类的好处<br>1.不可变对象本质是线程安全的，不要求同步<br>2.不可变对象为其他对象提供了大量的构件<br>3）缺点在于需要为每一个不同的值提供不同的对象。如果创建的对象比较大，那么所产生的代价就有点高了。<br>为了不可变性，类是绝对不允许被子类化，我们首先想到的就是“final”修饰，其实除了这点还有一个比较好的办法：让类的所有构造器全部变为私有，并且提供一个公有的静态工厂。<br>4.3、组合、继承<br>优先使用组合，慎用继承。<br>组 合 关 系    继 承 关 系<br>优点：不破坏封装，整体类与局部类之间松耦合，彼此相对独立    缺点：破坏封装，子类与父类之间紧密耦合，子类依赖于父类的实现，子类缺乏独立性<br>优点：具有较好的可扩展性    缺点：支持扩展，但是往往以增加系统结构的复杂度为代价<br>优点：支持动态组合。在运行时，整体对象可以选择不同类型的局部对象    缺点：不支持动态继承。在运行时，子类无法选择不同的父类<br>优点：整体类可以对局部类进行包装，封装局部类的接口，提供新的接口    缺点：子类不能改变父类的接口<br>缺点：整体类不能自动获得和局部类同样的接口    优点：子类能自动继承父类的接口<br>缺点：创建整体类的对象时，需要创建所有局部类的对象    优点：创建子类的对象时，无须创建父类的对象<br>请记住下面两句话：<br>继承要慎用，其使用场合仅限于你确信使用该技术有效的情况。一个判断方法是，问一问自己是否需要从新类向基类进行向上转型。如果是必须的，则继承是必要的。反之则应该好好考虑是否需要继承。《Java编程思想》<br>只有当子类真正是超类的子类型时，才适合用继承。换句话说，对于两个类A和B，只有当两者之间确实存在is-a关系的时候，类B才应该继续类A。《Effective Java》<br>4.4、接口、抽象类<br>1.接口是定义mixin的理想选择<br>2.接口允许我们构造非层次接口的类型框架<br>3.骨架实现类<br>通过对你导出的每一个重要接口都提供一个抽象的骨架实现类，把接口和抽象类的优点结合起来。这个时候接口的作用仍然是定义类型，但是骨架实现类接管了所有域接口实现相关的工作。骨架实现被称之为AbstractInterface。<br>骨架实现的美妙之处在于，它们为抽象类提供了实现上的帮助，但是又不会强加“抽象类被用做定义类型时”所特有的严格限制。同时在编写骨架实现时一般都需要经过认真研究接口，并确定那些方法是最为基础的，其他方法则可以根据他们来实现。这些基本的方法将成为骨架实现类中的抽象方法（这里是模板方法模式？？）。<br>4.接口只用于定义类型。<br>5.常量接口不值得效仿，接口应该只被用来定义类型，不应该被用来导出常量。<br>6.对于常量的使用我们应该遵循如下规则：如果常量与某个现有的类或者接口紧密相关，就应该把这些常量添加到这个类或者接口中；如果常量最好被看做枚举类型的成员，则应该用枚举类型来导出这些常量；否则应该使用不可实例化的工具类来导出这些常量。<br>4.5内部类<br>内部类的主要作用应该只为他的外围类提供服务。内部类主要有四种：静态成员类、非静态成员类、匿名类、局部类。<br>静态成员类常用作为公有的辅助类，仅当与它的外部类一起使用时才有意义。私有静态成员类一种常用的方法是用来代表外围类所代表的对象的组件，他它不需要依赖外围类。<br>匿名内部类没有名称，它并不是外围类的一个成员，它并不与其他的成员一起被声明，而是在使用的同时被声明和实例化。在使用的过程中，除了在他们被声明的时候之外，是无法将他们实例化的。匿名类有三种常用的用法：动态创建函数对象，创建过程对象（Runable、Thread、TimeTask）、静态工厂方法的内部。<br>五、泛型<br>推荐使用泛型，虽然他在运行时会被擦除。<br>尽可能地消除每一个非受检警告。如果无法消除警告，同时可以证明引起警告的代码是类型安全的，则可以使用@SuppressWarnings(“unchecked”)注解来禁止这条警告，同时我们必须要竟可能小的范围使用该注解，禁止在整个类上使用该注解。<br>七、方法<br>7.1必要时，对不可变对象的构造器和访问方法进行检查性保护。<br>7.2、谨慎设计方法签名<br>1.谨慎地选择方法的名称：方法名称应该始终遵循标准的命名习惯。<br>2.不要过于追求提供便利的方法，每个方法应该极尽其所能。<br>3.避免过长的参数列表，一边提供四个参数或者更少。<br>避免参数过长一般有三种方法：1).将该方法分解成多个方法 2).创建辅助类，用来保护参数的分组 3).从对象构建到方法的调用都采用Builder模式。<br>4.优先使用接口而不是实现类来作为参数类型。你应该不会把HashMap作为一个参数的！！<br>7.3、慎用重载<br>1.方法重载是在编译时做出决定的。<br>2.永远都不要导出两个具有相同参数数目的重载方法，这是一个安全保守的方法。<br>3.任何一组给定的实际参数将应用于那个重载方法上。<br>4.同一组参数只需要经过类型转换就可以被传递给不同的重载方法，如果不能避免这种情况，就应该保证：当传递同样的参数是，所有重载方法的行为必须一致。<br>7.4、慎用可变参数<br>可变参数接受0个或者多个指定类型的参数。其机制是先创建一个数组，数组的大小为在调用位置所传递参数的数量，然后将参数值传递给数组，最后将数组传递给方法。<br>7.5、返回零长度的数组或者集合，而不应该是null。不重要但是值得注意。<br>八、通用程序设计<br>8.1局部变量作用域最小化<br>将局部变量的作用域最小化，可以增强代码的可读性和可维护性，并降低出错的可能性。<br>要是局部变量的作用域最小化，最有力的方法就是在第一次使用它的地方声明。一般来说每个局部变量都应该有一个初始化，如果没有足够的信息来对该变量进行有意义的初始化，则需要推迟该变量的声明，直到可以被初始化为止。<br>对于方法而言，应该尽可能地使方法小而集中，这样就可以将局部变量的作用域尽可能地小化。<br>8.2、优先使用for-each循环<br>for循环相比于while循环它可以使局部变量更小化，同时程序更加简短增强了可读性。<br>for-each循环在简洁性和预防bug方面有着传统for循环无法比拟的优势，并且没有性能损失，所以我们应该尽可能使用for-each循环，但是在以下三种情况是否无法使用for-each循环的：<br>1.过滤：如果需要遍历某个集合，删除特定的元素，则需要使用显示的迭代器。<br>2.转换：如果需要遍历列表或者数组，并取代它部分或者全部元素值，这时就需要迭代器来进行设置元素的值。<br>3.平行迭代<br>8.3、优先使用基本类型<br>基本类型相当于其引用类型有如下几个区别：1.）基本类型只有值，而引用类型则具有他们值不同的同一性，也就说new Integer(1) != new Integer(1)；2).基本类型具有功能完备的值，而引用还有一个null值 3).基本类型通常比引用类型更加节省空间和时间。<br>当在一项操作中混合使用基本类型和其引用类型时，其引用类型会自动进行拆箱动作。<br>在进行迭代时需要格外注意拆箱装箱机制，因为频繁的拆箱装箱会导致性能的下降。<br>其他<br>1.如果需要精确的答案，请使用BigDecimal而不是double和float。<br>2.如果有合适的接口类型存在，那么对于参数、返回值、变量和域来说，就都应该使用接口类型进行声明。<br>九、异常<br>异常应该只用于异常的情况下，他们永远不应该用于正常的控制流。<br>异常机制设计是用于不正常的情况，所以很少会有JVM会对他进行优化，所以异常一般运行都比较慢。<br>我们应该尽量让异常代码块小，因为try..catch会阻碍JVM实现本来可能要执行的某些特定的优化。</p>
+<p>作者：头条号 / IT技术Java交流<br>链接：<a href="http://toutiao.com/a6317516034871034114/" target="_blank" rel="external">http://toutiao.com/a6317516034871034114/</a><br>来源：头条号（今日头条旗下创作平台）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/14/《Effective java》-----读书笔记/" data-id="cis0fskcn001d5quoyag0kxzc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android_编码规范" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/14/Android_编码规范/" class="article-date">
+  <time datetime="2016-05-14T14:57:12.000Z" itemprop="datePublished">2016-05-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>title: Android编码规范<br>date: 2016-08-18 22:57:12<br>tags:— Android</p>
+<p>Android开发的一些编码规范。</p>
+<p>1.java代码中不出现中文，最多注释中可以出现中文，中文统一写在strings.xml中。<br>2.常量命名只能包含字母和<em>，字母全部大写，单词之间用</em>隔开。<br>3.局部变量命名、静态成员变量命名 只能包含字母，单词首字母大写，其他字母均为小写。<br>4.图片要处理，图片尽量分拆成多个可重用的图片。<br>5.引用第三方库要慎重，避免应用大容量的第三方库，导致客户端包非常大。<br>6.布局文件中的id命名：<br>命名模式为：view缩写_模块名称<em>view的逻辑名称<br>常用控件的缩写如下<br>LayoutView：lv<br>RelativeView : rv<br>TextView : tv<br>ImageView : iv<br>ImageButton : im<br>Button : btn<br>7.Layout中的id命名：<br>命名模式为：view缩写</em>模块名称<em>view的逻辑名称<br>view的缩写详情如下<br>LinearLayout：ll<br>RelativeLayout : rl<br>TextView : tv<br>ImageView : iv<br>ImageButton : ib<br>Button:btn<br>8.String.xml中的id命名：<br>命名模式为：activity名称</em>功能模块名称<em>逻辑名称/activity名称</em>逻辑名称/common<em>逻辑名称<br>strings.xml中，使用activity名称注释，将文件内容区分开来。另外，strings.xml中使用%1$s实现字符串的通配。<br>9.activity中的view变量命名：<br>命名模式为：view缩写+逻辑名称<br>如果layout文件很复杂，建议将layout分成多个模块，每个模块定义一个moduleViewHolder，其成员变量包含所属view。<br>另外，activity中在一个View.OnClickListener中处理所有的逻辑<br>10.drawable中的图片命名：<br>命名模式为：activity名称</em>逻辑名称/common_逻辑名称<br>11.styles.xml：将layout中不断重现的style提炼出通用的style通用组件，放到styles.xml中。<br>12.不要重用父类的handler，对应一个类的handler也不应该让其子类用到，否则会导致message.what冲突。<br>13.服务端可以实现的，就不要放在客户端。<br>14.使用button+activitgroup实现tab效果时，使用Button.setSelected(true)，确保按钮处于选择状态，并使activitygroup的当前activity与该button对应。<br>15.如果多个Activity中包含共同的UI处理，那么可以提炼一个CommonActivity，把通用部分叫由它来处理，其他activity只要继承它即可。<br>16.如果所开发的为通用组件，为避免冲突，将drawable/layout/menu/values目录下的文件名增加前缀。<br>17.activity中在一个View.OnClickListener中处理所有的逻辑。<br>大概就先说这么多，欢迎大牛们补充和指正~~</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/14/Android_编码规范/" data-id="cis0fskbu000q5quoimoihiep" class="article-share-link">Share</a>
+      
+      
     </footer>
   </div>
   
@@ -317,692 +452,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Linux常用命令/" data-id="cis0fbico00142suok2xig6ei" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Linux常用命令/" data-id="cis0fskcl001a5quohfsxxjwn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-基类和派生类的成员访问" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/14/基类和派生类的成员访问/" class="article-date">
-  <time datetime="2016-05-14T14:15:27.000Z" itemprop="datePublished">2016-05-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/14/基类和派生类的成员访问/">基类和派生类的成员访问</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>基类和派生类的成员访问</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">＃include </span><br><span class="line">using namespace std;    </span><br><span class="line">class Cbase    </span><br><span class="line">&#123;    </span><br><span class="line">public:    </span><br><span class="line">    Cbase(int x = 0, int y = 0, int z = 0):a(x), b(y), c(z)&#123;&#125;;    </span><br><span class="line">    void display();    </span><br><span class="line">    void display(int a, int b);    </span><br><span class="line">    void set();    </span><br><span class="line">    virtual void eval();    </span><br><span class="line">    static int sint;    </span><br><span class="line">protected:    </span><br><span class="line">    int c;    </span><br><span class="line">private:    </span><br><span class="line">    int a;    </span><br><span class="line">    int b;    </span><br><span class="line">&#125;;</span><br><span class="line">class Cderive:public Cbase   </span><br><span class="line">&#123;    </span><br><span class="line">public:    </span><br><span class="line">    Cderive(string x = &quot;&quot;, string y = &quot;&quot;, int z = 0):a(x),b(y), Cbase(z,z,z)&#123;&#125;;   </span><br><span class="line">    //隐藏了Cbase::set()的可见性    </span><br><span class="line">    void set(string x, string y);    </span><br><span class="line">    using Cbase::set;    </span><br><span class="line">    virtual void eval();    </span><br><span class="line">    virtual void cmp(Cderive* pb);    </span><br><span class="line">protected:    </span><br><span class="line">private:    </span><br><span class="line">    int nc;    </span><br><span class="line">    string a;    </span><br><span class="line">    string b;    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>派生类中继承到的基类成员可以直接访问pulic成员</li>
-</ol>
-<p>就好像他是派生类的成员，<br>可以通过该类的一个对象访问，<br>Cderive der;<br>der.display();<br>也可以直接在成员函数里面访问。<br>void Cderive::set()<br>{<br>    display();<br>    a = “hello”;<br>    b = “ derived class”;<br>}<br>2.例外：当基类成员名在派生类中被重用时</p>
-<p>c++初学者常见的误解：希望基类和派生类的成员函数构成一个重载函数集<br>但是，试图在派生类中调用基类实例会导致一个编译时刻错误<br>Cderive der;<br>//Cbase::set()不可见<br>der.set();<br>虽然基类成员可以被直接访问，但他们仍然属于基类的域。一个名字的重载候选函数必须出现在同一个域中，因为在不同的类域中<br>所以可以出现相同原型的两个实例，但是这在同一个类域中将导致重复定义错误。<br>如果我们真想为基类和派生类的成员实例提供一个重载函数集合有两种方法：<br>1.在调用基类实例的派生类中写一个小的inline存根函数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Cderive:public Cbase     </span><br><span class="line">&#123;      </span><br><span class="line">public:      </span><br><span class="line">    void set(string x, string y);      </span><br><span class="line">    void set()&#123;Cbase::set();&#125;      </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>2.使用using声明：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Cderive:public Cbase     </span><br><span class="line">&#123;      </span><br><span class="line">public:      </span><br><span class="line">    void set(string x, string y);      </span><br><span class="line">    using Cbase::set;      </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>using把基类中每一个被命名的成员都引入到派生类的域中（针对一个成员函数的using声明不能指定参数表，只能指定成员函数名。这意味着，如果函数在基类中被重载，则所有的重载实例都被加入到派生类的类域中，不能只增加基类的重载成员函数集中的一个实例）。<br>3.访问基类的protected成员的范围</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">void Cderive::cmp(Cbase* pb)   </span><br><span class="line">&#123;    </span><br><span class="line">    //自己的Cbase子对象的protected成员     </span><br><span class="line">    int mine = c;    </span><br><span class="line">    //不能直接访问另一个独立的Cbase对象的protected成员的权力    </span><br><span class="line">    int his = pb-&gt;c;</span><br><span class="line">    if (mine == his)   </span><br><span class="line">        cout &lt;&lt; are=&quot;&quot; the=&quot;&quot; same=&quot;&quot; endl=&quot;&quot;&gt;    else    </span><br><span class="line">        cout &lt;&lt; are=&quot;&quot; different=&quot;&quot; endl=&quot;&quot;&gt;&#125;</span><br></pre></td></tr></table></figure>
-<p>Cderive只能访问一个Cbase类对象的protected成员，他自己的Cbase子对象。<br>这种形式的成员访问限制不适用于自己类的其他对象。例如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">void Cderive::cmp(Cderive* pd)   </span><br><span class="line">&#123;    </span><br><span class="line">    //自己的Cbase子对象的protected成员    </span><br><span class="line">    int mine = c;    </span><br><span class="line">    //ok as well    </span><br><span class="line">    int his = pd-&gt;c;</span><br><span class="line">    if (mine == his)   </span><br><span class="line">        cout &lt;&lt; are=&quot;&quot; the=&quot;&quot; same=&quot;&quot; endl=&quot;&quot;&gt;    else    </span><br><span class="line">        cout &lt;&lt; are=&quot;&quot; different=&quot;&quot; endl=&quot;&quot;&gt;&#125;</span><br></pre></td></tr></table></figure>
-<p>派生类可以直接访问该类其他对象的protected基类成员，以及该类其他对象的protected和private成员。<br>4.基类指针访问派生类对象</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Cbase *pb = new Cderive;   </span><br><span class="line">pb-&gt;eval();  </span><br><span class="line">```  </span><br><span class="line">如果一个基类指针调用在Cbase中定义的虚拟函数，则调用派生的Cderive类实例。</span><br><span class="line">除了“在Cbase基类中被声明，并且在Cderive派生类中被改写”的虚拟函数之外，没有办法通过pb直接访问Cderive的成员。</span><br><span class="line">1.如果Cbase和Cderive都声明了一个同名的非虚拟函数或同名的数据成员，通过pb调用的总是Cbase的实例。</span><br><span class="line">2.如果Cderive引入了一个在Cbase中不存在的虚拟函数，那么试图通过pd调用它将导致一个编译时刻错误。</span><br><span class="line">3.试图通过pb访问Cderive的数据成员或非虚拟成员函数，也会产生一个编译时刻错误。</span><br><span class="line">C++中基类指针只能访问在该类中被声明的数据成员和成员函数，包括虚拟成员函数，而与他实际指向的实际对象无关。把一个成员声明成虚拟的， 只推延了“在程序执行期间pd指向的实际类型，对于要调用的实例的解析过程”。</span><br><span class="line">5.静态成员的继承访问</span><br><span class="line"></span><br><span class="line">如果基类定义了一个静态数据成员sint，派生类不会创建第二个sint的实例，所有的派生类对象都引用这个相同的，单一的，共享的静态成员。不论从基类派生了多少类sint只存在一个实例，我们可以通过派生类对象用成员访问语法来访问他。</span><br></pre></td></tr></table></figure>
-<p>Cbase <em>pb = new Cderive;<br>Cderive </em>pd = new Cderive;<br>cout &lt;&lt; pd-=””&gt;sint<pd->sint = 2048;<br>cout &lt;&lt; pb-=””&gt;sint &lt;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">6.派生类访问基类的私有成员，基类必须显式的把派生类声明为一个friend</span><br></pre></td></tr></table></figure></pd-></p>
-<p>class Cbase<br>{<br>    friend class Cderive;<br>public:<br>};<br>```<br>现在Cderive不但可以访问他自己的基类子对象的私有成员，而且还可以访问所有Cbase对象的私有和protected的成员。<br>如果从Cderive派生出一个Cchild类，Cchild类不继承Cderive与Cbase的友元关系，友元关系没有被继承。派生类没有成为“向他的基类授权友元的类的”友元。<br>Cchild没有对Cbase的访问特权。如果需要特权访问，则Cbase必须显式的向他授权。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/基类和派生类的成员访问/" data-id="cis0fbida001l2suo5nz9pkkv" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Unity3D研究院之与Android相互传递消息" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/14/Unity3D研究院之与Android相互传递消息/" class="article-date">
-  <time datetime="2016-05-14T14:14:00.000Z" itemprop="datePublished">2016-05-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/14/Unity3D研究院之与Android相互传递消息/">Unity3D研究院之与Android相互传递消息</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Github"><a href="#Github" class="headerlink" title=" Github"></a> Github</h2><p>原创文章如需转载请注明：转载自雨松MOMO独立域名博客，欢迎大家来访！！雨松MOMO程序研究院本文链接地址:Unity3D研究院之与Android相互传递消息（十九）<br>          上一篇文章我们学习了Unity向Android发送消息，如果Android又能给Unity回馈消息那么这就玩美了。恰好Unity for Andoid 和 IOS一样都是可以相互与Unity发送与接收消息，这篇文章MOMO就和大家好好聊聊Android向Unity发送消息的方法。在读本片博文之前，建议大家读一下我上一篇文章Unity3D研究院之打开Activity与调用JAVA代码传递参数（十八），有关数据打包方面在上一篇中已经说的很清楚，这里就不再赘述。<br>我们在项目中创建两个Activity一个是主Activity一个是新打开的Activity和内容方面与上一篇文章类似。<br>UnityTestActivity.java 主Activity ，提供一个接口方法StartActivity()，它是由Unity中调用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">package com.xys;   </span><br><span class="line">   </span><br><span class="line">import android.content.Context;   </span><br><span class="line">import android.content.Intent;   </span><br><span class="line">import android.os.Bundle;   </span><br><span class="line">   </span><br><span class="line">import com.unity3d.player.UnityPlayerActivity;   </span><br><span class="line">   </span><br><span class="line">public class UnityTestActivity extends UnityPlayerActivity &#123;   </span><br><span class="line">    /** Called when the activity is first created. */   </span><br><span class="line">   </span><br><span class="line">    Context mContext = null;   </span><br><span class="line">    @Override   </span><br><span class="line">    public void onCreate(Bundle savedInstanceState) &#123;   </span><br><span class="line">        super.onCreate(savedInstanceState);   </span><br><span class="line">        mContext = this;   </span><br><span class="line">   </span><br><span class="line">    &#125;   </span><br><span class="line">   </span><br><span class="line">    public void StartActivity0(String name)   </span><br><span class="line">    &#123;   </span><br><span class="line">        Intent intent = new Intent(mContext,TestActivity0.class);   </span><br><span class="line">        intent.putExtra(&quot;name&quot;, name);   </span><br><span class="line">        this.startActivity(intent);   </span><br><span class="line">    &#125;   </span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>接着是TestActivity.java 打开这个界面后，程序将在这里向Unity发送消息。 </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">package com.xys;   </span><br><span class="line">   </span><br><span class="line">import com.unity3d.player.UnityPlayer;   </span><br><span class="line">   </span><br><span class="line">import android.app.Activity;   </span><br><span class="line">import android.os.Bundle;   </span><br><span class="line">import android.view.View;   </span><br><span class="line">import android.view.View.OnClickListener;   </span><br><span class="line">import android.widget.Button;   </span><br><span class="line">import android.widget.EditText;   </span><br><span class="line">import android.widget.TextView;   </span><br><span class="line">   </span><br><span class="line">public class TestActivity0 extends Activity &#123;   </span><br><span class="line">   </span><br><span class="line">    @Override   </span><br><span class="line">    public void onCreate(Bundle savedInstanceState) &#123;   </span><br><span class="line">        super.onCreate(savedInstanceState);   </span><br><span class="line">        setContentView(R.layout.main);   </span><br><span class="line">   </span><br><span class="line">        TextView text = (TextView)this.findViewById(R.id.textView1);   </span><br><span class="line">        text.setText(this.getIntent().getStringExtra(&quot;name&quot;));   </span><br><span class="line">   </span><br><span class="line">        final EditText edit = (EditText)this.findViewById(R.id.edit);   </span><br><span class="line">   </span><br><span class="line">        Button close = (Button)this.findViewById(R.id.button0);   </span><br><span class="line">        close.setOnClickListener(new OnClickListener() &#123;   </span><br><span class="line">   </span><br><span class="line">            @Override   </span><br><span class="line">            public void onClick(View v) &#123;   </span><br><span class="line">                //注释1   </span><br><span class="line">                UnityPlayer.UnitySendMessage(&quot;Main Camera&quot;,&quot;messgae&quot;,edit.getText().toString());   </span><br><span class="line">                TestActivity0.this.finish();   </span><br><span class="line">            &#125;   </span><br><span class="line">        &#125;);   </span><br><span class="line">    &#125;   </span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 需要在程序头引入包import com.unity3d.player.UnityPlayer; 因为向Unity发送消息的静态方法写在这里。<br>注释1：意思是点击发送按钮后，程序将向Unity发送消息。UnityPlayer.UnitySendMessage() 参数1表示发送游戏对象的名称，参数2表示对象绑定的脚本接收该消息的方法，参数3表示本条消息发送的字符串信息，这个方法与IOS发送消息的方式非常相像。<br>接着，我们打开Unity工程将Android插件打包好复制在Unity工程当中，详细打包过程请看上一章，将脚本Test.cs绑定在Main Camera对象中，此时由于UnityPlayer.UnitySendMessage()方法发送消息给MainCamera对象，所以需要在Main Camera对象绑定的脚本中去接收这个消息，也就是说要在Test.cs脚本中接收。</p>
-<p>下面我们看看Test.cs脚本</p>
-<pre><code>using UnityEngine;   
-using System.Collections;   
-
-public class Test : MonoBehaviour   
-{   
-    //请输入一个字符串   
-    private string stringToEdit = &quot;Please enter a string&quot;;   
-
-    void Update ()   
-    {   
-        //点击手机返回键关闭应用程序   
-        if (Input.GetKeyDown(KeyCode.Escape) ¦¦ Input.GetKeyDown(KeyCode.Home) )   
-        {   
-            Application.Quit();   
-        }   
-    }   
-
-    void OnGUI()   
-    {   
-        //绘制一个输入框接收用户输入   
-        stringToEdit = GUILayout.TextField (stringToEdit, GUILayout.Width(300),GUILayout.Height(100));   
-
-        //一个提交按钮   
-        if(GUILayout.Button(&quot;commit&quot;,GUILayout.Height(50)))   
-        {   
-            //注解1   
-              using (AndroidJavaClass jc = new AndroidJavaClass(&quot;com.unity3d.player.UnityPlayer&quot;))   
-            {   
-                 using( AndroidJavaObject jo = jc.GetStatic&lt;AndroidJavaObject&gt;(&quot;currentActivity&quot;))   
-                {   
-                    //调用Android插件中UnityTestActivity中StartActivity0方法，stringToEdit表示它的参数   
-                      jo.Call(&quot;StartActivity0&quot;,stringToEdit);   
-                }   
-
-            }   
-
-        }   
-
-    }   
-    //注解2   
-    void messgae(string str)   
-    {   
-        stringToEdit = str;   
-    }   
-
-}
-</code></pre><p>注解1：让代码放置在using中是为了告诉垃圾回收站及时的回收垃圾，建议这样来写代码。AndroidJavaClass表示一个java类，AndroidJavaObject表示一个java对象，在上一章已经明确说明。另外还有一些其它的方法，比如调用静态方法等，都在API中写的很清楚，大家可以查阅学习。<br>注解2：刚刚调用的方法UnityPlayer.UnitySendMessage()参数2为”message”，所以程序将调用 Main Camera对象的Test.cs脚本的message方法，参数为Android传递过来的。最后在这里修改了stringToEdit变量刷新了屏幕的UI。</p>
-<pre><code> 打开程序后将启动Unity画面，如上图在这里我们写了输入框接收用户的键盘输入，最后用户点击commit按钮程序将打开Android的Activity，并且将字符串“Please enter a string”做为参数传递给了新Activity。
-
-
-
-
-如上图所示，在新打开的Activity中已经看到Please enter a string字符串已经显示在界面当中，在布局文件中同样写了Android的高级控件 输入框与按钮，在输入框中输入字符串“xuanyusong”（任意输入）,点击保存按钮将把”xuanyusong”刚刚输入的字符串传递给Unity。
-</code></pre><p>如上图所示，此时在Unity中字符串“xuanyusong”已经显示在输入框中，那么这样就比较完美了实现发送与接收消息。希望大家继续支持雨松MOMO程序研究院。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Unity3D研究院之与Android相互传递消息/" data-id="cis0fbid4001h2suoiaa7avat" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Unity3D转换eclipse" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/14/Unity3D转换eclipse/" class="article-date">
-  <time datetime="2016-05-14T14:13:20.000Z" itemprop="datePublished">2016-05-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/14/Unity3D转换eclipse/">Unity3D转换eclipse</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这个过程非常复杂。步骤一定要谨记</p>
-<p>1，建立一个unity3d工程，然后自己丢点模型进去吧。然后设置导出时候的包名字（重要，后面解析），build一下。就会发现工程目录下面的temp文件夹里面多了一个文件夹，如果不build是没有的，如果你关闭了unity的话这个文件夹也会消失，这个现象费了我一天的时间，看官网英文教程漏一个单词都不行啊。</p>
-<p>2，拷贝temp文件夹里面的StagingArea出来，然后以这个文件夹为source建立一个eclipse工程，就是建立eclipse选create project from exiting source啦。</p>
-<p>3 右键这个以stagingarea文件夹为基础的工程，选择Properties -》android-》Is Library 设置为资料</p>
-<p>4，新建一个新的eclipse工程（包名称与unity3d设置的导出工程文件名要一致，否则直接报错），导入上一个工程作为library，就是同样在已经建立好的工程上右键，在同样的地方点选add，就可以看见啦，然后导入。</p>
-<p>5 导入jar包，右键工程属性，java build path-》添加jar到library，Unity安装目录\Editor\Data\PlaybackEngines\androidplayer\bin\classes.jar</p>
-<p>6; 复制stagingArea工程里面的assets所有文件到新建立的文件中，（必须）我们就完成了unity和eclipse的合体了。</p>
-<p>7.我们来直接一activity的样子运行一下Unity做好的工程吧</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">package com.Unity3D.EclipseIntegration;</span><br><span class="line"></span><br><span class="line">import android.os.Bundle;</span><br><span class="line"></span><br><span class="line">import com.unity3d.player.UnityPlayerActivity;</span><br><span class="line"></span><br><span class="line">public class EclipseIntegration extends UnityPlayerActivity</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">@Overridepublic</span><br><span class="line"></span><br><span class="line">void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line"></span><br><span class="line">super.onCreate(savedInstanceState);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//setContentView(R.layout.main);需要注息这一句，否则会被遮挡。因为继承了unityplayerActivity，所以会直接显示unity的工程啦</span><br><span class="line"></span><br><span class="line">&#125;&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Unity3D转换eclipse/" data-id="cis0fbicr00162suodtwfuiz3" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity3D/">Unity3D</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-微信内置浏览器的JsAPI" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/14/微信内置浏览器的JsAPI/" class="article-date">
-  <time datetime="2016-05-14T14:11:29.000Z" itemprop="datePublished">2016-05-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/14/微信内置浏览器的JsAPI/">微信内置浏览器的JsAPI</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>之前有写过几篇关于微信内置浏览器（WebView）中特有的Javascript API（Javascript Interface）的文章，不过随着微信官方的调整，部分API已经不能直接使用，比如类似直接分享到朋友圈 WeixinJSBridge.invoke(‘shareTimeline’,data,callback) 这样的功能，直接调用，会得到一个访问拒绝的response。后来重新调研了下，整理出来了一个WeixinAPI的Javascript类库，分享出来，如果你对微信公众平台开发感兴趣，应该对你有用。<br>/**!</p>
-<ul>
-<li>微信内置浏览器的Javascript API，功能包括：<br>*</li>
-<li>1、分享到微信朋友圈</li>
-<li>2、分享给微信好友</li>
-<li>3、分享到腾讯微博</li>
-<li>4、隐藏/显示右上角的菜单入口</li>
-<li>5、隐藏/显示底部浏览器工具栏</li>
-<li>6、获取当前的网络状态</li>
-<li>7、调起微信客户端的图片播放组件<br>*</li>
-<li><p>@author zhaoxianlie(<a href="http://www.baidufe.com" target="_blank" rel="external">http://www.baidufe.com</a>)<br>*/<br>var WeixinApi = (function () { </p>
-<p> /<em> 这里省略了一堆代码……下面直接看调用接口 </em>/<br> return {</p>
-<pre><code>ready           :wxJsBridgeReady,
-shareToTimeline :weixinShareTimeline,
-shareToWeibo    :weixinShareWeibo,
-shareToFriend   :weixinSendAppMessage,
-showOptionMenu  :showOptionMenu,
-hideOptionMenu  :hideOptionMenu,
-showToolbar     :showToolbar,
-hideToolbar     :hideToolbar,
-getNetworkType  :getNetworkType,
-imagePreview    :imagePreview
-</code></pre><p> };    </p>
-</li>
-</ul>
-<p>});<br>下面，我们先来看一下这些API都应该怎么使用，先从最简单的入手。</p>
-<p>1、假如我希望一打开网页后，就隐藏掉右上角的PopUp菜单入口，并且隐藏掉浏览器下方的工具栏，同时还要获得当前的网络状态，那么，我们的代码可以这样来写：<br>// 所有功能必须包含在 WeixinApi.ready 中进行<br>WeixinApi.ready(function(Api){<br>    // 隐藏右上角popup菜单入口<br>    Api.hideOptionMenu();</p>
-<pre><code>// 隐藏浏览器下方的工具栏
-Api.hideToolbar();
-
-// 获取网络状态
-Api.getNetworkType(function(network){
-    // 拿到 network 以后，做任何你想做的事
-});
-</code></pre><p>});<br>如示例代码中的注释所示，所有的功能执行必须放在 WeixinApi.ready 方法中执行，就好比你用jQuery的时候，通常都需要使用 jQuery(document).ready(function(){ }) 一样。为什么要这样做？相信不用我解释大家都能明白，因为我们必须要保证在执行这些方法的时候，WeixinJsBridge API已经被加入到WebView上了！</p>
-<p>2、再来看一个有关分享的例子，假如用户在阅读我的文章（或在使用我的产品）的过程中，发现它很有意思或有价值，一般都会将其收藏或分享（给好友、朋友圈、微博等）出去，那现在我就希望能监测到用户的分享行为，比如：自定义用户可分享的内容、甚至是在用户分享之、分享被取消、分享失败、分享成功、以及整个分享操作过程结束，我们都去做点儿什么。那么，这个代码我们可以这样来写：<br>// 所有功能必须包含在 WeixinApi.ready 中进行<br>WeixinApi.ready(function(Api){</p>
-<pre><code>// 微信分享的数据
-var wxData = {
-    &quot;imgUrl&quot;:&apos;http://www.baidufe.com/fe/blog/static/img/weixin-qrcode-2.jpg&apos;,
-    &quot;link&quot;:&apos;http://www.baidufe.com&apos;,
-    &quot;desc&quot;:&apos;大家好，我是Alien，Web前端&amp;Android客户端码农，喜欢技术上的瞎倒腾！欢迎多交流&apos;,
-    &quot;title&quot;:&quot;大家好，我是赵先烈&quot;
-};
-
-// 分享的回调
-var wxCallbacks = {
-    // 分享操作开始之前
-    ready:function () {
-        // 你可以在这里对分享的数据进行重组
-    },
-    // 分享被用户自动取消
-    cancel:function (resp) {
-        // 你可以在你的页面上给用户一个小Tip，为什么要取消呢？
-    },
-    // 分享失败了
-    fail:function (resp) {
-        // 分享失败了，是不是可以告诉用户：不要紧，可能是网络问题，一会儿再试试？
-    },
-    // 分享成功
-    confirm:function (resp) {
-        // 分享成功了，我们是不是可以做一些分享统计呢？
-    },
-    // 整个分享过程结束
-    all:function (resp) {
-        // 如果你做的是一个鼓励用户进行分享的产品，在这里是不是可以给用户一些反馈了？
-    }
-};
-
-// 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
-Api.shareToFriend(wxData, wxCallbacks);
-
-// 点击分享到朋友圈，会执行下面这个代码
-Api.shareToTimeline(wxData, wxCallbacks);
-
-// 点击分享到腾讯微博，会执行下面这个代码
-Api.shareToWeibo(wxData, wxCallbacks);
-</code></pre><p>});</p>
-<p>3、当然，如果你的业务需求相当复杂，比如，你的产品就是一个微信网页游戏（类似“2048数字游戏微信版”），你希望用户分享出去的数据是一个网页截屏、或者需要将用户当前的游戏状态回传到服务器动态生成可分享的内容；那么这种情况我们又该怎么做呢？来看下面这个示例代码吧：<br>// 所有功能必须包含在 WeixinApi.ready 中进行<br>WeixinApi.ready(function(Api){</p>
-<pre><code>// 分享的回调
-var wxCallbacks = {
-    // 分享过程需要异步执行
-    async : true,
-    // 分享操作开始之前
-    ready:function () {
-        var self = this;
-        // 假设你需要在这里发一个 ajax 请求去获取分享数据
-        $.post(yourServerUrl,yourPostData,function(responseData){
-            // 可以解析reponseData得到wxData
-            var wxData = responseData;
-            // 调用dataLoaded方法，会自动触发分享操作
-            // 注意，当且仅当 async为true时，wxCallbacks.dataLoaded才会被初始化，并调用
-            self.dataLoaded(wxData);
-        });
-    }
-    /* cancel、fail、confirm、all 方法同示例2，此处略掉 */
-};
-
-// 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
-Api.shareToFriend({}, wxCallbacks);
-</code></pre><p>});<br>唯一的区别就是在wxCallbacks中，增加了配置项async为true，表示这个分享过程是异步调用的，其实就是指的ready方法异步执行，在这种情况下，我们需要在ready方法中显式地调用wxCallbacks的dataLoaded方法，以保证分享过程能继续往下执行。也许你会发现，这个wxCallbacks中，根本就没有配置dataLoaded方法啊！是的，当async为true时，WeixinApi中我会自动对其进行初始化，dataLoaded方法需要一个参数，表示需要分享出去的数据！</p>
-<p>4、当然，如果你非要去配置dataLoaded方法，也是没有问题的，你的配置也会被执行，不会被覆盖，执行顺序是：用户配置优先。</p>
-<p>上面是直接给出使用方法，也许你现在开始关心每个方法的参数列表是什么样的了？我们以分享到朋友圈的方法为例，来看看参数都有哪些配置项：<br>/**</p>
-<ul>
-<li>分享到微信朋友圈</li>
-<li>@param       {Object}    data       待分享的信息</li>
-<li>@p-config    {String}    appId      公众平台的appId（服务号可用）</li>
-<li>@p-config    {String}    imageUrl   图片地址</li>
-<li>@p-config    {String}    link       链接地址</li>
-<li>@p-config    {String}    desc       描述</li>
-<li>@p-config    {String}    title      分享的标题<br>*</li>
-<li>@param       {Object}    callbacks  相关回调方法</li>
-<li>@p-config    {Boolean}   async                   ready方法是否需要异步执行，默认false</li>
-<li>@p-config    {Function}  ready(argv)             就绪状态</li>
-<li>@p-config    {Function}  dataLoaded(data)        数据加载完成后调用，async为true时有用</li>
-<li>@p-config    {Function}  cancel(resp)    取消</li>
-<li>@p-config    {Function}  fail(resp)      失败</li>
-<li>@p-config    {Function}  confirm(resp)   成功</li>
-<li>@p-config    {Function}  all(resp)       无论成功失败都会执行的回调<br>*/<br>WeixinApi.shareToTimeline(data,callbacks);<br>分享给微信好友以及分享到腾讯微博的参数列表都一样，这里就不罗列了。</li>
-</ul>
-<p>5、如果你的文章中有很多图片，那么，点击图片直接调起微信客户端自带的图片播放组件，那必然是一件好事；对此，你可以这样来做：<br>// 调起微信客户端的图片播放组件进行播放<br>WeixinApi.ready(function(Api){<br>    var srcList = [];<br>    $.each($(‘img’),function(i,item){<br>       if(item.src) {<br>           srcList.push(item.src);<br>           $(item).click(function(e){<br>               // 通过这个API就能直接调起微信客户端的图片播放组件了<br>               Api.imagePreview(this.src,srcList);<br>           });<br>       }<br>    });<br>});<br>就这么一段儿简单的代码，一切都搞定了！不过，需要指出的是，Api.imagePreview的参数是会进行强检测的：<br>/**</p>
-<ul>
-<li>调起微信Native的图片播放组件。</li>
-<li>这里必须对参数进行强检测，如果参数不合法，直接会导致微信客户端crash<br>*</li>
-<li>@param {String} curSrc 当前播放的图片地址</li>
-<li>@param {Array} srcList 图片地址列表<br>*/<br>function imagePreview(curSrc,srcList) ;</li>
-</ul>
-<p>需要指出的是，微信公众平台对Android、iOS平台支持力度不统一，比较费劲，具体有：<br>iOS平台下，分享出去的数据wxData中，imageUrl可以是DataURI格式的；但在Android平台下，必须是全路径的图片地址<br>iOS平台下，分享的回调callback基本全都可以得到执行；但在Android平台下，分享到微信朋友圈的callback无法得到执行（ready方法除外）<br>iOS平台下，无法在非mp.weixin.qq.com域下的页面中通过WeixinJSBridge.invoke(‘profile’)的方式打开某微信号的资料页面；Android平台下则可以通过<a href="weixin://contacts/profile/微信ID" target="_blank" rel="external">的方式打开资料页；WinPhone下，则是通过<a href="weixin://profile/微信ID" target="_blank" rel="external">的方式打开。<br>期待官方能早日实现各平台API的统一吧！！！</a></a></p>
-<p>至于API内部是怎么实现的，如果感兴趣，那就看源码吧，使用过程中如遇到什么Bug，请来这里反馈。</p>
-<p>为了便于Api的维护与共享，已将其放到Github上了，大家这里走起：https://github.com/zxlie/WeixinApi </p>
-<p>/**!</p>
-<ul>
-<li>微信内置浏览器的Javascript API，功能包括：<br>*</li>
-<li>1、分享到微信朋友圈</li>
-<li>2、分享给微信好友</li>
-<li>3、分享到腾讯微博</li>
-<li>4、隐藏/显示右上角的菜单入口</li>
-<li>5、隐藏/显示底部浏览器工具栏</li>
-<li>6、获取当前的网络状态<br>*</li>
-<li>@author zhaoxianlie(http://www.baidufe.com)<br>*/<br>var WeixinApi = (function () {</li>
-</ul>
-<pre><code>/**
- * 分享到微信朋友圈
- * @param       {Object}    data       待分享的信息
- * @p-config    {String}    appId      公众平台的appId（服务号可用）
- * @p-config    {String}    imageUrl   图片地址
- * @p-config    {String}    link       链接地址
- * @p-config    {String}    desc       描述
- * @p-config    {String}    title      分享的标题
- *
- * @param       {Object}    callbacks  相关回调方法
- * @p-config    {Boolean}   async                   ready方法是否需要异步执行，默认false
- * @p-config    {Function}  ready(argv)             就绪状态
- * @p-config    {Function}  dataLoaded(data)        数据加载完成后调用，async为true时有用，也可以为空
- * @p-config    {Function}  cancel(resp)    取消
- * @p-config    {Function}  fail(resp)      失败
- * @p-config    {Function}  confirm(resp)   成功
- * @p-config    {Function}  all(resp)       无论成功失败都会执行的回调
- */
-function weixinShareTimeline(data, callbacks) {
-    callbacks = callbacks || {};
-    var shareTimeline = function (theData) {
-        WeixinJSBridge.invoke(&apos;shareTimeline&apos;, {
-            &quot;appid&quot;:theData.appId ? theData.appId : &apos;&apos;,
-            &quot;img_url&quot;:theData.imgUrl,
-            &quot;link&quot;:theData.link,
-            &quot;desc&quot;:theData.title,
-            &quot;title&quot;:theData.desc, // 注意这里要分享出去的内容是desc
-            &quot;img_width&quot;:&quot;120&quot;,
-            &quot;img_height&quot;:&quot;120&quot;
-        }, function (resp) {
-            switch (resp.err_msg) {
-                // share_timeline:cancel 用户取消
-                case &apos;share_timeline:cancel&apos;:
-                    callbacks.cancel &amp;&amp; callbacks.cancel(resp);
-                    break;
-                // share_timeline:fail　发送失败
-                case &apos;share_timeline:fail&apos;:
-                    callbacks.fail &amp;&amp; callbacks.fail(resp);
-                    break;
-                // share_timeline:confirm 发送成功
-                case &apos;share_timeline:confirm&apos;:
-                    callbacks.confirm &amp;&amp; callbacks.confirm(resp);
-                    break;
-            }
-            // 无论成功失败都会执行的回调
-            callbacks.all &amp;&amp; callbacks.all(resp);
-        });
-    };
-    WeixinJSBridge.on(&apos;menu:share:timeline&apos;, function (argv) {
-        if (callbacks.async &amp;&amp; callbacks.ready) {
-            if(!callbacks.__dataLoadedFuncInited) {
-                var loadedCb = callbacks.dataLoaded || new Function();
-                callbacks.dataLoaded = function (newData) {
-                    loadedCb(newData);
-                    shareTimeline(newData);
-                };
-                callbacks.__dataLoadedFuncInited = true;
-            }
-            // 然后就绪
-            callbacks.ready &amp;&amp; callbacks.ready(argv);
-        } else {
-            // 就绪状态
-            callbacks.ready &amp;&amp; callbacks.ready(argv);
-            shareTimeline(data);
-        }
-    });
-}
-
-
-/**
- * 发送给微信上的好友
- * @param       {Object}    data       待分享的信息
- * @p-config    {String}    appId      公众平台的appId（服务号可用）
- * @p-config    {String}    imageUrl   图片地址
- * @p-config    {String}    link       链接地址
- * @p-config    {String}    desc       描述
- * @p-config    {String}    title      分享的标题
- *
- * @param       {Object}    callbacks  相关回调方法
- * @p-config    {Boolean}   async                   ready方法是否需要异步执行，默认false
- * @p-config    {Function}  ready(argv)             就绪状态
- * @p-config    {Function}  dataLoaded(data)        数据加载完成后调用，async为true时有用，也可以为空
- * @p-config    {Function}  cancel(resp)    取消
- * @p-config    {Function}  fail(resp)      失败
- * @p-config    {Function}  confirm(resp)   成功
- * @p-config    {Function}  all(resp)       无论成功失败都会执行的回调
- */
-function weixinSendAppMessage(data, callbacks) {
-    callbacks = callbacks || {};
-    var sendAppMessage = function (theData) {
-        WeixinJSBridge.invoke(&apos;sendAppMessage&apos;, {
-            &quot;appid&quot;:theData.appId ? theData.appId : &apos;&apos;,
-            &quot;img_url&quot;:theData.imgUrl,
-            &quot;link&quot;:theData.link,
-            &quot;desc&quot;:theData.desc,
-            &quot;title&quot;:theData.title,
-            &quot;img_width&quot;:&quot;120&quot;,
-            &quot;img_height&quot;:&quot;120&quot;
-        }, function (resp) {
-            switch (resp.err_msg) {
-                // send_app_msg:cancel 用户取消
-                case &apos;send_app_msg:cancel&apos;:
-                    callbacks.cancel &amp;&amp; callbacks.cancel(resp);
-                    break;
-                // send_app_msg:fail　发送失败
-                case &apos;send_app_msg:fail&apos;:
-                    callbacks.fail &amp;&amp; callbacks.fail(resp);
-                    break;
-                // send_app_msg:confirm 发送成功
-                case &apos;send_app_msg:confirm&apos;:
-                    callbacks.confirm &amp;&amp; callbacks.confirm(resp);
-                    break;
-            }
-            // 无论成功失败都会执行的回调
-            callbacks.all &amp;&amp; callbacks.all(resp);
-        });
-    };
-    WeixinJSBridge.on(&apos;menu:share:appmessage&apos;, function (argv) {
-        if (callbacks.async &amp;&amp; callbacks.ready) {
-            if(!callbacks.__dataLoadedFuncInited) {
-                var loadedCb = callbacks.dataLoaded || new Function();
-                callbacks.dataLoaded = function (newData) {
-                    loadedCb(newData);
-                    sendAppMessage(newData);
-                };
-                callbacks.__dataLoadedFuncInited = true;
-            }
-            // 然后就绪
-            callbacks.ready &amp;&amp; callbacks.ready(argv);
-        } else {
-            // 就绪状态
-            callbacks.ready &amp;&amp; callbacks.ready(argv);
-            sendAppMessage(data);
-        }
-    });
-}
-
-
-/**
- * 分享到腾讯微博
- * @param       {Object}    data       待分享的信息
- * @p-config    {String}    imageUrl   图片地址
- * @p-config    {String}    link       链接地址
- * @p-config    {String}    desc       描述
- * @p-config    {String}    title      分享的标题
- *
- * @param       {Object}    callbacks  相关回调方法
- * @p-config    {Boolean}   async                   ready方法是否需要异步执行，默认false
- * @p-config    {Function}  ready(argv)             就绪状态
- * @p-config    {Function}  dataLoaded(data)        数据加载完成后调用，async为true时有用，也可以为空
- * @p-config    {Function}  cancel(resp)    取消
- * @p-config    {Function}  fail(resp)      失败
- * @p-config    {Function}  confirm(resp)   成功
- * @p-config    {Function}  all(resp)       无论成功失败都会执行的回调
- */
-function weixinShareWeibo(data, callbacks) {
-    callbacks = callbacks || {};
-    var shareWeibo = function (theData) {
-        WeixinJSBridge.invoke(&apos;shareWeibo&apos;, {
-            &quot;content&quot;:theData.desc,
-            &quot;link&quot;:theData.link,
-            &quot;img_url&quot;:theData.imgUrl,
-            &quot;title&quot;:theData.title,
-            &quot;img_width&quot;:&quot;120&quot;,
-            &quot;img_height&quot;:&quot;120&quot;
-        }, function (resp) {
-            switch (resp.err_msg) {
-                // share_weibo:cancel 用户取消
-                case &apos;share_weibo:cancel&apos;:
-                    callbacks.cancel &amp;&amp; callbacks.cancel(resp);
-                    break;
-                // share_weibo:fail　发送失败
-                case &apos;share_weibo:fail&apos;:
-                    callbacks.fail &amp;&amp; callbacks.fail(resp);
-                    break;
-                // share_weibo:confirm 发送成功
-                case &apos;share_weibo:confirm&apos;:
-                    callbacks.confirm &amp;&amp; callbacks.confirm(resp);
-                    break;
-            }
-            // 无论成功失败都会执行的回调
-            callbacks.all &amp;&amp; callbacks.all(resp);
-        });
-    };
-    WeixinJSBridge.on(&apos;menu:share:weibo&apos;, function (argv) {
-        if (callbacks.async &amp;&amp; callbacks.ready) {
-            if(!callbacks.__dataLoadedFuncInited) {
-                var loadedCb = callbacks.dataLoaded || new Function();
-                callbacks.dataLoaded = function (newData) {
-                    loadedCb(newData);
-                    shareWeibo(newData);
-                };
-                callbacks.__dataLoadedFuncInited = true;
-            }
-            // 然后就绪
-            callbacks.ready &amp;&amp; callbacks.ready(argv);
-        } else {
-            // 就绪状态
-            callbacks.ready &amp;&amp; callbacks.ready(argv);
-            shareWeibo(data);
-        }
-    });
-}
-
-
-/**
- * 显示网页右上角的按钮
- */
-function showOptionMenu() {
-    WeixinJSBridge.call(&apos;showOptionMenu&apos;);
-}
-
-
-
-
-/**
- * 隐藏网页右上角的按钮
- */
-function hideOptionMenu() {
-    WeixinJSBridge.call(&apos;hideOptionMenu&apos;);
-}
-
-
-/**
- * 显示底部工具栏
- */
-function showToolbar() {
-    WeixinJSBridge.call(&apos;showToolbar&apos;);
-}
-
-
-/**
- * 隐藏底部工具栏
- */
-function hideToolbar() {
-    WeixinJSBridge.call(&apos;hideToolbar&apos;);
-}
-
-
-/**
- * 返回如下几种类型：
- *
- * network_type:wifi     wifi网络
- * network_type:edge     非wifi,包含3G/2G
- * network_type:fail     网络断开连接
- * network_type:wwan     2g或者3g
- *
- * 使用方法：
- * WeixinApi.getNetworkType(function(networkType){
- *
- * });
- *
- * @param callback
- */
-function getNetworkType(callback) {
-    if (callback &amp;&amp; typeof callback == &apos;function&apos;) {
-        WeixinJSBridge.invoke(&apos;getNetworkType&apos;, {}, function (e) {
-            // 在这里拿到e.err_msg，这里面就包含了所有的网络类型
-            callback(e.err_msg);
-        });
-    }
-}
-
-
-/**
- * 当页面加载完毕后执行，使用方法：
- * WeixinApi.ready(function(Api){
- *     // 从这里只用Api即是WeixinApi
- * });
- * @param readyCallback
- */
-function wxJsBridgeReady(readyCallback) {
-    if (readyCallback &amp;&amp; typeof readyCallback == &apos;function&apos;) {
-        var Api = this;
-        var wxReadyFunc = function () {
-            readyCallback(Api);
-        };
-        if (typeof window.WeixinJSBridge == &quot;undefined&quot;){
-            if (document.addEventListener) {
-                document.addEventListener(&apos;WeixinJSBridgeReady&apos;, wxReadyFunc, false);
-            } else if (document.attachEvent) {
-                document.attachEvent(&apos;WeixinJSBridgeReady&apos;, wxReadyFunc);
-                document.attachEvent(&apos;onWeixinJSBridgeReady&apos;, wxReadyFunc);
-            }
-        }else{
-            wxReadyFunc();
-        }
-    }
-}
-
-
-return {
-    version         :&quot;1.2&quot;,
-    ready           :wxJsBridgeReady,
-    shareToTimeline :weixinShareTimeline,
-    shareToWeibo    :weixinShareWeibo,
-    shareToFriend   :weixinSendAppMessage,
-    showOptionMenu  :showOptionMenu,
-    hideOptionMenu  :hideOptionMenu,
-    showToolbar     :showToolbar,
-    hideToolbar     :hideToolbar,
-    getNetworkType  :getNetworkType
-};
-</code></pre><p>})();</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/微信内置浏览器的JsAPI/" data-id="cis0fbidf001q2suoyfk7mszg" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信-Js/">微信 Js</a></li></ul>
 
     </footer>
   </div>
@@ -1071,11 +524,11 @@ return {
           </li>
         
           <li>
-            <a href="/2016/05/14/学习/">师傅的博客</a>
+            <a href="/2016/05/14/Android_应用安装/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2016/05/14/心情/">心情</a>
+            <a href="/2016/05/14/面试/">(no title)</a>
           </li>
         
       </ul>

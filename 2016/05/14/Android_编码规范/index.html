@@ -3,17 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: Unity3D | 田鹏飞的个人博客</title>
+  <title>田鹏飞的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
+  <meta name="description" content="title: Android编码规范date: 2016-08-18 22:57:12tags:— Android
+Android开发的一些编码规范。
+1.java代码中不出现中文，最多注释中可以出现中文，中文统一写在strings.xml中。2.常量命名只能包含字母和，字母全部大写，单词之间用隔开。3.局部变量命名、静态成员变量命名 只能包含字母，单词首字母大写，其他字母均为小写。4.图片要处">
+<meta property="og:type" content="article">
 <meta property="og:title" content="田鹏飞的个人博客">
-<meta property="og:url" content="http://yoursite.com/tags/Unity3D/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/05/14/Android_编码规范/index.html">
 <meta property="og:site_name" content="田鹏飞的个人博客">
-<meta property="og:description">
+<meta property="og:description" content="title: Android编码规范date: 2016-08-18 22:57:12tags:— Android
+Android开发的一些编码规范。
+1.java代码中不出现中文，最多注释中可以出现中文，中文统一写在strings.xml中。2.常量命名只能包含字母和，字母全部大写，单词之间用隔开。3.局部变量命名、静态成员变量命名 只能包含字母，单词首字母大写，其他字母均为小写。4.图片要处">
+<meta property="og:updated_time" content="2016-08-18T14:32:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="田鹏飞的个人博客">
-<meta name="twitter:description">
+<meta name="twitter:description" content="title: Android编码规范date: 2016-08-18 22:57:12tags:— Android
+Android开发的一些编码规范。
+1.java代码中不出现中文，最多注释中可以出现中文，中文统一写在strings.xml中。2.常量命名只能包含字母和，字母全部大写，单词之间用隔开。3.局部变量命名、静态成员变量命名 只能包含字母，单词首字母大写，其他字母均为小写。4.图片要处">
   
     <link rel="alternate" href="/atom.xml" title="田鹏飞的个人博客" type="application/atom+xml">
   
@@ -66,39 +73,54 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/14/Unity3D转换eclipse/" class="archive-article-date">
-  <time datetime="2016-05-14T14:13:20.000Z" itemprop="datePublished">5月 14</time>
+        <section id="main"><article id="post-Android_编码规范" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/14/Android_编码规范/" class="article-date">
+  <time datetime="2016-05-14T14:57:12.000Z" itemprop="datePublished">2016-05-14</time>
 </a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/14/Unity3D转换eclipse/">Unity3D转换eclipse</a>
-    </h1>
-  
-
-    </header>
+    
   </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>title: Android编码规范<br>date: 2016-08-18 22:57:12<br>tags:— Android</p>
+<p>Android开发的一些编码规范。</p>
+<p>1.java代码中不出现中文，最多注释中可以出现中文，中文统一写在strings.xml中。<br>2.常量命名只能包含字母和<em>，字母全部大写，单词之间用</em>隔开。<br>3.局部变量命名、静态成员变量命名 只能包含字母，单词首字母大写，其他字母均为小写。<br>4.图片要处理，图片尽量分拆成多个可重用的图片。<br>5.引用第三方库要慎重，避免应用大容量的第三方库，导致客户端包非常大。<br>6.布局文件中的id命名：<br>命名模式为：view缩写_模块名称<em>view的逻辑名称<br>常用控件的缩写如下<br>LayoutView：lv<br>RelativeView : rv<br>TextView : tv<br>ImageView : iv<br>ImageButton : im<br>Button : btn<br>7.Layout中的id命名：<br>命名模式为：view缩写</em>模块名称<em>view的逻辑名称<br>view的缩写详情如下<br>LinearLayout：ll<br>RelativeLayout : rl<br>TextView : tv<br>ImageView : iv<br>ImageButton : ib<br>Button:btn<br>8.String.xml中的id命名：<br>命名模式为：activity名称</em>功能模块名称<em>逻辑名称/activity名称</em>逻辑名称/common<em>逻辑名称<br>strings.xml中，使用activity名称注释，将文件内容区分开来。另外，strings.xml中使用%1$s实现字符串的通配。<br>9.activity中的view变量命名：<br>命名模式为：view缩写+逻辑名称<br>如果layout文件很复杂，建议将layout分成多个模块，每个模块定义一个moduleViewHolder，其成员变量包含所属view。<br>另外，activity中在一个View.OnClickListener中处理所有的逻辑<br>10.drawable中的图片命名：<br>命名模式为：activity名称</em>逻辑名称/common_逻辑名称<br>11.styles.xml：将layout中不断重现的style提炼出通用的style通用组件，放到styles.xml中。<br>12.不要重用父类的handler，对应一个类的handler也不应该让其子类用到，否则会导致message.what冲突。<br>13.服务端可以实现的，就不要放在客户端。<br>14.使用button+activitgroup实现tab效果时，使用Button.setSelected(true)，确保按钮处于选择状态，并使activitygroup的当前activity与该button对应。<br>15.如果多个Activity中包含共同的UI处理，那么可以提炼一个CommonActivity，把通用部分叫由它来处理，其他activity只要继承它即可。<br>16.如果所开发的为通用组件，为避免冲突，将drawable/layout/menu/values目录下的文件名增加前缀。<br>17.activity中在一个View.OnClickListener中处理所有的逻辑。<br>大概就先说这么多，欢迎大牛们补充和指正~~</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/14/Android_编码规范/" data-id="cis0fskbu000q5quoimoihiep" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/14/《Effective java》-----读书笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/14/Linux常用命令/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Linux常用命令</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         
