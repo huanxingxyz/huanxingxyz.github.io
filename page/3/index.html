@@ -68,63 +68,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Android-解析json" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/14/Android-解析json/" class="article-date">
-  <time datetime="2016-05-13T16:11:34.000Z" itemprop="datePublished">2016-05-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/14/Android-解析json/">Android 解析json</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>###JSON的定义：<br>       一种轻量级的数据交换格式，具有良好的可读和便于快速编写的特性。业内主流技术为其提供了完整的解决方案（有点类似于正则表达式 ，获得了当今大部分语言的支持），从而可以在不同平台间进行数据交换。JSON采用兼容性很高的文本格式，同时也具备类似于C语言体系的行为。 – Json.org</p>
-<p>JSON Vs XML</p>
-<p>1.JSON和XML的数据可读性基本相同</p>
-<p>2.JSON和XML同样拥有丰富的解析手段</p>
-<p>3.JSON相对于XML来讲，数据的体积小</p>
-<p>4.JSON与JavaScript的交互更加方便</p>
-<p>5.JSON对数据的描述性比XML较差</p>
-<p>6.JSON的速度要远远快于XML</p>
-<p>android2.3提供的json解析类 </p>
-<p>android的json解析部分都在包org.json下，主要有以下几个类：<br>JSONObject：可以看作是一个json对象,这是系统中有关JSON定义的基本单元，其包含一对儿(Key/Value)数值。它对外部(External：   应用toString()方法输出的数值)调用的响应体现为一个标准的字符串（例如：{“JSON”: “Hello, World”}，最外被大括号包裹，其中的Key和Value被冒号”:”分隔）。其对于内部(Internal)行为的操作格式略微，例如：初始化一个JSONObject实例，引用内部的put()方法添加数值：new JSONObject().put(“JSON”, “Hello, World!”)，在Key和Value之间是以逗号”,”分隔。Value的类型包括：Boolean、JSONArray、JSONObject、Number、String或者默认值JSONObject.NULL object 。</p>
-<p>JSONStringer：json文本构建类 ，根据官方的解释，这个类可以帮助快速和便捷的创建JSON text。其最大的优点在于可以减少由于 格式的错误导致程序异常，引用这个类可以自动严格按照JSON语法规则（syntax rules）创建JSON text。每个JSONStringer实体只能对应创建一个JSON text。。其最大的优点在于可以减少由于格式的错误导致程序异常，引用这个类可以自动严格按照JSON语法规则（syntax rules）创建JSON text。每个JSONStringer实体只能对应创建一个JSON text。</p>
-<p>JSONArray：它代表一组有序的数值。将其转换为String输出(toString)所表现的形式是用方括号包裹，数值以逗号”,”分隔（例如：     [value1,value2,value3]，大家可以亲自利用简短的代码更加直观的了解其格式）。这个类的内部同样具有查询行为，     get()和opt()两种方法都可以通过index索引返回指定的数值，put()方法用来添加或者替换数值。同样这个类的value类型可以包括：Boolean、JSONArray、JSONObject、Number、String或者默认值JSONObject.NULL object。</p>
-<p>JSONTokener：json解析类<br>JSONException：json中用到的异常 </p>
-<p>JSONObject, JSONArray来构建json文本   </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">代码  </span><br><span class="line">// 假设现在要创建这样一个json文本  </span><br><span class="line">//  &#123;  </span><br><span class="line">//      &quot;phone&quot; : [&quot;12345678&quot;, &quot;87654321&quot;], // 数组  </span><br><span class="line">//      &quot;name&quot; : &quot;yuanzhifei89&quot;, // 字符串  </span><br><span class="line">//      &quot;age&quot; : 100, // 数值  </span><br><span class="line">//      &quot;address&quot; : &#123; &quot;country&quot; : &quot;china&quot;, &quot;province&quot; : &quot;jiangsu&quot; &#125;, // 对象  </span><br><span class="line">//      &quot;married&quot; : false // 布尔值  </span><br><span class="line">//  &#125;</span><br></pre></td></tr></table></figure>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">try &#123;  </span><br><span class="line">    // 首先最外层是&#123;&#125;，是创建一个对象  </span><br><span class="line">    JSONObject person = new JSONObject();  </span><br><span class="line">    // 第一个键phone的值是数组，所以需要创建数组对象  </span><br><span class="line">    JSONArray phone = new JSONArray();  </span><br><span class="line">    phone.put(&quot;12345678&quot;).put(&quot;87654321&quot;);  </span><br><span class="line">    person.put(&quot;phone&quot;, phone);  </span><br><span class="line">  </span><br><span class="line">    person.put(&quot;name&quot;, &quot;yuanzhifei89&quot;);  </span><br><span class="line">    person.put(&quot;age&quot;, 100);  </span><br><span class="line">    // 键address的值是对象，所以又要创建一个对象  </span><br><span class="line">    JSONObject address = new JSONObject();  </span><br><span class="line">    address.put(&quot;country&quot;, &quot;china&quot;);  </span><br><span class="line">    address.put(&quot;province&quot;, &quot;jiangsu&quot;);  </span><br><span class="line">    person.put(&quot;address&quot;, address);    </span><br><span class="line">    person.put(&quot;married&quot;, false);  </span><br><span class="line">&#125; catch (JSONException ex) &#123;  </span><br><span class="line">    // 键为null或使用json不支持的数字格式(NaN, infinities)  </span><br><span class="line">    throw new RuntimeException(ex);  </span><br><span class="line">&#125; </span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">getType和optType api的使用   </span><br><span class="line">getType可以将要获取的键的值转换为指定的类型，如果无法转换或没有值则抛出JSONException </span><br><span class="line">optType也是将要获取的键的值转换为指定的类型，无法转换或没有值时返回用户提供或这默认提供的值 </span><br><span class="line">代码  </span><br><span class="line">try &#123;  </span><br><span class="line">    // 所有使用的对象都是用上面创建的对象  </span><br><span class="line">    // 将第一个电话号码转换为数值和将名字转换为数值  </span><br><span class="line">    phone.getLong(0);  </span><br><span class="line">    person.getLong(&quot;name&quot;); // 会抛异常，因为名字无法转换为long        </span><br><span class="line">    phone.optLong(0); // 代码内置的默认值  </span><br><span class="line">    phone.optLong(0, 1000); // 用户提供的默认值  </span><br><span class="line">    person.optLong(&quot;name&quot;);  </span><br><span class="line">    person.optLong(&quot;name&quot;, 1000); // 不像上面那样抛异常，而是返回1000  </span><br><span class="line">&#125; catch (JSONException ex) &#123;  </span><br><span class="line">    // 异常处理代码  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">除了上面的两个类，还可以使用JSONStringer来构建json文本  </span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">Java代码  </span><br><span class="line">try &#123;  </span><br><span class="line">    JSONStringer jsonText = new JSONStringer();  </span><br><span class="line">    // 首先是&#123;，对象开始。object和endObject必须配对使用  </span><br><span class="line">    jsonText.object();  </span><br><span class="line">      </span><br><span class="line">    jsonText.key(&quot;phone&quot;);  </span><br><span class="line">    // 键phone的值是数组。array和endArray必须配对使用  </span><br><span class="line">    jsonText.array();  </span><br><span class="line">    jsonText.value(&quot;12345678&quot;).value(&quot;87654321&quot;);  </span><br><span class="line">    jsonText.endArray();  </span><br><span class="line">      </span><br><span class="line">    jsonText.key(&quot;name&quot;);  </span><br><span class="line">    jsonText.value(&quot;yuanzhifei89&quot;);  </span><br><span class="line">    jsonText.key(&quot;age&quot;);  </span><br><span class="line">    jsonText.value(100);  </span><br><span class="line">      </span><br><span class="line">    jsonText.key(&quot;address&quot;);  </span><br><span class="line">    // 键address的值是对象  </span><br><span class="line">    jsonText.object();  </span><br><span class="line">    jsonText.key(&quot;country&quot;);  </span><br><span class="line">    jsonText.value(&quot;china&quot;);  </span><br><span class="line">    jsonText.key(&quot;province&quot;);  </span><br><span class="line">    jsonText.value(&quot;jiangsu&quot;);  </span><br><span class="line">    jsonText.endObject();  </span><br><span class="line">      </span><br><span class="line">    jsonText.key(&quot;married&quot;);  </span><br><span class="line">    jsonText.value(false);  </span><br><span class="line">      </span><br><span class="line">    // &#125;，对象结束  </span><br><span class="line">    jsonText.endObject();  </span><br><span class="line">&#125; catch (JSONException ex) &#123;  </span><br><span class="line">    throw new RuntimeException(ex);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>json文本解析类JSONTokener<br>按照RFC4627规范将json文本解析为相应的对象。  </p>
-<p>对于将json文本解析为对象，只需要用到该类的两个api： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">构造函数  </span><br><span class="line">public Object nextValue();  </span><br><span class="line">代码  </span><br><span class="line">//  &#123;  </span><br><span class="line">//      &quot;phone&quot; : [&quot;12345678&quot;, &quot;87654321&quot;], // 数组  </span><br><span class="line">//      &quot;name&quot; : &quot;yuanzhifei89&quot;, // 字符串  </span><br><span class="line">//      &quot;age&quot; : 100, // 数值  </span><br><span class="line">//      &quot;address&quot; : &#123; &quot;country&quot; : &quot;china&quot;, &quot;province&quot; : &quot;jiangsu&quot; &#125;, // 对象  </span><br><span class="line">//      &quot;married&quot; : false // 布尔值  </span><br><span class="line">//  &#125;  </span><br><span class="line">  </span><br><span class="line">private static final String JSON =   </span><br><span class="line">&quot;&#123;&quot; +  </span><br><span class="line">    &quot;   \&quot;phone\&quot; : [\&quot;12345678\&quot;, \&quot;87654321\&quot;],&quot; +  </span><br><span class="line">    &quot;   \&quot;name\&quot; : \&quot;yuanzhifei89\&quot;,&quot; +  </span><br><span class="line">    &quot;   \&quot;age\&quot; : 100,&quot; +  </span><br><span class="line">    &quot;   \&quot;address\&quot; : &#123; \&quot;country\&quot; : \&quot;china\&quot;, \&quot;province\&quot; : \&quot;jiangsu\&quot; &#125;,&quot; +  </span><br><span class="line">    &quot;   \&quot;married\&quot; : false,&quot; +  </span><br><span class="line">&quot;&#125;&quot;;  </span><br><span class="line">  </span><br><span class="line">try &#123;  </span><br><span class="line">    JSONTokener jsonParser = new JSONTokener(JSON);  </span><br><span class="line">    // 此时还未读取任何json文本，直接读取就是一个JSONObject对象。  </span><br><span class="line">    // 如果此时的读取位置在&quot;name&quot; : 了，那么nextValue就是&quot;yuanzhifei89&quot;（String）  </span><br><span class="line">    JSONObject person = (JSONObject) jsonParser.nextValue();  </span><br><span class="line">    // 接下来的就是JSON对象的操作了  </span><br><span class="line">    person.getJSONArray(&quot;phone&quot;);  </span><br><span class="line">    person.getString(&quot;name&quot;);  </span><br><span class="line">    person.getInt(&quot;age&quot;);  </span><br><span class="line">    person.getJSONObject(&quot;address&quot;);  </span><br><span class="line">    person.getBoolean(&quot;married&quot;);  </span><br><span class="line">&#125; catch (JSONException ex) &#123;  </span><br><span class="line">    // 异常处理代码  </span><br><span class="line">&#125;  </span><br><span class="line">其它的api基本就是用来查看json文本中的文本的 </span><br><span class="line"></span><br><span class="line">代码  </span><br><span class="line">try &#123;  </span><br><span class="line">    JSONTokener jsonParser = new JSONTokener(JSON);  </span><br><span class="line">    // 继续向下读8个json文本中的字符。此时刚开始，即在&#123;处  </span><br><span class="line">    jsonParser.next(8); //&#123;    &quot;phone。tab算一个字符  </span><br><span class="line">      </span><br><span class="line">    // 继续向下读1个json文本中的字符  </span><br><span class="line">    jsonParser.next(); //&quot;  </span><br><span class="line">      </span><br><span class="line">    // 继续向下读取一个json文本中的字符。该字符不是空白、同时也不是注视中的字符  </span><br><span class="line">    jsonParser.nextClean(); //:  </span><br><span class="line">      </span><br><span class="line">    // 返回当前的读取位置到第一次遇到&apos;a&apos;之间的字符串（不包括a）。  </span><br><span class="line">    jsonParser.nextString(&apos;a&apos;); //  [&quot;12345678&quot;, &quot;87654321&quot;],    &quot;n（前面有两个空格）  </span><br><span class="line">      </span><br><span class="line">    // 返回当前读取位置到第一次遇到字符串中(如&quot;0089&quot;)任意字符之间的字符串，同时该字符是trimmed的。（此处就是第一次遇到了89）  </span><br><span class="line">    jsonParser.nextTo(&quot;0089&quot;); //me&quot; : &quot;yuanzhifei  </span><br><span class="line">      </span><br><span class="line">    // 读取位置撤销一个  </span><br><span class="line">    jsonParser.back();  </span><br><span class="line">    jsonParser.next(); //i  </span><br><span class="line">      </span><br><span class="line">    // 读取位置前进到指定字符串处（包括字符串）  </span><br><span class="line">    jsonParser.skipPast(&quot;address&quot;);  </span><br><span class="line">    jsonParser.next(8); //&quot; : &#123; &quot;c  </span><br><span class="line">      </span><br><span class="line">    // 读取位置前进到执行字符处（不包括字符）  </span><br><span class="line">    jsonParser.skipTo(&apos;m&apos;);  </span><br><span class="line">    jsonParser.next(8); //married&quot;  </span><br><span class="line">&#125; catch (JSONException ex) &#123;  </span><br><span class="line">    // 异常处理代码  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br></pre></td><td class="code"><pre><span class="line">      以下是一个标准的JSON请求实现过程：</span><br><span class="line"></span><br><span class="line">01</span><br><span class="line">HttpPost request = newHttpPost(url); </span><br><span class="line">02</span><br><span class="line">// 先封装一个 JSON 对象 </span><br><span class="line">03</span><br><span class="line">JSONObject param = newJSONObject(); </span><br><span class="line">04</span><br><span class="line">param.put(&quot;name&quot;, &quot;rarnu&quot;); </span><br><span class="line">05</span><br><span class="line">param.put(&quot;password&quot;, &quot;123456&quot;); </span><br><span class="line">06</span><br><span class="line">// 绑定到请求 Entry </span><br><span class="line">07</span><br><span class="line">StringEntity se = newStringEntity(param.toString());  </span><br><span class="line">08</span><br><span class="line">request.setEntity(se); </span><br><span class="line">09</span><br><span class="line">// 发送请求 </span><br><span class="line">10</span><br><span class="line">HttpResponse httpResponse = newDefaultHttpClient().execute(request); </span><br><span class="line">11</span><br><span class="line">// 得到应答的字符串，这也是一个 JSON 格式保存的数据 </span><br><span class="line">12</span><br><span class="line">String retSrc = EntityUtils.toString(httpResponse.getEntity()); </span><br><span class="line">13</span><br><span class="line">// 生成 JSON 对象 </span><br><span class="line">14</span><br><span class="line">JSONObject result = newJSONObject( retSrc); </span><br><span class="line">15</span><br><span class="line">String token = result.get(&quot;token&quot;);</span><br><span class="line"></span><br><span class="line">        下面这个是自己修改别人的小例子，主要是加一些注释和讲解，这个例子主要是使用android进行json解析。 </span><br><span class="line">1</span><br><span class="line">单数据&#123;&apos;singer&apos;:&#123;&apos;id&apos;:01,&apos;name&apos;:&apos;tom&apos;,&apos;gender&apos;:&apos;男&apos;&#125;&#125;</span><br><span class="line">2</span><br><span class="line">多个数据&#123;&quot;singers&quot;:[</span><br><span class="line">3</span><br><span class="line">        &#123;&apos;id&apos;:02,&apos;name&apos;:&apos;tom&apos;,&apos;gender&apos;:&apos;男&apos;&#125;,</span><br><span class="line">4</span><br><span class="line">         &#123;&apos;id&apos;:03,&apos;name&apos;:&apos;jerry,&apos;gender&apos;:&apos;男&apos;&#125;,</span><br><span class="line">5</span><br><span class="line">&#123;&apos;id&apos;:04,&apos;name&apos;:&apos;jim,&apos;gender&apos;:&apos;男&apos;&#125;,</span><br><span class="line">6</span><br><span class="line">&#123;&apos;id&apos;:05,&apos;name&apos;:&apos;lily,&apos;gender&apos;:&apos;女&apos;&#125;]&#125;</span><br><span class="line">        下面的类主要是解析单个数据parseJson（）和多个数据的方法parseJsonMulti（）: </span><br><span class="line">01</span><br><span class="line">public class JsonActivity extends Activity &#123; </span><br><span class="line">02</span><br><span class="line">    /** Called when the activity is first created. */ </span><br><span class="line">03</span><br><span class="line">    private TextView tvJson; </span><br><span class="line">04</span><br><span class="line">    private Button btnJson; </span><br><span class="line">05</span><br><span class="line">    private Button btnJsonMulti; </span><br><span class="line">06</span><br><span class="line">    @Override </span><br><span class="line">07</span><br><span class="line">    public void onCreate(Bundle savedInstanceState) &#123; </span><br><span class="line">08</span><br><span class="line">        super.onCreate(savedInstanceState); </span><br><span class="line">09</span><br><span class="line">        setContentView(R.layout.main); </span><br><span class="line">10</span><br><span class="line">        tvJson = (TextView) this.findViewById(R.id.tvJson); </span><br><span class="line">11</span><br><span class="line">        btnJson = (Button) this.findViewById(R.id.btnJson); </span><br><span class="line">12</span><br><span class="line">        btnJsonMulti = (Button) this.findViewById(R.id.btnJsonMulti); </span><br><span class="line">13</span><br><span class="line">        btnJson.setOnClickListener(new View.OnClickListener() &#123; </span><br><span class="line">14</span><br><span class="line">            @Override </span><br><span class="line">15</span><br><span class="line">            public void onClick(View v) &#123; </span><br><span class="line">16</span><br><span class="line">                // url </span><br><span class="line">17</span><br><span class="line">                // String strUrl = &quot;http://10.158.166.110:8080/AndroidServer/JsonServlet&quot;; </span><br><span class="line">18</span><br><span class="line">                String strUrl = ServerPageUtil.getStrUrl(UrlsOfServer.JSON_SINGER); </span><br><span class="line">19</span><br><span class="line">                //获得返回的Json字符串 </span><br><span class="line">20</span><br><span class="line">                String strResult = connServerForResult(strUrl); </span><br><span class="line">21</span><br><span class="line">                //解析Json字符串 </span><br><span class="line">22</span><br><span class="line">                parseJson(strResult); </span><br><span class="line">23</span><br><span class="line">            &#125; </span><br><span class="line">24</span><br><span class="line">        &#125;); </span><br><span class="line">25</span><br><span class="line">        btnJsonMulti.setOnClickListener(new View.OnClickListener() &#123; </span><br><span class="line">26</span><br><span class="line">            @Override </span><br><span class="line">27</span><br><span class="line">            public void onClick(View v) &#123; </span><br><span class="line">28</span><br><span class="line">                String strUrl = ServerPageUtil.getStrUrl(UrlsOfServer.JSON_SINGERS); </span><br><span class="line">29</span><br><span class="line">                String strResult = connServerForResult(strUrl); </span><br><span class="line">30</span><br><span class="line">                //获得多个Singer </span><br><span class="line">31</span><br><span class="line">                parseJsonMulti(strResult); </span><br><span class="line">32</span><br><span class="line">            &#125; </span><br><span class="line">33</span><br><span class="line">        &#125;); </span><br><span class="line">34</span><br><span class="line">    &#125; </span><br><span class="line">35</span><br><span class="line">    private String connServerForResult(String strUrl) &#123; </span><br><span class="line">36</span><br><span class="line">        // HttpGet对象 </span><br><span class="line">37</span><br><span class="line">        HttpGet httpRequest = new HttpGet(strUrl); </span><br><span class="line">38</span><br><span class="line">        String strResult = &quot;&quot;; </span><br><span class="line">39</span><br><span class="line">        try &#123; </span><br><span class="line">40</span><br><span class="line">            // HttpClient对象 </span><br><span class="line">41</span><br><span class="line">            HttpClient httpClient = new DefaultHttpClient(); </span><br><span class="line">42</span><br><span class="line">            // 获得HttpResponse对象 </span><br><span class="line">43</span><br><span class="line">            HttpResponse httpResponse = httpClient.execute(httpRequest); </span><br><span class="line">44</span><br><span class="line">            if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) &#123; </span><br><span class="line">45</span><br><span class="line">                // 取得返回的数据 </span><br><span class="line">46</span><br><span class="line">                strResult = EntityUtils.toString(httpResponse.getEntity()); </span><br><span class="line">47</span><br><span class="line">            &#125; </span><br><span class="line">48</span><br><span class="line">        &#125; catch (ClientProtocolException e) &#123; </span><br><span class="line">49</span><br><span class="line">            tvJson.setText(&quot;protocol error&quot;); </span><br><span class="line">50</span><br><span class="line">            e.printStackTrace(); </span><br><span class="line">51</span><br><span class="line">        &#125; catch (IOException e) &#123; </span><br><span class="line">52</span><br><span class="line">            tvJson.setText(&quot;IO error&quot;); </span><br><span class="line">53</span><br><span class="line">            e.printStackTrace(); </span><br><span class="line">54</span><br><span class="line">        &#125; </span><br><span class="line">55</span><br><span class="line">        return strResult; </span><br><span class="line">56</span><br><span class="line">    &#125; </span><br><span class="line">57</span><br><span class="line">    // 普通Json数据解析 </span><br><span class="line">58</span><br><span class="line">    private void parseJson(String strResult) &#123; </span><br><span class="line">59</span><br><span class="line">        try &#123; </span><br><span class="line">60</span><br><span class="line">            JSONObject jsonObj = new JSONObject(strResult).getJSONObject(&quot;singer&quot;); </span><br><span class="line">61</span><br><span class="line">            int id = jsonObj.getInt(&quot;id&quot;); </span><br><span class="line">62</span><br><span class="line">            String name = jsonObj.getString(&quot;name&quot;); </span><br><span class="line">63</span><br><span class="line">            String gender = jsonObj.getString(&quot;gender&quot;); </span><br><span class="line">64</span><br><span class="line">            tvJson.setText(&quot;ID号&quot;+id + &quot;, 姓名：&quot; + name + &quot;,性别：&quot; + gender); </span><br><span class="line">65</span><br><span class="line">        &#125; catch (JSONException e) &#123; </span><br><span class="line">66</span><br><span class="line">            System.out.println(&quot;Json parse error&quot;); </span><br><span class="line">67</span><br><span class="line">            e.printStackTrace(); </span><br><span class="line">68</span><br><span class="line">        &#125; </span><br><span class="line">69</span><br><span class="line">    &#125; </span><br><span class="line">70</span><br><span class="line">    //解析多个数据的Json</span><br><span class="line">71</span><br><span class="line">    private void parseJsonMulti(String strResult) &#123; </span><br><span class="line">72</span><br><span class="line">        try &#123; </span><br><span class="line">73</span><br><span class="line">            JSONArray jsonObjs = new JSONObject(strResult).getJSONArray(&quot;singers&quot;); </span><br><span class="line">74</span><br><span class="line">            String s = &quot;&quot;; </span><br><span class="line">75</span><br><span class="line">            for(int i = 0; i &lt; jsonObjs.length() ; i++)&#123; </span><br><span class="line">76</span><br><span class="line">                JSONObject jsonObj = ((JSONObject)jsonObjs.opt(i)) </span><br><span class="line">77</span><br><span class="line">                .getJSONObject(&quot;singer&quot;); </span><br><span class="line">78</span><br><span class="line">                int id = jsonObj.getInt(&quot;id&quot;); </span><br><span class="line">79</span><br><span class="line">                String name = jsonObj.getString(&quot;name&quot;); </span><br><span class="line">80</span><br><span class="line">                String gender = jsonObj.getString(&quot;gender&quot;); </span><br><span class="line">81</span><br><span class="line">                s +=  &quot;ID号&quot;+id + &quot;, 姓名：&quot; + name + &quot;,性别：&quot; + gender+ &quot;\n&quot; ; </span><br><span class="line">82</span><br><span class="line">            &#125; </span><br><span class="line">83</span><br><span class="line">            tvJson.setText(s); </span><br><span class="line">84</span><br><span class="line">        &#125; catch (JSONException e) &#123; </span><br><span class="line">85</span><br><span class="line">            System.out.println(&quot;Jsons parse error !&quot;); </span><br><span class="line">86</span><br><span class="line">            e.printStackTrace(); </span><br><span class="line">87</span><br><span class="line">        &#125; </span><br><span class="line">88</span><br><span class="line">    &#125; </span><br><span class="line">89</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android-解析json/" data-id="ciq6o7du30011pduo3qiwdizg" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-Android-应用版本更新" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/05/14/Android-应用版本更新/" class="article-date">
@@ -162,7 +105,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android-应用版本更新/" data-id="ciq6o7ds40003pduofoklb01y" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android-应用版本更新/" data-id="cis0eiwo0000cznuoprelyqgg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -196,16 +139,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1：获取NotificationManager:<br>NotificationManager m_NotificationManager=(NotificationManager)this.getSystemService(NOTIFICATION_SERVICE);</p>
-<p>2:定义一个Notification:<br>  Notification  m_Notification=new Notification();</p>
-<p>3:设置Notification的各种属性：<br> //设置通知在状态栏显示的图标<br>m_Notification.icon=R.drawable.icon;<br> //当我们点击通知时显示的内容<br>m_Notification.tickerText=”Button1 通知内容…..”;</p>
-<p>通知时发出的默认声音<br>m_Notification.defaults=Notification.DEFAULT_SOUND;<br>//设置通知显示的参数<br>Intent   m_Intent=new Intent(NotificationDemo.this,DesActivity.class);<br>PendingIntent m_PendingIntent=PendingIntent.getActivity(NotificationDemo.this, 0, m_Intent, 0);<br>m_Notification.setLatestEventInfo(NotificationDemo.this, “Button1”, “Button1通知”,m_PendingIntent );<br>//这个可以理解为开始执行这个通知<br>m_NotificationManager.notify(0,m_Notification);</p>
-<p>4：既然可以增加同样我们也可以删除。当然是只是删除你自己增加的。<br>  m_NotificationManager.cancel(0);<br>  这里的0是一个ID号码，和notify第一个参数0一样。<br>这也就完成了，添加删除工作。</p>
+        <p>###获取NotificationManager:<br>NotificationManager m_NotificationManager=(NotificationManager)this.getSystemService(NOTIFICATION_SERVICE);</p>
+<p>###定义一个Notification:<br>  Notification  m_Notification=new Notification();</p>
+<p>###设置Notification的各种属性：<br> //设置通知在状态栏显示的图标<br>m_Notification.icon=R.drawable.icon;<br> //当我们点击通知时显示的内容<br>m_Notification.tickerText=”Button1 通知内容…..”;</p>
+<p>//通知时发出的默认声音<br>m_Notification.defaults=Notification.DEFAULT_SOUND;<br>//设置通知显示的参数<br>Intent   m_Intent=new Intent(NotificationDemo.this,DesActivity.class);<br>PendingIntent m_PendingIntent=PendingIntent.getActivity(NotificationDemo.this, 0, m_Intent, 0);<br>m_Notification.setLatestEventInfo(NotificationDemo.this, “Button1”, “Button1通知”,m_PendingIntent );<br>//这个可以理解为开始执行这个通知<br>m_NotificationManager.notify(0,m_Notification);</p>
+<p>###既然可以增加同样我们也可以删除。当然是只是删除你自己增加的。<br>  m_NotificationManager.cancel(0);<br>  这里的0是一个ID号码，和notify第一个参数0一样。<br>这也就完成了，添加删除工作。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android-Notification的使用/" data-id="ciq6o7dru0001pduocjcp7tth" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android-Notification的使用/" data-id="cis0eiwns0007znuoc4mmju52" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -244,7 +187,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Android-短信发送/" data-id="ciq6o7dsj0008pduowox1bilg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/13/Android-短信发送/" data-id="cis0eiwnp0005znuob5dq3xjf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -291,7 +234,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Java-RMI/" data-id="ciq6o7dtx000wpduoms81pnxf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/13/Java-RMI/" data-id="cis0eiwp60016znuofrke1dhg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -330,7 +273,7 @@
 <p>其中使用自定义的adapter，会要重写getView方法，在getView方法产生给用户item的视图以及数据。 </p>
 <p>这里有一个优化的地方，就是重用view，这样减少内存消耗，同时加快item加载速度。<br>在getView中优化的地方，大家想必都非常情况，下面我总结了三种优化的写法，请大家指正。<br>第一：<br>重用了convertView，很大程度上的减少了内存的消耗。通过判断convertView是否为null，是的话就需要产生一个视图出来，然后给这个视图数据，最后将这个视图返回给底层，呈献给用户。<br>特点：如果当前的convertView为null，则通过LayoutInflat产生一个view。 </p>
 <p>复制代码 代码如下:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ViewCode </span><br><span class="line">publicViewgetView(intposition,ViewconvertView,ViewGroupparent) </span><br><span class="line">&#123; </span><br><span class="line">if(convertView==null) </span><br><span class="line">&#123; </span><br><span class="line">convertView=LayoutInflater.from(context).inflate(R.layout.section_list_item1,null); </span><br><span class="line">&#125; </span><br><span class="line">TextViewtv_name=(TextView)convertView.findViewById(R.id.contact_contactinfoitem_tv_name); </span><br><span class="line">TextViewtv_phone=(TextView)convertView.findViewById(R.id.contact_contactinfoitem_tv_phoneNum); </span><br><span class="line">ContactInfo1confo=contacts.get(position); </span><br><span class="line">if(confo!=null)&#123;//toseteveryitem&apos;stext </span><br><span class="line">tv_name.setText(confo.getContactName()); </span><br><span class="line">tv_phone.setText(confo.getContact_Phone()); </span><br><span class="line">&#125; </span><br><span class="line">returnconvertView; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">ViewCode </span><br><span class="line">public View getView (intposition,ViewconvertView,ViewGroupparent) &#123; </span><br><span class="line">if(convertView==null) </span><br><span class="line">&#123; </span><br><span class="line">convertView=LayoutInflater.from(context).inflate(R.layout.section_list_item1,null); </span><br><span class="line">&#125; </span><br><span class="line">TextViewtv_name=(TextView)convertView.findViewById(R.id.contact_contactinfoitem_tv_name); </span><br><span class="line">TextViewtv_phone=(TextView)convertView.findViewById(R.id.contact_contactinfoitem_tv_phoneNum); </span><br><span class="line">ContactInfo1confo=contacts.get(position); </span><br><span class="line">if(confo!=null)&#123;//toseteveryitem&apos;stext </span><br><span class="line">tv_name.setText(confo.getContactName()); </span><br><span class="line">tv_phone.setText(confo.getContact_Phone()); </span><br><span class="line">&#125; </span><br><span class="line">returnconvertView; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>第二：<br>上面的写法会有一个缺点，就是每次在getVIew的时候，都需要重新的findViewById，重新找到控件，然后进行控件的赋值以及事件相应设置。这样其实在做重复的事情，因为的geiview中，其实包含有这些控件，而且这些控件的id还都是一样的，也就是其实只要在view中findViewById一次，后面无需要每次都要findViewById了。<br>下面给出第二种写法<br>写发的特点，通常有一个内部类classViewHolder,这个ViewHolder,用来标识view中一些控件，方便进行一些事件相应操作的设置，比如onClick等等，这样可以不用每次都要findViewById了，减少了性能的消耗。同时重用了convertView，很大程度上的减少了内存的消耗。<br>复制代码 代码如下:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">ViewCode </span><br><span class="line">publicViewgetView(intposition,ViewconvertView,ViewGroupparent) </span><br><span class="line">&#123; </span><br><span class="line">ViewHolderholder; </span><br><span class="line">if(convertView==null)&#123; </span><br><span class="line">convertView=LayoutInflater.from(context).inflate(R.layout.section_list_item1,null); </span><br><span class="line">holder=newViewHolder(); </span><br><span class="line">holder.tv_name=(TextView)convertView.findViewById(R.id.contact_contactinfoitem_tv_name); </span><br><span class="line">holder.tv_phone=(TextView)convertView.findViewById(R.id.contact_contactinfoitem_tv_phoneNum); </span><br><span class="line">convertView.setTag(holder); </span><br><span class="line">&#125; </span><br><span class="line">else </span><br><span class="line">&#123; </span><br><span class="line">holder=(ViewHolder)convertView.getTag(); </span><br><span class="line">&#125; </span><br><span class="line">ContactInfo1confo=contacts.get(position); </span><br><span class="line">Log.i(&quot;my&quot;,&quot;confo&quot;+confo.getContactName()); </span><br><span class="line">if(confo!=null)&#123;//toseteveryitem&apos;stext </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">holder.tv_name.setText(confo.getContactName()); </span><br><span class="line">holder.tv_phone.setText(confo.getContact_Phone()); </span><br><span class="line">&#125; </span><br><span class="line">returnconvertView; </span><br><span class="line">&#125; </span><br><span class="line">classViewHolder </span><br><span class="line">&#123; </span><br><span class="line">TextViewtv_name,tv_phone; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>第三：<br>　个人觉得这个写法是最舒服的，最舒服的意思是看着代码有一种很爽，看的很清晰。<br>特点，使用了内部类classViewHolder、重用了convertView。<br>区别第二种写法是，使用了一个临时变量Viewview=convertView，然后修改view，最后返回view<br>复制代码 代码如下:</p>
@@ -342,7 +285,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Android-ListView优化几种写法详细介/" data-id="ciq6o7dvx0020pduoa7o6759w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/13/Android-ListView优化几种写法详细介/" data-id="cis0eiwnv0009znuo3vbn816m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -419,7 +362,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Android_开发遇到的Exception/" data-id="ciq6o7dt1000fpduo3hfx7oxg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/13/Android_开发遇到的Exception/" data-id="cis0eiwoe000kznuof699s9ju" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -459,7 +402,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/GridView常用属性/" data-id="ciq6o7dti000ppduomt5k6qd3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/13/GridView常用属性/" data-id="cis0eiwop000sznuohbwnw063" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -503,7 +446,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Android-应用添加快捷方式/" data-id="ciq6o7dse0006pduojns5s273" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/13/Android-应用添加快捷方式/" data-id="cis0eiwn20001znuoixh3j6r9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -566,7 +509,86 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Hexo在github上构建的博客/" data-id="ciq6o7dto000rpduocl3tl6g4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/13/Hexo在github上构建的博客/" data-id="cis0eiwp10011znuonhqzwwvs" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客/">博客</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-markdown语法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/12/markdown语法/" class="article-date">
+  <time datetime="2016-05-12T09:16:23.000Z" itemprop="datePublished">2016-05-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/12/markdown语法/">MarkDown语法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###ps: 一定要注意有空格，不然会报错</p>
+<p>tags: 博客这里需要加空格</p>
+<p>“＃” 一级标题</p>
+<p>“＃＃” 二级标题</p>
+<p>“＃＃＃” 三级标题</p>
+<p>“&gt;”  引用</p>
+<p>“！［］（）“  图片</p>
+<p>“［］（）“  链接</p>
+<p>“＊＊” 粗体和  “＊”斜体</p>
+<p>表格<br>“<br>| Tables        | Are           | Cool  |<br>| ————- |:————-:| —–:|<br>| col 3 is      | right-aligned | $1600 |<br>| col 2 is      | centered      |   $12 |<br>| zebra stripes | are neat      |    $1 |”</p>
+<table>
+<thead>
+<tr>
+<th>Tables</th>
+<th style="text-align:center">Are</th>
+<th style="text-align:right">Cool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>col 3 is</td>
+<td style="text-align:center">right-aligned</td>
+<td style="text-align:right">$1600</td>
+</tr>
+<tr>
+<td>col 2 is</td>
+<td style="text-align:center">centered</td>
+<td style="text-align:right">$12</td>
+</tr>
+<tr>
+<td>zebra stripes</td>
+<td style="text-align:center">are neat</td>
+<td style="text-align:right">$1</td>
+</tr>
+</tbody>
+</table>
+<p>代码框</p>
+<p>两个 ` 把中间的代码包裹起来</p>
+<p>使用 tab 键即可缩进</p>
+<p>分割线 三个 * 号</p>
+<p><img src="http://ww3.sinaimg.cn/large/6aee7dbbgw1effgmnpgqlj210j0us44j.jpg" alt="图示"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/12/markdown语法/" data-id="cis0eiwp70018znuoxkp9f5so" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客/">博客</a></li></ul>
@@ -581,7 +603,7 @@
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">__('next') &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
   </nav>
 </section>
         
@@ -594,7 +616,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D-游戏/">Unity3D,游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兴趣/">兴趣</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信-Js/">微信 Js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情/">心情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/测试/">测试</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D-游戏/">Unity3D,游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兴趣/">兴趣</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信-Js/">微信 Js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情/">心情</a></li></ul>
     </div>
   </div>
 
@@ -604,7 +626,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Unity3D/" style="font-size: 10px;">Unity3D</a> <a href="/tags/Unity3D-游戏/" style="font-size: 10px;">Unity3D,游戏</a> <a href="/tags/兴趣/" style="font-size: 10px;">兴趣</a> <a href="/tags/博客/" style="font-size: 15px;">博客</a> <a href="/tags/微信-Js/" style="font-size: 10px;">微信 Js</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/测试/" style="font-size: 10px;">测试</a>
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Unity3D/" style="font-size: 10px;">Unity3D</a> <a href="/tags/Unity3D-游戏/" style="font-size: 10px;">Unity3D,游戏</a> <a href="/tags/兴趣/" style="font-size: 10px;">兴趣</a> <a href="/tags/博客/" style="font-size: 15px;">博客</a> <a href="/tags/微信-Js/" style="font-size: 10px;">微信 Js</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a>
     </div>
   </div>
 
@@ -634,15 +656,15 @@
           </li>
         
           <li>
-            <a href="/2016/05/18/Junit4在android开发中的运用/">Junit4在android开发中的运用</a>
-          </li>
-        
-          <li>
             <a href="/2016/05/16/流程图绘制和基本符号/">流程图绘制和基本符号</a>
           </li>
         
           <li>
             <a href="/2016/05/14/心情/">心情</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/14/Linux常用命令/">Linux常用命令</a>
           </li>
         
       </ul>
