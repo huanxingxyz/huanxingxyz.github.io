@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android应用安装 | 田鹏飞的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、关键词解释：
+
+SQLite：SQLite是android系统自带的一款轻量级数据库，可以存储一些临时文件
+签名:就像一些重大决定和文件需要我们手动签名一样，实际上在Android的世界里，签名起着一个应用的识别和告知其作者身份的作用，自己应用的无缝升级，ContentProvider的使用，都依赖签名
+SharePreference(share prefs):存储数据类型：SharePref">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android应用安装">
+<meta property="og:url" content="http://yoursite.com/2016/08/18/Android应用安装/index.html">
+<meta property="og:site_name" content="田鹏飞的个人博客">
+<meta property="og:description" content="一、关键词解释：
+
+SQLite：SQLite是android系统自带的一款轻量级数据库，可以存储一些临时文件
+签名:就像一些重大决定和文件需要我们手动签名一样，实际上在Android的世界里，签名起着一个应用的识别和告知其作者身份的作用，自己应用的无缝升级，ContentProvider的使用，都依赖签名
+SharePreference(share prefs):存储数据类型：SharePref">
+<meta property="og:updated_time" content="2016-10-08T01:58:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android应用安装">
+<meta name="twitter:description" content="一、关键词解释：
+
+SQLite：SQLite是android系统自带的一款轻量级数据库，可以存储一些临时文件
+签名:就像一些重大决定和文件需要我们手动签名一样，实际上在Android的世界里，签名起着一个应用的识别和告知其作者身份的作用，自己应用的无缝升级，ContentProvider的使用，都依赖签名
+SharePreference(share prefs):存储数据类型：SharePref">
+  
+    <link rel="alternate" href="/atom.xml" title="田鹏飞的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">田鹏飞的个人博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">你若盛开，蝴蝶自来</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Android应用安装" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/18/Android应用安装/" class="article-date">
+  <time datetime="2016-08-18T14:57:12.000Z" itemprop="datePublished">2016-08-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android应用安装
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一、关键词解释：</p>
+<ol>
+<li>SQLite：<br>SQLite是android系统自带的一款轻量级数据库，可以存储一些临时文件</li>
+<li>签名:<br>就像一些重大决定和文件需要我们手动签名一样，实际上在Android的世界里，签名起着一个应用的识别和告知其作者身份的作用，自己应用的无缝升级，ContentProvider的使用，都依赖签名</li>
+<li>SharePreference(share prefs):<br>存储数据类型：SharePreference是一个轻量级的存储机制。只能存储一些基本类型，boolean，int，float，long，String<br>路径：路径为data/data/包名/share_prefs/文件名.xml。<br>存储形式：以xml为载体，存储时类似于Map，key-value键值对。</li>
+<li>静默安装：<br>静默安装顾名思义，就是静静的，默默的装上一个应用，在安装的过程当中用户是不知情的</li>
+<li>ContentProvider：<br>Android四大组件，可以允许两个独立应用互相暴露、使用数据<br>二、 Android的安装方式</li>
+<li>系统应用安装：<br>PackageManagerService处理各种应用的安装，卸载，管理等工作，开机时由systemServer启动此服务<br>(源文件路径：android\frameworks\base\services\java\com\android\server\PackageManagerService.java)<br>PackageManagerService服务启动的流程：<br>a. 首先扫描安装“system\framework”目录下的jar包<br>scanDirLI(mFrameworkDir,PackageParser.PARSE_IS_SYSTEM scanMode | SCAN_NO_DEX);<br>b. 第二步扫描安装“system\app”目录下的各个系统应用<br>scanDirLI(mSystemAppDir,PackageParser.PARSE_IS_SYSTEM, scanMode);<br>c. 第三步扫描“data\app”目录，即用户安装的第三方应用 scanDirLI(mAppInstallDir, 0, scanMode);<br>d. 第四步扫描” data\app-private”目录，即安装DRM保护的APK文件（目前没有遇到过此类的应用）</li>
+<li>从market上下载应用：<br>a. 当应用在手机市场下载完成之后，会自动调用public voidinstallPackage(final Uri packageURI, final IPackageInstallObserver observer,final int flags)接口<br>b. 将apk文件复制到临时目录下，解析临时文件，获取应用包名<br>c. 判断如果带有参数INSTALL_REPLACE_EXISTING<br>d. 之后则与开机应用安装流程相同</li>
+<li>adb工具安装：<br>与market安装调用的接口相同</li>
+<li>静默安装：<br>a. apk签名必须与系统签名一致<br>b. 必须root<br>请注意：以上两项满足其一，然后编辑android工程中的Manifest.XML文件，添加权限android.permission.INSTALL_PACKAGES即</li>
+<li>系统应用安装和第三方安装（adb安装）区别:<br>实际上系统应用安装和第三方安装没有办法去做比较，只是阶段不一罢了，实际上第三方安装最后也是要走到系统安装这一步的，只不过当我们在使用第三方安装的 时 候，先走第三方安装阶段，然后是系统应用安装阶段，只有一点例外，就是系统应用不会走第三方安装，例如：系统版本更新，摄像头、计算器，键盘升级等<br>三、 Android覆盖安装与安装区别<br>Android覆盖安装与安装区别<br>正常安装（删除旧版本APK之后重新进行安装）    覆盖安装（不删除之前的旧版本包，直接安装）<br>SQLite的数据也会被删除    SQLite的数据不会丢失<br>shared_prefs中的数据会被删除    shared_prefs中的数据不会丢失<br>4.4之前的版本不会比较apk的Version_code    4.4以上版本比较apk的Version_code<br>四、测试需要注意的点以及会引发的问题</li>
+<li>容易引发的问题<br>a. SQLite数据不会丢失，当覆盖安装时，会对比SQLite数据库信息，但是没有比对上不会在界面上提示报错<br>b. Shared prefs中的数据有保存，那么之前用户设置的一些东西都会保存<br>c. Android版本比较多，而且比较复杂，市场持有度又都非常高，导致版本的更新和对低版本的支持成为问题，例如：android4.4之后覆盖安装会对比Version_code</li>
+<li>测试人员需要注意的点<br>a. SQLite数据库更新后，如果没有对比成功则覆盖安装失败且用户无感知，这个是个很大的问题，所以在之后的测试当中，需要关注是否有public voidonUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)的逻辑来更新SQLite<br>b. Shared prefs中的数据保存会保存之前用户的一些设置历史，那么新的版本和旧的版本之间的功能更新，减去，如果恰巧历史数据保存的正好是功能改动的部分，那么就可能会出现问题<br>c. Android的版本问题一直都是BUG出现最多的地方，覆盖安装的问题在与Android4.4之前，覆盖安装不会判断version_code，所以安装可以不考虑，但是在4.4之后会判断version_code,如果比之前的小，是不可以安装的</li>
+<li>解决方式<br>a.查看代码当中的是否有void onUpdate（）方法，可以使用静态代码扫描的方式来解决<br>b.查看代码中是否有使用到sharePreference对象，如果有，是否有逻辑使得sharePreference正常更新<br>c.查看Android的系统版本，如果&gt;4.4，那么使用adb命令：adb install apk路径，查看是否会报错，同时也可以加入静态代码扫描的规则中。<br>五、iOS的安装与覆盖安装：<br>iOS的安装和升级同一都走AppleStore，所以具有非常好的封装性，而且是闭源的，所以覆盖安装和正常的安装都是在APPleStore的监督之下完成的，基本相同</li>
+</ol>
+<p>作者：头条号 / 老急说<br>链接：<a href="http://toutiao.com/a6319976585891332354/" target="_blank" rel="external">http://toutiao.com/a6319976585891332354/</a><br>来源：头条号（今日头条旗下创作平台）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/08/18/Android应用安装/" data-id="ciu0k9mn9000qcts6hjz93vwc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/18/面试/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          面试
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/24/兴趣视频教程/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">兴趣视频教程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D-游戏/">Unity3D,游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兴趣/">兴趣</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习，师傅/">学习，师傅</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信-Js/">微信 Js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情/">心情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Unity3D/" style="font-size: 10px;">Unity3D</a> <a href="/tags/Unity3D-游戏/" style="font-size: 10px;">Unity3D,游戏</a> <a href="/tags/兴趣/" style="font-size: 10px;">兴趣</a> <a href="/tags/博客/" style="font-size: 15px;">博客</a> <a href="/tags/学习，师傅/" style="font-size: 10px;">学习，师傅</a> <a href="/tags/微信-Js/" style="font-size: 10px;">微信 Js</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/08/18/面试/">面试</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/18/Android应用安装/">Android应用安装</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/24/兴趣视频教程/">兴趣视频教程</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/23/Idea快捷键/">Idea快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/16/流程图绘制和基本符号/">流程图绘制和基本符号</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 huanxingxyz<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
