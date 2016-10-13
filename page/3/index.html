@@ -341,7 +341,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Unity3D第一人称射击游戏（推荐）/" data-id="ciu812yc20020dls68cza6zye" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Unity3D第一人称射击游戏（推荐）/" data-id="ciu81c2p2001reqs67cb51sca" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity3D-游戏/">Unity3D,游戏</a></li></ul>
@@ -386,7 +386,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android-功能开发笔记/" data-id="ciu812y9s0004dls6wz1pdiqp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android-功能开发笔记/" data-id="ciu81c2mn0004eqs64ya4d1p5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -430,7 +430,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android中通过来电转移实现“电话已关机”-“此号码已停机”等/" data-id="ciu812yaz000xdls6dte1ns3f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android中通过来电转移实现“电话已关机”-“此号码已停机”等/" data-id="ciu81c2nr000zeqs6jwux37kl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -471,7 +471,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android-自动接听来电/" data-id="ciu812y9z0007dls645zbr0g5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android-自动接听来电/" data-id="ciu81c2n0000eeqs66b7muyw0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -535,7 +535,49 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android_Afinal框架/" data-id="ciu812yai000jdls6zf62av70" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android_Afinal框架/" data-id="ciu81c2n7000leqs6sivp2wp7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android_检查是否联网" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/14/Android_检查是否联网/" class="article-date">
+  <time datetime="2016-05-14T13:26:18.000Z" itemprop="datePublished">2016-05-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/14/Android_检查是否联网/">Android_检查是否联网</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>检查是否联网</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static boolean isNetworkAvailable(Activity mActivity) &#123;</span><br><span class="line"> Context context = mActivity.getApplicationContext();</span><br><span class="line"> ConnectivityManager connectivity = (ConnectivityManager) context</span><br><span class="line">   .getSystemService(Context.CONNECTIVITY_SERVICE);</span><br><span class="line"> if (connectivity == null) &#123;</span><br><span class="line">  return false;</span><br><span class="line"> &#125; else &#123;</span><br><span class="line">  NetworkInfo[] info = connectivity.getAllNetworkInfo();</span><br><span class="line">  if (info != null) &#123;</span><br><span class="line">   for (int i = 0; i &lt; info.length; i++) &#123;</span><br><span class="line">    if (info[i].getState() == NetworkInfo.State.CONNECTED) &#123;</span><br><span class="line">     return true;</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void HttpTest(final Activity mActivity) &#123;</span><br><span class="line"> if (!isNetworkAvailable(mActivity)) &#123;</span><br><span class="line">  showToast(mActivity);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void showToast(Activity mActivity) &#123;</span><br><span class="line"> Vibrator mVibrator01 = (Vibrator) mActivity.getApplication()</span><br><span class="line">   .getSystemService(Service.VIBRATOR_SERVICE);</span><br><span class="line"> mVibrator01.vibrate(new long[] &#123; 100, 10, 100, 1000 &#125;, -1);</span><br><span class="line"> Toast.makeText(mActivity, &quot;请检查是否联网&quot;, 500).show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中还要加上手机震动和联网的权限：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt; </span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.VIBRATE&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/14/Android_检查是否联网/" data-id="ciu81c2nf000reqs6zt6e4ljj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -625,49 +667,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android_条码扫描二维码扫描/" data-id="ciu812yan000pdls6hzwqul9b" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Android_检查是否联网" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/14/Android_检查是否联网/" class="article-date">
-  <time datetime="2016-05-14T13:26:18.000Z" itemprop="datePublished">2016-05-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/14/Android_检查是否联网/">Android_检查是否联网</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>检查是否联网</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static boolean isNetworkAvailable(Activity mActivity) &#123;</span><br><span class="line"> Context context = mActivity.getApplicationContext();</span><br><span class="line"> ConnectivityManager connectivity = (ConnectivityManager) context</span><br><span class="line">   .getSystemService(Context.CONNECTIVITY_SERVICE);</span><br><span class="line"> if (connectivity == null) &#123;</span><br><span class="line">  return false;</span><br><span class="line"> &#125; else &#123;</span><br><span class="line">  NetworkInfo[] info = connectivity.getAllNetworkInfo();</span><br><span class="line">  if (info != null) &#123;</span><br><span class="line">   for (int i = 0; i &lt; info.length; i++) &#123;</span><br><span class="line">    if (info[i].getState() == NetworkInfo.State.CONNECTED) &#123;</span><br><span class="line">     return true;</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void HttpTest(final Activity mActivity) &#123;</span><br><span class="line"> if (!isNetworkAvailable(mActivity)) &#123;</span><br><span class="line">  showToast(mActivity);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void showToast(Activity mActivity) &#123;</span><br><span class="line"> Vibrator mVibrator01 = (Vibrator) mActivity.getApplication()</span><br><span class="line">   .getSystemService(Service.VIBRATOR_SERVICE);</span><br><span class="line"> mVibrator01.vibrate(new long[] &#123; 100, 10, 100, 1000 &#125;, -1);</span><br><span class="line"> Toast.makeText(mActivity, &quot;请检查是否联网&quot;, 500).show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中还要加上手机震动和联网的权限：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt; </span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.VIBRATE&quot;/&gt;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android_检查是否联网/" data-id="ciu812yat000tdls6fcvxsjw8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android_条码扫描二维码扫描/" data-id="ciu81c2nc000peqs6kwk2n1z9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -724,7 +724,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android_消息推送/" data-id="ciu812yax000vdls67s54f5jk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android_消息推送/" data-id="ciu81c2nh000teqs6lw60ye3z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -859,7 +859,7 @@ public static String getJsonArrStrFromList(Object obj)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Json_反序列化/" data-id="ciu812ybg001gdls6hu0uoy9x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Json_反序列化/" data-id="ciu81c2p1001oeqs671b5z9vx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -928,7 +928,7 @@ public static String getJsonArrStrFromList(Object obj)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android-应用插件式开发解决方法/" data-id="ciu812yal000ndls6oaqpd8e1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android-应用插件式开发解决方法/" data-id="ciu81c2mt0009eqs6neywgodz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -992,19 +992,19 @@ public static String getJsonArrStrFromList(Object obj)
           </li>
         
           <li>
-            <a href="/2016/10/13/JavaWeb_解决浏览器回退表单重复提交/">解决浏览器回退表单重复提交问题</a>
-          </li>
-        
-          <li>
-            <a href="/2016/10/13/JavaWeb_springMvc参数获取/">springMvc参数获取</a>
-          </li>
-        
-          <li>
             <a href="/2016/10/13/Android_大牛博客/">整理一些大牛的博客</a>
           </li>
         
           <li>
-            <a href="/2016/10/13/IDE_创业常用到的工具/">创业常用到的工具</a>
+            <a href="/2016/10/13/JavaWeb_解决浏览器回退表单重复提交/">解决浏览器回退表单重复提交问题</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/13/Jenkins搭建/">Jenkins 搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/13/Android_百分比框架/">Android百分比框架</a>
           </li>
         
       </ul>
