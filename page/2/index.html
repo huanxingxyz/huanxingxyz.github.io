@@ -57,7 +57,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -68,9 +68,9 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Android_百分比框架" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-JavaWeb_解决浏览器回退表单重复提交" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/10/13/Android_百分比框架/" class="article-date">
+    <a href="/2016/10/13/JavaWeb_解决浏览器回退表单重复提交/" class="article-date">
   <time datetime="2016-10-13T13:26:18.000Z" itemprop="datePublished">2016-10-13</time>
 </a>
     
@@ -82,7 +82,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/13/Android_百分比框架/">Android百分比框架</a>
+      <a class="article-title" href="/2016/10/13/JavaWeb_解决浏览器回退表单重复提交/">解决浏览器回退表单重复提交问题</a>
     </h1>
   
 
@@ -90,19 +90,513 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&#x524D;&#x6BB5;&#x65F6;&#x95F4;&#x53BB;&#x5929;&#x623F;&#x79D1;&#x6280;&#x9762;&#x8BD5;&#xFF0C;&#x9762;&#x8BD5;&#x7684;&#x54E5;&#x4EEC;&#x4EBA;&#x4E0D;&#x9519;&#xFF0C;&#x63D0;&#x5230;&#x4E86;&#x767E;&#x5206;&#x6BD4;&#x5E03;&#x5C40;&#xFF0C;&#x8FD9;&#x51E0;&#x5929;&#x987A;&#x4FBF;&#x770B;&#x4E86;&#x770B;&#x3002;</p>
-<p>&#x539F;&#x9879;&#x76EE;&#x4EE3;&#x7801;</p>
-<p><a href="https://github.com/JulienGenoud/android-percent-support-lib-sample" target="_blank" rel="external">https://github.com/JulienGenoud/android-percent-support-lib-sample</a></p>
-<p>&#x5F20;&#x9E3F;&#x6D0B;&#x8FD9;&#x54E5;&#x4EEC;&#x505A;&#x4E86;&#x4E9B;&#x4FEE;&#x6539;&#xFF0C;&#x770B;&#x4E0B;&#xFF0C;&#x5B66;&#x4E60;&#x3002;&#x3002;<br><a href="http://blog.csdn.net/lmj623565791/article/details/46767825" target="_blank" rel="external">http://blog.csdn.net/lmj623565791/article/details/46767825</a></p>
-<p>&#x540E;&#x7EED;&#x628A;&#x81EA;&#x5DF1;&#x5B66;&#x4E60;&#x5230;&#x7684;&#x5FC3;&#x5F97;&#x8865;&#x5145;&#x5728;&#x8FD9;&#x7BC7;&#x535A;&#x5BA2;&#x4E0A;&#xFF0C;&#x672A;&#x5B8C;&#x5F85;&#x7EED;</p>
+        <p>  &#x6682;&#x65F6;&#x6CA1;&#x6709;&#x522B;&#x7684;&#x4EC0;&#x4E48;&#x597D;&#x529E;&#x6CD5;&#xFF0C;&#x5728;&#x7F51;&#x4E0A;&#x641C;&#x7D22;&#x5230;&#x7528;sessionStorage&#xFF0B;ajax&#x5F62;&#x5F0F;&#x8BF7;&#x6C42;&#x6570;&#x636E;&#x6765;&#x907F;&#x514D;&#x6D4F;&#x89C8;&#x5668;&#x56DE;&#x9000;&#x8868;&#x5355;&#x91CD;&#x590D;&#x63D0;&#x4EA4;.</p>
+<p>  &#x9996;&#x5148;&#x9875;&#x9762;&#x5C55;&#x793A;&#x4E3A;&#x8BA2;&#x5355;&#x5217;&#x8868;&#xFF0C;&#x5206;&#x4E3A;&#x4E09;&#x4E2A;tab&#xFF0C;&#x4E3A;&#x672A;&#x652F;&#x4ED8;&#x8BA2;&#x5355;&#xFF0C;&#x5DF2;&#x652F;&#x4ED8;&#x8BA2;&#x5355;&#xFF0C;&#x8FC7;&#x671F;&#x8BA2;&#x5355;&#xFF0C;&#x5728;&#x5217;&#x8868;&#x91CC;&#x70B9;&#x51FB;&#x4E00;&#x4E2A;item&#x65F6;&#x8FDB;&#x5165;&#x8BA2;&#x5355;&#x8BE6;&#x60C5;&#x9875;&#xFF0C;&#x56DE;&#x9000;&#x540E;&#x8981;&#x6C42;&#x6548;&#x679C;&#x4E3A;&#x8FD8;&#x505C;&#x7559;&#x5728;&#x539F;&#x6765;&#x7684;tab&#xFF0C;&#x5217;&#x8868;&#x4F4D;&#x7F6E;&#x4E5F;&#x8981;&#x5728;&#x9009;&#x4E2D;&#x4F4D;&#x7F6E;&#x3002;</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">  &lt;div class=&quot;mainBody&quot; style=&quot;height: auto&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;mainBodyBack&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;orderSelection&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;orderSelectionTags&quot;&gt;</span><br><span class="line">                &lt;div id=&quot;waitPayId&quot; class=&quot;orderButtonInsurance orderButtonInsuranceBack&quot;&gt;&#x5F85;&#x652F;&#x4ED8;</span><br><span class="line">                    &lt;div class=&quot;underLine show&quot;&gt;&lt;/div&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div id=&quot;hasPayId&quot; class=&quot;orderButtonInsurance&quot;&gt;&#x5DF2;&#x652F;&#x4ED8;</span><br><span class="line">                    &lt;div class=&quot;underLine&quot;&gt;&lt;/div&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div id=&quot;overdateId&quot; class=&quot;orderButtonInsurance&quot;&gt;&#x5DF2;&#x8FC7;&#x671F;</span><br><span class="line">                    &lt;div class=&quot;underLine&quot;&gt;&lt;/div&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">        &lt;%--&#x5F85;&#x652F;&#x4ED8;--%&gt;</span><br><span class="line">        &lt;div class=&quot;orderListBack show&quot; id=&quot;orderWaitPay&quot;&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">        &lt;%--&#x5DF2;&#x652F;&#x4ED8;--%&gt;</span><br><span class="line">        &lt;div class=&quot;orderListBack&quot; id=&quot;orderHasPay&quot;&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">        &lt;%--&#x5DF2;&#x8FC7;&#x671F;--%&gt;</span><br><span class="line">        &lt;div class=&quot;orderListBack&quot; id=&quot;orderoverDate&quot;&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>&#x539F;&#x6765;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#x65F6;&#x76F4;&#x63A5;&#x5728;waitPayId&#xFF0C;hasPayId&#xFF0C;overdateId&#x4E09;&#x4E2A;div&#x4E2D;&#x586B;&#x5145;&#x6570;&#x636E;&#xFF0C;&#x73B0;&#x5728;&#x8981;&#x4FEE;&#x6539;&#x4E3A;&#x7528;ajax&#x8BF7;&#x6C42;&#x7684;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x586B;&#x5145;&#x3002;</p>
+<p>ajax&#x8BF7;&#x6C42;&#x7684;&#x90E8;&#x5206;&#x4EE3;&#x7801;&#x4E3A;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">function getOrderListData() {</span><br><span class="line">        dismissAlertAction()</span><br><span class="line">        $.ajax({</span><br><span class="line">            url: &quot;${ctx}/order/getOrderList&quot;,</span><br><span class="line">            type: &quot;POST&quot;,</span><br><span class="line">            data: {},</span><br><span class="line">            dataType: &quot;json&quot;,</span><br><span class="line">            success: function (resp) {</span><br><span class="line">                if (resp.code === 0) {</span><br><span class="line">                    console.info(resp.data)</span><br><span class="line">                    //&#x672A;&#x652F;&#x4ED8;&#x8BA2;&#x5355;&#x5217;&#x8868;</span><br><span class="line">                    var listUnPaidOrder = new Array();</span><br><span class="line">                    listUnPaidOrder = resp.data[0];</span><br><span class="line">                    //&#x5DF2;&#x53EA;&#x8BFB;&#x8BA2;&#x5355;&#x5217;&#x8868;</span><br><span class="line">                    var listPaidOrder = new Array();</span><br><span class="line">                    listPaidOrder = resp.data[1];</span><br><span class="line">                    //&#x8FC7;&#x671F;&#x8BA2;&#x5355;&#x5217;&#x8868;</span><br><span class="line">                    var listOverDateOrder = new Array();</span><br><span class="line">                    listOverDateOrder = resp.data[2];</span><br><span class="line">                    console.info(listUnPaidOrder.length)</span><br><span class="line">                    console.info(listPaidOrder.length)</span><br><span class="line">                    console.info(listOverDateOrder.length)</span><br><span class="line"></span><br><span class="line">                    window.sessionStorage.setItem(&quot;listUnPaidOrder&quot;, JSON.stringify(listUnPaidOrder));</span><br><span class="line">                    window.sessionStorage.setItem(&quot;listPaidOrder&quot;, JSON.stringify(listPaidOrder));</span><br><span class="line">                    window.sessionStorage.setItem(&quot;listOverDateOrder&quot;, JSON.stringify(listOverDateOrder));</span><br><span class="line"></span><br><span class="line">                    fillDataView(listUnPaidOrder, listPaidOrder, listOverDateOrder);</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        });</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
+<p>&#x9875;&#x9762;&#x52A0;&#x8F7D;&#x81EA;&#x52A8;&#x8C03;&#x7528;&#x7684;js&#x4EE3;&#x7801;&#x4E3A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line">//&#x5F53;&#x524D;&#x5207;&#x6362;&#x7684;tab&#x503C;</span><br><span class="line"> var titleTab = window.sessionStorage.getItem(&quot;titleTab&quot;);</span><br><span class="line"> if (titleTab == null || titleTab == &quot;&quot;) {</span><br><span class="line">     titleTab = 0;</span><br><span class="line"> }</span><br><span class="line"> var currentTab = titleTab;</span><br><span class="line"></span><br><span class="line"> function setHeight() {</span><br><span class="line">     $(&quot;html,body&quot;).css(&quot;height&quot;,&quot;100%&quot;);</span><br><span class="line"> }</span><br><span class="line"> function fillDataView(listUnPaidOrder, listPaidOrder, listOverDateOrder) {</span><br><span class="line">     var divUnPaidOrder = &quot;&quot;;</span><br><span class="line">     //&#x672A;&#x652F;&#x4ED8;&#x8BA2;&#x5355;&#x5217;&#x8868;</span><br><span class="line">     if (listUnPaidOrder.length == 0) {</span><br><span class="line">         setHeight()</span><br><span class="line">         divUnPaidOrder += &apos;&lt;div class=&quot;orderNoneBack&quot; id=&quot;orderWaitPay&quot;&gt; &lt;div class=&quot;orderListEmpty&quot;&gt; &lt;img src=&quot;${ctx}/resources/img/noOrder.png&quot; alt=&quot;&quot;/&gt; &lt;div class=&quot;orderListEmptyText&quot;&gt;&#x60A8;&#x8FD8;&#x6CA1;&#x6709;&#x76F8;&#x5173;&#x8BA2;&#x5355;&#x8BB0;&#x5F55;&lt;/div&gt; &lt;/div&gt; &lt;/div&gt;&apos;;</span><br><span class="line">     } else {</span><br><span class="line">         for (var i = 0; i &lt; listUnPaidOrder.length; i++) {</span><br><span class="line">             var orderDto = listUnPaidOrder[i];</span><br><span class="line">             divUnPaidOrder += &apos; &lt;div class=&quot;orderClass&quot;&gt; &lt;div class=&quot;orderClassHeader&quot;&gt;&apos; +</span><br><span class="line">                     &apos; &lt;div class=&quot;orderClassDate&quot;&gt;&apos; + orderDto.createOrderTime + &apos;&lt;/div&gt;&apos; +</span><br><span class="line">                     &apos; &lt;div class=&quot;orderDetailButton&quot; onclick=&quot;goToOrderDetail(&apos; + orderDto.id + &apos;)&quot;&gt;&#x67E5;&#x770B;&#x8BE6;&#x60C5; &lt;/div&gt; &apos; +</span><br><span class="line">                     &apos;&lt;/div&gt; &lt;div class=&quot;orderInformation&quot;&gt; &lt;div class=&quot;orderImg&quot;&gt; &lt;div class=&quot;orderHeadImg insurance_&apos; + orderDto.insuCom + &apos;&quot;&gt; &lt;/div&gt; &apos; +</span><br><span class="line">                     &apos;&lt;/div&gt; &lt;div class=&quot;orderInsurance&quot;&gt; &lt;div class=&quot;orderInsurnceText&quot;&gt;&apos; + orderDto.insuComName + &apos;&lt;/div&gt; &apos; +</span><br><span class="line">                     &apos;&lt;div class=&quot;orderInsurnceText lightColor&quot;&gt;&#x5171;&#x6295;&#x4FDD; &apos; + orderDto.coverageCount + &apos;&#x79CD;&#x4FDD;&#x9669;&lt;/div&gt; &apos; +</span><br><span class="line">                     &apos;&lt;/div&gt; &lt;div class=&quot;orderBuyer&quot;&gt; &lt;div class=&quot;orderInsurnceText&quot;&gt;&apos; + orderDto.licenseNo + &apos;&lt;/div&gt; &apos; +</span><br><span class="line">                     &apos;&lt;div class=&quot;orderInsurnceText&quot;&gt;&apos; + orderDto.insuredName + &apos;&lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;orderFooter&quot;&gt;&apos; +</span><br><span class="line">                     &apos; &lt;div class=&quot;left-apart&quot;&gt;&#x5B9E;&#x4ED8;&#x6B3E;&#xFF1A;&lt;span class=&quot;moneyColor&quot;&gt;&apos; + (orderDto.sumAmount / 100).toFixed(2) + &apos;&#x5143;&lt;/span&gt;&apos; +</span><br><span class="line">                     &apos; &lt;/div&gt; &lt;div class=&quot;right-apart&quot; &apos; +</span><br><span class="line">                     &apos;onclick=&quot;payAtOnece(&apos;+orderDto.id+&apos;)&quot;&gt;&#x7ACB;&#x5373;&#x652F;&#x4ED8; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt;&apos;;</span><br><span class="line">         }</span><br><span class="line">     }</span><br><span class="line">     $(&quot;#orderWaitPay&quot;).html(divUnPaidOrder);</span><br><span class="line">     var divPaidOrder = &quot;&quot;;</span><br><span class="line">     //&#x5DF2;&#x652F;&#x4ED8;&#x8BA2;&#x5355;&#x5217;&#x8868;</span><br><span class="line">     if (listPaidOrder.length == 0) {</span><br><span class="line">         setHeight()</span><br><span class="line">         divPaidOrder = &apos;&lt;div class=&quot;orderNoneBack&quot; id=&quot;orderWaitPay&quot;&gt; &lt;div class=&quot;orderListEmpty&quot;&gt; &lt;img src=&quot;${ctx}/resources/img/noOrder.png&quot; alt=&quot;&quot;/&gt; &lt;div class=&quot;orderListEmptyText&quot;&gt;&#x60A8;&#x8FD8;&#x6CA1;&#x6709;&#x76F8;&#x5173;&#x8BA2;&#x5355;&#x8BB0;&#x5F55;&lt;/div&gt; &lt;/div&gt; &lt;/div&gt;&apos;;</span><br><span class="line">     } else {</span><br><span class="line">         for (var i = 0; i &lt; listPaidOrder.length; i++) {</span><br><span class="line">             var orderPaidDto = listPaidOrder[i];</span><br><span class="line">             divPaidOrder += &apos;&lt;div class=&quot;orderClass&quot;&gt; &lt;div class=&quot;orderClassHeader&quot;&gt; &apos; +</span><br><span class="line">                     &apos;&lt;div class=&quot;orderClassDate&quot;&gt;&apos;</span><br><span class="line">                     + orderPaidDto.createOrderTime +</span><br><span class="line">                     &apos;&lt;/div&gt;&apos; +</span><br><span class="line">                     &apos; &lt;div class=&quot;orderDetailButton&quot; &apos; +</span><br><span class="line">                     &apos;onclick=&quot; goToOrderDetail(&apos; + orderPaidDto.id + &apos;)&quot;&gt;&apos; +</span><br><span class="line">                     &apos;&#x67E5;&#x770B;&#x8BE6;&#x60C5; &apos; +</span><br><span class="line">                     &apos;&lt;/div&gt; &lt;/div&gt;&apos; +</span><br><span class="line">                     &apos; &lt;div class=&quot;orderInformation&quot;&gt;&apos; +</span><br><span class="line">                     &apos; &lt;div class=&quot;orderImg&quot;&gt; &apos; +</span><br><span class="line">                     &apos;&lt;div class=&quot;orderHeadImg insurance_&apos; + orderPaidDto.insuCom + &apos;&quot;&gt;&apos; +</span><br><span class="line">                     &apos; &lt;/div&gt; &lt;/div&gt; &apos; +</span><br><span class="line">                     &apos;&lt;div class=&quot;orderInsurance&quot;&gt; &apos; +</span><br><span class="line">                     &apos;&lt;div class=&quot;orderInsurnceText&quot;&gt;&apos; +</span><br><span class="line">                     orderPaidDto.insuComName +</span><br><span class="line">                     &apos;&lt;/div&gt; &apos; +</span><br><span class="line">                     &apos;&lt;div class=&quot;orderInsurnceText lightColor&quot;&gt;&apos; +</span><br><span class="line">                     &apos;&#x5171;&#x6295;&#x4FDD;&apos; + orderPaidDto.coverageCount + &apos;&#x79CD;&#x4FDD;&#x9669;&lt;/div&gt;&apos; +</span><br><span class="line">                     &apos; &lt;/div&gt; &lt;div class=&quot;orderBuyer&quot;&gt;&apos; +</span><br><span class="line">                     &apos; &lt;div class=&quot;orderInsurnceText&quot;&gt;&apos; +</span><br><span class="line">                     orderPaidDto.licenseNo +</span><br><span class="line">                     &apos;&lt;/div&gt; &lt;div class=&quot;orderInsurnceText&quot;&gt;&apos;</span><br><span class="line">                     + orderPaidDto.insuredName +</span><br><span class="line">                     &apos;&lt;/div&gt; &lt;/div&gt; &apos; +</span><br><span class="line">                     &apos;&lt;/div&gt; &lt;div class=&quot;orderFooter&quot;&gt;&#x5B9E;&#x4ED8;&#x6B3E;&#xFF1A;&lt;span class=&quot;moneyColor&quot;&gt;&apos;</span><br><span class="line">                     + (orderPaidDto.sumAmount / 100).toFixed(2) + &apos;&#x5143;&lt;/span&gt; &apos; +</span><br><span class="line">                     &apos;&lt;/div&gt; &lt;/div&gt;&apos;;</span><br><span class="line">         }</span><br><span class="line">     }</span><br><span class="line">     $(&quot;#orderHasPay&quot;).html(divPaidOrder);</span><br><span class="line"></span><br><span class="line">     var divOverDateOrder = &quot;&quot;;</span><br><span class="line">     //&#x5DF2;&#x8FC7;&#x671F;&#x8BA2;&#x5355;&#x5217;&#x8868;</span><br><span class="line">     if (listOverDateOrder.length == 0) {</span><br><span class="line">         setHeight()</span><br><span class="line">         divOverDateOrder = &apos;&lt;div class=&quot;orderNoneBack&quot; id=&quot;orderWaitPay&quot;&gt; &lt;div class=&quot;orderListEmpty&quot;&gt; &lt;img src=&quot;${ctx}/resources/img/noOrder.png&quot; alt=&quot;&quot;/&gt; &lt;div class=&quot;orderListEmptyText&quot;&gt;&#x60A8;&#x8FD8;&#x6CA1;&#x6709;&#x76F8;&#x5173;&#x8BA2;&#x5355;&#x8BB0;&#x5F55;&lt;/div&gt; &lt;/div&gt; &lt;/div&gt;&apos;;</span><br><span class="line">     } else {</span><br><span class="line">         for (var i = 0; i &lt; listOverDateOrder.length; i++) {</span><br><span class="line">             var orderOverDateDto = listOverDateOrder[i];</span><br><span class="line">             divOverDateOrder += &apos; &lt;div class=&quot;orderClass&quot;&gt; &lt;div class=&quot;orderClassHeader&quot;&gt;&apos; +</span><br><span class="line">                     &apos; &lt;div class=&quot;orderClassDate&quot;&gt;&apos; + orderOverDateDto.createOrderTime + &apos;&lt;/div&gt; &apos; +</span><br><span class="line">                     &apos;&lt;div class=&quot;orderDetailButton&quot; onclick=&quot;goToOrderDetail(&apos; + orderOverDateDto.id + &apos;)&quot;&gt;&#x67E5;&#x770B;&#x8BE6;&#x60C5; &lt;/div&gt;&apos; +</span><br><span class="line">                     &apos; &lt;/div&gt; &lt;div class=&quot;orderInformation&quot;&gt; &lt;div class=&quot;orderImg&quot;&gt; &lt;div class=&quot;orderHeadImg insurance_&apos; + orderOverDateDto.insuCom + &apos;&quot;&gt; &lt;/div&gt; &apos; +</span><br><span class="line">                     &apos;&lt;/div&gt; &lt;div class=&quot;orderInsurance&quot;&gt; &lt;div class=&quot;orderInsurnceText&quot;&gt;&apos; + orderOverDateDto.insuComName + &apos;&lt;/div&gt; &lt;div class=&quot;orderInsurnceText lightColor&quot;&gt;&apos; +</span><br><span class="line">                     &apos;&#x5171;&#x6295;&#x4FDD;&apos; + orderOverDateDto.coverageCount + &apos;&#x79CD;&#x4FDD;&#x9669;&lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;orderBuyer&quot;&gt; &apos; +</span><br><span class="line">                     &apos;&lt;div class=&quot;orderInsurnceText&quot;&gt;&apos; + orderOverDateDto.licenseNo + &apos;&lt;/div&gt; &apos; +</span><br><span class="line">                     &apos;&lt;div class=&quot;orderInsurnceText&quot;&gt;&apos; + orderOverDateDto.insuredName + &apos;&lt;/div&gt; &lt;/div&gt;&apos; +</span><br><span class="line">                     &apos; &lt;/div&gt; &lt;div class=&quot;orderFooter&quot;&gt; &lt;div class=&quot;left-apart&quot;&gt;&#x5B9E;&#x4ED8;&#x6B3E;&#xFF1A;&lt;span class=&quot;moneyColor&quot;&gt;&apos; + (orderOverDateDto.sumAmount / 100).toFixed(2) + &apos;&#x5143;&lt;/span&gt;&apos; +</span><br><span class="line">                     &apos; &lt;/div&gt; &lt;div class=&quot;right-apart&quot;&apos; +</span><br><span class="line">                     &apos;onclick=&quot; reQuotePrice(&apos; + orderOverDateDto.id + &apos;)&quot;&gt;&#x91CD;&#x65B0;&#x62A5;&#x4EF7; &lt;/div&gt;&apos; +</span><br><span class="line">                     &apos; &lt;div class=&quot;right-apart margin-right-jt&quot;&apos; +</span><br><span class="line">                     &apos; onclick=&quot; cancelOrder(&apos; + orderOverDateDto.id + &apos;)&quot;&gt;&#x5220;&#x9664;&#x8BA2;&#x5355; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt;&apos;;</span><br><span class="line">         }</span><br><span class="line">     }</span><br><span class="line">     $(&quot;#orderoverDate&quot;).html(divOverDateOrder);</span><br><span class="line"> }</span><br></pre></td></tr></table></figure>
+<p>&#x5927;&#x6982;&#x5C31;&#x662F;&#x6D4F;&#x89C8;&#x5668;&#x56DE;&#x9000;&#x518D;&#x6B21;&#x8C03;&#x7528;ajax&#x8BF7;&#x6C42;&#x7684;&#x65F6;&#x5019;&#x5224;&#x65AD;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x8C03;&#x7528;&#x8FC7;&#xFF0C;&#x6807;&#x8BB0;&#x4FDD;&#x5B58;&#x5728;sessionStorage&#x91CC;&#x9762;&#xFF0C;&#x8FD9;&#x91CC;&#x8BF4;&#x4E0B;sessionStorage&#xFF0C;&#x4E86;&#x89E3;&#x5230;sessionStorage&#x7528;&#x4E8E;&#x5B58;&#x50A8;&#x4E00;&#x4E2A;&#x4F1A;&#x8BDD;&#xFF08;session&#xFF09;&#x4E2D;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x53EA;&#x6709;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x4F1A;&#x8BDD;&#x4E2D;&#x7684;&#x9875;&#x9762;&#x624D;&#x80FD;&#x8BBF;&#x95EE;&#x5E76;&#x4E14;&#x5F53;&#x4F1A;&#x8BDD;&#x7ED3;&#x675F;&#x540E;&#x6570;&#x636E;&#x4E5F;&#x968F;&#x4E4B;&#x9500;&#x6BC1;&#x3002;&#x6240;&#x4EE5;sessionStorage&#x4E0D;&#x662F;&#x4E00;&#x79CD;&#x6301;&#x4E45;&#x5316;&#x7684;&#x672C;&#x5730;&#x5B58;&#x50A8;&#xFF0C;&#x4EC5;&#x4EC5;&#x662F;&#x4F1A;&#x8BDD;&#x7EA7;&#x5B58;&#x50A8;&#x65B9;&#x5F0F;&#x3002;<br>&#x800C;localStorage&#x7528;&#x4E8E;&#x6301;&#x4E45;&#x5316;&#x7684;&#x672C;&#x5730;&#x5B58;&#x50A8;&#xFF0C;&#x9664;&#x975E;&#x4E3B;&#x52A8;&#x5220;&#x9664;&#x6570;&#x636E;&#xFF0C;&#x5426;&#x5219;&#x6570;&#x636E;&#x662F;&#x6C38;&#x8FDC;&#x4E0D;&#x4F1A;&#x8FC7;&#x671F;&#x7684;&#x3002;</p>
+<p>Web Storage&#x7684;&#x6982;&#x5FF5;&#x548C;cookie&#x76F8;&#x4F3C;&#xFF0C;&#x533A;&#x522B;&#x662F;&#x5B83;&#x662F;&#x4E3A;&#x4E86;&#x66F4;&#x5927;&#x5BB9;&#x91CF;&#x5B58;&#x50A8;&#x8BBE;&#x8BA1;&#x7684;&#x3002;Cookie&#x7684;&#x5927;&#x5C0F;&#x662F;&#x53D7;&#x9650;&#x7684;&#xFF0C;&#x5E76;&#x4E14;&#x6BCF;&#x6B21;&#x4F60;&#x8BF7;&#x6C42;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x9875;&#x9762;&#x7684;&#x65F6;&#x5019;Cookie&#x90FD;&#x4F1A;&#x88AB;&#x53D1;&#x9001;&#x8FC7;&#x53BB;&#xFF0C;&#x8FD9;&#x6837;&#x65E0;&#x5F62;&#x4E2D;&#x6D6A;&#x8D39;&#x4E86;&#x5E26;&#x5BBD;&#xFF0C;&#x53E6;&#x5916;cookie&#x8FD8;&#x9700;&#x8981;&#x6307;&#x5B9A;&#x4F5C;&#x7528;&#x57DF;&#xFF0C;&#x4E0D;&#x53EF;&#x4EE5;&#x8DE8;&#x57DF;&#x8C03;&#x7528;&#x3002;</p>
+<p>&#x9664;&#x6B64;&#x4E4B;&#x5916;&#xFF0C;Web Storage&#x62E5;&#x6709;setItem,getItem,removeItem,clear&#x7B49;&#x65B9;&#x6CD5;&#xFF0C;&#x4E0D;&#x50CF;cookie&#x9700;&#x8981;&#x524D;&#x7AEF;&#x5F00;&#x53D1;&#x8005;&#x81EA;&#x5DF1;&#x5C01;&#x88C5;setCookie&#xFF0C;getCookie&#x3002;</p>
+<p>&#x4F46;&#x662F;Cookie&#x4E5F;&#x662F;&#x4E0D;&#x53EF;&#x4EE5;&#x6216;&#x7F3A;&#x7684;&#xFF1A;Cookie&#x7684;&#x4F5C;&#x7528;&#x662F;&#x4E0E;&#x670D;&#x52A1;&#x5668;&#x8FDB;&#x884C;&#x4EA4;&#x4E92;&#xFF0C;&#x4F5C;&#x4E3A;HTTP&#x89C4;&#x8303;&#x7684;&#x4E00;&#x90E8;&#x5206;&#x800C;&#x5B58;&#x5728; &#xFF0C;&#x800C;Web Storage&#x4EC5;&#x4EC5;&#x662F;&#x4E3A;&#x4E86;&#x5728;&#x672C;&#x5730;&#x201C;&#x5B58;&#x50A8;&#x201D;&#x6570;&#x636E;&#x800C;&#x751F;&#x3002;</p>
+<p>ocalStorage&#x548C;sessionStorage&#x90FD;&#x5177;&#x6709;&#x76F8;&#x540C;&#x7684;&#x64CD;&#x4F5C;&#x65B9;&#x6CD5;&#xFF0C;&#x4F8B;&#x5982;setItem&#x3001;getItem&#xFF0C;removeItem&#xFF0C;clear&#x7B49;.</p>
+<p>&#x4E4B;&#x524D;&#x7684;&#x505A;&#x6CD5;&#x662F;&#x628A;&#x8FD9;&#x4E2A;&#x6807;&#x5FD7;&#x4F4D;&#x5B58;&#x50A8;&#x5230;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#xFF0C;&#x6BD4;&#x5982;&#x5B58;&#x5165;redis&#x5728;&#x8BB0;&#x5F55;&#xFF0C;&#x4F46;&#x662F;&#x6BD4;&#x8F83;&#x6765;&#x8BF4;&#x5B58;&#x50A8;&#x5230;redis&#x7684;&#x5F62;&#x52BF;&#x4E0D;&#x4EC5;&#x5BF9;&#x670D;&#x52A1;&#x5668;&#x538B;&#x529B;&#x5927;&#xFF0C;&#x800C;&#x4E14;&#x4F1A;&#x5F71;&#x54CD;&#x5230;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x5B9E;&#x73B0;&#x7B49;&#x7B49;&#xFF0C;&#x8FD9;&#x6837;&#x5355;&#x9875;&#x9762;session&#x4F1A;&#x8BDD;&#x7EA7;&#x522B;&#x5B58;&#x50A8;&#x66F4;&#x6E05;&#x6670;&#x4E00;&#x4E9B;&#x3002;</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/13/Android_百分比框架/" data-id="ciu9f3fk9000rqgs6bnpo82j0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/13/JavaWeb_解决浏览器回退表单重复提交/" data-id="ciu9m4vpi001p21s6itv4mtgy" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Jenkins搭建" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/13/Jenkins搭建/" class="article-date">
+  <time datetime="2016-10-13T13:26:18.000Z" itemprop="datePublished">2016-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/13/Jenkins搭建/">Jenkins 搭建</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="&#x4E0B;&#x8F7D;jenkins"><a href="#&#x4E0B;&#x8F7D;jenkins" class="headerlink" title="&#x4E0B;&#x8F7D;jenkins"></a>&#x4E0B;&#x8F7D;jenkins</h3><p><a href="http://jenkins-ci.org/content/thank-you-downloading-os-x-installer" target="_blank" rel="external">http://jenkins-ci.org/content/thank-you-downloading-os-x-installer</a></p>
+<h3 id="&#x4F1A;&#x8E66;&#x51FA;&#x8BA9;&#x586B;&#x5199;&#x5BC6;&#x7801;&#xFF0C;&#x4FEE;&#x6539;config&#x914D;&#x7F6E;&#x6587;&#x4EF6;"><a href="#&#x4F1A;&#x8E66;&#x51FA;&#x8BA9;&#x586B;&#x5199;&#x5BC6;&#x7801;&#xFF0C;&#x4FEE;&#x6539;config&#x914D;&#x7F6E;&#x6587;&#x4EF6;" class="headerlink" title="&#x4F1A;&#x8E66;&#x51FA;&#x8BA9;&#x586B;&#x5199;&#x5BC6;&#x7801;&#xFF0C;&#x4FEE;&#x6539;config&#x914D;&#x7F6E;&#x6587;&#x4EF6;"></a>&#x4F1A;&#x8E66;&#x51FA;&#x8BA9;&#x586B;&#x5199;&#x5BC6;&#x7801;&#xFF0C;&#x4FEE;&#x6539;config&#x914D;&#x7F6E;&#x6587;&#x4EF6;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&apos;1.0&apos; encoding=&apos;UTF-8&apos;?&gt;</span><br><span class="line">&lt;user&gt;</span><br><span class="line">  &lt;fullName&gt;admin&lt;/fullName&gt;</span><br><span class="line">  &lt;properties&gt;</span><br><span class="line">    &lt;jenkins.security.ApiTokenProperty&gt;</span><br><span class="line">      &lt;apiToken&gt;DwHCl6oiyOuxTG5HQBdX/f5qYXxPlu5w3GmRSgUWgcOhj7bX6gs2dJUwFOC/gN6d&lt;/apiToken&gt;</span><br><span class="line">    &lt;/jenkins.security.ApiTokenProperty&gt;</span><br><span class="line">    &lt;hudson.model.MyViewsProperty&gt;</span><br><span class="line">      &lt;views&gt;</span><br><span class="line">        &lt;hudson.model.AllView&gt;</span><br><span class="line">          &lt;owner class=&quot;hudson.model.MyViewsProperty&quot; reference=&quot;../../..&quot;/&gt;</span><br><span class="line">          &lt;name&gt;All&lt;/name&gt;</span><br><span class="line">          &lt;filterExecutors&gt;false&lt;/filterExecutors&gt;</span><br><span class="line">          &lt;filterQueue&gt;false&lt;/filterQueue&gt;</span><br><span class="line">          &lt;properties class=&quot;hudson.model.View$PropertyList&quot;/&gt;</span><br><span class="line">        &lt;/hudson.model.AllView&gt;</span><br><span class="line">      &lt;/views&gt;</span><br><span class="line">    &lt;/hudson.model.MyViewsProperty&gt;</span><br><span class="line">    &lt;hudson.model.PaneStatusProperties&gt;</span><br><span class="line">      &lt;collapsed/&gt;</span><br><span class="line">    &lt;/hudson.model.PaneStatusProperties&gt;</span><br><span class="line">    &lt;hudson.search.UserSearchProperty&gt;</span><br><span class="line">      &lt;insensitiveSearch&gt;false&lt;/insensitiveSearch&gt;</span><br><span class="line">    &lt;/hudson.search.UserSearchProperty&gt;</span><br><span class="line">    &lt;hudson.security.HudsonPrivateSecurityRealm_-Details&gt;</span><br><span class="line">      &lt;passwordHash&gt;#jbcrypt:$2a$10$yMAaaf3L.VtUmAzhGSMaXug8P/BJ.k/F1wO7GwQIojMp.E.IdQ6BO&lt;/passwordHash&gt;</span><br><span class="line">    &lt;/hudson.security.HudsonPrivateSecurityRealm_-Details&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br><span class="line">&lt;/user&gt;</span><br></pre></td></tr></table></figure>
+<p>&#x5982;&#x679C;&#x8981;&#x4FEE;&#x6539;&#x7AEF;&#x53E3;&#xFF0C;&#x6BD4;&#x5982;7070&#xFF0C;&#x53EF;&#x5728;&#x7B2C;8&#x6B65;&#x91CD;&#x542F;jenkins&#x524D;&#x6267;&#x884C;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x4FEE;&#x6539;&#x7AEF;&#x53E3;&#x53C2;&#x6570;:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo defaults write /Library/Preferences/org.jenkins-ci httpPort 7070  </span><br><span class="line">&#x7136;&#x540E;&#x91CD;&#x542F;jenkins:</span><br><span class="line">sudo launchctl unload -w /Library/LaunchDaemons/org.jenkins-ci.plist  </span><br><span class="line">sudo launchctl load -w /Library/LaunchDaemons/org.jenkins-ci.plist </span><br><span class="line">&#x5230;&#x6B64;&#xFF0C;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x4E86;&#xFF1A;http://localhost:7070</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/10/13/Jenkins搭建/" data-id="ciu9m4vpn001t21s6231fsrhh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-简历" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/10/简历/" class="article-date">
+  <time datetime="2016-10-10T13:26:18.000Z" itemprop="datePublished">2016-10-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/10/简历/">Android开发简历</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <table>
+<thead>
+<tr>
+<th>Android&#x5F00;&#x53D1;&#x7B80;&#x5386;</th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x7530;&#x9E4F;&#x98DE;</td>
+<td style="text-align:center">&#x7537;</td>
+</tr>
+<tr>
+<td>&#x76EE;&#x524D;&#x516C;&#x53F8;</td>
+<td style="text-align:center">&#x5317;&#x4EAC;&#x94F6;&#x4FDD;&#x8054;&#x79D1;&#x6280;&#x6709;&#x9650;&#x516C;&#x53F8;</td>
+</tr>
+<tr>
+<td>&#x76EE;&#x524D;&#x804C;&#x4F4D;</td>
+<td style="text-align:center">Android&#x5F00;&#x53D1;&#x5DE5;&#x7A0B;&#x5E08;</td>
+</tr>
+<tr>
+<td>&#x5DE5;&#x4F5C;&#x5E74;&#x9650;</td>
+<td style="text-align:center">2&#x5E74;&#x4EE5;&#x4E0A;</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>&#x57FA;&#x672C;&#x8D44;&#x6599;</th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x5E74;  &#x9F84;</td>
+<td style="text-align:center">24</td>
+</tr>
+<tr>
+<td>&#x5A5A;&#x59FB;&#x72B6;&#x51B5;</td>
+<td style="text-align:center">&#x672A;&#x5A5A;</td>
+</tr>
+<tr>
+<td>&#x624B;  &#x673A;</td>
+<td style="text-align:center">18310257702</td>
+</tr>
+<tr>
+<td>&#x90AE;  &#x7BB1;</td>
+<td style="text-align:center">huanxingxyz@163.com</td>
+</tr>
+<tr>
+<td>&#x56FD;  &#x7C4D;</td>
+<td style="text-align:center">&#x4E2D;&#x56FD;</td>
+</tr>
+<tr>
+<td>&#x6237;  &#x7C4D;</td>
+<td style="text-align:center">&#x6CB3;&#x5317;&#x7701;&#x79E6;&#x7687;&#x5C9B;&#x5E02;</td>
+</tr>
+<tr>
+<td>&#x76EE;&#x524D;&#x72B6;&#x6001;</td>
+<td style="text-align:center">&#x5728;&#x804C;</td>
+</tr>
+<tr>
+<td>&#x6240;&#x5728;&#x5730;&#x70B9;</td>
+<td style="text-align:center">&#x5317;&#x4EAC;</td>
+</tr>
+<tr>
+<td>&#x4E2A;&#x4EBA;&#x535A;&#x5BA2;</td>
+<td style="text-align:center"><a href="http://blog.941sweet.com/" target="_blank" rel="external">http://blog.941sweet.com/</a></td>
+</tr>
+<tr>
+<td>Github</td>
+<td style="text-align:center"><a href="https://github.com/huanxingxyz/" target="_blank" rel="external">https://github.com/huanxingxyz/</a></td>
+</tr>
+<tr>
+<td>&#x8BED;&#x8A00;&#x80FD;&#x529B;</td>
+<td style="text-align:center">&#x82F1;&#x8BED;(CET4)&#x3001;&#x666E;&#x901A;&#x8BDD;</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>&#x804C;&#x4E1A;&#x610F;&#x5411;</th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x671F;&#x671B;&#x884C;&#x4E1A;</td>
+<td style="text-align:center">&#x4E92;&#x8054;&#x7F51;/&#x79FB;&#x52A8;&#x4E92;&#x8054;&#x7F51;/&#x7535;&#x5B50;&#x5546;&#x52A1;;&#x8BA1;&#x7B97;&#x673A;&#x8F6F;&#x4EF6;</td>
+</tr>
+<tr>
+<td>&#x671F;&#x671B;&#x804C;&#x4F4D;</td>
+<td style="text-align:center">Android&#x79FB;&#x52A8;&#x5F00;&#x53D1;&#x5DE5;&#x7A0B;&#x5E08;</td>
+</tr>
+<tr>
+<td>&#x671F;&#x671B;&#x5730;&#x70B9;</td>
+<td style="text-align:center">&#x5317;&#x4EAC;</td>
+</tr>
+<tr>
+<td>&#x671F;&#x671B;&#x85AA;&#x8D44;</td>
+<td style="text-align:center">15k&#x4EE5;&#x4E0A;</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>&#x81EA;&#x6211;&#x8BC4;&#x4EF7;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.    &#x672C;&#x4EBA;&#x52E4;&#x594B;&#x52AA;&#x529B;&#xFF0C;&#x6709;&#x4E0A;&#x8FDB;&#x5FC3;&#x548C;&#x521B;&#x65B0;&#x610F;&#x8BC6;&#xFF0C;&#x6027;&#x683C;&#x5F00;&#x6717;&#xFF0C;&#x559C;&#x6B22;&#x7814;&#x7A76;&#xFF0C;&#x6709;&#x56E2;&#x961F;&#x7CBE;&#x795E;&#x548C;&#x5B66;&#x4E60;&#x7CBE;&#x795E;&#xFF0C;&#x5177;&#x6709;&#x826F;&#x597D;&#x7684;&#x6C9F;&#x901A;&#x80FD;&#x529B;&#x548C;&#x7EC4;&#x7EC7;&#x80FD;&#x529B;&#x3002;</td>
+</tr>
+<tr>
+<td>2.    &#x5177;&#x5907;&#x4E00;&#x5B9A;&#x7684;&#x9879;&#x76EE;&#x5F00;&#x53D1;&#x7ECF;&#x9A8C;&#xFF0C;&#x719F;&#x7EC3;&#x4F7F;&#x7528;JAVA&#x8BED;&#x8A00;&#x7F16;&#x7A0B;&#x3002;</td>
+</tr>
+<tr>
+<td>3.    &#x719F;&#x6089;Android&#x5E73;&#x53F0;&#x5F00;&#x53D1;&#xFF0C;&#x6709;Android&#x6E38;&#x620F;&#x7F16;&#x7A0B;&#x7ECF;&#x9A8C;&#x3002;</td>
+</tr>
+<tr>
+<td>4.    &#x719F;&#x7EC3;&#x4F7F;&#x7528;Android Afinal&#xFF0C;xutils&#x7B49;&#x6846;&#x67B6;&#xFF0C;&#x4E86;&#x89E3;JNI&#x3001;NDK&#x7F16;&#x7A0B;&#x3002;</td>
+</tr>
+<tr>
+<td>5.    &#x719F;&#x6089;J2EE&#x67B6;&#x6784;,Spring&#xFF0C;SpringMVC&#xFF0C;Mybatis&#x6846;&#x67B6;&#xFF0C;&#x6709;J2EE&#x7B49;&#x7F16;&#x7A0B;&#x7ECF;&#x9A8C;&#x3002;</td>
+</tr>
+<tr>
+<td>5.    &#x719F;&#x6089;J2EE&#x67B6;&#x6784;,Spring&#xFF0C;SpringMVC&#xFF0C;Mybatis&#x6846;&#x67B6;&#xFF0C;&#x6709;J2EE&#x7B49;&#x7F16;&#x7A0B;&#x7ECF;&#x9A8C;&#x3002;</td>
+</tr>
+<tr>
+<td>6.    &#x6709;&#x826F;&#x597D;&#x7684;&#x6570;&#x636E;&#x5E93;&#x7406;&#x8BBA;&#x77E5;&#x8BC6;&#xFF0C;&#x719F;&#x6089;SQL&#x8BED;&#x8A00;&#xFF0C;&#x719F;&#x7EC3;&#x4F7F;&#x7528;Sqlite&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x5BF9;Mysql&#x6570;&#x636E;&#x5E93;&#x6BD4;&#x8F83;&#x719F;&#x6089;&#x3002;</td>
+</tr>
+<tr>
+<td>7.    &#x719F;&#x6089;PhotoShop&#x3002;&#x719F;&#x6089;DIV+CSS&#x8BBE;&#x8BA1;&#x5E03;&#x5C40;,&#x4E86;&#x89E3;Bootstrap&#xFF0C;jQuery Mobile&#x7B49;&#x524D;&#x7AEF;&#x6846;&#x67B6;&#x3002;</td>
+</tr>
+<tr>
+<td>8.    &#x719F;&#x6089;&#x4F7F;&#x7528;Tomcat&#x670D;&#x52A1;&#x5668;&#x3002;</td>
+</tr>
+<tr>
+<td>9.    &#x719F;&#x6089;&#x4F7F;&#x7528;Unity3D&#x6E38;&#x620F;&#x5F00;&#x53D1;&#x5F15;&#x64CE;&#x3002;</td>
+</tr>
+<tr>
+<td>10.    &#x719F;&#x6089;Linux&#x7CFB;&#x7EDF;&#xFF0C;Shell&#x811A;&#x672C;&#x3002;</td>
+</tr>
+<tr>
+<td>11.    &#x719F;&#x6089;SVN&#xFF0C;Git&#x7B49;&#x6D41;&#x884C;&#x7684;&#x7248;&#x672C;&#x63A7;&#x5236;&#x8F6F;&#x4EF6;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>&#x9879;&#x76EE;&#x7ECF;&#x5386;</th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7&#x4E2A;&#x841D;&#x535C;&#x5FAE;&#x4FE1;&#x670D;&#x52A1;&#x53F7;&#xFF0C;&#x8F66;&#x9669;&#x5F00;&#x53D1;&#x5E73;&#x53F0;&#x5F00;&#x53D1;</td>
+<td style="text-align:center">2016.03-&#x81F3;&#x4ECA;</td>
+</tr>
+<tr>
+<td>&#x9879;&#x76EE;&#x804C;&#x52A1;</td>
+<td style="text-align:center">Java&#x540E;&#x53F0;&#x5F00;&#x53D1;;web&#x5F00;&#x53D1;</td>
+</tr>
+<tr>
+<td>&#x9879;&#x76EE;&#x63CF;&#x8FF0;</td>
+<td style="text-align:center">7&#x4E2A;&#x841D;&#x535C;&#x5FAE;&#x4FE1;&#x670D;&#x52A1;&#x53F7;&#x5DF2;&#x7ECF;&#x4E0E;10&#x5BB6;&#x4E3B;&#x6D41;&#x4FDD;&#x9669;&#x516C;&#x53F8;&#x5B9E;&#x73B0;&#x8F66;&#x9669;&#x7CFB;&#x7EDF;&#x63A5;&#x53E3;&#x5BF9;&#x63A5;&#xFF0C;&#x662F;&#x4E00;&#x4E2A;&#x7CFB;&#x7EDF;&#x5065;&#x58EE;&#x7684;&#x8F66;&#x9669;&#x5728;&#x7EBF;&#x4EA4;&#x6613;&#x5E73;&#x53F0;&#x3002; &#x7528;&#x6237;&#x53EF;&#x4EE5;&#x8F7B;&#x677E;&#x5728;&#x670D;&#x52A1;&#x53F7;&#x4E0A;&#x6295;&#x4FDD;&#x8F66;&#x9669;&#xFF0C;&#x540C;&#x65F6;&#x83B7;&#x53D6;&#x4EBA;&#x4FDD;&#xFF0C;&#x592A;&#x4FDD;&#xFF0C;&#x9633;&#x5149;&#xFF0C;&#x534E;&#x5B89;&#x7B49;10&#x591A;&#x5BB6;&#x4FDD;&#x9669;&#x516C;&#x53F8;&#x7684;&#x8F66;&#x9669;&#x62A5;&#x4EF7;&#xFF0C;&#x65B9;&#x4FBF;&#x4E86;&#x7528;&#x6237;&#x8D2D;&#x4E70;&#x8F66;&#x9669;&#x7684;&#x6D41;&#x7A0B;&#xFF0C;&#x73B0;&#x5DF2;&#x6709;&#x767E;&#x4E07;&#x7EA7;&#x7528;&#x6237;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x9879;&#x76EE;&#x804C;&#x8D23;</td>
+<td style="text-align:center">&#x4E3B;&#x8981;&#x8D1F;&#x8D23;&#x90E8;&#x5206;&#x9879;&#x76EE;&#x7684;&#x529F;&#x80FD;&#x6A21;&#x5757;&#x8BBE;&#x8BA1;&#x548C;&#x7F16;&#x7801;,&#x5E94;&#x7528;&#x6846;&#x67B6;spring&#xFF0C;springmvc&#xFF0C;mybatis&#xFF0C;&#x5E94;&#x7528;&#x7F13;&#x5B58;redis&#x7B49;&#x6280;&#x672F;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x9879;&#x76EE;&#x4E1A;&#x7EE9;</td>
+<td style="text-align:center"><a href="http://7glb.com/" target="_blank" rel="external">http://7glb.com/</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>&#x9879;&#x76EE;&#x7ECF;&#x5386;</th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x4FE1;&#x4E4E;Android&#x5BA2;&#x6237;&#x7AEF;</td>
+<td style="text-align:center">2015.07-2016.03</td>
+</tr>
+<tr>
+<td>&#x9879;&#x76EE;&#x804C;&#x52A1;</td>
+<td style="text-align:center">android&#x5F00;&#x53D1;&#x5DE5;&#x7A0B;&#x5E08;</td>
+</tr>
+<tr>
+<td>&#x9879;&#x76EE;&#x63CF;&#x8FF0;</td>
+<td style="text-align:center">&#x4FE1;&#x4E4E;&#x662F;&#x6700;&#x771F;&#x5B9E;&#x7684;&#x5546;&#x52A1;&#x62D3;&#x5C55;&#x5E73;&#x53F0;&#x3002;&#x8FD9;&#x91CC;&#x63D0;&#x4F9B;4200&#x4E07;&#x5BB6;&#x771F;&#x5B9E;&#x4F01;&#x4E1A;&#x5E93;&#x67E5;&#x8BE2;&#xFF0C;&#x65E0;&#x8BBA;&#x60A8;&#x662F;&#x8C08;&#x5408;&#x4F5C;&#xFF0C;&#x53D1;&#x9700;&#x6C42;&#x6216;&#x662F;&#x627E;&#x673A;&#x4F1A;&#xFF0C;&#x90FD;&#x53EF;&#x4EE5;&#x5728;&#x6B64;&#x5B9E;&#x73B0;&#x3002;&#x7279;&#x6709;&#x7684;&#x7FA4;&#x7EC4;&#x529F;&#x80FD;&#xFF0C;&#x6C47;&#x96C6;&#x884C;&#x4E1A;&#x7CBE;&#x82F1;&#xFF0C;&#x725B;&#x4EBA;&#x5927;&#x5496;&#xFF0C;&#x8BA9;&#x60A8;&#x65B9;&#x4FBF;&#x5FEB;&#x6377;&#x7684;&#x627E;&#x5230;&#x5FD7;&#x540C;&#x9053;&#x5408;&#x7684;&#x5C0F;&#x4F19;&#x4F34;&#x3002;&#x5373;&#x65F6;&#x5206;&#x4EAB;&#x4E13;&#x5C5E;&#x4F01;&#x4E1A;&#x540D;&#x7247;&#xFF0C;&#x4E3A;&#x4F01;&#x4E1A;&#x63D0;&#x4F9B;&#x72EC;&#x6709;&#x7684;&#x5C55;&#x793A;&#x53CA;&#x8BA4;&#x8BC1;&#x5E73;&#x53F0;&#xFF0C;&#x589E;&#x52A0;&#x66DD;&#x5149;&#x7387;&#x53CA;&#x516C;&#x4FE1;&#x5EA6;&#xFF0C;&#x52A9;&#x60A8;&#x5FEB;&#x901F;&#x62D3;&#x5C55;&#x5546;&#x673A;&#x3002;&#x7528;&#x4FE1;&#x4E4E;&#xFF0C;&#x4E00;&#x5207;&#x5C3D;&#x5728;&#x638C;&#x63E1;&#xFF01;</td>
+</tr>
+<tr>
+<td>&#x9879;&#x76EE;&#x804C;&#x8D23;</td>
+<td style="text-align:center">&#x7ECF;&#x5386;&#x4E86;&#x4ECE;&#x9879;&#x76EE;&#x613F;&#x666F;&#x7684;&#x786E;&#x5B9A;&#x5230;&#x9879;&#x76EE;&#x4E0A;&#x7EBF;&#x7684;&#x6240;&#x6709;&#x6D41;&#x7A0B;&#x3002;&#x56E2;&#x961F;&#x57FA;&#x672C;&#x4E0A;&#x65E0;&#x7EA7;&#x522B;&#x5212;&#x5206;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x6D41;&#x7A0B;&#x6B65;&#x9AA4;&#xFF0C;&#x6211;&#x90FD;&#x6709;&#x53C2;&#x4E0E;&#x5176;&#x4E2D;&#x3002;&#x4ECE;&#x6280;&#x672F;&#x89D2;&#x5EA6;&#xFF0C;&#x6211;&#x4E3B;&#x8981;&#x8D1F;&#x8D23;&#x7684;&#x8303;&#x56F4;&#x6709;&#xFF1A;1 &#x4FE1;&#x4E4E;&#x6846;&#x67B6;&#x7684;&#x642D;&#x5EFA;&#x53CA;1.0&#x7248;&#x672C;&#x7684;&#x5F00;&#x53D1;2 bug&#x4FEE;&#x590D;3 &#x540E;&#x671F;&#x8FED;&#x4EE3;&#x5F00;&#x53D1;4&#x5206;&#x6E20;&#x9053;&#x6253;&#x5305;&#xFF0C;&#x6DF7;&#x6DC6;&#xFF0C;&#x52A0;&#x56FA;&#xFF0C;&#x53D1;&#x7248;</td>
+</tr>
+<tr>
+<td>&#x9879;&#x76EE;&#x4E1A;&#x7EE9;</td>
+<td style="text-align:center"><a href="https://xinhu.ancun.com/" target="_blank" rel="external">https://xinhu.ancun.com/</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>&#x9879;&#x76EE;&#x7ECF;&#x5386;</th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x4F17;&#x5BA2;&#x5802;Android&#x5E94;&#x7528;</td>
+<td style="text-align:center">2014.11-2015.03</td>
+</tr>
+<tr>
+<td>&#x9879;&#x76EE;&#x804C;&#x52A1;</td>
+<td style="text-align:center">android&#x5F00;&#x53D1;&#x5DE5;&#x7A0B;&#x5E08;</td>
+</tr>
+<tr>
+<td>&#x9879;&#x76EE;&#x63CF;&#x8FF0;</td>
+<td style="text-align:center">&#x4F17;&#x5BA2;&#x5802;Android&#x7248;&#x662F;&#x4E00;&#x4E2A;&#x4F17;&#x5305;&#x7684;&#x624B;&#x673A;APP&#xFF0C;&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x505A;&#x4EFB;&#x52A1;&#x83B7;&#x5F97;&#x73B0;&#x91D1;&#x5956;&#x52B1;&#xFF0C;&#x4E3B;&#x8981;&#x529F;&#x80FD;&#x6709;&#x56FE;&#x50CF;&#x91C7;&#x96C6;&#xFF0C;wifi&#x4FE1;&#x606F;&#x91C7;&#x96C6;&#xFF0C;&#x5F55;&#x97F3;&#x91C7;&#x96C6;&#x7B49;&#xFF0C;&#x9879;&#x76EE;&#x4E3B;&#x8981;&#x91C7;&#x7528;Fragment&#x8FDB;&#x884C;&#x754C;&#x9762;&#x663E;&#x793A;&#xFF0C;&#x4F7F;&#x7528;&#x767E;&#x5EA6;&#x5B9A;&#x4F4D;&#x7B49;&#x7B2C;&#x4E09;&#x65B9;sdk&#x8F85;&#x52A9;&#x5F00;&#x53D1;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x9879;&#x76EE;&#x804C;&#x8D23;</td>
+<td style="text-align:center">&#x4E3B;&#x8981;&#x8D1F;&#x8D23;&#x90E8;&#x5206;&#x9879;&#x76EE;&#x7684;&#x529F;&#x80FD;&#x6A21;&#x5757;&#x8BBE;&#x8BA1;&#x548C;&#x7F16;&#x7801;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x9879;&#x76EE;&#x4E1A;&#x7EE9;</td>
+<td style="text-align:center"><a href="http://crowd.datatang.com/collection.html" target="_blank" rel="external">http://crowd.datatang.com/collection.html</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>&#x9879;&#x76EE;&#x7ECF;&#x5386;</th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x62DB;&#x724C;&#x83DC;Android&#x5E94;&#x7528;</td>
+<td style="text-align:center">2014.11-2015.03</td>
+</tr>
+<tr>
+<td>&#x9879;&#x76EE;&#x804C;&#x52A1;</td>
+<td style="text-align:center">android&#x5F00;&#x53D1;&#x5DE5;&#x7A0B;&#x5E08;</td>
+</tr>
+<tr>
+<td>&#x9879;&#x76EE;&#x63CF;&#x8FF0;</td>
+<td style="text-align:center">&#x62DB;&#x724C;&#x83DC;APP&#x662F;&#x6570;&#x636E;&#x5802;&#x516C;&#x53F8;&#x5229;&#x7528;&#x6570;&#x636E;API&#x5F00;&#x53D1;&#x7684;&#x9910;&#x996E;&#x624B;&#x673A;&#x5BA2;&#x6237;&#x7AEF;&#xFF0C;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x5B9A;&#x4F4D;&#x67E5;&#x627E;&#x9644;&#x8FD1;&#x7684;&#x9910;&#x9986;&#x548C;&#x7279;&#x8272;&#x83DC;&#x54C1;&#xFF0C;&#x4E3B;&#x8981;&#x4F7F;&#x7528;aidl&#x8FDC;&#x7A0B;&#x670D;&#x52A1;&#x8C03;&#x7528;API&#x83B7;&#x53D6;&#x6570;&#x636E;&#xFF0C;&#x4E3B;&#x8981;&#x8D1F;&#x8D23;&#x9879;&#x76EE;&#x7684;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;&#x4E0E;&#x7F16;&#x7801;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x9879;&#x76EE;&#x804C;&#x8D23;</td>
+<td style="text-align:center">&#x4E3B;&#x8981;&#x8D1F;&#x8D23;&#x90E8;&#x5206;&#x9879;&#x76EE;&#x7684;&#x529F;&#x80FD;&#x6A21;&#x5757;&#x8BBE;&#x8BA1;&#x548C;&#x7F16;&#x7801;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>&#x9879;&#x76EE;&#x7ECF;&#x5386;</th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x4EAC;&#x4E1C;Pos&#x673A;Android&#x7248;</td>
+<td style="text-align:center">2014.07-2014.11</td>
+</tr>
+<tr>
+<td>&#x9879;&#x76EE;&#x804C;&#x52A1;</td>
+<td style="text-align:center">android&#x5F00;&#x53D1;&#x5DE5;&#x7A0B;&#x5E08;</td>
+</tr>
+<tr>
+<td>&#x9879;&#x76EE;&#x63CF;&#x8FF0;</td>
+<td style="text-align:center">&#x5C06;&#x4EAC;&#x4E1C;&#x914D;&#x9001;pos&#x673A;&#x7CFB;&#x7EDF;&#x4ECE;Linux&#x5E73;&#x53F0;&#x79FB;&#x690D;&#x6539;&#x7248;&#x5230;Android&#x7CFB;&#x7EDF;&#x3002;&#x4E3B;&#x8981;&#x529F;&#x80FD;&#x6709;&#x4E0A;&#x95E8;&#x63A5;&#x8D27;&#x3001;&#x73B0;&#x573A;&#x9000;&#x8D27;&#x3001;Pos&#x7BA1;&#x7406;&#x3001;&#x6536;&#x8D27;&#x914D;&#x9001;&#x3001;&#x7248;&#x672C;&#x66F4;&#x65B0;&#x3001;Gps&#x4E0A;&#x4F20;&#x7B49;&#x4EAC;&#x4E1C;&#x914D;&#x9001;&#x548C;&#x652F;&#x4ED8;&#x76F8;&#x5173;&#x6D41;&#x7A0B;&#xFF0C;&#x719F;&#x7EC3;&#x4F7F;&#x7528;Android&#x6846;&#x67B6;Afinal,&#x91C7;&#x7528;&#x7EBF;&#x7A0B;&#x6C60;&#x63A7;&#x5236;&#x591A;&#x7EBF;&#x7A0B;&#x5E76;&#x53D1;&#xFF0C;&#x5FEB;&#x901F;&#x5F00;&#x53D1;&#x624B;&#x673A;&#x5E94;&#x7528;&#x5404;&#x9879;&#x529F;&#x80FD;&#x6A21;&#x5757;</td>
+</tr>
+<tr>
+<td>&#x9879;&#x76EE;&#x804C;&#x8D23;</td>
+<td style="text-align:center">&#x4E3B;&#x8981;&#x8D1F;&#x8D23;&#x90E8;&#x5206;&#x9879;&#x76EE;&#x7684;&#x529F;&#x80FD;&#x6A21;&#x5757;&#x8BBE;&#x8BA1;&#x548C;&#x7F16;&#x7801;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>&#x9879;&#x76EE;&#x7ECF;&#x5386;</th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unity3D&#x5F00;&#x53D1;&#x9AD8;&#x901A;Vuforia &#x589E;&#x5F3A;&#x73B0;&#x5B9E;&#xFF08;AR&#xFF09;</td>
+<td style="text-align:center">2014.04-2014.11</td>
+</tr>
+<tr>
+<td>&#x9879;&#x76EE;&#x804C;&#x52A1;</td>
+<td style="text-align:center">C#&#x540E;&#x53F0;&#x5F00;&#x53D1;</td>
+</tr>
+<tr>
+<td>&#x9879;&#x76EE;&#x63CF;&#x8FF0;</td>
+<td style="text-align:center">&#x5229;&#x7528;Unity3D&#x7F16;&#x5199;&#x589E;&#x5F3A;&#x73B0;&#x5B9E;&#x5E94;&#x7528;&#x6A21;&#x5757;&#xFF0C;&#x4E3B;&#x8981;&#x529F;&#x80FD;&#x4E3A;ImageTarget&#x3001;Virtual Button&#x865A;&#x62DF;&#x6309;&#x94AE;&#x3001;&#x4E91;&#x8BC6;&#x522B;&#x7B49;&#x529F;&#x80FD;&#xFF0C;&#x5C06;&#x7528;Unity3D&#x7F16;&#x5199;&#x597D;&#x7684;&#x529F;&#x80FD;&#x6A21;&#x5757;&#x6253;&#x6210;jar&#x5305;&#x5C01;&#x88C5;&#x597D;&#x8FDB;&#x884C;&#x4E8C;&#x6B21;&#x5F00;&#x53D1;&#x3002;&#x76EE;&#x7684;&#x662F;&#x4F7F;&#x7528;&#x589E;&#x5F3A;&#x73B0;&#x5B9E;&#x6240;&#x7ED9;&#x6D88;&#x8D39;&#x8005;&#x7684;&#x4F18;&#x8D28;&#x7684;&#x7528;&#x6237;&#x4F53;&#x9A8C;&#xFF0C;&#x521B;&#x65B0;&#x51FA;&#x66F4;&#x597D;&#x7684;O2O&#x6A21;&#x5F0F;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x9879;&#x76EE;&#x804C;&#x8D23;</td>
+<td style="text-align:center">&#x4E3B;&#x8981;&#x8D1F;&#x8D23;&#x90E8;&#x5206;&#x9879;&#x76EE;&#x7684;&#x529F;&#x80FD;&#x6A21;&#x5757;&#x8BBE;&#x8BA1;&#x548C;&#x7F16;&#x7801;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>&#x5DE5;&#x4F5C;&#x7ECF;&#x5386;</th>
+<th style="text-align:center"></th>
+<th style="text-align:right"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2016.03 &#x2014; &#x81F3;&#x4ECA;</td>
+<td style="text-align:center">&#x5317;&#x4EAC;&#x94F6;&#x4FDD;&#x8054;&#x79D1;&#x6280;&#x6709;&#x9650;&#x516C;&#x53F8;</td>
+<td style="text-align:right">android/Java&#x5F00;&#x53D1;&#x5DE5;&#x7A0B;&#x5E08;</td>
+</tr>
+<tr>
+<td>2015.07 &#x2014; 2016.03</td>
+<td style="text-align:center">&#x5B89;&#x5B58;&#x7F51;&#x7EDC;&#x79D1;&#x6280;&#x6709;&#x9650;&#x516C;&#x53F8;</td>
+<td style="text-align:right">android&#x5F00;&#x53D1;&#x5DE5;&#x7A0B;&#x5E08;</td>
+</tr>
+<tr>
+<td>2015.02 &#x2014; 2015.07</td>
+<td style="text-align:center">&#x55E8;&#x8D2D;&#xFF08;&#x5317;&#x4EAC;&#xFF09;&#x4E92;&#x8054;&#x7F51;&#x79D1;&#x6280;&#x6709;&#x9650;&#x516C;&#x53F8;</td>
+<td style="text-align:right">android&#x5F00;&#x53D1;&#x5DE5;&#x7A0B;&#x5E08;</td>
+</tr>
+<tr>
+<td>2014.11 &#x2014; 2015.02</td>
+<td style="text-align:center">&#x6570;&#x636E;&#x5802;&#x79D1;&#x6280;&#x6709;&#x9650;&#x516C;&#x53F8;</td>
+<td style="text-align:right">android&#x5F00;&#x53D1;&#x5DE5;&#x7A0B;&#x5E08;(&#x5B9E;&#x4E60;)</td>
+</tr>
+<tr>
+<td>2014.07 &#x2014; 2014.11</td>
+<td style="text-align:center">&#x6587;&#x601D;&#x6D77;&#x8F89;&#x6280;&#x672F;&#x6709;&#x9650;&#x516C;&#x53F8;</td>
+<td style="text-align:right">android&#x5F00;&#x53D1;&#x5DE5;&#x7A0B;&#x5E08;(&#x5B9E;&#x4E60;)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>&#x6559;&#x80B2;&#x7ECF;&#x5386;</th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x6CB3;&#x5317;&#x5E08;&#x8303;&#x5927;&#x5B66;&#x8F6F;&#x4EF6;&#x5B66;&#x9662;</td>
+<td style="text-align:center">2011.09 - 2015.06</td>
+</tr>
+<tr>
+<td>&#x4E13;&#x4E1A;&#x540D;&#x79F0;</td>
+<td style="text-align:center">&#x8F6F;&#x4EF6;&#x5DE5;&#x7A0B;</td>
+</tr>
+<tr>
+<td>&#x5B66;&#x5386;</td>
+<td style="text-align:center">&#x672C;&#x79D1;</td>
+</tr>
+<tr>
+<td>&#x662F;&#x5426;&#x7EDF;&#x62DB;</td>
+<td style="text-align:center">&#x662F;</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>&#x5728;&#x6821;&#x60C5;&#x51B5;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.    &#x6BD5;&#x4E1A;&#x4E8E;&#x6CB3;&#x5317;&#x5E08;&#x8303;&#x5927;&#x5B66;&#xFF0C;&#x8F6F;&#x4EF6;&#x5B66;&#x9662;&#x8F6F;&#x4EF6;&#x5DE5;&#x7A0B;&#x4E13;&#x4E1A;,&#x4E3B;&#x4FEE;Java&#x65B9;&#x5411;&#x3002;</td>
+</tr>
+<tr>
+<td>2.    &#x5728;&#x6821;&#x5B66;&#x4E60;&#x8FC7;Java&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x3001;Android&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x3001;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x3001;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x3001;&#x8BA1;&#x7B97;&#x673A;&#x7F51;&#x7EDC;&#x3001;&#x8F6F;&#x4EF6;&#x6D4B;&#x8BD5;&#x7B49;&#x8BFE;&#x7A0B;&#x3002;</td>
+</tr>
+<tr>
+<td>3.    &#x505A;&#x8FC7;Android&#x6E38;&#x620F;&#x9879;&#x76EE;&#xFF0C;&#x201C;&#x5237;&#x673A;&#x7F51;&#x201D;&#x7F51;&#x7AD9;&#x5F00;&#x53D1;&#x3002; &#x5177;&#x5907;&#x4E00;&#x5B9A;&#x7684;&#x9879;&#x76EE;&#x5F00;&#x53D1;&#x7ECF;&#x9A8C;&#xFF0C;&#x719F;&#x7EC3;&#x4F7F;&#x7528;Java&#x8BED;&#x8A00;&#x7F16;&#x7A0B;&#x3002;</td>
+</tr>
+<tr>
+<td>4.    2011-2012&#x5E74;&#x5EA6;  &#x5728;&#x6821;&#x591A;&#x6B21;&#x83B7;&#x5F97;&#x5355;&#x9879;&#x5956;&#x5B66;&#x91D1;&#x548C;&#x4E13;&#x4E1A;&#x5956;&#x5B66;&#x91D1;&#x3002;</td>
+</tr>
+<tr>
+<td>5.    2012-2014&#x5E74;&#x5EA6;  &#x5728;&#x6821;&#x4EFB;&#x804C;&#x73ED;&#x7EA7;&#x7EC4;&#x7EC7;&#x59D4;&#x5458;&#x3001;&#x9752;&#x534F;&#x7EC4;&#x7EC7;&#x90E8;&#x957F;&#x3001;&#x515A;&#x652F;&#x90E8;&#x7EC4;&#x7EC7;&#x59D4;&#x5458;&#x3001;&#x515A;&#x52A1;&#x79D8;&#x4E66;&#x52A9;&#x7406;&#x3001;&#x83B7;&#x5F97;&#x6821;&#x7EA7;&#x4F18;&#x79C0;&#x5B66;&#x751F;&#x5E72;&#x90E8;&#x3001;&#x6821;&#x7EA7;&#x4E09;&#x597D;&#x5B66;&#x751F;&#x3001;&#x6821;&#x7EA7;&#x4F18;&#x79C0;&#x5FD7;&#x613F;&#x8005;&#x7B49;&#x8363;&#x8A89;&#x79F0;&#x53F7;&#xFF0C;&#x83B7;&#x5F97;&#x4E13;&#x4E1A;&#x4E8C;&#x7B49;&#x5956;&#x5B66;&#x91D1;&#xFF0C;&#x591A;&#x6B21;&#x83B7;&#x5F97;&#x4E13;&#x4E1A;&#x5956;&#x5B66;&#x91D1;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/10/10/简历/" data-id="ciu9m4vqt003221s67rldpcn6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/简历/">简历</a></li></ul>
 
     </footer>
   </div>
@@ -139,7 +633,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/18/面试/" data-id="ciu9f3fo5002kqgs6lak4dszf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/18/面试/" data-id="ciu9m4vqf002o21s6arcrxufv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
@@ -194,7 +688,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/18/Android应用安装/" data-id="ciu9f3fkm000zqgs6n483tan4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/18/Android应用安装/" data-id="ciu9m4vp1001521s6hv3aike1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -236,7 +730,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/24/兴趣视频教程/" data-id="ciu9f3fnq0027qgs6o8yqryl2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/24/兴趣视频教程/" data-id="ciu9m4vpx002421s6oi2ym4t3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/兴趣/">兴趣</a></li></ul>
@@ -293,7 +787,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/23/Idea快捷键/" data-id="ciu9f3fkx0017qgs6a9uo9746" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/23/Idea快捷键/" data-id="ciu9m4vpf001l21s6206b0so8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/">IDE</a></li></ul>
@@ -331,37 +825,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/16/流程图绘制和基本符号/" data-id="ciu9f3fnz002eqgs6z5ruj5qv" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Android_编码规范" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/14/Android_编码规范/" class="article-date">
-  <time datetime="2016-05-14T14:57:12.000Z" itemprop="datePublished">2016-05-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<p>title: Android&#x7F16;&#x7801;&#x89C4;&#x8303;<br>date: 2016-08-18 22:57:12<br>tags:&#x2014; Android</p>
-<p>Android&#x5F00;&#x53D1;&#x7684;&#x4E00;&#x4E9B;&#x7F16;&#x7801;&#x89C4;&#x8303;&#x3002;</p>
-<p>1.java&#x4EE3;&#x7801;&#x4E2D;&#x4E0D;&#x51FA;&#x73B0;&#x4E2D;&#x6587;&#xFF0C;&#x6700;&#x591A;&#x6CE8;&#x91CA;&#x4E2D;&#x53EF;&#x4EE5;&#x51FA;&#x73B0;&#x4E2D;&#x6587;&#xFF0C;&#x4E2D;&#x6587;&#x7EDF;&#x4E00;&#x5199;&#x5728;strings.xml&#x4E2D;&#x3002;<br>2.&#x5E38;&#x91CF;&#x547D;&#x540D;&#x53EA;&#x80FD;&#x5305;&#x542B;&#x5B57;&#x6BCD;&#x548C;<em>&#xFF0C;&#x5B57;&#x6BCD;&#x5168;&#x90E8;&#x5927;&#x5199;&#xFF0C;&#x5355;&#x8BCD;&#x4E4B;&#x95F4;&#x7528;</em>&#x9694;&#x5F00;&#x3002;<br>3.&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x547D;&#x540D;&#x3001;&#x9759;&#x6001;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x547D;&#x540D; &#x53EA;&#x80FD;&#x5305;&#x542B;&#x5B57;&#x6BCD;&#xFF0C;&#x5355;&#x8BCD;&#x9996;&#x5B57;&#x6BCD;&#x5927;&#x5199;&#xFF0C;&#x5176;&#x4ED6;&#x5B57;&#x6BCD;&#x5747;&#x4E3A;&#x5C0F;&#x5199;&#x3002;<br>4.&#x56FE;&#x7247;&#x8981;&#x5904;&#x7406;&#xFF0C;&#x56FE;&#x7247;&#x5C3D;&#x91CF;&#x5206;&#x62C6;&#x6210;&#x591A;&#x4E2A;&#x53EF;&#x91CD;&#x7528;&#x7684;&#x56FE;&#x7247;&#x3002;<br>5.&#x5F15;&#x7528;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#x8981;&#x614E;&#x91CD;&#xFF0C;&#x907F;&#x514D;&#x5E94;&#x7528;&#x5927;&#x5BB9;&#x91CF;&#x7684;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#xFF0C;&#x5BFC;&#x81F4;&#x5BA2;&#x6237;&#x7AEF;&#x5305;&#x975E;&#x5E38;&#x5927;&#x3002;<br>6.&#x5E03;&#x5C40;&#x6587;&#x4EF6;&#x4E2D;&#x7684;id&#x547D;&#x540D;&#xFF1A;<br>&#x547D;&#x540D;&#x6A21;&#x5F0F;&#x4E3A;&#xFF1A;view&#x7F29;&#x5199;_&#x6A21;&#x5757;&#x540D;&#x79F0;<em>view&#x7684;&#x903B;&#x8F91;&#x540D;&#x79F0;<br>&#x5E38;&#x7528;&#x63A7;&#x4EF6;&#x7684;&#x7F29;&#x5199;&#x5982;&#x4E0B;<br>LayoutView&#xFF1A;lv<br>RelativeView : rv<br>TextView : tv<br>ImageView : iv<br>ImageButton : im<br>Button : btn<br>7.Layout&#x4E2D;&#x7684;id&#x547D;&#x540D;&#xFF1A;<br>&#x547D;&#x540D;&#x6A21;&#x5F0F;&#x4E3A;&#xFF1A;view&#x7F29;&#x5199;</em>&#x6A21;&#x5757;&#x540D;&#x79F0;<em>view&#x7684;&#x903B;&#x8F91;&#x540D;&#x79F0;<br>view&#x7684;&#x7F29;&#x5199;&#x8BE6;&#x60C5;&#x5982;&#x4E0B;<br>LinearLayout&#xFF1A;ll<br>RelativeLayout : rl<br>TextView : tv<br>ImageView : iv<br>ImageButton : ib<br>Button:btn<br>8.String.xml&#x4E2D;&#x7684;id&#x547D;&#x540D;&#xFF1A;<br>&#x547D;&#x540D;&#x6A21;&#x5F0F;&#x4E3A;&#xFF1A;activity&#x540D;&#x79F0;</em>&#x529F;&#x80FD;&#x6A21;&#x5757;&#x540D;&#x79F0;<em>&#x903B;&#x8F91;&#x540D;&#x79F0;/activity&#x540D;&#x79F0;</em>&#x903B;&#x8F91;&#x540D;&#x79F0;/common<em>&#x903B;&#x8F91;&#x540D;&#x79F0;<br>strings.xml&#x4E2D;&#xFF0C;&#x4F7F;&#x7528;activity&#x540D;&#x79F0;&#x6CE8;&#x91CA;&#xFF0C;&#x5C06;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x533A;&#x5206;&#x5F00;&#x6765;&#x3002;&#x53E6;&#x5916;&#xFF0C;strings.xml&#x4E2D;&#x4F7F;&#x7528;%1$s&#x5B9E;&#x73B0;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x901A;&#x914D;&#x3002;<br>9.activity&#x4E2D;&#x7684;view&#x53D8;&#x91CF;&#x547D;&#x540D;&#xFF1A;<br>&#x547D;&#x540D;&#x6A21;&#x5F0F;&#x4E3A;&#xFF1A;view&#x7F29;&#x5199;+&#x903B;&#x8F91;&#x540D;&#x79F0;<br>&#x5982;&#x679C;layout&#x6587;&#x4EF6;&#x5F88;&#x590D;&#x6742;&#xFF0C;&#x5EFA;&#x8BAE;&#x5C06;layout&#x5206;&#x6210;&#x591A;&#x4E2A;&#x6A21;&#x5757;&#xFF0C;&#x6BCF;&#x4E2A;&#x6A21;&#x5757;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;moduleViewHolder&#xFF0C;&#x5176;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x5305;&#x542B;&#x6240;&#x5C5E;view&#x3002;<br>&#x53E6;&#x5916;&#xFF0C;activity&#x4E2D;&#x5728;&#x4E00;&#x4E2A;View.OnClickListener&#x4E2D;&#x5904;&#x7406;&#x6240;&#x6709;&#x7684;&#x903B;&#x8F91;<br>10.drawable&#x4E2D;&#x7684;&#x56FE;&#x7247;&#x547D;&#x540D;&#xFF1A;<br>&#x547D;&#x540D;&#x6A21;&#x5F0F;&#x4E3A;&#xFF1A;activity&#x540D;&#x79F0;</em>&#x903B;&#x8F91;&#x540D;&#x79F0;/common_&#x903B;&#x8F91;&#x540D;&#x79F0;<br>11.styles.xml&#xFF1A;&#x5C06;layout&#x4E2D;&#x4E0D;&#x65AD;&#x91CD;&#x73B0;&#x7684;style&#x63D0;&#x70BC;&#x51FA;&#x901A;&#x7528;&#x7684;style&#x901A;&#x7528;&#x7EC4;&#x4EF6;&#xFF0C;&#x653E;&#x5230;styles.xml&#x4E2D;&#x3002;<br>12.&#x4E0D;&#x8981;&#x91CD;&#x7528;&#x7236;&#x7C7B;&#x7684;handler&#xFF0C;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x7C7B;&#x7684;handler&#x4E5F;&#x4E0D;&#x5E94;&#x8BE5;&#x8BA9;&#x5176;&#x5B50;&#x7C7B;&#x7528;&#x5230;&#xFF0C;&#x5426;&#x5219;&#x4F1A;&#x5BFC;&#x81F4;message.what&#x51B2;&#x7A81;&#x3002;<br>13.&#x670D;&#x52A1;&#x7AEF;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x5C31;&#x4E0D;&#x8981;&#x653E;&#x5728;&#x5BA2;&#x6237;&#x7AEF;&#x3002;<br>14.&#x4F7F;&#x7528;button+activitgroup&#x5B9E;&#x73B0;tab&#x6548;&#x679C;&#x65F6;&#xFF0C;&#x4F7F;&#x7528;Button.setSelected(true)&#xFF0C;&#x786E;&#x4FDD;&#x6309;&#x94AE;&#x5904;&#x4E8E;&#x9009;&#x62E9;&#x72B6;&#x6001;&#xFF0C;&#x5E76;&#x4F7F;activitygroup&#x7684;&#x5F53;&#x524D;activity&#x4E0E;&#x8BE5;button&#x5BF9;&#x5E94;&#x3002;<br>15.&#x5982;&#x679C;&#x591A;&#x4E2A;Activity&#x4E2D;&#x5305;&#x542B;&#x5171;&#x540C;&#x7684;UI&#x5904;&#x7406;&#xFF0C;&#x90A3;&#x4E48;&#x53EF;&#x4EE5;&#x63D0;&#x70BC;&#x4E00;&#x4E2A;CommonActivity&#xFF0C;&#x628A;&#x901A;&#x7528;&#x90E8;&#x5206;&#x53EB;&#x7531;&#x5B83;&#x6765;&#x5904;&#x7406;&#xFF0C;&#x5176;&#x4ED6;activity&#x53EA;&#x8981;&#x7EE7;&#x627F;&#x5B83;&#x5373;&#x53EF;&#x3002;<br>16.&#x5982;&#x679C;&#x6240;&#x5F00;&#x53D1;&#x7684;&#x4E3A;&#x901A;&#x7528;&#x7EC4;&#x4EF6;&#xFF0C;&#x4E3A;&#x907F;&#x514D;&#x51B2;&#x7A81;&#xFF0C;&#x5C06;drawable/layout/menu/values&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x589E;&#x52A0;&#x524D;&#x7F00;&#x3002;<br>17.activity&#x4E2D;&#x5728;&#x4E00;&#x4E2A;View.OnClickListener&#x4E2D;&#x5904;&#x7406;&#x6240;&#x6709;&#x7684;&#x903B;&#x8F91;&#x3002;<br>&#x5927;&#x6982;&#x5C31;&#x5148;&#x8BF4;&#x8FD9;&#x4E48;&#x591A;&#xFF0C;&#x6B22;&#x8FCE;&#x5927;&#x725B;&#x4EEC;&#x8865;&#x5145;&#x548C;&#x6307;&#x6B63;~~</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android_编码规范/" data-id="ciu9f3fku0015qgs6ruxmy7pk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/16/流程图绘制和基本符号/" data-id="ciu9m4vqd002n21s6ywqgvw0l" class="article-share-link">Share</a>
       
       
     </footer>
@@ -391,7 +855,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/《Effective java》-----读书笔记/" data-id="ciu9f3fnv002cqgs6hp4kpgfz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/《Effective java》-----读书笔记/" data-id="ciu9m4vq1002b21s6gjbe1ile" class="article-share-link">Share</a>
       
       
     </footer>
@@ -401,9 +865,9 @@
 
 
   
-    <article id="post-学习" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Android_编码规范" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/05/14/学习/" class="article-date">
+    <a href="/2016/05/14/Android_编码规范/" class="article-date">
   <time datetime="2016-05-14T14:57:12.000Z" itemprop="datePublished">2016-05-14</time>
 </a>
     
@@ -411,73 +875,19 @@
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/14/学习/">师傅的博客</a>
-    </h1>
-  
-
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#&#x8DDF;&#x5E08;&#x5085;&#x5B66;&#x4E60;&#xFF0C;&#x597D;&#x699C;&#x6837;&#xFF5E;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://fpliu-blog.chinacloudsites.cn/index</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/学习/" data-id="ciu9f3fob002oqgs6ica3mxdh" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习，师傅/">学习，师傅</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Linux常用命令" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/14/Linux常用命令/" class="article-date">
-  <time datetime="2016-05-14T14:17:05.000Z" itemprop="datePublished">2016-05-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/14/Linux常用命令/">Linux常用命令</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>wget http:// &#x7F51;&#x4E0A;&#x4E0B;&#x8F7D;<br>ctrl+c &#x53D6;&#x6D88;<br>cd /data &#x6253;&#x5F00;&#x6839;&#x76EE;&#x5F55;&#x4E0B;&#x7684;data&#x6587;&#x4EF6;&#x5939;<br>cd data &#x6253;&#x5F00;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x4E0B;&#x7684;data&#x6587;&#x4EF6;&#x5939;<br>tap&#x952E;&#x81EA;&#x52A8;&#x8865;&#x9F50;&#x6587;&#x4EF6;&#x540D;<br>ls &#x5217;&#x51FA;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x6587;&#x4EF6;<br>ls -l &#x5217;&#x51FA;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;<br>cd..  &#x8FD4;&#x56DE;&#x4E0A;&#x4E00;&#x7EA7;<br>apt-get &#x5B89;&#x88C5;<br>find / -name &#x6587;&#x4EF6;&#x540D; &#x641C;&#x7D22;&#x6587;&#x4EF6;<br>&#x9000;&#x51FA;vi  &#x5728;&#x6700;&#x540E;&#x4E00;&#x884C;&#x8F93;&#x5165;  &#xFF1A;q<br>pwd  &#x663E;&#x793A;&#x5F53;&#x524D;&#x6587;&#x4EF6;&#x76EE;&#x5F55;</p>
-<p>###&#x67E5;&#x8BE2;&#x65E5;&#x5FD7;&#x76F8;&#x5173;<br>cat all.log  | grep -C 10 &#x201C;NullPointer&#x201D;<br><a href="http://testopen.iancar.cn/h5/atin" target="_blank" rel="external">http://testopen.iancar.cn/h5/atin</a><br>find .|xargs grep -ri &#x201C;partner&#x201D; -l  &#x591A;&#x6587;&#x4EF6;&#x67E5;&#x627E;&#x5339;&#x914D;&#x5B57;&#x7B26;&#x4E32;</p>
-<p>&#x89E3;&#x538B;<br>tar zxvf</p>
-<p>env &#x663E;&#x793A;&#x73AF;&#x5883;&#x53D8;&#x91CF;<br>&#x914D;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#xFF1A;<br>JDK<br>export JAVA_HOME=/data/jdk/jdk1.8.0<br>export JRE_HOME=${JAVA_HOME}/jre<br>export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib<br>export PATH=${JAVA_HOME}/bin:$PATH</p>
-<p>TOMCAT<br>export TOMCAT_HOME=/data/tomcat/apache-tomcat-7<br>              jdk /data/jdk/jdk1.8.0</p>
-<p>&#x914D;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;<br>vi .bash_profile</p>
-<p>&#x67E5;&#x770B;&#x73AF;&#x5883;&#x53D8;&#x91CF;<br>env | grep jdk</p>
+        <hr>
+<p>title: Android&#x7F16;&#x7801;&#x89C4;&#x8303;<br>date: 2016-08-18 22:57:12<br>tags:&#x2014; Android</p>
+<p>Android&#x5F00;&#x53D1;&#x7684;&#x4E00;&#x4E9B;&#x7F16;&#x7801;&#x89C4;&#x8303;&#x3002;</p>
+<p>1.java&#x4EE3;&#x7801;&#x4E2D;&#x4E0D;&#x51FA;&#x73B0;&#x4E2D;&#x6587;&#xFF0C;&#x6700;&#x591A;&#x6CE8;&#x91CA;&#x4E2D;&#x53EF;&#x4EE5;&#x51FA;&#x73B0;&#x4E2D;&#x6587;&#xFF0C;&#x4E2D;&#x6587;&#x7EDF;&#x4E00;&#x5199;&#x5728;strings.xml&#x4E2D;&#x3002;<br>2.&#x5E38;&#x91CF;&#x547D;&#x540D;&#x53EA;&#x80FD;&#x5305;&#x542B;&#x5B57;&#x6BCD;&#x548C;<em>&#xFF0C;&#x5B57;&#x6BCD;&#x5168;&#x90E8;&#x5927;&#x5199;&#xFF0C;&#x5355;&#x8BCD;&#x4E4B;&#x95F4;&#x7528;</em>&#x9694;&#x5F00;&#x3002;<br>3.&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x547D;&#x540D;&#x3001;&#x9759;&#x6001;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x547D;&#x540D; &#x53EA;&#x80FD;&#x5305;&#x542B;&#x5B57;&#x6BCD;&#xFF0C;&#x5355;&#x8BCD;&#x9996;&#x5B57;&#x6BCD;&#x5927;&#x5199;&#xFF0C;&#x5176;&#x4ED6;&#x5B57;&#x6BCD;&#x5747;&#x4E3A;&#x5C0F;&#x5199;&#x3002;<br>4.&#x56FE;&#x7247;&#x8981;&#x5904;&#x7406;&#xFF0C;&#x56FE;&#x7247;&#x5C3D;&#x91CF;&#x5206;&#x62C6;&#x6210;&#x591A;&#x4E2A;&#x53EF;&#x91CD;&#x7528;&#x7684;&#x56FE;&#x7247;&#x3002;<br>5.&#x5F15;&#x7528;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#x8981;&#x614E;&#x91CD;&#xFF0C;&#x907F;&#x514D;&#x5E94;&#x7528;&#x5927;&#x5BB9;&#x91CF;&#x7684;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#xFF0C;&#x5BFC;&#x81F4;&#x5BA2;&#x6237;&#x7AEF;&#x5305;&#x975E;&#x5E38;&#x5927;&#x3002;<br>6.&#x5E03;&#x5C40;&#x6587;&#x4EF6;&#x4E2D;&#x7684;id&#x547D;&#x540D;&#xFF1A;<br>&#x547D;&#x540D;&#x6A21;&#x5F0F;&#x4E3A;&#xFF1A;view&#x7F29;&#x5199;_&#x6A21;&#x5757;&#x540D;&#x79F0;<em>view&#x7684;&#x903B;&#x8F91;&#x540D;&#x79F0;<br>&#x5E38;&#x7528;&#x63A7;&#x4EF6;&#x7684;&#x7F29;&#x5199;&#x5982;&#x4E0B;<br>LayoutView&#xFF1A;lv<br>RelativeView : rv<br>TextView : tv<br>ImageView : iv<br>ImageButton : im<br>Button : btn<br>7.Layout&#x4E2D;&#x7684;id&#x547D;&#x540D;&#xFF1A;<br>&#x547D;&#x540D;&#x6A21;&#x5F0F;&#x4E3A;&#xFF1A;view&#x7F29;&#x5199;</em>&#x6A21;&#x5757;&#x540D;&#x79F0;<em>view&#x7684;&#x903B;&#x8F91;&#x540D;&#x79F0;<br>view&#x7684;&#x7F29;&#x5199;&#x8BE6;&#x60C5;&#x5982;&#x4E0B;<br>LinearLayout&#xFF1A;ll<br>RelativeLayout : rl<br>TextView : tv<br>ImageView : iv<br>ImageButton : ib<br>Button:btn<br>8.String.xml&#x4E2D;&#x7684;id&#x547D;&#x540D;&#xFF1A;<br>&#x547D;&#x540D;&#x6A21;&#x5F0F;&#x4E3A;&#xFF1A;activity&#x540D;&#x79F0;</em>&#x529F;&#x80FD;&#x6A21;&#x5757;&#x540D;&#x79F0;<em>&#x903B;&#x8F91;&#x540D;&#x79F0;/activity&#x540D;&#x79F0;</em>&#x903B;&#x8F91;&#x540D;&#x79F0;/common<em>&#x903B;&#x8F91;&#x540D;&#x79F0;<br>strings.xml&#x4E2D;&#xFF0C;&#x4F7F;&#x7528;activity&#x540D;&#x79F0;&#x6CE8;&#x91CA;&#xFF0C;&#x5C06;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x533A;&#x5206;&#x5F00;&#x6765;&#x3002;&#x53E6;&#x5916;&#xFF0C;strings.xml&#x4E2D;&#x4F7F;&#x7528;%1$s&#x5B9E;&#x73B0;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x901A;&#x914D;&#x3002;<br>9.activity&#x4E2D;&#x7684;view&#x53D8;&#x91CF;&#x547D;&#x540D;&#xFF1A;<br>&#x547D;&#x540D;&#x6A21;&#x5F0F;&#x4E3A;&#xFF1A;view&#x7F29;&#x5199;+&#x903B;&#x8F91;&#x540D;&#x79F0;<br>&#x5982;&#x679C;layout&#x6587;&#x4EF6;&#x5F88;&#x590D;&#x6742;&#xFF0C;&#x5EFA;&#x8BAE;&#x5C06;layout&#x5206;&#x6210;&#x591A;&#x4E2A;&#x6A21;&#x5757;&#xFF0C;&#x6BCF;&#x4E2A;&#x6A21;&#x5757;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;moduleViewHolder&#xFF0C;&#x5176;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x5305;&#x542B;&#x6240;&#x5C5E;view&#x3002;<br>&#x53E6;&#x5916;&#xFF0C;activity&#x4E2D;&#x5728;&#x4E00;&#x4E2A;View.OnClickListener&#x4E2D;&#x5904;&#x7406;&#x6240;&#x6709;&#x7684;&#x903B;&#x8F91;<br>10.drawable&#x4E2D;&#x7684;&#x56FE;&#x7247;&#x547D;&#x540D;&#xFF1A;<br>&#x547D;&#x540D;&#x6A21;&#x5F0F;&#x4E3A;&#xFF1A;activity&#x540D;&#x79F0;</em>&#x903B;&#x8F91;&#x540D;&#x79F0;/common_&#x903B;&#x8F91;&#x540D;&#x79F0;<br>11.styles.xml&#xFF1A;&#x5C06;layout&#x4E2D;&#x4E0D;&#x65AD;&#x91CD;&#x73B0;&#x7684;style&#x63D0;&#x70BC;&#x51FA;&#x901A;&#x7528;&#x7684;style&#x901A;&#x7528;&#x7EC4;&#x4EF6;&#xFF0C;&#x653E;&#x5230;styles.xml&#x4E2D;&#x3002;<br>12.&#x4E0D;&#x8981;&#x91CD;&#x7528;&#x7236;&#x7C7B;&#x7684;handler&#xFF0C;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x7C7B;&#x7684;handler&#x4E5F;&#x4E0D;&#x5E94;&#x8BE5;&#x8BA9;&#x5176;&#x5B50;&#x7C7B;&#x7528;&#x5230;&#xFF0C;&#x5426;&#x5219;&#x4F1A;&#x5BFC;&#x81F4;message.what&#x51B2;&#x7A81;&#x3002;<br>13.&#x670D;&#x52A1;&#x7AEF;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x5C31;&#x4E0D;&#x8981;&#x653E;&#x5728;&#x5BA2;&#x6237;&#x7AEF;&#x3002;<br>14.&#x4F7F;&#x7528;button+activitgroup&#x5B9E;&#x73B0;tab&#x6548;&#x679C;&#x65F6;&#xFF0C;&#x4F7F;&#x7528;Button.setSelected(true)&#xFF0C;&#x786E;&#x4FDD;&#x6309;&#x94AE;&#x5904;&#x4E8E;&#x9009;&#x62E9;&#x72B6;&#x6001;&#xFF0C;&#x5E76;&#x4F7F;activitygroup&#x7684;&#x5F53;&#x524D;activity&#x4E0E;&#x8BE5;button&#x5BF9;&#x5E94;&#x3002;<br>15.&#x5982;&#x679C;&#x591A;&#x4E2A;Activity&#x4E2D;&#x5305;&#x542B;&#x5171;&#x540C;&#x7684;UI&#x5904;&#x7406;&#xFF0C;&#x90A3;&#x4E48;&#x53EF;&#x4EE5;&#x63D0;&#x70BC;&#x4E00;&#x4E2A;CommonActivity&#xFF0C;&#x628A;&#x901A;&#x7528;&#x90E8;&#x5206;&#x53EB;&#x7531;&#x5B83;&#x6765;&#x5904;&#x7406;&#xFF0C;&#x5176;&#x4ED6;activity&#x53EA;&#x8981;&#x7EE7;&#x627F;&#x5B83;&#x5373;&#x53EF;&#x3002;<br>16.&#x5982;&#x679C;&#x6240;&#x5F00;&#x53D1;&#x7684;&#x4E3A;&#x901A;&#x7528;&#x7EC4;&#x4EF6;&#xFF0C;&#x4E3A;&#x907F;&#x514D;&#x51B2;&#x7A81;&#xFF0C;&#x5C06;drawable/layout/menu/values&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x589E;&#x52A0;&#x524D;&#x7F00;&#x3002;<br>17.activity&#x4E2D;&#x5728;&#x4E00;&#x4E2A;View.OnClickListener&#x4E2D;&#x5904;&#x7406;&#x6240;&#x6709;&#x7684;&#x903B;&#x8F91;&#x3002;<br>&#x5927;&#x6982;&#x5C31;&#x5148;&#x8BF4;&#x8FD9;&#x4E48;&#x591A;&#xFF0C;&#x6B22;&#x8FCE;&#x5927;&#x725B;&#x4EEC;&#x8865;&#x5145;&#x548C;&#x6307;&#x6B63;~~</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Linux常用命令/" data-id="ciu9f3fn10023qgs6eh96qgiw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android_编码规范/" data-id="ciu9m4voy001321s67gm641oa" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
-
     </footer>
   </div>
   
@@ -518,7 +928,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Arkiv</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li></ul>
     </div>
@@ -528,20 +938,12 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Siste innlegg</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2016/10/30/简历/">Android开发简历</a>
-          </li>
-        
-          <li>
             <a href="/2016/10/14/心情/">心情</a>
-          </li>
-        
-          <li>
-            <a href="/2016/10/14/JavaWeb_cookie和session的理解/">cookie和session的理解</a>
           </li>
         
           <li>
@@ -549,7 +951,15 @@
           </li>
         
           <li>
-            <a href="/2016/10/14/Android_常用开源/">android常用开源项目</a>
+            <a href="/2016/10/14/Android_ant自动版本构建/">ant自动版本构建</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/14/JavaWeb_cookie和session的理解/">cookie和session的理解</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/14/Android_gradle的使用/">gradle和AS</a>
           </li>
         
       </ul>
