@@ -99,7 +99,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/14/心情/" data-id="ciu978eay002d4os6lfq79k6r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/14/心情/" data-id="ciu97d5km002a5es6ckd5hy9c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心情/">心情</a></li></ul>
@@ -137,7 +137,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/14/Android_常用开源/" data-id="ciu978e85000g4os69ka4kyx3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/14/Android_常用开源/" data-id="ciu97d5iv000n5es6zwijfvtb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -149,9 +149,9 @@
 
 
   
-    <article id="post-JavaWeb_springMvc参数获取" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Android_大牛博客" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/10/13/JavaWeb_springMvc参数获取/" class="article-date">
+    <a href="/2016/10/13/Android_大牛博客/" class="article-date">
   <time datetime="2016-10-13T13:26:18.000Z" itemprop="datePublished">2016-10-13</time>
 </a>
     
@@ -163,7 +163,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/13/JavaWeb_springMvc参数获取/">springMvc参数获取</a>
+      <a class="article-title" href="/2016/10/13/Android_大牛博客/">整理一些大牛的博客</a>
     </h1>
   
 
@@ -171,23 +171,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="直接把表单的参数写在Controller相应的方法的形参中，适用于get方式提交，不适用于post方式提交。"><a href="#直接把表单的参数写在Controller相应的方法的形参中，适用于get方式提交，不适用于post方式提交。" class="headerlink" title="直接把表单的参数写在Controller相应的方法的形参中，适用于get方式提交，不适用于post方式提交。"></a>直接把表单的参数写在Controller相应的方法的形参中，适用于get方式提交，不适用于post方式提交。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">     * 1.直接把表单的参数写在Controller相应的方法的形参中</span><br><span class="line">      * @param username</span><br><span class="line">     * @param password</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(&quot;/addUser1&quot;)</span><br><span class="line">    public String addUser1(String username,String password) &#123;</span><br><span class="line">        System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">        System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>url形式：<a href="http://localhost/SSMDemo/demo/addUser1?username=lixiaoxi&amp;password=111111" target="_blank" rel="external">http://localhost/SSMDemo/demo/addUser1?username=lixiaoxi&amp;password=111111</a> 提交的参数需要和Controller方法中的入参名称一致。</p>
-<h3 id="通过HttpServletRequest接收，post方式和get方式都可以。"><a href="#通过HttpServletRequest接收，post方式和get方式都可以。" class="headerlink" title="通过HttpServletRequest接收，post方式和get方式都可以。"></a>通过HttpServletRequest接收，post方式和get方式都可以。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * 2、通过HttpServletRequest接收</span><br><span class="line">     * @param request</span><br><span class="line">    * @return</span><br><span class="line">    */</span><br><span class="line">   @RequestMapping(&quot;/addUser2&quot;)</span><br><span class="line">   public String addUser2(HttpServletRequest request) &#123;</span><br><span class="line">       String username=request.getParameter(&quot;username&quot;);</span><br><span class="line">       String password=request.getParameter(&quot;password&quot;);</span><br><span class="line">       System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">       System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">       return &quot;demo/index&quot;;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="通过一个bean来接收-post方式和get方式都可以。"><a href="#通过一个bean来接收-post方式和get方式都可以。" class="headerlink" title="通过一个bean来接收,post方式和get方式都可以。"></a>通过一个bean来接收,post方式和get方式都可以。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">     * 3、通过一个bean来接收</span><br><span class="line">      * @param user</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(&quot;/addUser3&quot;)</span><br><span class="line">    public String addUser3(UserModel user) &#123;</span><br><span class="line">        System.out.println(&quot;username is:&quot;+user.getUsername());</span><br><span class="line">        System.out.println(&quot;password is:&quot;+user.getPassword());</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="通过-PathVariable获取路径中的参数"><a href="#通过-PathVariable获取路径中的参数" class="headerlink" title="通过@PathVariable获取路径中的参数"></a>通过@PathVariable获取路径中的参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">     * 4、通过@PathVariable获取路径中的参数</span><br><span class="line">      * @param username</span><br><span class="line">     * @param password</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(value=&quot;/addUser4/&#123;username&#125;/&#123;password&#125;&quot;,method=RequestMethod.GET)</span><br><span class="line">public String addUser4(@PathVariable String username,@PathVariable String password) &#123;</span><br><span class="line">        System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">        System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>例如，访问<a href="http://localhost/SSMDemo/demo/addUser4/lixiaoxi/111111" target="_blank" rel="external">http://localhost/SSMDemo/demo/addUser4/lixiaoxi/111111</a> 路径时，则自动将URL中模板变量{username}和{password}绑定到通过@PathVariable注解的同名参数上，即入参后username=lixiaoxi、password=111111。</p>
-<h3 id="使用-ModelAttribute注解获取POST请求的FORM表单数据"><a href="#使用-ModelAttribute注解获取POST请求的FORM表单数据" class="headerlink" title="使用@ModelAttribute注解获取POST请求的FORM表单数据"></a>使用@ModelAttribute注解获取POST请求的FORM表单数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;form action =&quot;&lt;%=request.getContextPath()%&gt;/demo/addUser5&quot; method=&quot;post&quot;&gt; </span><br><span class="line">     用户名:&amp;nbsp;&lt;input type=&quot;text&quot; name=&quot;username&quot;/&gt;&lt;br/&gt;</span><br><span class="line">     密&amp;nbsp;&amp;nbsp;码:&amp;nbsp;&lt;input type=&quot;password&quot; name=&quot;password&quot;/&gt;&lt;br/&gt;</span><br><span class="line">     &lt;input type=&quot;submit&quot; value=&quot;提交&quot;/&gt; </span><br><span class="line">     &lt;input type=&quot;reset&quot; value=&quot;重置&quot;/&gt; </span><br><span class="line">&lt;/form&gt; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">复制代码</span><br><span class="line">    /**</span><br><span class="line">     * 5、使用@ModelAttribute注解获取POST请求的FORM表单数据</span><br><span class="line">      * @param user</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(value=&quot;/addUser5&quot;,method=RequestMethod.POST)</span><br><span class="line">    public String addUser5(@ModelAttribute(&quot;user&quot;) UserModel user) &#123;</span><br><span class="line">        System.out.println(&quot;username is:&quot;+user.getUsername());</span><br><span class="line">        System.out.println(&quot;password is:&quot;+user.getPassword());</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="用注解-RequestParam绑定请求参数到方法入参"><a href="#用注解-RequestParam绑定请求参数到方法入参" class="headerlink" title="用注解@RequestParam绑定请求参数到方法入参"></a>用注解@RequestParam绑定请求参数到方法入参</h3><p>当请求参数username不存在时会有异常发生,可以通过设置属性required=false解决,例如: @RequestParam(value=”username”, required=false)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 6、用注解@RequestParam绑定请求参数到方法入参</span><br><span class="line">  * @param username</span><br><span class="line"> * @param password</span><br><span class="line"> * @return</span><br><span class="line"> */</span><br><span class="line">@RequestMapping(value=&quot;/addUser6&quot;,method=RequestMethod.GET)</span><br><span class="line">public String addUser6(@RequestParam(&quot;username&quot;) String username,@RequestParam(&quot;password&quot;) String password) &#123;</span><br><span class="line">    System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">    System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">    return &quot;demo/index&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        <h3 id="许建林的技术博客"><a href="#许建林的技术博客" class="headerlink" title="许建林的技术博客"></a><a href="http://blog.piasy.com/2016/10/07/what-i-did-in-national-holiday/?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" target="_blank" rel="external">许建林的技术博客</a></h3><h3 id="张鸿洋的技术博客"><a href="#张鸿洋的技术博客" class="headerlink" title="张鸿洋的技术博客"></a><a href="http://blog.csdn.net/lmj623565791/article/details/46767825" target="_blank" rel="external">张鸿洋的技术博客</a></h3><h3 id="Adam-Bien的网络博客"><a href="#Adam-Bien的网络博客" class="headerlink" title="Adam Bien的网络博客"></a><a href="http://www.360doc.com/content/16/0524/21/32882454_562000024.shtml" target="_blank" rel="external">Adam Bien的网络博客</a></h3>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/13/JavaWeb_springMvc参数获取/" data-id="ciu978e9o001e4os66q2ntuhq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/13/Android_大牛博客/" data-id="ciu97d5ip000g5es635kz72wz" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大牛博客/">大牛博客</a></li></ul>
 
     </footer>
   </div>
@@ -226,61 +217,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/13/Jenkins搭建/" data-id="ciu978e9v001j4os6xczaak5o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/13/Jenkins搭建/" data-id="ciu97d5js001j5es6u16cbfjl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-IDE_创业常用到的工具" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/10/13/IDE_创业常用到的工具/" class="article-date">
-  <time datetime="2016-10-13T13:26:18.000Z" itemprop="datePublished">2016-10-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/13/IDE_创业常用到的工具/">创业常用到的工具</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>网上找的资源，大概一些都是快速开发的开源项目，看了看大部分都是微信公众号的开源集成代码，可以把我自己封装的项目源码开源出去，顺便测测性能，有时间看下。</p>
-<p>反馈问题板块：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">资源1： JEECG 微云快速开发平台( JEECG 3.6.5 云插件开发版)</span><br><span class="line">最新版本：发布时间 （2016-07-18）</span><br><span class="line">授权方式：开源免费</span><br><span class="line">源码下载（Maven）：http://git.oschina.net/jeecg/jeecg</span><br><span class="line">https://code.csdn.net/zhangdaiscott/JEECG</span><br><span class="line">https://github.com/zhangdaiscott/jeecg</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">资源2： Jeecg-p3 微服务框架( 1.0 版本)</span><br><span class="line">最新版发布时间：2016-03-22</span><br><span class="line">授权方式：开源免费</span><br><span class="line">源码下载地址：</span><br><span class="line">oschina: http://git.oschina.net/jeecg/jeecg-p3</span><br><span class="line">csdn: https://code.csdn.net/zhangdaiscott/jeecg-p3/tree/master</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">资源3： JeeWx 捷微管家平台( 2.4.1 版本)</span><br><span class="line">授权方式：开源免费</span><br><span class="line">功能说明：支持微信公众、微信企业号管理</span><br><span class="line">源码下载地址：</span><br><span class="line">Csdn: https://code.csdn.net/zhangdaiscott/jeewx</span><br><span class="line">Oschina: http://git.oschina.net/jeecg/jeewx</span><br><span class="line">Github: http://zhangdaiscott.github.io/jeewx/</span><br><span class="line">本地Maven仓库下载：http://git.oschina.net/jeecg/jeecg-local-maven</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">资源4： H5微信活动平台（P3-weixin-2.0.0）</span><br><span class="line">最新版发布时间：2015-11-11</span><br><span class="line">授权方式：开源免费</span><br><span class="line">功能说明： 微信营销活动插件（微信砍价）</span><br><span class="line">下载地址：http://git.oschina.net/jeecg/p3-weixin</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">资源5： MiniDao-pe 持久层(1.6 版本)</span><br><span class="line">授权方式：开源免费</span><br><span class="line">下载地址：http://git.oschina.net/jeecg/minidao-pe</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">资源6： MiniDao 持久层(1.5.1 版本 - 停止更新)</span><br><span class="line">授权方式：开源免费</span><br><span class="line">下载地址：http://git.oschina.net/jeecg/minidao</span><br><span class="line">文档地址：http://pan.baidu.com/s/1sjpYNxj 密码: r6a3</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">资源7：Jeewx-api 微信接口封装SDK(1.0.1 版本)</span><br><span class="line">最新版发布时间：2015-09-06</span><br><span class="line">授权方式：开源免费</span><br><span class="line">下载地址: http://git.oschina.net/jeecg/jeewx-api</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">资源8：Jeewx-qywx-api 微信企业号接口封装SDK(1.0 版本)</span><br><span class="line">最新版发布时间：2015-09-06</span><br><span class="line">授权方式：开源免费</span><br><span class="line">下载地址: http://git.oschina.net/jeecg/jeewx-qywx-api</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">资源9： JEEWX微信企业号开源平台(1.1 版本)</span><br><span class="line">最新版发布时间：2016-07-20</span><br><span class="line">授权方式：开源免费</span><br><span class="line">下载地址：http://git.oschina.net/jeecg/Jeewx-Enterprise</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">资源10：EasyPOI 简易EXCEL工具类 （2.1.4）</span><br><span class="line">最新版发布时间：2015-8-8</span><br><span class="line">授权方式：开源免费</span><br><span class="line">下载地址：http://git.oschina.net/jeecg/easypoi</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">资源11：Jeecg-mybatis 参考学习版本(停止更新)</span><br><span class="line">最新版发布时间：2014-8-8</span><br><span class="line">授权方式：开源免费</span><br><span class="line">下载地址：下载地址</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">资源12：Jeecg-activiti工作流 参考学习版本(非商业版)</span><br><span class="line">最新版发布时间：2014-8-8</span><br><span class="line">授权方式：开源免费</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/13/IDE_创业常用到的工具/" data-id="ciu978e9h00174os6jv12m80w" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开源项目/">开源项目</a></li></ul>
 
     </footer>
   </div>
@@ -329,48 +269,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/13/JavaWeb_解决浏览器回退表单重复提交/" data-id="ciu978e9z001o4os6gpy0fdik" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/13/JavaWeb_解决浏览器回退表单重复提交/" data-id="ciu97d5jp001i5es6kq0on7qf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Android_大牛博客" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/10/13/Android_大牛博客/" class="article-date">
-  <time datetime="2016-10-13T13:26:18.000Z" itemprop="datePublished">2016-10-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/13/Android_大牛博客/">整理一些大牛的博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="许建林的技术博客"><a href="#许建林的技术博客" class="headerlink" title="许建林的技术博客"></a><a href="http://blog.piasy.com/2016/10/07/what-i-did-in-national-holiday/?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" target="_blank" rel="external">许建林的技术博客</a></h3><h3 id="张鸿洋的技术博客"><a href="#张鸿洋的技术博客" class="headerlink" title="张鸿洋的技术博客"></a><a href="http://blog.csdn.net/lmj623565791/article/details/46767825" target="_blank" rel="external">张鸿洋的技术博客</a></h3><h3 id="Adam-Bien的网络博客"><a href="#Adam-Bien的网络博客" class="headerlink" title="Adam Bien的网络博客"></a><a href="http://www.360doc.com/content/16/0524/21/32882454_562000024.shtml" target="_blank" rel="external">Adam Bien的网络博客</a></h3>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/13/Android_大牛博客/" data-id="ciu978e83000e4os61sj6z1t1" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大牛博客/">大牛博客</a></li></ul>
 
     </footer>
   </div>
@@ -410,10 +312,108 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/13/Android_百分比框架/" data-id="ciu978e97000y4os66epekq3j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/13/Android_百分比框架/" data-id="ciu97d5jb00135es6zjigp31k" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-IDE_创业常用到的工具" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/13/IDE_创业常用到的工具/" class="article-date">
+  <time datetime="2016-10-13T13:26:18.000Z" itemprop="datePublished">2016-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/13/IDE_创业常用到的工具/">创业常用到的工具</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>网上找的资源，大概一些都是快速开发的开源项目，看了看大部分都是微信公众号的开源集成代码，可以把我自己封装的项目源码开源出去，顺便测测性能，有时间看下。</p>
+<p>反馈问题板块：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">资源1： JEECG 微云快速开发平台( JEECG 3.6.5 云插件开发版)</span><br><span class="line">最新版本：发布时间 （2016-07-18）</span><br><span class="line">授权方式：开源免费</span><br><span class="line">源码下载（Maven）：http://git.oschina.net/jeecg/jeecg</span><br><span class="line">https://code.csdn.net/zhangdaiscott/JEECG</span><br><span class="line">https://github.com/zhangdaiscott/jeecg</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">资源2： Jeecg-p3 微服务框架( 1.0 版本)</span><br><span class="line">最新版发布时间：2016-03-22</span><br><span class="line">授权方式：开源免费</span><br><span class="line">源码下载地址：</span><br><span class="line">oschina: http://git.oschina.net/jeecg/jeecg-p3</span><br><span class="line">csdn: https://code.csdn.net/zhangdaiscott/jeecg-p3/tree/master</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">资源3： JeeWx 捷微管家平台( 2.4.1 版本)</span><br><span class="line">授权方式：开源免费</span><br><span class="line">功能说明：支持微信公众、微信企业号管理</span><br><span class="line">源码下载地址：</span><br><span class="line">Csdn: https://code.csdn.net/zhangdaiscott/jeewx</span><br><span class="line">Oschina: http://git.oschina.net/jeecg/jeewx</span><br><span class="line">Github: http://zhangdaiscott.github.io/jeewx/</span><br><span class="line">本地Maven仓库下载：http://git.oschina.net/jeecg/jeecg-local-maven</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">资源4： H5微信活动平台（P3-weixin-2.0.0）</span><br><span class="line">最新版发布时间：2015-11-11</span><br><span class="line">授权方式：开源免费</span><br><span class="line">功能说明： 微信营销活动插件（微信砍价）</span><br><span class="line">下载地址：http://git.oschina.net/jeecg/p3-weixin</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">资源5： MiniDao-pe 持久层(1.6 版本)</span><br><span class="line">授权方式：开源免费</span><br><span class="line">下载地址：http://git.oschina.net/jeecg/minidao-pe</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">资源6： MiniDao 持久层(1.5.1 版本 - 停止更新)</span><br><span class="line">授权方式：开源免费</span><br><span class="line">下载地址：http://git.oschina.net/jeecg/minidao</span><br><span class="line">文档地址：http://pan.baidu.com/s/1sjpYNxj 密码: r6a3</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">资源7：Jeewx-api 微信接口封装SDK(1.0.1 版本)</span><br><span class="line">最新版发布时间：2015-09-06</span><br><span class="line">授权方式：开源免费</span><br><span class="line">下载地址: http://git.oschina.net/jeecg/jeewx-api</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">资源8：Jeewx-qywx-api 微信企业号接口封装SDK(1.0 版本)</span><br><span class="line">最新版发布时间：2015-09-06</span><br><span class="line">授权方式：开源免费</span><br><span class="line">下载地址: http://git.oschina.net/jeecg/jeewx-qywx-api</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">资源9： JEEWX微信企业号开源平台(1.1 版本)</span><br><span class="line">最新版发布时间：2016-07-20</span><br><span class="line">授权方式：开源免费</span><br><span class="line">下载地址：http://git.oschina.net/jeecg/Jeewx-Enterprise</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">资源10：EasyPOI 简易EXCEL工具类 （2.1.4）</span><br><span class="line">最新版发布时间：2015-8-8</span><br><span class="line">授权方式：开源免费</span><br><span class="line">下载地址：http://git.oschina.net/jeecg/easypoi</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">资源11：Jeecg-mybatis 参考学习版本(停止更新)</span><br><span class="line">最新版发布时间：2014-8-8</span><br><span class="line">授权方式：开源免费</span><br><span class="line">下载地址：下载地址</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">资源12：Jeecg-activiti工作流 参考学习版本(非商业版)</span><br><span class="line">最新版发布时间：2014-8-8</span><br><span class="line">授权方式：开源免费</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/10/13/IDE_创业常用到的工具/" data-id="ciu97d5jh00195es66txb5a0r" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开源项目/">开源项目</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JavaWeb_springMvc参数获取" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/13/JavaWeb_springMvc参数获取/" class="article-date">
+  <time datetime="2016-10-13T13:26:18.000Z" itemprop="datePublished">2016-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/13/JavaWeb_springMvc参数获取/">springMvc参数获取</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="直接把表单的参数写在Controller相应的方法的形参中，适用于get方式提交，不适用于post方式提交。"><a href="#直接把表单的参数写在Controller相应的方法的形参中，适用于get方式提交，不适用于post方式提交。" class="headerlink" title="直接把表单的参数写在Controller相应的方法的形参中，适用于get方式提交，不适用于post方式提交。"></a>直接把表单的参数写在Controller相应的方法的形参中，适用于get方式提交，不适用于post方式提交。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">     * 1.直接把表单的参数写在Controller相应的方法的形参中</span><br><span class="line">      * @param username</span><br><span class="line">     * @param password</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(&quot;/addUser1&quot;)</span><br><span class="line">    public String addUser1(String username,String password) &#123;</span><br><span class="line">        System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">        System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>url形式：<a href="http://localhost/SSMDemo/demo/addUser1?username=lixiaoxi&amp;password=111111" target="_blank" rel="external">http://localhost/SSMDemo/demo/addUser1?username=lixiaoxi&amp;password=111111</a> 提交的参数需要和Controller方法中的入参名称一致。</p>
+<h3 id="通过HttpServletRequest接收，post方式和get方式都可以。"><a href="#通过HttpServletRequest接收，post方式和get方式都可以。" class="headerlink" title="通过HttpServletRequest接收，post方式和get方式都可以。"></a>通过HttpServletRequest接收，post方式和get方式都可以。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * 2、通过HttpServletRequest接收</span><br><span class="line">     * @param request</span><br><span class="line">    * @return</span><br><span class="line">    */</span><br><span class="line">   @RequestMapping(&quot;/addUser2&quot;)</span><br><span class="line">   public String addUser2(HttpServletRequest request) &#123;</span><br><span class="line">       String username=request.getParameter(&quot;username&quot;);</span><br><span class="line">       String password=request.getParameter(&quot;password&quot;);</span><br><span class="line">       System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">       System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">       return &quot;demo/index&quot;;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="通过一个bean来接收-post方式和get方式都可以。"><a href="#通过一个bean来接收-post方式和get方式都可以。" class="headerlink" title="通过一个bean来接收,post方式和get方式都可以。"></a>通过一个bean来接收,post方式和get方式都可以。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">     * 3、通过一个bean来接收</span><br><span class="line">      * @param user</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(&quot;/addUser3&quot;)</span><br><span class="line">    public String addUser3(UserModel user) &#123;</span><br><span class="line">        System.out.println(&quot;username is:&quot;+user.getUsername());</span><br><span class="line">        System.out.println(&quot;password is:&quot;+user.getPassword());</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="通过-PathVariable获取路径中的参数"><a href="#通过-PathVariable获取路径中的参数" class="headerlink" title="通过@PathVariable获取路径中的参数"></a>通过@PathVariable获取路径中的参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">     * 4、通过@PathVariable获取路径中的参数</span><br><span class="line">      * @param username</span><br><span class="line">     * @param password</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(value=&quot;/addUser4/&#123;username&#125;/&#123;password&#125;&quot;,method=RequestMethod.GET)</span><br><span class="line">public String addUser4(@PathVariable String username,@PathVariable String password) &#123;</span><br><span class="line">        System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">        System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>例如，访问<a href="http://localhost/SSMDemo/demo/addUser4/lixiaoxi/111111" target="_blank" rel="external">http://localhost/SSMDemo/demo/addUser4/lixiaoxi/111111</a> 路径时，则自动将URL中模板变量{username}和{password}绑定到通过@PathVariable注解的同名参数上，即入参后username=lixiaoxi、password=111111。</p>
+<h3 id="使用-ModelAttribute注解获取POST请求的FORM表单数据"><a href="#使用-ModelAttribute注解获取POST请求的FORM表单数据" class="headerlink" title="使用@ModelAttribute注解获取POST请求的FORM表单数据"></a>使用@ModelAttribute注解获取POST请求的FORM表单数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;form action =&quot;&lt;%=request.getContextPath()%&gt;/demo/addUser5&quot; method=&quot;post&quot;&gt; </span><br><span class="line">     用户名:&amp;nbsp;&lt;input type=&quot;text&quot; name=&quot;username&quot;/&gt;&lt;br/&gt;</span><br><span class="line">     密&amp;nbsp;&amp;nbsp;码:&amp;nbsp;&lt;input type=&quot;password&quot; name=&quot;password&quot;/&gt;&lt;br/&gt;</span><br><span class="line">     &lt;input type=&quot;submit&quot; value=&quot;提交&quot;/&gt; </span><br><span class="line">     &lt;input type=&quot;reset&quot; value=&quot;重置&quot;/&gt; </span><br><span class="line">&lt;/form&gt; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">复制代码</span><br><span class="line">    /**</span><br><span class="line">     * 5、使用@ModelAttribute注解获取POST请求的FORM表单数据</span><br><span class="line">      * @param user</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(value=&quot;/addUser5&quot;,method=RequestMethod.POST)</span><br><span class="line">    public String addUser5(@ModelAttribute(&quot;user&quot;) UserModel user) &#123;</span><br><span class="line">        System.out.println(&quot;username is:&quot;+user.getUsername());</span><br><span class="line">        System.out.println(&quot;password is:&quot;+user.getPassword());</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="用注解-RequestParam绑定请求参数到方法入参"><a href="#用注解-RequestParam绑定请求参数到方法入参" class="headerlink" title="用注解@RequestParam绑定请求参数到方法入参"></a>用注解@RequestParam绑定请求参数到方法入参</h3><p>当请求参数username不存在时会有异常发生,可以通过设置属性required=false解决,例如: @RequestParam(value=”username”, required=false)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 6、用注解@RequestParam绑定请求参数到方法入参</span><br><span class="line">  * @param username</span><br><span class="line"> * @param password</span><br><span class="line"> * @return</span><br><span class="line"> */</span><br><span class="line">@RequestMapping(value=&quot;/addUser6&quot;,method=RequestMethod.GET)</span><br><span class="line">public String addUser6(@RequestParam(&quot;username&quot;) String username,@RequestParam(&quot;password&quot;) String password) &#123;</span><br><span class="line">    System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">    System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">    return &quot;demo/index&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/10/13/JavaWeb_springMvc参数获取/" data-id="ciu97d5jl001e5es6bfkjx2qb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
 
     </footer>
   </div>
@@ -450,7 +450,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/18/面试/" data-id="ciu978eat00274os6w5n64xhz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/18/面试/" data-id="ciu97d5kp002e5es6omqfbr53" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
@@ -505,7 +505,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/18/Android应用安装/" data-id="ciu978e9j00194os6z52jgzm2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/18/Android应用安装/" data-id="ciu97d5ja00115es6tgwrhms9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -573,7 +573,7 @@
           </li>
         
           <li>
-            <a href="/2016/10/13/JavaWeb_springMvc参数获取/">springMvc参数获取</a>
+            <a href="/2016/10/13/Android_大牛博客/">整理一些大牛的博客</a>
           </li>
         
           <li>
@@ -581,7 +581,7 @@
           </li>
         
           <li>
-            <a href="/2016/10/13/IDE_创业常用到的工具/">创业常用到的工具</a>
+            <a href="/2016/10/13/JavaWeb_解决浏览器回退表单重复提交/">解决浏览器回退表单重复提交问题</a>
           </li>
         
       </ul>
