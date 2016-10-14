@@ -99,7 +99,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/14/心情/" data-id="ciu990y0k002w8gs6m4oqg7xf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/14/心情/" data-id="ciu9bi4xh002jd6s6ore2ygox" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心情/">心情</a></li></ul>
@@ -148,48 +148,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/14/JavaWeb_cookie和session的理解/" data-id="ciu990xz6001i8gs6fizqysw2" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JavaWeb_encodeURI来解决URL传递时的中文问题" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/10/14/JavaWeb_encodeURI来解决URL传递时的中文问题/" class="article-date">
-  <time datetime="2016-10-14T13:26:18.000Z" itemprop="datePublished">2016-10-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/14/JavaWeb_encodeURI来解决URL传递时的中文问题/">encodeURI来解决URL传递时的中文问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在AJAX浏览器来进行发送数据时，一般它所默认的都是UTF-8的编码.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function verify() &#123;</span><br><span class="line">    //解决中文乱麻问题的方法1，页面端发出的数据作一次encodeURI，</span><br><span class="line">    服务器段使用进行转移成UTF-8;</span><br><span class="line">    //解决中文乱麻问题的方法2，页面端发出的数据作两次encodeURI，</span><br><span class="line">      这个做的好处在于，不管浏览器用户在页面来设置编码，服务器所采用的编码来做一次URLencode转换成UTF-8.</span><br><span class="line">    var url = &quot;AJAXServer?name=&quot; + encodeURI(encodeURI($(&quot;#userName&quot;).val()));</span><br><span class="line">    url = convertURL(url);</span><br><span class="line">    $.get(url,null,function(data)&#123;</span><br><span class="line">        $(&quot;#result&quot;).html(data);</span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">说明：1 .encodeURL函数主要是来对URI来做转码，它默认是采用的UTF-8的编码.</span><br><span class="line">     2. UTF-8编码的格式:一个汉字来三个字节构成，每一个字节会转换成16进制的编码，同时添加上%号.</span><br></pre></td></tr></table></figure>
-<p>这里要做两次encodeURI的原因以及说明:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">其中具体的原理分析如下，假设页面端输入的中文是一个“中”，按照下面步骤进行解码</span><br><span class="line">1.第一次encodeURI，按照utf-8方式获取字节数组变成[-28,-72-83]，对字节码数组进行遍历，把每个字节转化成对应的16进制数，这样就变成了[E4,B8,AD],最后变成[%E4,%B8,%AD]</span><br><span class="line"></span><br><span class="line">2.第二次encodeURI，把数组最后变成[%25E4,%25B8,%25AD]然后就把处理后的数据[%25E4,%25B8,%25AD]发往服务器端，</span><br><span class="line"> 当应用服务器调用getParameter方法，getParameter方法会去向应用服务器请求参数</span><br><span class="line">应用服务器最初获得的就是发送来的[%25E4,%25B8,%25AD]，应用服务器会对这个数据进行URLdecode操作，URldecode操作和encodeURL操作是相反的操作，处理结果就是[%E4,%B8,%AD]，并把这个值返回给getParameter方法</span><br><span class="line"></span><br><span class="line">然后再在服务器端中调用相应的URL转码方法或者是函数  就可以把数据还原成最初页面发送过来的中文“中”了。</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/14/JavaWeb_encodeURI来解决URL传递时的中文问题/" data-id="ciu990xz1001e8gs6ym5jgr0l" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/14/JavaWeb_cookie和session的理解/" data-id="ciu9bi4wi001jd6s68h2d21ab" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
@@ -227,7 +186,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/14/Android_常用开源/" data-id="ciu990xy3000i8gs60g121l12" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/14/Android_常用开源/" data-id="ciu9bi4vk000pd6s6t6uzic3g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -239,10 +198,10 @@
 
 
   
-    <article id="post-JavaWeb_springMvc参数获取" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-JavaWeb_encodeURI来解决URL传递时的中文问题" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/10/13/JavaWeb_springMvc参数获取/" class="article-date">
-  <time datetime="2016-10-13T13:26:18.000Z" itemprop="datePublished">2016-10-13</time>
+    <a href="/2016/10/14/JavaWeb_encodeURI来解决URL传递时的中文问题/" class="article-date">
+  <time datetime="2016-10-14T13:26:18.000Z" itemprop="datePublished">2016-10-14</time>
 </a>
     
   </div>
@@ -253,7 +212,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/13/JavaWeb_springMvc参数获取/">springMvc参数获取</a>
+      <a class="article-title" href="/2016/10/14/JavaWeb_encodeURI来解决URL传递时的中文问题/">encodeURI来解决URL传递时的中文问题</a>
     </h1>
   
 
@@ -261,108 +220,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="直接把表单的参数写在Controller相应的方法的形参中，适用于get方式提交，不适用于post方式提交。"><a href="#直接把表单的参数写在Controller相应的方法的形参中，适用于get方式提交，不适用于post方式提交。" class="headerlink" title="直接把表单的参数写在Controller相应的方法的形参中，适用于get方式提交，不适用于post方式提交。"></a>直接把表单的参数写在Controller相应的方法的形参中，适用于get方式提交，不适用于post方式提交。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">     * 1.直接把表单的参数写在Controller相应的方法的形参中</span><br><span class="line">      * @param username</span><br><span class="line">     * @param password</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(&quot;/addUser1&quot;)</span><br><span class="line">    public String addUser1(String username,String password) &#123;</span><br><span class="line">        System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">        System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>url形式：<a href="http://localhost/SSMDemo/demo/addUser1?username=lixiaoxi&amp;password=111111" target="_blank" rel="external">http://localhost/SSMDemo/demo/addUser1?username=lixiaoxi&amp;password=111111</a> 提交的参数需要和Controller方法中的入参名称一致。</p>
-<h3 id="通过HttpServletRequest接收，post方式和get方式都可以。"><a href="#通过HttpServletRequest接收，post方式和get方式都可以。" class="headerlink" title="通过HttpServletRequest接收，post方式和get方式都可以。"></a>通过HttpServletRequest接收，post方式和get方式都可以。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * 2、通过HttpServletRequest接收</span><br><span class="line">     * @param request</span><br><span class="line">    * @return</span><br><span class="line">    */</span><br><span class="line">   @RequestMapping(&quot;/addUser2&quot;)</span><br><span class="line">   public String addUser2(HttpServletRequest request) &#123;</span><br><span class="line">       String username=request.getParameter(&quot;username&quot;);</span><br><span class="line">       String password=request.getParameter(&quot;password&quot;);</span><br><span class="line">       System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">       System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">       return &quot;demo/index&quot;;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="通过一个bean来接收-post方式和get方式都可以。"><a href="#通过一个bean来接收-post方式和get方式都可以。" class="headerlink" title="通过一个bean来接收,post方式和get方式都可以。"></a>通过一个bean来接收,post方式和get方式都可以。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">     * 3、通过一个bean来接收</span><br><span class="line">      * @param user</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(&quot;/addUser3&quot;)</span><br><span class="line">    public String addUser3(UserModel user) &#123;</span><br><span class="line">        System.out.println(&quot;username is:&quot;+user.getUsername());</span><br><span class="line">        System.out.println(&quot;password is:&quot;+user.getPassword());</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="通过-PathVariable获取路径中的参数"><a href="#通过-PathVariable获取路径中的参数" class="headerlink" title="通过@PathVariable获取路径中的参数"></a>通过@PathVariable获取路径中的参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">     * 4、通过@PathVariable获取路径中的参数</span><br><span class="line">      * @param username</span><br><span class="line">     * @param password</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(value=&quot;/addUser4/&#123;username&#125;/&#123;password&#125;&quot;,method=RequestMethod.GET)</span><br><span class="line">public String addUser4(@PathVariable String username,@PathVariable String password) &#123;</span><br><span class="line">        System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">        System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>例如，访问<a href="http://localhost/SSMDemo/demo/addUser4/lixiaoxi/111111" target="_blank" rel="external">http://localhost/SSMDemo/demo/addUser4/lixiaoxi/111111</a> 路径时，则自动将URL中模板变量{username}和{password}绑定到通过@PathVariable注解的同名参数上，即入参后username=lixiaoxi、password=111111。</p>
-<h3 id="使用-ModelAttribute注解获取POST请求的FORM表单数据"><a href="#使用-ModelAttribute注解获取POST请求的FORM表单数据" class="headerlink" title="使用@ModelAttribute注解获取POST请求的FORM表单数据"></a>使用@ModelAttribute注解获取POST请求的FORM表单数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;form action =&quot;&lt;%=request.getContextPath()%&gt;/demo/addUser5&quot; method=&quot;post&quot;&gt; </span><br><span class="line">     用户名:&amp;nbsp;&lt;input type=&quot;text&quot; name=&quot;username&quot;/&gt;&lt;br/&gt;</span><br><span class="line">     密&amp;nbsp;&amp;nbsp;码:&amp;nbsp;&lt;input type=&quot;password&quot; name=&quot;password&quot;/&gt;&lt;br/&gt;</span><br><span class="line">     &lt;input type=&quot;submit&quot; value=&quot;提交&quot;/&gt; </span><br><span class="line">     &lt;input type=&quot;reset&quot; value=&quot;重置&quot;/&gt; </span><br><span class="line">&lt;/form&gt; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">复制代码</span><br><span class="line">    /**</span><br><span class="line">     * 5、使用@ModelAttribute注解获取POST请求的FORM表单数据</span><br><span class="line">      * @param user</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(value=&quot;/addUser5&quot;,method=RequestMethod.POST)</span><br><span class="line">    public String addUser5(@ModelAttribute(&quot;user&quot;) UserModel user) &#123;</span><br><span class="line">        System.out.println(&quot;username is:&quot;+user.getUsername());</span><br><span class="line">        System.out.println(&quot;password is:&quot;+user.getPassword());</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="用注解-RequestParam绑定请求参数到方法入参"><a href="#用注解-RequestParam绑定请求参数到方法入参" class="headerlink" title="用注解@RequestParam绑定请求参数到方法入参"></a>用注解@RequestParam绑定请求参数到方法入参</h3><p>当请求参数username不存在时会有异常发生,可以通过设置属性required=false解决,例如: @RequestParam(value=”username”, required=false)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 6、用注解@RequestParam绑定请求参数到方法入参</span><br><span class="line">  * @param username</span><br><span class="line"> * @param password</span><br><span class="line"> * @return</span><br><span class="line"> */</span><br><span class="line">@RequestMapping(value=&quot;/addUser6&quot;,method=RequestMethod.GET)</span><br><span class="line">public String addUser6(@RequestParam(&quot;username&quot;) String username,@RequestParam(&quot;password&quot;) String password) &#123;</span><br><span class="line">    System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">    System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">    return &quot;demo/index&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        <p>在AJAX浏览器来进行发送数据时，一般它所默认的都是UTF-8的编码.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function verify() &#123;</span><br><span class="line">    //解决中文乱麻问题的方法1，页面端发出的数据作一次encodeURI，</span><br><span class="line">    服务器段使用进行转移成UTF-8;</span><br><span class="line">    //解决中文乱麻问题的方法2，页面端发出的数据作两次encodeURI，</span><br><span class="line">      这个做的好处在于，不管浏览器用户在页面来设置编码，服务器所采用的编码来做一次URLencode转换成UTF-8.</span><br><span class="line">    var url = &quot;AJAXServer?name=&quot; + encodeURI(encodeURI($(&quot;#userName&quot;).val()));</span><br><span class="line">    url = convertURL(url);</span><br><span class="line">    $.get(url,null,function(data)&#123;</span><br><span class="line">        $(&quot;#result&quot;).html(data);</span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">说明：1 .encodeURL函数主要是来对URI来做转码，它默认是采用的UTF-8的编码.</span><br><span class="line">     2. UTF-8编码的格式:一个汉字来三个字节构成，每一个字节会转换成16进制的编码，同时添加上%号.</span><br></pre></td></tr></table></figure>
+<p>这里要做两次encodeURI的原因以及说明:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">其中具体的原理分析如下，假设页面端输入的中文是一个“中”，按照下面步骤进行解码</span><br><span class="line">1.第一次encodeURI，按照utf-8方式获取字节数组变成[-28,-72-83]，对字节码数组进行遍历，把每个字节转化成对应的16进制数，这样就变成了[E4,B8,AD],最后变成[%E4,%B8,%AD]</span><br><span class="line"></span><br><span class="line">2.第二次encodeURI，把数组最后变成[%25E4,%25B8,%25AD]然后就把处理后的数据[%25E4,%25B8,%25AD]发往服务器端，</span><br><span class="line"> 当应用服务器调用getParameter方法，getParameter方法会去向应用服务器请求参数</span><br><span class="line">应用服务器最初获得的就是发送来的[%25E4,%25B8,%25AD]，应用服务器会对这个数据进行URLdecode操作，URldecode操作和encodeURL操作是相反的操作，处理结果就是[%E4,%B8,%AD]，并把这个值返回给getParameter方法</span><br><span class="line"></span><br><span class="line">然后再在服务器端中调用相应的URL转码方法或者是函数  就可以把数据还原成最初页面发送过来的中文“中”了。</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/13/JavaWeb_springMvc参数获取/" data-id="ciu990xz7001j8gs6d65ig2im" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/14/JavaWeb_encodeURI来解决URL传递时的中文问题/" data-id="ciu9bi4wk001ld6s66k63lbyf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Android_百分比框架" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/10/13/Android_百分比框架/" class="article-date">
-  <time datetime="2016-10-13T13:26:18.000Z" itemprop="datePublished">2016-10-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/13/Android_百分比框架/">Android百分比框架</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前段时间去天房科技面试，面试的哥们人不错，提到了百分比布局，这几天顺便看了看。</p>
-<p>原项目代码</p>
-<p><a href="https://github.com/JulienGenoud/android-percent-support-lib-sample" target="_blank" rel="external">https://github.com/JulienGenoud/android-percent-support-lib-sample</a></p>
-<p>张鸿洋这哥们做了些修改，看下，学习。。<br><a href="http://blog.csdn.net/lmj623565791/article/details/46767825" target="_blank" rel="external">http://blog.csdn.net/lmj623565791/article/details/46767825</a></p>
-<p>后续把自己学习到的心得补充在这篇博客上，未完待续</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/13/Android_百分比框架/" data-id="ciu990xyp00118gs6d690loqg" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Jenkins搭建" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/10/13/Jenkins搭建/" class="article-date">
-  <time datetime="2016-10-13T13:26:18.000Z" itemprop="datePublished">2016-10-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/13/Jenkins搭建/">Jenkins 搭建</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="下载jenkins"><a href="#下载jenkins" class="headerlink" title="下载jenkins"></a>下载jenkins</h3><p><a href="http://jenkins-ci.org/content/thank-you-downloading-os-x-installer" target="_blank" rel="external">http://jenkins-ci.org/content/thank-you-downloading-os-x-installer</a></p>
-<h3 id="会蹦出让填写密码，修改config配置文件"><a href="#会蹦出让填写密码，修改config配置文件" class="headerlink" title="会蹦出让填写密码，修改config配置文件"></a>会蹦出让填写密码，修改config配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&apos;1.0&apos; encoding=&apos;UTF-8&apos;?&gt;</span><br><span class="line">&lt;user&gt;</span><br><span class="line">  &lt;fullName&gt;admin&lt;/fullName&gt;</span><br><span class="line">  &lt;properties&gt;</span><br><span class="line">    &lt;jenkins.security.ApiTokenProperty&gt;</span><br><span class="line">      &lt;apiToken&gt;DwHCl6oiyOuxTG5HQBdX/f5qYXxPlu5w3GmRSgUWgcOhj7bX6gs2dJUwFOC/gN6d&lt;/apiToken&gt;</span><br><span class="line">    &lt;/jenkins.security.ApiTokenProperty&gt;</span><br><span class="line">    &lt;hudson.model.MyViewsProperty&gt;</span><br><span class="line">      &lt;views&gt;</span><br><span class="line">        &lt;hudson.model.AllView&gt;</span><br><span class="line">          &lt;owner class=&quot;hudson.model.MyViewsProperty&quot; reference=&quot;../../..&quot;/&gt;</span><br><span class="line">          &lt;name&gt;All&lt;/name&gt;</span><br><span class="line">          &lt;filterExecutors&gt;false&lt;/filterExecutors&gt;</span><br><span class="line">          &lt;filterQueue&gt;false&lt;/filterQueue&gt;</span><br><span class="line">          &lt;properties class=&quot;hudson.model.View$PropertyList&quot;/&gt;</span><br><span class="line">        &lt;/hudson.model.AllView&gt;</span><br><span class="line">      &lt;/views&gt;</span><br><span class="line">    &lt;/hudson.model.MyViewsProperty&gt;</span><br><span class="line">    &lt;hudson.model.PaneStatusProperties&gt;</span><br><span class="line">      &lt;collapsed/&gt;</span><br><span class="line">    &lt;/hudson.model.PaneStatusProperties&gt;</span><br><span class="line">    &lt;hudson.search.UserSearchProperty&gt;</span><br><span class="line">      &lt;insensitiveSearch&gt;false&lt;/insensitiveSearch&gt;</span><br><span class="line">    &lt;/hudson.search.UserSearchProperty&gt;</span><br><span class="line">    &lt;hudson.security.HudsonPrivateSecurityRealm_-Details&gt;</span><br><span class="line">      &lt;passwordHash&gt;#jbcrypt:$2a$10$yMAaaf3L.VtUmAzhGSMaXug8P/BJ.k/F1wO7GwQIojMp.E.IdQ6BO&lt;/passwordHash&gt;</span><br><span class="line">    &lt;/hudson.security.HudsonPrivateSecurityRealm_-Details&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br><span class="line">&lt;/user&gt;</span><br></pre></td></tr></table></figure>
-<p>如果要修改端口，比如7070，可在第8步重启jenkins前执行以下命令修改端口参数:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo defaults write /Library/Preferences/org.jenkins-ci httpPort 7070  </span><br><span class="line">然后重启jenkins:</span><br><span class="line">sudo launchctl unload -w /Library/LaunchDaemons/org.jenkins-ci.plist  </span><br><span class="line">sudo launchctl load -w /Library/LaunchDaemons/org.jenkins-ci.plist </span><br><span class="line">到此，可以访问了：http://localhost:7070</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/13/Jenkins搭建/" data-id="ciu990xza001n8gs6zskfttvu" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li></ul>
 
     </footer>
   </div>
@@ -393,11 +261,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="许建林的技术博客"><a href="#许建林的技术博客" class="headerlink" title="许建林的技术博客"></a><a href="http://blog.piasy.com/2016/10/07/what-i-did-in-national-holiday/?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" target="_blank" rel="external">许建林的技术博客</a></h3><h3 id="张鸿洋的技术博客"><a href="#张鸿洋的技术博客" class="headerlink" title="张鸿洋的技术博客"></a><a href="http://blog.csdn.net/lmj623565791/article/details/46767825" target="_blank" rel="external">张鸿洋的技术博客</a></h3><h3 id="Adam-Bien的网络博客"><a href="#Adam-Bien的网络博客" class="headerlink" title="Adam Bien的网络博客"></a><a href="http://www.360doc.com/content/16/0524/21/32882454_562000024.shtml" target="_blank" rel="external">Adam Bien的网络博客</a></h3>
+        <h3 id="许建林的技术博客"><a href="#许建林的技术博客" class="headerlink" title="许建林的技术博客"></a><a href="http://blog.piasy.com/2016/10/07/what-i-did-in-national-holiday/?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" target="_blank" rel="external">许建林的技术博客</a></h3><h3 id="张鸿洋的技术博客"><a href="#张鸿洋的技术博客" class="headerlink" title="张鸿洋的技术博客"></a><a href="http://blog.csdn.net/lmj623565791/article/details/46767825" target="_blank" rel="external">张鸿洋的技术博客</a></h3><h3 id="Adam-Bien的网络博客"><a href="#Adam-Bien的网络博客" class="headerlink" title="Adam Bien的网络博客"></a><a href="http://www.360doc.com/content/16/0524/21/32882454_562000024.shtml" target="_blank" rel="external">Adam Bien的网络博客</a></h3><h3 id="陈皓的网络博客"><a href="#陈皓的网络博客" class="headerlink" title="陈皓的网络博客"></a><a href="http://blog.csdn.net/haoel" target="_blank" rel="external">陈皓的网络博客</a></h3>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/13/Android_大牛博客/" data-id="ciu990xy1000g8gs6u8k47930" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/13/Android_大牛博客/" data-id="ciu9bi4vi000md6s6ilr3hg19" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大牛博客/">大牛博客</a></li></ul>
@@ -449,10 +317,91 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/13/JavaWeb_解决浏览器回退表单重复提交/" data-id="ciu990xz9001m8gs6zv1nzmei" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/13/JavaWeb_解决浏览器回退表单重复提交/" data-id="ciu9bi4wn001pd6s6l1uqcot1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Jenkins搭建" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/13/Jenkins搭建/" class="article-date">
+  <time datetime="2016-10-13T13:26:18.000Z" itemprop="datePublished">2016-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/13/Jenkins搭建/">Jenkins 搭建</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="下载jenkins"><a href="#下载jenkins" class="headerlink" title="下载jenkins"></a>下载jenkins</h3><p><a href="http://jenkins-ci.org/content/thank-you-downloading-os-x-installer" target="_blank" rel="external">http://jenkins-ci.org/content/thank-you-downloading-os-x-installer</a></p>
+<h3 id="会蹦出让填写密码，修改config配置文件"><a href="#会蹦出让填写密码，修改config配置文件" class="headerlink" title="会蹦出让填写密码，修改config配置文件"></a>会蹦出让填写密码，修改config配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&apos;1.0&apos; encoding=&apos;UTF-8&apos;?&gt;</span><br><span class="line">&lt;user&gt;</span><br><span class="line">  &lt;fullName&gt;admin&lt;/fullName&gt;</span><br><span class="line">  &lt;properties&gt;</span><br><span class="line">    &lt;jenkins.security.ApiTokenProperty&gt;</span><br><span class="line">      &lt;apiToken&gt;DwHCl6oiyOuxTG5HQBdX/f5qYXxPlu5w3GmRSgUWgcOhj7bX6gs2dJUwFOC/gN6d&lt;/apiToken&gt;</span><br><span class="line">    &lt;/jenkins.security.ApiTokenProperty&gt;</span><br><span class="line">    &lt;hudson.model.MyViewsProperty&gt;</span><br><span class="line">      &lt;views&gt;</span><br><span class="line">        &lt;hudson.model.AllView&gt;</span><br><span class="line">          &lt;owner class=&quot;hudson.model.MyViewsProperty&quot; reference=&quot;../../..&quot;/&gt;</span><br><span class="line">          &lt;name&gt;All&lt;/name&gt;</span><br><span class="line">          &lt;filterExecutors&gt;false&lt;/filterExecutors&gt;</span><br><span class="line">          &lt;filterQueue&gt;false&lt;/filterQueue&gt;</span><br><span class="line">          &lt;properties class=&quot;hudson.model.View$PropertyList&quot;/&gt;</span><br><span class="line">        &lt;/hudson.model.AllView&gt;</span><br><span class="line">      &lt;/views&gt;</span><br><span class="line">    &lt;/hudson.model.MyViewsProperty&gt;</span><br><span class="line">    &lt;hudson.model.PaneStatusProperties&gt;</span><br><span class="line">      &lt;collapsed/&gt;</span><br><span class="line">    &lt;/hudson.model.PaneStatusProperties&gt;</span><br><span class="line">    &lt;hudson.search.UserSearchProperty&gt;</span><br><span class="line">      &lt;insensitiveSearch&gt;false&lt;/insensitiveSearch&gt;</span><br><span class="line">    &lt;/hudson.search.UserSearchProperty&gt;</span><br><span class="line">    &lt;hudson.security.HudsonPrivateSecurityRealm_-Details&gt;</span><br><span class="line">      &lt;passwordHash&gt;#jbcrypt:$2a$10$yMAaaf3L.VtUmAzhGSMaXug8P/BJ.k/F1wO7GwQIojMp.E.IdQ6BO&lt;/passwordHash&gt;</span><br><span class="line">    &lt;/hudson.security.HudsonPrivateSecurityRealm_-Details&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br><span class="line">&lt;/user&gt;</span><br></pre></td></tr></table></figure>
+<p>如果要修改端口，比如7070，可在第8步重启jenkins前执行以下命令修改端口参数:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo defaults write /Library/Preferences/org.jenkins-ci httpPort 7070  </span><br><span class="line">然后重启jenkins:</span><br><span class="line">sudo launchctl unload -w /Library/LaunchDaemons/org.jenkins-ci.plist  </span><br><span class="line">sudo launchctl load -w /Library/LaunchDaemons/org.jenkins-ci.plist </span><br><span class="line">到此，可以访问了：http://localhost:7070</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/10/13/Jenkins搭建/" data-id="ciu9bi4wl001md6s6mmhpd46t" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android_ejs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/13/Android_ejs/" class="article-date">
+  <time datetime="2016-10-13T13:26:18.000Z" itemprop="datePublished">2016-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/13/Android_ejs/">ejs的使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="EJS"><a href="#EJS" class="headerlink" title="EJS"></a>EJS</h3><p><img src="/source/img/banner.jpg" alt="img"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/10/13/Android_ejs/" data-id="ciu9bi4vg000kd6s6yh0zdi0i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ejs/">ejs</a></li></ul>
 
     </footer>
   </div>
@@ -500,10 +449,53 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/13/IDE_创业常用到的工具/" data-id="ciu990xyt00178gs6wy7be11s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/13/IDE_创业常用到的工具/" data-id="ciu9bi4wa001cd6s6osvbi7d6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开源项目/">开源项目</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android_百分比框架" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/13/Android_百分比框架/" class="article-date">
+  <time datetime="2016-10-13T13:26:18.000Z" itemprop="datePublished">2016-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/13/Android_百分比框架/">Android百分比框架</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前段时间去天房科技面试，面试的哥们人不错，提到了百分比布局，这几天顺便看了看。</p>
+<p>原项目代码</p>
+<p><a href="https://github.com/JulienGenoud/android-percent-support-lib-sample" target="_blank" rel="external">https://github.com/JulienGenoud/android-percent-support-lib-sample</a></p>
+<p>张鸿洋这哥们做了些修改，看下，学习。。<br><a href="http://blog.csdn.net/lmj623565791/article/details/46767825" target="_blank" rel="external">http://blog.csdn.net/lmj623565791/article/details/46767825</a></p>
+<p>后续把自己学习到的心得补充在这篇博客上，未完待续</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/10/13/Android_百分比框架/" data-id="ciu9bi4w10012d6s61hxj9tj1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 
     </footer>
   </div>
@@ -528,7 +520,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D-游戏/">Unity3D,游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兴趣/">兴趣</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大牛博客/">大牛博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习，师傅/">学习，师傅</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信-Js/">微信 Js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情/">心情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D-游戏/">Unity3D,游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ejs/">ejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兴趣/">兴趣</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大牛博客/">大牛博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习，师傅/">学习，师傅</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信-Js/">微信 Js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情/">心情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
     </div>
   </div>
 
@@ -538,7 +530,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/tags/Java/" style="font-size: 13.33px;">Java</a> <a href="/tags/JavaWeb/" style="font-size: 16.67px;">JavaWeb</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Unity3D/" style="font-size: 10px;">Unity3D</a> <a href="/tags/Unity3D-游戏/" style="font-size: 10px;">Unity3D,游戏</a> <a href="/tags/兴趣/" style="font-size: 10px;">兴趣</a> <a href="/tags/博客/" style="font-size: 13.33px;">博客</a> <a href="/tags/大牛博客/" style="font-size: 10px;">大牛博客</a> <a href="/tags/学习，师傅/" style="font-size: 10px;">学习，师傅</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/微信-Js/" style="font-size: 10px;">微信 Js</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/tags/Java/" style="font-size: 13.33px;">Java</a> <a href="/tags/JavaWeb/" style="font-size: 16.67px;">JavaWeb</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Unity3D/" style="font-size: 10px;">Unity3D</a> <a href="/tags/Unity3D-游戏/" style="font-size: 10px;">Unity3D,游戏</a> <a href="/tags/ejs/" style="font-size: 10px;">ejs</a> <a href="/tags/兴趣/" style="font-size: 10px;">兴趣</a> <a href="/tags/博客/" style="font-size: 13.33px;">博客</a> <a href="/tags/大牛博客/" style="font-size: 10px;">大牛博客</a> <a href="/tags/学习，师傅/" style="font-size: 10px;">学习，师傅</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/微信-Js/" style="font-size: 10px;">微信 Js</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
     </div>
   </div>
 
@@ -568,15 +560,15 @@
           </li>
         
           <li>
-            <a href="/2016/10/14/JavaWeb_encodeURI来解决URL传递时的中文问题/">encodeURI来解决URL传递时的中文问题</a>
-          </li>
-        
-          <li>
             <a href="/2016/10/14/Android_常用开源/">android常用开源项目</a>
           </li>
         
           <li>
-            <a href="/2016/10/13/JavaWeb_springMvc参数获取/">springMvc参数获取</a>
+            <a href="/2016/10/14/JavaWeb_encodeURI来解决URL传递时的中文问题/">encodeURI来解决URL传递时的中文问题</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/13/Android_大牛博客/">整理一些大牛的博客</a>
           </li>
         
       </ul>
