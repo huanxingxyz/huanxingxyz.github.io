@@ -99,7 +99,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/14/心情/" data-id="ciu96t8nl002d3hs66wmo03ny" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/14/心情/" data-id="ciu978eay002d4os6lfq79k6r" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心情/">心情</a></li></ul>
@@ -137,10 +137,99 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/14/Android_常用开源/" data-id="ciu96t8lf000i3hs69525snym" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/14/Android_常用开源/" data-id="ciu978e85000g4os69ka4kyx3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JavaWeb_springMvc参数获取" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/13/JavaWeb_springMvc参数获取/" class="article-date">
+  <time datetime="2016-10-13T13:26:18.000Z" itemprop="datePublished">2016-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/13/JavaWeb_springMvc参数获取/">springMvc参数获取</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="直接把表单的参数写在Controller相应的方法的形参中，适用于get方式提交，不适用于post方式提交。"><a href="#直接把表单的参数写在Controller相应的方法的形参中，适用于get方式提交，不适用于post方式提交。" class="headerlink" title="直接把表单的参数写在Controller相应的方法的形参中，适用于get方式提交，不适用于post方式提交。"></a>直接把表单的参数写在Controller相应的方法的形参中，适用于get方式提交，不适用于post方式提交。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">     * 1.直接把表单的参数写在Controller相应的方法的形参中</span><br><span class="line">      * @param username</span><br><span class="line">     * @param password</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(&quot;/addUser1&quot;)</span><br><span class="line">    public String addUser1(String username,String password) &#123;</span><br><span class="line">        System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">        System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>url形式：<a href="http://localhost/SSMDemo/demo/addUser1?username=lixiaoxi&amp;password=111111" target="_blank" rel="external">http://localhost/SSMDemo/demo/addUser1?username=lixiaoxi&amp;password=111111</a> 提交的参数需要和Controller方法中的入参名称一致。</p>
+<h3 id="通过HttpServletRequest接收，post方式和get方式都可以。"><a href="#通过HttpServletRequest接收，post方式和get方式都可以。" class="headerlink" title="通过HttpServletRequest接收，post方式和get方式都可以。"></a>通过HttpServletRequest接收，post方式和get方式都可以。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * 2、通过HttpServletRequest接收</span><br><span class="line">     * @param request</span><br><span class="line">    * @return</span><br><span class="line">    */</span><br><span class="line">   @RequestMapping(&quot;/addUser2&quot;)</span><br><span class="line">   public String addUser2(HttpServletRequest request) &#123;</span><br><span class="line">       String username=request.getParameter(&quot;username&quot;);</span><br><span class="line">       String password=request.getParameter(&quot;password&quot;);</span><br><span class="line">       System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">       System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">       return &quot;demo/index&quot;;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="通过一个bean来接收-post方式和get方式都可以。"><a href="#通过一个bean来接收-post方式和get方式都可以。" class="headerlink" title="通过一个bean来接收,post方式和get方式都可以。"></a>通过一个bean来接收,post方式和get方式都可以。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">     * 3、通过一个bean来接收</span><br><span class="line">      * @param user</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(&quot;/addUser3&quot;)</span><br><span class="line">    public String addUser3(UserModel user) &#123;</span><br><span class="line">        System.out.println(&quot;username is:&quot;+user.getUsername());</span><br><span class="line">        System.out.println(&quot;password is:&quot;+user.getPassword());</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="通过-PathVariable获取路径中的参数"><a href="#通过-PathVariable获取路径中的参数" class="headerlink" title="通过@PathVariable获取路径中的参数"></a>通过@PathVariable获取路径中的参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">     * 4、通过@PathVariable获取路径中的参数</span><br><span class="line">      * @param username</span><br><span class="line">     * @param password</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(value=&quot;/addUser4/&#123;username&#125;/&#123;password&#125;&quot;,method=RequestMethod.GET)</span><br><span class="line">public String addUser4(@PathVariable String username,@PathVariable String password) &#123;</span><br><span class="line">        System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">        System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>例如，访问<a href="http://localhost/SSMDemo/demo/addUser4/lixiaoxi/111111" target="_blank" rel="external">http://localhost/SSMDemo/demo/addUser4/lixiaoxi/111111</a> 路径时，则自动将URL中模板变量{username}和{password}绑定到通过@PathVariable注解的同名参数上，即入参后username=lixiaoxi、password=111111。</p>
+<h3 id="使用-ModelAttribute注解获取POST请求的FORM表单数据"><a href="#使用-ModelAttribute注解获取POST请求的FORM表单数据" class="headerlink" title="使用@ModelAttribute注解获取POST请求的FORM表单数据"></a>使用@ModelAttribute注解获取POST请求的FORM表单数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;form action =&quot;&lt;%=request.getContextPath()%&gt;/demo/addUser5&quot; method=&quot;post&quot;&gt; </span><br><span class="line">     用户名:&amp;nbsp;&lt;input type=&quot;text&quot; name=&quot;username&quot;/&gt;&lt;br/&gt;</span><br><span class="line">     密&amp;nbsp;&amp;nbsp;码:&amp;nbsp;&lt;input type=&quot;password&quot; name=&quot;password&quot;/&gt;&lt;br/&gt;</span><br><span class="line">     &lt;input type=&quot;submit&quot; value=&quot;提交&quot;/&gt; </span><br><span class="line">     &lt;input type=&quot;reset&quot; value=&quot;重置&quot;/&gt; </span><br><span class="line">&lt;/form&gt; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">复制代码</span><br><span class="line">    /**</span><br><span class="line">     * 5、使用@ModelAttribute注解获取POST请求的FORM表单数据</span><br><span class="line">      * @param user</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(value=&quot;/addUser5&quot;,method=RequestMethod.POST)</span><br><span class="line">    public String addUser5(@ModelAttribute(&quot;user&quot;) UserModel user) &#123;</span><br><span class="line">        System.out.println(&quot;username is:&quot;+user.getUsername());</span><br><span class="line">        System.out.println(&quot;password is:&quot;+user.getPassword());</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="用注解-RequestParam绑定请求参数到方法入参"><a href="#用注解-RequestParam绑定请求参数到方法入参" class="headerlink" title="用注解@RequestParam绑定请求参数到方法入参"></a>用注解@RequestParam绑定请求参数到方法入参</h3><p>当请求参数username不存在时会有异常发生,可以通过设置属性required=false解决,例如: @RequestParam(value=”username”, required=false)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 6、用注解@RequestParam绑定请求参数到方法入参</span><br><span class="line">  * @param username</span><br><span class="line"> * @param password</span><br><span class="line"> * @return</span><br><span class="line"> */</span><br><span class="line">@RequestMapping(value=&quot;/addUser6&quot;,method=RequestMethod.GET)</span><br><span class="line">public String addUser6(@RequestParam(&quot;username&quot;) String username,@RequestParam(&quot;password&quot;) String password) &#123;</span><br><span class="line">    System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">    System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">    return &quot;demo/index&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/10/13/JavaWeb_springMvc参数获取/" data-id="ciu978e9o001e4os66q2ntuhq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Jenkins搭建" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/13/Jenkins搭建/" class="article-date">
+  <time datetime="2016-10-13T13:26:18.000Z" itemprop="datePublished">2016-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/13/Jenkins搭建/">Jenkins 搭建</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="下载jenkins"><a href="#下载jenkins" class="headerlink" title="下载jenkins"></a>下载jenkins</h3><p><a href="http://jenkins-ci.org/content/thank-you-downloading-os-x-installer" target="_blank" rel="external">http://jenkins-ci.org/content/thank-you-downloading-os-x-installer</a></p>
+<h3 id="会蹦出让填写密码，修改config配置文件"><a href="#会蹦出让填写密码，修改config配置文件" class="headerlink" title="会蹦出让填写密码，修改config配置文件"></a>会蹦出让填写密码，修改config配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&apos;1.0&apos; encoding=&apos;UTF-8&apos;?&gt;</span><br><span class="line">&lt;user&gt;</span><br><span class="line">  &lt;fullName&gt;admin&lt;/fullName&gt;</span><br><span class="line">  &lt;properties&gt;</span><br><span class="line">    &lt;jenkins.security.ApiTokenProperty&gt;</span><br><span class="line">      &lt;apiToken&gt;DwHCl6oiyOuxTG5HQBdX/f5qYXxPlu5w3GmRSgUWgcOhj7bX6gs2dJUwFOC/gN6d&lt;/apiToken&gt;</span><br><span class="line">    &lt;/jenkins.security.ApiTokenProperty&gt;</span><br><span class="line">    &lt;hudson.model.MyViewsProperty&gt;</span><br><span class="line">      &lt;views&gt;</span><br><span class="line">        &lt;hudson.model.AllView&gt;</span><br><span class="line">          &lt;owner class=&quot;hudson.model.MyViewsProperty&quot; reference=&quot;../../..&quot;/&gt;</span><br><span class="line">          &lt;name&gt;All&lt;/name&gt;</span><br><span class="line">          &lt;filterExecutors&gt;false&lt;/filterExecutors&gt;</span><br><span class="line">          &lt;filterQueue&gt;false&lt;/filterQueue&gt;</span><br><span class="line">          &lt;properties class=&quot;hudson.model.View$PropertyList&quot;/&gt;</span><br><span class="line">        &lt;/hudson.model.AllView&gt;</span><br><span class="line">      &lt;/views&gt;</span><br><span class="line">    &lt;/hudson.model.MyViewsProperty&gt;</span><br><span class="line">    &lt;hudson.model.PaneStatusProperties&gt;</span><br><span class="line">      &lt;collapsed/&gt;</span><br><span class="line">    &lt;/hudson.model.PaneStatusProperties&gt;</span><br><span class="line">    &lt;hudson.search.UserSearchProperty&gt;</span><br><span class="line">      &lt;insensitiveSearch&gt;false&lt;/insensitiveSearch&gt;</span><br><span class="line">    &lt;/hudson.search.UserSearchProperty&gt;</span><br><span class="line">    &lt;hudson.security.HudsonPrivateSecurityRealm_-Details&gt;</span><br><span class="line">      &lt;passwordHash&gt;#jbcrypt:$2a$10$yMAaaf3L.VtUmAzhGSMaXug8P/BJ.k/F1wO7GwQIojMp.E.IdQ6BO&lt;/passwordHash&gt;</span><br><span class="line">    &lt;/hudson.security.HudsonPrivateSecurityRealm_-Details&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br><span class="line">&lt;/user&gt;</span><br></pre></td></tr></table></figure>
+<p>如果要修改端口，比如7070，可在第8步重启jenkins前执行以下命令修改端口参数:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo defaults write /Library/Preferences/org.jenkins-ci httpPort 7070  </span><br><span class="line">然后重启jenkins:</span><br><span class="line">sudo launchctl unload -w /Library/LaunchDaemons/org.jenkins-ci.plist  </span><br><span class="line">sudo launchctl load -w /Library/LaunchDaemons/org.jenkins-ci.plist </span><br><span class="line">到此，可以访问了：http://localhost:7070</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/10/13/Jenkins搭建/" data-id="ciu978e9v001j4os6xczaak5o" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li></ul>
 
     </footer>
   </div>
@@ -188,99 +277,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/13/IDE_创业常用到的工具/" data-id="ciu96t8mc00173hs6opayz3yf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/13/IDE_创业常用到的工具/" data-id="ciu978e9h00174os6jv12m80w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开源项目/">开源项目</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Jenkins搭建" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/10/13/Jenkins搭建/" class="article-date">
-  <time datetime="2016-10-13T13:26:18.000Z" itemprop="datePublished">2016-10-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/13/Jenkins搭建/">Jenkins 搭建</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="下载jenkins"><a href="#下载jenkins" class="headerlink" title="下载jenkins"></a>下载jenkins</h3><p><a href="http://jenkins-ci.org/content/thank-you-downloading-os-x-installer" target="_blank" rel="external">http://jenkins-ci.org/content/thank-you-downloading-os-x-installer</a></p>
-<h3 id="会蹦出让填写密码，修改config配置文件"><a href="#会蹦出让填写密码，修改config配置文件" class="headerlink" title="会蹦出让填写密码，修改config配置文件"></a>会蹦出让填写密码，修改config配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&apos;1.0&apos; encoding=&apos;UTF-8&apos;?&gt;</span><br><span class="line">&lt;user&gt;</span><br><span class="line">  &lt;fullName&gt;admin&lt;/fullName&gt;</span><br><span class="line">  &lt;properties&gt;</span><br><span class="line">    &lt;jenkins.security.ApiTokenProperty&gt;</span><br><span class="line">      &lt;apiToken&gt;DwHCl6oiyOuxTG5HQBdX/f5qYXxPlu5w3GmRSgUWgcOhj7bX6gs2dJUwFOC/gN6d&lt;/apiToken&gt;</span><br><span class="line">    &lt;/jenkins.security.ApiTokenProperty&gt;</span><br><span class="line">    &lt;hudson.model.MyViewsProperty&gt;</span><br><span class="line">      &lt;views&gt;</span><br><span class="line">        &lt;hudson.model.AllView&gt;</span><br><span class="line">          &lt;owner class=&quot;hudson.model.MyViewsProperty&quot; reference=&quot;../../..&quot;/&gt;</span><br><span class="line">          &lt;name&gt;All&lt;/name&gt;</span><br><span class="line">          &lt;filterExecutors&gt;false&lt;/filterExecutors&gt;</span><br><span class="line">          &lt;filterQueue&gt;false&lt;/filterQueue&gt;</span><br><span class="line">          &lt;properties class=&quot;hudson.model.View$PropertyList&quot;/&gt;</span><br><span class="line">        &lt;/hudson.model.AllView&gt;</span><br><span class="line">      &lt;/views&gt;</span><br><span class="line">    &lt;/hudson.model.MyViewsProperty&gt;</span><br><span class="line">    &lt;hudson.model.PaneStatusProperties&gt;</span><br><span class="line">      &lt;collapsed/&gt;</span><br><span class="line">    &lt;/hudson.model.PaneStatusProperties&gt;</span><br><span class="line">    &lt;hudson.search.UserSearchProperty&gt;</span><br><span class="line">      &lt;insensitiveSearch&gt;false&lt;/insensitiveSearch&gt;</span><br><span class="line">    &lt;/hudson.search.UserSearchProperty&gt;</span><br><span class="line">    &lt;hudson.security.HudsonPrivateSecurityRealm_-Details&gt;</span><br><span class="line">      &lt;passwordHash&gt;#jbcrypt:$2a$10$yMAaaf3L.VtUmAzhGSMaXug8P/BJ.k/F1wO7GwQIojMp.E.IdQ6BO&lt;/passwordHash&gt;</span><br><span class="line">    &lt;/hudson.security.HudsonPrivateSecurityRealm_-Details&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br><span class="line">&lt;/user&gt;</span><br></pre></td></tr></table></figure>
-<p>如果要修改端口，比如7070，可在第8步重启jenkins前执行以下命令修改端口参数:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo defaults write /Library/Preferences/org.jenkins-ci httpPort 7070  </span><br><span class="line">然后重启jenkins:</span><br><span class="line">sudo launchctl unload -w /Library/LaunchDaemons/org.jenkins-ci.plist  </span><br><span class="line">sudo launchctl load -w /Library/LaunchDaemons/org.jenkins-ci.plist </span><br><span class="line">到此，可以访问了：http://localhost:7070</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/13/Jenkins搭建/" data-id="ciu96t8mr001l3hs64ejcl9bv" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JavaWeb_springMvc参数获取" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/10/13/JavaWeb_springMvc参数获取/" class="article-date">
-  <time datetime="2016-10-13T13:26:18.000Z" itemprop="datePublished">2016-10-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/13/JavaWeb_springMvc参数获取/">springMvc参数获取</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="直接把表单的参数写在Controller相应的方法的形参中，适用于get方式提交，不适用于post方式提交。"><a href="#直接把表单的参数写在Controller相应的方法的形参中，适用于get方式提交，不适用于post方式提交。" class="headerlink" title="直接把表单的参数写在Controller相应的方法的形参中，适用于get方式提交，不适用于post方式提交。"></a>直接把表单的参数写在Controller相应的方法的形参中，适用于get方式提交，不适用于post方式提交。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">     * 1.直接把表单的参数写在Controller相应的方法的形参中</span><br><span class="line">      * @param username</span><br><span class="line">     * @param password</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(&quot;/addUser1&quot;)</span><br><span class="line">    public String addUser1(String username,String password) &#123;</span><br><span class="line">        System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">        System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>url形式：<a href="http://localhost/SSMDemo/demo/addUser1?username=lixiaoxi&amp;password=111111" target="_blank" rel="external">http://localhost/SSMDemo/demo/addUser1?username=lixiaoxi&amp;password=111111</a> 提交的参数需要和Controller方法中的入参名称一致。</p>
-<h3 id="通过HttpServletRequest接收，post方式和get方式都可以。"><a href="#通过HttpServletRequest接收，post方式和get方式都可以。" class="headerlink" title="通过HttpServletRequest接收，post方式和get方式都可以。"></a>通过HttpServletRequest接收，post方式和get方式都可以。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * 2、通过HttpServletRequest接收</span><br><span class="line">     * @param request</span><br><span class="line">    * @return</span><br><span class="line">    */</span><br><span class="line">   @RequestMapping(&quot;/addUser2&quot;)</span><br><span class="line">   public String addUser2(HttpServletRequest request) &#123;</span><br><span class="line">       String username=request.getParameter(&quot;username&quot;);</span><br><span class="line">       String password=request.getParameter(&quot;password&quot;);</span><br><span class="line">       System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">       System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">       return &quot;demo/index&quot;;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="通过一个bean来接收-post方式和get方式都可以。"><a href="#通过一个bean来接收-post方式和get方式都可以。" class="headerlink" title="通过一个bean来接收,post方式和get方式都可以。"></a>通过一个bean来接收,post方式和get方式都可以。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">     * 3、通过一个bean来接收</span><br><span class="line">      * @param user</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(&quot;/addUser3&quot;)</span><br><span class="line">    public String addUser3(UserModel user) &#123;</span><br><span class="line">        System.out.println(&quot;username is:&quot;+user.getUsername());</span><br><span class="line">        System.out.println(&quot;password is:&quot;+user.getPassword());</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="通过-PathVariable获取路径中的参数"><a href="#通过-PathVariable获取路径中的参数" class="headerlink" title="通过@PathVariable获取路径中的参数"></a>通过@PathVariable获取路径中的参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">     * 4、通过@PathVariable获取路径中的参数</span><br><span class="line">      * @param username</span><br><span class="line">     * @param password</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(value=&quot;/addUser4/&#123;username&#125;/&#123;password&#125;&quot;,method=RequestMethod.GET)</span><br><span class="line">public String addUser4(@PathVariable String username,@PathVariable String password) &#123;</span><br><span class="line">        System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">        System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>例如，访问<a href="http://localhost/SSMDemo/demo/addUser4/lixiaoxi/111111" target="_blank" rel="external">http://localhost/SSMDemo/demo/addUser4/lixiaoxi/111111</a> 路径时，则自动将URL中模板变量{username}和{password}绑定到通过@PathVariable注解的同名参数上，即入参后username=lixiaoxi、password=111111。</p>
-<h3 id="使用-ModelAttribute注解获取POST请求的FORM表单数据"><a href="#使用-ModelAttribute注解获取POST请求的FORM表单数据" class="headerlink" title="使用@ModelAttribute注解获取POST请求的FORM表单数据"></a>使用@ModelAttribute注解获取POST请求的FORM表单数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;form action =&quot;&lt;%=request.getContextPath()%&gt;/demo/addUser5&quot; method=&quot;post&quot;&gt; </span><br><span class="line">     用户名:&amp;nbsp;&lt;input type=&quot;text&quot; name=&quot;username&quot;/&gt;&lt;br/&gt;</span><br><span class="line">     密&amp;nbsp;&amp;nbsp;码:&amp;nbsp;&lt;input type=&quot;password&quot; name=&quot;password&quot;/&gt;&lt;br/&gt;</span><br><span class="line">     &lt;input type=&quot;submit&quot; value=&quot;提交&quot;/&gt; </span><br><span class="line">     &lt;input type=&quot;reset&quot; value=&quot;重置&quot;/&gt; </span><br><span class="line">&lt;/form&gt; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">复制代码</span><br><span class="line">    /**</span><br><span class="line">     * 5、使用@ModelAttribute注解获取POST请求的FORM表单数据</span><br><span class="line">      * @param user</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(value=&quot;/addUser5&quot;,method=RequestMethod.POST)</span><br><span class="line">    public String addUser5(@ModelAttribute(&quot;user&quot;) UserModel user) &#123;</span><br><span class="line">        System.out.println(&quot;username is:&quot;+user.getUsername());</span><br><span class="line">        System.out.println(&quot;password is:&quot;+user.getPassword());</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="用注解-RequestParam绑定请求参数到方法入参"><a href="#用注解-RequestParam绑定请求参数到方法入参" class="headerlink" title="用注解@RequestParam绑定请求参数到方法入参"></a>用注解@RequestParam绑定请求参数到方法入参</h3><p>当请求参数username不存在时会有异常发生,可以通过设置属性required=false解决,例如: @RequestParam(value=”username”, required=false)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 6、用注解@RequestParam绑定请求参数到方法入参</span><br><span class="line">  * @param username</span><br><span class="line"> * @param password</span><br><span class="line"> * @return</span><br><span class="line"> */</span><br><span class="line">@RequestMapping(value=&quot;/addUser6&quot;,method=RequestMethod.GET)</span><br><span class="line">public String addUser6(@RequestParam(&quot;username&quot;) String username,@RequestParam(&quot;password&quot;) String password) &#123;</span><br><span class="line">    System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">    System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">    return &quot;demo/index&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/13/JavaWeb_springMvc参数获取/" data-id="ciu96t8mo001i3hs6knbh70zw" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
 
     </footer>
   </div>
@@ -329,10 +329,48 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/13/JavaWeb_解决浏览器回退表单重复提交/" data-id="ciu96t8ml001f3hs69pms248r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/13/JavaWeb_解决浏览器回退表单重复提交/" data-id="ciu978e9z001o4os6gpy0fdik" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android_大牛博客" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/13/Android_大牛博客/" class="article-date">
+  <time datetime="2016-10-13T13:26:18.000Z" itemprop="datePublished">2016-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/13/Android_大牛博客/">整理一些大牛的博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="许建林的技术博客"><a href="#许建林的技术博客" class="headerlink" title="许建林的技术博客"></a><a href="http://blog.piasy.com/2016/10/07/what-i-did-in-national-holiday/?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" target="_blank" rel="external">许建林的技术博客</a></h3><h3 id="张鸿洋的技术博客"><a href="#张鸿洋的技术博客" class="headerlink" title="张鸿洋的技术博客"></a><a href="http://blog.csdn.net/lmj623565791/article/details/46767825" target="_blank" rel="external">张鸿洋的技术博客</a></h3><h3 id="Adam-Bien的网络博客"><a href="#Adam-Bien的网络博客" class="headerlink" title="Adam Bien的网络博客"></a><a href="http://www.360doc.com/content/16/0524/21/32882454_562000024.shtml" target="_blank" rel="external">Adam Bien的网络博客</a></h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/10/13/Android_大牛博客/" data-id="ciu978e83000e4os61sj6z1t1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大牛博客/">大牛博客</a></li></ul>
 
     </footer>
   </div>
@@ -372,7 +410,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/13/Android_百分比框架/" data-id="ciu96t8m700113hs6j9spwcuq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/13/Android_百分比框架/" data-id="ciu978e97000y4os66epekq3j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -384,10 +422,10 @@
 
 
   
-    <article id="post-Android_大牛博客" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-面试" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/10/13/Android_大牛博客/" class="article-date">
-  <time datetime="2016-10-13T13:26:18.000Z" itemprop="datePublished">2016-10-13</time>
+    <a href="/2016/08/18/面试/" class="article-date">
+  <time datetime="2016-08-18T14:57:12.000Z" itemprop="datePublished">2016-08-18</time>
 </a>
     
   </div>
@@ -398,7 +436,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/13/Android_大牛博客/">整理一些大牛的博客</a>
+      <a class="article-title" href="/2016/08/18/面试/">面试</a>
     </h1>
   
 
@@ -406,14 +444,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="许建林的技术博客"><a href="#许建林的技术博客" class="headerlink" title="许建林的技术博客"></a><a href="http://blog.piasy.com/2016/10/07/what-i-did-in-national-holiday/?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" target="_blank" rel="external">许建林的技术博客</a></h3><h3 id="张鸿洋的技术博客"><a href="#张鸿洋的技术博客" class="headerlink" title="张鸿洋的技术博客"></a><a href="http://blog.csdn.net/lmj623565791/article/details/46767825" target="_blank" rel="external">张鸿洋的技术博客</a></h3><h3 id="Adam-Bien的网络博客"><a href="#Adam-Bien的网络博客" class="headerlink" title="Adam Bien的网络博客"></a><a href="http://www.360doc.com/content/16/0524/21/32882454_562000024.shtml" target="_blank" rel="external">Adam Bien的网络博客</a></h3>
+        <p>一、核心要求点<br>1、 《基本标准》<br>（1）前沿的技术和行业知识，具备专研精神的人<br>（2）技术原理，有深入研究和兴趣，比如java的主流框架，应用层面到原理层面<br>（3）基本功扎实，基础知识要非常扎实，代码能力强，精通一线技术<br>Case1、spring的反射原理，AOP的使用<br>Case2、hashmap的实现原理，怎么解决hash冲突<br>（4）技术难点攻关，解决问题和逻辑分析能力强<br>2、 《软性要求》<br>（1）认同阿里价值观，要自信，但不能浮夸吹牛<br>3、 《忌讳方向》<br>（1）停留在应用层面的人<br>（2）思路混乱，对自己做的项目都描述不清、模凌两可的人</p>
+<p>二、面试准备工作<br>（1）对主流的一些技术准备下，网上资料也很多，包括基础的一些技术知识；<br>（2）过往重点项目梳理，包括项目整体的逻辑思路、核心难点、关键技术如何实现，以及深入到底层和开源方面的一些研究，也就是项目里边涉及到的每个核心技术点背后的深层机制；<br>（3）沟通表达能力不要太差，思路不要太混乱，且也不要太浮夸；<br>三、通常面试失败原因<br>1、 脱离一线技术，简历无亮点；<br>2、 代码能力一般，技术单一；<br>3、 太注重股票或薪资要求过高；<br>4、 不自信，沟通表达能力一般；<br>四、某同学-JAVA-面试心得整理<br>1、对项目要非常熟悉，项目每个功能(特别是重要模块)的实现细节要非常熟悉，要对模块并发，扩展等问题要了解。一般情况下，面试官会在功能实现基础上考察多线程并发，分布式，以及横向纵向扩展等问题。<br>2、对项目特点相关的行业解决方案要熟悉，比如支付宝付款分布式事务问题，比如电商网站的订单重复提交如何去重等，这些都是经典解决方案，需要了解。如果你做的是LBS或者O2O的项目，像地图数据结构抽象也是经典的问题。<br>3、然后面试官会喜欢问些软素质问题，比如：项目遇到最大困难是什么，怎么解决的，你觉得自己在什么方面最有自信。<br>4、一般在个别较难问题没回答上来时，也会问一些简单的java基础，缓解下面试人员紧张的情绪，然后再问较难的问题。<br>【通常问题】<br>1、对于涉及到的规模、业务和结构，如何串联的，整个逻辑思路；<br>2、技术细节的实现，比如支付会涉及的清算、交易、网关等可能会出现的问题；3、对于底层的原理，并发等有所了解。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/13/Android_大牛博客/" data-id="ciu96t8lh000k3hs6z2ovp54j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/18/面试/" data-id="ciu978eat00274os6w5n64xhz" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大牛博客/">大牛博客</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
 
     </footer>
   </div>
@@ -465,50 +505,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/18/Android应用安装/" data-id="ciu96t8m900133hs6qxztmdgb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/18/Android应用安装/" data-id="ciu978e9j00194os6z52jgzm2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-面试" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/08/18/面试/" class="article-date">
-  <time datetime="2016-08-18T14:57:12.000Z" itemprop="datePublished">2016-08-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/18/面试/">面试</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一、核心要求点<br>1、 《基本标准》<br>（1）前沿的技术和行业知识，具备专研精神的人<br>（2）技术原理，有深入研究和兴趣，比如java的主流框架，应用层面到原理层面<br>（3）基本功扎实，基础知识要非常扎实，代码能力强，精通一线技术<br>Case1、spring的反射原理，AOP的使用<br>Case2、hashmap的实现原理，怎么解决hash冲突<br>（4）技术难点攻关，解决问题和逻辑分析能力强<br>2、 《软性要求》<br>（1）认同阿里价值观，要自信，但不能浮夸吹牛<br>3、 《忌讳方向》<br>（1）停留在应用层面的人<br>（2）思路混乱，对自己做的项目都描述不清、模凌两可的人</p>
-<p>二、面试准备工作<br>（1）对主流的一些技术准备下，网上资料也很多，包括基础的一些技术知识；<br>（2）过往重点项目梳理，包括项目整体的逻辑思路、核心难点、关键技术如何实现，以及深入到底层和开源方面的一些研究，也就是项目里边涉及到的每个核心技术点背后的深层机制；<br>（3）沟通表达能力不要太差，思路不要太混乱，且也不要太浮夸；<br>三、通常面试失败原因<br>1、 脱离一线技术，简历无亮点；<br>2、 代码能力一般，技术单一；<br>3、 太注重股票或薪资要求过高；<br>4、 不自信，沟通表达能力一般；<br>四、某同学-JAVA-面试心得整理<br>1、对项目要非常熟悉，项目每个功能(特别是重要模块)的实现细节要非常熟悉，要对模块并发，扩展等问题要了解。一般情况下，面试官会在功能实现基础上考察多线程并发，分布式，以及横向纵向扩展等问题。<br>2、对项目特点相关的行业解决方案要熟悉，比如支付宝付款分布式事务问题，比如电商网站的订单重复提交如何去重等，这些都是经典解决方案，需要了解。如果你做的是LBS或者O2O的项目，像地图数据结构抽象也是经典的问题。<br>3、然后面试官会喜欢问些软素质问题，比如：项目遇到最大困难是什么，怎么解决的，你觉得自己在什么方面最有自信。<br>4、一般在个别较难问题没回答上来时，也会问一些简单的java基础，缓解下面试人员紧张的情绪，然后再问较难的问题。<br>【通常问题】<br>1、对于涉及到的规模、业务和结构，如何串联的，整个逻辑思路；<br>2、技术细节的实现，比如支付会涉及的清算、交易、网关等可能会出现的问题；3、对于底层的原理，并发等有所了解。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/18/面试/" data-id="ciu96t8nm002f3hs6wkhwtcv8" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
 
     </footer>
   </div>
@@ -573,7 +573,7 @@
           </li>
         
           <li>
-            <a href="/2016/10/13/IDE_创业常用到的工具/">创业常用到的工具</a>
+            <a href="/2016/10/13/JavaWeb_springMvc参数获取/">springMvc参数获取</a>
           </li>
         
           <li>
@@ -581,7 +581,7 @@
           </li>
         
           <li>
-            <a href="/2016/10/13/JavaWeb_springMvc参数获取/">springMvc参数获取</a>
+            <a href="/2016/10/13/IDE_创业常用到的工具/">创业常用到的工具</a>
           </li>
         
       </ul>
