@@ -3,21 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Android_功能开发笔记 | 田鹏飞的个人博客</title>
+  <title>cookie和session的理解 | 田鹏飞的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1，重力感应感应器编程 
- a.获取系统服务（SENSOR_SERVICE)返回一个SensorManager 对象sensormanager = (SensorManager)getSystemSeriver(SENSOR_SERVICE);b.通过SensorManager对象获取相应的Sensor类型的对象sensorObject = sensormanager.getDefaultSens">
+  <meta name="description" content="cookie和session的理解跨页面传值内置对象：为了跨页面传值和状态保持。→HTTP的无状态性
+Session：每一台电脑访问服务器，都会是独立的一套session，key值都一样，但是内容都是不一样的
+不一样：
+1,Session的保存位置是保存在服务器上2,Session没有持久的，它的保存周期就是20分钟.session 保存在服务器内存中，由用户第一次访问服务器时创建，需要注意只有访">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android_功能开发笔记">
-<meta property="og:url" content="http://yoursite.com/2016/05/14/Android-功能开发笔记/index.html">
+<meta property="og:title" content="cookie和session的理解">
+<meta property="og:url" content="http://yoursite.com/2016/10/14/JavaWeb_cookie和session的理解/index.html">
 <meta property="og:site_name" content="田鹏飞的个人博客">
-<meta property="og:description" content="1，重力感应感应器编程 
- a.获取系统服务（SENSOR_SERVICE)返回一个SensorManager 对象sensormanager = (SensorManager)getSystemSeriver(SENSOR_SERVICE);b.通过SensorManager对象获取相应的Sensor类型的对象sensorObject = sensormanager.getDefaultSens">
-<meta property="og:updated_time" content="2016-05-14T14:07:52.000Z">
+<meta property="og:description" content="cookie和session的理解跨页面传值内置对象：为了跨页面传值和状态保持。→HTTP的无状态性
+Session：每一台电脑访问服务器，都会是独立的一套session，key值都一样，但是内容都是不一样的
+不一样：
+1,Session的保存位置是保存在服务器上2,Session没有持久的，它的保存周期就是20分钟.session 保存在服务器内存中，由用户第一次访问服务器时创建，需要注意只有访">
+<meta property="og:updated_time" content="2016-10-14T03:59:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android_功能开发笔记">
-<meta name="twitter:description" content="1，重力感应感应器编程 
- a.获取系统服务（SENSOR_SERVICE)返回一个SensorManager 对象sensormanager = (SensorManager)getSystemSeriver(SENSOR_SERVICE);b.通过SensorManager对象获取相应的Sensor类型的对象sensorObject = sensormanager.getDefaultSens">
+<meta name="twitter:title" content="cookie和session的理解">
+<meta name="twitter:description" content="cookie和session的理解跨页面传值内置对象：为了跨页面传值和状态保持。→HTTP的无状态性
+Session：每一台电脑访问服务器，都会是独立的一套session，key值都一样，但是内容都是不一样的
+不一样：
+1,Session的保存位置是保存在服务器上2,Session没有持久的，它的保存周期就是20分钟.session 保存在服务器内存中，由用户第一次访问服务器时创建，需要注意只有访">
   
     <link rel="alternate" href="/atom.xml" title="田鹏飞的个人博客" type="application/atom+xml">
   
@@ -70,10 +76,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Android-功能开发笔记" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-JavaWeb_cookie和session的理解" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/05/14/Android-功能开发笔记/" class="article-date">
-  <time datetime="2016-05-14T14:07:29.000Z" itemprop="datePublished">2016-05-14</time>
+    <a href="/2016/10/14/JavaWeb_cookie和session的理解/" class="article-date">
+  <time datetime="2016-10-14T13:26:18.000Z" itemprop="datePublished">2016-10-14</time>
 </a>
     
   </div>
@@ -84,7 +90,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Android_功能开发笔记
+      cookie和session的理解
     </h1>
   
 
@@ -92,21 +98,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1，重力感应<br>感应器编程 </p>
-<p> a.获取系统服务（SENSOR_SERVICE)返回一个SensorManager 对象<br>sensormanager = (SensorManager)getSystemSeriver(SENSOR_SERVICE);<br>b.通过SensorManager对象获取相应的Sensor类型的对象<br>sensorObject = sensormanager.getDefaultSensor(sensor Type);<br>c.声明一个SensorEventListener 对象用于侦听Sensor 事件，并重载onSensorChanged方法<br>SensorEventListener sensorListener = new SensorEventListener(){<br>};<br>d.注册相应的SensorService<br>sensormanager.registerListener(sensorListener, sensorObject, Sensor TYPE);<br>e.销毁相应的SensorService<br>sensormanager.unregisterListener(sensorListener, sensorObject);</p>
-<p>f: SensorListener 接口是传感器应用程序的中心。它包括两个必需方法：<br>　　 onSensorChanged(int sensor,float values[]) 方法在传感器值更改时调用。<br>该方法只对受此应用程序监视的传感器调用(更多内容见下文)。该方法的参数包括：一个整数，指示更改的传感器;一个浮点值数组，表示传感器数据本身。有些传感器只提供一个数据值，另一些则提供三个浮点值。方向和加速表传感器都提供三个数据值。</p>
-<p>layoutInflater = (LayoutInflater)context.getSystemService(Context.Layout_inflater_service);<br>利用上下文对象取得布局服务<br>View convertView = layoutInflater.inflate(listviewItem, null);</p>
-<p>Android aidl服务通信<br>远程对象Ibender是代理对象<br>系统内部的服务也需要进行aidl实现</p>
-<p>为activity应用主题需要在application里面进行添加theme</p>
-<p>1,强制执行单任务模式<br>如果应用程序跳转走后再次启动的话，可能会在设备上产生多个activity的实例，会可能导致异常<br>确保设备上只有一个actuvity执行<br>android:launchMode=”singleInstance”<br>使得所有的activity作为一个任务，共享信息非常方便<br>android:lanuchMode=”sigleTask”<br>2，强制纵屏<br>android:screenOrientation=”portrait”<br>强制横屏<br>android:screenOrientation=”landscape”<br>在硬键盘滑出时，先前的情况还是会导致activity的关闭和重新启动，所以可以采用第三种办法，告知Android系统处理应用程序方向和键盘滑出事件，可以在activity元素属性中添加如下代码：<br>android:configChanges=”orientation|keyboardHidden”<br>该方法可以单独使用，也可以和screenOrdientation属性结合在一起使用，视应用程序要求而定<br>3，声音转换为文本<br>Google功能<br>RecongizerIntent<br>4，设置线程优先级<br>可以在myThread.start()前，调用myThread.setPriority(priority）为线程设置不同的优先级，这里的priority不能大于常量Thread.MAX_PRIORITY(该值为10)，也不能小于1<br>5，有时候当一个组件完成或被杀死后，开发者希望由它产生的线程也被杀死<br>方法一：mythread.interrupt()<br>方法二：mythread.setDaemon(true)将所有生成的线程声明为守护线程，这样可以确保如果应用程序的主线程被杀死，那么该应用程序的所有守护线程可也以都被杀死<br>方法三：可以在run（）方法中使用while（isRunning）并且从循环外部isRunning=false的方法来杀死线程，但是这种方法的确定是不能有效的控制线程停止的时间<br>6，倒数计时器<br>CountDownTimer<br>7,使用搜索键<br>8,使用手势<br>simpleongestureListener（）</p>
+        <h1 id="cookie和session的理解"><a href="#cookie和session的理解" class="headerlink" title="cookie和session的理解"></a>cookie和session的理解</h1><p>跨页面传值<br>内置对象：为了跨页面传值和状态保持。→HTTP的无状态性</p>
+<p>Session：每一台电脑访问服务器，都会是独立的一套session，key值都一样，但是内容都是不一样的</p>
+<p>不一样：</p>
+<h3 id="1-Session的保存位置是保存在服务器上"><a href="#1-Session的保存位置是保存在服务器上" class="headerlink" title="1,Session的保存位置是保存在服务器上"></a>1,Session的保存位置是保存在服务器上</h3><h3 id="2-Session没有持久的，它的保存周期就是20分钟"><a href="#2-Session没有持久的，它的保存周期就是20分钟" class="headerlink" title="2,Session没有持久的，它的保存周期就是20分钟."></a>2,Session没有持久的，它的保存周期就是20分钟.</h3><p>session 保存在服务器内存中，由用户第一次访问服务器时创建，需要注意只有访问JSP、Servlet等程序时才会创建Session，只访问HTML、IMAGE等静态资源并不会创建Session，可调用request.getSession(true)强制生成Session。</p>
+<p>Session什么时候失效？</p>
+<h3 id="1-服务器会把长时间没有活动的Session从服务器内存中清除，此时Session便失效。Tomcat中Session的默认失效时间为20分钟。"><a href="#1-服务器会把长时间没有活动的Session从服务器内存中清除，此时Session便失效。Tomcat中Session的默认失效时间为20分钟。" class="headerlink" title="1,服务器会把长时间没有活动的Session从服务器内存中清除，此时Session便失效。Tomcat中Session的默认失效时间为20分钟。"></a>1,服务器会把长时间没有活动的Session从服务器内存中清除，此时Session便失效。Tomcat中Session的默认失效时间为20分钟。</h3><h3 id="2-调用Session的invalidate方法。"><a href="#2-调用Session的invalidate方法。" class="headerlink" title="2,调用Session的invalidate方法。"></a>2,调用Session的invalidate方法。</h3><p>  session 需要客户端浏览器的支持，因为Session需要使用Cookie作为识别标志。http协议是无状态的，session不能依据http连接来判断是否为同一客户，因此服务器向客户端浏览器发送一个名为JSESSIONID的Cookie，它的值为该Session的id（也就是HttpSession.getId()的返回值）。Session依据该Cookie来识别是否为同一用户。</p>
+<p>  该Cookie为服务器自动生成的，它的maxAge属性一般为-1，表示仅当前浏览器内有效，并且各浏览器窗口间不共享，关闭浏览器就会失效。因此同一机器的两个浏览器窗口访问服务器时，会生成两个不同的Session。但是由浏览器窗口内的链接、脚本等打开的新窗口（也就是说不是双击桌面浏览器图标等打开的窗口）除外。这类子窗口会共享父窗口的Cookie，因此会共享一个Session。</p>
+<p>  注意：新开的浏览器窗口会生成新的Session，但子窗口除外。子窗口会共用父窗口的Session。例如，在链接上右击，在弹出的快捷菜单中选择”在新窗口中打开”时，子窗口便可以访问父窗口的Session。</p>
+<p>  如果客户端浏览器将Cookie功能禁用，或者不支持Cookie怎么办？例如，绝大多数的手机浏览器都不支持Cookie。Java Web提供了另一种解决方案：URL地址重写。</p>
+<p>  URL地址重写是对客户端不支持Cookie的解决方案。URL地址重写的原理是将该用户Session的id信息重写到URL地址中。服务器能够解析重写后的URL获取Session的id。这样即使客户端不支持Cookie，也可以使用Session来记录用户状态。HttpServletResponse类提供了encodeURL(String url)实现URL地址重写，该方法会自动判断客户端是否支持Cookie。如果客户端支持Cookie，会将URL原封不动地输出来。如果客户端不支持Cookie，则会将用户Session的id重写到URL中。</p>
+<p>  注意：TOMCAT判断客户端浏览器是否支持Cookie的依据是请求中是否含有Cookie。尽管客户端可能会支持Cookie，但是由于第一次请求时不会携带任何Cookie（因为并无任何Cookie可以携带），URL地址重写后的地址中仍然会带有jsessionid。当第二次访问时服务器已经在浏览器中写入Cookie了，因此URL地址重写后的地址中就不会带有jsessionid了。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android-功能开发笔记/" data-id="ciu990xxk00048gs6hjb2lqr9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/14/JavaWeb_cookie和session的理解/" data-id="ciu990xz6001i8gs6fizqysw2" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
 
     </footer>
   </div>
@@ -114,19 +124,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/05/14/Unity3D第一人称射击游戏（推荐）/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/10/14/心情/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Unity3D第一人称射击游戏（推荐）
+          心情
         
       </div>
     </a>
   
   
-    <a href="/2016/05/14/Android中通过来电转移实现“电话已关机”-“此号码已停机”等/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/10/14/JavaWeb_encodeURI来解决URL传递时的中文问题/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Android中通过来电转移实现“电话已关机”,“此号码已停机”等</div>
+      <div class="article-nav-title">encodeURI来解决URL传递时的中文问题</div>
     </a>
   
 </nav>
