@@ -5,16 +5,16 @@
   
   <title>微信内置浏览器的JsAPI | 田鹏飞的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="之前有写过几篇关于微信内置浏览器（WebView）中特有的Javascript API（Javascript Interface）的文章，不过随着微信官方的调整，部分API已经不能直接使用，比如类似直接分享到朋友圈 WeixinJSBridge.invoke(‘shareTimeline’,data,callback) 这样的功能，直接调用，会得到一个访问拒绝的response。后来重新调研了下，">
+  <meta name="description" content="&amp;#x4E4B;&amp;#x524D;&amp;#x6709;&amp;#x5199;&amp;#x8FC7;&amp;#x51E0;&amp;#x7BC7;&amp;#x5173;&amp;#x4E8E;&amp;#x5FAE;&amp;#x4FE1;&amp;#x5185;&amp;#x7F6E;&amp;#x6D4F;&amp;#x89C8;&amp;#x5668;&amp;#xFF08;WebView&amp;#xFF09;&amp;#x4E2D;&amp;#x7279;&amp;#x6709;&amp;#x7684;Javascript API&amp;#x">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微信内置浏览器的JsAPI">
 <meta property="og:url" content="http://yoursite.com/2016/05/14/微信内置浏览器的JsAPI/index.html">
 <meta property="og:site_name" content="田鹏飞的个人博客">
-<meta property="og:description" content="之前有写过几篇关于微信内置浏览器（WebView）中特有的Javascript API（Javascript Interface）的文章，不过随着微信官方的调整，部分API已经不能直接使用，比如类似直接分享到朋友圈 WeixinJSBridge.invoke(‘shareTimeline’,data,callback) 这样的功能，直接调用，会得到一个访问拒绝的response。后来重新调研了下，">
+<meta property="og:description" content="&amp;#x4E4B;&amp;#x524D;&amp;#x6709;&amp;#x5199;&amp;#x8FC7;&amp;#x51E0;&amp;#x7BC7;&amp;#x5173;&amp;#x4E8E;&amp;#x5FAE;&amp;#x4FE1;&amp;#x5185;&amp;#x7F6E;&amp;#x6D4F;&amp;#x89C8;&amp;#x5668;&amp;#xFF08;WebView&amp;#xFF09;&amp;#x4E2D;&amp;#x7279;&amp;#x6709;&amp;#x7684;Javascript API&amp;#x">
 <meta property="og:updated_time" content="2016-05-14T14:12:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信内置浏览器的JsAPI">
-<meta name="twitter:description" content="之前有写过几篇关于微信内置浏览器（WebView）中特有的Javascript API（Javascript Interface）的文章，不过随着微信官方的调整，部分API已经不能直接使用，比如类似直接分享到朋友圈 WeixinJSBridge.invoke(‘shareTimeline’,data,callback) 这样的功能，直接调用，会得到一个访问拒绝的response。后来重新调研了下，">
+<meta name="twitter:description" content="&amp;#x4E4B;&amp;#x524D;&amp;#x6709;&amp;#x5199;&amp;#x8FC7;&amp;#x51E0;&amp;#x7BC7;&amp;#x5173;&amp;#x4E8E;&amp;#x5FAE;&amp;#x4FE1;&amp;#x5185;&amp;#x7F6E;&amp;#x6D4F;&amp;#x89C8;&amp;#x5668;&amp;#xFF08;WebView&amp;#xFF09;&amp;#x4E2D;&amp;#x7279;&amp;#x6709;&amp;#x7684;Javascript API&amp;#x">
   
     <link rel="alternate" href="/atom.xml" title="田鹏飞的个人博客" type="application/atom+xml">
   
@@ -89,18 +89,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>之前有写过几篇关于微信内置浏览器（WebView）中特有的Javascript API（Javascript Interface）的文章，不过随着微信官方的调整，部分API已经不能直接使用，比如类似直接分享到朋友圈 WeixinJSBridge.invoke(‘shareTimeline’,data,callback) 这样的功能，直接调用，会得到一个访问拒绝的response。后来重新调研了下，整理出来了一个WeixinAPI的Javascript类库，分享出来，如果你对微信公众平台开发感兴趣，应该对你有用。<br>/**!</p>
+        <p>&#x4E4B;&#x524D;&#x6709;&#x5199;&#x8FC7;&#x51E0;&#x7BC7;&#x5173;&#x4E8E;&#x5FAE;&#x4FE1;&#x5185;&#x7F6E;&#x6D4F;&#x89C8;&#x5668;&#xFF08;WebView&#xFF09;&#x4E2D;&#x7279;&#x6709;&#x7684;Javascript API&#xFF08;Javascript Interface&#xFF09;&#x7684;&#x6587;&#x7AE0;&#xFF0C;&#x4E0D;&#x8FC7;&#x968F;&#x7740;&#x5FAE;&#x4FE1;&#x5B98;&#x65B9;&#x7684;&#x8C03;&#x6574;&#xFF0C;&#x90E8;&#x5206;API&#x5DF2;&#x7ECF;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#xFF0C;&#x6BD4;&#x5982;&#x7C7B;&#x4F3C;&#x76F4;&#x63A5;&#x5206;&#x4EAB;&#x5230;&#x670B;&#x53CB;&#x5708; WeixinJSBridge.invoke(&#x2018;shareTimeline&#x2019;,data,callback) &#x8FD9;&#x6837;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#xFF0C;&#x4F1A;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x8BBF;&#x95EE;&#x62D2;&#x7EDD;&#x7684;response&#x3002;&#x540E;&#x6765;&#x91CD;&#x65B0;&#x8C03;&#x7814;&#x4E86;&#x4E0B;&#xFF0C;&#x6574;&#x7406;&#x51FA;&#x6765;&#x4E86;&#x4E00;&#x4E2A;WeixinAPI&#x7684;Javascript&#x7C7B;&#x5E93;&#xFF0C;&#x5206;&#x4EAB;&#x51FA;&#x6765;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x5BF9;&#x5FAE;&#x4FE1;&#x516C;&#x4F17;&#x5E73;&#x53F0;&#x5F00;&#x53D1;&#x611F;&#x5174;&#x8DA3;&#xFF0C;&#x5E94;&#x8BE5;&#x5BF9;&#x4F60;&#x6709;&#x7528;&#x3002;<br>/**!</p>
 <ul>
-<li>微信内置浏览器的Javascript API，功能包括：<br>*</li>
-<li>1、分享到微信朋友圈</li>
-<li>2、分享给微信好友</li>
-<li>3、分享到腾讯微博</li>
-<li>4、隐藏/显示右上角的菜单入口</li>
-<li>5、隐藏/显示底部浏览器工具栏</li>
-<li>6、获取当前的网络状态</li>
-<li>7、调起微信客户端的图片播放组件<br>*</li>
+<li>&#x5FAE;&#x4FE1;&#x5185;&#x7F6E;&#x6D4F;&#x89C8;&#x5668;&#x7684;Javascript API&#xFF0C;&#x529F;&#x80FD;&#x5305;&#x62EC;&#xFF1A;<br>*</li>
+<li>1&#x3001;&#x5206;&#x4EAB;&#x5230;&#x5FAE;&#x4FE1;&#x670B;&#x53CB;&#x5708;</li>
+<li>2&#x3001;&#x5206;&#x4EAB;&#x7ED9;&#x5FAE;&#x4FE1;&#x597D;&#x53CB;</li>
+<li>3&#x3001;&#x5206;&#x4EAB;&#x5230;&#x817E;&#x8BAF;&#x5FAE;&#x535A;</li>
+<li>4&#x3001;&#x9690;&#x85CF;/&#x663E;&#x793A;&#x53F3;&#x4E0A;&#x89D2;&#x7684;&#x83DC;&#x5355;&#x5165;&#x53E3;</li>
+<li>5&#x3001;&#x9690;&#x85CF;/&#x663E;&#x793A;&#x5E95;&#x90E8;&#x6D4F;&#x89C8;&#x5668;&#x5DE5;&#x5177;&#x680F;</li>
+<li>6&#x3001;&#x83B7;&#x53D6;&#x5F53;&#x524D;&#x7684;&#x7F51;&#x7EDC;&#x72B6;&#x6001;</li>
+<li>7&#x3001;&#x8C03;&#x8D77;&#x5FAE;&#x4FE1;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x56FE;&#x7247;&#x64AD;&#x653E;&#x7EC4;&#x4EF6;<br>*</li>
 <li><p>@author zhaoxianlie(<a href="http://www.baidufe.com" target="_blank" rel="external">http://www.baidufe.com</a>)<br>*/<br>var WeixinApi = (function () { </p>
-<p> /<em> 这里省略了一堆代码……下面直接看调用接口 </em>/<br> return {</p>
+<p> /<em> &#x8FD9;&#x91CC;&#x7701;&#x7565;&#x4E86;&#x4E00;&#x5806;&#x4EE3;&#x7801;&#x2026;&#x2026;&#x4E0B;&#x9762;&#x76F4;&#x63A5;&#x770B;&#x8C03;&#x7528;&#x63A5;&#x53E3; </em>/<br> return {</p>
 <pre><code>ready           :wxJsBridgeReady,
 shareToTimeline :weixinShareTimeline,
 shareToWeibo    :weixinShareWeibo,
@@ -114,138 +114,138 @@ imagePreview    :imagePreview
 </code></pre><p> };    </p>
 </li>
 </ul>
-<p>});<br>下面，我们先来看一下这些API都应该怎么使用，先从最简单的入手。</p>
-<p>1、假如我希望一打开网页后，就隐藏掉右上角的PopUp菜单入口，并且隐藏掉浏览器下方的工具栏，同时还要获得当前的网络状态，那么，我们的代码可以这样来写：<br>// 所有功能必须包含在 WeixinApi.ready 中进行<br>WeixinApi.ready(function(Api){<br>    // 隐藏右上角popup菜单入口<br>    Api.hideOptionMenu();</p>
-<pre><code>// 隐藏浏览器下方的工具栏
+<p>});<br>&#x4E0B;&#x9762;&#xFF0C;&#x6211;&#x4EEC;&#x5148;&#x6765;&#x770B;&#x4E00;&#x4E0B;&#x8FD9;&#x4E9B;API&#x90FD;&#x5E94;&#x8BE5;&#x600E;&#x4E48;&#x4F7F;&#x7528;&#xFF0C;&#x5148;&#x4ECE;&#x6700;&#x7B80;&#x5355;&#x7684;&#x5165;&#x624B;&#x3002;</p>
+<p>1&#x3001;&#x5047;&#x5982;&#x6211;&#x5E0C;&#x671B;&#x4E00;&#x6253;&#x5F00;&#x7F51;&#x9875;&#x540E;&#xFF0C;&#x5C31;&#x9690;&#x85CF;&#x6389;&#x53F3;&#x4E0A;&#x89D2;&#x7684;PopUp&#x83DC;&#x5355;&#x5165;&#x53E3;&#xFF0C;&#x5E76;&#x4E14;&#x9690;&#x85CF;&#x6389;&#x6D4F;&#x89C8;&#x5668;&#x4E0B;&#x65B9;&#x7684;&#x5DE5;&#x5177;&#x680F;&#xFF0C;&#x540C;&#x65F6;&#x8FD8;&#x8981;&#x83B7;&#x5F97;&#x5F53;&#x524D;&#x7684;&#x7F51;&#x7EDC;&#x72B6;&#x6001;&#xFF0C;&#x90A3;&#x4E48;&#xFF0C;&#x6211;&#x4EEC;&#x7684;&#x4EE3;&#x7801;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x6765;&#x5199;&#xFF1A;<br>// &#x6240;&#x6709;&#x529F;&#x80FD;&#x5FC5;&#x987B;&#x5305;&#x542B;&#x5728; WeixinApi.ready &#x4E2D;&#x8FDB;&#x884C;<br>WeixinApi.ready(function(Api){<br>    // &#x9690;&#x85CF;&#x53F3;&#x4E0A;&#x89D2;popup&#x83DC;&#x5355;&#x5165;&#x53E3;<br>    Api.hideOptionMenu();</p>
+<pre><code>// &#x9690;&#x85CF;&#x6D4F;&#x89C8;&#x5668;&#x4E0B;&#x65B9;&#x7684;&#x5DE5;&#x5177;&#x680F;
 Api.hideToolbar();
 
-// 获取网络状态
+// &#x83B7;&#x53D6;&#x7F51;&#x7EDC;&#x72B6;&#x6001;
 Api.getNetworkType(function(network){
-    // 拿到 network 以后，做任何你想做的事
+    // &#x62FF;&#x5230; network &#x4EE5;&#x540E;&#xFF0C;&#x505A;&#x4EFB;&#x4F55;&#x4F60;&#x60F3;&#x505A;&#x7684;&#x4E8B;
 });
-</code></pre><p>});<br>如示例代码中的注释所示，所有的功能执行必须放在 WeixinApi.ready 方法中执行，就好比你用jQuery的时候，通常都需要使用 jQuery(document).ready(function(){ }) 一样。为什么要这样做？相信不用我解释大家都能明白，因为我们必须要保证在执行这些方法的时候，WeixinJsBridge API已经被加入到WebView上了！</p>
-<p>2、再来看一个有关分享的例子，假如用户在阅读我的文章（或在使用我的产品）的过程中，发现它很有意思或有价值，一般都会将其收藏或分享（给好友、朋友圈、微博等）出去，那现在我就希望能监测到用户的分享行为，比如：自定义用户可分享的内容、甚至是在用户分享之、分享被取消、分享失败、分享成功、以及整个分享操作过程结束，我们都去做点儿什么。那么，这个代码我们可以这样来写：<br>// 所有功能必须包含在 WeixinApi.ready 中进行<br>WeixinApi.ready(function(Api){</p>
-<pre><code>// 微信分享的数据
+</code></pre><p>});<br>&#x5982;&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#x4E2D;&#x7684;&#x6CE8;&#x91CA;&#x6240;&#x793A;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x529F;&#x80FD;&#x6267;&#x884C;&#x5FC5;&#x987B;&#x653E;&#x5728; WeixinApi.ready &#x65B9;&#x6CD5;&#x4E2D;&#x6267;&#x884C;&#xFF0C;&#x5C31;&#x597D;&#x6BD4;&#x4F60;&#x7528;jQuery&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x901A;&#x5E38;&#x90FD;&#x9700;&#x8981;&#x4F7F;&#x7528; jQuery(document).ready(function(){ }) &#x4E00;&#x6837;&#x3002;&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x8FD9;&#x6837;&#x505A;&#xFF1F;&#x76F8;&#x4FE1;&#x4E0D;&#x7528;&#x6211;&#x89E3;&#x91CA;&#x5927;&#x5BB6;&#x90FD;&#x80FD;&#x660E;&#x767D;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x5FC5;&#x987B;&#x8981;&#x4FDD;&#x8BC1;&#x5728;&#x6267;&#x884C;&#x8FD9;&#x4E9B;&#x65B9;&#x6CD5;&#x7684;&#x65F6;&#x5019;&#xFF0C;WeixinJsBridge API&#x5DF2;&#x7ECF;&#x88AB;&#x52A0;&#x5165;&#x5230;WebView&#x4E0A;&#x4E86;&#xFF01;</p>
+<p>2&#x3001;&#x518D;&#x6765;&#x770B;&#x4E00;&#x4E2A;&#x6709;&#x5173;&#x5206;&#x4EAB;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x5047;&#x5982;&#x7528;&#x6237;&#x5728;&#x9605;&#x8BFB;&#x6211;&#x7684;&#x6587;&#x7AE0;&#xFF08;&#x6216;&#x5728;&#x4F7F;&#x7528;&#x6211;&#x7684;&#x4EA7;&#x54C1;&#xFF09;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x53D1;&#x73B0;&#x5B83;&#x5F88;&#x6709;&#x610F;&#x601D;&#x6216;&#x6709;&#x4EF7;&#x503C;&#xFF0C;&#x4E00;&#x822C;&#x90FD;&#x4F1A;&#x5C06;&#x5176;&#x6536;&#x85CF;&#x6216;&#x5206;&#x4EAB;&#xFF08;&#x7ED9;&#x597D;&#x53CB;&#x3001;&#x670B;&#x53CB;&#x5708;&#x3001;&#x5FAE;&#x535A;&#x7B49;&#xFF09;&#x51FA;&#x53BB;&#xFF0C;&#x90A3;&#x73B0;&#x5728;&#x6211;&#x5C31;&#x5E0C;&#x671B;&#x80FD;&#x76D1;&#x6D4B;&#x5230;&#x7528;&#x6237;&#x7684;&#x5206;&#x4EAB;&#x884C;&#x4E3A;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;&#x81EA;&#x5B9A;&#x4E49;&#x7528;&#x6237;&#x53EF;&#x5206;&#x4EAB;&#x7684;&#x5185;&#x5BB9;&#x3001;&#x751A;&#x81F3;&#x662F;&#x5728;&#x7528;&#x6237;&#x5206;&#x4EAB;&#x4E4B;&#x3001;&#x5206;&#x4EAB;&#x88AB;&#x53D6;&#x6D88;&#x3001;&#x5206;&#x4EAB;&#x5931;&#x8D25;&#x3001;&#x5206;&#x4EAB;&#x6210;&#x529F;&#x3001;&#x4EE5;&#x53CA;&#x6574;&#x4E2A;&#x5206;&#x4EAB;&#x64CD;&#x4F5C;&#x8FC7;&#x7A0B;&#x7ED3;&#x675F;&#xFF0C;&#x6211;&#x4EEC;&#x90FD;&#x53BB;&#x505A;&#x70B9;&#x513F;&#x4EC0;&#x4E48;&#x3002;&#x90A3;&#x4E48;&#xFF0C;&#x8FD9;&#x4E2A;&#x4EE3;&#x7801;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x6765;&#x5199;&#xFF1A;<br>// &#x6240;&#x6709;&#x529F;&#x80FD;&#x5FC5;&#x987B;&#x5305;&#x542B;&#x5728; WeixinApi.ready &#x4E2D;&#x8FDB;&#x884C;<br>WeixinApi.ready(function(Api){</p>
+<pre><code>// &#x5FAE;&#x4FE1;&#x5206;&#x4EAB;&#x7684;&#x6570;&#x636E;
 var wxData = {
     &quot;imgUrl&quot;:&apos;http://www.baidufe.com/fe/blog/static/img/weixin-qrcode-2.jpg&apos;,
     &quot;link&quot;:&apos;http://www.baidufe.com&apos;,
-    &quot;desc&quot;:&apos;大家好，我是Alien，Web前端&amp;Android客户端码农，喜欢技术上的瞎倒腾！欢迎多交流&apos;,
-    &quot;title&quot;:&quot;大家好，我是赵先烈&quot;
+    &quot;desc&quot;:&apos;&#x5927;&#x5BB6;&#x597D;&#xFF0C;&#x6211;&#x662F;Alien&#xFF0C;Web&#x524D;&#x7AEF;&amp;Android&#x5BA2;&#x6237;&#x7AEF;&#x7801;&#x519C;&#xFF0C;&#x559C;&#x6B22;&#x6280;&#x672F;&#x4E0A;&#x7684;&#x778E;&#x5012;&#x817E;&#xFF01;&#x6B22;&#x8FCE;&#x591A;&#x4EA4;&#x6D41;&apos;,
+    &quot;title&quot;:&quot;&#x5927;&#x5BB6;&#x597D;&#xFF0C;&#x6211;&#x662F;&#x8D75;&#x5148;&#x70C8;&quot;
 };
 
-// 分享的回调
+// &#x5206;&#x4EAB;&#x7684;&#x56DE;&#x8C03;
 var wxCallbacks = {
-    // 分享操作开始之前
+    // &#x5206;&#x4EAB;&#x64CD;&#x4F5C;&#x5F00;&#x59CB;&#x4E4B;&#x524D;
     ready:function () {
-        // 你可以在这里对分享的数据进行重组
+        // &#x4F60;&#x53EF;&#x4EE5;&#x5728;&#x8FD9;&#x91CC;&#x5BF9;&#x5206;&#x4EAB;&#x7684;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x91CD;&#x7EC4;
     },
-    // 分享被用户自动取消
+    // &#x5206;&#x4EAB;&#x88AB;&#x7528;&#x6237;&#x81EA;&#x52A8;&#x53D6;&#x6D88;
     cancel:function (resp) {
-        // 你可以在你的页面上给用户一个小Tip，为什么要取消呢？
+        // &#x4F60;&#x53EF;&#x4EE5;&#x5728;&#x4F60;&#x7684;&#x9875;&#x9762;&#x4E0A;&#x7ED9;&#x7528;&#x6237;&#x4E00;&#x4E2A;&#x5C0F;Tip&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x53D6;&#x6D88;&#x5462;&#xFF1F;
     },
-    // 分享失败了
+    // &#x5206;&#x4EAB;&#x5931;&#x8D25;&#x4E86;
     fail:function (resp) {
-        // 分享失败了，是不是可以告诉用户：不要紧，可能是网络问题，一会儿再试试？
+        // &#x5206;&#x4EAB;&#x5931;&#x8D25;&#x4E86;&#xFF0C;&#x662F;&#x4E0D;&#x662F;&#x53EF;&#x4EE5;&#x544A;&#x8BC9;&#x7528;&#x6237;&#xFF1A;&#x4E0D;&#x8981;&#x7D27;&#xFF0C;&#x53EF;&#x80FD;&#x662F;&#x7F51;&#x7EDC;&#x95EE;&#x9898;&#xFF0C;&#x4E00;&#x4F1A;&#x513F;&#x518D;&#x8BD5;&#x8BD5;&#xFF1F;
     },
-    // 分享成功
+    // &#x5206;&#x4EAB;&#x6210;&#x529F;
     confirm:function (resp) {
-        // 分享成功了，我们是不是可以做一些分享统计呢？
+        // &#x5206;&#x4EAB;&#x6210;&#x529F;&#x4E86;&#xFF0C;&#x6211;&#x4EEC;&#x662F;&#x4E0D;&#x662F;&#x53EF;&#x4EE5;&#x505A;&#x4E00;&#x4E9B;&#x5206;&#x4EAB;&#x7EDF;&#x8BA1;&#x5462;&#xFF1F;
     },
-    // 整个分享过程结束
+    // &#x6574;&#x4E2A;&#x5206;&#x4EAB;&#x8FC7;&#x7A0B;&#x7ED3;&#x675F;
     all:function (resp) {
-        // 如果你做的是一个鼓励用户进行分享的产品，在这里是不是可以给用户一些反馈了？
+        // &#x5982;&#x679C;&#x4F60;&#x505A;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x9F13;&#x52B1;&#x7528;&#x6237;&#x8FDB;&#x884C;&#x5206;&#x4EAB;&#x7684;&#x4EA7;&#x54C1;&#xFF0C;&#x5728;&#x8FD9;&#x91CC;&#x662F;&#x4E0D;&#x662F;&#x53EF;&#x4EE5;&#x7ED9;&#x7528;&#x6237;&#x4E00;&#x4E9B;&#x53CD;&#x9988;&#x4E86;&#xFF1F;
     }
 };
 
-// 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+// &#x7528;&#x6237;&#x70B9;&#x5F00;&#x53F3;&#x4E0A;&#x89D2;popup&#x83DC;&#x5355;&#x540E;&#xFF0C;&#x70B9;&#x51FB;&#x5206;&#x4EAB;&#x7ED9;&#x597D;&#x53CB;&#xFF0C;&#x4F1A;&#x6267;&#x884C;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x4EE3;&#x7801;
 Api.shareToFriend(wxData, wxCallbacks);
 
-// 点击分享到朋友圈，会执行下面这个代码
+// &#x70B9;&#x51FB;&#x5206;&#x4EAB;&#x5230;&#x670B;&#x53CB;&#x5708;&#xFF0C;&#x4F1A;&#x6267;&#x884C;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x4EE3;&#x7801;
 Api.shareToTimeline(wxData, wxCallbacks);
 
-// 点击分享到腾讯微博，会执行下面这个代码
+// &#x70B9;&#x51FB;&#x5206;&#x4EAB;&#x5230;&#x817E;&#x8BAF;&#x5FAE;&#x535A;&#xFF0C;&#x4F1A;&#x6267;&#x884C;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x4EE3;&#x7801;
 Api.shareToWeibo(wxData, wxCallbacks);
 </code></pre><p>});</p>
-<p>3、当然，如果你的业务需求相当复杂，比如，你的产品就是一个微信网页游戏（类似“2048数字游戏微信版”），你希望用户分享出去的数据是一个网页截屏、或者需要将用户当前的游戏状态回传到服务器动态生成可分享的内容；那么这种情况我们又该怎么做呢？来看下面这个示例代码吧：<br>// 所有功能必须包含在 WeixinApi.ready 中进行<br>WeixinApi.ready(function(Api){</p>
-<pre><code>// 分享的回调
+<p>3&#x3001;&#x5F53;&#x7136;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x7684;&#x4E1A;&#x52A1;&#x9700;&#x6C42;&#x76F8;&#x5F53;&#x590D;&#x6742;&#xFF0C;&#x6BD4;&#x5982;&#xFF0C;&#x4F60;&#x7684;&#x4EA7;&#x54C1;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x5FAE;&#x4FE1;&#x7F51;&#x9875;&#x6E38;&#x620F;&#xFF08;&#x7C7B;&#x4F3C;&#x201C;2048&#x6570;&#x5B57;&#x6E38;&#x620F;&#x5FAE;&#x4FE1;&#x7248;&#x201D;&#xFF09;&#xFF0C;&#x4F60;&#x5E0C;&#x671B;&#x7528;&#x6237;&#x5206;&#x4EAB;&#x51FA;&#x53BB;&#x7684;&#x6570;&#x636E;&#x662F;&#x4E00;&#x4E2A;&#x7F51;&#x9875;&#x622A;&#x5C4F;&#x3001;&#x6216;&#x8005;&#x9700;&#x8981;&#x5C06;&#x7528;&#x6237;&#x5F53;&#x524D;&#x7684;&#x6E38;&#x620F;&#x72B6;&#x6001;&#x56DE;&#x4F20;&#x5230;&#x670D;&#x52A1;&#x5668;&#x52A8;&#x6001;&#x751F;&#x6210;&#x53EF;&#x5206;&#x4EAB;&#x7684;&#x5185;&#x5BB9;&#xFF1B;&#x90A3;&#x4E48;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x6211;&#x4EEC;&#x53C8;&#x8BE5;&#x600E;&#x4E48;&#x505A;&#x5462;&#xFF1F;&#x6765;&#x770B;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#x5427;&#xFF1A;<br>// &#x6240;&#x6709;&#x529F;&#x80FD;&#x5FC5;&#x987B;&#x5305;&#x542B;&#x5728; WeixinApi.ready &#x4E2D;&#x8FDB;&#x884C;<br>WeixinApi.ready(function(Api){</p>
+<pre><code>// &#x5206;&#x4EAB;&#x7684;&#x56DE;&#x8C03;
 var wxCallbacks = {
-    // 分享过程需要异步执行
+    // &#x5206;&#x4EAB;&#x8FC7;&#x7A0B;&#x9700;&#x8981;&#x5F02;&#x6B65;&#x6267;&#x884C;
     async : true,
-    // 分享操作开始之前
+    // &#x5206;&#x4EAB;&#x64CD;&#x4F5C;&#x5F00;&#x59CB;&#x4E4B;&#x524D;
     ready:function () {
         var self = this;
-        // 假设你需要在这里发一个 ajax 请求去获取分享数据
+        // &#x5047;&#x8BBE;&#x4F60;&#x9700;&#x8981;&#x5728;&#x8FD9;&#x91CC;&#x53D1;&#x4E00;&#x4E2A; ajax &#x8BF7;&#x6C42;&#x53BB;&#x83B7;&#x53D6;&#x5206;&#x4EAB;&#x6570;&#x636E;
         $.post(yourServerUrl,yourPostData,function(responseData){
-            // 可以解析reponseData得到wxData
+            // &#x53EF;&#x4EE5;&#x89E3;&#x6790;reponseData&#x5F97;&#x5230;wxData
             var wxData = responseData;
-            // 调用dataLoaded方法，会自动触发分享操作
-            // 注意，当且仅当 async为true时，wxCallbacks.dataLoaded才会被初始化，并调用
+            // &#x8C03;&#x7528;dataLoaded&#x65B9;&#x6CD5;&#xFF0C;&#x4F1A;&#x81EA;&#x52A8;&#x89E6;&#x53D1;&#x5206;&#x4EAB;&#x64CD;&#x4F5C;
+            // &#x6CE8;&#x610F;&#xFF0C;&#x5F53;&#x4E14;&#x4EC5;&#x5F53; async&#x4E3A;true&#x65F6;&#xFF0C;wxCallbacks.dataLoaded&#x624D;&#x4F1A;&#x88AB;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x5E76;&#x8C03;&#x7528;
             self.dataLoaded(wxData);
         });
     }
-    /* cancel、fail、confirm、all 方法同示例2，此处略掉 */
+    /* cancel&#x3001;fail&#x3001;confirm&#x3001;all &#x65B9;&#x6CD5;&#x540C;&#x793A;&#x4F8B;2&#xFF0C;&#x6B64;&#x5904;&#x7565;&#x6389; */
 };
 
-// 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+// &#x7528;&#x6237;&#x70B9;&#x5F00;&#x53F3;&#x4E0A;&#x89D2;popup&#x83DC;&#x5355;&#x540E;&#xFF0C;&#x70B9;&#x51FB;&#x5206;&#x4EAB;&#x7ED9;&#x597D;&#x53CB;&#xFF0C;&#x4F1A;&#x6267;&#x884C;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x4EE3;&#x7801;
 Api.shareToFriend({}, wxCallbacks);
-</code></pre><p>});<br>唯一的区别就是在wxCallbacks中，增加了配置项async为true，表示这个分享过程是异步调用的，其实就是指的ready方法异步执行，在这种情况下，我们需要在ready方法中显式地调用wxCallbacks的dataLoaded方法，以保证分享过程能继续往下执行。也许你会发现，这个wxCallbacks中，根本就没有配置dataLoaded方法啊！是的，当async为true时，WeixinApi中我会自动对其进行初始化，dataLoaded方法需要一个参数，表示需要分享出去的数据！</p>
-<p>4、当然，如果你非要去配置dataLoaded方法，也是没有问题的，你的配置也会被执行，不会被覆盖，执行顺序是：用户配置优先。</p>
-<p>上面是直接给出使用方法，也许你现在开始关心每个方法的参数列表是什么样的了？我们以分享到朋友圈的方法为例，来看看参数都有哪些配置项：<br>/**</p>
+</code></pre><p>});<br>&#x552F;&#x4E00;&#x7684;&#x533A;&#x522B;&#x5C31;&#x662F;&#x5728;wxCallbacks&#x4E2D;&#xFF0C;&#x589E;&#x52A0;&#x4E86;&#x914D;&#x7F6E;&#x9879;async&#x4E3A;true&#xFF0C;&#x8868;&#x793A;&#x8FD9;&#x4E2A;&#x5206;&#x4EAB;&#x8FC7;&#x7A0B;&#x662F;&#x5F02;&#x6B65;&#x8C03;&#x7528;&#x7684;&#xFF0C;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x6307;&#x7684;ready&#x65B9;&#x6CD5;&#x5F02;&#x6B65;&#x6267;&#x884C;&#xFF0C;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5728;ready&#x65B9;&#x6CD5;&#x4E2D;&#x663E;&#x5F0F;&#x5730;&#x8C03;&#x7528;wxCallbacks&#x7684;dataLoaded&#x65B9;&#x6CD5;&#xFF0C;&#x4EE5;&#x4FDD;&#x8BC1;&#x5206;&#x4EAB;&#x8FC7;&#x7A0B;&#x80FD;&#x7EE7;&#x7EED;&#x5F80;&#x4E0B;&#x6267;&#x884C;&#x3002;&#x4E5F;&#x8BB8;&#x4F60;&#x4F1A;&#x53D1;&#x73B0;&#xFF0C;&#x8FD9;&#x4E2A;wxCallbacks&#x4E2D;&#xFF0C;&#x6839;&#x672C;&#x5C31;&#x6CA1;&#x6709;&#x914D;&#x7F6E;dataLoaded&#x65B9;&#x6CD5;&#x554A;&#xFF01;&#x662F;&#x7684;&#xFF0C;&#x5F53;async&#x4E3A;true&#x65F6;&#xFF0C;WeixinApi&#x4E2D;&#x6211;&#x4F1A;&#x81EA;&#x52A8;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316;&#xFF0C;dataLoaded&#x65B9;&#x6CD5;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x8868;&#x793A;&#x9700;&#x8981;&#x5206;&#x4EAB;&#x51FA;&#x53BB;&#x7684;&#x6570;&#x636E;&#xFF01;</p>
+<p>4&#x3001;&#x5F53;&#x7136;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x975E;&#x8981;&#x53BB;&#x914D;&#x7F6E;dataLoaded&#x65B9;&#x6CD5;&#xFF0C;&#x4E5F;&#x662F;&#x6CA1;&#x6709;&#x95EE;&#x9898;&#x7684;&#xFF0C;&#x4F60;&#x7684;&#x914D;&#x7F6E;&#x4E5F;&#x4F1A;&#x88AB;&#x6267;&#x884C;&#xFF0C;&#x4E0D;&#x4F1A;&#x88AB;&#x8986;&#x76D6;&#xFF0C;&#x6267;&#x884C;&#x987A;&#x5E8F;&#x662F;&#xFF1A;&#x7528;&#x6237;&#x914D;&#x7F6E;&#x4F18;&#x5148;&#x3002;</p>
+<p>&#x4E0A;&#x9762;&#x662F;&#x76F4;&#x63A5;&#x7ED9;&#x51FA;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#xFF0C;&#x4E5F;&#x8BB8;&#x4F60;&#x73B0;&#x5728;&#x5F00;&#x59CB;&#x5173;&#x5FC3;&#x6BCF;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x53C2;&#x6570;&#x5217;&#x8868;&#x662F;&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x4E86;&#xFF1F;&#x6211;&#x4EEC;&#x4EE5;&#x5206;&#x4EAB;&#x5230;&#x670B;&#x53CB;&#x5708;&#x7684;&#x65B9;&#x6CD5;&#x4E3A;&#x4F8B;&#xFF0C;&#x6765;&#x770B;&#x770B;&#x53C2;&#x6570;&#x90FD;&#x6709;&#x54EA;&#x4E9B;&#x914D;&#x7F6E;&#x9879;&#xFF1A;<br>/**</p>
 <ul>
-<li>分享到微信朋友圈</li>
-<li>@param       {Object}    data       待分享的信息</li>
-<li>@p-config    {String}    appId      公众平台的appId（服务号可用）</li>
-<li>@p-config    {String}    imageUrl   图片地址</li>
-<li>@p-config    {String}    link       链接地址</li>
-<li>@p-config    {String}    desc       描述</li>
-<li>@p-config    {String}    title      分享的标题<br>*</li>
-<li>@param       {Object}    callbacks  相关回调方法</li>
-<li>@p-config    {Boolean}   async                   ready方法是否需要异步执行，默认false</li>
-<li>@p-config    {Function}  ready(argv)             就绪状态</li>
-<li>@p-config    {Function}  dataLoaded(data)        数据加载完成后调用，async为true时有用</li>
-<li>@p-config    {Function}  cancel(resp)    取消</li>
-<li>@p-config    {Function}  fail(resp)      失败</li>
-<li>@p-config    {Function}  confirm(resp)   成功</li>
-<li>@p-config    {Function}  all(resp)       无论成功失败都会执行的回调<br>*/<br>WeixinApi.shareToTimeline(data,callbacks);<br>分享给微信好友以及分享到腾讯微博的参数列表都一样，这里就不罗列了。</li>
+<li>&#x5206;&#x4EAB;&#x5230;&#x5FAE;&#x4FE1;&#x670B;&#x53CB;&#x5708;</li>
+<li>@param       {Object}    data       &#x5F85;&#x5206;&#x4EAB;&#x7684;&#x4FE1;&#x606F;</li>
+<li>@p-config    {String}    appId      &#x516C;&#x4F17;&#x5E73;&#x53F0;&#x7684;appId&#xFF08;&#x670D;&#x52A1;&#x53F7;&#x53EF;&#x7528;&#xFF09;</li>
+<li>@p-config    {String}    imageUrl   &#x56FE;&#x7247;&#x5730;&#x5740;</li>
+<li>@p-config    {String}    link       &#x94FE;&#x63A5;&#x5730;&#x5740;</li>
+<li>@p-config    {String}    desc       &#x63CF;&#x8FF0;</li>
+<li>@p-config    {String}    title      &#x5206;&#x4EAB;&#x7684;&#x6807;&#x9898;<br>*</li>
+<li>@param       {Object}    callbacks  &#x76F8;&#x5173;&#x56DE;&#x8C03;&#x65B9;&#x6CD5;</li>
+<li>@p-config    {Boolean}   async                   ready&#x65B9;&#x6CD5;&#x662F;&#x5426;&#x9700;&#x8981;&#x5F02;&#x6B65;&#x6267;&#x884C;&#xFF0C;&#x9ED8;&#x8BA4;false</li>
+<li>@p-config    {Function}  ready(argv)             &#x5C31;&#x7EEA;&#x72B6;&#x6001;</li>
+<li>@p-config    {Function}  dataLoaded(data)        &#x6570;&#x636E;&#x52A0;&#x8F7D;&#x5B8C;&#x6210;&#x540E;&#x8C03;&#x7528;&#xFF0C;async&#x4E3A;true&#x65F6;&#x6709;&#x7528;</li>
+<li>@p-config    {Function}  cancel(resp)    &#x53D6;&#x6D88;</li>
+<li>@p-config    {Function}  fail(resp)      &#x5931;&#x8D25;</li>
+<li>@p-config    {Function}  confirm(resp)   &#x6210;&#x529F;</li>
+<li>@p-config    {Function}  all(resp)       &#x65E0;&#x8BBA;&#x6210;&#x529F;&#x5931;&#x8D25;&#x90FD;&#x4F1A;&#x6267;&#x884C;&#x7684;&#x56DE;&#x8C03;<br>*/<br>WeixinApi.shareToTimeline(data,callbacks);<br>&#x5206;&#x4EAB;&#x7ED9;&#x5FAE;&#x4FE1;&#x597D;&#x53CB;&#x4EE5;&#x53CA;&#x5206;&#x4EAB;&#x5230;&#x817E;&#x8BAF;&#x5FAE;&#x535A;&#x7684;&#x53C2;&#x6570;&#x5217;&#x8868;&#x90FD;&#x4E00;&#x6837;&#xFF0C;&#x8FD9;&#x91CC;&#x5C31;&#x4E0D;&#x7F57;&#x5217;&#x4E86;&#x3002;</li>
 </ul>
-<p>5、如果你的文章中有很多图片，那么，点击图片直接调起微信客户端自带的图片播放组件，那必然是一件好事；对此，你可以这样来做：<br>// 调起微信客户端的图片播放组件进行播放<br>WeixinApi.ready(function(Api){<br>    var srcList = [];<br>    $.each($(‘img’),function(i,item){<br>       if(item.src) {<br>           srcList.push(item.src);<br>           $(item).click(function(e){<br>               // 通过这个API就能直接调起微信客户端的图片播放组件了<br>               Api.imagePreview(this.src,srcList);<br>           });<br>       }<br>    });<br>});<br>就这么一段儿简单的代码，一切都搞定了！不过，需要指出的是，Api.imagePreview的参数是会进行强检测的：<br>/**</p>
+<p>5&#x3001;&#x5982;&#x679C;&#x4F60;&#x7684;&#x6587;&#x7AE0;&#x4E2D;&#x6709;&#x5F88;&#x591A;&#x56FE;&#x7247;&#xFF0C;&#x90A3;&#x4E48;&#xFF0C;&#x70B9;&#x51FB;&#x56FE;&#x7247;&#x76F4;&#x63A5;&#x8C03;&#x8D77;&#x5FAE;&#x4FE1;&#x5BA2;&#x6237;&#x7AEF;&#x81EA;&#x5E26;&#x7684;&#x56FE;&#x7247;&#x64AD;&#x653E;&#x7EC4;&#x4EF6;&#xFF0C;&#x90A3;&#x5FC5;&#x7136;&#x662F;&#x4E00;&#x4EF6;&#x597D;&#x4E8B;&#xFF1B;&#x5BF9;&#x6B64;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x6765;&#x505A;&#xFF1A;<br>// &#x8C03;&#x8D77;&#x5FAE;&#x4FE1;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x56FE;&#x7247;&#x64AD;&#x653E;&#x7EC4;&#x4EF6;&#x8FDB;&#x884C;&#x64AD;&#x653E;<br>WeixinApi.ready(function(Api){<br>    var srcList = [];<br>    $.each($(&#x2018;img&#x2019;),function(i,item){<br>       if(item.src) {<br>           srcList.push(item.src);<br>           $(item).click(function(e){<br>               // &#x901A;&#x8FC7;&#x8FD9;&#x4E2A;API&#x5C31;&#x80FD;&#x76F4;&#x63A5;&#x8C03;&#x8D77;&#x5FAE;&#x4FE1;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x56FE;&#x7247;&#x64AD;&#x653E;&#x7EC4;&#x4EF6;&#x4E86;<br>               Api.imagePreview(this.src,srcList);<br>           });<br>       }<br>    });<br>});<br>&#x5C31;&#x8FD9;&#x4E48;&#x4E00;&#x6BB5;&#x513F;&#x7B80;&#x5355;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x4E00;&#x5207;&#x90FD;&#x641E;&#x5B9A;&#x4E86;&#xFF01;&#x4E0D;&#x8FC7;&#xFF0C;&#x9700;&#x8981;&#x6307;&#x51FA;&#x7684;&#x662F;&#xFF0C;Api.imagePreview&#x7684;&#x53C2;&#x6570;&#x662F;&#x4F1A;&#x8FDB;&#x884C;&#x5F3A;&#x68C0;&#x6D4B;&#x7684;&#xFF1A;<br>/**</p>
 <ul>
-<li>调起微信Native的图片播放组件。</li>
-<li>这里必须对参数进行强检测，如果参数不合法，直接会导致微信客户端crash<br>*</li>
-<li>@param {String} curSrc 当前播放的图片地址</li>
-<li>@param {Array} srcList 图片地址列表<br>*/<br>function imagePreview(curSrc,srcList) ;</li>
+<li>&#x8C03;&#x8D77;&#x5FAE;&#x4FE1;Native&#x7684;&#x56FE;&#x7247;&#x64AD;&#x653E;&#x7EC4;&#x4EF6;&#x3002;</li>
+<li>&#x8FD9;&#x91CC;&#x5FC5;&#x987B;&#x5BF9;&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x5F3A;&#x68C0;&#x6D4B;&#xFF0C;&#x5982;&#x679C;&#x53C2;&#x6570;&#x4E0D;&#x5408;&#x6CD5;&#xFF0C;&#x76F4;&#x63A5;&#x4F1A;&#x5BFC;&#x81F4;&#x5FAE;&#x4FE1;&#x5BA2;&#x6237;&#x7AEF;crash<br>*</li>
+<li>@param {String} curSrc &#x5F53;&#x524D;&#x64AD;&#x653E;&#x7684;&#x56FE;&#x7247;&#x5730;&#x5740;</li>
+<li>@param {Array} srcList &#x56FE;&#x7247;&#x5730;&#x5740;&#x5217;&#x8868;<br>*/<br>function imagePreview(curSrc,srcList) ;</li>
 </ul>
-<p>需要指出的是，微信公众平台对Android、iOS平台支持力度不统一，比较费劲，具体有：<br>iOS平台下，分享出去的数据wxData中，imageUrl可以是DataURI格式的；但在Android平台下，必须是全路径的图片地址<br>iOS平台下，分享的回调callback基本全都可以得到执行；但在Android平台下，分享到微信朋友圈的callback无法得到执行（ready方法除外）<br>iOS平台下，无法在非mp.weixin.qq.com域下的页面中通过WeixinJSBridge.invoke(‘profile’)的方式打开某微信号的资料页面；Android平台下则可以通过<a href="weixin://contacts/profile/微信ID" target="_blank" rel="external">的方式打开资料页；WinPhone下，则是通过<a href="weixin://profile/微信ID" target="_blank" rel="external">的方式打开。<br>期待官方能早日实现各平台API的统一吧！！！</a></a></p>
-<p>至于API内部是怎么实现的，如果感兴趣，那就看源码吧，使用过程中如遇到什么Bug，请来这里反馈。</p>
-<p>为了便于Api的维护与共享，已将其放到Github上了，大家这里走起：https://github.com/zxlie/WeixinApi </p>
+<p>&#x9700;&#x8981;&#x6307;&#x51FA;&#x7684;&#x662F;&#xFF0C;&#x5FAE;&#x4FE1;&#x516C;&#x4F17;&#x5E73;&#x53F0;&#x5BF9;Android&#x3001;iOS&#x5E73;&#x53F0;&#x652F;&#x6301;&#x529B;&#x5EA6;&#x4E0D;&#x7EDF;&#x4E00;&#xFF0C;&#x6BD4;&#x8F83;&#x8D39;&#x52B2;&#xFF0C;&#x5177;&#x4F53;&#x6709;&#xFF1A;<br>iOS&#x5E73;&#x53F0;&#x4E0B;&#xFF0C;&#x5206;&#x4EAB;&#x51FA;&#x53BB;&#x7684;&#x6570;&#x636E;wxData&#x4E2D;&#xFF0C;imageUrl&#x53EF;&#x4EE5;&#x662F;DataURI&#x683C;&#x5F0F;&#x7684;&#xFF1B;&#x4F46;&#x5728;Android&#x5E73;&#x53F0;&#x4E0B;&#xFF0C;&#x5FC5;&#x987B;&#x662F;&#x5168;&#x8DEF;&#x5F84;&#x7684;&#x56FE;&#x7247;&#x5730;&#x5740;<br>iOS&#x5E73;&#x53F0;&#x4E0B;&#xFF0C;&#x5206;&#x4EAB;&#x7684;&#x56DE;&#x8C03;callback&#x57FA;&#x672C;&#x5168;&#x90FD;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x6267;&#x884C;&#xFF1B;&#x4F46;&#x5728;Android&#x5E73;&#x53F0;&#x4E0B;&#xFF0C;&#x5206;&#x4EAB;&#x5230;&#x5FAE;&#x4FE1;&#x670B;&#x53CB;&#x5708;&#x7684;callback&#x65E0;&#x6CD5;&#x5F97;&#x5230;&#x6267;&#x884C;&#xFF08;ready&#x65B9;&#x6CD5;&#x9664;&#x5916;&#xFF09;<br>iOS&#x5E73;&#x53F0;&#x4E0B;&#xFF0C;&#x65E0;&#x6CD5;&#x5728;&#x975E;mp.weixin.qq.com&#x57DF;&#x4E0B;&#x7684;&#x9875;&#x9762;&#x4E2D;&#x901A;&#x8FC7;WeixinJSBridge.invoke(&#x2018;profile&#x2019;)&#x7684;&#x65B9;&#x5F0F;&#x6253;&#x5F00;&#x67D0;&#x5FAE;&#x4FE1;&#x53F7;&#x7684;&#x8D44;&#x6599;&#x9875;&#x9762;&#xFF1B;Android&#x5E73;&#x53F0;&#x4E0B;&#x5219;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;<a href="weixin://contacts/profile/&#x5FAE;&#x4FE1;ID" target="_blank" rel="external">&#x7684;&#x65B9;&#x5F0F;&#x6253;&#x5F00;&#x8D44;&#x6599;&#x9875;&#xFF1B;WinPhone&#x4E0B;&#xFF0C;&#x5219;&#x662F;&#x901A;&#x8FC7;<a href="weixin://profile/&#x5FAE;&#x4FE1;ID" target="_blank" rel="external">&#x7684;&#x65B9;&#x5F0F;&#x6253;&#x5F00;&#x3002;<br>&#x671F;&#x5F85;&#x5B98;&#x65B9;&#x80FD;&#x65E9;&#x65E5;&#x5B9E;&#x73B0;&#x5404;&#x5E73;&#x53F0;API&#x7684;&#x7EDF;&#x4E00;&#x5427;&#xFF01;&#xFF01;&#xFF01;</a></a></p>
+<p>&#x81F3;&#x4E8E;API&#x5185;&#x90E8;&#x662F;&#x600E;&#x4E48;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x5982;&#x679C;&#x611F;&#x5174;&#x8DA3;&#xFF0C;&#x90A3;&#x5C31;&#x770B;&#x6E90;&#x7801;&#x5427;&#xFF0C;&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;&#x4E2D;&#x5982;&#x9047;&#x5230;&#x4EC0;&#x4E48;Bug&#xFF0C;&#x8BF7;&#x6765;&#x8FD9;&#x91CC;&#x53CD;&#x9988;&#x3002;</p>
+<p>&#x4E3A;&#x4E86;&#x4FBF;&#x4E8E;Api&#x7684;&#x7EF4;&#x62A4;&#x4E0E;&#x5171;&#x4EAB;&#xFF0C;&#x5DF2;&#x5C06;&#x5176;&#x653E;&#x5230;Github&#x4E0A;&#x4E86;&#xFF0C;&#x5927;&#x5BB6;&#x8FD9;&#x91CC;&#x8D70;&#x8D77;&#xFF1A;https://github.com/zxlie/WeixinApi </p>
 <p>/**!</p>
 <ul>
-<li>微信内置浏览器的Javascript API，功能包括：<br>*</li>
-<li>1、分享到微信朋友圈</li>
-<li>2、分享给微信好友</li>
-<li>3、分享到腾讯微博</li>
-<li>4、隐藏/显示右上角的菜单入口</li>
-<li>5、隐藏/显示底部浏览器工具栏</li>
-<li>6、获取当前的网络状态<br>*</li>
+<li>&#x5FAE;&#x4FE1;&#x5185;&#x7F6E;&#x6D4F;&#x89C8;&#x5668;&#x7684;Javascript API&#xFF0C;&#x529F;&#x80FD;&#x5305;&#x62EC;&#xFF1A;<br>*</li>
+<li>1&#x3001;&#x5206;&#x4EAB;&#x5230;&#x5FAE;&#x4FE1;&#x670B;&#x53CB;&#x5708;</li>
+<li>2&#x3001;&#x5206;&#x4EAB;&#x7ED9;&#x5FAE;&#x4FE1;&#x597D;&#x53CB;</li>
+<li>3&#x3001;&#x5206;&#x4EAB;&#x5230;&#x817E;&#x8BAF;&#x5FAE;&#x535A;</li>
+<li>4&#x3001;&#x9690;&#x85CF;/&#x663E;&#x793A;&#x53F3;&#x4E0A;&#x89D2;&#x7684;&#x83DC;&#x5355;&#x5165;&#x53E3;</li>
+<li>5&#x3001;&#x9690;&#x85CF;/&#x663E;&#x793A;&#x5E95;&#x90E8;&#x6D4F;&#x89C8;&#x5668;&#x5DE5;&#x5177;&#x680F;</li>
+<li>6&#x3001;&#x83B7;&#x53D6;&#x5F53;&#x524D;&#x7684;&#x7F51;&#x7EDC;&#x72B6;&#x6001;<br>*</li>
 <li>@author zhaoxianlie(http://www.baidufe.com)<br>*/<br>var WeixinApi = (function () {</li>
 </ul>
 <pre><code>/**
- * 分享到微信朋友圈
- * @param       {Object}    data       待分享的信息
- * @p-config    {String}    appId      公众平台的appId（服务号可用）
- * @p-config    {String}    imageUrl   图片地址
- * @p-config    {String}    link       链接地址
- * @p-config    {String}    desc       描述
- * @p-config    {String}    title      分享的标题
+ * &#x5206;&#x4EAB;&#x5230;&#x5FAE;&#x4FE1;&#x670B;&#x53CB;&#x5708;
+ * @param       {Object}    data       &#x5F85;&#x5206;&#x4EAB;&#x7684;&#x4FE1;&#x606F;
+ * @p-config    {String}    appId      &#x516C;&#x4F17;&#x5E73;&#x53F0;&#x7684;appId&#xFF08;&#x670D;&#x52A1;&#x53F7;&#x53EF;&#x7528;&#xFF09;
+ * @p-config    {String}    imageUrl   &#x56FE;&#x7247;&#x5730;&#x5740;
+ * @p-config    {String}    link       &#x94FE;&#x63A5;&#x5730;&#x5740;
+ * @p-config    {String}    desc       &#x63CF;&#x8FF0;
+ * @p-config    {String}    title      &#x5206;&#x4EAB;&#x7684;&#x6807;&#x9898;
  *
- * @param       {Object}    callbacks  相关回调方法
- * @p-config    {Boolean}   async                   ready方法是否需要异步执行，默认false
- * @p-config    {Function}  ready(argv)             就绪状态
- * @p-config    {Function}  dataLoaded(data)        数据加载完成后调用，async为true时有用，也可以为空
- * @p-config    {Function}  cancel(resp)    取消
- * @p-config    {Function}  fail(resp)      失败
- * @p-config    {Function}  confirm(resp)   成功
- * @p-config    {Function}  all(resp)       无论成功失败都会执行的回调
+ * @param       {Object}    callbacks  &#x76F8;&#x5173;&#x56DE;&#x8C03;&#x65B9;&#x6CD5;
+ * @p-config    {Boolean}   async                   ready&#x65B9;&#x6CD5;&#x662F;&#x5426;&#x9700;&#x8981;&#x5F02;&#x6B65;&#x6267;&#x884C;&#xFF0C;&#x9ED8;&#x8BA4;false
+ * @p-config    {Function}  ready(argv)             &#x5C31;&#x7EEA;&#x72B6;&#x6001;
+ * @p-config    {Function}  dataLoaded(data)        &#x6570;&#x636E;&#x52A0;&#x8F7D;&#x5B8C;&#x6210;&#x540E;&#x8C03;&#x7528;&#xFF0C;async&#x4E3A;true&#x65F6;&#x6709;&#x7528;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4E3A;&#x7A7A;
+ * @p-config    {Function}  cancel(resp)    &#x53D6;&#x6D88;
+ * @p-config    {Function}  fail(resp)      &#x5931;&#x8D25;
+ * @p-config    {Function}  confirm(resp)   &#x6210;&#x529F;
+ * @p-config    {Function}  all(resp)       &#x65E0;&#x8BBA;&#x6210;&#x529F;&#x5931;&#x8D25;&#x90FD;&#x4F1A;&#x6267;&#x884C;&#x7684;&#x56DE;&#x8C03;
  */
 function weixinShareTimeline(data, callbacks) {
     callbacks = callbacks || {};
@@ -255,25 +255,25 @@ function weixinShareTimeline(data, callbacks) {
             &quot;img_url&quot;:theData.imgUrl,
             &quot;link&quot;:theData.link,
             &quot;desc&quot;:theData.title,
-            &quot;title&quot;:theData.desc, // 注意这里要分享出去的内容是desc
+            &quot;title&quot;:theData.desc, // &#x6CE8;&#x610F;&#x8FD9;&#x91CC;&#x8981;&#x5206;&#x4EAB;&#x51FA;&#x53BB;&#x7684;&#x5185;&#x5BB9;&#x662F;desc
             &quot;img_width&quot;:&quot;120&quot;,
             &quot;img_height&quot;:&quot;120&quot;
         }, function (resp) {
             switch (resp.err_msg) {
-                // share_timeline:cancel 用户取消
+                // share_timeline:cancel &#x7528;&#x6237;&#x53D6;&#x6D88;
                 case &apos;share_timeline:cancel&apos;:
                     callbacks.cancel &amp;&amp; callbacks.cancel(resp);
                     break;
-                // share_timeline:fail　发送失败
+                // share_timeline:fail&#x3000;&#x53D1;&#x9001;&#x5931;&#x8D25;
                 case &apos;share_timeline:fail&apos;:
                     callbacks.fail &amp;&amp; callbacks.fail(resp);
                     break;
-                // share_timeline:confirm 发送成功
+                // share_timeline:confirm &#x53D1;&#x9001;&#x6210;&#x529F;
                 case &apos;share_timeline:confirm&apos;:
                     callbacks.confirm &amp;&amp; callbacks.confirm(resp);
                     break;
             }
-            // 无论成功失败都会执行的回调
+            // &#x65E0;&#x8BBA;&#x6210;&#x529F;&#x5931;&#x8D25;&#x90FD;&#x4F1A;&#x6267;&#x884C;&#x7684;&#x56DE;&#x8C03;
             callbacks.all &amp;&amp; callbacks.all(resp);
         });
     };
@@ -287,10 +287,10 @@ function weixinShareTimeline(data, callbacks) {
                 };
                 callbacks.__dataLoadedFuncInited = true;
             }
-            // 然后就绪
+            // &#x7136;&#x540E;&#x5C31;&#x7EEA;
             callbacks.ready &amp;&amp; callbacks.ready(argv);
         } else {
-            // 就绪状态
+            // &#x5C31;&#x7EEA;&#x72B6;&#x6001;
             callbacks.ready &amp;&amp; callbacks.ready(argv);
             shareTimeline(data);
         }
@@ -299,22 +299,22 @@ function weixinShareTimeline(data, callbacks) {
 
 
 /**
- * 发送给微信上的好友
- * @param       {Object}    data       待分享的信息
- * @p-config    {String}    appId      公众平台的appId（服务号可用）
- * @p-config    {String}    imageUrl   图片地址
- * @p-config    {String}    link       链接地址
- * @p-config    {String}    desc       描述
- * @p-config    {String}    title      分享的标题
+ * &#x53D1;&#x9001;&#x7ED9;&#x5FAE;&#x4FE1;&#x4E0A;&#x7684;&#x597D;&#x53CB;
+ * @param       {Object}    data       &#x5F85;&#x5206;&#x4EAB;&#x7684;&#x4FE1;&#x606F;
+ * @p-config    {String}    appId      &#x516C;&#x4F17;&#x5E73;&#x53F0;&#x7684;appId&#xFF08;&#x670D;&#x52A1;&#x53F7;&#x53EF;&#x7528;&#xFF09;
+ * @p-config    {String}    imageUrl   &#x56FE;&#x7247;&#x5730;&#x5740;
+ * @p-config    {String}    link       &#x94FE;&#x63A5;&#x5730;&#x5740;
+ * @p-config    {String}    desc       &#x63CF;&#x8FF0;
+ * @p-config    {String}    title      &#x5206;&#x4EAB;&#x7684;&#x6807;&#x9898;
  *
- * @param       {Object}    callbacks  相关回调方法
- * @p-config    {Boolean}   async                   ready方法是否需要异步执行，默认false
- * @p-config    {Function}  ready(argv)             就绪状态
- * @p-config    {Function}  dataLoaded(data)        数据加载完成后调用，async为true时有用，也可以为空
- * @p-config    {Function}  cancel(resp)    取消
- * @p-config    {Function}  fail(resp)      失败
- * @p-config    {Function}  confirm(resp)   成功
- * @p-config    {Function}  all(resp)       无论成功失败都会执行的回调
+ * @param       {Object}    callbacks  &#x76F8;&#x5173;&#x56DE;&#x8C03;&#x65B9;&#x6CD5;
+ * @p-config    {Boolean}   async                   ready&#x65B9;&#x6CD5;&#x662F;&#x5426;&#x9700;&#x8981;&#x5F02;&#x6B65;&#x6267;&#x884C;&#xFF0C;&#x9ED8;&#x8BA4;false
+ * @p-config    {Function}  ready(argv)             &#x5C31;&#x7EEA;&#x72B6;&#x6001;
+ * @p-config    {Function}  dataLoaded(data)        &#x6570;&#x636E;&#x52A0;&#x8F7D;&#x5B8C;&#x6210;&#x540E;&#x8C03;&#x7528;&#xFF0C;async&#x4E3A;true&#x65F6;&#x6709;&#x7528;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4E3A;&#x7A7A;
+ * @p-config    {Function}  cancel(resp)    &#x53D6;&#x6D88;
+ * @p-config    {Function}  fail(resp)      &#x5931;&#x8D25;
+ * @p-config    {Function}  confirm(resp)   &#x6210;&#x529F;
+ * @p-config    {Function}  all(resp)       &#x65E0;&#x8BBA;&#x6210;&#x529F;&#x5931;&#x8D25;&#x90FD;&#x4F1A;&#x6267;&#x884C;&#x7684;&#x56DE;&#x8C03;
  */
 function weixinSendAppMessage(data, callbacks) {
     callbacks = callbacks || {};
@@ -329,20 +329,20 @@ function weixinSendAppMessage(data, callbacks) {
             &quot;img_height&quot;:&quot;120&quot;
         }, function (resp) {
             switch (resp.err_msg) {
-                // send_app_msg:cancel 用户取消
+                // send_app_msg:cancel &#x7528;&#x6237;&#x53D6;&#x6D88;
                 case &apos;send_app_msg:cancel&apos;:
                     callbacks.cancel &amp;&amp; callbacks.cancel(resp);
                     break;
-                // send_app_msg:fail　发送失败
+                // send_app_msg:fail&#x3000;&#x53D1;&#x9001;&#x5931;&#x8D25;
                 case &apos;send_app_msg:fail&apos;:
                     callbacks.fail &amp;&amp; callbacks.fail(resp);
                     break;
-                // send_app_msg:confirm 发送成功
+                // send_app_msg:confirm &#x53D1;&#x9001;&#x6210;&#x529F;
                 case &apos;send_app_msg:confirm&apos;:
                     callbacks.confirm &amp;&amp; callbacks.confirm(resp);
                     break;
             }
-            // 无论成功失败都会执行的回调
+            // &#x65E0;&#x8BBA;&#x6210;&#x529F;&#x5931;&#x8D25;&#x90FD;&#x4F1A;&#x6267;&#x884C;&#x7684;&#x56DE;&#x8C03;
             callbacks.all &amp;&amp; callbacks.all(resp);
         });
     };
@@ -356,10 +356,10 @@ function weixinSendAppMessage(data, callbacks) {
                 };
                 callbacks.__dataLoadedFuncInited = true;
             }
-            // 然后就绪
+            // &#x7136;&#x540E;&#x5C31;&#x7EEA;
             callbacks.ready &amp;&amp; callbacks.ready(argv);
         } else {
-            // 就绪状态
+            // &#x5C31;&#x7EEA;&#x72B6;&#x6001;
             callbacks.ready &amp;&amp; callbacks.ready(argv);
             sendAppMessage(data);
         }
@@ -368,21 +368,21 @@ function weixinSendAppMessage(data, callbacks) {
 
 
 /**
- * 分享到腾讯微博
- * @param       {Object}    data       待分享的信息
- * @p-config    {String}    imageUrl   图片地址
- * @p-config    {String}    link       链接地址
- * @p-config    {String}    desc       描述
- * @p-config    {String}    title      分享的标题
+ * &#x5206;&#x4EAB;&#x5230;&#x817E;&#x8BAF;&#x5FAE;&#x535A;
+ * @param       {Object}    data       &#x5F85;&#x5206;&#x4EAB;&#x7684;&#x4FE1;&#x606F;
+ * @p-config    {String}    imageUrl   &#x56FE;&#x7247;&#x5730;&#x5740;
+ * @p-config    {String}    link       &#x94FE;&#x63A5;&#x5730;&#x5740;
+ * @p-config    {String}    desc       &#x63CF;&#x8FF0;
+ * @p-config    {String}    title      &#x5206;&#x4EAB;&#x7684;&#x6807;&#x9898;
  *
- * @param       {Object}    callbacks  相关回调方法
- * @p-config    {Boolean}   async                   ready方法是否需要异步执行，默认false
- * @p-config    {Function}  ready(argv)             就绪状态
- * @p-config    {Function}  dataLoaded(data)        数据加载完成后调用，async为true时有用，也可以为空
- * @p-config    {Function}  cancel(resp)    取消
- * @p-config    {Function}  fail(resp)      失败
- * @p-config    {Function}  confirm(resp)   成功
- * @p-config    {Function}  all(resp)       无论成功失败都会执行的回调
+ * @param       {Object}    callbacks  &#x76F8;&#x5173;&#x56DE;&#x8C03;&#x65B9;&#x6CD5;
+ * @p-config    {Boolean}   async                   ready&#x65B9;&#x6CD5;&#x662F;&#x5426;&#x9700;&#x8981;&#x5F02;&#x6B65;&#x6267;&#x884C;&#xFF0C;&#x9ED8;&#x8BA4;false
+ * @p-config    {Function}  ready(argv)             &#x5C31;&#x7EEA;&#x72B6;&#x6001;
+ * @p-config    {Function}  dataLoaded(data)        &#x6570;&#x636E;&#x52A0;&#x8F7D;&#x5B8C;&#x6210;&#x540E;&#x8C03;&#x7528;&#xFF0C;async&#x4E3A;true&#x65F6;&#x6709;&#x7528;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4E3A;&#x7A7A;
+ * @p-config    {Function}  cancel(resp)    &#x53D6;&#x6D88;
+ * @p-config    {Function}  fail(resp)      &#x5931;&#x8D25;
+ * @p-config    {Function}  confirm(resp)   &#x6210;&#x529F;
+ * @p-config    {Function}  all(resp)       &#x65E0;&#x8BBA;&#x6210;&#x529F;&#x5931;&#x8D25;&#x90FD;&#x4F1A;&#x6267;&#x884C;&#x7684;&#x56DE;&#x8C03;
  */
 function weixinShareWeibo(data, callbacks) {
     callbacks = callbacks || {};
@@ -396,20 +396,20 @@ function weixinShareWeibo(data, callbacks) {
             &quot;img_height&quot;:&quot;120&quot;
         }, function (resp) {
             switch (resp.err_msg) {
-                // share_weibo:cancel 用户取消
+                // share_weibo:cancel &#x7528;&#x6237;&#x53D6;&#x6D88;
                 case &apos;share_weibo:cancel&apos;:
                     callbacks.cancel &amp;&amp; callbacks.cancel(resp);
                     break;
-                // share_weibo:fail　发送失败
+                // share_weibo:fail&#x3000;&#x53D1;&#x9001;&#x5931;&#x8D25;
                 case &apos;share_weibo:fail&apos;:
                     callbacks.fail &amp;&amp; callbacks.fail(resp);
                     break;
-                // share_weibo:confirm 发送成功
+                // share_weibo:confirm &#x53D1;&#x9001;&#x6210;&#x529F;
                 case &apos;share_weibo:confirm&apos;:
                     callbacks.confirm &amp;&amp; callbacks.confirm(resp);
                     break;
             }
-            // 无论成功失败都会执行的回调
+            // &#x65E0;&#x8BBA;&#x6210;&#x529F;&#x5931;&#x8D25;&#x90FD;&#x4F1A;&#x6267;&#x884C;&#x7684;&#x56DE;&#x8C03;
             callbacks.all &amp;&amp; callbacks.all(resp);
         });
     };
@@ -423,10 +423,10 @@ function weixinShareWeibo(data, callbacks) {
                 };
                 callbacks.__dataLoadedFuncInited = true;
             }
-            // 然后就绪
+            // &#x7136;&#x540E;&#x5C31;&#x7EEA;
             callbacks.ready &amp;&amp; callbacks.ready(argv);
         } else {
-            // 就绪状态
+            // &#x5C31;&#x7EEA;&#x72B6;&#x6001;
             callbacks.ready &amp;&amp; callbacks.ready(argv);
             shareWeibo(data);
         }
@@ -435,7 +435,7 @@ function weixinShareWeibo(data, callbacks) {
 
 
 /**
- * 显示网页右上角的按钮
+ * &#x663E;&#x793A;&#x7F51;&#x9875;&#x53F3;&#x4E0A;&#x89D2;&#x7684;&#x6309;&#x94AE;
  */
 function showOptionMenu() {
     WeixinJSBridge.call(&apos;showOptionMenu&apos;);
@@ -445,7 +445,7 @@ function showOptionMenu() {
 
 
 /**
- * 隐藏网页右上角的按钮
+ * &#x9690;&#x85CF;&#x7F51;&#x9875;&#x53F3;&#x4E0A;&#x89D2;&#x7684;&#x6309;&#x94AE;
  */
 function hideOptionMenu() {
     WeixinJSBridge.call(&apos;hideOptionMenu&apos;);
@@ -453,7 +453,7 @@ function hideOptionMenu() {
 
 
 /**
- * 显示底部工具栏
+ * &#x663E;&#x793A;&#x5E95;&#x90E8;&#x5DE5;&#x5177;&#x680F;
  */
 function showToolbar() {
     WeixinJSBridge.call(&apos;showToolbar&apos;);
@@ -461,7 +461,7 @@ function showToolbar() {
 
 
 /**
- * 隐藏底部工具栏
+ * &#x9690;&#x85CF;&#x5E95;&#x90E8;&#x5DE5;&#x5177;&#x680F;
  */
 function hideToolbar() {
     WeixinJSBridge.call(&apos;hideToolbar&apos;);
@@ -469,14 +469,14 @@ function hideToolbar() {
 
 
 /**
- * 返回如下几种类型：
+ * &#x8FD4;&#x56DE;&#x5982;&#x4E0B;&#x51E0;&#x79CD;&#x7C7B;&#x578B;&#xFF1A;
  *
- * network_type:wifi     wifi网络
- * network_type:edge     非wifi,包含3G/2G
- * network_type:fail     网络断开连接
- * network_type:wwan     2g或者3g
+ * network_type:wifi     wifi&#x7F51;&#x7EDC;
+ * network_type:edge     &#x975E;wifi,&#x5305;&#x542B;3G/2G
+ * network_type:fail     &#x7F51;&#x7EDC;&#x65AD;&#x5F00;&#x8FDE;&#x63A5;
+ * network_type:wwan     2g&#x6216;&#x8005;3g
  *
- * 使用方法：
+ * &#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#xFF1A;
  * WeixinApi.getNetworkType(function(networkType){
  *
  * });
@@ -486,7 +486,7 @@ function hideToolbar() {
 function getNetworkType(callback) {
     if (callback &amp;&amp; typeof callback == &apos;function&apos;) {
         WeixinJSBridge.invoke(&apos;getNetworkType&apos;, {}, function (e) {
-            // 在这里拿到e.err_msg，这里面就包含了所有的网络类型
+            // &#x5728;&#x8FD9;&#x91CC;&#x62FF;&#x5230;e.err_msg&#xFF0C;&#x8FD9;&#x91CC;&#x9762;&#x5C31;&#x5305;&#x542B;&#x4E86;&#x6240;&#x6709;&#x7684;&#x7F51;&#x7EDC;&#x7C7B;&#x578B;
             callback(e.err_msg);
         });
     }
@@ -494,9 +494,9 @@ function getNetworkType(callback) {
 
 
 /**
- * 当页面加载完毕后执行，使用方法：
+ * &#x5F53;&#x9875;&#x9762;&#x52A0;&#x8F7D;&#x5B8C;&#x6BD5;&#x540E;&#x6267;&#x884C;&#xFF0C;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#xFF1A;
  * WeixinApi.ready(function(Api){
- *     // 从这里只用Api即是WeixinApi
+ *     // &#x4ECE;&#x8FD9;&#x91CC;&#x53EA;&#x7528;Api&#x5373;&#x662F;WeixinApi
  * });
  * @param readyCallback
  */
@@ -537,7 +537,7 @@ return {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/微信内置浏览器的JsAPI/" data-id="ciu9bs9aa002fgus6g04h4ibm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/微信内置浏览器的JsAPI/" data-id="ciu9c03vq002jiss6z988n0rl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信-Js/">微信 Js</a></li></ul>
@@ -627,7 +627,7 @@ return {
           </li>
         
           <li>
-            <a href="/2016/10/13/IDE_创业常用到的工具/">创业常用到的工具</a>
+            <a href="/2016/10/13/Android_ejs/">ejs的使用</a>
           </li>
         
       </ul>

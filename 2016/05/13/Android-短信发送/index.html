@@ -5,16 +5,16 @@
   
   <title>Android 短信发送 | 田鹏飞的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="12345678910// 短信管理模块public void SMSclick(View view) &amp;#123;Log.v(&amp;quot;sms&amp;quot;, &amp;quot;sms&amp;quot;);// 调用Android系统API发送短信Uri uri = Uri.parse(&amp;quot;smsto:5556&amp;quot;);Intent intent = new Intent(Intent.ACT">
+  <meta name="description" content="12345678910// &amp;#x77ED;&amp;#x4FE1;&amp;#x7BA1;&amp;#x7406;&amp;#x6A21;&amp;#x5757;public void SMSclick(View view) {Log.v(&amp;quot;sms&amp;quot;, &amp;quot;sms&amp;quot;);// &amp;#x8C03;&amp;#x7528;Android&amp;#x7CFB;&amp;#x7EDF;API&amp;#x53D1;&amp;#x9001;&amp;#x7">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 短信发送">
 <meta property="og:url" content="http://yoursite.com/2016/05/13/Android-短信发送/index.html">
 <meta property="og:site_name" content="田鹏飞的个人博客">
-<meta property="og:description" content="12345678910// 短信管理模块public void SMSclick(View view) &amp;#123;Log.v(&amp;quot;sms&amp;quot;, &amp;quot;sms&amp;quot;);// 调用Android系统API发送短信Uri uri = Uri.parse(&amp;quot;smsto:5556&amp;quot;);Intent intent = new Intent(Intent.ACT">
+<meta property="og:description" content="12345678910// &amp;#x77ED;&amp;#x4FE1;&amp;#x7BA1;&amp;#x7406;&amp;#x6A21;&amp;#x5757;public void SMSclick(View view) {Log.v(&amp;quot;sms&amp;quot;, &amp;quot;sms&amp;quot;);// &amp;#x8C03;&amp;#x7528;Android&amp;#x7CFB;&amp;#x7EDF;API&amp;#x53D1;&amp;#x9001;&amp;#x7">
 <meta property="og:updated_time" content="2016-05-13T16:00:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 短信发送">
-<meta name="twitter:description" content="12345678910// 短信管理模块public void SMSclick(View view) &amp;#123;Log.v(&amp;quot;sms&amp;quot;, &amp;quot;sms&amp;quot;);// 调用Android系统API发送短信Uri uri = Uri.parse(&amp;quot;smsto:5556&amp;quot;);Intent intent = new Intent(Intent.ACT">
+<meta name="twitter:description" content="12345678910// &amp;#x77ED;&amp;#x4FE1;&amp;#x7BA1;&amp;#x7406;&amp;#x6A21;&amp;#x5757;public void SMSclick(View view) {Log.v(&amp;quot;sms&amp;quot;, &amp;quot;sms&amp;quot;);// &amp;#x8C03;&amp;#x7528;Android&amp;#x7CFB;&amp;#x7EDF;API&amp;#x53D1;&amp;#x9001;&amp;#x7">
   
     <link rel="alternate" href="/atom.xml" title="田鹏飞的个人博客" type="application/atom+xml">
   
@@ -89,12 +89,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 短信管理模块</span><br><span class="line">public void SMSclick(View view) &#123;</span><br><span class="line"></span><br><span class="line">Log.v(&quot;sms&quot;, &quot;sms&quot;);</span><br><span class="line">// 调用Android系统API发送短信</span><br><span class="line">Uri uri = Uri.parse(&quot;smsto:5556&quot;);</span><br><span class="line">Intent intent = new Intent(Intent.ACTION_SENDTO, uri);</span><br><span class="line">intent.putExtra(&quot;sms_body&quot;, &quot;android...&quot;);</span><br><span class="line">startActivity(intent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//发送短信管理模块</span><br><span class="line">public void SMSsend(View view)&#123;</span><br><span class="line">  </span><br><span class="line">    PendingIntent pi = PendingIntent.getActivity(this, 0,    new Intent(this, MainActivity.class), 0);</span><br><span class="line">  </span><br><span class="line">    SmsManager sms = SmsManager.getDefault();</span><br><span class="line">  </span><br><span class="line">    sms.sendTextMessage(&quot;5554&quot;, null, &quot;aa&quot;, pi, null);</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// &#x77ED;&#x4FE1;&#x7BA1;&#x7406;&#x6A21;&#x5757;</span><br><span class="line">public void SMSclick(View view) {</span><br><span class="line"></span><br><span class="line">Log.v(&quot;sms&quot;, &quot;sms&quot;);</span><br><span class="line">// &#x8C03;&#x7528;Android&#x7CFB;&#x7EDF;API&#x53D1;&#x9001;&#x77ED;&#x4FE1;</span><br><span class="line">Uri uri = Uri.parse(&quot;smsto:5556&quot;);</span><br><span class="line">Intent intent = new Intent(Intent.ACTION_SENDTO, uri);</span><br><span class="line">intent.putExtra(&quot;sms_body&quot;, &quot;android...&quot;);</span><br><span class="line">startActivity(intent);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//&#x53D1;&#x9001;&#x77ED;&#x4FE1;&#x7BA1;&#x7406;&#x6A21;&#x5757;</span><br><span class="line">public void SMSsend(View view){</span><br><span class="line">  </span><br><span class="line">    PendingIntent pi = PendingIntent.getActivity(this, 0,    new Intent(this, MainActivity.class), 0);</span><br><span class="line">  </span><br><span class="line">    SmsManager sms = SmsManager.getDefault();</span><br><span class="line">  </span><br><span class="line">    sms.sendTextMessage(&quot;5554&quot;, null, &quot;aa&quot;, pi, null);</span><br><span class="line">  </span><br><span class="line">}</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Android-短信发送/" data-id="ciu9bs97y0009gus6rm9k8tuf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/13/Android-短信发送/" data-id="ciu9c03ta000ciss6jrj5ooyi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -184,7 +184,7 @@
           </li>
         
           <li>
-            <a href="/2016/10/13/IDE_创业常用到的工具/">创业常用到的工具</a>
+            <a href="/2016/10/13/Android_ejs/">ejs的使用</a>
           </li>
         
       </ul>

@@ -5,19 +5,19 @@
   
   <title>Android Notification的使用 | 田鹏飞的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="###获取NotificationManager:NotificationManager m_NotificationManager=(NotificationManager)this.getSystemService(NOTIFICATION_SERVICE);
-###定义一个Notification:  Notification  m_Notification=new Notification">
+  <meta name="description" content="###&amp;#x83B7;&amp;#x53D6;NotificationManager:NotificationManager m_NotificationManager=(NotificationManager)this.getSystemService(NOTIFICATION_SERVICE);
+###&amp;#x5B9A;&amp;#x4E49;&amp;#x4E00;&amp;#x4E2A;Notification:  Not">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android Notification的使用">
 <meta property="og:url" content="http://yoursite.com/2016/05/14/Android-Notification的使用/index.html">
 <meta property="og:site_name" content="田鹏飞的个人博客">
-<meta property="og:description" content="###获取NotificationManager:NotificationManager m_NotificationManager=(NotificationManager)this.getSystemService(NOTIFICATION_SERVICE);
-###定义一个Notification:  Notification  m_Notification=new Notification">
+<meta property="og:description" content="###&amp;#x83B7;&amp;#x53D6;NotificationManager:NotificationManager m_NotificationManager=(NotificationManager)this.getSystemService(NOTIFICATION_SERVICE);
+###&amp;#x5B9A;&amp;#x4E49;&amp;#x4E00;&amp;#x4E2A;Notification:  Not">
 <meta property="og:updated_time" content="2016-08-18T13:52:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Notification的使用">
-<meta name="twitter:description" content="###获取NotificationManager:NotificationManager m_NotificationManager=(NotificationManager)this.getSystemService(NOTIFICATION_SERVICE);
-###定义一个Notification:  Notification  m_Notification=new Notification">
+<meta name="twitter:description" content="###&amp;#x83B7;&amp;#x53D6;NotificationManager:NotificationManager m_NotificationManager=(NotificationManager)this.getSystemService(NOTIFICATION_SERVICE);
+###&amp;#x5B9A;&amp;#x4E49;&amp;#x4E00;&amp;#x4E2A;Notification:  Not">
   
     <link rel="alternate" href="/atom.xml" title="田鹏飞的个人博客" type="application/atom+xml">
   
@@ -92,16 +92,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>###获取NotificationManager:<br>NotificationManager m_NotificationManager=(NotificationManager)this.getSystemService(NOTIFICATION_SERVICE);</p>
-<p>###定义一个Notification:<br>  Notification  m_Notification=new Notification();</p>
-<p>###设置Notification的各种属性：<br> //设置通知在状态栏显示的图标<br>m_Notification.icon=R.drawable.icon;<br> //当我们点击通知时显示的内容<br>m_Notification.tickerText=”Button1 通知内容…..”;</p>
-<p>//通知时发出的默认声音<br>m_Notification.defaults=Notification.DEFAULT_SOUND;<br>//设置通知显示的参数<br>Intent   m_Intent=new Intent(NotificationDemo.this,DesActivity.class);<br>PendingIntent m_PendingIntent=PendingIntent.getActivity(NotificationDemo.this, 0, m_Intent, 0);<br>m_Notification.setLatestEventInfo(NotificationDemo.this, “Button1”, “Button1通知”,m_PendingIntent );<br>//这个可以理解为开始执行这个通知<br>m_NotificationManager.notify(0,m_Notification);</p>
-<p>###既然可以增加同样我们也可以删除。当然是只是删除你自己增加的。<br>  m_NotificationManager.cancel(0);<br>  这里的0是一个ID号码，和notify第一个参数0一样。<br>这也就完成了，添加删除工作。</p>
+        <p>###&#x83B7;&#x53D6;NotificationManager:<br>NotificationManager m_NotificationManager=(NotificationManager)this.getSystemService(NOTIFICATION_SERVICE);</p>
+<p>###&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;Notification:<br>  Notification  m_Notification=new Notification();</p>
+<p>###&#x8BBE;&#x7F6E;Notification&#x7684;&#x5404;&#x79CD;&#x5C5E;&#x6027;&#xFF1A;<br> //&#x8BBE;&#x7F6E;&#x901A;&#x77E5;&#x5728;&#x72B6;&#x6001;&#x680F;&#x663E;&#x793A;&#x7684;&#x56FE;&#x6807;<br>m_Notification.icon=R.drawable.icon;<br> //&#x5F53;&#x6211;&#x4EEC;&#x70B9;&#x51FB;&#x901A;&#x77E5;&#x65F6;&#x663E;&#x793A;&#x7684;&#x5185;&#x5BB9;<br>m_Notification.tickerText=&#x201D;Button1 &#x901A;&#x77E5;&#x5185;&#x5BB9;&#x2026;..&#x201D;;</p>
+<p>//&#x901A;&#x77E5;&#x65F6;&#x53D1;&#x51FA;&#x7684;&#x9ED8;&#x8BA4;&#x58F0;&#x97F3;<br>m_Notification.defaults=Notification.DEFAULT_SOUND;<br>//&#x8BBE;&#x7F6E;&#x901A;&#x77E5;&#x663E;&#x793A;&#x7684;&#x53C2;&#x6570;<br>Intent   m_Intent=new Intent(NotificationDemo.this,DesActivity.class);<br>PendingIntent m_PendingIntent=PendingIntent.getActivity(NotificationDemo.this, 0, m_Intent, 0);<br>m_Notification.setLatestEventInfo(NotificationDemo.this, &#x201C;Button1&#x201D;, &#x201C;Button1&#x901A;&#x77E5;&#x201D;,m_PendingIntent );<br>//&#x8FD9;&#x4E2A;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x5F00;&#x59CB;&#x6267;&#x884C;&#x8FD9;&#x4E2A;&#x901A;&#x77E5;<br>m_NotificationManager.notify(0,m_Notification);</p>
+<p>###&#x65E2;&#x7136;&#x53EF;&#x4EE5;&#x589E;&#x52A0;&#x540C;&#x6837;&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x5220;&#x9664;&#x3002;&#x5F53;&#x7136;&#x662F;&#x53EA;&#x662F;&#x5220;&#x9664;&#x4F60;&#x81EA;&#x5DF1;&#x589E;&#x52A0;&#x7684;&#x3002;<br>  m_NotificationManager.cancel(0);<br>  &#x8FD9;&#x91CC;&#x7684;0&#x662F;&#x4E00;&#x4E2A;ID&#x53F7;&#x7801;&#xFF0C;&#x548C;notify&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;0&#x4E00;&#x6837;&#x3002;<br>&#x8FD9;&#x4E5F;&#x5C31;&#x5B8C;&#x6210;&#x4E86;&#xFF0C;&#x6DFB;&#x52A0;&#x5220;&#x9664;&#x5DE5;&#x4F5C;&#x3002;</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android-Notification的使用/" data-id="ciu9bs97k0002gus6rgah4p33" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android-Notification的使用/" data-id="ciu9c03st0004iss6r0wp3t6y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -191,7 +191,7 @@
           </li>
         
           <li>
-            <a href="/2016/10/13/IDE_创业常用到的工具/">创业常用到的工具</a>
+            <a href="/2016/10/13/Android_ejs/">ejs的使用</a>
           </li>
         
       </ul>
