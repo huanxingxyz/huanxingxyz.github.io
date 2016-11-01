@@ -57,7 +57,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -67,6 +67,49 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-Android-Notification的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/14/Android-Notification的使用/" class="article-date">
+  <time datetime="2016-05-13T16:02:12.000Z" itemprop="datePublished">2016-05-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/14/Android-Notification的使用/">Android Notification的使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###&#x83B7;&#x53D6;NotificationManager:<br>NotificationManager m_NotificationManager=(NotificationManager)this.getSystemService(NOTIFICATION_SERVICE);</p>
+<p>###&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;Notification:<br>  Notification  m_Notification=new Notification();</p>
+<p>###&#x8BBE;&#x7F6E;Notification&#x7684;&#x5404;&#x79CD;&#x5C5E;&#x6027;&#xFF1A;<br> //&#x8BBE;&#x7F6E;&#x901A;&#x77E5;&#x5728;&#x72B6;&#x6001;&#x680F;&#x663E;&#x793A;&#x7684;&#x56FE;&#x6807;<br>m_Notification.icon=R.drawable.icon;<br> //&#x5F53;&#x6211;&#x4EEC;&#x70B9;&#x51FB;&#x901A;&#x77E5;&#x65F6;&#x663E;&#x793A;&#x7684;&#x5185;&#x5BB9;<br>m_Notification.tickerText=&#x201D;Button1 &#x901A;&#x77E5;&#x5185;&#x5BB9;&#x2026;..&#x201D;;</p>
+<p>//&#x901A;&#x77E5;&#x65F6;&#x53D1;&#x51FA;&#x7684;&#x9ED8;&#x8BA4;&#x58F0;&#x97F3;<br>m_Notification.defaults=Notification.DEFAULT_SOUND;<br>//&#x8BBE;&#x7F6E;&#x901A;&#x77E5;&#x663E;&#x793A;&#x7684;&#x53C2;&#x6570;<br>Intent   m_Intent=new Intent(NotificationDemo.this,DesActivity.class);<br>PendingIntent m_PendingIntent=PendingIntent.getActivity(NotificationDemo.this, 0, m_Intent, 0);<br>m_Notification.setLatestEventInfo(NotificationDemo.this, &#x201C;Button1&#x201D;, &#x201C;Button1&#x901A;&#x77E5;&#x201D;,m_PendingIntent );<br>//&#x8FD9;&#x4E2A;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x5F00;&#x59CB;&#x6267;&#x884C;&#x8FD9;&#x4E2A;&#x901A;&#x77E5;<br>m_NotificationManager.notify(0,m_Notification);</p>
+<p>###&#x65E2;&#x7136;&#x53EF;&#x4EE5;&#x589E;&#x52A0;&#x540C;&#x6837;&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x5220;&#x9664;&#x3002;&#x5F53;&#x7136;&#x662F;&#x53EA;&#x662F;&#x5220;&#x9664;&#x4F60;&#x81EA;&#x5DF1;&#x589E;&#x52A0;&#x7684;&#x3002;<br>  m_NotificationManager.cancel(0);<br>  &#x8FD9;&#x91CC;&#x7684;0&#x662F;&#x4E00;&#x4E2A;ID&#x53F7;&#x7801;&#xFF0C;&#x548C;notify&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;0&#x4E00;&#x6837;&#x3002;<br>&#x8FD9;&#x4E5F;&#x5C31;&#x5B8C;&#x6210;&#x4E86;&#xFF0C;&#x6DFB;&#x52A0;&#x5220;&#x9664;&#x5DE5;&#x4F5C;&#x3002;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/14/Android-Notification的使用/" data-id="ciuz91d0t00024ts68ouqgal1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-Android-短信发送" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -95,7 +138,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Android-短信发送/" data-id="ciuwqlq1c0007wquolusbwc3o" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/05/13/Android-短信发送/" data-id="ciuz91d1500094ts6tk2vg8m3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -142,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Java-RMI/" data-id="ciuwqlq3f001lwquo8buecxdh" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/05/13/Java-RMI/" data-id="ciuz91d2n001h4ts63m2vktup" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -193,7 +236,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Android-ListView优化几种写法详细介/" data-id="ciuwqlq0v0001wquo4xxb9siz" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/05/13/Android-ListView优化几种写法详细介/" data-id="ciuz91d0y00044ts6wmfqrl6e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -270,7 +313,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Android_开发遇到的Exception/" data-id="ciuwqlq25000twquozuwk8ivb" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/05/13/Android_开发遇到的Exception/" data-id="ciuz91d1n000n4ts67fbk0j18" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -310,7 +353,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/GridView常用属性/" data-id="ciuwqlq2p0015wquoeujqjpog" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/05/13/GridView常用属性/" data-id="ciuz91d2d00154ts6v562wn17" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -354,7 +397,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Android-应用添加快捷方式/" data-id="ciuwqlq170005wquo6akcxro7" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/05/13/Android-应用添加快捷方式/" data-id="ciuz91d0z00054ts64fwvsqx0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -430,7 +473,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Hexo在github上构建的博客/" data-id="ciuwqlq2w0019wquot62embor" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/05/13/Hexo在github上构建的博客/" data-id="ciuz91d2f00174ts66d6eimgg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客/">博客</a></li></ul>
@@ -509,7 +552,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/12/markdown语法/" data-id="ciuwqlq5d002rwquo0dcbggw5" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/05/12/markdown语法/" data-id="ciuz91d3u002r4ts68j3habe6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客/">博客</a></li></ul>
@@ -535,7 +578,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Labels</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D-游戏/">Unity3D,游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兴趣/">兴趣</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大牛博客/">大牛博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习，师傅/">学习，师傅</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信-Js/">微信 Js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情/">心情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/简历/">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
     </div>
@@ -554,9 +597,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li></ul>
     </div>
   </div>
 
@@ -564,20 +607,20 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/11/01/JavaWeb_tomcat搭建文件服务器/">tomcat搭建文件服务器</a>
+          </li>
         
           <li>
             <a href="/2016/10/18/Android_百分比框架/">Android百分比框架</a>
           </li>
         
           <li>
-            <a href="/2016/10/14/Android_gradle的使用/">gradle和AS</a>
-          </li>
-        
-          <li>
-            <a href="/2016/10/14/JavaWeb_encodeURI来解决URL传递时的中文问题/">encodeURI来解决URL传递时的中文问题</a>
+            <a href="/2016/10/14/Android_ant自动版本构建/">ant自动版本构建</a>
           </li>
         
           <li>
@@ -585,7 +628,7 @@
           </li>
         
           <li>
-            <a href="/2016/10/14/Android_常用开源/">android常用开源项目</a>
+            <a href="/2016/10/14/JavaWeb_encodeURI来解决URL传递时的中文问题/">encodeURI来解决URL传递时的中文问题</a>
           </li>
         
       </ul>

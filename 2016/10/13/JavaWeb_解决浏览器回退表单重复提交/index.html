@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/10/13/JavaWeb_解决浏览器回退表单重复提交/index.html">
 <meta property="og:site_name" content="田鹏飞的个人博客">
 <meta property="og:description" content="&amp;#x6682;&amp;#x65F6;&amp;#x6CA1;&amp;#x6709;&amp;#x522B;&amp;#x7684;&amp;#x4EC0;&amp;#x4E48;&amp;#x597D;&amp;#x529E;&amp;#x6CD5;&amp;#xFF0C;&amp;#x5728;&amp;#x7F51;&amp;#x4E0A;&amp;#x641C;&amp;#x7D22;&amp;#x5230;&amp;#x7528;sessionStorage&amp;#xFF0B;ajax&amp;#x5F62;&amp;#x5F0F;&amp;#x8">
-<meta property="og:updated_time" content="2016-10-13T06:22:42.000Z">
+<meta property="og:updated_time" content="2016-11-01T07:44:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解决浏览器回退表单重复提交问题">
 <meta name="twitter:description" content="&amp;#x6682;&amp;#x65F6;&amp;#x6CA1;&amp;#x6709;&amp;#x522B;&amp;#x7684;&amp;#x4EC0;&amp;#x4E48;&amp;#x597D;&amp;#x529E;&amp;#x6CD5;&amp;#xFF0C;&amp;#x5728;&amp;#x7F51;&amp;#x4E0A;&amp;#x641C;&amp;#x7D22;&amp;#x5230;&amp;#x7528;sessionStorage&amp;#xFF0B;ajax&amp;#x5F62;&amp;#x5F0F;&amp;#x8">
@@ -58,7 +58,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -101,13 +101,13 @@
 <p>Web Storage&#x7684;&#x6982;&#x5FF5;&#x548C;cookie&#x76F8;&#x4F3C;&#xFF0C;&#x533A;&#x522B;&#x662F;&#x5B83;&#x662F;&#x4E3A;&#x4E86;&#x66F4;&#x5927;&#x5BB9;&#x91CF;&#x5B58;&#x50A8;&#x8BBE;&#x8BA1;&#x7684;&#x3002;Cookie&#x7684;&#x5927;&#x5C0F;&#x662F;&#x53D7;&#x9650;&#x7684;&#xFF0C;&#x5E76;&#x4E14;&#x6BCF;&#x6B21;&#x4F60;&#x8BF7;&#x6C42;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x9875;&#x9762;&#x7684;&#x65F6;&#x5019;Cookie&#x90FD;&#x4F1A;&#x88AB;&#x53D1;&#x9001;&#x8FC7;&#x53BB;&#xFF0C;&#x8FD9;&#x6837;&#x65E0;&#x5F62;&#x4E2D;&#x6D6A;&#x8D39;&#x4E86;&#x5E26;&#x5BBD;&#xFF0C;&#x53E6;&#x5916;cookie&#x8FD8;&#x9700;&#x8981;&#x6307;&#x5B9A;&#x4F5C;&#x7528;&#x57DF;&#xFF0C;&#x4E0D;&#x53EF;&#x4EE5;&#x8DE8;&#x57DF;&#x8C03;&#x7528;&#x3002;</p>
 <p>&#x9664;&#x6B64;&#x4E4B;&#x5916;&#xFF0C;Web Storage&#x62E5;&#x6709;setItem,getItem,removeItem,clear&#x7B49;&#x65B9;&#x6CD5;&#xFF0C;&#x4E0D;&#x50CF;cookie&#x9700;&#x8981;&#x524D;&#x7AEF;&#x5F00;&#x53D1;&#x8005;&#x81EA;&#x5DF1;&#x5C01;&#x88C5;setCookie&#xFF0C;getCookie&#x3002;</p>
 <p>&#x4F46;&#x662F;Cookie&#x4E5F;&#x662F;&#x4E0D;&#x53EF;&#x4EE5;&#x6216;&#x7F3A;&#x7684;&#xFF1A;Cookie&#x7684;&#x4F5C;&#x7528;&#x662F;&#x4E0E;&#x670D;&#x52A1;&#x5668;&#x8FDB;&#x884C;&#x4EA4;&#x4E92;&#xFF0C;&#x4F5C;&#x4E3A;HTTP&#x89C4;&#x8303;&#x7684;&#x4E00;&#x90E8;&#x5206;&#x800C;&#x5B58;&#x5728; &#xFF0C;&#x800C;Web Storage&#x4EC5;&#x4EC5;&#x662F;&#x4E3A;&#x4E86;&#x5728;&#x672C;&#x5730;&#x201C;&#x5B58;&#x50A8;&#x201D;&#x6570;&#x636E;&#x800C;&#x751F;&#x3002;</p>
-<p>ocalStorage&#x548C;sessionStorage&#x90FD;&#x5177;&#x6709;&#x76F8;&#x540C;&#x7684;&#x64CD;&#x4F5C;&#x65B9;&#x6CD5;&#xFF0C;&#x4F8B;&#x5982;setItem&#x3001;getItem&#xFF0C;removeItem&#xFF0C;clear&#x7B49;.</p>
+<p>localStorage&#x548C;sessionStorage&#x90FD;&#x5177;&#x6709;&#x76F8;&#x540C;&#x7684;&#x64CD;&#x4F5C;&#x65B9;&#x6CD5;&#xFF0C;&#x4F8B;&#x5982;setItem&#x3001;getItem&#xFF0C;removeItem&#xFF0C;clear&#x7B49;.</p>
 <p>&#x4E4B;&#x524D;&#x7684;&#x505A;&#x6CD5;&#x662F;&#x628A;&#x8FD9;&#x4E2A;&#x6807;&#x5FD7;&#x4F4D;&#x5B58;&#x50A8;&#x5230;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#xFF0C;&#x6BD4;&#x5982;&#x5B58;&#x5165;redis&#x5728;&#x8BB0;&#x5F55;&#xFF0C;&#x4F46;&#x662F;&#x6BD4;&#x8F83;&#x6765;&#x8BF4;&#x5B58;&#x50A8;&#x5230;redis&#x7684;&#x5F62;&#x52BF;&#x4E0D;&#x4EC5;&#x5BF9;&#x670D;&#x52A1;&#x5668;&#x538B;&#x529B;&#x5927;&#xFF0C;&#x800C;&#x4E14;&#x4F1A;&#x5F71;&#x54CD;&#x5230;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x5B9E;&#x73B0;&#x7B49;&#x7B49;&#xFF0C;&#x8FD9;&#x6837;&#x5355;&#x9875;&#x9762;session&#x4F1A;&#x8BDD;&#x7EA7;&#x522B;&#x5B58;&#x50A8;&#x66F4;&#x6E05;&#x6670;&#x4E00;&#x4E9B;&#x3002;</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/13/JavaWeb_解决浏览器回退表单重复提交/" data-id="ciuwqlq40001uwquoxvcehchq" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/10/13/JavaWeb_解决浏览器回退表单重复提交/" data-id="ciuz91d2v001q4ts6u79k4or0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
@@ -119,7 +119,7 @@
 <nav id="article-nav">
   
     <a href="/2016/10/13/Android_大牛博客/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Nieuwer</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           整理一些大牛的博客
@@ -128,9 +128,9 @@
     </a>
   
   
-    <a href="/2016/10/11/面试经历/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
-      <div class="article-nav-title">面试经历</div>
+    <a href="/2016/10/13/Jenkins搭建/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Jenkins 搭建</div>
     </a>
   
 </nav>
@@ -147,7 +147,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Labels</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D-游戏/">Unity3D,游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兴趣/">兴趣</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大牛博客/">大牛博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习，师傅/">学习，师傅</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信-Js/">微信 Js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情/">心情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/简历/">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
     </div>
@@ -166,9 +166,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li></ul>
     </div>
   </div>
 
@@ -176,20 +176,20 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/11/01/JavaWeb_tomcat搭建文件服务器/">tomcat搭建文件服务器</a>
+          </li>
         
           <li>
             <a href="/2016/10/18/Android_百分比框架/">Android百分比框架</a>
           </li>
         
           <li>
-            <a href="/2016/10/14/Android_gradle的使用/">gradle和AS</a>
-          </li>
-        
-          <li>
-            <a href="/2016/10/14/JavaWeb_encodeURI来解决URL传递时的中文问题/">encodeURI来解决URL传递时的中文问题</a>
+            <a href="/2016/10/14/Android_ant自动版本构建/">ant自动版本构建</a>
           </li>
         
           <li>
@@ -197,7 +197,7 @@
           </li>
         
           <li>
-            <a href="/2016/10/14/Android_常用开源/">android常用开源项目</a>
+            <a href="/2016/10/14/JavaWeb_encodeURI来解决URL传递时的中文问题/">encodeURI来解决URL传递时的中文问题</a>
           </li>
         
       </ul>
