@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/10/14/Android_ant自动版本构建/index.html">
 <meta property="og:site_name" content="田鹏飞的个人博客">
 <meta property="og:description" content="&amp;#x4E4B;&amp;#x524D;&amp;#x5199;&amp;#x4FE1;&amp;#x4E4E;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#xFF0C;&amp;#x9700;&amp;#x6C42;&amp;#x7528;jenkins&amp;#x8FDB;&amp;#x884C;&amp;#x7248;&amp;#x672C;&amp;#x6784;&amp;#x5EFA;&amp;#xFF0C;&amp;#x5F53;&amp;#x65F6;&amp;#x7167;&amp;#x7740;&amp;#x5E08;&amp;">
-<meta property="og:updated_time" content="2016-10-14T10:26:21.000Z">
+<meta property="og:updated_time" content="2016-11-08T08:05:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ant自动版本构建">
 <meta name="twitter:description" content="&amp;#x4E4B;&amp;#x524D;&amp;#x5199;&amp;#x4FE1;&amp;#x4E4E;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#xFF0C;&amp;#x9700;&amp;#x6C42;&amp;#x7528;jenkins&amp;#x8FDB;&amp;#x884C;&amp;#x7248;&amp;#x672C;&amp;#x6784;&amp;#x5EFA;&amp;#xFF0C;&amp;#x5F53;&amp;#x65F6;&amp;#x7167;&amp;#x7740;&amp;#x5E08;&amp;">
@@ -93,37 +93,38 @@
 <h3 id="&#x6D41;&#x7A0B;"><a href="#&#x6D41;&#x7A0B;" class="headerlink" title="&#x6D41;&#x7A0B;"></a>&#x6D41;&#x7A0B;</h3><p>&#x6253;&#x5305;&#x9700;&#x8981;&#x501F;&#x52A9;JDK&#x548C;Android SDK&#x4E2D;&#x7684;&#x5DE5;&#x5177;&#xFF0C;&#x8FD9;&#x4E9B;&#x5DE5;&#x5177;&#x7684;&#x8DEF;&#x5F84;&#x5728;&#x4E0D;&#x540C;&#x7684;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x548C;&#x7CFB;&#x7EDF;&#x4E2D;&#x53EF;&#x80FD;&#x4F1A;&#x4E0D;&#x540C;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x8FD9;&#x4E9B;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x653E;&#x5728;build.properties&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.home=/home/leleliu008jdk.home=${os.home}/bin/jdk1.7.0_67jarsigner=${jdk.home}/bin/jarsignerandroid.sdk.home=${os.home}/bin/adt-bundle-linux-x86_64-20140702/sdkandroid.sdk.platform=${android.sdk.home}/platforms/android-19aapt=${android.sdk.home}/build-tools/17.0.0/aaptaidl=${android.sdk.home}/build-tools/17.0.0/aidldx=${android.sdk.home}/build-tools/17.0.0/dxapk-builder=${android.sdk.home}/tools/apkbuilderzipalign=${android.sdk.home}/tools/zipalignproguard.home=${android.sdk.home}/tools/proguard/libproguard.config=proguard.cfgkeystore.path=debug.keystorekeystore.password=androidkeystore.key=androiddebugkey</span><br></pre></td></tr></table></figure>
 <h3 id="1-&#x4F7F;&#x7528;aapt&#x5DE5;&#x5177;&#x751F;&#x6210;R-java&#x6587;&#x4EF6;"><a href="#1-&#x4F7F;&#x7528;aapt&#x5DE5;&#x5177;&#x751F;&#x6210;R-java&#x6587;&#x4EF6;" class="headerlink" title="1,&#x4F7F;&#x7528;aapt&#x5DE5;&#x5177;&#x751F;&#x6210;R.java&#x6587;&#x4EF6;"></a>1,&#x4F7F;&#x7528;aapt&#x5DE5;&#x5177;&#x751F;&#x6210;R.java&#x6587;&#x4EF6;</h3><p>Ant&#x548C;&#x547D;&#x4EE4;&#x884C;&#x4F7F;&#x7528;android SDK&#x63D0;&#x4F9B;&#x7684;aapt&#x7A0B;&#x5E8F;&#x751F;&#x6210;R.java&#x3002;<br>Ant&#x811A;&#x672C;&#x5982;&#x4E0B;&#xFF1A;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. Generate the R.java file for this project&apos;s resources.&lt;target name=&quot;gen-R-java&quot; depends=&quot;make-dirs&quot;&gt;    &lt;echo&gt;Generating R.java / Manifest.java from the resources...&lt;/echo&gt;    &lt;exec executable=&quot;${aapt}&quot; failonerror=&quot;true&quot;&gt;        &lt;arg value=&quot;package&quot; /&gt;        &lt;arg value=&quot;-m&quot; /&gt;        &lt;arg value=&quot;-J&quot; /&gt;        &lt;arg value=&quot;${gen.dir}&quot; /&gt;        &lt;arg value=&quot;-M&quot; /&gt;        &lt;arg value=&quot;AndroidManifest.xml&quot; /&gt;        &lt;arg value=&quot;-S&quot; /&gt;        &lt;arg value=&quot;${res.dir}&quot; /&gt;        &lt;arg value=&quot;-I&quot; /&gt;        &lt;arg value=&quot;${android-jar}&quot; /&gt;    &lt;/exec&gt;&lt;/target&gt;</span><br><span class="line">```### 2,&#x4F7F;&#x7528;aidl&#x5DE5;&#x5177;&#x5C06;.aidl&#x6587;&#x4EF6;&#x8F6C;&#x6362;&#x6210;.java&#x6587;&#x4EF6;</span><br><span class="line">&#x4F7F;&#x7528;&#x4E86;aidl&#x8FDB;&#x7A0B;&#x901A;&#x4FE1;&#x673A;&#x5236;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x9700;&#x8981;&#x5C06;.aidl&#x6587;&#x4EF6;&#x8F6C;&#x6362;&#x6210;Java&#x7C7B;&#xFF0C;&#x4F7F;&#x7528;aidl&#x5DE5;&#x5177;&#x53EF;&#x4EE5;&#x5B8C;&#x6210;&#x6B64;&#x5DE5;&#x4F5C;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>Generate java classes from .aidl files. <target name="aidl" depends="make-dirs"><br> <echo>Compiling aidl files into Java classes&#x2026;</echo><br> <apply executable="${aidl}" failonerror="true"><br>     <arg value="-p${android.sdk.platform}/framework.aidl"><br>     <arg value="-I${src.dir}"><br>     <arg value="-o${gen.dir}"><br>     <fileset dir="src"><br>         <include name="**/*.aidl"><br>     </include></fileset><br> </arg></arg></arg></apply><br></target>
+<pre><code>1. Generate the R.java file for this project&apos;s resources.
+&lt;target name=&quot;gen-R-java&quot; depends=&quot;make-dirs&quot;&gt;
+    &lt;echo&gt;Generating R.java / Manifest.java from the resources...&lt;/echo&gt;
+    &lt;exec executable=&quot;${aapt}&quot; failonerror=&quot;true&quot;&gt;
+        &lt;arg value=&quot;package&quot; /&gt;
+        &lt;arg value=&quot;-m&quot; /&gt;
+        &lt;arg value=&quot;-J&quot; /&gt;
+        &lt;arg value=&quot;${gen.dir}&quot; /&gt;
+        &lt;arg value=&quot;-M&quot; /&gt;
+        &lt;arg value=&quot;AndroidManifest.xml&quot; /&gt;
+        &lt;arg value=&quot;-S&quot; /&gt;
+        &lt;arg value=&quot;${res.dir}&quot; /&gt;
+        &lt;arg value=&quot;-I&quot; /&gt;
+        &lt;arg value=&quot;${android-jar}&quot; /&gt;
+    &lt;/exec&gt;
+&lt;/target&gt;
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">### 2,&#x4F7F;&#x7528;aidl&#x5DE5;&#x5177;&#x5C06;.aidl&#x6587;&#x4EF6;&#x8F6C;&#x6362;&#x6210;.java&#x6587;&#x4EF6;</span><br><span class="line">&#x4F7F;&#x7528;&#x4E86;aidl&#x8FDB;&#x7A0B;&#x901A;&#x4FE1;&#x673A;&#x5236;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x9700;&#x8981;&#x5C06;.aidl&#x6587;&#x4EF6;&#x8F6C;&#x6362;&#x6210;Java&#x7C7B;&#xFF0C;&#x4F7F;&#x7528;aidl&#x5DE5;&#x5177;&#x53EF;&#x4EE5;&#x5B8C;&#x6210;&#x6B64;&#x5DE5;&#x4F5C;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</span><br><span class="line"></span><br><span class="line">```2. Generate java classes from .aidl files. &lt;target name=&quot;aidl&quot; depends=&quot;make-dirs&quot;&gt;    &lt;echo&gt;Compiling aidl files into Java classes...&lt;/echo&gt;    &lt;apply executable=&quot;${aidl}&quot; failonerror=&quot;true&quot;&gt;        &lt;arg value=&quot;-p${android.sdk.platform}/framework.aidl&quot; /&gt;        &lt;arg value=&quot;-I${src.dir}&quot; /&gt;        &lt;arg value=&quot;-o${gen.dir}&quot; /&gt;        &lt;fileset dir=&quot;src&quot;&gt;            &lt;include name=&quot;**/*.aidl&quot; /&gt;        &lt;/fileset&gt;    &lt;/apply&gt;&lt;/target&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+### 3,&#x4F7F;&#x7528;javac&#x5DE5;&#x5177;&#x5C06;.java&#x6587;&#x4EF6;&#x7F16;&#x8BD1;&#x6210;.class&#x6587;&#x4EF6;
+
+Ant&#x5DF2;&#x7ECF;&#x5185;&#x7F6E;&#x4E86;javac&#x4EFB;&#x52A1;&#xFF0C;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x8BE5;&#x4EFB;&#x52A1;&#x5B8C;&#x6210;Java&#x7684;&#x7F16;&#x8BD1;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;
+</code></pre><ol>
+<li>Compile this project&#x2019;s .java files into .class files. <target name="compile" depends="make-dirs, gen-R-java, aidl"><br> <javac encoding="UTF-8" target="1.5" source="1.5" debug="true" extdirs="" destdir="${classes.dir}" bootclasspath="${android-jar}" includeantruntime="false" fork="true" memorymaximumsize="512m"><br>     <src path="${src.dir}"><br>     <src path="${gen.dir}"><br>     <classpath><br>         <fileset dir="${libs.dir}" includes="*.jar"><br>     </fileset></classpath><br> </src></src></javac><br></target>
 
 </li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">### 3,&#x4F7F;&#x7528;javac&#x5DE5;&#x5177;&#x5C06;.java&#x6587;&#x4EF6;&#x7F16;&#x8BD1;&#x6210;.class&#x6587;&#x4EF6;</span><br><span class="line">Ant&#x5DF2;&#x7ECF;&#x5185;&#x7F6E;&#x4E86;javac&#x4EFB;&#x52A1;&#xFF0C;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x8BE5;&#x4EFB;&#x52A1;&#x5B8C;&#x6210;Java&#x7684;&#x7F16;&#x8BD1;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</span><br><span class="line">```3. Compile this project&apos;s .java files into .class files. &lt;target name=&quot;compile&quot; depends=&quot;make-dirs, gen-R-java, aidl&quot;&gt;    &lt;javac encoding=&quot;UTF-8&quot; target=&quot;1.5&quot; source=&quot;1.5&quot; debug=&quot;true&quot; extdirs=&quot;&quot; destdir=&quot;${classes.dir}&quot;     	bootclasspath=&quot;${android-jar}&quot;    	includeantruntime=&quot;false&quot;    	fork=&quot;true&quot;  memoryMaximumSize=&quot;512m&quot;&gt;        &lt;src path=&quot;${src.dir}&quot; /&gt;        &lt;src path=&quot;${gen.dir}&quot; /&gt;        &lt;classpath&gt;            &lt;fileset dir=&quot;${libs.dir}&quot; includes=&quot;*.jar&quot; /&gt;        &lt;/classpath&gt;    &lt;/javac&gt;&lt;/target&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="4-&#x4F7F;&#x7528;proground&#x5BF9;-class&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x6DF7;&#x6DC6;"><a href="#4-&#x4F7F;&#x7528;proground&#x5BF9;-class&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x6DF7;&#x6DC6;" class="headerlink" title="4,&#x4F7F;&#x7528;proground&#x5BF9;.class&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x6DF7;&#x6DC6;"></a>4,&#x4F7F;&#x7528;proground&#x5BF9;.class&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x6DF7;&#x6DC6;</h3><p>&#x6DF7;&#x6DC6;&#x80FD;&#x591F;&#x5BF9;&#x4EE3;&#x7801;&#x8FDB;&#x884C;&#x4F18;&#x5316;&#xFF0C;&#x66F4;&#x7B26;&#x5408;&#x8BA1;&#x7B97;&#x673A;&#x6267;&#x884C;&#x7684;&#x6548;&#x7387;&#xFF0C;&#x66F4;&#x91CD;&#x8981;&#x7684;&#x662F;&#x8BA9;&#x53CD;&#x7F16;&#x8BD1;&#x540E;&#x7684;&#x4EE3;&#x7801;&#x770B;&#x8D77;&#x6765;&#x6666;&#x6DA9;&#x96BE;&#x61C2;&#xFF0C;&#x8FBE;&#x5230;&#x4FDD;&#x62A4;&#x4EE3;&#x7801;&#x7684;&#x4F5C;&#x7528;&#x3002;</p>
-<pre><code> 4. Obscure the package file. 
-&lt;target name=&quot;obfuscate&quot; depends=&quot;compile&quot;&gt;
-    &lt;echo&gt;Obscure the class files....&lt;/echo&gt;
-    &lt;jar basedir=&quot;${classes.dir}&quot; destfile=&quot;${out.dir}/temp.jar&quot;/&gt;
-    &lt;java jar=&quot;${proguard.home}/proguard.jar&quot; fork=&quot;true&quot; failonerror=&quot;true&quot;&gt;
-        &lt;jvmarg value=&quot;-Dmaximum.inlined.code.length=32&quot;/&gt;
-        &lt;jvmarg value=&quot;-Xmx512M&quot;/&gt;
-        &lt;arg value=&quot;-injars ${out.dir}/temp.jar&quot;/&gt;
-        &lt;arg value=&quot;-outjars ${out.dir}/obfuscate.jar&quot;/&gt;
-        &lt;arg value=&quot;-libraryjars ${android-jar}&quot; /&gt;
-        &lt;arg value=&quot;@${proguard.config}&quot;/&gt;
-    &lt;/java&gt;
-    &lt;delete file=&quot;${out.dir}/temp.jar&quot;/&gt;
-    &lt;delete dir=&quot;${classes.dir}&quot;/&gt;
-    &lt;mkdir dir=&quot;${classes.dir}&quot;/&gt;
-    &lt;unzip src=&quot;${out.dir}/obfuscate.jar&quot; dest=&quot;${classes.dir}&quot;/&gt;
-    &lt;delete file=&quot;${out.dir}/obfuscate.jar&quot;/&gt;
-&lt;/target&gt;
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">### 5,&#x4F7F;&#x7528;dx&#x5DE5;&#x5177;&#x5904;&#x7406;&#x5C06;&#x6240;&#x6709;&#x7684;.class&#x6587;&#x4EF6;&#x8F6C;&#x6362;&#x6210;&#x4E00;&#x4E2A;.dex&#x6587;&#x4EF6;</span><br><span class="line">Android&#x7684;dalvik&#x865A;&#x62DF;&#x673A;&#x4E0D;&#x540C;&#x4E8E;JVM&#xFF0C;&#x4ED6;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x6267;&#x884C;.class&#x6587;&#x4EF6;&#xFF0C;&#x5FC5;&#x987B;&#x5C06;&#x8FD9;&#x4E9B;.class&#x6587;&#x4EF6;&#x7ECF;&#x8FC7;&#x4F18;&#x5316;&#x6253;&#x5305;&#x5230;&#x4E00;&#x4E2A;.dex&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x4EE5;&#x63D0;&#x5347;&#x6267;&#x884C;&#x6548;&#x7387;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</span><br></pre></td></tr></table></figure>
-
-
- 5. Convert this project&apos;s .class files into .dex files. 
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">### 4,&#x4F7F;&#x7528;proground&#x5BF9;.class&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x6DF7;&#x6DC6;</span><br><span class="line">&#x6DF7;&#x6DC6;&#x80FD;&#x591F;&#x5BF9;&#x4EE3;&#x7801;&#x8FDB;&#x884C;&#x4F18;&#x5316;&#xFF0C;&#x66F4;&#x7B26;&#x5408;&#x8BA1;&#x7B97;&#x673A;&#x6267;&#x884C;&#x7684;&#x6548;&#x7387;&#xFF0C;&#x66F4;&#x91CD;&#x8981;&#x7684;&#x662F;&#x8BA9;&#x53CD;&#x7F16;&#x8BD1;&#x540E;&#x7684;&#x4EE3;&#x7801;&#x770B;&#x8D77;&#x6765;&#x6666;&#x6DA9;&#x96BE;&#x61C2;&#xFF0C;&#x8FBE;&#x5230;&#x4FDD;&#x62A4;&#x4EE3;&#x7801;&#x7684;&#x4F5C;&#x7528;&#x3002;</span><br><span class="line"></span><br><span class="line">``` 4. Obscure the package file. &lt;target name=&quot;obfuscate&quot; depends=&quot;compile&quot;&gt;    &lt;echo&gt;Obscure the class files....&lt;/echo&gt;    &lt;jar basedir=&quot;${classes.dir}&quot; destfile=&quot;${out.dir}/temp.jar&quot;/&gt;    &lt;java jar=&quot;${proguard.home}/proguard.jar&quot; fork=&quot;true&quot; failonerror=&quot;true&quot;&gt;        &lt;jvmarg value=&quot;-Dmaximum.inlined.code.length=32&quot;/&gt;        &lt;jvmarg value=&quot;-Xmx512M&quot;/&gt;        &lt;arg value=&quot;-injars ${out.dir}/temp.jar&quot;/&gt;        &lt;arg value=&quot;-outjars ${out.dir}/obfuscate.jar&quot;/&gt;        &lt;arg value=&quot;-libraryjars ${android-jar}&quot; /&gt;        &lt;arg value=&quot;@${proguard.config}&quot;/&gt;    &lt;/java&gt;    &lt;delete file=&quot;${out.dir}/temp.jar&quot;/&gt;    &lt;delete dir=&quot;${classes.dir}&quot;/&gt;    &lt;mkdir dir=&quot;${classes.dir}&quot;/&gt;    &lt;unzip src=&quot;${out.dir}/obfuscate.jar&quot; dest=&quot;${classes.dir}&quot;/&gt;    &lt;delete file=&quot;${out.dir}/obfuscate.jar&quot;/&gt;&lt;/target&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="5-&#x4F7F;&#x7528;dx&#x5DE5;&#x5177;&#x5904;&#x7406;&#x5C06;&#x6240;&#x6709;&#x7684;-class&#x6587;&#x4EF6;&#x8F6C;&#x6362;&#x6210;&#x4E00;&#x4E2A;-dex&#x6587;&#x4EF6;"><a href="#5-&#x4F7F;&#x7528;dx&#x5DE5;&#x5177;&#x5904;&#x7406;&#x5C06;&#x6240;&#x6709;&#x7684;-class&#x6587;&#x4EF6;&#x8F6C;&#x6362;&#x6210;&#x4E00;&#x4E2A;-dex&#x6587;&#x4EF6;" class="headerlink" title="5,&#x4F7F;&#x7528;dx&#x5DE5;&#x5177;&#x5904;&#x7406;&#x5C06;&#x6240;&#x6709;&#x7684;.class&#x6587;&#x4EF6;&#x8F6C;&#x6362;&#x6210;&#x4E00;&#x4E2A;.dex&#x6587;&#x4EF6;"></a>5,&#x4F7F;&#x7528;dx&#x5DE5;&#x5177;&#x5904;&#x7406;&#x5C06;&#x6240;&#x6709;&#x7684;.class&#x6587;&#x4EF6;&#x8F6C;&#x6362;&#x6210;&#x4E00;&#x4E2A;.dex&#x6587;&#x4EF6;</h3><p>Android&#x7684;dalvik&#x865A;&#x62DF;&#x673A;&#x4E0D;&#x540C;&#x4E8E;JVM&#xFF0C;&#x4ED6;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x6267;&#x884C;.class&#x6587;&#x4EF6;&#xFF0C;&#x5FC5;&#x987B;&#x5C06;&#x8FD9;&#x4E9B;.class&#x6587;&#x4EF6;&#x7ECF;&#x8FC7;&#x4F18;&#x5316;&#x6253;&#x5305;&#x5230;&#x4E00;&#x4E2A;.dex&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x4EE5;&#x63D0;&#x5347;&#x6267;&#x884C;&#x6548;&#x7387;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code> 5. Convert this project&apos;s .class files into .dex files. 
 &lt;target name=&quot;dex&quot;&gt;
     &lt;echo&gt;Converting compiled files and external libraries into ${dex-file}...&lt;/echo&gt;
     &lt;apply executable=&quot;${dx}&quot; failonerror=&quot;true&quot; parallel=&quot;true&quot;&gt;
@@ -175,86 +176,106 @@
     &lt;/exec&gt;
     &lt;echo&gt;It will need to be signed with jarsigner before being published.&lt;/echo&gt;
 &lt;/target&gt;
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">### 8,&#x4F7F;&#x7528;jdk&#x4E2D;&#x7684;jarsigner&#x5BF9;&#x672A;&#x7B7E;&#x540D;&#x7684;apk&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x7B7E;&#x540D;</span><br><span class="line">Android&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5FC5;&#x987B;&#x8FDB;&#x884C;&#x7B7E;&#x540D;&#xFF0C;&#x5426;&#x5219;&#x65E0;&#x6CD5;&#x5B89;&#x88C5;&#x3002;&#x540C;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x7B7E;&#x540D;&#x9A8C;&#x8BC1;&#xFF0C;&#x4EE5;&#x9632;&#x4E8C;&#x6B21;&#x6253;&#x5305;&#x3002;Ant&#x811A;&#x672C;&#xFF1A;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">### 8,&#x4F7F;&#x7528;jdk&#x4E2D;&#x7684;jarsigner&#x5BF9;&#x672A;&#x7B7E;&#x540D;&#x7684;apk&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x7B7E;&#x540D;</span><br><span class="line">Android&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5FC5;&#x987B;&#x8FDB;&#x884C;&#x7B7E;&#x540D;&#xFF0C;&#x5426;&#x5219;&#x65E0;&#x6CD5;&#x5B89;&#x88C5;&#x3002;&#x540C;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x7B7E;&#x540D;&#x9A8C;&#x8BC1;&#xFF0C;&#x4EE5;&#x9632;&#x4E8C;&#x6B21;&#x6253;&#x5305;&#x3002;Ant&#x811A;&#x672C;&#xFF1A;</span><br><span class="line">```8. sign the package&lt;target name=&quot;sign-apk&quot; depends=&quot;gen-unsigned-apk&quot;&gt;    &lt;exec executable=&quot;${jarsigner}&quot; failonerror=&quot;true&quot;&gt;        &lt;arg value=&quot;-verbose&quot; /&gt;        &lt;arg value=&quot;-storepass&quot; /&gt;        &lt;arg value=&quot;${keystore.password}&quot; /&gt;        &lt;arg value=&quot;-keystore&quot; /&gt;        &lt;arg value=&quot;${keystore.path}&quot; /&gt;        &lt;arg value=&quot;-digestalg&quot; /&gt;        &lt;arg value=&quot;SHA1&quot; /&gt;        &lt;arg value=&quot;-sigalg&quot; /&gt;        &lt;arg value=&quot;MD5withRSA&quot; /&gt;        &lt;arg value=&quot;-sigfile&quot; /&gt;        &lt;arg value=&quot;CERT&quot; /&gt;        &lt;arg value=&quot;-signedjar&quot; /&gt;        &lt;arg value=&quot;${signed-out-file}&quot; /&gt;        &lt;arg value=&quot;${unsigned-out-file}&quot; /&gt;        &lt;arg value=&quot;${keystore.key}&quot; /&gt;    &lt;/exec&gt;&lt;/target&gt;</span><br></pre></td></tr></table></figure>
 
 
-8. sign the package
-&lt;target name=&quot;sign-apk&quot; depends=&quot;gen-unsigned-apk&quot;&gt;
-    &lt;exec executable=&quot;${jarsigner}&quot; failonerror=&quot;true&quot;&gt;
-        &lt;arg value=&quot;-verbose&quot; /&gt;
-        &lt;arg value=&quot;-storepass&quot; /&gt;
-        &lt;arg value=&quot;${keystore.password}&quot; /&gt;
-        &lt;arg value=&quot;-keystore&quot; /&gt;
-        &lt;arg value=&quot;${keystore.path}&quot; /&gt;
-        &lt;arg value=&quot;-digestalg&quot; /&gt;
-        &lt;arg value=&quot;SHA1&quot; /&gt;
-        &lt;arg value=&quot;-sigalg&quot; /&gt;
-        &lt;arg value=&quot;MD5withRSA&quot; /&gt;
-        &lt;arg value=&quot;-sigfile&quot; /&gt;
-        &lt;arg value=&quot;CERT&quot; /&gt;
-        &lt;arg value=&quot;-signedjar&quot; /&gt;
-        &lt;arg value=&quot;${signed-out-file}&quot; /&gt;
-        &lt;arg value=&quot;${unsigned-out-file}&quot; /&gt;
-        &lt;arg value=&quot;${keystore.key}&quot; /&gt;
-    &lt;/exec&gt;
+
+### 9,&#x4F7F;&#x7528;zipalign&#x5BF9;&#x7B7E;&#x540D;&#x540E;&#x7684;apk&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x5B57;&#x8282;&#x5BF9;&#x9F50;&#x4F18;&#x5316;
+
+Android SDK&#x4E2D;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x201C;zipalign&#x201D;&#x7684;&#x5DE5;&#x5177;&#xFF0C;&#x5B83;&#x80FD;&#x591F;&#x5BF9;&#x6253;&#x5305;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x8FDB;&#x884C;&#x4F18;&#x5316;&#xFF0C;&#x4F7F;&#x5F97;&#x5728;&#x8FD0;&#x884C;&#x65F6;Android&#x4E0E;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x95F4;&#x7684;&#x4EA4;&#x4E92;&#x66F4;&#x52A0;&#x6709;&#x6548;&#x7387;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x80FD;&#x591F;&#x8BA9;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x548C;&#x6574;&#x4E2A;&#x7CFB;&#x7EDF;&#x8FD0;&#x884C;&#x5F97;&#x66F4;&#x5FEB;&#x3002;
+Ant&#x811A;&#x672C;&#xFF1A;
+</code></pre><ol>
+<li>optimize the package<target name="zipalign" depends="sign-apk"><br> <exec executable="${zipalign}" failonerror="true"><br>     <arg value="-v"><br>     <arg value="-f"><br>     <arg value="4"><br>     <arg value="${signed-out-file}"><br>     <arg value="${zipalign-out-file}"><br> </arg></arg></arg></arg></arg></exec><br></target>
+
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 10,Debug&#x548C;release&#x7248;&#x672C;</span><br><span class="line">&#x4E00;&#x822C;Debug&#x7248;&#x672C;&#xFF0C;&#x6253;&#x5F00;Log&#x5F00;&#x5173;&#xFF0C;&#x4E0D;&#x8FDB;&#x884C;&#x6DF7;&#x6DC6;&#xFF0C;&#x8FD9;&#x6837;&#x4FBF;&#x4E8E;&#x6392;&#x67E5;&#x95EE;&#x9898;&#xFF0C;&#x800C;release&#x7248;&#x672C;&#x7528;&#x4E8E;&#x771F;&#x5B9E;&#x60C5;&#x51B5;&#xFF0C;&#x6240;&#x4EE5;&#x4F1A;&#x628A;Log&#x5F00;&#x5173;&#x5173;&#x95ED;&#xFF0C;&#x5E76;&#x4E14;&#x8FDB;&#x884C;&#x6DF7;&#x6DC6;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x6211;&#x4EEC;&#x4E00;&#x822C;&#x4F1A;&#x63D0;&#x4F9B;&#x4E24;&#x4E2A;&#x7248;&#x672C;&#xFF0C;&#x4E24;&#x4E2A;&#x7248;&#x672C;&#x7684;&#x6D41;&#x7A0B;&#x57FA;&#x672C;&#x4E0A;&#x4E00;&#x6837;&#xFF0C;&#x53EA;&#x662F;&#x4E2A;&#x522B;&#x5730;&#x65B9;&#x4E0D;&#x540C;&#x3002;Debug&#x7248;&#x672C;&#x7684;&#x6253;&#x5305;&#xFF1A;</span><br><span class="line"></span><br><span class="line">```&lt;target name=&quot;debug&quot;&gt;    &lt;echo&gt;Packaging debug package...&lt;/echo&gt;		&lt;!-- &#x4FEE;&#x6539;DebugLog&#x5F00;&#x5173; --&gt;    &lt;replaceregexp byline=&quot;true&quot;&gt;        &lt;regexp pattern=&quot;false&quot;/&gt;        &lt;substitution expression=&quot;true&quot;/&gt;        &lt;fileset dir=&quot;${basedir}/src/com/datatang/client/base/&quot; includes=&quot;DebugLog.java&quot;/&gt;    &lt;/replaceregexp&gt;		&lt;antcall target=&quot;compile&quot; /&gt;		&lt;antcall target=&quot;zipalign&quot; /&gt;&lt;/target&gt;</span><br></pre></td></tr></table></figure>
+<p>release&#x7248;&#x672C;&#x7684;&#x6253;&#x5305;&#xFF1A;</p>
+<pre><code>&lt;target name=&quot;release&quot;&gt;
+    &lt;echo&gt;Packaging release package...&lt;/echo&gt;
+
+    &lt;!-- &#x4FEE;&#x6539;DebugLog&#x5F00;&#x5173; --&gt;
+    &lt;replaceregexp byline=&quot;true&quot;&gt;
+        &lt;regexp pattern=&quot;true&quot;/&gt;
+        &lt;substitution expression=&quot;false&quot;/&gt;
+        &lt;fileset dir=&quot;${basedir}/src/com/datatang/client/base/&quot; includes=&quot;DebugLog.java&quot;/&gt;
+    &lt;/replaceregexp&gt;
+
+    &lt;antcall target=&quot;obfuscate&quot; /&gt;
+
+    &lt;antcall target=&quot;zipalign&quot; /&gt;
 &lt;/target&gt;
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x7531;&#x4E8E;&#x4EE3;&#x7801;&#x7684;&#x7248;&#x672C;&#x63A7;&#x5236;&#x5DE5;&#x5177;&#x4F7F;&#x7528;&#x7684;&#x662F;SVN&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5C06;SVN&#x4E0A;&#x6307;&#x5B9A;&#x7684;SVN&#x63D0;&#x4EA4;&#x53F7;&#x6216;&#x8005;&#x662F;&#x6700;&#x65B0;&#x7684;&#x4EE3;&#x7801;&#x5148;&#x5BFC;&#x51FA;&#x5230;&#x672C;&#x5730;&#xFF0C;&#x7136;&#x540E;&#x6839;&#x636E;Debug&#x548C;release&#x7248;&#x672C;&#x4F9D;&#x6B21;&#x8FDB;&#x884C;&#x4E0A;&#x9762;&#x7684;&#x6D41;&#x7A0B;&#xFF0C;&#x5373;&#x53EF;&#x5B8C;&#x6210;&#x6253;&#x5305;&#x5DE5;&#x5177;&#x4E86;&#x3002;</span><br><span class="line">&#x8FD9;&#x4E2A;&#x5DE5;&#x4F5C;&#x4F7F;&#x7528;&#x4E86;Shell&#x811A;&#x672C;&#x5B8C;&#x6210;&#xFF0C;&#x8FD9;&#x91CC;&#x4F7F;&#x7528;Shell&#x811A;&#x672C;&#x7684;&#x539F;&#x56E0;&#x662F;&#xFF1A;</span><br><span class="line">1,&#x4E00;&#x822C;&#x7684;&#x670D;&#x52A1;&#x5668;&#x662F;GNU/Linux&#x7CFB;&#x7EDF;&#xFF0C;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x7684;&#x6267;&#x884C;Shell&#x811A;&#x672C;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5C06;&#x8FD9;&#x4E2A;&#x811A;&#x672C;&#x90E8;&#x7F72;&#x5728;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x3002;</span><br><span class="line">2,SVN&#x5BA2;&#x6237;&#x7AEF;&#x5DE5;&#x5177;&#x5728;Windows&#x4E0A;&#x6CA1;&#x6709;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#xFF0C;&#x53EA;&#x6709;GUI&#x5DE5;&#x5177;&#xFF0C;&#x5982;&#x679C;&#x8981;&#x4F7F;&#x7528;Ant&#x8FD8;&#x9700;&#x8981;&#x4F9D;&#x8D56;&#x5176;&#x4ED6;&#x7684;Jar&#x5305;&#xFF0C;&#x4E5F;&#x4E0D;&#x65B9;&#x4FBF;&#x3002;</span><br><span class="line">3,&#x6211;&#x4EEC;&#x9F13;&#x52B1;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x4F7F;&#x7528;GNU/Linux&#x7CFB;&#x7EDF;&#x8FDB;&#x884C;&#x5F00;&#x53D1;Android&#x7A0B;&#x5E8F;&#x3002;&#x6253;&#x5305;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x9700;&#x8981;&#x5C06;apk&#x4E0A;&#x4F20;&#x5230;SVN&#x7684;&#x6307;&#x5B9A;&#x76EE;&#x5F55;&#xFF0C;&#x5982;&#x679C;&#x6253;&#x5305;&#x6210;&#x529F;&#xFF0C;&#x8FD8;&#x9700;&#x8981;&#x5728;SVN&#x4E0A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x8BE5;&#x7248;&#x672C;&#x5BF9;&#x5E94;&#x7684;Tag&#xFF0C;&#x811A;&#x672C;&#x5982;&#x4E0B;&#xFF1A;</span><br><span class="line"></span><br><span class="line">```projectDir=http://192.168.1.24/pro/department/factory/project/DataTang_for_Android;tagsDir=$projectDir/02.%E5%BC%80%E5%8F%91/source/tags;apkDir=$projectDir/01.%E4%BA%A7%E5%93%81/%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%89%88%E6%9C%AC;repositoryUrl=$projectDir/02.%E5%BC%80%E5%8F%91/source/trunk/DatatangForAndroid;repositoryUserName=liufupin@datatang.com;repositoryPassword=shujutang1508</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">### 9,&#x4F7F;&#x7528;zipalign&#x5BF9;&#x7B7E;&#x540D;&#x540E;&#x7684;apk&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x5B57;&#x8282;&#x5BF9;&#x9F50;&#x4F18;&#x5316;</span><br><span class="line">Android SDK&#x4E2D;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x201C;zipalign&#x201D;&#x7684;&#x5DE5;&#x5177;&#xFF0C;&#x5B83;&#x80FD;&#x591F;&#x5BF9;&#x6253;&#x5305;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x8FDB;&#x884C;&#x4F18;&#x5316;&#xFF0C;&#x4F7F;&#x5F97;&#x5728;&#x8FD0;&#x884C;&#x65F6;Android&#x4E0E;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x95F4;&#x7684;&#x4EA4;&#x4E92;&#x66F4;&#x52A0;&#x6709;&#x6548;&#x7387;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x80FD;&#x591F;&#x8BA9;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x548C;&#x6574;&#x4E2A;&#x7CFB;&#x7EDF;&#x8FD0;&#x884C;&#x5F97;&#x66F4;&#x5FEB;&#x3002;Ant&#x811A;&#x672C;&#xFF1A;</span><br><span class="line">```9. optimize the package&lt;target name=&quot;zipalign&quot; depends=&quot;sign-apk&quot;&gt;    &lt;exec executable=&quot;${zipalign}&quot; failonerror=&quot;true&quot;&gt;        &lt;arg value=&quot;-v&quot; /&gt;        &lt;arg value=&quot;-f&quot; /&gt;        &lt;arg value=&quot;4&quot; /&gt;        &lt;arg value=&quot;${signed-out-file}&quot; /&gt;        &lt;arg value=&quot;${zipalign-out-file}&quot; /&gt;    &lt;/exec&gt;&lt;/target&gt;</span><br></pre></td></tr></table></figure>
 
-### 10,Debug&#x548C;release&#x7248;&#x672C;
-&#x4E00;&#x822C;Debug&#x7248;&#x672C;&#xFF0C;&#x6253;&#x5F00;Log&#x5F00;&#x5173;&#xFF0C;&#x4E0D;&#x8FDB;&#x884C;&#x6DF7;&#x6DC6;&#xFF0C;&#x8FD9;&#x6837;&#x4FBF;&#x4E8E;&#x6392;&#x67E5;&#x95EE;&#x9898;&#xFF0C;&#x800C;release&#x7248;&#x672C;&#x7528;&#x4E8E;&#x771F;&#x5B9E;&#x60C5;&#x51B5;&#xFF0C;&#x6240;&#x4EE5;&#x4F1A;&#x628A;Log&#x5F00;&#x5173;&#x5173;&#x95ED;&#xFF0C;&#x5E76;&#x4E14;&#x8FDB;&#x884C;&#x6DF7;&#x6DC6;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x6211;&#x4EEC;&#x4E00;&#x822C;&#x4F1A;&#x63D0;&#x4F9B;&#x4E24;&#x4E2A;&#x7248;&#x672C;&#xFF0C;&#x4E24;&#x4E2A;&#x7248;&#x672C;&#x7684;&#x6D41;&#x7A0B;&#x57FA;&#x672C;&#x4E0A;&#x4E00;&#x6837;&#xFF0C;&#x53EA;&#x662F;&#x4E2A;&#x522B;&#x5730;&#x65B9;&#x4E0D;&#x540C;&#x3002;
-Debug&#x7248;&#x672C;&#x7684;&#x6253;&#x5305;&#xFF1A;
-</code></pre><p><target name="debug"><br>    <echo>Packaging debug package&#x2026;</echo></target></p>
-<pre><code>&lt;!-- &#x4FEE;&#x6539;DebugLog&#x5F00;&#x5173; --&gt;
-&lt;replaceregexp byline=&quot;true&quot;&gt;
-    &lt;regexp pattern=&quot;false&quot;/&gt;
-    &lt;substitution expression=&quot;true&quot;/&gt;
-    &lt;fileset dir=&quot;${basedir}/src/com/datatang/client/base/&quot; includes=&quot;DebugLog.java&quot;/&gt;
-&lt;/replaceregexp&gt;
 
-&lt;antcall target=&quot;compile&quot; /&gt;
-
-&lt;antcall target=&quot;zipalign&quot; /&gt;
-</code></pre><p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">release&#x7248;&#x672C;&#x7684;&#x6253;&#x5305;&#xFF1A;</span><br><span class="line"></span><br><span class="line">```&lt;target name=&quot;release&quot;&gt;    &lt;echo&gt;Packaging release package...&lt;/echo&gt;		&lt;!-- &#x4FEE;&#x6539;DebugLog&#x5F00;&#x5173; --&gt;    &lt;replaceregexp byline=&quot;true&quot;&gt;        &lt;regexp pattern=&quot;true&quot;/&gt;        &lt;substitution expression=&quot;false&quot;/&gt;        &lt;fileset dir=&quot;${basedir}/src/com/datatang/client/base/&quot; includes=&quot;DebugLog.java&quot;/&gt;    &lt;/replaceregexp&gt;		&lt;antcall target=&quot;obfuscate&quot; /&gt;		&lt;antcall target=&quot;zipalign&quot; /&gt;&lt;/target&gt;</span><br></pre></td></tr></table></figure></p>
-<p>&#x7531;&#x4E8E;&#x4EE3;&#x7801;&#x7684;&#x7248;&#x672C;&#x63A7;&#x5236;&#x5DE5;&#x5177;&#x4F7F;&#x7528;&#x7684;&#x662F;SVN&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5C06;SVN&#x4E0A;&#x6307;&#x5B9A;&#x7684;SVN&#x63D0;&#x4EA4;&#x53F7;&#x6216;&#x8005;&#x662F;&#x6700;&#x65B0;&#x7684;&#x4EE3;&#x7801;&#x5148;&#x5BFC;&#x51FA;&#x5230;&#x672C;&#x5730;&#xFF0C;&#x7136;&#x540E;&#x6839;&#x636E;Debug&#x548C;release&#x7248;&#x672C;&#x4F9D;&#x6B21;&#x8FDB;&#x884C;&#x4E0A;&#x9762;&#x7684;&#x6D41;&#x7A0B;&#xFF0C;&#x5373;&#x53EF;&#x5B8C;&#x6210;&#x6253;&#x5305;&#x5DE5;&#x5177;&#x4E86;&#x3002;</p>
-<p>&#x8FD9;&#x4E2A;&#x5DE5;&#x4F5C;&#x4F7F;&#x7528;&#x4E86;Shell&#x811A;&#x672C;&#x5B8C;&#x6210;&#xFF0C;&#x8FD9;&#x91CC;&#x4F7F;&#x7528;Shell&#x811A;&#x672C;&#x7684;&#x539F;&#x56E0;&#x662F;&#xFF1A;</p>
-<p>1,&#x4E00;&#x822C;&#x7684;&#x670D;&#x52A1;&#x5668;&#x662F;GNU/Linux&#x7CFB;&#x7EDF;&#xFF0C;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x7684;&#x6267;&#x884C;Shell&#x811A;&#x672C;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5C06;&#x8FD9;&#x4E2A;&#x811A;&#x672C;&#x90E8;&#x7F72;&#x5728;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x3002;</p>
-<p>2,SVN&#x5BA2;&#x6237;&#x7AEF;&#x5DE5;&#x5177;&#x5728;Windows&#x4E0A;&#x6CA1;&#x6709;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#xFF0C;&#x53EA;&#x6709;GUI&#x5DE5;&#x5177;&#xFF0C;&#x5982;&#x679C;&#x8981;&#x4F7F;&#x7528;Ant&#x8FD8;&#x9700;&#x8981;&#x4F9D;&#x8D56;&#x5176;&#x4ED6;&#x7684;Jar&#x5305;&#xFF0C;&#x4E5F;&#x4E0D;&#x65B9;&#x4FBF;&#x3002;</p>
-<p>3,&#x6211;&#x4EEC;&#x9F13;&#x52B1;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x4F7F;&#x7528;GNU/Linux&#x7CFB;&#x7EDF;&#x8FDB;&#x884C;&#x5F00;&#x53D1;Android&#x7A0B;&#x5E8F;&#x3002;<br>&#x6253;&#x5305;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x9700;&#x8981;&#x5C06;apk&#x4E0A;&#x4F20;&#x5230;SVN&#x7684;&#x6307;&#x5B9A;&#x76EE;&#x5F55;&#xFF0C;&#x5982;&#x679C;&#x6253;&#x5305;&#x6210;&#x529F;&#xFF0C;&#x8FD8;&#x9700;&#x8981;&#x5728;SVN&#x4E0A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x8BE5;&#x7248;&#x672C;&#x5BF9;&#x5E94;&#x7684;Tag&#xFF0C;&#x811A;&#x672C;&#x5982;&#x4E0B;&#xFF1A;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">projectDir=http://192.168.1.24/pro/department/factory/project/DataTang_for_Android;tagsDir=$projectDir/02.%E5%BC%80%E5%8F%91/source/tags;apkDir=$projectDir/01.%E4%BA%A7%E5%93%81/%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%89%88%E6%9C%AC;repositoryUrl=$projectDir/02.%E5%BC%80%E5%8F%91/source/trunk/DatatangForAndroid;repositoryUserName=liufupin@datatang.com;repositoryPassword=shujutang1508</span><br></pre></td></tr></table></figure>
-<p>&#x5148;&#x5220;&#x9664;&#x5B58;&#x653E;&#x6E90;&#x7801;&#x7684;&#x76EE;&#x5F55;&#xFF1A;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo Deleting directory $PWD/projectrm -rf project</span><br></pre></td></tr></table></figure>
-<p>&#x5BFC;&#x51FA;&#x6E90;&#x7801;&#x5230;&#x672C;&#x5730;&#xFF1A;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo Check out begain, please wait patiently!svn export -r HEAD --username $repositoryUserName --password $repositoryPassword $repositoryUrl projectecho Check out over!</span><br></pre></td></tr></table></figure>
-<p>&#x5207;&#x6362;&#x5230;&#x5B58;&#x653E;&#x6E90;&#x7801;&#x7684;&#x76EE;&#x5F55;&#xFF1A;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd project</span><br></pre></td></tr></table></figure>
+&#x5148;&#x5220;&#x9664;&#x5B58;&#x653E;&#x6E90;&#x7801;&#x7684;&#x76EE;&#x5F55;&#xFF1A;
+</code></pre><p>echo Deleting directory $PWD/project<br>rm -rf project<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x5BFC;&#x51FA;&#x6E90;&#x7801;&#x5230;&#x672C;&#x5730;&#xFF1A;</span><br></pre></td></tr></table></figure></p>
+<p>echo Check out begain, please wait patiently!<br>svn export -r HEAD &#x2013;username $repositoryUserName &#x2013;password $repositoryPassword $repositoryUrl project<br>echo Check out over!<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x5207;&#x6362;&#x5230;&#x5B58;&#x653E;&#x6E90;&#x7801;&#x7684;&#x76EE;&#x5F55;&#xFF1A;</span><br><span class="line"></span><br><span class="line">```cd project</span><br></pre></td></tr></table></figure></p>
 <p>&#x83B7;&#x53D6;AndroidManifest.xml&#x4E2D;&#x7684;&#x7248;&#x672C;&#x53F7;&#xFF1A;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">versionName=`cat AndroidManifest.xml | grep &apos;versionName=&quot;[^&quot;]*&quot;&apos; | sed &apos;s/.*versionName=&quot;\([^&quot;]*\)&quot;.*/\1/&apos;`;echo $versionName;</span><br></pre></td></tr></table></figure>
-<p>&#x83B7;&#x53D6;build.properties&#x914D;&#x7F6E;&#x7684;os.home&#x53D8;&#x91CF;&#x7684;&#x503C;&#xFF0C;&#x56E0;&#x4E3A;&#x4E0D;&#x540C;&#x7CFB;&#x7EDF;&#x7684;&#x4E0D;&#x540C;&#x7528;&#x6237;&#xFF0C;&#x8FD9;&#x4E2A;&#x503C;&#x53EF;&#x80FD;&#x4E0D;&#x540C;&#xFF1A;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">oldHome=/home/leleliu008newHome=$HOMEsed -i &quot;s#${oldHome}#${newHome}#g&quot; build.properties</span><br></pre></td></tr></table></figure>
-<p>&#x6253;release&#x5305;</p>
+<pre><code>versionName=`cat AndroidManifest.xml | grep &apos;versionName=&quot;[^&quot;]*&quot;&apos; | sed &apos;s/.*versionName=&quot;\([^&quot;]*\)&quot;.*/\1/&apos;`;
+echo $versionName;
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x83B7;&#x53D6;build.properties&#x914D;&#x7F6E;&#x7684;os.home&#x53D8;&#x91CF;&#x7684;&#x503C;&#xFF0C;&#x56E0;&#x4E3A;&#x4E0D;&#x540C;&#x7CFB;&#x7EDF;&#x7684;&#x4E0D;&#x540C;&#x7528;&#x6237;&#xFF0C;&#x8FD9;&#x4E2A;&#x503C;&#x53EF;&#x80FD;&#x4E0D;&#x540C;&#xFF1A;</span><br><span class="line"></span><br><span class="line">```oldHome=/home/leleliu008newHome=$HOMEsed -i &quot;s#${oldHome}#${newHome}#g&quot; build.properties</span><br></pre></td></tr></table></figure>
+
+&#x6253;release&#x5305;
+
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ant release</span><br></pre></td></tr></table></figure>
-<p>&#x5C06;release&#x5305;&#x4E0A;&#x4F20;&#x5230;SVN&#x6307;&#x5B9A;&#x76EE;&#x5F55;&#x4E2D;&#xFF1A;</p>
+
+&#x5C06;release&#x5305;&#x4E0A;&#x4F20;&#x5230;SVN&#x6307;&#x5B9A;&#x76EE;&#x5F55;&#x4E2D;&#xFF1A;
+
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn import --username $repositoryUserName --password $repositoryPassword bin/DataTang_for_android.apk $apkDir/DataTang_for_android_$versionName\(obfuscate\).apk -m &quot;import $versionName obfuscate apk&quot;</span><br></pre></td></tr></table></figure>
-<p>&#x6253;debug&#x5305;&#xFF1A;</p>
+
+&#x6253;debug&#x5305;&#xFF1A;
+
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ant debug</span><br></pre></td></tr></table></figure>
-<p>&#x5C06;release&#x5305;&#x4E0A;&#x4F20;&#x5230;SVN&#x6307;&#x5B9A;&#x76EE;&#x5F55;&#x4E2D;&#xFF1A;</p>
+
+&#x5C06;release&#x5305;&#x4E0A;&#x4F20;&#x5230;SVN&#x6307;&#x5B9A;&#x76EE;&#x5F55;&#x4E2D;&#xFF1A;
+
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn import --username $repositoryUserName --password $repositoryPassword bin/DataTang_for_android.apk $apkDir/DataTang_for_android_$versionName.apk -m &quot;import $versionName unobfuscate apk&quot;</span><br></pre></td></tr></table></figure>
-<p>&#x6784;&#x5EFA;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x5148;&#x5220;&#x9664;bin&#x76EE;&#x5F55;&#x548C;gen&#x76EE;&#x5F55;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x4E9B;&#x76EE;&#x5F55;&#x662F;&#x6784;&#x5EFA;&#x8FC7;&#x7A0B;&#x4E2D;&#x751F;&#x6210;&#x7684;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x63D0;&#x4EA4;&#x5230;SVN&#x4E2D;&#xFF1A;</p>
+
+&#x6784;&#x5EFA;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x5148;&#x5220;&#x9664;bin&#x76EE;&#x5F55;&#x548C;gen&#x76EE;&#x5F55;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x4E9B;&#x76EE;&#x5F55;&#x662F;&#x6784;&#x5EFA;&#x8FC7;&#x7A0B;&#x4E2D;&#x751F;&#x6210;&#x7684;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x63D0;&#x4EA4;&#x5230;SVN&#x4E2D;&#xFF1A;
+
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf binrm -rf gen</span><br></pre></td></tr></table></figure>
-<p>&#x5728;SVN&#x4E0A;&#x521B;&#x5EFA;&#x8BE5;&#x7248;&#x672C;&#x7684;tag&#xFF1A;</p>
+
+&#x5728;SVN&#x4E0A;&#x521B;&#x5EFA;&#x8BE5;&#x7248;&#x672C;&#x7684;tag&#xFF1A;
+
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn import --username $repositoryUserName --password $repositoryPassword project $tagsDir/DatatangForAndroid_$versionName -m &quot;create tag $versionName&quot; --no-ignore</span><br></pre></td></tr></table></figure>
-<h3 id="11-&#x6E20;&#x9053;&#x5305;"><a href="#11-&#x6E20;&#x9053;&#x5305;" class="headerlink" title="11,&#x6E20;&#x9053;&#x5305;"></a>11,&#x6E20;&#x9053;&#x5305;</h3><p>&#x5728;Android&#x9879;&#x76EE;&#x7684;&#x6839;&#x76EE;&#x5F55;&#x4E0B;&#x9762;&#x6709;&#x4E00;&#x4E2A;channel&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x91CC;&#x9762;&#x6709;&#x4E00;&#x4E2A;&#x6E20;&#x9053;&#x53F7;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;channels.txt&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</p>
+
+### 11,&#x6E20;&#x9053;&#x5305;
+&#x5728;Android&#x9879;&#x76EE;&#x7684;&#x6839;&#x76EE;&#x5F55;&#x4E0B;&#x9762;&#x6709;&#x4E00;&#x4E2A;channel&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x91CC;&#x9762;&#x6709;&#x4E00;&#x4E2A;&#x6E20;&#x9053;&#x53F7;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;channels.txt&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;
+
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">100000100001100002100003100004100005100005100006100007100008100009</span><br></pre></td></tr></table></figure>
-<p>&#x6253;&#x6E20;&#x9053;&#x5305;&#x7684;shell&#x811A;&#x672C;&#xFF1A;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#xFF03;!/bin/shbaseDir=$PWD;if [-d packages]; thenrm -rf packages;fimkdir packages;cat channels.txt | while read linedo    echo began build channel $line;        sed -i &quot;s#[0-9]\{6\}#${line}#g&quot; $baseDir/../src/com/datatang/client/common/config/ChannelConfig.java    sh autobuild.sh;    cd packages;    mkdir $line;    cd ..    mv $baseDir/../bin/DataTang_for_android.apk $baseDir/packages/$line/DataTang_for_android_$line.apkdone</span><br></pre></td></tr></table></figure>
+
+
+
+&#x6253;&#x6E20;&#x9053;&#x5305;&#x7684;shell&#x811A;&#x672C;&#xFF1A;
+</code></pre><p>&#xFF03;!/bin/sh</p>
+<p>baseDir=$PWD;</p>
+<p>if [-d packages]; then<br>rm -rf packages;<br>fi</p>
+<p>mkdir packages;</p>
+<p>cat channels.txt | while read line<br>do<br>    echo began build channel $line;</p>
+<pre><code>sed -i &quot;s#[0-9]\{6\}#${line}#g&quot; $baseDir/../src/com/datatang/client/common/config/ChannelConfig.java
+sh autobuild.sh;
+cd packages;
+mkdir $line;
+cd ..
+mv $baseDir/../bin/DataTang_for_android.apk $baseDir/packages/$line/DataTang_for_android_$line.apk
+</code></pre><p>done</p>
+<p>```</p>
 <h3 id="12-&#x90E8;&#x7F72;"><a href="#12-&#x90E8;&#x7F72;" class="headerlink" title="12,&#x90E8;&#x7F72;"></a>12,&#x90E8;&#x7F72;</h3><p>&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF1A;CentOS 7 x86_64<br>&#x4E3B;&#x673A;&#x5730;&#x5740;&#xFF1A;192.168.1.48<br>&#x4E3B;&#x673A;&#x7528;&#x6237;&#x540D;&#xFF1A;root<br>&#x4E3B;&#x673A;&#x5BC6;&#x7801;&#xFF1A;Simple1921</p>
 <p>&#x6253;&#x5305;&#x9700;&#x8981;&#x4F7F;&#x7528;Android SDK&#x4E2D;&#x7684;&#x5DE5;&#x5177;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x5FC5;&#x987B;&#x5B89;&#x88C5;Android SDK&#x3002;<br>&#x9700;&#x8981;&#x4F7F;&#x7528;SVN&#x8FDB;&#x884C;&#x7BA1;&#x7406;&#x6E90;&#x4EE3;&#x7801;&#xFF0C;&#x6240;&#x4EE5;&#x5FC5;&#x987B;&#x5B89;&#x88C5;SVN&#x5BA2;&#x6237;&#x7AEF;&#x3002;</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/14/Android_ant自动版本构建/" data-id="ciuz91d1g000g4ts66mujvp7r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/14/Android_ant自动版本构建/" data-id="civ97pt7l000ii9s61d484yft" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -265,19 +286,19 @@ Debug&#x7248;&#x672C;&#x7684;&#x6253;&#x5305;&#xFF1A;
     
 <nav id="article-nav">
   
-    <a href="/2016/10/18/Android_百分比框架/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/10/14/Android_gradle的使用/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Android百分比框架
+          gradle和AS
         
       </div>
     </a>
   
   
-    <a href="/2016/10/14/JavaWeb_cookie和session的理解/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/10/14/JavaWeb_encodeURI来解决URL传递时的中文问题/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">cookie和session的理解</div>
+      <div class="article-nav-title">encodeURI来解决URL传递时的中文问题</div>
     </a>
   
 </nav>
@@ -336,15 +357,15 @@ Debug&#x7248;&#x672C;&#x7684;&#x6253;&#x5305;&#xFF1A;
           </li>
         
           <li>
+            <a href="/2016/10/14/Android_常用开源/">android常用开源项目</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/14/Android_gradle的使用/">gradle和AS</a>
+          </li>
+        
+          <li>
             <a href="/2016/10/14/Android_ant自动版本构建/">ant自动版本构建</a>
-          </li>
-        
-          <li>
-            <a href="/2016/10/14/JavaWeb_cookie和session的理解/">cookie和session的理解</a>
-          </li>
-        
-          <li>
-            <a href="/2016/10/14/JavaWeb_encodeURI来解决URL传递时的中文问题/">encodeURI来解决URL传递时的中文问题</a>
           </li>
         
       </ul>

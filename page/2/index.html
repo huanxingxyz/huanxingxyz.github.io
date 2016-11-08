@@ -68,6 +68,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JavaWeb_springMvc参数获取" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/13/JavaWeb_springMvc参数获取/" class="article-date">
+  <time datetime="2016-10-13T13:26:18.000Z" itemprop="datePublished">2016-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/13/JavaWeb_springMvc参数获取/">springMvc参数获取</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="&#x76F4;&#x63A5;&#x628A;&#x8868;&#x5355;&#x7684;&#x53C2;&#x6570;&#x5199;&#x5728;Controller&#x76F8;&#x5E94;&#x7684;&#x65B9;&#x6CD5;&#x7684;&#x5F62;&#x53C2;&#x4E2D;&#xFF0C;&#x9002;&#x7528;&#x4E8E;get&#x65B9;&#x5F0F;&#x63D0;&#x4EA4;&#xFF0C;&#x4E0D;&#x9002;&#x7528;&#x4E8E;post&#x65B9;&#x5F0F;&#x63D0;&#x4EA4;&#x3002;"><a href="#&#x76F4;&#x63A5;&#x628A;&#x8868;&#x5355;&#x7684;&#x53C2;&#x6570;&#x5199;&#x5728;Controller&#x76F8;&#x5E94;&#x7684;&#x65B9;&#x6CD5;&#x7684;&#x5F62;&#x53C2;&#x4E2D;&#xFF0C;&#x9002;&#x7528;&#x4E8E;get&#x65B9;&#x5F0F;&#x63D0;&#x4EA4;&#xFF0C;&#x4E0D;&#x9002;&#x7528;&#x4E8E;post&#x65B9;&#x5F0F;&#x63D0;&#x4EA4;&#x3002;" class="headerlink" title="&#x76F4;&#x63A5;&#x628A;&#x8868;&#x5355;&#x7684;&#x53C2;&#x6570;&#x5199;&#x5728;Controller&#x76F8;&#x5E94;&#x7684;&#x65B9;&#x6CD5;&#x7684;&#x5F62;&#x53C2;&#x4E2D;&#xFF0C;&#x9002;&#x7528;&#x4E8E;get&#x65B9;&#x5F0F;&#x63D0;&#x4EA4;&#xFF0C;&#x4E0D;&#x9002;&#x7528;&#x4E8E;post&#x65B9;&#x5F0F;&#x63D0;&#x4EA4;&#x3002;"></a>&#x76F4;&#x63A5;&#x628A;&#x8868;&#x5355;&#x7684;&#x53C2;&#x6570;&#x5199;&#x5728;Controller&#x76F8;&#x5E94;&#x7684;&#x65B9;&#x6CD5;&#x7684;&#x5F62;&#x53C2;&#x4E2D;&#xFF0C;&#x9002;&#x7528;&#x4E8E;get&#x65B9;&#x5F0F;&#x63D0;&#x4EA4;&#xFF0C;&#x4E0D;&#x9002;&#x7528;&#x4E8E;post&#x65B9;&#x5F0F;&#x63D0;&#x4EA4;&#x3002;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">     * 1.&#x76F4;&#x63A5;&#x628A;&#x8868;&#x5355;&#x7684;&#x53C2;&#x6570;&#x5199;&#x5728;Controller&#x76F8;&#x5E94;&#x7684;&#x65B9;&#x6CD5;&#x7684;&#x5F62;&#x53C2;&#x4E2D;</span><br><span class="line">      * @param username</span><br><span class="line">     * @param password</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(&quot;/addUser1&quot;)</span><br><span class="line">    public String addUser1(String username,String password) {</span><br><span class="line">        System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">        System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
+<p>url&#x5F62;&#x5F0F;&#xFF1A;<a href="http://localhost/SSMDemo/demo/addUser1?username=lixiaoxi&amp;password=111111" target="_blank" rel="external">http://localhost/SSMDemo/demo/addUser1?username=lixiaoxi&amp;password=111111</a> &#x63D0;&#x4EA4;&#x7684;&#x53C2;&#x6570;&#x9700;&#x8981;&#x548C;Controller&#x65B9;&#x6CD5;&#x4E2D;&#x7684;&#x5165;&#x53C2;&#x540D;&#x79F0;&#x4E00;&#x81F4;&#x3002;</p>
+<h3 id="&#x901A;&#x8FC7;HttpServletRequest&#x63A5;&#x6536;&#xFF0C;post&#x65B9;&#x5F0F;&#x548C;get&#x65B9;&#x5F0F;&#x90FD;&#x53EF;&#x4EE5;&#x3002;"><a href="#&#x901A;&#x8FC7;HttpServletRequest&#x63A5;&#x6536;&#xFF0C;post&#x65B9;&#x5F0F;&#x548C;get&#x65B9;&#x5F0F;&#x90FD;&#x53EF;&#x4EE5;&#x3002;" class="headerlink" title="&#x901A;&#x8FC7;HttpServletRequest&#x63A5;&#x6536;&#xFF0C;post&#x65B9;&#x5F0F;&#x548C;get&#x65B9;&#x5F0F;&#x90FD;&#x53EF;&#x4EE5;&#x3002;"></a>&#x901A;&#x8FC7;HttpServletRequest&#x63A5;&#x6536;&#xFF0C;post&#x65B9;&#x5F0F;&#x548C;get&#x65B9;&#x5F0F;&#x90FD;&#x53EF;&#x4EE5;&#x3002;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * 2&#x3001;&#x901A;&#x8FC7;HttpServletRequest&#x63A5;&#x6536;</span><br><span class="line">     * @param request</span><br><span class="line">    * @return</span><br><span class="line">    */</span><br><span class="line">   @RequestMapping(&quot;/addUser2&quot;)</span><br><span class="line">   public String addUser2(HttpServletRequest request) {</span><br><span class="line">       String username=request.getParameter(&quot;username&quot;);</span><br><span class="line">       String password=request.getParameter(&quot;password&quot;);</span><br><span class="line">       System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">       System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">       return &quot;demo/index&quot;;</span><br><span class="line">   }</span><br></pre></td></tr></table></figure>
+<h3 id="&#x901A;&#x8FC7;&#x4E00;&#x4E2A;bean&#x6765;&#x63A5;&#x6536;-post&#x65B9;&#x5F0F;&#x548C;get&#x65B9;&#x5F0F;&#x90FD;&#x53EF;&#x4EE5;&#x3002;"><a href="#&#x901A;&#x8FC7;&#x4E00;&#x4E2A;bean&#x6765;&#x63A5;&#x6536;-post&#x65B9;&#x5F0F;&#x548C;get&#x65B9;&#x5F0F;&#x90FD;&#x53EF;&#x4EE5;&#x3002;" class="headerlink" title="&#x901A;&#x8FC7;&#x4E00;&#x4E2A;bean&#x6765;&#x63A5;&#x6536;,post&#x65B9;&#x5F0F;&#x548C;get&#x65B9;&#x5F0F;&#x90FD;&#x53EF;&#x4EE5;&#x3002;"></a>&#x901A;&#x8FC7;&#x4E00;&#x4E2A;bean&#x6765;&#x63A5;&#x6536;,post&#x65B9;&#x5F0F;&#x548C;get&#x65B9;&#x5F0F;&#x90FD;&#x53EF;&#x4EE5;&#x3002;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">     * 3&#x3001;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;bean&#x6765;&#x63A5;&#x6536;</span><br><span class="line">      * @param user</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(&quot;/addUser3&quot;)</span><br><span class="line">    public String addUser3(UserModel user) {</span><br><span class="line">        System.out.println(&quot;username is:&quot;+user.getUsername());</span><br><span class="line">        System.out.println(&quot;password is:&quot;+user.getPassword());</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
+<h3 id="&#x901A;&#x8FC7;-PathVariable&#x83B7;&#x53D6;&#x8DEF;&#x5F84;&#x4E2D;&#x7684;&#x53C2;&#x6570;"><a href="#&#x901A;&#x8FC7;-PathVariable&#x83B7;&#x53D6;&#x8DEF;&#x5F84;&#x4E2D;&#x7684;&#x53C2;&#x6570;" class="headerlink" title="&#x901A;&#x8FC7;@PathVariable&#x83B7;&#x53D6;&#x8DEF;&#x5F84;&#x4E2D;&#x7684;&#x53C2;&#x6570;"></a>&#x901A;&#x8FC7;@PathVariable&#x83B7;&#x53D6;&#x8DEF;&#x5F84;&#x4E2D;&#x7684;&#x53C2;&#x6570;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">     * 4&#x3001;&#x901A;&#x8FC7;@PathVariable&#x83B7;&#x53D6;&#x8DEF;&#x5F84;&#x4E2D;&#x7684;&#x53C2;&#x6570;</span><br><span class="line">      * @param username</span><br><span class="line">     * @param password</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(value=&quot;/addUser4/{username}/{password}&quot;,method=RequestMethod.GET)</span><br><span class="line">public String addUser4(@PathVariable String username,@PathVariable String password) {</span><br><span class="line">        System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">        System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
+<p>&#x4F8B;&#x5982;&#xFF0C;&#x8BBF;&#x95EE;<a href="http://localhost/SSMDemo/demo/addUser4/lixiaoxi/111111" target="_blank" rel="external">http://localhost/SSMDemo/demo/addUser4/lixiaoxi/111111</a> &#x8DEF;&#x5F84;&#x65F6;&#xFF0C;&#x5219;&#x81EA;&#x52A8;&#x5C06;URL&#x4E2D;&#x6A21;&#x677F;&#x53D8;&#x91CF;{username}&#x548C;{password}&#x7ED1;&#x5B9A;&#x5230;&#x901A;&#x8FC7;@PathVariable&#x6CE8;&#x89E3;&#x7684;&#x540C;&#x540D;&#x53C2;&#x6570;&#x4E0A;&#xFF0C;&#x5373;&#x5165;&#x53C2;&#x540E;username=lixiaoxi&#x3001;password=111111&#x3002;</p>
+<h3 id="&#x4F7F;&#x7528;-ModelAttribute&#x6CE8;&#x89E3;&#x83B7;&#x53D6;POST&#x8BF7;&#x6C42;&#x7684;FORM&#x8868;&#x5355;&#x6570;&#x636E;"><a href="#&#x4F7F;&#x7528;-ModelAttribute&#x6CE8;&#x89E3;&#x83B7;&#x53D6;POST&#x8BF7;&#x6C42;&#x7684;FORM&#x8868;&#x5355;&#x6570;&#x636E;" class="headerlink" title="&#x4F7F;&#x7528;@ModelAttribute&#x6CE8;&#x89E3;&#x83B7;&#x53D6;POST&#x8BF7;&#x6C42;&#x7684;FORM&#x8868;&#x5355;&#x6570;&#x636E;"></a>&#x4F7F;&#x7528;@ModelAttribute&#x6CE8;&#x89E3;&#x83B7;&#x53D6;POST&#x8BF7;&#x6C42;&#x7684;FORM&#x8868;&#x5355;&#x6570;&#x636E;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;form action =&quot;&lt;%=request.getContextPath()%&gt;/demo/addUser5&quot; method=&quot;post&quot;&gt; </span><br><span class="line">     &#x7528;&#x6237;&#x540D;:&amp;nbsp;&lt;input type=&quot;text&quot; name=&quot;username&quot;/&gt;&lt;br/&gt;</span><br><span class="line">     &#x5BC6;&amp;nbsp;&amp;nbsp;&#x7801;:&amp;nbsp;&lt;input type=&quot;password&quot; name=&quot;password&quot;/&gt;&lt;br/&gt;</span><br><span class="line">     &lt;input type=&quot;submit&quot; value=&quot;&#x63D0;&#x4EA4;&quot;/&gt; </span><br><span class="line">     &lt;input type=&quot;reset&quot; value=&quot;&#x91CD;&#x7F6E;&quot;/&gt; </span><br><span class="line">&lt;/form&gt; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x590D;&#x5236;&#x4EE3;&#x7801;</span><br><span class="line">    /**</span><br><span class="line">     * 5&#x3001;&#x4F7F;&#x7528;@ModelAttribute&#x6CE8;&#x89E3;&#x83B7;&#x53D6;POST&#x8BF7;&#x6C42;&#x7684;FORM&#x8868;&#x5355;&#x6570;&#x636E;</span><br><span class="line">      * @param user</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(value=&quot;/addUser5&quot;,method=RequestMethod.POST)</span><br><span class="line">    public String addUser5(@ModelAttribute(&quot;user&quot;) UserModel user) {</span><br><span class="line">        System.out.println(&quot;username is:&quot;+user.getUsername());</span><br><span class="line">        System.out.println(&quot;password is:&quot;+user.getPassword());</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
+<h3 id="&#x7528;&#x6CE8;&#x89E3;-RequestParam&#x7ED1;&#x5B9A;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x5230;&#x65B9;&#x6CD5;&#x5165;&#x53C2;"><a href="#&#x7528;&#x6CE8;&#x89E3;-RequestParam&#x7ED1;&#x5B9A;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x5230;&#x65B9;&#x6CD5;&#x5165;&#x53C2;" class="headerlink" title="&#x7528;&#x6CE8;&#x89E3;@RequestParam&#x7ED1;&#x5B9A;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x5230;&#x65B9;&#x6CD5;&#x5165;&#x53C2;"></a>&#x7528;&#x6CE8;&#x89E3;@RequestParam&#x7ED1;&#x5B9A;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x5230;&#x65B9;&#x6CD5;&#x5165;&#x53C2;</h3><p>&#x5F53;&#x8BF7;&#x6C42;&#x53C2;&#x6570;username&#x4E0D;&#x5B58;&#x5728;&#x65F6;&#x4F1A;&#x6709;&#x5F02;&#x5E38;&#x53D1;&#x751F;,&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;&#x5C5E;&#x6027;required=false&#x89E3;&#x51B3;,&#x4F8B;&#x5982;: @RequestParam(value=&#x201D;username&#x201D;, required=false)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 6&#x3001;&#x7528;&#x6CE8;&#x89E3;@RequestParam&#x7ED1;&#x5B9A;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x5230;&#x65B9;&#x6CD5;&#x5165;&#x53C2;</span><br><span class="line">  * @param username</span><br><span class="line"> * @param password</span><br><span class="line"> * @return</span><br><span class="line"> */</span><br><span class="line">@RequestMapping(value=&quot;/addUser6&quot;,method=RequestMethod.GET)</span><br><span class="line">public String addUser6(@RequestParam(&quot;username&quot;) String username,@RequestParam(&quot;password&quot;) String password) {</span><br><span class="line">    System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">    System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">    return &quot;demo/index&quot;;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/10/13/JavaWeb_springMvc参数获取/" data-id="civ97pt97001ri9s6pb3ccnu3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-IDE_创业常用到的工具" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/10/13/IDE_创业常用到的工具/" class="article-date">
@@ -107,57 +154,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/13/IDE_创业常用到的工具/" data-id="ciuz91d2i001c4ts66mkx3qao" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/13/IDE_创业常用到的工具/" data-id="civ97pt8n001bi9s6e8hqpe7b" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开源项目/">开源项目</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JavaWeb_springMvc参数获取" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/10/13/JavaWeb_springMvc参数获取/" class="article-date">
-  <time datetime="2016-10-13T13:26:18.000Z" itemprop="datePublished">2016-10-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/13/JavaWeb_springMvc参数获取/">springMvc参数获取</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="&#x76F4;&#x63A5;&#x628A;&#x8868;&#x5355;&#x7684;&#x53C2;&#x6570;&#x5199;&#x5728;Controller&#x76F8;&#x5E94;&#x7684;&#x65B9;&#x6CD5;&#x7684;&#x5F62;&#x53C2;&#x4E2D;&#xFF0C;&#x9002;&#x7528;&#x4E8E;get&#x65B9;&#x5F0F;&#x63D0;&#x4EA4;&#xFF0C;&#x4E0D;&#x9002;&#x7528;&#x4E8E;post&#x65B9;&#x5F0F;&#x63D0;&#x4EA4;&#x3002;"><a href="#&#x76F4;&#x63A5;&#x628A;&#x8868;&#x5355;&#x7684;&#x53C2;&#x6570;&#x5199;&#x5728;Controller&#x76F8;&#x5E94;&#x7684;&#x65B9;&#x6CD5;&#x7684;&#x5F62;&#x53C2;&#x4E2D;&#xFF0C;&#x9002;&#x7528;&#x4E8E;get&#x65B9;&#x5F0F;&#x63D0;&#x4EA4;&#xFF0C;&#x4E0D;&#x9002;&#x7528;&#x4E8E;post&#x65B9;&#x5F0F;&#x63D0;&#x4EA4;&#x3002;" class="headerlink" title="&#x76F4;&#x63A5;&#x628A;&#x8868;&#x5355;&#x7684;&#x53C2;&#x6570;&#x5199;&#x5728;Controller&#x76F8;&#x5E94;&#x7684;&#x65B9;&#x6CD5;&#x7684;&#x5F62;&#x53C2;&#x4E2D;&#xFF0C;&#x9002;&#x7528;&#x4E8E;get&#x65B9;&#x5F0F;&#x63D0;&#x4EA4;&#xFF0C;&#x4E0D;&#x9002;&#x7528;&#x4E8E;post&#x65B9;&#x5F0F;&#x63D0;&#x4EA4;&#x3002;"></a>&#x76F4;&#x63A5;&#x628A;&#x8868;&#x5355;&#x7684;&#x53C2;&#x6570;&#x5199;&#x5728;Controller&#x76F8;&#x5E94;&#x7684;&#x65B9;&#x6CD5;&#x7684;&#x5F62;&#x53C2;&#x4E2D;&#xFF0C;&#x9002;&#x7528;&#x4E8E;get&#x65B9;&#x5F0F;&#x63D0;&#x4EA4;&#xFF0C;&#x4E0D;&#x9002;&#x7528;&#x4E8E;post&#x65B9;&#x5F0F;&#x63D0;&#x4EA4;&#x3002;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">     * 1.&#x76F4;&#x63A5;&#x628A;&#x8868;&#x5355;&#x7684;&#x53C2;&#x6570;&#x5199;&#x5728;Controller&#x76F8;&#x5E94;&#x7684;&#x65B9;&#x6CD5;&#x7684;&#x5F62;&#x53C2;&#x4E2D;</span><br><span class="line">      * @param username</span><br><span class="line">     * @param password</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(&quot;/addUser1&quot;)</span><br><span class="line">    public String addUser1(String username,String password) {</span><br><span class="line">        System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">        System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
-<p>url&#x5F62;&#x5F0F;&#xFF1A;<a href="http://localhost/SSMDemo/demo/addUser1?username=lixiaoxi&amp;password=111111" target="_blank" rel="external">http://localhost/SSMDemo/demo/addUser1?username=lixiaoxi&amp;password=111111</a> &#x63D0;&#x4EA4;&#x7684;&#x53C2;&#x6570;&#x9700;&#x8981;&#x548C;Controller&#x65B9;&#x6CD5;&#x4E2D;&#x7684;&#x5165;&#x53C2;&#x540D;&#x79F0;&#x4E00;&#x81F4;&#x3002;</p>
-<h3 id="&#x901A;&#x8FC7;HttpServletRequest&#x63A5;&#x6536;&#xFF0C;post&#x65B9;&#x5F0F;&#x548C;get&#x65B9;&#x5F0F;&#x90FD;&#x53EF;&#x4EE5;&#x3002;"><a href="#&#x901A;&#x8FC7;HttpServletRequest&#x63A5;&#x6536;&#xFF0C;post&#x65B9;&#x5F0F;&#x548C;get&#x65B9;&#x5F0F;&#x90FD;&#x53EF;&#x4EE5;&#x3002;" class="headerlink" title="&#x901A;&#x8FC7;HttpServletRequest&#x63A5;&#x6536;&#xFF0C;post&#x65B9;&#x5F0F;&#x548C;get&#x65B9;&#x5F0F;&#x90FD;&#x53EF;&#x4EE5;&#x3002;"></a>&#x901A;&#x8FC7;HttpServletRequest&#x63A5;&#x6536;&#xFF0C;post&#x65B9;&#x5F0F;&#x548C;get&#x65B9;&#x5F0F;&#x90FD;&#x53EF;&#x4EE5;&#x3002;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * 2&#x3001;&#x901A;&#x8FC7;HttpServletRequest&#x63A5;&#x6536;</span><br><span class="line">     * @param request</span><br><span class="line">    * @return</span><br><span class="line">    */</span><br><span class="line">   @RequestMapping(&quot;/addUser2&quot;)</span><br><span class="line">   public String addUser2(HttpServletRequest request) {</span><br><span class="line">       String username=request.getParameter(&quot;username&quot;);</span><br><span class="line">       String password=request.getParameter(&quot;password&quot;);</span><br><span class="line">       System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">       System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">       return &quot;demo/index&quot;;</span><br><span class="line">   }</span><br></pre></td></tr></table></figure>
-<h3 id="&#x901A;&#x8FC7;&#x4E00;&#x4E2A;bean&#x6765;&#x63A5;&#x6536;-post&#x65B9;&#x5F0F;&#x548C;get&#x65B9;&#x5F0F;&#x90FD;&#x53EF;&#x4EE5;&#x3002;"><a href="#&#x901A;&#x8FC7;&#x4E00;&#x4E2A;bean&#x6765;&#x63A5;&#x6536;-post&#x65B9;&#x5F0F;&#x548C;get&#x65B9;&#x5F0F;&#x90FD;&#x53EF;&#x4EE5;&#x3002;" class="headerlink" title="&#x901A;&#x8FC7;&#x4E00;&#x4E2A;bean&#x6765;&#x63A5;&#x6536;,post&#x65B9;&#x5F0F;&#x548C;get&#x65B9;&#x5F0F;&#x90FD;&#x53EF;&#x4EE5;&#x3002;"></a>&#x901A;&#x8FC7;&#x4E00;&#x4E2A;bean&#x6765;&#x63A5;&#x6536;,post&#x65B9;&#x5F0F;&#x548C;get&#x65B9;&#x5F0F;&#x90FD;&#x53EF;&#x4EE5;&#x3002;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">     * 3&#x3001;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;bean&#x6765;&#x63A5;&#x6536;</span><br><span class="line">      * @param user</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(&quot;/addUser3&quot;)</span><br><span class="line">    public String addUser3(UserModel user) {</span><br><span class="line">        System.out.println(&quot;username is:&quot;+user.getUsername());</span><br><span class="line">        System.out.println(&quot;password is:&quot;+user.getPassword());</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
-<h3 id="&#x901A;&#x8FC7;-PathVariable&#x83B7;&#x53D6;&#x8DEF;&#x5F84;&#x4E2D;&#x7684;&#x53C2;&#x6570;"><a href="#&#x901A;&#x8FC7;-PathVariable&#x83B7;&#x53D6;&#x8DEF;&#x5F84;&#x4E2D;&#x7684;&#x53C2;&#x6570;" class="headerlink" title="&#x901A;&#x8FC7;@PathVariable&#x83B7;&#x53D6;&#x8DEF;&#x5F84;&#x4E2D;&#x7684;&#x53C2;&#x6570;"></a>&#x901A;&#x8FC7;@PathVariable&#x83B7;&#x53D6;&#x8DEF;&#x5F84;&#x4E2D;&#x7684;&#x53C2;&#x6570;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">     * 4&#x3001;&#x901A;&#x8FC7;@PathVariable&#x83B7;&#x53D6;&#x8DEF;&#x5F84;&#x4E2D;&#x7684;&#x53C2;&#x6570;</span><br><span class="line">      * @param username</span><br><span class="line">     * @param password</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(value=&quot;/addUser4/{username}/{password}&quot;,method=RequestMethod.GET)</span><br><span class="line">public String addUser4(@PathVariable String username,@PathVariable String password) {</span><br><span class="line">        System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">        System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
-<p>&#x4F8B;&#x5982;&#xFF0C;&#x8BBF;&#x95EE;<a href="http://localhost/SSMDemo/demo/addUser4/lixiaoxi/111111" target="_blank" rel="external">http://localhost/SSMDemo/demo/addUser4/lixiaoxi/111111</a> &#x8DEF;&#x5F84;&#x65F6;&#xFF0C;&#x5219;&#x81EA;&#x52A8;&#x5C06;URL&#x4E2D;&#x6A21;&#x677F;&#x53D8;&#x91CF;{username}&#x548C;{password}&#x7ED1;&#x5B9A;&#x5230;&#x901A;&#x8FC7;@PathVariable&#x6CE8;&#x89E3;&#x7684;&#x540C;&#x540D;&#x53C2;&#x6570;&#x4E0A;&#xFF0C;&#x5373;&#x5165;&#x53C2;&#x540E;username=lixiaoxi&#x3001;password=111111&#x3002;</p>
-<h3 id="&#x4F7F;&#x7528;-ModelAttribute&#x6CE8;&#x89E3;&#x83B7;&#x53D6;POST&#x8BF7;&#x6C42;&#x7684;FORM&#x8868;&#x5355;&#x6570;&#x636E;"><a href="#&#x4F7F;&#x7528;-ModelAttribute&#x6CE8;&#x89E3;&#x83B7;&#x53D6;POST&#x8BF7;&#x6C42;&#x7684;FORM&#x8868;&#x5355;&#x6570;&#x636E;" class="headerlink" title="&#x4F7F;&#x7528;@ModelAttribute&#x6CE8;&#x89E3;&#x83B7;&#x53D6;POST&#x8BF7;&#x6C42;&#x7684;FORM&#x8868;&#x5355;&#x6570;&#x636E;"></a>&#x4F7F;&#x7528;@ModelAttribute&#x6CE8;&#x89E3;&#x83B7;&#x53D6;POST&#x8BF7;&#x6C42;&#x7684;FORM&#x8868;&#x5355;&#x6570;&#x636E;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;form action =&quot;&lt;%=request.getContextPath()%&gt;/demo/addUser5&quot; method=&quot;post&quot;&gt; </span><br><span class="line">     &#x7528;&#x6237;&#x540D;:&amp;nbsp;&lt;input type=&quot;text&quot; name=&quot;username&quot;/&gt;&lt;br/&gt;</span><br><span class="line">     &#x5BC6;&amp;nbsp;&amp;nbsp;&#x7801;:&amp;nbsp;&lt;input type=&quot;password&quot; name=&quot;password&quot;/&gt;&lt;br/&gt;</span><br><span class="line">     &lt;input type=&quot;submit&quot; value=&quot;&#x63D0;&#x4EA4;&quot;/&gt; </span><br><span class="line">     &lt;input type=&quot;reset&quot; value=&quot;&#x91CD;&#x7F6E;&quot;/&gt; </span><br><span class="line">&lt;/form&gt; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x590D;&#x5236;&#x4EE3;&#x7801;</span><br><span class="line">    /**</span><br><span class="line">     * 5&#x3001;&#x4F7F;&#x7528;@ModelAttribute&#x6CE8;&#x89E3;&#x83B7;&#x53D6;POST&#x8BF7;&#x6C42;&#x7684;FORM&#x8868;&#x5355;&#x6570;&#x636E;</span><br><span class="line">      * @param user</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @RequestMapping(value=&quot;/addUser5&quot;,method=RequestMethod.POST)</span><br><span class="line">    public String addUser5(@ModelAttribute(&quot;user&quot;) UserModel user) {</span><br><span class="line">        System.out.println(&quot;username is:&quot;+user.getUsername());</span><br><span class="line">        System.out.println(&quot;password is:&quot;+user.getPassword());</span><br><span class="line">        return &quot;demo/index&quot;;</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
-<h3 id="&#x7528;&#x6CE8;&#x89E3;-RequestParam&#x7ED1;&#x5B9A;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x5230;&#x65B9;&#x6CD5;&#x5165;&#x53C2;"><a href="#&#x7528;&#x6CE8;&#x89E3;-RequestParam&#x7ED1;&#x5B9A;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x5230;&#x65B9;&#x6CD5;&#x5165;&#x53C2;" class="headerlink" title="&#x7528;&#x6CE8;&#x89E3;@RequestParam&#x7ED1;&#x5B9A;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x5230;&#x65B9;&#x6CD5;&#x5165;&#x53C2;"></a>&#x7528;&#x6CE8;&#x89E3;@RequestParam&#x7ED1;&#x5B9A;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x5230;&#x65B9;&#x6CD5;&#x5165;&#x53C2;</h3><p>&#x5F53;&#x8BF7;&#x6C42;&#x53C2;&#x6570;username&#x4E0D;&#x5B58;&#x5728;&#x65F6;&#x4F1A;&#x6709;&#x5F02;&#x5E38;&#x53D1;&#x751F;,&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;&#x5C5E;&#x6027;required=false&#x89E3;&#x51B3;,&#x4F8B;&#x5982;: @RequestParam(value=&#x201D;username&#x201D;, required=false)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 6&#x3001;&#x7528;&#x6CE8;&#x89E3;@RequestParam&#x7ED1;&#x5B9A;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x5230;&#x65B9;&#x6CD5;&#x5165;&#x53C2;</span><br><span class="line">  * @param username</span><br><span class="line"> * @param password</span><br><span class="line"> * @return</span><br><span class="line"> */</span><br><span class="line">@RequestMapping(value=&quot;/addUser6&quot;,method=RequestMethod.GET)</span><br><span class="line">public String addUser6(@RequestParam(&quot;username&quot;) String username,@RequestParam(&quot;password&quot;) String password) {</span><br><span class="line">    System.out.println(&quot;username is:&quot;+username);</span><br><span class="line">    System.out.println(&quot;password is:&quot;+password);</span><br><span class="line">    return &quot;demo/index&quot;;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/13/JavaWeb_springMvc参数获取/" data-id="ciuz91d2u001o4ts6xuhtrixq" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
 
     </footer>
   </div>
@@ -200,7 +200,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/11/面试经历/" data-id="ciuz91d3v002t4ts60f1yebp6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/11/面试经历/" data-id="civ97pta8002ti9s6w80mag47" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
@@ -640,7 +640,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/10/简历/" data-id="ciuz91d3t002p4ts6tlt8m2vt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/10/简历/" data-id="civ97pta4002pi9s6i40q257p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/简历/">简历</a></li></ul>
@@ -684,50 +684,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/09/14/心情/" data-id="ciuz91d3o002k4ts6hsa2mxl5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/09/14/心情/" data-id="civ97pt9z002ki9s633dki8f2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心情/">心情</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-面试" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/08/18/面试/" class="article-date">
-  <time datetime="2016-08-18T14:57:12.000Z" itemprop="datePublished">2016-08-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/18/面试/">面试</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&#x4E00;&#x3001;&#x6838;&#x5FC3;&#x8981;&#x6C42;&#x70B9;<br>1&#x3001; &#x300A;&#x57FA;&#x672C;&#x6807;&#x51C6;&#x300B;<br>&#xFF08;1&#xFF09;&#x524D;&#x6CBF;&#x7684;&#x6280;&#x672F;&#x548C;&#x884C;&#x4E1A;&#x77E5;&#x8BC6;&#xFF0C;&#x5177;&#x5907;&#x4E13;&#x7814;&#x7CBE;&#x795E;&#x7684;&#x4EBA;<br>&#xFF08;2&#xFF09;&#x6280;&#x672F;&#x539F;&#x7406;&#xFF0C;&#x6709;&#x6DF1;&#x5165;&#x7814;&#x7A76;&#x548C;&#x5174;&#x8DA3;&#xFF0C;&#x6BD4;&#x5982;java&#x7684;&#x4E3B;&#x6D41;&#x6846;&#x67B6;&#xFF0C;&#x5E94;&#x7528;&#x5C42;&#x9762;&#x5230;&#x539F;&#x7406;&#x5C42;&#x9762;<br>&#xFF08;3&#xFF09;&#x57FA;&#x672C;&#x529F;&#x624E;&#x5B9E;&#xFF0C;&#x57FA;&#x7840;&#x77E5;&#x8BC6;&#x8981;&#x975E;&#x5E38;&#x624E;&#x5B9E;&#xFF0C;&#x4EE3;&#x7801;&#x80FD;&#x529B;&#x5F3A;&#xFF0C;&#x7CBE;&#x901A;&#x4E00;&#x7EBF;&#x6280;&#x672F;<br>Case1&#x3001;spring&#x7684;&#x53CD;&#x5C04;&#x539F;&#x7406;&#xFF0C;AOP&#x7684;&#x4F7F;&#x7528;<br>Case2&#x3001;hashmap&#x7684;&#x5B9E;&#x73B0;&#x539F;&#x7406;&#xFF0C;&#x600E;&#x4E48;&#x89E3;&#x51B3;hash&#x51B2;&#x7A81;<br>&#xFF08;4&#xFF09;&#x6280;&#x672F;&#x96BE;&#x70B9;&#x653B;&#x5173;&#xFF0C;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#x548C;&#x903B;&#x8F91;&#x5206;&#x6790;&#x80FD;&#x529B;&#x5F3A;<br>2&#x3001; &#x300A;&#x8F6F;&#x6027;&#x8981;&#x6C42;&#x300B;<br>&#xFF08;1&#xFF09;&#x8BA4;&#x540C;&#x963F;&#x91CC;&#x4EF7;&#x503C;&#x89C2;&#xFF0C;&#x8981;&#x81EA;&#x4FE1;&#xFF0C;&#x4F46;&#x4E0D;&#x80FD;&#x6D6E;&#x5938;&#x5439;&#x725B;<br>3&#x3001; &#x300A;&#x5FCC;&#x8BB3;&#x65B9;&#x5411;&#x300B;<br>&#xFF08;1&#xFF09;&#x505C;&#x7559;&#x5728;&#x5E94;&#x7528;&#x5C42;&#x9762;&#x7684;&#x4EBA;<br>&#xFF08;2&#xFF09;&#x601D;&#x8DEF;&#x6DF7;&#x4E71;&#xFF0C;&#x5BF9;&#x81EA;&#x5DF1;&#x505A;&#x7684;&#x9879;&#x76EE;&#x90FD;&#x63CF;&#x8FF0;&#x4E0D;&#x6E05;&#x3001;&#x6A21;&#x51CC;&#x4E24;&#x53EF;&#x7684;&#x4EBA;</p>
-<p>&#x4E8C;&#x3001;&#x9762;&#x8BD5;&#x51C6;&#x5907;&#x5DE5;&#x4F5C;<br>&#xFF08;1&#xFF09;&#x5BF9;&#x4E3B;&#x6D41;&#x7684;&#x4E00;&#x4E9B;&#x6280;&#x672F;&#x51C6;&#x5907;&#x4E0B;&#xFF0C;&#x7F51;&#x4E0A;&#x8D44;&#x6599;&#x4E5F;&#x5F88;&#x591A;&#xFF0C;&#x5305;&#x62EC;&#x57FA;&#x7840;&#x7684;&#x4E00;&#x4E9B;&#x6280;&#x672F;&#x77E5;&#x8BC6;&#xFF1B;<br>&#xFF08;2&#xFF09;&#x8FC7;&#x5F80;&#x91CD;&#x70B9;&#x9879;&#x76EE;&#x68B3;&#x7406;&#xFF0C;&#x5305;&#x62EC;&#x9879;&#x76EE;&#x6574;&#x4F53;&#x7684;&#x903B;&#x8F91;&#x601D;&#x8DEF;&#x3001;&#x6838;&#x5FC3;&#x96BE;&#x70B9;&#x3001;&#x5173;&#x952E;&#x6280;&#x672F;&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#xFF0C;&#x4EE5;&#x53CA;&#x6DF1;&#x5165;&#x5230;&#x5E95;&#x5C42;&#x548C;&#x5F00;&#x6E90;&#x65B9;&#x9762;&#x7684;&#x4E00;&#x4E9B;&#x7814;&#x7A76;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x9879;&#x76EE;&#x91CC;&#x8FB9;&#x6D89;&#x53CA;&#x5230;&#x7684;&#x6BCF;&#x4E2A;&#x6838;&#x5FC3;&#x6280;&#x672F;&#x70B9;&#x80CC;&#x540E;&#x7684;&#x6DF1;&#x5C42;&#x673A;&#x5236;&#xFF1B;<br>&#xFF08;3&#xFF09;&#x6C9F;&#x901A;&#x8868;&#x8FBE;&#x80FD;&#x529B;&#x4E0D;&#x8981;&#x592A;&#x5DEE;&#xFF0C;&#x601D;&#x8DEF;&#x4E0D;&#x8981;&#x592A;&#x6DF7;&#x4E71;&#xFF0C;&#x4E14;&#x4E5F;&#x4E0D;&#x8981;&#x592A;&#x6D6E;&#x5938;&#xFF1B;<br>&#x4E09;&#x3001;&#x901A;&#x5E38;&#x9762;&#x8BD5;&#x5931;&#x8D25;&#x539F;&#x56E0;<br>1&#x3001; &#x8131;&#x79BB;&#x4E00;&#x7EBF;&#x6280;&#x672F;&#xFF0C;&#x7B80;&#x5386;&#x65E0;&#x4EAE;&#x70B9;&#xFF1B;<br>2&#x3001; &#x4EE3;&#x7801;&#x80FD;&#x529B;&#x4E00;&#x822C;&#xFF0C;&#x6280;&#x672F;&#x5355;&#x4E00;&#xFF1B;<br>3&#x3001; &#x592A;&#x6CE8;&#x91CD;&#x80A1;&#x7968;&#x6216;&#x85AA;&#x8D44;&#x8981;&#x6C42;&#x8FC7;&#x9AD8;&#xFF1B;<br>4&#x3001; &#x4E0D;&#x81EA;&#x4FE1;&#xFF0C;&#x6C9F;&#x901A;&#x8868;&#x8FBE;&#x80FD;&#x529B;&#x4E00;&#x822C;&#xFF1B;<br>&#x56DB;&#x3001;&#x67D0;&#x540C;&#x5B66;-JAVA-&#x9762;&#x8BD5;&#x5FC3;&#x5F97;&#x6574;&#x7406;<br>1&#x3001;&#x5BF9;&#x9879;&#x76EE;&#x8981;&#x975E;&#x5E38;&#x719F;&#x6089;&#xFF0C;&#x9879;&#x76EE;&#x6BCF;&#x4E2A;&#x529F;&#x80FD;(&#x7279;&#x522B;&#x662F;&#x91CD;&#x8981;&#x6A21;&#x5757;)&#x7684;&#x5B9E;&#x73B0;&#x7EC6;&#x8282;&#x8981;&#x975E;&#x5E38;&#x719F;&#x6089;&#xFF0C;&#x8981;&#x5BF9;&#x6A21;&#x5757;&#x5E76;&#x53D1;&#xFF0C;&#x6269;&#x5C55;&#x7B49;&#x95EE;&#x9898;&#x8981;&#x4E86;&#x89E3;&#x3002;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x9762;&#x8BD5;&#x5B98;&#x4F1A;&#x5728;&#x529F;&#x80FD;&#x5B9E;&#x73B0;&#x57FA;&#x7840;&#x4E0A;&#x8003;&#x5BDF;&#x591A;&#x7EBF;&#x7A0B;&#x5E76;&#x53D1;&#xFF0C;&#x5206;&#x5E03;&#x5F0F;&#xFF0C;&#x4EE5;&#x53CA;&#x6A2A;&#x5411;&#x7EB5;&#x5411;&#x6269;&#x5C55;&#x7B49;&#x95EE;&#x9898;&#x3002;<br>2&#x3001;&#x5BF9;&#x9879;&#x76EE;&#x7279;&#x70B9;&#x76F8;&#x5173;&#x7684;&#x884C;&#x4E1A;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x8981;&#x719F;&#x6089;&#xFF0C;&#x6BD4;&#x5982;&#x652F;&#x4ED8;&#x5B9D;&#x4ED8;&#x6B3E;&#x5206;&#x5E03;&#x5F0F;&#x4E8B;&#x52A1;&#x95EE;&#x9898;&#xFF0C;&#x6BD4;&#x5982;&#x7535;&#x5546;&#x7F51;&#x7AD9;&#x7684;&#x8BA2;&#x5355;&#x91CD;&#x590D;&#x63D0;&#x4EA4;&#x5982;&#x4F55;&#x53BB;&#x91CD;&#x7B49;&#xFF0C;&#x8FD9;&#x4E9B;&#x90FD;&#x662F;&#x7ECF;&#x5178;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF0C;&#x9700;&#x8981;&#x4E86;&#x89E3;&#x3002;&#x5982;&#x679C;&#x4F60;&#x505A;&#x7684;&#x662F;LBS&#x6216;&#x8005;O2O&#x7684;&#x9879;&#x76EE;&#xFF0C;&#x50CF;&#x5730;&#x56FE;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x62BD;&#x8C61;&#x4E5F;&#x662F;&#x7ECF;&#x5178;&#x7684;&#x95EE;&#x9898;&#x3002;<br>3&#x3001;&#x7136;&#x540E;&#x9762;&#x8BD5;&#x5B98;&#x4F1A;&#x559C;&#x6B22;&#x95EE;&#x4E9B;&#x8F6F;&#x7D20;&#x8D28;&#x95EE;&#x9898;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;&#x9879;&#x76EE;&#x9047;&#x5230;&#x6700;&#x5927;&#x56F0;&#x96BE;&#x662F;&#x4EC0;&#x4E48;&#xFF0C;&#x600E;&#x4E48;&#x89E3;&#x51B3;&#x7684;&#xFF0C;&#x4F60;&#x89C9;&#x5F97;&#x81EA;&#x5DF1;&#x5728;&#x4EC0;&#x4E48;&#x65B9;&#x9762;&#x6700;&#x6709;&#x81EA;&#x4FE1;&#x3002;<br>4&#x3001;&#x4E00;&#x822C;&#x5728;&#x4E2A;&#x522B;&#x8F83;&#x96BE;&#x95EE;&#x9898;&#x6CA1;&#x56DE;&#x7B54;&#x4E0A;&#x6765;&#x65F6;&#xFF0C;&#x4E5F;&#x4F1A;&#x95EE;&#x4E00;&#x4E9B;&#x7B80;&#x5355;&#x7684;java&#x57FA;&#x7840;&#xFF0C;&#x7F13;&#x89E3;&#x4E0B;&#x9762;&#x8BD5;&#x4EBA;&#x5458;&#x7D27;&#x5F20;&#x7684;&#x60C5;&#x7EEA;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x95EE;&#x8F83;&#x96BE;&#x7684;&#x95EE;&#x9898;&#x3002;<br>&#x3010;&#x901A;&#x5E38;&#x95EE;&#x9898;&#x3011;<br>1&#x3001;&#x5BF9;&#x4E8E;&#x6D89;&#x53CA;&#x5230;&#x7684;&#x89C4;&#x6A21;&#x3001;&#x4E1A;&#x52A1;&#x548C;&#x7ED3;&#x6784;&#xFF0C;&#x5982;&#x4F55;&#x4E32;&#x8054;&#x7684;&#xFF0C;&#x6574;&#x4E2A;&#x903B;&#x8F91;&#x601D;&#x8DEF;&#xFF1B;<br>2&#x3001;&#x6280;&#x672F;&#x7EC6;&#x8282;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x6BD4;&#x5982;&#x652F;&#x4ED8;&#x4F1A;&#x6D89;&#x53CA;&#x7684;&#x6E05;&#x7B97;&#x3001;&#x4EA4;&#x6613;&#x3001;&#x7F51;&#x5173;&#x7B49;&#x53EF;&#x80FD;&#x4F1A;&#x51FA;&#x73B0;&#x7684;&#x95EE;&#x9898;&#xFF1B;3&#x3001;&#x5BF9;&#x4E8E;&#x5E95;&#x5C42;&#x7684;&#x539F;&#x7406;&#xFF0C;&#x5E76;&#x53D1;&#x7B49;&#x6709;&#x6240;&#x4E86;&#x89E3;&#x3002;</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/18/面试/" data-id="ciuz91d3j002g4ts65kw5qz8n" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
 
     </footer>
   </div>
@@ -779,10 +739,50 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/18/Android应用安装/" data-id="ciuz91d2g00194ts6rgnl6fe6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/18/Android应用安装/" data-id="civ97pt8j0017i9s6jxfrzfrr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-面试" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/18/面试/" class="article-date">
+  <time datetime="2016-08-18T14:57:12.000Z" itemprop="datePublished">2016-08-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/18/面试/">面试</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&#x4E00;&#x3001;&#x6838;&#x5FC3;&#x8981;&#x6C42;&#x70B9;<br>1&#x3001; &#x300A;&#x57FA;&#x672C;&#x6807;&#x51C6;&#x300B;<br>&#xFF08;1&#xFF09;&#x524D;&#x6CBF;&#x7684;&#x6280;&#x672F;&#x548C;&#x884C;&#x4E1A;&#x77E5;&#x8BC6;&#xFF0C;&#x5177;&#x5907;&#x4E13;&#x7814;&#x7CBE;&#x795E;&#x7684;&#x4EBA;<br>&#xFF08;2&#xFF09;&#x6280;&#x672F;&#x539F;&#x7406;&#xFF0C;&#x6709;&#x6DF1;&#x5165;&#x7814;&#x7A76;&#x548C;&#x5174;&#x8DA3;&#xFF0C;&#x6BD4;&#x5982;java&#x7684;&#x4E3B;&#x6D41;&#x6846;&#x67B6;&#xFF0C;&#x5E94;&#x7528;&#x5C42;&#x9762;&#x5230;&#x539F;&#x7406;&#x5C42;&#x9762;<br>&#xFF08;3&#xFF09;&#x57FA;&#x672C;&#x529F;&#x624E;&#x5B9E;&#xFF0C;&#x57FA;&#x7840;&#x77E5;&#x8BC6;&#x8981;&#x975E;&#x5E38;&#x624E;&#x5B9E;&#xFF0C;&#x4EE3;&#x7801;&#x80FD;&#x529B;&#x5F3A;&#xFF0C;&#x7CBE;&#x901A;&#x4E00;&#x7EBF;&#x6280;&#x672F;<br>Case1&#x3001;spring&#x7684;&#x53CD;&#x5C04;&#x539F;&#x7406;&#xFF0C;AOP&#x7684;&#x4F7F;&#x7528;<br>Case2&#x3001;hashmap&#x7684;&#x5B9E;&#x73B0;&#x539F;&#x7406;&#xFF0C;&#x600E;&#x4E48;&#x89E3;&#x51B3;hash&#x51B2;&#x7A81;<br>&#xFF08;4&#xFF09;&#x6280;&#x672F;&#x96BE;&#x70B9;&#x653B;&#x5173;&#xFF0C;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#x548C;&#x903B;&#x8F91;&#x5206;&#x6790;&#x80FD;&#x529B;&#x5F3A;<br>2&#x3001; &#x300A;&#x8F6F;&#x6027;&#x8981;&#x6C42;&#x300B;<br>&#xFF08;1&#xFF09;&#x8BA4;&#x540C;&#x963F;&#x91CC;&#x4EF7;&#x503C;&#x89C2;&#xFF0C;&#x8981;&#x81EA;&#x4FE1;&#xFF0C;&#x4F46;&#x4E0D;&#x80FD;&#x6D6E;&#x5938;&#x5439;&#x725B;<br>3&#x3001; &#x300A;&#x5FCC;&#x8BB3;&#x65B9;&#x5411;&#x300B;<br>&#xFF08;1&#xFF09;&#x505C;&#x7559;&#x5728;&#x5E94;&#x7528;&#x5C42;&#x9762;&#x7684;&#x4EBA;<br>&#xFF08;2&#xFF09;&#x601D;&#x8DEF;&#x6DF7;&#x4E71;&#xFF0C;&#x5BF9;&#x81EA;&#x5DF1;&#x505A;&#x7684;&#x9879;&#x76EE;&#x90FD;&#x63CF;&#x8FF0;&#x4E0D;&#x6E05;&#x3001;&#x6A21;&#x51CC;&#x4E24;&#x53EF;&#x7684;&#x4EBA;</p>
+<p>&#x4E8C;&#x3001;&#x9762;&#x8BD5;&#x51C6;&#x5907;&#x5DE5;&#x4F5C;<br>&#xFF08;1&#xFF09;&#x5BF9;&#x4E3B;&#x6D41;&#x7684;&#x4E00;&#x4E9B;&#x6280;&#x672F;&#x51C6;&#x5907;&#x4E0B;&#xFF0C;&#x7F51;&#x4E0A;&#x8D44;&#x6599;&#x4E5F;&#x5F88;&#x591A;&#xFF0C;&#x5305;&#x62EC;&#x57FA;&#x7840;&#x7684;&#x4E00;&#x4E9B;&#x6280;&#x672F;&#x77E5;&#x8BC6;&#xFF1B;<br>&#xFF08;2&#xFF09;&#x8FC7;&#x5F80;&#x91CD;&#x70B9;&#x9879;&#x76EE;&#x68B3;&#x7406;&#xFF0C;&#x5305;&#x62EC;&#x9879;&#x76EE;&#x6574;&#x4F53;&#x7684;&#x903B;&#x8F91;&#x601D;&#x8DEF;&#x3001;&#x6838;&#x5FC3;&#x96BE;&#x70B9;&#x3001;&#x5173;&#x952E;&#x6280;&#x672F;&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#xFF0C;&#x4EE5;&#x53CA;&#x6DF1;&#x5165;&#x5230;&#x5E95;&#x5C42;&#x548C;&#x5F00;&#x6E90;&#x65B9;&#x9762;&#x7684;&#x4E00;&#x4E9B;&#x7814;&#x7A76;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x9879;&#x76EE;&#x91CC;&#x8FB9;&#x6D89;&#x53CA;&#x5230;&#x7684;&#x6BCF;&#x4E2A;&#x6838;&#x5FC3;&#x6280;&#x672F;&#x70B9;&#x80CC;&#x540E;&#x7684;&#x6DF1;&#x5C42;&#x673A;&#x5236;&#xFF1B;<br>&#xFF08;3&#xFF09;&#x6C9F;&#x901A;&#x8868;&#x8FBE;&#x80FD;&#x529B;&#x4E0D;&#x8981;&#x592A;&#x5DEE;&#xFF0C;&#x601D;&#x8DEF;&#x4E0D;&#x8981;&#x592A;&#x6DF7;&#x4E71;&#xFF0C;&#x4E14;&#x4E5F;&#x4E0D;&#x8981;&#x592A;&#x6D6E;&#x5938;&#xFF1B;<br>&#x4E09;&#x3001;&#x901A;&#x5E38;&#x9762;&#x8BD5;&#x5931;&#x8D25;&#x539F;&#x56E0;<br>1&#x3001; &#x8131;&#x79BB;&#x4E00;&#x7EBF;&#x6280;&#x672F;&#xFF0C;&#x7B80;&#x5386;&#x65E0;&#x4EAE;&#x70B9;&#xFF1B;<br>2&#x3001; &#x4EE3;&#x7801;&#x80FD;&#x529B;&#x4E00;&#x822C;&#xFF0C;&#x6280;&#x672F;&#x5355;&#x4E00;&#xFF1B;<br>3&#x3001; &#x592A;&#x6CE8;&#x91CD;&#x80A1;&#x7968;&#x6216;&#x85AA;&#x8D44;&#x8981;&#x6C42;&#x8FC7;&#x9AD8;&#xFF1B;<br>4&#x3001; &#x4E0D;&#x81EA;&#x4FE1;&#xFF0C;&#x6C9F;&#x901A;&#x8868;&#x8FBE;&#x80FD;&#x529B;&#x4E00;&#x822C;&#xFF1B;<br>&#x56DB;&#x3001;&#x67D0;&#x540C;&#x5B66;-JAVA-&#x9762;&#x8BD5;&#x5FC3;&#x5F97;&#x6574;&#x7406;<br>1&#x3001;&#x5BF9;&#x9879;&#x76EE;&#x8981;&#x975E;&#x5E38;&#x719F;&#x6089;&#xFF0C;&#x9879;&#x76EE;&#x6BCF;&#x4E2A;&#x529F;&#x80FD;(&#x7279;&#x522B;&#x662F;&#x91CD;&#x8981;&#x6A21;&#x5757;)&#x7684;&#x5B9E;&#x73B0;&#x7EC6;&#x8282;&#x8981;&#x975E;&#x5E38;&#x719F;&#x6089;&#xFF0C;&#x8981;&#x5BF9;&#x6A21;&#x5757;&#x5E76;&#x53D1;&#xFF0C;&#x6269;&#x5C55;&#x7B49;&#x95EE;&#x9898;&#x8981;&#x4E86;&#x89E3;&#x3002;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x9762;&#x8BD5;&#x5B98;&#x4F1A;&#x5728;&#x529F;&#x80FD;&#x5B9E;&#x73B0;&#x57FA;&#x7840;&#x4E0A;&#x8003;&#x5BDF;&#x591A;&#x7EBF;&#x7A0B;&#x5E76;&#x53D1;&#xFF0C;&#x5206;&#x5E03;&#x5F0F;&#xFF0C;&#x4EE5;&#x53CA;&#x6A2A;&#x5411;&#x7EB5;&#x5411;&#x6269;&#x5C55;&#x7B49;&#x95EE;&#x9898;&#x3002;<br>2&#x3001;&#x5BF9;&#x9879;&#x76EE;&#x7279;&#x70B9;&#x76F8;&#x5173;&#x7684;&#x884C;&#x4E1A;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x8981;&#x719F;&#x6089;&#xFF0C;&#x6BD4;&#x5982;&#x652F;&#x4ED8;&#x5B9D;&#x4ED8;&#x6B3E;&#x5206;&#x5E03;&#x5F0F;&#x4E8B;&#x52A1;&#x95EE;&#x9898;&#xFF0C;&#x6BD4;&#x5982;&#x7535;&#x5546;&#x7F51;&#x7AD9;&#x7684;&#x8BA2;&#x5355;&#x91CD;&#x590D;&#x63D0;&#x4EA4;&#x5982;&#x4F55;&#x53BB;&#x91CD;&#x7B49;&#xFF0C;&#x8FD9;&#x4E9B;&#x90FD;&#x662F;&#x7ECF;&#x5178;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF0C;&#x9700;&#x8981;&#x4E86;&#x89E3;&#x3002;&#x5982;&#x679C;&#x4F60;&#x505A;&#x7684;&#x662F;LBS&#x6216;&#x8005;O2O&#x7684;&#x9879;&#x76EE;&#xFF0C;&#x50CF;&#x5730;&#x56FE;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x62BD;&#x8C61;&#x4E5F;&#x662F;&#x7ECF;&#x5178;&#x7684;&#x95EE;&#x9898;&#x3002;<br>3&#x3001;&#x7136;&#x540E;&#x9762;&#x8BD5;&#x5B98;&#x4F1A;&#x559C;&#x6B22;&#x95EE;&#x4E9B;&#x8F6F;&#x7D20;&#x8D28;&#x95EE;&#x9898;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;&#x9879;&#x76EE;&#x9047;&#x5230;&#x6700;&#x5927;&#x56F0;&#x96BE;&#x662F;&#x4EC0;&#x4E48;&#xFF0C;&#x600E;&#x4E48;&#x89E3;&#x51B3;&#x7684;&#xFF0C;&#x4F60;&#x89C9;&#x5F97;&#x81EA;&#x5DF1;&#x5728;&#x4EC0;&#x4E48;&#x65B9;&#x9762;&#x6700;&#x6709;&#x81EA;&#x4FE1;&#x3002;<br>4&#x3001;&#x4E00;&#x822C;&#x5728;&#x4E2A;&#x522B;&#x8F83;&#x96BE;&#x95EE;&#x9898;&#x6CA1;&#x56DE;&#x7B54;&#x4E0A;&#x6765;&#x65F6;&#xFF0C;&#x4E5F;&#x4F1A;&#x95EE;&#x4E00;&#x4E9B;&#x7B80;&#x5355;&#x7684;java&#x57FA;&#x7840;&#xFF0C;&#x7F13;&#x89E3;&#x4E0B;&#x9762;&#x8BD5;&#x4EBA;&#x5458;&#x7D27;&#x5F20;&#x7684;&#x60C5;&#x7EEA;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x95EE;&#x8F83;&#x96BE;&#x7684;&#x95EE;&#x9898;&#x3002;<br>&#x3010;&#x901A;&#x5E38;&#x95EE;&#x9898;&#x3011;<br>1&#x3001;&#x5BF9;&#x4E8E;&#x6D89;&#x53CA;&#x5230;&#x7684;&#x89C4;&#x6A21;&#x3001;&#x4E1A;&#x52A1;&#x548C;&#x7ED3;&#x6784;&#xFF0C;&#x5982;&#x4F55;&#x4E32;&#x8054;&#x7684;&#xFF0C;&#x6574;&#x4E2A;&#x903B;&#x8F91;&#x601D;&#x8DEF;&#xFF1B;<br>2&#x3001;&#x6280;&#x672F;&#x7EC6;&#x8282;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x6BD4;&#x5982;&#x652F;&#x4ED8;&#x4F1A;&#x6D89;&#x53CA;&#x7684;&#x6E05;&#x7B97;&#x3001;&#x4EA4;&#x6613;&#x3001;&#x7F51;&#x5173;&#x7B49;&#x53EF;&#x80FD;&#x4F1A;&#x51FA;&#x73B0;&#x7684;&#x95EE;&#x9898;&#xFF1B;3&#x3001;&#x5BF9;&#x4E8E;&#x5E95;&#x5C42;&#x7684;&#x539F;&#x7406;&#xFF0C;&#x5E76;&#x53D1;&#x7B49;&#x6709;&#x6240;&#x4E86;&#x89E3;&#x3002;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/08/18/面试/" data-id="civ97pta6002ri9s6qx4gfw5x" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
 
     </footer>
   </div>
@@ -821,7 +821,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/24/兴趣视频教程/" data-id="ciuz91d3e00294ts6zzswfjf1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/24/兴趣视频教程/" data-id="civ97pt9n0028i9s6rwt340sb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/兴趣/">兴趣</a></li></ul>
@@ -878,7 +878,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/23/Idea快捷键/" data-id="ciuz91d2l001e4ts6c07sy9w2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/23/Idea快捷键/" data-id="civ97pt8t001gi9s643pe3pie" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/">IDE</a></li></ul>
@@ -916,7 +916,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/16/流程图绘制和基本符号/" data-id="ciuz91d3r002o4ts654kjv6md" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/16/流程图绘制和基本符号/" data-id="civ97pta1002li9s6y4i962fl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -982,15 +982,15 @@
           </li>
         
           <li>
+            <a href="/2016/10/14/Android_常用开源/">android常用开源项目</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/14/Android_gradle的使用/">gradle和AS</a>
+          </li>
+        
+          <li>
             <a href="/2016/10/14/Android_ant自动版本构建/">ant自动版本构建</a>
-          </li>
-        
-          <li>
-            <a href="/2016/10/14/JavaWeb_cookie和session的理解/">cookie和session的理解</a>
-          </li>
-        
-          <li>
-            <a href="/2016/10/14/JavaWeb_encodeURI来解决URL传递时的中文问题/">encodeURI来解决URL传递时的中文问题</a>
           </li>
         
       </ul>
