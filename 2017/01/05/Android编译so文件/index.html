@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android编译so文件 | 田鹏飞的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Eclipse&amp;#x4E0B;&amp;#x7528;NDK&amp;#x7F16;&amp;#x8BD1;&amp;#x751F;&amp;#x6210;so&amp;#x6587;&amp;#x4EF6;&amp;#x6211;&amp;#x4EEC;&amp;#x5728;&amp;#x5B89;&amp;#x88C5;&amp;#x73AF;&amp;#x5883;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#x5B89;&amp;#x88C5;&amp;#x4E86;NDK&amp;#xFF0C;&amp;#x53EF;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android编译so文件">
+<meta property="og:url" content="http://yoursite.com/2017/01/05/Android编译so文件/index.html">
+<meta property="og:site_name" content="田鹏飞的个人博客">
+<meta property="og:description" content="Eclipse&amp;#x4E0B;&amp;#x7528;NDK&amp;#x7F16;&amp;#x8BD1;&amp;#x751F;&amp;#x6210;so&amp;#x6587;&amp;#x4EF6;&amp;#x6211;&amp;#x4EEC;&amp;#x5728;&amp;#x5B89;&amp;#x88C5;&amp;#x73AF;&amp;#x5883;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#x5B89;&amp;#x88C5;&amp;#x4E86;NDK&amp;#xFF0C;&amp;#x53EF;&amp;">
+<meta property="og:updated_time" content="2017-01-10T02:55:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android编译so文件">
+<meta name="twitter:description" content="Eclipse&amp;#x4E0B;&amp;#x7528;NDK&amp;#x7F16;&amp;#x8BD1;&amp;#x751F;&amp;#x6210;so&amp;#x6587;&amp;#x4EF6;&amp;#x6211;&amp;#x4EEC;&amp;#x5728;&amp;#x5B89;&amp;#x88C5;&amp;#x73AF;&amp;#x5883;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#x5B89;&amp;#x88C5;&amp;#x4E86;NDK&amp;#xFF0C;&amp;#x53EF;&amp;">
+  
+    <link rel="alternate" href="/atom.xml" title="田鹏飞的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">田鹏飞的个人博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">你若盛开，蝴蝶自来</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Android编译so文件" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/05/Android编译so文件/" class="article-date">
+  <time datetime="2017-01-05T14:17:05.000Z" itemprop="datePublished">2017-01-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android编译so文件
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Eclipse&#x4E0B;&#x7528;NDK&#x7F16;&#x8BD1;&#x751F;&#x6210;so&#x6587;&#x4EF6;"><a href="#Eclipse&#x4E0B;&#x7528;NDK&#x7F16;&#x8BD1;&#x751F;&#x6210;so&#x6587;&#x4EF6;" class="headerlink" title="Eclipse&#x4E0B;&#x7528;NDK&#x7F16;&#x8BD1;&#x751F;&#x6210;so&#x6587;&#x4EF6;"></a>Eclipse&#x4E0B;&#x7528;NDK&#x7F16;&#x8BD1;&#x751F;&#x6210;so&#x6587;&#x4EF6;</h1><p>&#x6211;&#x4EEC;&#x5728;&#x5B89;&#x88C5;&#x73AF;&#x5883;&#x7684;&#x65F6;&#x5019;&#x5B89;&#x88C5;&#x4E86;NDK&#xFF0C;&#x53EF;&#x4EE5;&#x5728;eclipse&#x4E0B;&#x76F4;&#x63A5;&#x751F;&#x6210;so&#x6587;&#x4EF6;&#x3002;NDK&#x7684;&#x538B;&#x7F29;&#x5305;&#x91CC;&#x9762;&#x81EA;&#x5E26;&#x4E86;&#x4E00;&#x4E9B;sample&#x5DE5;&#x7A0B;&#xFF0C;NDK&#x7684;&#x6587;&#x4EF6;&#x76F4;&#x63A5;&#x89E3;&#x538B;&#x5230;&#x67D0;&#x4E2A;&#x76EE;&#x5F55;&#x4E0B;&#x5373;&#x53EF;&#x3002;<br>&#x7B2C;&#x4E00;&#x6B21;&#x751F;&#x6210;so&#x6587;&#x4EF6;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x5148;&#x4F7F;&#x7528;NDK&#x7684;sample&#x4E0B;&#x7684;hello-jni&#x7684;&#x4F8B;&#x5B50;&#x3002;</p>
+<h3 id="&#x542F;&#x52A8;eclipse&#xFF0C;&#x901A;&#x8FC7;Create-project-from-existing-source&#xFF0C;&#x9009;&#x62E9;hello-jni&#x7684;&#x76EE;&#x5F55;&#xFF0C;&#x6309;&#x9ED8;&#x8BA4;&#x9009;&#x9879;&#x521B;&#x5EFA;&#x5DE5;&#x7A0B;&#x5373;&#x53EF;&#xFF1B;"><a href="#&#x542F;&#x52A8;eclipse&#xFF0C;&#x901A;&#x8FC7;Create-project-from-existing-source&#xFF0C;&#x9009;&#x62E9;hello-jni&#x7684;&#x76EE;&#x5F55;&#xFF0C;&#x6309;&#x9ED8;&#x8BA4;&#x9009;&#x9879;&#x521B;&#x5EFA;&#x5DE5;&#x7A0B;&#x5373;&#x53EF;&#xFF1B;" class="headerlink" title="&#x542F;&#x52A8;eclipse&#xFF0C;&#x901A;&#x8FC7;Create project  from existing source&#xFF0C;&#x9009;&#x62E9;hello-jni&#x7684;&#x76EE;&#x5F55;&#xFF0C;&#x6309;&#x9ED8;&#x8BA4;&#x9009;&#x9879;&#x521B;&#x5EFA;&#x5DE5;&#x7A0B;&#x5373;&#x53EF;&#xFF1B;"></a>&#x542F;&#x52A8;eclipse&#xFF0C;&#x901A;&#x8FC7;Create project  from existing source&#xFF0C;&#x9009;&#x62E9;hello-jni&#x7684;&#x76EE;&#x5F55;&#xFF0C;&#x6309;&#x9ED8;&#x8BA4;&#x9009;&#x9879;&#x521B;&#x5EFA;&#x5DE5;&#x7A0B;&#x5373;&#x53EF;&#xFF1B;</h3><h3 id="&#x89C2;&#x5BDF;hello-jni&#x7684;&#x5DE5;&#x7A0B;&#x76EE;&#x5F55;&#x7ED3;&#x6784;&#xFF0C;&#x53D1;&#x73B0;&#x6839;&#x76EE;&#x5F55;&#x4E0B;&#x591A;&#x4E86;&#x4E00;&#x4E2A;&#x540D;&#x53EB;jni&#x7684;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x8BE5;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x9762;&#x6709;&#x4E24;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;Android-mk&#x548C;hello-jni-c&#x3002;"><a href="#&#x89C2;&#x5BDF;hello-jni&#x7684;&#x5DE5;&#x7A0B;&#x76EE;&#x5F55;&#x7ED3;&#x6784;&#xFF0C;&#x53D1;&#x73B0;&#x6839;&#x76EE;&#x5F55;&#x4E0B;&#x591A;&#x4E86;&#x4E00;&#x4E2A;&#x540D;&#x53EB;jni&#x7684;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x8BE5;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x9762;&#x6709;&#x4E24;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;Android-mk&#x548C;hello-jni-c&#x3002;" class="headerlink" title="&#x89C2;&#x5BDF;hello-jni&#x7684;&#x5DE5;&#x7A0B;&#x76EE;&#x5F55;&#x7ED3;&#x6784;&#xFF0C;&#x53D1;&#x73B0;&#x6839;&#x76EE;&#x5F55;&#x4E0B;&#x591A;&#x4E86;&#x4E00;&#x4E2A;&#x540D;&#x53EB;jni&#x7684;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x8BE5;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x9762;&#x6709;&#x4E24;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;Android.mk&#x548C;hello-jni.c&#x3002;"></a>&#x89C2;&#x5BDF;hello-jni&#x7684;&#x5DE5;&#x7A0B;&#x76EE;&#x5F55;&#x7ED3;&#x6784;&#xFF0C;&#x53D1;&#x73B0;&#x6839;&#x76EE;&#x5F55;&#x4E0B;&#x591A;&#x4E86;&#x4E00;&#x4E2A;&#x540D;&#x53EB;jni&#x7684;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x8BE5;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x9762;&#x6709;&#x4E24;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;Android.mk&#x548C;hello-jni.c&#x3002;</h3><pre><code>Android.mk&#x662F;&#x7528;&#x6765;&#x751F;&#x6210;so&#x6587;&#x4EF6;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x6211;&#x4EEC;&#x6765;&#x770B;&#x770B;&#x91CC;&#x9762;&#x662F;&#x4EC0;&#x4E48;&#xFF1A;
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">LOCAL_PATH := $(call my-dir)</span><br><span class="line">include $(CLEAR_VARS)</span><br><span class="line">LOCAL_MODULE    := hello-jni</span><br><span class="line">LOCAL_SRC_FILES := hello-jni.c</span><br><span class="line">include $(BUILD_SHARED_LIBRARY)</span><br><span class="line">include $(BUILD_SHARED_LIBRARY)&#x8868;&#x793A;&#x4F1A;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x52A8;&#x6001;&#x94FE;&#x63A5;&#x5E93;&#xFF0C;&#x5373;so&#x6587;&#x4EF6;&#xFF0C;&#x751F;&#x6210;&#x7684;&#x5E93;&#x6587;&#x4EF6;&#x540D;&#x79F0;&#x4E3A;lib*.so</span><br><span class="line">LOCAL_MODULE    := hello-jni&#x8868;&#x793A;&#x5C06;&#x8981;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x540D;&#x79F0;&#x4E3A;libhello-jni.so&#x7684;&#x5E93;&#x6587;&#x4EF6;</span><br><span class="line">LOCAL_SRC_FILES := hello-jni.c&#x8868;&#x793A;&#x751F;&#x6210;&#x5E93;&#x6587;&#x4EF6;&#x7684;&#x6E90;&#x6587;&#x4EF6;&#x662F;hello-jni.c</span><br></pre></td></tr></table></figure>
+<p> &#x6253;&#x5F00;hello-jni.c&#x6587;&#x4EF6;&#xFF0C;&#x4F1A;&#x770B;&#x5230;&#x91CC;&#x9762;&#x6709;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF1A;</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> jstring Java_com_example_hellojni_HelloJni_stringFromJNI( JNIEnv* env, jobject thiz )</span><br><span class="line">{</span><br><span class="line">    return (*env)-&gt;NewStringUTF(env, &quot;Hello from JNI !&quot;);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x4ECE;&#x6839;&#x636E;&#x4EC0;&#x4E48;&#x539F;&#x5219;&#x751F;&#x6210;&#x7684;&#x5462;&#xFF1F;&#x662F;&#x6839;&#x636E;src&#x4E0B;&#x7684;HelloJni.Java&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x51FD;&#x6570; public native String  stringFromJNI();&#x751F;&#x6210;&#x7684;&#x3002;&#x547D;&#x540D;&#x89C4;&#x5219;&#x4E3A;&#xFF1A;<br>Java_(&#x56FA;&#x5B9A;&#x5F00;&#x5934;)com_example<em>hellojni(&#x7528;&#x201D;</em>&#x201C;&#x8FDE;&#x63A5;&#x7684;&#x5305;&#x540D;)_HelloJni(&#x7C7B;&#x540D;)_stringFromJNI(&#x51FD;&#x6570;&#x540D;)<br>    &#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x7684;&#x751F;&#x6210;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;javah&#x7684;&#x547D;&#x4EE4;&#xFF1A;&#x7528;&#x547D;&#x4EE4;&#x884C;&#x65B9;&#x5F0F;&#x8FDB;&#x5165;&#x5DE5;&#x7A0B;&#x76EE;&#x5F55;&#x7684;bin\classes&#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x8FD0;&#x884C;javah com.example.hellojni.HelloJni&#xFF0C;&#x5C31;&#x4F1A;&#x628A;&#x6240;&#x6709;native&#x7684;&#x51FD;&#x6570;&#x90FD;&#x6309;&#x89C4;&#x5219;&#x751F;&#x6210;&#x5728;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;HelloJni.h&#x7684;&#x5934;&#x6587;&#x4EF6;&#x91CC;&#x3002;</p>
+<h3 id="&#x65B0;&#x5EFA;&#x5E76;&#x914D;&#x7F6E;&#x4E00;&#x4E2A;&#x65B0;&#x7684;Builder"><a href="#&#x65B0;&#x5EFA;&#x5E76;&#x914D;&#x7F6E;&#x4E00;&#x4E2A;&#x65B0;&#x7684;Builder" class="headerlink" title="&#x65B0;&#x5EFA;&#x5E76;&#x914D;&#x7F6E;&#x4E00;&#x4E2A;&#x65B0;&#x7684;Builder"></a>&#x65B0;&#x5EFA;&#x5E76;&#x914D;&#x7F6E;&#x4E00;&#x4E2A;&#x65B0;&#x7684;Builder</h3><p>1&#xFF09; &#x70B9;&#x51FB;Project-&gt;Properties-&gt;Builders-&gt;New&#xFF0C;&#x65B0;&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;Builder&#x3002;&#x5728;&#x5F39;&#x51FA;&#x7684;&#x5BF9;&#x8BDD;&#x6846;&#x4E0A;&#x9762;&#x70B9;&#x51FB;Program&#xFF0C;&#x70B9;&#x51FB;OK&#xFF1B;<br>2&#xFF09; &#x5728;&#x5F39;&#x51FA;&#x7684;&#x5BF9;&#x8BDD;&#x6846;&#x3010;Edit Configuration&#x3011;&#x4E2D;&#xFF0C;&#x914D;&#x7F6E;&#x9009;&#x9879;&#x5361;&#x3010;Main&#x3011;&#xFF1A;<br>               Location&#x4E2D;&#x9700;&#x8981;&#x586B;&#x5165;nkd-build.cmd&#x7684;&#x8DEF;&#x5F84;&#xFF08;NDK&#x5B89;&#x88C5;&#x76EE;&#x5F55;&#x4E0B;&#xFF09;&#x3002;<br>               WorkingDiretcoty&#x4E2D;&#x9700;&#x8981;&#x586B;&#x5165;HelloJni&#x7684;&#x5DE5;&#x7A0B;&#x6839;&#x76EE;&#x5F55;&#x3002;<br>3&#xFF09; &#x5728;&#x3010;EditConfiguration&#x3011;&#x4E2D;&#xFF0C;&#x914D;&#x7F6E;&#x9009;&#x9879;&#x5361;&#x3010;Refresh&#x3011;&#xFF1A;<br>              &#x52FE;&#x9009;&#x201C;Refresh resources upon completion&#x201D;&#xFF0C;<br>              &#x52FE;&#x9009;&#x201C;The entire workspace&#x201D;&#xFF0C;<br>              &#x52FE;&#x9009;&#x201C;Recuresively include sub-folders&#x201D;&#x3002;<br>4&#xFF09;&#x5728;&#x3010;EditConfiguration&#x3011;&#x4E2D;&#xFF0C;&#x914D;&#x7F6E;&#x9009;&#x9879;&#x5361;&#x3010;Build Options&#x3011;&#xFF1A;<br>             &#x52FE;&#x9009;&#x201C;After a &#x201C;Clean&#x201D;&#x201D;&#xFF0C;<br>             &#x52FE;&#x9009;&#x201C;During manual builds&#x201D;&#xFF0C;<br>             &#x52FE;&#x9009;&#x201C;During auto builds&#x201D;,<br>             &#x52FE;&#x9009;&#x201C;Specify working set of relevant resources&#x201D;&#x3002;<br>             &#x70B9;&#x51FB;&#x201C;Specify Resources&#x2026;&#x201D;&#x52FE;&#x9009;TestNDK&#x5DE5;&#x7A0B;&#x7684;&#x201C;jni&#x201C;&#x76EE;&#x5F55;&#xFF0C;Finish&#xFF01;<br>&#x4FDD;&#x5B58;&#x8BBE;&#x7F6E;&#xFF0C;&#x70B9;&#x51FB;OK&#x3002;</p>
+<h3 id="&#x751F;&#x6210;so&#x6587;&#x4EF6;"><a href="#&#x751F;&#x6210;so&#x6587;&#x4EF6;" class="headerlink" title="&#x751F;&#x6210;so&#x6587;&#x4EF6;"></a>&#x751F;&#x6210;so&#x6587;&#x4EF6;</h3><p> &#x7531;&#x4E8E;&#x6211;&#x4EEC;&#x52FE;&#x9009;&#x4E86;&#x201C;During auto builds&#x201D;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x5DE5;&#x7A0B;&#x6709;&#x6240;&#x6539;&#x53D8;&#x7684;&#x65F6;&#x5019;&#xFF0C;so&#x6587;&#x4EF6;&#x4FBF;&#x4F1A;&#x81EA;&#x52A8;&#x7F16;&#x8BD1;&#xFF0C;&#x6B63;&#x786E;&#x751F;&#x6210;&#x4EE5;&#x540E;&#x5C31;&#x80FD;&#x5728;&#x5DE5;&#x7A0B;&#x76EE;&#x5F55;&#x4E0B;&#x53D1;&#x73B0;&#x591A;&#x4E86;&#x4E24;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x6587;&#x4EF6;&#x5939;libs\armeabi&#x76EE;&#x5F55;&#x4E0B;&#x751F;&#x6210;&#x4E86;&#x4E00;&#x4E2A;&#x53EB;libhello-jni.so&#x7684;&#x6587;&#x4EF6;&#x3002;&#x81F3;&#x6B64;&#xFF0C;&#x4F7F;&#x7528;NDK&#x751F;&#x6210;so&#x6587;&#x4EF6;&#x7684;&#x5DE5;&#x4F5C;&#x5C31;&#x5B8C;&#x6210;&#x4E86;&#x3002;</p>
+<h3 id="so&#x6587;&#x4EF6;&#x7684;&#x8C03;&#x7528;"><a href="#so&#x6587;&#x4EF6;&#x7684;&#x8C03;&#x7528;" class="headerlink" title="so&#x6587;&#x4EF6;&#x7684;&#x8C03;&#x7528;"></a>so&#x6587;&#x4EF6;&#x7684;&#x8C03;&#x7528;</h3><p>&#x5728;HelloJni.java&#x6587;&#x4EF6;&#x4E2D;&#x6709;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">static {</span><br><span class="line">       System.loadLibrary(&quot;hello-jni&quot;);</span><br><span class="line">   }</span><br></pre></td></tr></table></figure>
+<p> &#x4F7F;&#x7528;loadLibrary&#x5C31;&#x53EF;&#x4EE5;&#x52A0;&#x8F7D;&#x8BE5;so&#x6587;&#x4EF6;&#x4E86;&#xFF0C;&#x52A0;&#x8F7D;&#x7684;&#x65F6;&#x5019;&#x4E0D;&#x9700;&#x8981;&#x5199;libhello-jni.so&#xFF0C;&#x53EA;&#x8981;&#x5199;hello-jni&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/05/Android编译so文件/" data-id="cixu6jn7b001n3ruo91kmcrxf" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/01/05/adb命令/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          adb常用命令
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/01/05/Android常见技术开源/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android常见技术开源</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android反编译/">Android反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D-游戏/">Unity3D,游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/idea/">idea</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兴趣/">兴趣</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大牛博客/">大牛博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习，师傅/">学习，师傅</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信-Js/">微信 Js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情/">心情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/简历/">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android反编译/" style="font-size: 10px;">Android反编译</a> <a href="/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/JavaWeb/" style="font-size: 17.5px;">JavaWeb</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Unity3D/" style="font-size: 10px;">Unity3D</a> <a href="/tags/Unity3D-游戏/" style="font-size: 10px;">Unity3D,游戏</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/兴趣/" style="font-size: 10px;">兴趣</a> <a href="/tags/博客/" style="font-size: 12.5px;">博客</a> <a href="/tags/大牛博客/" style="font-size: 10px;">大牛博客</a> <a href="/tags/学习，师傅/" style="font-size: 10px;">学习，师傅</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/微信-Js/" style="font-size: 10px;">微信 Js</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/简历/" style="font-size: 10px;">简历</a> <a href="/tags/面试/" style="font-size: 12.5px;">面试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/01/12/Android jar包导出资源的问题/">Android jar包导出资源的问题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/01/12/Android jar包class修改重新打包/">Android jar包class修改重新打包</a>
+          </li>
+        
+          <li>
+            <a href="/2017/01/05/Android内存溢出/">Android内存溢出</a>
+          </li>
+        
+          <li>
+            <a href="/2017/01/05/想法idea/">想法idea</a>
+          </li>
+        
+          <li>
+            <a href="/2017/01/05/eclipse mac快捷键/">eclipse mac快捷键</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 huanxingxyz<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
