@@ -68,9 +68,9 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Android_消息推送" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Json_反序列化" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/05/14/Android_消息推送/" class="article-date">
+    <a href="/2016/05/14/Json_反序列化/" class="article-date">
   <time datetime="2016-05-14T13:26:18.000Z" itemprop="datePublished">2016-05-14</time>
 </a>
     
@@ -82,7 +82,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/14/Android_消息推送/">Android 消息推送</a>
+      <a class="article-title" href="/2016/05/14/Json_反序列化/">Json反序列化</a>
     </h1>
   
 
@@ -90,30 +90,172 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1.&#x5F15;&#x8A00;</p>
-<p>&#x3000;&#x3000;&#x6240;&#x8C13;&#x7684;&#x6D88;&#x606F;&#x63A8;&#x9001;&#x5C31;&#x662F;&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x5411;&#x79FB;&#x52A8;&#x7EC8;&#x7AEF;&#x53D1;&#x9001;&#x8FDE;&#x63A5;&#xFF0C;&#x4F20;&#x8F93;&#x4E00;&#x5B9A;&#x7684;&#x4FE1;&#x606F;&#x3002;&#x6BD4;&#x5982;&#x4E00;&#x4E9B;&#x65B0;&#x95FB;&#x5BA2;&#x6237;&#x7AEF;&#xFF0C;&#x6BCF;&#x9694;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x6536;&#x5230;&#x4E00;&#x6761;&#x6216;&#x8005;&#x591A;&#x6761;&#x901A;&#x77E5;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x4F20;&#x6765;&#x7684;&#x63A8;&#x9001;&#x6D88;&#x606F;&#xFF1B;&#x8FD8;&#x6BD4;&#x5982;&#x5E38;&#x7528;&#x7684;&#x4E00;&#x4E9B;IM&#x8F6F;&#x4EF6;&#x5982;&#x5FAE;&#x4FE1;&#x3001;GTalk&#x7B49;&#xFF0C;&#x90FD;&#x5177;&#x6709;&#x670D;&#x52A1;&#x5668;&#x63A8;&#x9001;&#x529F;&#x80FD;&#x3002;</p>
-<p>&#x3000;&#x3000;&#x63A8;&#x9001;&#x65B9;&#x6CD5;&#x5982;&#x4E0B;&#xFF1A;</p>
-<p>&#x3000;&#x3000;1)&#x901A;&#x8FC7;SMS&#x8FDB;&#x884C;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x548C;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x4EA4;&#x6D41;&#x901A;&#x4FE1;&#x3002;</p>
-<p>&#x3000;&#x3000;&#x5728;Android&#x5E73;&#x53F0;&#x4E0A;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x62E6;&#x622A;SMS&#x6D88;&#x606F;&#x5E76;&#x4E14;&#x89E3;&#x6790;&#x6D88;&#x606F;&#x5185;&#x5BB9;&#x6765;&#x4E86;&#x89E3;&#x670D;&#x52A1;&#x5668;&#x7684;&#x610F;&#x56FE;&#xFF0C;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x5B8C;&#x5168;&#x7684;&#x5B9E;&#x65F6;&#x64CD;&#x4F5C;&#x3002;&#x4F46;&#x662F;&#x95EE;&#x9898;&#x662F;&#x8FD9;&#x4E2A;&#x65B9;&#x6848;&#x7684;&#x6210;&#x672C;&#x76F8;&#x5BF9;&#x6BD4;&#x8F83;&#x9AD8;&#xFF0C;&#x4E14;&#x4F9D;&#x8D56;&#x4E8E;&#x8FD0;&#x8425;&#x5546;&#x3002;</p>
-<p>&#x3000;&#x3000;2)&#x5FAA;&#x73AF;&#x4E3B;&#x52A8;&#x5B9A;&#x65F6;&#x83B7;&#x53D6;</p>
-<p>&#x3000;&#x3000;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x9700;&#x8981;&#x5BA2;&#x6237;&#x7AEF;&#x6765;&#x505A;&#x4E00;&#x4E2A;&#x5B9A;&#x65F6;&#x6216;&#x8005;&#x5468;&#x671F;&#x6027;&#x7684;&#x8BBF;&#x95EE;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x63A5;&#x53E3;&#xFF0C;&#x4EE5;&#x83B7;&#x5F97;&#x6700;&#x65B0;&#x7684;&#x6D88;&#x606F;&#x3002;&#x8F6E;&#x8BE2;&#x7684;&#x9891;&#x7387;&#x592A;&#x6162;&#x53EF;&#x80FD;&#x5BFC;&#x81F4;&#x67D0;&#x4E9B;&#x6D88;&#x606F;&#x7684;&#x5EF6;&#x8FDF;&#xFF0C;&#x592A;&#x5FEB;&#x5219;&#x4F1A;&#x5927;&#x91CF;&#x6D88;&#x8017;&#x7F51;&#x7EDC;&#x5E26;&#x5BBD;&#x548C;&#x7535;&#x6C60;&#x3002;</p>
-<p>&#x3000;&#x3000;3)&#x6301;&#x4E45;&#x8FDE;&#x63A5;</p>
-<p>&#x3000;&#x3000;&#x8FD9;&#x4E2A;&#x65B9;&#x6848;&#x53EF;&#x4EE5;&#x89E3;&#x51B3;&#x7531;&#x8F6E;&#x8BE2;&#x5E26;&#x6765;&#x7684;&#x6027;&#x80FD;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x662F;&#x8FD8;&#x662F;&#x4F1A;&#x6D88;&#x8017;&#x624B;&#x673A;&#x7684;&#x7535;&#x6C60;&#x3002;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5F00;&#x4E00;&#x4E2A;&#x670D;&#x52A1;&#x6765;&#x4FDD;&#x6301;&#x548C;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x7684;&#x6301;&#x4E45;&#x8FDE;&#x63A5;&#xFF08;&#x82F9;&#x679C;&#x5C31;&#x548C;&#x8C37;&#x6B4C;&#x7684;C2DM&#x662F;&#x8FD9;&#x79CD;&#x673A;&#x5236;&#xFF09;&#x3002;&#x4F46;&#x662F;&#x5BF9;&#x4E8E;Android&#x7CFB;&#x7EDF;&#xFF0C;&#x5F53;&#x7CFB;&#x7EDF;&#x53EF;&#x7528;&#x8D44;&#x6E90;&#x8F83;&#x4F4E;&#xFF0C;&#x7CFB;&#x7EDF;&#x4F1A;&#x5F3A;&#x5236;&#x5173;&#x95ED;&#x6211;&#x4EEC;&#x7684;&#x670D;&#x52A1;&#x6216;&#x8005;&#x662F;&#x5E94;&#x7528;&#xFF0C;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#x8FDE;&#x63A5;&#x4F1A;&#x5F3A;&#x5236;&#x4E2D;&#x65AD;&#x3002;&#xFF08;Apple&#x7684;&#x63A8;&#x9001;&#x670D;&#x52A1;&#x4E4B;&#x6240;&#x4EE5;&#x5DE5;&#x4F5C;&#x7684;&#x5F88;&#x597D;&#xFF0C;&#x662F;&#x56E0;&#x4E3A;&#x6BCF;&#x4E00;&#x53F0;&#x624B;&#x673A;&#x4EC5;&#x4EC5;&#x4FDD;&#x6301;&#x4E00;&#x4E2A;&#x4E0E;&#x670D;&#x52A1;&#x5668;&#x4E4B;&#x95F4;&#x7684;&#x8FDE;&#x63A5;&#xFF0C;&#x4E8B;&#x5B9E;&#x4E0A;C2DM&#x4E5F;&#x662F;&#x8FD9;&#x4E48;&#x5DE5;&#x4F5C;&#x7684;&#x3002;&#x5373;&#x6240;&#x6709;&#x7684;&#x63A8;&#x9001;&#x670D;&#x52A1;&#x90FD;&#x662F;&#x7ECF;&#x7531;&#x4E00;&#x4E2A;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;&#x5B8C;&#x6210;&#x7684;&#xFF0C;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#x53EA;&#x9700;&#x8981;&#x548C;&#x4E00;&#x53F0;&#x670D;&#x52A1;&#x5668;&#x4FDD;&#x6301;&#x6301;&#x4E45;&#x8FDE;&#x63A5;&#x5373;&#x53EF;&#x3002;C2DM=Cloud to Device Messaging&#xFF09;&#x3002;</p>
-<p>&#x3000;&#x3000;&#x76F8;&#x6BD4;&#x4E4B;&#x4E0B;&#x7B2C;&#x4E09;&#x79CD;&#x8FD8;&#x662F;&#x6700;&#x53EF;&#x884C;&#x7684;&#x3002;&#x4E3A;&#x8F6F;&#x4EF6;&#x7F16;&#x5199;&#x7CFB;&#x7EDF;&#x670D;&#x52A1;&#x6216;&#x5F00;&#x673A;&#x542F;&#x52A8;&#x529F;&#x80FD;&#xFF1B;&#x6216;&#x8005;&#x5982;&#x679C;&#x7CFB;&#x7EDF;&#x8D44;&#x6E90;&#x8F83;&#x4F4E;&#xFF0C;&#x670D;&#x52A1;&#x88AB;&#x5173;&#x95ED;&#x540E;&#x53EF;&#x4EE5;&#x5728;onDestroy ()&#x65B9;&#x6CD5;&#x91CC;&#x9762;&#x518D;&#x91CD;&#x542F;&#x8BE5;&#x670D;&#x52A1;&#xFF0C;&#x8FDB;&#x800C;&#x5B9E;&#x73B0;&#x6301;&#x4E45;&#x8FDE;&#x63A5;&#x7684;&#x65B9;&#x5F0F;&#x3002;</p>
-<p>&#x3000;&#x3000;C2DM&#x5185;&#x7F6E;&#x4E8E;Android&#x7684;2.2&#x7CFB;&#x7EDF;&#x4E0A;&#xFF0C;&#x65E0;&#x6CD5;&#x517C;&#x5BB9;&#x8001;&#x7684;1.6&#x5230;2.1&#x7CFB;&#x7EDF;&#xFF1B;&#x4E14;&#x4F9D;&#x8D56;&#x4E8E;Google&#x5B98;&#x65B9;&#x63D0;&#x4F9B;&#x7684;C2DM&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x7531;&#x4E8E;&#x56FD;&#x5185;&#x7684;&#x7F51;&#x7EDC;&#x73AF;&#x5883;&#xFF0C;&#x8FD9;&#x4E2A;&#x670D;&#x52A1;&#x7ECF;&#x5E38;&#x4E0D;&#x53EF;&#x7528;&#x3002;</p>
-<p>&#x3000;&#x3000;&#x5EFA;&#x7ACB;&#x5728;TCP&#x534F;&#x8BAE;&#x4E4B;&#x4E0A;&#x7684;XMPP&#x534F;&#x8BAE;&#xFF0C;&#x4E0D;&#x4EC5;&#x53EF;&#x63D0;&#x4F9B;&#x53EF;&#x8FD9;&#x79CD;&#x6301;&#x4E45;&#x8FDE;&#x63A5;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x80FD;&#x5B9E;&#x73B0;&#x670D;&#x52A1;&#x5668;&#x548C;&#x5BA2;&#x6237;&#x673A;&#x7684;&#x53CC;&#x5DE5;&#x901A;&#x4FE1;&#xFF0C;&#x8FD8;&#x80FD;&#x4E0D;&#x4F9D;&#x8D56;&#x4E0E;&#x7CFB;&#x7EDF;&#x7248;&#x672C;&#x548C;google&#x670D;&#x52A1;&#x5668;&#x7684;&#x9650;&#x5236;&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;&#x6BD4;&#x8F83;&#x597D;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x3002;</p>
-<ol>
-<li>XMPP&#x534F;&#x8BAE;</li>
-</ol>
-<p>&#x3000;&#x3000;XMPP&#x5168;&#x79F0;Extensible Messaging and Presence Protocol&#xFF0C;&#x524D;&#x8EAB;&#x662F;Jabber&#x9879;&#x76EE;&#xFF0C;&#x662F;&#x4E00;&#x79CD;&#x4EE5;XML&#x4E3A;&#x57FA;&#x7840;&#x7684;&#x5F00;&#x653E;&#x5F0F;&#x5373;&#x65F6;&#x901A;&#x8BAF;&#x534F;&#x8BAE;&#x3002;XMPP&#x56E0;&#x4E3A;&#x88AB;Google Talk&#x548C;&#x7F51;&#x6613;&#x6CE1;&#x6CE1;&#x5E94;&#x7528;&#x800C;&#x88AB;&#x5E7F;&#x5927;&#x7F51;&#x6C11;&#x6240;&#x63A5;&#x89E6;&#x3002;XMPP&#x7684;&#x5173;&#x952E;&#x7279;&#x8272;&#x662F;&#xFF0C;&#x5206;&#x6563;&#x5F0F;&#x7684;&#x5373;&#x65F6;&#x901A;&#x8BAF;&#x7CFB;&#x7EDF;&#xFF0C;&#x4EE5;&#x53CA;&#x4F7F;&#x7528;XML&#x4E32;&#x6D41;&#x3002;XMPP&#x76EE;&#x524D;&#x88AB;IETF&#x56FD;&#x9645;&#x6807;&#x51C6;&#x7EC4;&#x7EC7;&#x5B8C;&#x6210;&#x4E86;&#x6807;&#x51C6;&#x5316;&#x5DE5;&#x4F5C;&#x3002;</p>
-<p>&#x3000;&#x3000;Android push notification(androidpn) &#x662F;&#x4E00;&#x4E2A;&#x57FA;&#x4E8E;XMPP&#x534F;&#x8BAE;&#x7684;java&#x5F00;&#x6E90;&#x5B9E;&#x73B0;&#xFF0C;&#x5B83;&#x5305;&#x542B;&#x4E86;&#x5B8C;&#x6574;&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x548C;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x3002;&#x8BE5;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x57FA;&#x672C;&#x662F;&#x5728;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x5F00;&#x6E90;&#x5DE5;&#x7A0B;openfire&#x57FA;&#x7840;&#x4E0A;&#x4FEE;&#x6539;&#x5B9E;&#x73B0;&#x7684;&#x3002;</p>
-<p>&#x3000;&#x3000;androidpn&#x5BA2;&#x6237;&#x7AEF;&#x9700;&#x8981;&#x7528;&#x5230;&#x4E00;&#x4E2A;&#x57FA;&#x4E8E;java&#x7684;&#x5F00;&#x6E90;XMPP&#x534F;&#x8BAE;&#x5305;asmack&#xFF0C;&#x8FD9;&#x4E2A;&#x5305;&#x540C;&#x6837;&#x4E5F;&#x662F;&#x57FA;&#x4E8E;openfire&#x4E0B;&#x7684;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x5F00;&#x6E90;&#x9879;&#x76EE;smack&#xFF0C;&#x4E0D;&#x8FC7;&#x6211;&#x4EEC;&#x4E0D;&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x7F16;&#x8BD1;&#xFF0C;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x628A;androidpn&#x5BA2;&#x6237;&#x7AEF;&#x91CC;&#x9762;&#x7684;asmack.jar&#x62FF;&#x6765;&#x4F7F;&#x7528;&#x3002;&#x5BA2;&#x6237;&#x7AEF;&#x5229;&#x7528;asmack&#x4E2D;&#x63D0;&#x4F9B;&#x7684;XMPPConnection&#x7C7B;&#x4E0E;&#x670D;&#x52A1;&#x5668;&#x5EFA;&#x7ACB;&#x6301;&#x4E45;&#x8FDE;&#x63A5;&#xFF0C;&#x5E76;&#x901A;&#x8FC7;&#x8BE5;&#x8FDE;&#x63A5;&#x8FDB;&#x884C;&#x7528;&#x6237;&#x6CE8;&#x518C;&#x548C;&#x767B;&#x5F55;&#x8BA4;&#x8BC1;&#xFF0C;&#x540C;&#x6837;&#x4E5F;&#x662F;&#x901A;&#x8FC7;&#x8FD9;&#x6761;&#x8FDE;&#x63A5;&#xFF0C;&#x63A5;&#x6536;&#x670D;&#x52A1;&#x5668;&#x53D1;&#x9001;&#x7684;&#x901A;&#x77E5;&#x3002;</p>
-<p>&#x3000;&#x3000;androidpn&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x4E5F;&#x662F;java&#x8BED;&#x8A00;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x57FA;&#x4E8E;openfire&#x5F00;&#x6E90;&#x5DE5;&#x7A0B;&#xFF0C;&#x4E0D;&#x8FC7;&#x5B83;&#x7684;Web&#x90E8;&#x5206;&#x91C7;&#x7528;&#x7684;&#x662F;spring&#x6846;&#x67B6;&#xFF0C;&#x8FD9;&#x4E00;&#x70B9;&#x4E0E;openfire&#x662F;&#x4E0D;&#x540C;&#x7684;&#x3002;Androidpn&#x670D;&#x52A1;&#x5668;&#x5305;&#x542B;&#x4E24;&#x4E2A;&#x90E8;&#x5206;&#xFF0C;&#x4E00;&#x4E2A;&#x662F;&#x4FA6;&#x542C;&#x5728;5222&#x7AEF;&#x53E3;&#x4E0A;&#x7684;XMPP&#x670D;&#x52A1;&#xFF0C;&#x8D1F;&#x8D23;&#x4E0E;&#x5BA2;&#x6237;&#x7AEF;&#x7684;XMPPConnection&#x7C7B;&#x8FDB;&#x884C;&#x901A;&#x4FE1;&#xFF0C;&#x4F5C;&#x7528;&#x662F;&#x7528;&#x6237;&#x6CE8;&#x518C;&#x548C;&#x8EAB;&#x4EFD;&#x8BA4;&#x8BC1;&#xFF0C;&#x5E76;&#x53D1;&#x9001;&#x63A8;&#x9001;&#x901A;&#x77E5;&#x6D88;&#x606F;&#x3002;&#x53E6;&#x5916;&#x4E00;&#x90E8;&#x5206;&#x662F;Web&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x91C7;&#x7528;&#x4E00;&#x4E2A;&#x8F7B;&#x91CF;&#x7EA7;&#x7684;HTTP&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x8D1F;&#x8D23;&#x63A5;&#x6536;&#x7528;&#x6237;&#x7684;Web&#x8BF7;&#x6C42;&#x3002;&#x670D;&#x52A1;&#x5668;&#x7684;&#x8FD9;&#x4E24;&#x65B9;&#x5F0F;&#xFF0C;&#x610F;&#x4E49;&#x975E;&#x51E1;&#xFF1A;&#x5F53;&#x76F8;&#x5E94;&#x7684;TCP&#x7AEF;&#x53E3;&#x88AB;&#x9632;&#x706B;&#x5899;&#x5C01;&#x95ED;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x8F6E;&#x8BE2;&#x7684;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x8BBF;&#x95EE;&#xFF0C;&#x56E0;&#x6B64;&#x53C8;&#x6709;&#x52A9;&#x4E8E;&#x901A;&#x8FC7;&#x9632;&#x706B;&#x5899;&#x3002;</p>
+        <pre><code>  /**
+ * &#x7531;&#x5B57;&#x7B26;&#x4E32;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x6210;&#x5B9E;&#x4F53;&#x7C7B;  &#x9488;&#x5BF9;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x5B9E;&#x4F53;&#xFF0C;&#x6B64;&#x5B9E;&#x4F53;&#x4E2D;&#x7684;&#x5C5E;&#x6027;&#x4E0D;&#x5305;&#x62EC;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x5982;Teacher&#x7C7B;&#x578B;&#xFF0C;&#x6216;&#x8005;List&lt;Teacher&gt;&#x7C7B;&#x578B; 
+ * @param source &#x4F20;&#x5165;json&#x4E2D;&#x7684;&#x5B57;&#x7B26;&#x4E32;
+ * @param beanClass &#x5B9E;&#x4F53;&#x7C7B;&#x7684;&#x7C7B;&#x578B;
+ * @return &#x5B9E;&#x4F53;&#x7C7B;
+ */
+public static Object getObjFromJsonArrStr(String source,Class beanClass)
+{
+    JSONObject jsonObject = (JSONObject) JSONSerializer.toJSON(source);
+    return  JSONObject.toBean(jsonObject,beanClass);       
+}
+/**
+ * &#x7531;&#x5B57;&#x7B26;&#x4E32;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x6210;&#x5B9E;&#x4F53;&#x7C7B;  &#x9488;&#x5BF9;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x5B9E;&#x4F53;&#xFF0C;&#x6B64;&#x5B9E;&#x4F53;&#x4E2D;&#x7684;&#x5C5E;&#x6027;&#x5305;&#x62EC;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x5982;Teacher&#x7C7B;&#x578B;&#xFF0C;&#x6216;&#x8005;List&lt;Teacher&gt;&#x7C7B;&#x578B;
+ * @param jsonArrStr
+ * @param clazz
+ * @param classMap
+ * @return
+ */
+public static Object getObjFromJsonArrStr(String jsonArrStr, Class clazz, Map classMap) 
+{ 
+    JSONObject jsonObj = JSONObject.fromObject(jsonArrStr);  
+            return JSONObject.toBean(jsonObj, clazz, classMap);            
+}
+
+
+/**
+ * &#x5C06;string&#x8F6C;&#x6362;&#x6210;listBean
+ * @param jsonArrStr &#x9700;&#x8981;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x7684;&#x5B57;&#x7B26;&#x4E32;
+ * @param clazz &#x88AB;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x4E4B;&#x540E;&#x7684;&#x7C7B;
+ * @return &#x5B9E;&#x4F53;list
+ */
+@SuppressWarnings(&quot;unchecked&quot;)
+public static List getListFromJsonArrStr(String jsonArrStr, Class clazz) {  
+    JSONArray jsonArr = JSONArray.fromObject(jsonArrStr);  
+    List list = new ArrayList(); 
+    for (int i = 0; i &lt; jsonArr.size(); i++) 
+    { 
+        list.add(JSONObject.toBean(jsonArr.getJSONObject(i), clazz));  
+    } 
+    return list; 
+}
+
+/**
+ * &#x5C06;string&#x8F6C;&#x6362;&#x6210;listBean &#x5C5E;&#x6027;&#x4E2D;&#x5305;&#x542B;&#x5B9E;&#x4F53;&#x7C7B;&#x7B49; &#x5982;List&lt;Student&gt; &#x800C;Student&#x4E2D;&#x542B;&#x6709;&#x5C5E;&#x6027;List&lt;Teacher&gt;
+ * @param jsonArrStr &#x9700;&#x8981;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x7684;&#x5B57;&#x7B26;&#x4E32;
+ * @param clazz &#x53CD;&#x5E8F;&#x5217;&#x5316;&#x540E;&#x7684;&#x7C7B;
+ * @param classMap &#x5C06;&#x5C5E;&#x6027;&#x4E2D;&#x5305;&#x542B;&#x7684;&#x5982;Teacher&#x52A0;&#x5165;&#x5230;&#x4E00;&#x4E2A;Map&#x4E2D;&#xFF0C;&#x683C;&#x5F0F;&#x5982;map.put(&quot;teacher&quot;,Teacher.class)
+ * @return &#x53CD;&#x5E8F;&#x5217;&#x5316;&#x540E;&#x7684;&#x5B57;&#x7B26;&#x4E32;
+ * &#x4F7F;&#x7528;&#x793A;&#x4F8B;&#xFF1A;
+    Map classMap = new HashMap();
+    //&#x5FC5;&#x987B;&#x8981;&#x5BF9;Parent&#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316; &#x5426;&#x5219;&#x4E0D;&#x8BC6;&#x522B;
+    Teacher p = new Teacher();
+    classMap.put(&quot;teacher&quot;, p.getClass());
+    List mlist = JSONTransfer.getListFromJsonArrStr(resultStr, Student.class, classMap);
+ */
+@SuppressWarnings(&quot;unchecked&quot;)
+public static List getListFromJsonArrStr(String jsonArrStr, Class clazz, Map classMap) 
+{ 
+   JSONArray jsonArr = JSONArray.fromObject(jsonArrStr);  
+   List list = new ArrayList(); 
+   for (int i = 0; i &lt; jsonArr.size(); i++) 
+   {          
+       list.add(JSONObject.toBean(jsonArr.getJSONObject(i), clazz, classMap));  
+   } 
+   return list; 
+}
+
+/**
+ * &#x5E8F;&#x5217;&#x5316;&#x64CD;&#x4F5C;&#xFF0C;&#x65E0;&#x8BBA;&#x662F;&#x5355;&#x4E2A;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x8FD8;&#x662F;list&#xFF0C;&#x6291;&#x6216;&#x662F;list&#x4E2D;&#x7684;&#x5C5E;&#x6027;&#x4ECD;&#x5305;&#x542B;list&#xFF0C;&#x90FD;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5E8F;&#x5217;&#x5316;&#x6210;String&#x7C7B;&#x578B;
+ * @param obj &#x9700;&#x8981;&#x88AB;&#x5E8F;&#x5217;&#x5316;&#x7684;&#x5BF9;&#x8C61;
+ * @return &#x5E8F;&#x5217;&#x5316;&#x4E4B;&#x540E;&#x7684;&#x5B57;&#x7B26;&#x4E32;
+ */
+@SuppressWarnings(&quot;unchecked&quot;)
+public static String getJsonArrStrFromList(Object obj) 
+{
+    //&#x8FD4;&#x56DE;&#x7D50;&#x679C;
+    String jsonStr = null; 
+    //&#x5224;&#x7A7A;
+    if (obj == null) {  
+        return &quot;{}&quot;; 
+    } 
+    //Json&#x914D;&#x7F6E;     
+    JsonConfig jsonCfg = new JsonConfig(); 
+
+    //&#x6CE8;&#x518C;&#x65E5;&#x671F;&#x5904;&#x7406;&#x5668; 
+    jsonCfg.registerJsonValueProcessor(java.util.Date.class, 
+            new JsonDateValueProcessor(SystemConstants.DateFormat)); 
+
+    //&#x5224;&#x65AD;&#x662F;&#x5426;&#x662F;list
+    if (objinstanceof Collection || obj instanceof Object[]) {  
+        jsonStr = JSONArray.fromObject(obj, jsonCfg).toString();  
+    }else { 
+        jsonStr = JSONObject.fromObject(obj, jsonCfg).toString();  
+    }    
+    return jsonStr;
+}
+</code></pre><p>&#x5173;&#x4E8E;Java&#x5E8F;&#x5217;&#x5316;&#xFF0C;ITEye&#x4E0A;&#x6709;&#x4E00;&#x7BC7;&#x8BA8;&#x8BBA;&#x7684;&#x5E16;&#x5B50;&#x6BD4;&#x8F83;&#x597D;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;http://www.iteye.com/topic/14707&quot;&gt;http://www.iteye.com/topic/14707&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/14/Json_反序列化/" data-id="ciyyhulw9002x102jmt929xvw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android_Afinal框架" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/14/Android_Afinal框架/" class="article-date">
+  <time datetime="2016-05-14T13:26:18.000Z" itemprop="datePublished">2016-05-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/14/Android_Afinal框架/">Android_Afinal框架</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Afinal&#x7B80;&#x4ECB;<br>Afinal&#x662F;&#x4E00;&#x4E2A;android&#x7684;ioc&#xFF0C;orm&#x6846;&#x67B6;&#xFF0C;&#x5185;&#x7F6E;&#x4E86;&#x56DB;&#x5927;&#x6A21;&#x5757;&#x529F;&#x80FD;&#xFF1A;FinalAcitivity,FinalBitmap,FinalDb,FinalHttp&#x3002;&#x901A;&#x8FC7;finalActivity&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6CE8;&#x89E3;&#x7684;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x7ED1;&#x5B9A;ui&#x548C;&#x4E8B;&#x4EF6;&#x3002;&#x901A;&#x8FC7;finalBitmap&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x7684;&#x52A0;&#x8F7D;bitmap&#x56FE;&#x7247;&#xFF0C;&#x800C;&#x65E0;&#x9700;&#x8003;&#x8651;oom&#x7B49;&#x95EE;&#x9898;&#x3002;&#x901A;&#x8FC7;finalDB&#x6A21;&#x5757;&#xFF0C;&#x6211;&#x4EEC;&#x4E00;&#x884C;&#x4EE3;&#x7801;&#x5C31;&#x53EF;&#x4EE5;&#x5BF9;android&#x7684;sqlite&#x6570;&#x636E;&#x5E93;&#x8FDB;&#x884C;&#x589E;&#x5220;&#x6539;&#x67E5;&#x3002;&#x901A;&#x8FC7;FinalHttp&#x6A21;&#x5757;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4EE5;ajax&#x5F62;&#x5F0F;&#x8BF7;&#x6C42;http&#x6570;&#x636E;&#x3002;&#x8BE6;&#x60C5;&#x8BF7;&#x901A;&#x8FC7;&#x4EE5;&#x4E0B;&#x7F51;&#x5740;&#x67E5;&#x770B;&#x3002; &#x2014; More&#x2026;</p>
+<p>Afinal &#x662F;&#x4E00;&#x4E2A;android&#x7684;sqlite orm &#x548C; ioc &#x6846;&#x67B6;&#x3002;&#x540C;&#x65F6;&#x5C01;&#x88C5;&#x4E86;android&#x4E2D;&#x7684;http&#x6846;&#x67B6;&#xFF0C;&#x4F7F;&#x5176;&#x66F4;&#x52A0;&#x7B80;&#x5355;&#x6613;&#x7528;&#xFF1B;<br>&#x4F7F;&#x7528;finalBitmap&#xFF0C;&#x65E0;&#x9700;&#x8003;&#x8651;bitmap&#x5728;android&#x4E2D;&#x52A0;&#x8F7D;&#x7684;&#x65F6;&#x5019;oom&#x7684;&#x95EE;&#x9898;&#x548C;&#x5FEB;&#x901F;&#x6ED1;&#x52A8;&#x7684;&#x65F6;&#x5019;&#x56FE;&#x7247;&#x52A0;&#x8F7D;&#x4F4D;&#x7F6E;&#x9519;&#x4F4D;&#x7B49;&#x95EE;&#x9898;&#x3002;<br>Afinal&#x7684;&#x5B97;&#x65E8;&#x662F;&#x7B80;&#x6D01;&#xFF0C;&#x5FEB;&#x901F;&#x3002;&#x7EA6;&#x5B9A;&#x5927;&#x4E8E;&#x914D;&#x7F6E;&#x7684;&#x65B9;&#x5F0F;&#x3002;&#x5C3D;&#x91CF;&#x4E00;&#x884C;&#x4EE3;&#x7801;&#x5B8C;&#x6210;&#x6240;&#x6709;&#x4E8B;&#x60C5;&#x3002;<br>&#x76EE;&#x524D;Afinal&#x4E3B;&#x8981;&#x6709;&#x56DB;&#x5927;&#x6A21;&#x5757;&#xFF1A;</p>
+<p>FinalDB&#x6A21;&#x5757;&#xFF1A;android&#x4E2D;&#x7684;orm&#x6846;&#x67B6;&#xFF0C;&#x4E00;&#x884C;&#x4EE3;&#x7801;&#x5C31;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x589E;&#x5220;&#x6539;&#x67E5;&#x3002;&#x652F;&#x6301;&#x4E00;&#x5BF9;&#x591A;&#xFF0C;&#x591A;&#x5BF9;&#x4E00;&#x7B49;&#x67E5;&#x8BE2;&#x3002;</p>
+<p>FinalActivity&#x6A21;&#x5757;&#xFF1A;android&#x4E2D;&#x7684;ioc&#x6846;&#x67B6;&#xFF0C;&#x5B8C;&#x5168;&#x6CE8;&#x89E3;&#x65B9;&#x5F0F;&#x5C31;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;UI&#x7ED1;&#x5B9A;&#x548C;&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;&#x3002;&#x65E0;&#x9700;findViewById&#x548C;setClickListener&#x7B49;&#x3002;</p>
+<p>FinalHttp&#x6A21;&#x5757;&#xFF1A;&#x901A;&#x8FC7;httpclient&#x8FDB;&#x884C;&#x5C01;&#x88C5;http&#x6570;&#x636E;&#x8BF7;&#x6C42;&#xFF0C;&#x652F;&#x6301;ajax&#x65B9;&#x5F0F;&#x52A0;&#x8F7D;&#x3002;</p>
+<p>FinalBitmap&#x6A21;&#x5757;&#xFF1A;&#x901A;&#x8FC7;FinalBitmap&#xFF0C;imageview&#x52A0;&#x8F7D;bitmap&#x7684;&#x65F6;&#x5019;&#x65E0;&#x9700;&#x8003;&#x8651;bitmap&#x52A0;&#x8F7D;&#x8FC7;&#x7A0B;&#x4E2D;&#x51FA;&#x73B0;&#x7684;oom&#x548C;android&#x5BB9;&#x5668;&#x5FEB;&#x901F;&#x6ED1;&#x52A8;&#x65F6;&#x5019;&#x51FA;&#x73B0;&#x7684;&#x56FE;&#x7247;&#x9519;&#x4F4D;&#x7B49;&#x73B0;&#x8C61;&#x3002;FinalBitmap&#x53EF;&#x4EE5;&#x914D;&#x7F6E;&#x7EBF;&#x7A0B;&#x52A0;&#x8F7D;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#xFF0C;&#x7F13;&#x5B58;&#x5927;&#x5C0F;&#xFF0C;&#x7F13;&#x5B58;&#x8DEF;&#x5F84;&#xFF0C;&#x52A0;&#x8F7D;&#x663E;&#x793A;&#x52A8;&#x753B;&#x7B49;&#x3002;FinalBitmap&#x7684;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#x4F7F;&#x7528;lru&#x7B97;&#x6CD5;&#xFF0C;&#x6CA1;&#x6709;&#x4F7F;&#x7528;&#x5F31;&#x5F15;&#x7528;&#xFF08;android2.3&#x4EE5;&#x540E;google&#x5DF2;&#x7ECF;&#x4E0D;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;&#x5F31;&#x5F15;&#x7528;&#xFF0C;android2.3&#x540E;&#x5F3A;&#x884C;&#x56DE;&#x6536;&#x8F6F;&#x5F15;&#x7528;&#x548C;&#x5F31;&#x5F15;&#x7528;&#xFF0C;&#x8BE6;&#x60C5;&#x67E5;&#x770B;android&#x5B98;&#x65B9;&#x6587;&#x6863;&#xFF09;&#xFF0C;&#x66F4;&#x597D;&#x7684;&#x7BA1;&#x7406;bitmap&#x5185;&#x5B58;&#x3002;FinalBitmap&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x4E0B;&#x8F7D;&#x5668;&#xFF0C;&#x7528;&#x6765;&#x6269;&#x5C55;&#x5176;&#x4ED6;&#x534F;&#x8BAE;&#x663E;&#x793A;&#x7F51;&#x7EDC;&#x56FE;&#x7247;&#xFF0C;&#x6BD4;&#x5982;ftp&#x7B49;&#x3002;&#x540C;&#x65F6;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;bitmap&#x663E;&#x793A;&#x5668;&#xFF0C;&#x5728;imageview&#x663E;&#x793A;&#x56FE;&#x7247;&#x7684;&#x65F6;&#x5019;&#x64AD;&#x653E;&#x52A8;&#x753B;&#x7B49;&#xFF08;&#x9ED8;&#x8BA4;&#x662F;&#x6E10;&#x53D8;&#x52A8;&#x753B;&#x663E;&#x793A;&#xFF09;&#x3002;</p>
+<p>&#x4F7F;&#x7528;afinal&#x5FEB;&#x901F;&#x5F00;&#x53D1;&#x6846;&#x67B6;&#x9700;&#x8981;&#x6709;&#x4EE5;&#x4E0B;&#x6743;&#x9650;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;</span><br><span class="line">2</span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>&#x7B2C;&#x4E00;&#x4E2A;&#x662F;&#x8BBF;&#x95EE;&#x7F51;&#x7EDC;<br>&#x7B2C;&#x4E8C;&#x4E2A;&#x662F;&#x8BBF;&#x95EE;sdcard<br>&#x8BBF;&#x95EE;&#x7F51;&#x7EDC;&#x662F;&#x8BF7;&#x6C42;&#x7F51;&#x7EDC;&#x56FE;&#x7247;&#x7684;&#x65F6;&#x5019;&#x9700;&#x8981;&#x6216;&#x8005;&#x662F;http&#x6570;&#x636E;&#x8BF7;&#x6C42;&#x65F6;&#x5019;&#x9700;&#x8981;&#xFF0C;&#x8BBF;&#x95EE;sdcard&#x662F;&#x56FE;&#x7247;&#x7F13;&#x5B58;&#x7684;&#x9700;&#x8981;&#x3002;<br>FinalDB&#x4F7F;&#x7528;&#x65B9;&#x6CD5;</p>
+<p>&#x5173;&#x4E8E;finalDb&#x7684;&#x66F4;&#x591A;&#x4ECB;&#x7ECD;&#xFF0C;&#x8BF7;&#x70B9;&#x51FB;&#x8FD9;&#x91CC;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1</span><br><span class="line">FinalDb db = FinalDb.create(this);</span><br><span class="line">2</span><br><span class="line">User user = new User(); //&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;User&#x5BF9;&#x8C61;&#x5FC5;&#x987B;&#x6709;id&#x5C5E;&#x6027;&#xFF0C;&#x6216;&#x8005;&#x6709;&#x901A;&#x8FC7;@ID&#x6CE8;&#x89E3;&#x7684;&#x5C5E;&#x6027;</span><br><span class="line">3</span><br><span class="line">user.setEmail(&quot;mail@tsz.net&quot;);</span><br><span class="line">4</span><br><span class="line">user.setName(&quot;michael yang&quot;);</span><br><span class="line">5</span><br><span class="line">db.save(user);</span><br><span class="line">FinalActivity&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#xFF1A;</span><br></pre></td></tr></table></figure>
+<p>&#x5B8C;&#x5168;&#x6CE8;&#x89E3;&#x65B9;&#x5F0F;&#x5C31;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;UI&#x7ED1;&#x5B9A;&#x548C;&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;<br>&#x65E0;&#x9700;findViewById&#x548C;setClickListener&#x7B49;<br>01<br>public class AfinalDemoActivity extends FinalActivity {<br>02</p>
+<p>03<br>    //&#x65E0;&#x9700;&#x8C03;&#x7528;findViewById&#x548C;setOnclickListener&#x7B49;<br>04<br>    @ViewInject(id=R.id.button,click=&#x201D;btnClick&#x201D;) Button button;<br>05<br>    @ViewInject(id=R.id.textView) TextView textView;<br>06</p>
+<p>07<br>    public void onCreate(Bundle savedInstanceState) {<br>08<br>       super.onCreate(savedInstanceState);<br>09<br>       setContentView(R.layout.main);<br>10<br>    }<br>11</p>
+<p>12<br>    public void btnClick(View v){<br>13<br>       textView.setText(&#x201C;text set form button&#x201D;);<br>14<br>    }<br>15<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">FinalHttp&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#xFF1A;</span><br><span class="line"></span><br><span class="line">&#x666E;&#x901A;get&#x65B9;&#x6CD5;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">01</span><br><span class="line">FinalHttp fh = new FinalHttp();</span><br><span class="line">02</span><br><span class="line">fh.get(&quot;http://www.yangfuhai.com&quot;, new AjaxCallBack(){</span><br><span class="line">03</span><br><span class="line"></span><br><span class="line">04</span><br><span class="line">    @Override</span><br><span class="line">05</span><br><span class="line">    public void onLoading(long count, long current) { //&#x6BCF;1&#x79D2;&#x949F;&#x81EA;&#x52A8;&#x88AB;&#x56DE;&#x8C03;&#x4E00;&#x6B21;</span><br><span class="line">06</span><br><span class="line">            textView.setText(current+&quot;/&quot;+count);</span><br><span class="line">07</span><br><span class="line">    }</span><br><span class="line">08</span><br><span class="line"></span><br><span class="line">09</span><br><span class="line">    @Override</span><br><span class="line">10</span><br><span class="line">    public void onSuccess(String t) {</span><br><span class="line">11</span><br><span class="line">            textView.setText(t==null?&quot;null&quot;:t);</span><br><span class="line">12</span><br><span class="line">    }</span><br><span class="line">13</span><br><span class="line"></span><br><span class="line">14</span><br><span class="line">    @Override</span><br><span class="line">15</span><br><span class="line">    public void onStart() {</span><br><span class="line">16</span><br><span class="line">        //&#x5F00;&#x59CB;http&#x8BF7;&#x6C42;&#x7684;&#x65F6;&#x5019;&#x56DE;&#x8C03;</span><br><span class="line">17</span><br><span class="line">    }</span><br><span class="line">18</span><br><span class="line"></span><br><span class="line">19</span><br><span class="line">    @Override</span><br><span class="line">20</span><br><span class="line">    public void onFailure(Throwable t, String strMsg) {</span><br><span class="line">21</span><br><span class="line">        //&#x52A0;&#x8F7D;&#x5931;&#x8D25;&#x7684;&#x65F6;&#x5019;&#x56DE;&#x8C03;</span><br><span class="line">22</span><br><span class="line">    }</span><br><span class="line">23</span><br><span class="line">});</span><br></pre></td></tr></table></figure>
+<p>&#x4F7F;&#x7528;FinalHttp&#x4E0A;&#x4F20;&#x6587;&#x4EF6; &#x6216;&#x8005; &#x63D0;&#x4EA4;&#x6570;&#x636E; &#x5230;&#x670D;&#x52A1;&#x5668;&#xFF08;post&#x65B9;&#x6CD5;&#xFF09;</p>
+<p>&#x6587;&#x4EF6;&#x4E0A;&#x4F20;&#x5230;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x5982;&#x4F55;&#x63A5;&#x6536;&#xFF0C;&#x8BF7;&#x67E5;&#x770B;&#x8FD9;&#x91CC;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">01</span><br><span class="line">AjaxParams params = new AjaxParams();</span><br><span class="line">02</span><br><span class="line">  params.put(&quot;username&quot;, &quot;michael yang&quot;);</span><br><span class="line">03</span><br><span class="line">  params.put(&quot;password&quot;, &quot;123456&quot;);</span><br><span class="line">04</span><br><span class="line">  params.put(&quot;email&quot;, &quot;test@tsz.net&quot;);</span><br><span class="line">05</span><br><span class="line">  params.put(&quot;profile_picture&quot;, new File(&quot;/mnt/sdcard/pic.jpg&quot;)); // &#x4E0A;&#x4F20;&#x6587;&#x4EF6;</span><br><span class="line">06</span><br><span class="line">  params.put(&quot;profile_picture2&quot;, inputStream); // &#x4E0A;&#x4F20;&#x6570;&#x636E;&#x6D41;</span><br><span class="line">07</span><br><span class="line">  params.put(&quot;profile_picture3&quot;, new ByteArrayInputStream(bytes)); // &#x63D0;&#x4EA4;&#x5B57;&#x8282;&#x6D41;</span><br><span class="line">08</span><br><span class="line"></span><br><span class="line">09</span><br><span class="line">  FinalHttp fh = new FinalHttp();</span><br><span class="line">10</span><br><span class="line">  fh.post(&quot;http://www.yangfuhai.com&quot;, params, new AjaxCallBack(){</span><br><span class="line">11</span><br><span class="line">        @Override</span><br><span class="line">12</span><br><span class="line">        public void onLoading(long count, long current) {</span><br><span class="line">13</span><br><span class="line">                textView.setText(current+&quot;/&quot;+count);</span><br><span class="line">14</span><br><span class="line">        }</span><br><span class="line">15</span><br><span class="line"></span><br><span class="line">16</span><br><span class="line">        @Override</span><br><span class="line">17</span><br><span class="line">        public void onSuccess(String t) {</span><br><span class="line">18</span><br><span class="line">            textView.setText(t==null?&quot;null&quot;:t);</span><br><span class="line">19</span><br><span class="line">        }</span><br><span class="line">20</span><br><span class="line">  });</span><br></pre></td></tr></table></figure>
+<p>&#x4F7F;&#x7528;FinalHttp&#x4E0B;&#x8F7D;&#x6587;&#x4EF6;&#xFF1A;</p>
+<p>&#x652F;&#x6301;&#x65AD;&#x70B9;&#x7EED;&#x4F20;&#xFF0C;&#x968F;&#x65F6;&#x505C;&#x6B62;&#x4E0B;&#x8F7D;&#x4EFB;&#x52A1; &#x6216;&#x8005; &#x5F00;&#x59CB;&#x4EFB;&#x52A1;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">01</span><br><span class="line">FinalHttp fh = newFinalHttp(); </span><br><span class="line">02</span><br><span class="line">    //&#x8C03;&#x7528;download&#x65B9;&#x6CD5;&#x5F00;&#x59CB;&#x4E0B;&#x8F7D;</span><br><span class="line">03</span><br><span class="line">    HttpHandler handler = fh.download(&quot;http://www.xxx.com/&#x4E0B;&#x8F7D;&#x8DEF;&#x5F84;/xxx.apk&quot;, //&#x8FD9;&#x91CC;&#x662F;&#x4E0B;&#x8F7D;&#x7684;&#x8DEF;&#x5F84;</span><br><span class="line">04</span><br><span class="line">    true,//true:&#x65AD;&#x70B9;&#x7EED;&#x4F20; false:&#x4E0D;&#x65AD;&#x70B9;&#x7EED;&#x4F20;&#xFF08;&#x5168;&#x65B0;&#x4E0B;&#x8F7D;&#xFF09;</span><br><span class="line">05</span><br><span class="line">    &quot;/mnt/sdcard/testapk.apk&quot;, //&#x8FD9;&#x662F;&#x4FDD;&#x5B58;&#x5230;&#x672C;&#x5730;&#x7684;&#x8DEF;&#x5F84;</span><br><span class="line">06</span><br><span class="line">    newAjaxCallBack() { </span><br><span class="line">07</span><br><span class="line">                @Override </span><br><span class="line">08</span><br><span class="line">                public void onLoading(long count, longcurrent) { </span><br><span class="line">09</span><br><span class="line">                     textView.setText(&quot;&#x4E0B;&#x8F7D;&#x8FDB;&#x5EA6;&#xFF1A;&quot;+current+&quot;/&quot;+count); </span><br><span class="line">10</span><br><span class="line">                } </span><br><span class="line">11</span><br><span class="line"></span><br><span class="line">12</span><br><span class="line">                @Override </span><br><span class="line">13</span><br><span class="line">                public voidonSuccess(File t) { </span><br><span class="line">14</span><br><span class="line">                    textView.setText(t==null?&quot;null&quot;:t.getAbsoluteFile().toString()); </span><br><span class="line">15</span><br><span class="line">                } </span><br><span class="line">16</span><br><span class="line"></span><br><span class="line">17</span><br><span class="line">            }); </span><br><span class="line">18</span><br><span class="line"></span><br><span class="line">19</span><br><span class="line"></span><br><span class="line">20</span><br><span class="line">   //&#x8C03;&#x7528;stop()&#x65B9;&#x6CD5;&#x505C;&#x6B62;&#x4E0B;&#x8F7D;</span><br><span class="line">21</span><br><span class="line">   handler.stop();</span><br></pre></td></tr></table></figure>
+<p>FinalBitmap &#x4F7F;&#x7528;&#x65B9;&#x6CD5;</p>
+<p>&#x52A0;&#x8F7D;&#x7F51;&#x7EDC;&#x56FE;&#x7247;&#x5C31;&#x4E00;&#x884C;&#x4EE3;&#x7801; fb.display(imageView,url) ,&#x66F4;&#x591A;&#x7684;display&#x91CD;&#x8F7D;&#x8BF7;&#x770B;&#x5E2E;&#x52A9;&#x6587;&#x6863;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">view sourceprint?</span><br><span class="line">01</span><br><span class="line">private GridView gridView;</span><br><span class="line">02</span><br><span class="line">    private FinalBitmap fb;</span><br><span class="line">03</span><br><span class="line">    @Override</span><br><span class="line">04</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) {</span><br><span class="line">05</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">06</span><br><span class="line">        setContentView(R.layout.images);</span><br><span class="line">07</span><br><span class="line"></span><br><span class="line">08</span><br><span class="line">        gridView = (GridView) findViewById(R.id.gridView);</span><br><span class="line">09</span><br><span class="line">        gridView.setAdapter(mAdapter);</span><br><span class="line">10</span><br><span class="line"></span><br><span class="line">11</span><br><span class="line">        fb = FinalBitmap.create(this);//&#x521D;&#x59CB;&#x5316;FinalBitmap&#x6A21;&#x5757;</span><br><span class="line">12</span><br><span class="line">        fb.configLoadingImage(R.drawable.downloading);</span><br><span class="line">13</span><br><span class="line">        //&#x8FD9;&#x91CC;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x5176;&#x4ED6;&#x5341;&#x51E0;&#x9879;&#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4E0D;&#x7528;&#x914D;&#x7F6E;&#xFF0C;&#x914D;&#x7F6E;&#x4E4B;&#x540E;&#x5FC5;&#x987B;&#x8C03;&#x7528;init()&#x51FD;&#x6570;,&#x624D;&#x751F;&#x6548;</span><br><span class="line">14</span><br><span class="line">        //fb.configBitmapLoadThreadSize(int size)</span><br><span class="line">15</span><br><span class="line">        //fb.configBitmapMaxHeight(bitmapHeight)</span><br><span class="line">16</span><br><span class="line">    }</span><br><span class="line">17</span><br><span class="line"></span><br><span class="line">18</span><br><span class="line"></span><br><span class="line">19</span><br><span class="line">///////////////////////////adapter getView////////////////////////////////////////////</span><br><span class="line">20</span><br><span class="line"></span><br><span class="line">21</span><br><span class="line">public View getView(int position, View convertView, ViewGroup parent) {</span><br><span class="line">22</span><br><span class="line">    ImageView iv;</span><br><span class="line">23</span><br><span class="line">    if(convertView == null){</span><br><span class="line">24</span><br><span class="line">        convertView = View.inflate(BitmapCacheActivity.this,R.layout.image_item, null);</span><br><span class="line">25</span><br><span class="line">        iv = (ImageView) convertView.findViewById(R.id.imageView);</span><br><span class="line">26</span><br><span class="line">        iv.setScaleType(ScaleType.CENTER_CROP);</span><br><span class="line">27</span><br><span class="line">        convertView.setTag(iv);</span><br><span class="line">28</span><br><span class="line">    }else{</span><br><span class="line">29</span><br><span class="line">        iv = (ImageView) convertView.getTag();</span><br><span class="line">30</span><br><span class="line">    }</span><br><span class="line">31</span><br><span class="line">    //bitmap&#x52A0;&#x8F7D;&#x5C31;&#x8FD9;&#x4E00;&#x884C;&#x4EE3;&#x7801;&#xFF0C;display&#x8FD8;&#x6709;&#x5176;&#x4ED6;&#x91CD;&#x8F7D;&#xFF0C;&#x8BE6;&#x60C5;&#x67E5;&#x770B;&#x6E90;&#x7801;</span><br><span class="line">32</span><br><span class="line">    fb.display(iv,Images.imageUrls[position]);</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android_消息推送/" data-id="ciytjwvjs001pbvuo84qlsfs6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android_Afinal框架/" data-id="ciyyhultv0014102jr2hi56n8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -203,7 +345,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android_条码扫描二维码扫描/" data-id="ciytjwvjq001lbvuo1jtimccq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android_条码扫描二维码扫描/" data-id="ciyyhuluj001p102jcdgtdwr8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -272,7 +414,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android-应用插件式开发解决方法/" data-id="ciytjwviu0012bvuo2dpa9lgs" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android-应用插件式开发解决方法/" data-id="ciyyhulty0018102jpwlefq2d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -329,7 +471,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android-解析json/" data-id="ciytjwvj10018bvuobt2xstma" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android-解析json/" data-id="ciyyhultq0012102jlz2oc60b" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -378,7 +520,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android-应用版本更新/" data-id="ciytjwvip000wbvuou25kx4x6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android-应用版本更新/" data-id="ciyyhultl000y102jbn1jroxv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -421,7 +563,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android-Notification的使用/" data-id="ciytjwviq000ybvuonmibf0k2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android-Notification的使用/" data-id="ciyyhult9000s102jsv80ni98" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -460,7 +602,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Android-短信发送/" data-id="ciytjwvir0010bvuodpubgc8g" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/13/Android-短信发送/" data-id="ciyyhultn0010102j3ao4w4by" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -507,7 +649,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Java-RMI/" data-id="ciytjwvkf002gbvuo62hoq73b" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/13/Java-RMI/" data-id="ciyyhulvl002c102jsabn07nu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -558,84 +700,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Android-ListView优化几种写法详细介/" data-id="ciytjwvib000obvuoltj97yj8" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Android_开发遇到的Exception" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/13/Android_开发遇到的Exception/" class="article-date">
-  <time datetime="2016-05-13T11:15:20.000Z" itemprop="datePublished">2016-05-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/13/Android_开发遇到的Exception/">Android_开发遇到的Exception</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>&#x5728;&#x4F7F;&#x7528;BaseAdapter&#x7684;&#x95EE;&#x9898;</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">java.lang.IllegalArgumentException: The observer is null.</span><br><span class="line">at android.database.Observable.unregisterObserver(Observable.java:64)</span><br><span class="line">at android.widget.BaseAdapter.unregisterDataSetObserver(BaseAdapter.java:42)</span><br><span class="line">at android.widget.AbsListView.onDetachedFromWindow(AbsListView.java:2872)</span><br><span class="line">at android.view.View.dispatchDetachedFromWindow(View.java:11908)</span><br><span class="line">at android.view.ViewGroup.dispatchDetachedFromWindow(ViewGroup.java:2647)</span><br><span class="line">at android.view.ViewGroup.dispatchDetachedFromWindow(ViewGroup.java:2645)</span><br><span class="line">at android.view.ViewGroup.dispatchDetachedFromWindow(ViewGroup.java:2645)</span><br><span class="line">at android.view.ViewGroup.dispatchDetachedFromWindow(ViewGroup.java:2645)</span><br><span class="line">at android.view.ViewGroup.dispatchDetachedFromWindow(ViewGroup.java:2645)</span><br><span class="line">at android.view.ViewGroup.dispatchDetachedFromWindow(ViewGroup.java:2645)</span><br><span class="line">at android.view.ViewGroup.dispatchDetachedFromWindow(ViewGroup.java:2645)</span><br><span class="line">at android.view.ViewGroup.dispatchDetachedFromWindow(ViewGroup.java:2645)</span><br><span class="line">at android.view.ViewGroup.dispatchDetachedFromWindow(ViewGroup.java:2645)</span><br><span class="line">at android.view.ViewRootImpl.dispatchDetachedFromWindow(ViewRootImpl.java:2685)</span><br><span class="line">at android.view.ViewRootImpl.doDie(ViewRootImpl.java:4044)</span><br><span class="line">at android.view.ViewRootImpl.die(ViewRootImpl.java:4027)</span><br><span class="line">at android.view.WindowManagerImpl.removeViewImmediate(WindowManagerImpl.java:375)</span><br><span class="line">at android.view.WindowManagerImpl$CompatModeWrapper.removeViewImmediate(WindowManagerImpl.java:170)</span><br><span class="line">at android.app.ActivityThread.handleDestroyActivity(ActivityThread.java:3352)</span><br><span class="line">at android.app.ActivityThread.access$1200(ActivityThread.java:140)</span><br><span class="line">at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1266)</span><br><span class="line">at android.os.Handler.dispatchMessage(Handler.java:99)</span><br><span class="line">at android.os.Looper.loop(Looper.java:137)</span><br><span class="line">at android.app.ActivityThread.main(ActivityThread.java:4914)</span><br><span class="line">at java.lang.reflect.Method.invokeNative(Native Method)</span><br><span class="line">at java.lang.reflect.Method.invoke(Method.java:511)</span><br><span class="line">at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:808)</span><br><span class="line">at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:575)</span><br><span class="line">at dalvik.system.NativeStart.main(Native Method)</span><br></pre></td></tr></table></figure>
-<p>&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#xFF0C;&#x7EE7;&#x627F;BaseAdapter&#x7684;&#x65F6;&#x5019;&#x5199;&#x5165;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void unregisterDataSetObserver(DataSetObserver observer) {</span><br><span class="line">if (observer != null) {</span><br><span class="line">       super.unregisterDataSetObserver(observer);</span><br><span class="line">   }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<hr>
-<p> 2.&#x4ECE;&#x7F51;&#x4E0A;&#x65B0;&#x4E0B;&#x8F7D;&#x4E00;&#x4E2A;&#x9879;&#x76EE;&#xFF0C;&#x5BFC;&#x5165;&#x5230;eclipse&#x4E2D;&#x8FD0;&#x884C;&#x65F6;&#xFF0C;&#x62A5;&#x9519;&#xFF1A;<br>java.lang.NoClassDefFoundError: com.baidu.mapapi.BMapManager<br>&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;<br>&#x4E00;&#x3001;&#x53F3;&#x51FB;&#x9879;&#x76EE;-&gt;properties-&gt;Java Build Path-&gt;Order and Export&#xFF0C;&#x5728;&#x9700;&#x8981;&#x5F15;&#x7528;&#x7684;&#x5305;&#x524D;&#x9762;&#x6253;&#x52FE;&#x3002;<br>&#x4E8C;&#x3001;Project-&gt;Clean&#x2026;<br>&#x95EE;&#x9898;&#x89E3;&#x51B3;&#xFF0C;&#x91CD;&#x65B0;&#x8FD0;&#x884C;&#x540E;&#x5C31;&#x6CA1;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#x4E86;</p>
-<hr>
-<p>3.&#x534E;&#x4E3A;&#x624B;&#x673A;debug&#x9700;&#x8981;&#x6253;&#x5F00;log&#x5F00;&#x5173;<br> &#x65B9;&#x6CD5;&#xFF1A;<br>1&#x3001;&#x5728;&#x62E8;&#x53F7;&#x754C;&#x9762;&#x8F93;&#x5165;&#xFF1A;<em>#</em>#2846579#<em>#</em>  &#x8FDB;&#x5165;&#x6D4B;&#x8BD5;&#x83DC;&#x5355;&#x754C;&#x9762;<br>2&#x3001;Project Menu&#x2013;&#x540E;&#x53F0;&#x8BBE;&#x7F6E;&#x2013;LOG&#x8BBE;&#x7F6E;<br>3&#x3001;LOG&#x5F00;&#x5173;&#x2013;LOG&#x6253;&#x5F00;   LOG&#x7EA7;&#x522B;&#x8BBE;&#x7F6E;&#x2013;VERBOSE<br>4&#x3001;Dump&amp;Log&#x2013; &#x5168;&#x90E8;&#x9009;&#x4E2D;<br>5&#x3001;&#x91CD;&#x542F;&#x624B;&#x673A;&#xFF0C;&#x91CD;&#x542F;Eclipse</p>
-<hr>
-<p>4.&#x672A;&#x77E5;&#x5F02;&#x5E38;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">java.lang.UnsatisfiedLinkError: Couldn&apos;t load zbar from loader dalvik.system.PathClassLoader[DexPathList[[zip file &quot;/data/app/com.haigou.client-1.apk&quot;],nativeLibraryDirectories=[/data/app-lib/com.haigou.client-1, /vendor/lib, /system/lib]]]: findLibrary returned null</span><br><span class="line"> at java.lang.Runtime.loadLibrary(Runtime.java:358)</span><br><span class="line"> at java.lang.System.loadLibrary(System.java:526)</span><br><span class="line"> at com.zbar.lib.ZbarManager.&lt;clinit&gt;(ZbarManager.java:15)</span><br><span class="line"> at com.zbar.lib.decode.DecodeHandler.decode(DecodeHandler.java:56)</span><br><span class="line"> at com.zbar.lib.decode.DecodeHandler.handleMessage(DecodeHandler.java:38)</span><br><span class="line"> at android.os.Handler.dispatchMessage(Handler.java:102)</span><br><span class="line"> at android.os.Looper.loop(Looper.java:136)</span><br><span class="line"> at com.zbar.lib.decode.DecodeThread.run(DecodeThread.java:44)</span><br></pre></td></tr></table></figure>
-<p>&#x89E3;&#x51B3;&#x65B9;&#x5F0F;&#xFF1A; .so&#x6587;&#x4EF6;&#x62F7;&#x8D1D;&#x5230;armeabi-v7a</p>
-<hr>
-<p> 5.&#x672A;&#x77E5;&#x5F02;&#x5E38;<br> import com.sun.image.codec.jpeg.JPEGCodec&#x4E0D;&#x901A;&#x8FC7; &#x627E;&#x4E0D;&#x5230;&#x5305;<br> &#x5728;Eclipse&#x4E2D;&#x5904;&#x7406;&#x56FE;&#x7247;&#xFF0C;&#x9700;&#x8981;&#x5F15;&#x5165;&#x4E24;&#x4E2A;&#x5305;&#xFF1A;<br>import com.sun.image.codec.jpeg.JPEGCodec;<br>import com.sun.image.codec.jpeg.JPEGImageEncoder;<br>&#x62A5;&#x9519;:<br>Access restriction: The type JPEGImageEncoder is not accessible due to restriction on required library C:\Java\jre1.6.0_07\lib\rt.jar</p>
-<p>&#x6B64;&#x65F6;&#x89E3;&#x51B3;&#x529E;&#x6CD5;&#xFF1A;<br>Eclipse&#x9ED8;&#x8BA4;&#x628A;&#x8FD9;&#x4E9B;&#x53D7;&#x8BBF;&#x95EE;&#x9650;&#x5236;&#x7684;API&#x8BBE;&#x6210;&#x4E86;ERROR&#x3002;&#x53EA;&#x8981;&#x628A;Windows-Preferences-Java-Complicer-Errors/Warnings&#x91CC;&#x9762;&#x7684;Deprecated and restricted API&#x4E2D;&#x7684;Forbidden references(access rules)&#x9009;&#x4E3A;Warning&#x5C31;&#x53EF;&#x4EE5;&#x7F16;&#x8BD1;&#x901A;&#x8FC7;&#x3002;</p>
-<hr>
-<p>6.&#x672A;&#x77E5;&#x5F02;&#x5E38;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Don&apos;t call setOnClickListener for an AdapterView</span><br></pre></td></tr></table></figure>
-<p>&#x4E0D;&#x80FD;&#x518D;AdapterView&#x4E0D;&#x80FD;&#x8BBE;&#x7F6E;onClickListener&#xFF0C;&#x5426;&#x5219;&#x4F1A;&#x76F4;&#x63A5;&#x629B;&#x51FA;&#x5F02;&#x5E38;</p>
-<hr>
-<p>7.eclipse&#x9879;&#x76EE;&#x5BFC;&#x5165;&#x5F02;&#x5E38;<br> 1&#xFF0C;&#x53F3;&#x952E;&#x9879;&#x76EE;&#x540D;&#x79F0;</p>
-<p>  BuildPath &#x2014;&gt; Configure Build Paht&#x2026;&#x4E2D;&#xFF0C;&#x7136;&#x540E;&#x4E0A;&#x9762;&#x6709;&#x51E0;&#x4E2A;&#x9009;&#x9879;&#x5361;&#x627E;&#x5230; Libraries&#x4E2D;&#x51FA;&#x73B0;&#x7EA2;&#x8272;&#x53C9;&#x53F7;&#x7684;&#x5305;&#x4E3A;&#x8DEF;&#x5F84;&#x9519;&#x8BEF;&#x7684;&#x5305;&#x3002;<br>  &#x5230;classpath&#x4E2D;&#x4FEE;&#x6539;&#x76F8;&#x5E94;&#x5305;&#x7684;&#x5F53;&#x524D;&#x8DEF;&#x5F84;&#x3002;&#x7136;&#x540E;&#x56DE;&#x5230;eclipse&#x4E2D;F5&#x5237;&#x65B0;&#x5DE5;&#x7A0B;&#x3002;<br>&#x4E0D;&#x884C;&#x7684;&#x8BDD;&#x53EF;&#x4EE5;&#x8BD5;&#x8BD5;clean&#x9879;&#x76EE;;<br>project&#x2014;&gt;clean<br>&#x5982;&#x679C;&#x4F60;&#x7684;eclipse&#x9879;&#x76EE;&#x6709;&#x7EA2;&#x8272;&#x53F9;&#x53F7;&#xFF0C;&#x800C;Libraries&#x4E2D;&#x6CA1;&#x6709;&#x51FA;&#x73B0;&#x7EA2;&#x8272;&#x53C9;&#x53F7;&#x7684;&#x5305;&#xFF0C;&#x6211;&#x662F;&#x8FD9;&#x6837;&#x505A;&#x7684;&#x3002;<br>1&#xFF0C;&#x5148;&#x628A;eclipse&#x8F6C;&#x6362;&#x5230;Markers&#x89C6;&#x56FE;&#xFF0C;windows&#x2014;-&gt;show view &#x2014;-&gt;markers<br>&#x4F1A;&#x53D1;&#x73B0;&#x8FD9;&#x4E9B;&#x62A5;&#x9519;&#x5185;&#x5BB9;&#xFF0C;<br>Archive for required library: &#x2018;XXXXXXXX001&#x2019; in project &#x2018;xxxxxxxxx&#x2019; cannot be read or is not a valid ZIP file<br>2&#xFF0C;&#x7528;&#x8BB0;&#x4E8B;&#x672C;&#x6253;&#x5F00;&#x9879;&#x76EE;&#x6839;&#x76EE;&#x5F55;&#x7684;.classpath&#x6587;&#x4EF6;&#xFF0C;&#x627E;&#x5230;&#x201C;<classpathentry kind="&#x201D;lib&#x201D;" path="&#x201D;XXXXXXXXX001&#x201D;/">&#x201D;&#x8FD9;&#x4E00;&#x884C;&#xFF0C;&#x5220;&#x6389;<br>&#x4FDD;&#x5B58;&#xFF0C;&#x5237;&#x65B0;&#x540E;&#xFF0C;&#x8FD9;&#x4E2A;&#x62A5;&#x9519;&#x5C31;&#x6CA1;&#x6709;&#x4E86;&#xFF0C;&#x4ECE;&#x800C;&#x7EA2;&#x8272;&#x53F9;&#x53F7;&#x4E5F;&#x6CA1;&#x6709;&#x4E86;&#x3002;</classpathentry></p>
-<hr>
-<p>8.eclipse&#x6253;&#x5305;&#x65F6;&#x5B57;&#x7B26;&#x4E32;&#x591A;&#x56FD;&#x8BED;&#x8A00;&#x5904;&#x7406;<br> &#x6253;&#x5305;&#x65F6;&#x5B57;&#x7B26;&#x4E32;&#x591A;&#x56FD;&#x8BED;&#x8A00;&#x95EE;&#x9898;(Checks for incomplete translations where not all st<br>Android Lint Preference  &#x2013;  ignore all</p>
-<hr>
-<p>9.&#x672A;&#x77E5;&#x5F02;&#x5E38;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">java.lang.IllegalArgumentException: View=com.android.internal.policy.impl.PhoneWindow$DecorView{4278dfe8 V.E..... R.....ID 0,0-1248,288} not attached to window manager</span><br><span class="line"> at android.view.WindowManagerGlobal.findViewLocked(WindowManagerGlobal.java:370)</span><br><span class="line"> at android.view.WindowManagerGlobal.removeView(WindowManagerGlobal.java:299)</span><br><span class="line"> at android.view.WindowManagerImpl.removeViewImmediate(WindowManagerImpl.java:84)</span><br><span class="line"> at android.app.Dialog.dismissDialog(Dialog.java:329)</span><br><span class="line"> at android.app.Dialog.dismiss(Dialog.java:312)</span><br><span class="line"> at android.app.Dialog.cancel(Dialog.java:1114)</span><br><span class="line"> at com.haigou.activity.MainActivity$WebHandler.handleMessage(MainActivity.java:964)</span><br><span class="line"> at android.os.Handler.dispatchMessage(Handler.java:102)</span><br><span class="line"> at android.os.Looper.loop(Looper.java:136)</span><br><span class="line"> at android.app.ActivityThread.main(ActivityThread.java:5034)</span><br><span class="line"> at java.lang.reflect.Method.invokeNative(Native Method)</span><br><span class="line"> at java.lang.reflect.Method.invoke(Method.java:515)</span><br><span class="line"> at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:807)</span><br><span class="line"> at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:623)</span><br><span class="line"> at dalvik.system.NativeStart.main(Native Method)</span><br></pre></td></tr></table></figure>
-<p> &#x5F02;&#x6B65;&#x6D88;&#x606F;&#x9020;&#x6210;&#x7684;&#x95EE;&#x9898;</p>
-<hr>
-<p>10.&#x672A;&#x77E5;&#x5F02;&#x5E38;<br>Conversion to Dalvik format failed: Unable to execute dex:<br>&#x4E24;&#x4E2A;&#x5305;&#x6709;&#x5185;&#x5BB9;&#x91CD;&#x590D;&#x6216;&#x51B2;&#x7A81;&#x4E4B;&#x7C7B;,&#x540C;&#x4E00;&#x9879;&#x76EE;&#x4E2D;&#x591A;&#x6B21;&#x5F15;&#x7528;&#x6216;&#x8005;&#x591A;&#x6B21;&#x5BFC;&#x5305;&#x5BFC;&#x81F4;&#x51B2;&#x7A81;</p>
-<hr>
-<p>11.&#x672A;&#x77E5;&#x5F02;&#x5E38;<br>Installation error: INSTALL_FAILED_INSUFFICIENT_STORAGE</p>
-<hr>
-<p>&#x9009;&#x62E9;&#x4F60;&#x7684;&#x5E94;&#x7528;&#xFF0C;&#x53F3;&#x952E;&#x9009;&#x62E9;&#x3010;run as&#x3011;&#x2013;&#x3010;run configurations&#x3011;&#x2013;&#x3010;target&#x3011;&#x2013;&#x3010;Additional Emulator Command Line Options&#x3011;&#xFF0C;&#x586B;&#x5199;&#x201C;-partition-size 256&#x201D;</p>
-<hr>
-<p>12.addview() &#x4E0D;&#x6267;&#x884C;removeView&#x4F1A;&#x62A5;&#x51FA;&#x5F02;&#x5E38;&#xFF0C;addView&#x540E;&#xFF0C;&#x4F60;&#x8981;&#x6DFB;&#x52A0;&#x7684;view&#x5C31;&#x4E00;&#x76F4;&#x5B58;&#x5728;&#x6DFB;&#x52A0;view&#x7684;&#x5BB9;&#x5668;&#x4E2D;&#xFF0C;&#x4E0D;removeView&#x4E0D;&#x4F1A;&#x6709;&#x4EC0;&#x4E48;&#x60C5;&#x51B5;&#xFF0C;&#x662F;&#x4E0D;&#x8FC7;&#x5728;&#x4F60;&#x8981;&#x60F3;&#x5728;addView&#x4E0A;&#x6B21;&#x7684;view&#x4E4B;&#x524D;&#x5FC5;&#x987B;&#x5148;&#x628A;removeView &#x6389;&#xFF0C;&#x5426;&#x5219;&#x4F1A;&#x63D0;&#x793A;&#x4F60;view&#x5DF2;&#x5B58;&#x5728;&#x5F02;&#x5E38;&#x3002;</p>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Android_开发遇到的Exception/" data-id="ciytjwvjz001vbvuoxy9vaphm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/13/Android-ListView优化几种写法详细介/" data-id="ciyyhult6000p102j93bkkln5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -673,7 +738,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-UI/" style="font-size: 10px;">Android UI</a> <a href="/tags/Android反编译/" style="font-size: 10px;">Android反编译</a> <a href="/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/tags/Java/" style="font-size: 14px;">Java</a> <a href="/tags/JavaWeb/" style="font-size: 18px;">JavaWeb</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Linux/" style="font-size: 12px;">Linux</a> <a href="/tags/Unity3D/" style="font-size: 16px;">Unity3D</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/互联网/" style="font-size: 10px;">互联网</a> <a href="/tags/兴趣/" style="font-size: 10px;">兴趣</a> <a href="/tags/博客/" style="font-size: 12px;">博客</a> <a href="/tags/大牛博客/" style="font-size: 10px;">大牛博客</a> <a href="/tags/学习，师傅/" style="font-size: 10px;">学习，师傅</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/微信-Js/" style="font-size: 10px;">微信 Js</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/感触一波/" style="font-size: 10px;">感触一波</a> <a href="/tags/简历/" style="font-size: 10px;">简历</a> <a href="/tags/面试/" style="font-size: 12px;">面试</a>
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-UI/" style="font-size: 10px;">Android UI</a> <a href="/tags/Android反编译/" style="font-size: 10px;">Android反编译</a> <a href="/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/tags/Java/" style="font-size: 14px;">Java</a> <a href="/tags/JavaWeb/" style="font-size: 18px;">JavaWeb</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Linux/" style="font-size: 12px;">Linux</a> <a href="/tags/Unity3D/" style="font-size: 16px;">Unity3D</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/互联网/" style="font-size: 10px;">互联网</a> <a href="/tags/兴趣/" style="font-size: 10px;">兴趣</a> <a href="/tags/博客/" style="font-size: 12px;">博客</a> <a href="/tags/大牛博客/" style="font-size: 10px;">大牛博客</a> <a href="/tags/学习，师傅/" style="font-size: 10px;">学习，师傅</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/微信-Js/" style="font-size: 10px;">微信 Js</a> <a href="/tags/心情/" style="font-size: 12px;">心情</a> <a href="/tags/感触一波/" style="font-size: 10px;">感触一波</a> <a href="/tags/简历/" style="font-size: 10px;">简历</a> <a href="/tags/面试/" style="font-size: 12px;">面试</a>
     </div>
   </div>
 
