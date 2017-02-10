@@ -68,9 +68,9 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Android jar包导出资源的问题" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Android jar包class修改重新打包" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/01/12/Android jar包导出资源的问题/" class="article-date">
+    <a href="/2017/01/12/Android jar包class修改重新打包/" class="article-date">
   <time datetime="2017-01-12T08:17:05.000Z" itemprop="datePublished">2017-01-12</time>
 </a>
     
@@ -82,7 +82,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/12/Android jar包导出资源的问题/">Android jar包导出资源的问题</a>
+      <a class="article-title" href="/2017/01/12/Android jar包class修改重新打包/">Android jar包class修改重新打包</a>
     </h1>
   
 
@@ -90,36 +90,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&#x6709;&#x7684;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5BFC;&#x51FA;&#x81EA;&#x5DF1;&#x7684;&#x9879;&#x76EE;&#xFF0C;jar&#x5305;&#xFF0C;&#x6216;&#x8005;&#x5176;&#x4ED6;&#x8D44;&#x6E90;&#x4F9B;&#x7B2C;&#x4E09;&#x65B9;&#x4F7F;&#x7528;&#xFF0C;&#x8FD9;&#x91CC;&#x4ECB;&#x7ECD;&#x4E00;&#x4E0B;&#x3002;</p>
-<h3 id="&#x7EAF;java&#x4EE3;&#x7801;"><a href="#&#x7EAF;java&#x4EE3;&#x7801;" class="headerlink" title="&#x7EAF;java&#x4EE3;&#x7801;"></a>&#x7EAF;java&#x4EE3;&#x7801;</h3><p>eclipse export&#x5BFC;&#x51FA;jar&#x5305;&#xFF0C;&#x53EA;&#x5305;&#x542B;&#x76F8;&#x5E94;&#x7684;.java&#x6587;&#x4EF6;&#x5C31;&#x597D;&#x4E86;&#x3002;</p>
-<h3 id="&#x6709;&#x8D44;&#x6E90;&#x7684;&#x9879;&#x76EE;"><a href="#&#x6709;&#x8D44;&#x6E90;&#x7684;&#x9879;&#x76EE;" class="headerlink" title="&#x6709;&#x8D44;&#x6E90;&#x7684;&#x9879;&#x76EE;"></a>&#x6709;&#x8D44;&#x6E90;&#x7684;&#x9879;&#x76EE;</h3><p>&#x53EF;&#x80FD;&#x6709;activity&#xFF0C;fragment&#x7B49;ui&#xFF0C;&#x6253;&#x6210;&#x5305;&#x8BA9;&#x522B;&#x4EBA;&#x8C03;&#x7528;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x53EA;&#x6253;java&#x4EE3;&#x7801;&#x6210;class&#x662F;&#x8C03;&#x7528;&#x4E0D;&#x4E86;&#x7684;&#xFF0C;&#x4F1A;&#x62A5;&#x9519;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x5C31;&#x8981;&#x628A;&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#xFF0C;so&#x5E93;&#xFF0C;lib&#x4F9D;&#x8D56;&#x7B49;&#x90FD;&#x8981;&#x4E00;&#x8D77;&#x5BFC;&#x51FA;&#xFF0C;&#x4F9B;&#x7B2C;&#x4E09;&#x65B9;&#x4F7F;&#x7528;&#x3002;&#x4F46;&#x662F;&#x8D44;&#x6E90;id&#x4F1A;&#x627E;&#x4E0D;&#x5230;<br>&#x89E3;&#x51B3;&#x65B9;&#x5F0F;&#x662F;&#x901A;&#x8FC7;&#x53CD;&#x5C04;&#x76F8;&#x5173;&#x3002;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public class MResource {  </span><br><span class="line">    public static int getIdByName(Context context, String className, String name) {  </span><br><span class="line">        String packageName = context.getPackageName();  </span><br><span class="line">        Class r = null;  </span><br><span class="line">        int id = 0;  </span><br><span class="line">        try {  </span><br><span class="line">            r = Class.forName(packageName + &quot;.R&quot;);  </span><br><span class="line">  </span><br><span class="line">            Class[] classes = r.getClasses();  </span><br><span class="line">            Class desireClass = null;  </span><br><span class="line">  </span><br><span class="line">            for (int i = 0; i &lt; classes.length; ++i) {  </span><br><span class="line">                if (classes[i].getName().split(&quot;\\$&quot;)[1].equals(className)) {  </span><br><span class="line">                    desireClass = classes[i];  </span><br><span class="line">                    break;  </span><br><span class="line">                }  </span><br><span class="line">            }  </span><br><span class="line">  </span><br><span class="line">            if (desireClass != null)  </span><br><span class="line">                id = desireClass.getField(name).getInt(desireClass);  </span><br><span class="line">        } catch (ClassNotFoundException e) {  </span><br><span class="line">            e.printStackTrace();  </span><br><span class="line">        } catch (IllegalArgumentException e) {  </span><br><span class="line">            e.printStackTrace();  </span><br><span class="line">        } catch (SecurityException e) {  </span><br><span class="line">            e.printStackTrace();  </span><br><span class="line">        } catch (IllegalAccessException e) {  </span><br><span class="line">            e.printStackTrace();  </span><br><span class="line">        } catch (NoSuchFieldException e) {  </span><br><span class="line">            e.printStackTrace();  </span><br><span class="line">        }  </span><br><span class="line">  </span><br><span class="line">        return id;  </span><br><span class="line">    }  </span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<p>&#x8C03;&#x7528;&#x65B9;&#x5F0F;&#x4E5F;&#x8981;&#x4FEE;&#x6539;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setContentView(MResource.getIdByName(BookMiguListMusicActivity.this, &quot;layout&quot;,</span><br><span class="line">				&quot;activity_book_migu_music_list&quot;));</span><br></pre></td></tr></table></figure>
-<h3 id="aar&#x5305;&#x5BFC;&#x51FA;"><a href="#aar&#x5305;&#x5BFC;&#x51FA;" class="headerlink" title="aar&#x5305;&#x5BFC;&#x51FA;"></a>aar&#x5305;&#x5BFC;&#x51FA;</h3><p>&#x968F;&#x7740;as&#x7684;&#x5E7F;&#x6CDB;&#x4F7F;&#x7528;&#xFF0C;aar&#x5305;&#x7684;&#x5BFC;&#x51FA;&#x65B9;&#x5F0F;&#x6BD4;&#x8F83;&#x6D41;&#x884C;&#x3002;</p>
-<p><em>.jar&#xFF1A;&#x53EA;&#x5305;&#x542B;&#x4E86;class&#x6587;&#x4EF6;&#x4E0E;&#x6E05;&#x5355;&#x6587;&#x4EF6;&#xFF0C;&#x4E0D;&#x5305;&#x542B;&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#xFF0C;&#x5982;&#x56FE;&#x7247;&#x7B49;&#x6240;&#x6709;res&#x4E2D;&#x7684;&#x6587;&#x4EF6;&#x3002;
-</em>.aar&#xFF1A;&#x5305;&#x542B;&#x6240;&#x6709;&#x8D44;&#x6E90;&#xFF0C;class&#x4EE5;&#x53CA;res&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5168;&#x90E8;&#x5305;&#x542B;</p>
-<p>&#x5982;&#x679C;&#x4F60;&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x7C7B;&#x5E93;&#x90A3;&#x4E48;&#x4F7F;&#x7528;&#x751F;&#x6210;&#x7684;<em>.jar&#x6587;&#x4EF6;&#x5373;&#x53EF;&#xFF1B;&#x5982;&#x679C;&#x4F60;&#x7684;&#x662F;&#x4E00;&#x4E2A;UI&#x5E93;&#xFF0C;&#x5305;&#x542B;&#x4E00;&#x4E9B;&#x81EA;&#x5DF1;&#x5199;&#x7684;&#x63A7;&#x4EF6;&#x5E03;&#x5C40;&#x6587;&#x4EF6;&#x4EE5;&#x53CA;&#x5B57;&#x4F53;&#x7B49;&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x90A3;&#x4E48;&#x5C31;&#x53EA;&#x80FD;&#x4F7F;&#x7528;</em>.aar&#x6587;&#x4EF6;&#x3002;</p>
-<p>&#x8981;&#x8F93;&#x51FA; aar &#x6587;&#x4EF6;&#xFF0C;&#x5FC5;&#x987B;&#x5C06; Module &#x914D;&#x7F6E;&#x4E3A; library&#xFF0C;&#x5728; gradle &#x6587;&#x4EF6;&#x4E2D;&#x5982;&#x4E0B;&#xFF1A;</p>
-<p>&#x8F93;&#x51FA; aar &#xFF1A; apply plugin: &#x2018;com.android.library&#x2019;&#xFF1B; &#x8F93;&#x51FA; apk &#xFF1A;apply plugin: &#x2018;com.android.application&#x2019;&#x3002;<br>&#x5C06; Module &#x914D;&#x7F6E;&#x4E3A; library &#x540E;&#xFF0C;&#x6784;&#x5EFA;&#x8F93;&#x51FA;&#x4E00;&#x4E2A; aar &#x6587;&#x4EF6;&#xFF0C;&#x6839;&#x636E;&#x6E20;&#x9053;&#x548C; BuildType &#x7684;&#x4E0D;&#x540C;&#xFF0C;&#x5728;&#x76F8;&#x5E94;&#x7684;&#x76EE;&#x5F55;&#x4E0B;&#x53EF;&#x4EE5;&#x627E;&#x5230;&#x3002;&#x6BD4;&#x5982;&#x5BF9; BuildType &#x4E3A; debug &#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x8F93;&#x51FA;&#x4E3A;&#xFF1A;[ModuleName]/build/outputs/aar/[ModuleName]-debug.aar&#x3002;&#x4E00;&#x4EFD; aar &#x6587;&#x4EF6;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x4E00;&#x4EFD; zip &#x5305;&#xFF0C;&#x548C; jar &#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;&#x5B83;&#x5C06;&#x4E00;&#x4E9B;&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x3001;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#x6587;&#x4EF6;&#x3001;so &#x6587;&#x4EF6;&#x7B49;&#x7B49;&#x90FD;&#x6253;&#x5305;&#x5728;&#x5185;&#xFF0C;&#x800C;&#x4EE3;&#x7801;&#x6587;&#x4EF6;&#x7F16;&#x8BD1;&#x540E;&#x538B;&#x7F29;&#x5728;&#x5728; classes.jar &#x4E2D;&#x3002;</p>
-<h3 id="&#x5BFC;&#x5165;-aar-&#x7684;&#x65B9;&#x5F0F;&#x5F15;&#x7528;"><a href="#&#x5BFC;&#x5165;-aar-&#x7684;&#x65B9;&#x5F0F;&#x5F15;&#x7528;" class="headerlink" title="&#x5BFC;&#x5165; aar &#x7684;&#x65B9;&#x5F0F;&#x5F15;&#x7528;"></a>&#x5BFC;&#x5165; aar &#x7684;&#x65B9;&#x5F0F;&#x5F15;&#x7528;</h3><p>&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x6BD4;&#x8F83;&#x7B80;&#x5355;&#xFF0C;&#x6253;&#x5F00; Project Structure&#xFF0C;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x65B0; Module&#xFF0C;&#x7136;&#x540E;&#x9009;&#x62E9; Import <em>.JAR or </em>.AAR Package &#x7684;&#x65B9;&#x5F0F;&#x5BFC;&#x5165;.&#x5BFC;&#x5165;&#x540E;&#xFF0C;&#x5728;&#x4F60;&#x7684;&#x5DE5;&#x7A0B;&#x4E0B;&#x9762;&#xFF0C;&#x4F1A;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x91CC;&#x9762;&#x662F; aar &#x6587;&#x4EF6;&#x4EE5;&#x53CA; Android Studio &#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x3002;</p>
-<p>&#x63A5;&#x7740;&#x53EF;&#x4EE5;&#x5728; gradle &#x4E2D;&#x914D;&#x7F6E;&#x4F9D;&#x8D56;&#x4E86;&#xFF0C;&#x5176;&#x4ED6; Module &#x53EF;&#x4EE5;&#x5F15;&#x7528;&#x8FD9;&#x4E2A; Module &#x4E86;&#xFF0C;&#x4F9D;&#x8D56;&#x65B9;&#x5F0F;&#x4F7F;&#x7528; compile project &#x7684;&#x65B9;&#x5F0F;&#x5373;&#x53EF;&#x3002;</p>
-<p>&#x7F3A;&#x70B9;&#xFF1A;&#x88AB;&#x4F9D;&#x8D56;&#x7684; aar &#x65E0;&#x6CD5; F3 &#x8DDF;&#x8FDB;&#x53BB;&#xFF0C;&#x65E0;&#x6CD5;&#x770B;&#x5230;&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x4EE5;&#x53CA;&#x76EE;&#x5F55;&#x5C42;&#x7EA7;&#x7B49;&#x7B49;&#x7F3A;&#x9677;&#x3002;</p>
-<h3 id="&#x4F7F;&#x7528;&#x914D;&#x7F6E;&#x4F9D;&#x8D56;&#x7684;&#x65B9;&#x5F0F;&#x5F15;&#x7528;"><a href="#&#x4F7F;&#x7528;&#x914D;&#x7F6E;&#x4F9D;&#x8D56;&#x7684;&#x65B9;&#x5F0F;&#x5F15;&#x7528;" class="headerlink" title="&#x4F7F;&#x7528;&#x914D;&#x7F6E;&#x4F9D;&#x8D56;&#x7684;&#x65B9;&#x5F0F;&#x5F15;&#x7528;"></a>&#x4F7F;&#x7528;&#x914D;&#x7F6E;&#x4F9D;&#x8D56;&#x7684;&#x65B9;&#x5F0F;&#x5F15;&#x7528;</h3><p>gradle &#x5176;&#x5B9E;&#x8FD8;&#x6709;&#x53E6;&#x4E00;&#x79CD;&#x4F9D;&#x8D56;&#x53EF;&#x4EE5;&#x5F15;&#x7528; aar&#xFF1A;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile(name: &apos;xxx&apos;, ext: &apos;aar&apos;)</span><br></pre></td></tr></table></figure>
-<p>&#x9996;&#x5148;&#x9700;&#x8981;&#x5C06; aar &#x6587;&#x4EF6;&#x653E;&#x5165;&#x5F15;&#x7528; Module &#x7684; libs &#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x548C;&#x4E00;&#x822C;&#x7684; jar &#x6587;&#x4EF6;&#x7C7B;&#x4F3C;&#x3002;&#x7136;&#x540E;&#x5728; gradle &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x628A; libs &#x76EE;&#x5F55;&#x52A0;&#x5165;&#x4F9D;&#x8D56;&#xFF1A;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">repositories {</span><br><span class="line">    flatDir {</span><br><span class="line">        dirs &apos;libs&apos;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<p>&#x63A5;&#x7740;&#x5728; gradle &#x7684;&#x4F9D;&#x8D56;&#x914D;&#x7F6E;&#x4E2D;&#x52A0;&#x5165; compile(name: &#x2018;xxx&#x2019;, ext: &#x2018;aar&#x2019;) &#x8FD9;&#x4E00;&#x53E5;&#xFF0C;&#x4F9D;&#x8D56;&#x5373;&#x53EF;&#x5173;&#x8054;&#x5B8C;&#x6BD5;&#x3002;&#x6784;&#x5EFA;&#x4E00;&#x4E0B;&#x5DE5;&#x7A0B;&#xFF0C;&#x5728; Module &#x7684; build/intermediates/exploded-aar &#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x6709;&#x4E00;&#x4E9B;&#x4E34;&#x65F6;&#x6587;&#x4EF6;&#x751F;&#x6210;<br>&#x770B;&#x8D77;&#x6765;&#x5B8C;&#x5168;&#x662F;&#x5F15;&#x7528; aar &#x7684;&#x89E3;&#x538B;&#x7248;&#x672C;&#x3002;Android Studio &#x5B89;&#x88C5;&#x53CD;&#x7F16;&#x8BD1;&#x63D2;&#x4EF6;&#x540E;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; F3 &#x8DDF;&#x8FDB;&#x5230; class &#x6587;&#x4EF6;&#x91CC;&#x9762;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x6709;&#x88AB;&#x4F9D;&#x8D56; Module &#x7684;&#x6E90;&#x4EE3;&#x7801;&#x7684;&#x8BDD;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5; Attach Source &#x5173;&#x8054;&#x6E90;&#x4EE3;&#x7801;&#x67E5;&#x770B;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x53EF;&#x4EE5;&#x5F88;&#x65B9;&#x4FBF;&#x7684;&#x67E5;&#x770B; aar &#x4E2D;&#x7684;&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x3002;</p>
-<p>&#x53E6;&#x5916;&#xFF0C;&#x8FD9;&#x79CD;&#x4F9D;&#x8D56;&#x65B9;&#x5F0F;&#x66F4;&#x65B0; aar &#x540E;&#xFF0C;&#x751F;&#x6210;&#x7684;&#x4E34;&#x65F6;&#x6587;&#x4EF6;&#x4E5F;&#x4F1A;&#x968F;&#x4E4B;&#x53D8;&#x52A8;&#xFF0C;&#x4E0D;&#x7528;&#x62C5;&#x5FC3;&#x6539;&#x52A8;&#x4E0D;&#x540C;&#x6B65;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
-<h3 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h3><p>&#x7EFC;&#x4E0A;&#xFF0C;&#x4ECB;&#x7ECD;&#x4E86; aar &#x6587;&#x4EF6;&#x7684;&#x751F;&#x6210;&#x65B9;&#x5F0F;&#xFF0C;&#x4EE5;&#x53CA;&#x4E24;&#x79CD; aar &#x4F9D;&#x8D56;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x7ECF;&#x8FC7;&#x5B9E;&#x6218;&#x68C0;&#x9A8C;&#xFF0C;&#x7B2C;&#x4E8C;&#x79CD;&#x901A;&#x8FC7;&#x914D;&#x7F6E; gradle &#x4F9D;&#x8D56;&#x7684;&#x65B9;&#x5F0F;&#x7B80;&#x5355;&#x6613;&#x7528;&#xFF0C;&#x53EA;&#x9700;&#x4E00;&#x884C;&#x4EE3;&#x7801;&#x5373;&#x53EF;&#x641E;&#x5B9A;&#x3002;</p>
-
+        <p>&#x9879;&#x76EE;&#x4E2D;&#x4F1A;&#x9047;&#x5230;&#x60F3;&#x8981;&#x628A;apk&#xFF0C;&#x7B2C;&#x4E09;&#x65B9;jar&#x5305;&#xFF0C;&#x6216;&#x8005;sdk&#x7B49;&#x7684;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#xFF0C;&#x6BD4;&#x5982;&#x653E;&#x5F00;&#x65E5;&#x5FD7;&#x6253;&#x5370;&#x5F00;&#x5173;&#x7B49;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x5C31;&#x9700;&#x8981;&#x628A;jar&#x5305;&#x4E2D;&#x7684;class&#x8FDB;&#x884C;&#x53CD;&#x7F16;&#x8BD1;&#x51FA;&#x6765;&#xFF0C;&#x7136;&#x540E;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#x4E4B;&#x540E;&#x91CD;&#x65B0;&#x6253;&#x5305;&#x3002;</p>
+<h2 id="&#x53CD;&#x7F16;&#x8BD1;&#x51FA;class&#x6587;&#x4EF6;"><a href="#&#x53CD;&#x7F16;&#x8BD1;&#x51FA;class&#x6587;&#x4EF6;" class="headerlink" title="&#x53CD;&#x7F16;&#x8BD1;&#x51FA;class&#x6587;&#x4EF6;"></a>&#x53CD;&#x7F16;&#x8BD1;&#x51FA;class&#x6587;&#x4EF6;</h2><p>apk&#x7684;&#x8BDD;&#x7528;dex2jar&#x8FDB;&#x884C;&#x5BF9;dex&#x9006;&#x5411;&#x6210;jar&#x5305;&#x3002;<br>jar&#x5305;&#x7684;&#x8BDD;&#x76F4;&#x63A5;&#x89E3;&#x538B;&#x51FA;class&#x6587;&#x4EF6;&#x3002;<br>&#x4FEE;&#x6539;jar&#x91CC;&#x9762;&#x7684;class&#x6587;&#x4EF6;&#x4E00;&#x822C;&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x3002;</p>
+<h2 id="&#x6B63;&#x5411;"><a href="#&#x6B63;&#x5411;" class="headerlink" title="&#x6B63;&#x5411;"></a>&#x6B63;&#x5411;</h2><p>copy&#x51FA;&#x8981;&#x4FEE;&#x6539;&#x7684;class&#xFF0C;&#x5728;&#x522B;&#x7684;&#x9879;&#x76EE;&#x65B0;&#x5EFA;&#x6587;&#x4EF6;&#xFF0C;&#x4EE3;&#x7801;&#x540C;&#x8981;&#x4FEE;&#x6539;&#x7684;class&#xFF0C;&#x5BFC;&#x5165;&#x9700;&#x8981;&#x7684;&#x4F9D;&#x8D56;&#x7C7B;&#x8D44;&#x6E90;&#x7B49;&#xFF0C;&#x6B63;&#x5411;&#x5BFC;&#x51FA;jar&#x5305;&#xFF0C;&#x7136;&#x540E;&#x89E3;&#x538B;copy&#x51FA;class&#x6587;&#x4EF6;&#xFF0C;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x4E3B;&#x8981;&#x662F;&#x4FEE;&#x6539;&#x5C11;&#x91CF;&#x4EE3;&#x7801;&#xFF0C;&#x76F8;&#x5BF9;&#x72EC;&#x7ACB;&#x4F9D;&#x8D56;&#x8F83;&#x5C11;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x76F8;&#x5BF9;&#x5BB9;&#x6613;&#xFF0C;&#x4E0D;&#x8FC7;&#x4E24;&#x6B21;&#x6253;jar&#x5305;&#x7684;jdk&#x7248;&#x672C;&#x6709;&#x8981;&#x6C42;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x5BFC;&#x81F4;&#x4E0D;&#x517C;&#x5BB9;&#x3002;</p>
+<p>javac&#x547D;&#x4EE4;,&#x7F16;&#x8BD1;&#x4E3A;class&#x5B57;&#x8282;&#x7801;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javac hello.java</span><br></pre></td></tr></table></figure>
+<h2 id="&#x9006;&#x5411;"><a href="#&#x9006;&#x5411;" class="headerlink" title="&#x9006;&#x5411;"></a>&#x9006;&#x5411;</h2><p>jclasslib  &#x8FD9;&#x4E2A;&#x5DE5;&#x5177;&#x8C8C;&#x4F3C;&#x662F;&#x53EF;&#x4EE5;&#x641E;&#x7684;</p>
+<h2 id="&#x8FD8;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x53CD;&#x5C04;&#x8FDB;&#x884C;&#x4FEE;&#x6539;"><a href="#&#x8FD8;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x53CD;&#x5C04;&#x8FDB;&#x884C;&#x4FEE;&#x6539;" class="headerlink" title="&#x8FD8;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x53CD;&#x5C04;&#x8FDB;&#x884C;&#x4FEE;&#x6539;"></a>&#x8FD8;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x53CD;&#x5C04;&#x8FDB;&#x884C;&#x4FEE;&#x6539;</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/12/Android jar包导出资源的问题/" data-id="ciyyhxeg500071p2jtydql5c9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/12/Android jar包class修改重新打包/" data-id="ciyz9r6oy0004rfuol6g3byf4" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android反编译/">Android反编译</a></li></ul>
 
     </footer>
   </div>
@@ -128,9 +112,9 @@
 
 
   
-    <article id="post-Android crash恢复" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-情商低的男生在感情中有哪些表现" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/01/12/Android crash恢复/" class="article-date">
+    <a href="/2017/01/12/情商低的男生在感情中有哪些表现/" class="article-date">
   <time datetime="2017-01-12T08:17:05.000Z" itemprop="datePublished">2017-01-12</time>
 </a>
     
@@ -142,7 +126,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/12/Android crash恢复/">Android crash恢复</a>
+      <a class="article-title" href="/2017/01/12/情商低的男生在感情中有哪些表现/">情商低的男生在感情中有哪些表现</a>
     </h1>
   
 
@@ -150,24 +134,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>apk&#x5D29;&#x6E83;&#x60C5;&#x5F62;</p>
-<h3 id="&#x524D;&#x53F0;&#x65F6;&#x5D29;&#x6E83;"><a href="#&#x524D;&#x53F0;&#x65F6;&#x5D29;&#x6E83;" class="headerlink" title="&#x524D;&#x53F0;&#x65F6;&#x5D29;&#x6E83;"></a>&#x524D;&#x53F0;&#x65F6;&#x5D29;&#x6E83;</h3><p>1&#x3001;&#x754C;&#x9762;&#x4E00;&#x521B;&#x5EFA;&#x5C31;&#x5D29;&#x6E83;&#xFF0C;&#x53EF;&#x80FD;&#x5728;onCreate&#x7B49;&#x65B9;&#x6CD5;&#x4E2D;&#x8BFB;&#x53D6;&#x6570;&#x636E;&#x9020;&#x6210;&#x7684;Crash<br>2&#x3001;&#x754C;&#x9762;&#x521B;&#x5EFA;&#x4E14;&#x7ED8;&#x5236;&#x5B8C;&#x6210;&#x6B63;&#x5E38;&#x663E;&#x793A;&#xFF0C;&#x5728;&#x7528;&#x6237;&#x6267;&#x884C;&#x67D0;&#x4E2A;&#x64CD;&#x4F5C;&#xFF0C;&#x5982;&#x70B9;&#x51FB;&#x6309;&#x94AE;&#x6267;&#x884C;&#x67D0;&#x4E2A;&#x64CD;&#x4F5C;&#x7B49;&#x9020;&#x6210;&#x7684;Crash<br>3&#x3001;&#x5176;&#x5B83;&#x5F02;&#x6B65;&#x7EBF;&#x7A0B;&#x3001;&#x670D;&#x52A1;&#x7B49;&#x5728;&#x540E;&#x53F0;&#x6267;&#x884C;&#x4EFB;&#x52A1;&#x65F6;&#x5BFC;&#x81F4;&#x7684;Crash.</p>
-<p>&#x4E0A;&#x9762;&#x7684;&#x60C5;&#x51B5;&#x90FD;&#x5E94;&#x6062;&#x590D;&#x7ED8;&#x5236;&#x5B8C;&#x6210;&#x540E;&#x7684;&#x754C;&#x9762;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x6808;&#x9876;Activity&#x662F;&#x5728;Crash&#x4E4B;&#x524D;&#x7528;&#x6237;&#x6240;&#x770B;&#x5230;&#x7684;&#x754C;&#x9762;&#xFF0C;&#x800C;&#x4E4B;&#x524D;&#x521B;&#x5EFA;&#x4E14;&#x672A;&#x9500;&#x6BC1;&#x7684;Activity&#x4E5F;&#x5E94;&#x8BE5;&#x8FDB;&#x884C;&#x6062;&#x590D;&#x3002;</p>
-<h3 id="&#x540E;&#x53F0;&#x65F6;&#x5D29;&#x6E83;"><a href="#&#x540E;&#x53F0;&#x65F6;&#x5D29;&#x6E83;" class="headerlink" title="&#x540E;&#x53F0;&#x65F6;&#x5D29;&#x6E83;"></a>&#x540E;&#x53F0;&#x65F6;&#x5D29;&#x6E83;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1&#x3001;&#x8FDB;&#x7A0B;&#x672A;&#x6302;&#xFF0C;&#x65E0;&#x975E;&#x5C31;&#x662F;&#x5F02;&#x6B65;&#x7EBF;&#x7A0B;&#x3001;server&#x7B49;&#x540E;&#x53F0;&#x4EFB;&#x52A1;&#x53D1;&#x751F;&#x5F02;&#x5E38;&#x65F6;&#x5BFC;&#x81F4;&#x7684;Crash</span><br><span class="line">2&#x3001;&#x8FDB;&#x7A0B;&#x5DF2;&#x6302;&#xFF0C;&#x8FDB;&#x7A0B;&#x88AB;360&#x7B49;&#x5DE5;&#x5177;&#x6740;&#x6B7B;&#x4E86;&#xFF0C;&#x5E38;&#x89C1;&#x7684;&#x662F;push&#x8FC7;&#x6765;&#x4E86;&#x7136;&#x540E;&#x5524;&#x8D77;App&#x8FDB;&#x7A0B;&#xFF0C;&#x5728;&#x89E3;&#x6790;push&#x4FE1;&#x606F;&#x65F6;&#x5019;&#x5BFC;&#x81F4;Crash</span><br></pre></td></tr></table></figure>
-<p>ActivityStack&#x6062;&#x590D;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x90FD;&#x662F;&#x5148;&#x6062;&#x590D;&#x6808;&#x4E2D;&#x7684;Activity&#xFF0C;&#x65E0;Activity&#x65F6;&#x5219;&#x91CD;&#x542F;&#x5E94;&#x7528;</p>
-<h3 id="&#x4E3B;&#x9875;&#x7684;&#x56DE;&#x9000;"><a href="#&#x4E3B;&#x9875;&#x7684;&#x56DE;&#x9000;" class="headerlink" title="&#x4E3B;&#x9875;&#x7684;&#x56DE;&#x9000;"></a>&#x4E3B;&#x9875;&#x7684;&#x56DE;&#x9000;</h3><p>&#x5728;&#x8FDB;&#x884C;&#x6062;&#x590D;Activity&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x53EA;&#x662F;&#x6062;&#x590D;&#x6808;&#x9876;Activity&#xFF0C;&#x5F53;&#x7528;&#x6237;&#x5728;&#x8FD9;&#x4E2A;&#x754C;&#x9762;&#x4E0D;&#x8FDB;&#x884C;&#x8DF3;&#x8F6C;&#x64CD;&#x4F5C;&#x800C;&#x662F;&#x76F4;&#x63A5;&#x6309;&#x8FD4;&#x56DE;&#x952E;&#xFF0C;&#x8FD9;&#x5C06;&#x5BFC;&#x81F4;&#x76F4;&#x63A5;&#x9000;&#x51FA;&#x7A0B;&#x5E8F;&#xFF0C;&#x6240;&#x4EE5;&#x5BF9;&#x4E8E;&#x8FD9;&#x4E2A;&#x60C5;&#x51B5;&#x5E94;&#x8BE5;&#x662F;&#x56DE;&#x9000;&#x5230;&#x5E94;&#x7528;&#x7684;&#x4E3B;&#x9875;&#xFF0C;Recovery&#x4E2D;&#x6709;&#x4E2A;&#x53C2;&#x6570;mainPage&#xFF0C;&#x5982;&#x679C;&#x8BBE;&#x7F6E;&#x4E86;&#x5C31;&#x8868;&#x793A;&#x9700;&#x8981;&#x56DE;&#x9000;&#x5230;&#x4E3B;&#x9875;&#xFF0C;&#x6CA1;&#x6709;&#x8BBE;&#x7F6E;&#x5219;&#x4E0D;&#x8FDB;&#x884C;&#x56DE;&#x9000;</p>
-<p>&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x4E2D;&#x6D89;&#x53CA;&#x5230;&#x83B7;&#x53D6;App&#x5185;Activity&#x6808;&#x5185;&#x7684;&#x6570;&#x91CF;&#x548C;&#x6808;&#x5E95;Activity&#xFF0C;&#x662F;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x5E94;&#x8BE5;&#x90FD;&#x77E5;&#x9053;&#x83B7;&#x53D6;&#x8FD9;&#x4E24;&#x4E2A;&#x4FE1;&#x606F;&#x662F;&#x901A;&#x8FC7;getRunningTasks&#x6765;&#x83B7;&#x53D6;&#xFF0C;&#x4E0D;&#x8FC7;&#x53EF;&#x60DC;&#xFF0C;&#x5728;5.0&#x4EE5;&#x540E;Google&#x5BF9;&#x6743;&#x9650;&#x8FDB;&#x884C;&#x4E86;&#x6536;&#x655B;&#xFF0C;&#x76EE;&#x5730;&#x662F;&#x4FDD;&#x62A4;App&#x7684;&#x4FE1;&#x606F;&#x5B89;&#x5168;&#xFF0C;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x5728;5.0&#x4EE5;&#x540E;&#x5C06;&#x5931;&#x6548;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x517C;&#x5BB9;&#xFF0C;&#x4E8E;&#x662F;&#x4E4E;&#x770B;6.0&#x6E90;&#x7801;&#x53C8;&#x53D1;&#x73B0;Google&#x5728;5.0&#x6536;&#x655B;&#x4E86;&#x6574;&#x4E2A;&#x6743;&#x9650;&#xFF0C;&#x5BFC;&#x81F4;&#x672C;App&#x7684;&#x90FD;&#x83B7;&#x53D6;&#x4E0D;&#x5230;&#xFF0C;&#x4F46;&#x662F;&#x5728;6.0&#x53C8;&#x653E;&#x51FA;&#x6765;&#x4E86;&#xFF0C;&#x4E0D;&#x8FC7;&#x53EA;&#x80FD;&#x83B7;&#x53D6;&#x672C;&#x5E94;&#x7528;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x6240;&#x4EE5;&#x517C;&#x5BB9;&#x7684;&#x7B56;&#x7565;&#x662F;5.0~6.0&#x81EA;&#x5DF1;&#x7EF4;&#x62A4;&#x4E00;&#x4E2A;ActivityStack</p>
-<h3 id="&#x8FDE;&#x7EED;Crash&#x7684;&#x5904;&#x7406;"><a href="#&#x8FDE;&#x7EED;Crash&#x7684;&#x5904;&#x7406;" class="headerlink" title="&#x8FDE;&#x7EED;Crash&#x7684;&#x5904;&#x7406;"></a>&#x8FDE;&#x7EED;Crash&#x7684;&#x5904;&#x7406;</h3><p>&#x5982;&#x679C;&#x4E00;&#x5206;&#x949F;&#x5185;&#x8FDB;&#x884C;&#x4E86;&#x4E24;&#x6B21;&#x6062;&#x590D;&#x540E;&#x8FD8;&#x5BFC;&#x81F4;Crash&#xFF0C;&#x5219;&#x4E0D;&#x8FDB;&#x884C;&#x6062;&#x590D;&#x800C;&#x662F;&#x91CD;&#x542F;&#x5E94;&#x7528;&#xFF0C;&#x6216;&#x8005;&#x91CD;&#x542F;&#x5E76;&#x6E05;&#x7A7A;&#x7F13;&#x5B58;&#xFF0C;&#x4EE5;&#x4FBF;&#x6062;&#x590D;App&#x521A;&#x5B89;&#x88C5;&#x65F6;&#x7684;&#x72B6;&#x6001;</p>
-<h3 id="&#x9879;&#x76EE;&#x5730;&#x5740;"><a href="#&#x9879;&#x76EE;&#x5730;&#x5740;" class="headerlink" title="&#x9879;&#x76EE;&#x5730;&#x5740;"></a>&#x9879;&#x76EE;&#x5730;&#x5740;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/Sunzxyong/Recovery</span><br></pre></td></tr></table></figure>
-<p>but~ &#x6211;&#x89C9;&#x5F97;&#x8FD9;&#x4E2A;&#x9879;&#x76EE;&#x8FD8;&#x662F;&#x6709;&#x70B9;&#x9E21;&#x808B;&#x7684;&#xFF0C;&#x81EA;&#x5DF1;&#x76D1;&#x542C;&#x5C31;&#x597D;&#x4E86;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">private static class MyUncaughtExceptionHandler implements</span><br><span class="line">            Thread.UncaughtExceptionHandler {</span><br><span class="line"></span><br><span class="line">        private Context mContext;</span><br><span class="line"></span><br><span class="line">        public MyUncaughtExceptionHandler(Context context) {</span><br><span class="line">            mContext = context;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void uncaughtException(Thread thread, final Throwable ex) {</span><br><span class="line">            new Thread() {</span><br><span class="line"></span><br><span class="line">                @Override</span><br><span class="line">                public void run() {</span><br><span class="line">                    Looper.prepare();</span><br><span class="line">                    Toast.makeText(mContext, &quot;&#x5F88;&#x62B1;&#x6B49;,&#x7A0B;&#x5E8F;&#x5F02;&#x5E38;&quot;,</span><br><span class="line">                            Toast.LENGTH_LONG).show();</span><br><span class="line">                    Looper.loop();</span><br><span class="line">                }</span><br><span class="line">            }.start();</span><br><span class="line"></span><br><span class="line">            ThreadPoolManager.EXECUTOR.execute(new Runnable() {</span><br><span class="line"></span><br><span class="line">                @Override</span><br><span class="line">                public void run() {</span><br><span class="line"></span><br><span class="line">                    Log.e(&quot;DebugLog&quot;, &quot;exception:&quot; + getExceptionTrace(ex));</span><br><span class="line">                    ex.printStackTrace();</span><br><span class="line"></span><br><span class="line">                    AlarmManager mgr = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);</span><br><span class="line"></span><br><span class="line">                    Intent intent = new Intent(mContext, SplashActivity.class);</span><br><span class="line">                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</span><br><span class="line">                    intent.putExtra(&quot;crash&quot;, true);</span><br><span class="line">                    PendingIntent restartIntent = PendingIntent.getActivity(mContext, 0, intent, PendingIntent.FLAG_ONE_SHOT);</span><br><span class="line">                    mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 1000, restartIntent); // 1&#x79D2;&#x949F;&#x540E;&#x91CD;&#x542F;&#x5E94;&#x7528;</span><br><span class="line"></span><br><span class="line">                    Process.killProcess(Process.myPid());</span><br><span class="line">                    System.exit(0);</span><br><span class="line">                }</span><br><span class="line">            });</span><br><span class="line">        }</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
+        <p>&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x6BD4;&#x5728;&#x7231;&#x60C5;&#x4E2D;&#x66F4;&#x80FD;&#x4F53;&#x73B0;&#x51FA;&#x4E00;&#x4E2A;&#x4EBA;&#x7684;&#x60C5;&#x5546;&#x662F;&#x5426;&#x9AD8;&#x4F4E;&#x4E86;&#xFF0C;&#x4ECA;&#x5929;&#x6765;&#x7EC6;&#x6570;&#x60C5;&#x5546;&#x4F4E;&#x7684;&#x7537;&#x4EBA;&#x90FD;&#x6709;&#x54EA;&#x4E9B;&#x8868;&#x73B0;&#xFF01;<br>1.&#x548C;&#x5973;&#x751F;&#x8FD8;&#x6CA1;&#x5EFA;&#x7ACB;&#x719F;&#x6089;&#x611F;&#x7684;&#x540C;&#x65F6;&#x5C31;&#x4E0D;&#x65AD;&#x7684;&#x4E70;&#x793C;&#x7269;&#xFF0C;&#x5305;&#x5305;&#x4E4B;&#x7C7B;&#x7684;&#xFF0C;&#x4F60;&#x4E0D;&#x662F;&#x5927;&#x6B3E;&#x5C31;&#x4E0D;&#x8981;&#x7528;&#x94B1;&#x6765;&#x535A;&#x5F97;&#x5973;&#x751F;&#x7684;&#x597D;&#x611F;&#xFF0C;&#x540C;&#x6837;&#x7684;&#x5973;&#x751F;&#x4F1A;&#x8BA4;&#x4E3A;&#x4F60;&#x8FD9;&#x662F;&#x5728;&#x6709;&#x94B1;&#x8BF1;&#x60D1;&#x5979;&#x5E72;&#x8106;&#x4E0D;&#x7406;&#x4F60;&#x4E86;&#xFF0C;&#x6216;&#x8005;&#x4F60;&#x628A;&#x5979;&#x7684;&#x865A;&#x8363;&#x5FC3;&#x6FC0;&#x53D1;&#x8D77;&#x6765;&#x4E86;&#xFF0C;&#x8BA9;&#x4F60;&#x5404;&#x79CD;&#x4E70;&#x4E70;&#x4E70;&#x3002;&#x8FD8;&#x6709;&#x7684;&#x5C31;&#x662F;&#x793C;&#x7269;&#xFF0C;&#x9001;&#x7684;&#x4E1C;&#x897F;&#x7167;&#x5355;&#x5168;&#x6536;&#xFF0C;&#x4F46;&#x5C31;&#x662F;&#x4E0D;&#x548C;&#x4F60;&#x62CD;&#x62D6;&#x3002;</p>
+<p>2.&#x89C1;&#x4E86;&#x4E00;&#x9762;&#x4E4B;&#x540E;&#x5C31;&#x5404;&#x79CD;&#x8868;&#x8FBE;&#x7231;&#xFF0C;&#x559C;&#x6B22;&#x4F60;&#xFF0C;&#x6211;&#x8981;&#x8FFD;&#x4F60;&#x4E4B;&#x7C7B;&#x7684;&#x3002;&#x4E0D;&#x597D;&#x610F;&#x601D;&#xFF0C;&#x5973;&#x751F;&#x4F1A;&#x88AB;&#x4F60;&#x8FD9;&#x6837;&#x5413;&#x8D70;&#x7684;&#x3002;&#x5373;&#x4FBF;&#x662F;&#x4F60;&#x4EEC;&#x6700;&#x540E;&#x5728;&#x4E00;&#x8D77;&#x4E86;&#xFF0C;&#x4E5F;&#x4E00;&#x6837;&#x4E0D;&#x4EE3;&#x8868;&#x4F60;&#x7684;&#x60C5;&#x5546;&#x9AD8;&#x3002;</p>
+<p>3.&#x4E0D;&#x4F1A;&#x5E73;&#x7B49;&#x7684;&#x7231;&#x4EBA;&#xFF0C;&#x53EA;&#x4F1A;&#x4ED8;&#x51FA;&#x4E0D;&#x4F1A;&#x7D22;&#x53D6;&#x3002;&#x4E00;&#x5473;&#x7684;&#x8BA8;&#x597D;&#xFF0C;&#x8DEA;&#x8214;&#xFF0C;&#x5BF9;&#x65B9;&#x6709;&#x6C42;&#x5FC5;&#x5E94;&#xFF0C;&#x6709;&#x95EE;&#x5373;&#x7B54;&#xFF0C;&#x641E;&#x5F97;&#x5BF9;&#x65B9;&#x5F88;&#x6709;&#x538B;&#x529B;&#xFF0C;&#x4E3A;&#x4E86;&#x51CF;&#x5C11;&#x6127;&#x759A;&#x611F;&#x53EA;&#x80FD;&#x5BF9;&#x4F60;&#x6162;&#x6162;&#x758F;&#x8FDC;&#x800C;&#x6765;&#x3002;<br>&#x60C5;&#x5546;&#x4F4E;&#x7684;&#x7537;&#x751F;&#x5728;&#x611F;&#x60C5;&#x4E2D;&#x6709;&#x54EA;&#x4E9B;&#x8868;&#x73B0;&#xFF1F;</p>
+<p>4.&#x5973;&#x751F;&#x6307;&#x51FA;&#x4ED6;&#x7684;&#x9519;&#x8BEF;&#xFF0C;&#x7B2C;&#x4E00;&#x53CD;&#x5E94;&#x662F;&#x53CD;&#x9A73;&#xFF0C;&#x800C;&#x4E14;&#x662F;&#x4E0D;&#x5047;&#x601D;&#x7D22;&#x7684;&#x90A3;&#x79CD;&#x3002;&#x6211;&#x95EE;&#x8FC7;&#x5F88;&#x591A;&#x5973;&#x751F;&#xFF0C;&#x90FD;&#x4E0D;&#x559C;&#x6B22;&#x548C;&#x8FD9;&#x6837;&#x7684;&#x7537;&#x751F;&#x76F8;&#x5904;&#xFF0C;&#x8C01;&#x60F3;&#x8DDF;&#x81EA;&#x5927;&#x7684;&#x4EBA;&#x5728;&#x4E00;&#x8D77;&#x5462;&#xFF1F;</p>
+<p>5.&#x51E1;&#x4E8B;&#x4EE5;&#x5DF1;&#x5EA6;&#x4EBA;&#xFF0C;&#x4EE5;&#x4E3A;&#x81EA;&#x5DF1;&#x8FD9;&#x4E48;&#x60F3;&#x5BF9;&#x65B9;&#x5C31;&#x4E5F;&#x8BE5;&#x8FD9;&#x4E48;&#x60F3;&#xFF0C;&#x4E0D;&#x7136;&#x8FD8;&#x80FD;&#x600E;&#x6837;&#xFF1F;&#x6216;&#x8005;&#x4EE5;&#x4E3A;&#x6240;&#x6709;&#x4EBA;&#x90FD;&#x5728;&#x548C;&#x81EA;&#x5DF1;&#x4F5C;&#x5BF9;&#xFF0C;&#x522B;&#x4EBA;&#x8BF4;&#x7684;&#x4EC0;&#x4E48;&#x90FD;&#x662F;&#x4E3A;&#x4E86;&#x9488;&#x5BF9;&#x4ED6;&#x548C;&#x4ED6;&#x8FC7;&#x53BB;&#x4E0D;&#x53BB;&#x3002;</p>
+<p>6.&#x8BA4;&#x4E3A;&#x5973;&#x751F;&#x90FD;&#x4EC0;&#x4E48;&#x90FD;&#x505A;&#x4E0D;&#x597D;&#xFF0C;&#x559C;&#x6B22;&#x6307;&#x70B9;&#x6C5F;&#x5C71;&#xFF0C;&#x8BA9;&#x5973;&#x751F;&#x8FD9;&#x6837;&#x505A;&#x90A3;&#x6837;&#x505A;&#x3002;&#x8BDD;&#x8BF4;&#x5973;&#x751F;&#x4EC0;&#x4E48;&#x90FD;&#x505A;&#x4E0D;&#x597D;&#xFF0C;&#x4E0D;&#x4E5F;&#x957F;&#x5927;&#x6210;&#x4EBA;&#x4E86;&#x5417;&#xFF1F;&#x5206;&#x660E;&#x662F;&#x81EA;&#x5DF1;&#x6CA1;&#x6709;&#x628A;&#x5973;&#x751F;&#x5F53;&#x505A;&#x4E00;&#x4E2A;&#x72EC;&#x7ACB;&#x7684;&#x4E2A;&#x4EBA;&#x6765;&#x5BF9;&#x5F85;&#x3002;&#x60C5;&#x5546;&#x4F4E;&#x7684;&#x7537;&#x751F;&#x5728;&#x611F;&#x60C5;&#x4E2D;&#x6709;&#x54EA;&#x4E9B;&#x8868;&#x73B0;&#xFF1F;</p>
+<p>7.&#x5BF9;&#x5173;&#x5FC3;&#x81EA;&#x5DF1;&#x7684;&#x4EBA;&#x9AD8;&#x9AD8;&#x5728;&#x4E0A;&#xFF0C;&#x5BF9;&#x51B7;&#x843D;&#x81EA;&#x5DF1;&#x7684;&#x4EBA;&#x5374;&#x5351;&#x8EAC;&#x5C48;&#x819D;&#x3002;</p>
+<p>8.&#x8DDF;&#x59B9;&#x5B50;&#x7EA6;&#x597D;&#x770B;&#x7535;&#x5F71;&#xFF0C;&#x5374;&#x5435;&#x8D77;&#x6765;&#x5230;&#x5E95;&#x8981;&#x770B;&#x56FD;&#x5916;&#x7684;&#x52A8;&#x4F5C;&#x7247;&#x8FD8;&#x662F;&#x770B;&#x59B9;&#x5B50;&#x559C;&#x6B22;&#x7684;&#x7231;&#x60C5;&#x559C;&#x5267;&#x3002;&#x597D;&#x5427;&#xFF0C;&#x770B;&#x6765;&#x4F60;&#x662F;&#x771F;&#x6765;&#x770B;&#x7535;&#x5F71;&#x7684;&#x3002;</p>
+<p>9.&#x665A;&#x4E0A;&#x6563;&#x6B65;&#x6211;&#x8BF4;&#x201C;&#x4F60;&#x770B;&#xFF0C;&#x4ECA;&#x665A;&#x7684;&#x6708;&#x4EAE;&#x597D;&#x4EAE;&#x201D;&#x3002;&#x7136;&#x540E;&#x6211;&#x4E5F;&#x4E0D;&#x77E5;&#x9053;&#x4E3A;&#x5565;&#x6211;&#x4EEC;&#x7684;&#x8BDD;&#x9898;&#x4ECE;&#x4E0A;&#x5F26;&#x6708;&#x5230;&#x4E0B;&#x5F26;&#x6708;&#x53C8;&#x63A5;&#x5230;&#x4E86;&#x94F6;&#x6CB3;&#x7CFB;&#x4E2D;&#x6709;&#x54EA;&#x4E9B;&#x77EE;&#x884C;&#x661F;&#xFF0C;&#x5404;&#x5927;&#x884C;&#x661F;&#x4E4B;&#x95F4;&#x662F;&#x5982;&#x4F55;&#x4FDD;&#x6301;&#x5F15;&#x529B;&#x5E73;&#x8861;&#x7684;&#xFF0C;&#x6069;&#xFF0C;&#x8FD9;&#x8FD8;&#x4E0D;&#x5F97;&#x4E86;&#x8FD8;&#x8C08;&#x5230;&#x4E86;&#x65B0;&#x8BDD;&#x9898;&#x2014;&#x2014;&#x5F15;&#x529B;&#x6CE2;&#xFF01;</p>
+<p>10.&#x4E70;&#x4E86;&#x9093;&#x7D2B;&#x68CB;&#x559C;&#x6B22;&#x7A7F;&#x7684;&#x76AE;&#x88E4;&#xFF0C;&#x95EE;&#x4ED6;&#x597D;&#x770B;&#x5417;&#xFF1F;&#x4ED6;&#x8BF4;&#x4F60;&#x7A7F;&#x8FD9;&#x4E48;&#x5C11;&#x51B7;&#x5417;&#xFF1F;</p>
+<p>11.&#x8BFB;&#x4E0D;&#x61C2;&#x5973;&#x751F;&#x7684;&#x62D2;&#x7EDD;&#xFF0C;&#x4F8B;&#x5982;&#x5973;&#x751F;&#x8BF4;&#x81EA;&#x5DF1;&#x76EE;&#x524D;&#x4E0D;&#x60F3;&#x8C08;&#x604B;&#x7231;&#x3001;&#x5BB3;&#x6015;&#x8BA9;&#x4F60;&#x5931;&#x671B;&#x3001;&#x8FD8;&#x6CA1;&#x505A;&#x597D;&#x604B;&#x7231;&#x7684;&#x51C6;&#x5907;&#x7B49;&#x7B49;&#x8FD9;&#x90FD;&#x662F;&#x7ED9;&#x4F60;&#x53F0;&#x9636;&#x4E0B;&#x3002;&#x4EBA;&#x5BB6;&#x4E0D;&#x559C;&#x6B22;&#x4F60;&#xFF0C;&#x4F60;&#x5C31;&#x522B;&#x903C;&#x7740;&#x4EBA;&#x5BB6;&#x628A;&#x4F60;&#x62C9;&#x9ED1;&#x6216;&#x8005;&#x4E0D;&#x7406;&#x4F60;&#x4E86;&#x3002;</p>
+<p>12.&#x4F60;&#x5728;&#x5417;&#xFF1F;&#x5728;&#x5417;&#xFF1F;&#x5E72;&#x561B;&#x5462;&#x4F60;&#xFF0C;&#x5FD9;&#x5417;&#xFF1F;&#x5403;&#x996D;&#x4E86;&#x5417;&#xFF1F;&#x65E9;&#x5B89;&#xFF0C;&#x665A;&#x5B89;&#xFF0C;&#x665A;&#x5B89;&#xFF0C;&#x65E9;&#x5B89;&#xFF0C;&#x591A;&#x559D;&#x6C34;&#xFF01;</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/12/Android crash恢复/" data-id="ciyyhxefv00021p2jp2i7m0yu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/12/情商低的男生在感情中有哪些表现/" data-id="ciyz9r6tq0043rfuoyy77103t" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/感触一波/">感触一波</a></li></ul>
 
     </footer>
   </div>
@@ -254,49 +240,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/12/互联网时代，我眼中的架构变迁/" data-id="ciyyhxejy003s1p2jk7g1e2i4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/12/互联网时代，我眼中的架构变迁/" data-id="ciyz9r6tb003nrfuosba04eeo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/互联网/">互联网</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-eclipse mac快捷键" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/01/05/eclipse mac快捷键/" class="article-date">
-  <time datetime="2017-01-05T14:17:05.000Z" itemprop="datePublished">2017-01-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/05/eclipse mac快捷键/">eclipse mac快捷键</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>command&#xFF0B;shift+f &#x683C;&#x5F0F;&#x5316;<br>command&#xFF0B;option&#xFF0B;left &#x4E0A;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;<br>command&#xFF0B;&#xFF0F;&#x6CE8;&#x91CA;<br>command&#xFF0B;shift&#xFF0B;r &#x67E5;&#x627E;&#x8D44;&#x6E90;<br>command+1 &#x91CD;&#x547D;&#x540D;<br>command+q &#x5173;&#x95ED;eclipse<br>search &#x83DC;&#x5355;&#x67E5;&#x627E;<br>&#x53F3;&#x952E;-refactor-rename<br>&#x53F3;&#x952E;-refactor-move<br>alt &#xFF0B; h &#x6587;&#x4EF6;&#x641C;&#x7D22;<br>command&#xFF0B;option&#xFF0B;t &#x91CD;&#x547D;&#x540D;<br>command&#xFF0B;shift&#xFF0B;m &#x5F15;&#x5165;&#x5305; import</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/05/eclipse mac快捷键/" data-id="ciyyhxejl003e1p2jw1mm7enq" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 
     </footer>
   </div>
@@ -359,7 +306,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/05/adb命令/" data-id="ciyyhxejg00371p2ja27cyrca" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/05/adb命令/" data-id="ciyz9r6t7003irfuo9qpi1m2i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -408,7 +355,174 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/05/Android编译so文件/" data-id="ciyyhxeia00241p2jf3pd7svo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/05/Android编译so文件/" data-id="ciyz9r6ry0020rfuodttnn369" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-eclipse mac快捷键" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/05/eclipse mac快捷键/" class="article-date">
+  <time datetime="2017-01-05T14:17:05.000Z" itemprop="datePublished">2017-01-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/05/eclipse mac快捷键/">eclipse mac快捷键</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>command&#xFF0B;shift+f &#x683C;&#x5F0F;&#x5316;<br>command&#xFF0B;option&#xFF0B;left &#x4E0A;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;<br>command&#xFF0B;&#xFF0F;&#x6CE8;&#x91CA;<br>command&#xFF0B;shift&#xFF0B;r &#x67E5;&#x627E;&#x8D44;&#x6E90;<br>command+1 &#x91CD;&#x547D;&#x540D;<br>command+q &#x5173;&#x95ED;eclipse<br>search &#x83DC;&#x5355;&#x67E5;&#x627E;<br>&#x53F3;&#x952E;-refactor-rename<br>&#x53F3;&#x952E;-refactor-move<br>alt &#xFF0B; h &#x6587;&#x4EF6;&#x641C;&#x7D22;<br>command&#xFF0B;option&#xFF0B;t &#x91CD;&#x547D;&#x540D;<br>command&#xFF0B;shift&#xFF0B;m &#x5F15;&#x5165;&#x5305; import</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/05/eclipse mac快捷键/" data-id="ciyz9r6t2003erfuo9ohh544z" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android常见技术开源" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/05/Android常见技术开源/" class="article-date">
+  <time datetime="2017-01-05T14:17:05.000Z" itemprop="datePublished">2017-01-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/05/Android常见技术开源/">Android常见技术开源</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://mmbiz.qpic.cn/mmbiz/0tIK8YmulicP1spTibHg9k0LUJyQ9iatuuKPgor74ncqXpkas1qL3FEk4tre3HgT7xSVukLxprnaE9Dl7lAT8FALQ/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1" alt="kaiyuan"></p>
+<p><img src="/2017/01/05/Android&#x5E38;&#x89C1;&#x6280;&#x672F;&#x5F00;&#x6E90;/kaiyuan.png" alt="kaiyuan"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/05/Android常见技术开源/" data-id="ciyz9r6rw001yrfuocp24n6gn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android内存溢出" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/05/Android内存溢出/" class="article-date">
+  <time datetime="2017-01-05T14:17:05.000Z" itemprop="datePublished">2017-01-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/05/Android内存溢出/">Android内存溢出</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&#x6700;&#x8FD1;&#x7684;&#x89C6;&#x9891;&#x9879;&#x76EE;&#x9047;&#x5230;&#x4E86;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#xFF0C;&#x627E;&#x95EE;&#x9898;&#x771F;&#x662F;&#x86CB;&#x75BC;&#x7684;&#x4E8B;&#x3002;<br>&#x4E3B;&#x8981;&#x5C31;&#x662F;context&#x6CA1;&#x6709;&#x91CA;&#x653E;&#xFF0C;handler&#x7684;&#x4E0D;&#x5408;&#x7406;&#x4F7F;&#x7528;&#xFF0C;bitmap&#x6CA1;&#x6709;&#x56DE;&#x6536;&#xFF0C;connection&#x6CA1;&#x6709;close&#x7B49;<br>&#x9996;&#x5148;&#x7EAA;&#x5F55;&#x4E00;&#x4E0B;sdk&#x5B98;&#x65B9;&#x5199;handler&#x7684;&#x65B9;&#x5F0F;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public abstract class WeakHandler&lt;T&gt; extends Handler {</span><br><span class="line">    private WeakReference&lt;T&gt; mOwner;</span><br><span class="line"></span><br><span class="line">    public WeakHandler(T owner) {</span><br><span class="line">        mOwner = new WeakReference&lt;T&gt;(owner);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    public T getOwner() {</span><br><span class="line">        return mOwner.get();</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>activity&#x4E2D;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public abstract class BaseActivity extends AppCompatActivity {</span><br><span class="line"></span><br><span class="line">private final UIActivityHandler uiHandler = new UIActivityHandler(this);</span><br><span class="line"></span><br><span class="line">    public static class UIActivityHandler extends</span><br><span class="line">            WeakHandler&lt;BaseActivity&gt; {</span><br><span class="line"></span><br><span class="line">        public UIActivityHandler(BaseActivity owner) {</span><br><span class="line">            super(owner);</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        public void handleMessage(Message msg) {</span><br><span class="line">            BaseActivity owner = getOwner();</span><br><span class="line">            if (owner == null) {</span><br><span class="line">                return;</span><br><span class="line">            }</span><br><span class="line">            owner.handleUIMessage(msg);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">      protected final void postMessageDelay(int what, Object object,</span><br><span class="line">                                          long delayMillis) {</span><br><span class="line">        Message msg = Message.obtain();</span><br><span class="line">        msg.what = what;</span><br><span class="line">        msg.obj = object;</span><br><span class="line">        uiHandler.sendMessageDelayed(msg, delayMillis);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    protected final void postMessage(int what, Object object) {</span><br><span class="line">        Message.obtain(uiHandler, what, object).sendToTarget();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    public void handleUIMessage(Message msg) {</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x6700;&#x540E;&#x79EF;&#x7D2F;&#x4E00;&#x4E2A;&#x5185;&#x5B58;&#x6CC4;&#x9732;&#x76D1;&#x6D4B;&#x5DE5;&#x5177;&#xFF0C;square&#x516C;&#x53F8;&#x7684;LeakCanary&#xFF0C;square&#x786E;&#x5B9E;&#x5F00;&#x6E90;&#x4E86;&#x4E9B;&#x597D;&#x7528;&#x7684;&#x4E1C;&#x897F;&#x3002;<br>LeakCanary&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7C97;&#x66B4;&#x7684;&#x5DE5;&#x5177;,&#x7528;&#x6CD5;&#x4E5F;&#x76F8;&#x5F53;&#x7B80;&#x5355;<br>&#x5728;build.gradle&#x4E2D;&#x5F15;&#x5165;LeakCanary</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">debugCompile &apos;com.squareup.leakcanary:leakcanary-android:1.3&apos;  </span><br><span class="line">      releaseCompile &apos;com.squareup.leakcanary:leakcanary-android-no-op:1.3&apos;</span><br></pre></td></tr></table></figure>
+<p>&#x4E00;&#x4E2A;&#x662F;debug&#x5305;,&#x4E00;&#x4E2A;&#x662F;release&#x5305;&#x7684;,&#x4ECE;&#x5F15;&#x5165;&#x5305;&#x7684;&#x7ED3;&#x6784;&#x4E5F;&#x80FD;&#x770B;&#x51FA;&#x7AEF;&#x502A;<br>&#x7531;&#x4E8E;LeakCanary&#x662F;&#x6D4B;&#x8BD5;&#x6574;&#x4E2A;app&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x9732;&#x60C5;&#x51B5;,&#x6240;&#x4EE5;&#x4F60;&#x9700;&#x8981;&#x5728;&#x4F60;&#x7684;application&#x4E2D;&#x542F;&#x52A8;&#x5B83;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package com.zimo.guo;  </span><br><span class="line">    </span><br><span class="line">  import android.app.Application;  </span><br><span class="line">    </span><br><span class="line">  import com.squareup.leakcanary.LeakCanary;  </span><br><span class="line">    </span><br><span class="line">  /** </span><br><span class="line">   * Created by zimo on 15/8/7. </span><br><span class="line">   */  </span><br><span class="line">  public class MyApplication extends Application {  </span><br><span class="line">    </span><br><span class="line">      @Override  </span><br><span class="line">      public void onCreate() {  </span><br><span class="line">          super.onCreate();  </span><br><span class="line">          LeakCanary.install(this);  </span><br><span class="line">      }  </span><br><span class="line">  }</span><br></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x4E48;&#x6709;&#x903C;&#x683C;&#x7684;&#x5DE5;&#x5177;,&#x8D76;&#x7D27;&#x6765;&#x8BD5;&#x8BD5;&#x5427;,&#x8981;&#x60F3;&#x4F7F;&#x4F60;&#x7684;app&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x9732;&#x7070;&#x98DE;&#x70DF;&#x706D;,try it</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/05/Android内存溢出/" data-id="ciyz9r6rt001wrfuocz3hify0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android so那些事" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/05/Android so那些事/" class="article-date">
+  <time datetime="2017-01-05T14:17:05.000Z" itemprop="datePublished">2017-01-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/05/Android so那些事/">Android so那些事</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&#x81F3;&#x5C11;&#x652F;&#x6301;&#x4EE5;&#x4E0B;&#x4E03;&#x79CD;&#x4E0D;&#x540C;&#x7684;CPU&#x67B6;&#x6784;&#xFF1A;ARMv5&#xFF0C;ARMv7&#xFF0C;x86&#xFF0C;MIPS&#xFF0C;ARMv8&#xFF0C;MIPS64&#x548C;x86_64&#x3002;&#x6BCF;&#x4E00;&#x79CD;CPU&#x7C7B;&#x578B;&#x90FD;&#x5BF9;&#x5E94;&#x4E00;&#x79CD;ABI&#xFF08;Application Binary Interface&#xFF09;&#xFF0C;&#x201C;armeabi-v7a&#x201D;&#x6587;&#x4EF6;&#x5939;&#x524D;&#x9762;&#x7684;&#x201C;armeabi&#x201D;&#x6307;&#x7684;&#x5C31;&#x662F;ARM&#x8FD9;&#x79CD;&#x7C7B;&#x578B;&#x7684;ABI&#xFF0C;&#x540E;&#x9762;&#x7684;&#x201C;v7a&#x201D;&#x6307;&#x7684;&#x662F;ARMv7&#x3002;&#x8FD9;7&#x79CD;CPU&#x7C7B;&#x578B;&#x5BF9;&#x5E94;&#x7684;SO&#x5E93;&#x7684;&#x6587;&#x4EF6;&#x5939;&#x540D;&#x662F;&#xFF1A;armeabi&#xFF0C;armeabi-v7a&#xFF0C;x86&#xFF0C;mips&#xFF0C;arm64-v8a&#xFF0C;mips64&#xFF0C;x86_64&#x3002;</p>
+<p>Android&#x7CFB;&#x7EDF;&#x5728;&#x5B89;&#x88C5;APK&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E0D;&#x4F1A;&#x5B89;&#x88C5;APK&#x91CC;&#x9762;&#x5168;&#x90E8;&#x7684;SO&#x5E93;&#x6587;&#x4EF6;&#xFF0C;&#x800C;&#x662F;&#x4F1A;&#x6839;&#x636E;&#x5F53;&#x524D;CPU&#x7C7B;&#x578B;&#x652F;&#x6301;&#x7684;ABI&#xFF0C;&#x4ECE;APK&#x91CC;&#x9762;&#x62F7;&#x8D1D;&#x6700;&#x5408;&#x9002;&#x7684;SO&#x5E93;&#xFF0C;&#x5E76;&#x4FDD;&#x5B58;&#x5728;APP&#x7684;&#x5185;&#x90E8;&#x5B58;&#x50A8;&#x8DEF;&#x5F84;&#x7684; libs &#x4E0B;&#x9762;&#x3002;</p>
+<p>&#x901A;&#x8FC7; PackageManager &#x5B89;&#x88C5;&#x540E;&#xFF0C;&#x5728;&#x5C0F;&#x4E8E; Android 5.0 &#x7684;&#x7CFB;&#x7EDF;&#x4E2D;&#xFF0C;SO&#x5E93;&#x4F4D;&#x4E8E; APP &#x7684; nativeLibraryPath &#x76EE;&#x5F55;&#x4E2D;&#xFF1B;&#x5728;&#x5927;&#x4E8E;&#x7B49;&#x4E8E; Android 5.0 &#x7684;&#x7CFB;&#x7EDF;&#x4E2D;&#xFF0C;SO&#x5E93;&#x4F4D;&#x4E8E; APP &#x7684; nativeLibraryRootDir/CPU_ARCH &#x76EE;&#x5F55;&#x4E2D;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/05/Android so那些事/" data-id="ciyz9r6pp000crfuo26v799fo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -482,130 +596,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/05/JVM架构解析/" data-id="ciyyhxeis002f1p2jxelsptdq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/05/JVM架构解析/" data-id="ciyz9r6sd002irfuoohfdch8o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-想法idea" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/01/05/想法idea/" class="article-date">
-  <time datetime="2017-01-05T14:17:05.000Z" itemprop="datePublished">2017-01-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/05/想法idea/">想法idea</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&#x8FD9;&#x91CC;&#x5907;&#x4EFD;&#x4E00;&#x4E0B;&#x7075;&#x611F;&#x548C;&#x60F3;&#x6CD5;&#xFF1A;<br>1&#xFF0C;&#x52A8;&#x6F2B;&#x5BA2;&#x6237;&#x7AEF;<br>2&#xFF0C;&#x521B;&#x65B0;&#x5DE5;&#x573A;&#xFF0C;&#x53E3;&#x53F7;  bat&#x6284;&#x4E0D;&#x8D70;&#x7684;&#x521B;&#x610F;<br>3&#xFF0C;&#x7BEE;&#x7403;&#x90E8;&#x843D;  &#x7B7E;&#x5230;&#x5B9A;&#x4F4D;<br>4&#xFF0C;&#x65F6;&#x95F4;&#x56CA;&#xFF0C;&#x6162;&#x9012;<br>5&#xFF0C;AR &#x8868;&#x767D;<br>6&#xFF0C;&#x7BEE;&#x7403;&#x90E8;&#x843D;<br>7&#xFF0C;&#x5927;&#x5B66;&#x751F;&#x558A;&#x5230;</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/05/想法idea/" data-id="ciyyhxek800401p2jb02h2ugh" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/idea/">idea</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Android so那些事" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/01/05/Android so那些事/" class="article-date">
-  <time datetime="2017-01-05T14:17:05.000Z" itemprop="datePublished">2017-01-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/05/Android so那些事/">Android so那些事</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&#x81F3;&#x5C11;&#x652F;&#x6301;&#x4EE5;&#x4E0B;&#x4E03;&#x79CD;&#x4E0D;&#x540C;&#x7684;CPU&#x67B6;&#x6784;&#xFF1A;ARMv5&#xFF0C;ARMv7&#xFF0C;x86&#xFF0C;MIPS&#xFF0C;ARMv8&#xFF0C;MIPS64&#x548C;x86_64&#x3002;&#x6BCF;&#x4E00;&#x79CD;CPU&#x7C7B;&#x578B;&#x90FD;&#x5BF9;&#x5E94;&#x4E00;&#x79CD;ABI&#xFF08;Application Binary Interface&#xFF09;&#xFF0C;&#x201C;armeabi-v7a&#x201D;&#x6587;&#x4EF6;&#x5939;&#x524D;&#x9762;&#x7684;&#x201C;armeabi&#x201D;&#x6307;&#x7684;&#x5C31;&#x662F;ARM&#x8FD9;&#x79CD;&#x7C7B;&#x578B;&#x7684;ABI&#xFF0C;&#x540E;&#x9762;&#x7684;&#x201C;v7a&#x201D;&#x6307;&#x7684;&#x662F;ARMv7&#x3002;&#x8FD9;7&#x79CD;CPU&#x7C7B;&#x578B;&#x5BF9;&#x5E94;&#x7684;SO&#x5E93;&#x7684;&#x6587;&#x4EF6;&#x5939;&#x540D;&#x662F;&#xFF1A;armeabi&#xFF0C;armeabi-v7a&#xFF0C;x86&#xFF0C;mips&#xFF0C;arm64-v8a&#xFF0C;mips64&#xFF0C;x86_64&#x3002;</p>
-<p>Android&#x7CFB;&#x7EDF;&#x5728;&#x5B89;&#x88C5;APK&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E0D;&#x4F1A;&#x5B89;&#x88C5;APK&#x91CC;&#x9762;&#x5168;&#x90E8;&#x7684;SO&#x5E93;&#x6587;&#x4EF6;&#xFF0C;&#x800C;&#x662F;&#x4F1A;&#x6839;&#x636E;&#x5F53;&#x524D;CPU&#x7C7B;&#x578B;&#x652F;&#x6301;&#x7684;ABI&#xFF0C;&#x4ECE;APK&#x91CC;&#x9762;&#x62F7;&#x8D1D;&#x6700;&#x5408;&#x9002;&#x7684;SO&#x5E93;&#xFF0C;&#x5E76;&#x4FDD;&#x5B58;&#x5728;APP&#x7684;&#x5185;&#x90E8;&#x5B58;&#x50A8;&#x8DEF;&#x5F84;&#x7684; libs &#x4E0B;&#x9762;&#x3002;</p>
-<p>&#x901A;&#x8FC7; PackageManager &#x5B89;&#x88C5;&#x540E;&#xFF0C;&#x5728;&#x5C0F;&#x4E8E; Android 5.0 &#x7684;&#x7CFB;&#x7EDF;&#x4E2D;&#xFF0C;SO&#x5E93;&#x4F4D;&#x4E8E; APP &#x7684; nativeLibraryPath &#x76EE;&#x5F55;&#x4E2D;&#xFF1B;&#x5728;&#x5927;&#x4E8E;&#x7B49;&#x4E8E; Android 5.0 &#x7684;&#x7CFB;&#x7EDF;&#x4E2D;&#xFF0C;SO&#x5E93;&#x4F4D;&#x4E8E; APP &#x7684; nativeLibraryRootDir/CPU_ARCH &#x76EE;&#x5F55;&#x4E2D;</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/05/Android so那些事/" data-id="ciyyhxegc000c1p2jkh5dcg8w" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Android常见技术开源" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/01/05/Android常见技术开源/" class="article-date">
-  <time datetime="2017-01-05T14:17:05.000Z" itemprop="datePublished">2017-01-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/05/Android常见技术开源/">Android常见技术开源</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://mmbiz.qpic.cn/mmbiz/0tIK8YmulicP1spTibHg9k0LUJyQ9iatuuKPgor74ncqXpkas1qL3FEk4tre3HgT7xSVukLxprnaE9Dl7lAT8FALQ/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1" alt="kaiyuan"></p>
-<p><img src="/2017/01/05/Android&#x5E38;&#x89C1;&#x6280;&#x672F;&#x5F00;&#x6E90;/kaiyuan.png" alt="kaiyuan"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/05/Android常见技术开源/" data-id="ciyyhxei6001y1p2jvcy6z3eu" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 
     </footer>
   </div>
@@ -674,11 +668,11 @@
           </li>
         
           <li>
-            <a href="/2017/01/18/AS的IntentRun的几种方式/">AS的IntentRun的几种方式</a>
+            <a href="/2017/01/18/Unity3D和Android交互/">Unity3D和Android交互</a>
           </li>
         
           <li>
-            <a href="/2017/01/18/Unity3D和Android交互/">Unity3D和Android交互</a>
+            <a href="/2017/01/18/AS的IntentRun的几种方式/">AS的IntentRun的几种方式</a>
           </li>
         
       </ul>
