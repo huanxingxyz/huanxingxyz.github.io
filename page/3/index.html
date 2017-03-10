@@ -68,9 +68,9 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-想法idea" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-JVM架构解析" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/01/05/想法idea/" class="article-date">
+    <a href="/2017/01/05/JVM架构解析/" class="article-date">
   <time datetime="2017-01-05T14:17:05.000Z" itemprop="datePublished">2017-01-05</time>
 </a>
     
@@ -82,7 +82,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/05/想法idea/">想法idea</a>
+      <a class="article-title" href="/2017/01/05/JVM架构解析/">JVM架构解析</a>
     </h1>
   
 
@@ -90,15 +90,50 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&#x8FD9;&#x91CC;&#x5907;&#x4EFD;&#x4E00;&#x4E0B;&#x7075;&#x611F;&#x548C;&#x60F3;&#x6CD5;&#xFF1A;<br>1&#xFF0C;&#x52A8;&#x6F2B;&#x5BA2;&#x6237;&#x7AEF;<br>2&#xFF0C;&#x521B;&#x65B0;&#x5DE5;&#x573A;&#xFF0C;&#x53E3;&#x53F7;  bat&#x6284;&#x4E0D;&#x8D70;&#x7684;&#x521B;&#x610F;<br>3&#xFF0C;&#x7BEE;&#x7403;&#x90E8;&#x843D;  &#x7B7E;&#x5230;&#x5B9A;&#x4F4D;<br>4&#xFF0C;&#x65F6;&#x95F4;&#x56CA;&#xFF0C;&#x6162;&#x9012;<br>5&#xFF0C;AR &#x8868;&#x767D;<br>6&#xFF0C;&#x7BEE;&#x7403;&#x90E8;&#x843D;<br>7&#xFF0C;&#x5927;&#x5B66;&#x751F;&#x558A;&#x5230;</p>
+        <p>&#x6BCF;&#x4E2A;Java&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x90FD;&#x77E5;&#x9053;&#x5B57;&#x8282;&#x7801;&#x7ECF;&#x7531;JRE&#xFF08;Java&#x8FD0;&#x884C;&#x65F6;&#x73AF;&#x5883;&#xFF09;&#x6267;&#x884C;&#x3002;&#x4F46;&#x4ED6;&#x4EEC;&#x6216;&#x8BB8;&#x4E0D;&#x77E5;&#x9053;JRE&#x5176;&#x5B9E;&#x662F;&#x7531;Java&#x865A;&#x62DF;&#x673A;&#xFF08;JVM&#xFF09;&#x5B9E;&#x73B0;&#xFF0C;JVM&#x5206;&#x6790;&#x5B57;&#x8282;&#x7801;&#xFF0C;&#x89E3;&#x91CA;&#x5E76;&#x6267;&#x884C;&#x5B83;&#x3002;&#x4F5C;&#x4E3A;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#xFF0C;&#x4E86;&#x89E3;JVM&#x7684;&#x67B6;&#x6784;&#x662F;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4F7F;&#x6211;&#x4EEC;&#x80FD;&#x591F;&#x7F16;&#x5199;&#x51FA;&#x66F4;&#x9AD8;&#x6548;&#x7684;&#x4EE3;&#x7801;&#x3002;&#x672C;&#x6587;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x6DF1;&#x5165;&#x4E86;&#x89E3;Java&#x4E2D;&#x7684;JVM&#x67B6;&#x6784;&#x548C;JVM&#x7684;&#x5404;&#x4E2A;&#x7EC4;&#x4EF6;&#x3002;</p>
+<h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><p>&#x865A;&#x62DF;&#x673A;&#x662F;&#x7269;&#x7406;&#x673A;&#x7684;&#x8F6F;&#x4EF6;&#x5B9E;&#x73B0;&#x3002;Java&#x7684;&#x8BBE;&#x8BA1;&#x7406;&#x5FF5;&#x662F;WORA&#xFF08;Write Once Run Anywhere&#xFF0C;&#x4E00;&#x6B21;&#x7F16;&#x5199;&#x968F;&#x5904;&#x8FD0;&#x884C;&#xFF09;&#x3002;&#x7F16;&#x8BD1;&#x5668;&#x5C06;Java&#x6587;&#x4EF6;&#x7F16;&#x8BD1;&#x4E3A;Java .class&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x540E;&#x5C06;.class&#x6587;&#x4EF6;&#x8F93;&#x5165;&#x5230;JVM&#x4E2D;&#xFF0C;JVM&#x6267;&#x884C;&#x7C7B;&#x6587;&#x4EF6;&#x7684;&#x52A0;&#x8F7D;&#x548C;&#x6267;&#x884C;&#x7684;&#x64CD;&#x4F5C;&#x3002;</p>
+<h3 id="JVM&#x662F;&#x5982;&#x4F55;&#x5DE5;&#x4F5C;&#x7684;&#xFF1F;"><a href="#JVM&#x662F;&#x5982;&#x4F55;&#x5DE5;&#x4F5C;&#x7684;&#xFF1F;" class="headerlink" title="JVM&#x662F;&#x5982;&#x4F55;&#x5DE5;&#x4F5C;&#x7684;&#xFF1F;"></a>JVM&#x662F;&#x5982;&#x4F55;&#x5DE5;&#x4F5C;&#x7684;&#xFF1F;</h3><p>JVM&#x5206;&#x4E3A;&#x4E09;&#x4E2A;&#x4E3B;&#x8981;&#x5B50;&#x7CFB;&#x7EDF;&#xFF1A;<br>&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x5B50;&#x7CFB;&#x7EDF;&#xFF08;Class Loader Subsystem&#xFF09;<br>&#x8FD0;&#x884C;&#x65F6;&#x6570;&#x636E;&#x533A;&#xFF08;Runtime Data Area&#xFF09;<br>&#x6267;&#x884C;&#x5F15;&#x64CE;&#xFF08;Execution Engine&#xFF09;</p>
+<ol>
+<li>&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x5B50;&#x7CFB;&#x7EDF;</li>
+</ol>
+<p>Java&#x7684;&#x52A8;&#x6001;&#x7C7B;&#x52A0;&#x8F7D;&#x529F;&#x80FD;&#x7531;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x5B50;&#x7CFB;&#x7EDF;&#x5904;&#x7406;&#xFF0C;&#x5904;&#x7406;&#x8FC7;&#x7A0B;&#x5305;&#x62EC;&#x52A0;&#x8F7D;&#x548C;&#x94FE;&#x63A5;&#xFF0C;&#x5E76;&#x5728;&#x7C7B;&#x6587;&#x4EF6;&#x8FD0;&#x884C;&#x65F6;&#xFF0C;&#x9996;&#x6B21;&#x5F15;&#x7528;&#x7C7B;&#x65F6;&#x5C31;&#x5F00;&#x59CB;&#x5B9E;&#x4F8B;&#x5316;&#x7C7B;&#x6587;&#x4EF6;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x8FDB;&#x884C;&#x3002;</p>
+<p>1.1 &#x52A0;&#x8F7D;</p>
+<p>Boot Strap&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF0C;Extension&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x548C;Application&#xFF08;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x662F;&#x5B9E;&#x73B0;&#x7C7B;&#x52A0;&#x8F7D;&#x8FC7;&#x7A0B;&#x7684;&#x4E09;&#x4E2A;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x3002;</p>
+<p>(1) Boot Strap&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF1A;&#x8D1F;&#x8D23;&#x4ECE;&#x5F15;&#x5BFC;&#x7C7B;&#x8DEF;&#x5F84;&#x52A0;&#x8F7D;&#x7C7B;&#xFF0C;&#x9664;&#x4E86;rt.jar&#xFF0C;&#x5B83;&#x5177;&#x6709;&#x6700;&#x9AD8;&#x4F18;&#x5148;&#x7EA7;&#xFF1B;</p>
+<p>(2) Extension &#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF1A;&#x8D1F;&#x8D23;&#x52A0;&#x8F7D;ext&#x6587;&#x4EF6;&#x5939;&#xFF08;jre \ lib&#xFF09;&#x4E2D;&#x7684;&#x7C7B;&#xFF1B;</p>
+<p>(3) Application&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF1A;&#x8D1F;&#x8D23;&#x52A0;&#x8F7D;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7EA7;&#x7C7B;&#x8DEF;&#x5F84;&#xFF0C;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x4E2D;&#x6307;&#x5B9A;&#x7684;&#x8DEF;&#x5F84;&#x7B49;&#x4FE1;&#x606F;&#x3002;</p>
+<p>&#x4E0A;&#x9762;&#x7684;&#x7C7B;&#x88C5;&#x8F7D;&#x5668;&#x5728;&#x52A0;&#x8F7D;&#x7C7B;&#x6587;&#x4EF6;&#x65F6;&#x9075;&#x5FAA;&#x59D4;&#x6258;&#x5C42;&#x6B21;&#x7B97;&#x6CD5;&#xFF08;Delegation Hierarchy Algorithm&#xFF09;&#x3002;</p>
+<p>1.2 &#x94FE;&#x63A5;</p>
+<p>(1) &#x9A8C;&#x8BC1;&#xFF08;Verify&#xFF09;&#xFF1A;&#x5B57;&#x8282;&#x7801;&#x9A8C;&#x8BC1;&#x5668;&#x5C06;&#x9A8C;&#x8BC1;&#x751F;&#x6210;&#x7684;&#x5B57;&#x8282;&#x7801;&#x662F;&#x5426;&#x6B63;&#x786E;&#xFF0C;&#x5982;&#x679C;&#x9A8C;&#x8BC1;&#x5931;&#x8D25;&#xFF0C;&#x5C06;&#x63D0;&#x793A;&#x9A8C;&#x8BC1;&#x9519;&#x8BEF;&#xFF1B;</p>
+<p>(2) &#x51C6;&#x5907;&#xFF08;Prepare&#xFF09;&#xFF1A;&#x5BF9;&#x4E8E;&#x6240;&#x6709;&#x9759;&#x6001;&#x53D8;&#x91CF;&#xFF0C;&#x5185;&#x5B58;&#x5C06;&#x4F1A;&#x4EE5;&#x9ED8;&#x8BA4;&#x503C;&#x8FDB;&#x884C;&#x5206;&#x914D;&#xFF1B;</p>
+<p>(3) &#x89E3;&#x91CA;&#xFF08;Resolve&#xFF09;&#xFF1A;&#x6709;&#x7B26;&#x53F7;&#x5B58;&#x50A8;&#x5668;&#x5F15;&#x7528;&#x90FD;&#x5C06;&#x66FF;&#x6362;&#x4E3A;&#x6765;&#x81EA;&#x65B9;&#x6CD5;&#x533A;&#xFF08;Method Area&#xFF09;&#x7684;&#x539F;&#x59CB;&#x5F15;&#x7528;&#x3002;</p>
+<p>1.3 &#x521D;&#x59CB;&#x5316;</p>
+<p>&#x8FD9;&#x662F;&#x7C7B;&#x52A0;&#x8F7D;&#x7684;&#x6700;&#x540E;&#x9636;&#x6BB5;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x9759;&#x6001;&#x53D8;&#x91CF;&#x90FD;&#x5C06;&#x88AB;&#x8D4B;&#x4E88;&#x539F;&#x59CB;&#x503C;&#xFF0C;&#x5E76;&#x4E14;&#x9759;&#x6001;&#x533A;&#x5757;&#x5C06;&#x88AB;&#x6267;&#x884C;&#x3002;</p>
+<ol>
+<li>&#x8FD0;&#x884C;&#x65F6;&#x6570;&#x636E;&#x533A;</li>
+</ol>
+<p>&#x8FD0;&#x884C;&#x65F6;&#x6570;&#x636E;&#x533A;&#x53EF;&#x5206;&#x4E3A;5&#x4E2A;&#x4E3B;&#x8981;&#x7EC4;&#x4EF6;&#xFF1A;</p>
+<p>(1) &#x65B9;&#x6CD5;&#x533A;&#xFF08;Method Area&#xFF09;&#xFF1A;&#x6240;&#x6709;&#x7684;&#x7C7B;&#x7EA7;&#x6570;&#x636E;&#x5C06;&#x5B58;&#x50A8;&#x5728;&#x8FD9;&#x91CC;&#xFF0C;&#x5305;&#x62EC;&#x9759;&#x6001;&#x53D8;&#x91CF;&#x3002;&#x6BCF;&#x4E2A;JVM&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x533A;&#xFF0C;&#x5B83;&#x662F;&#x4E00;&#x4E2A;&#x5171;&#x4EAB;&#x8D44;&#x6E90;&#xFF1B;</p>
+<p>(2) &#x5806;&#x533A;&#x57DF;&#xFF08;Heap Area&#xFF09;&#xFF1A;&#x6240;&#x6709;&#x5BF9;&#x8C61;&#x53CA;&#x5176;&#x5BF9;&#x5E94;&#x7684;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#x548C;&#x6570;&#x7EC4;&#x5C06;&#x5B58;&#x50A8;&#x5728;&#x8FD9;&#x91CC;&#x3002;&#x6BCF;&#x4E2A;JVM&#x4E5F;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x5806;&#x533A;&#x57DF;&#x3002;&#x7531;&#x4E8E;&#x65B9;&#x6CD5;&#x548C;&#x5806;&#x533A;&#x57DF;&#x5171;&#x4EAB;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x6240;&#x5B58;&#x50A8;&#x7684;&#x6570;&#x636E;&#x4E0D;&#x662F;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#xFF1B;</p>
+<p>(3) &#x5806;&#x6808;&#x533A;&#xFF08;Stack Area&#xFF09;&#xFF1A;&#x5BF9;&#x4E8E;&#x6BCF;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF0C;&#x5C06;&#x521B;&#x5EFA;&#x5355;&#x72EC;&#x7684;&#x8FD0;&#x884C;&#x65F6;&#x5806;&#x6808;&#x3002;&#x5BF9;&#x4E8E;&#x6BCF;&#x4E2A;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#xFF0C;&#x5C06;&#x5728;&#x5806;&#x6808;&#x5B58;&#x50A8;&#x5668;&#x4E2D;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x6761;&#x76EE;&#xFF0C;&#x79F0;&#x4E3A;&#x5806;&#x6808;&#x5E27;&#x3002;&#x6240;&#x6709;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x5C06;&#x5728;&#x5806;&#x6808;&#x5185;&#x5B58;&#x4E2D;&#x521B;&#x5EFA;&#x3002;&#x5806;&#x6808;&#x533A;&#x57DF;&#x662F;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4E0D;&#x5171;&#x4EAB;&#x8D44;&#x6E90;&#x3002;&#x5806;&#x6808;&#x6846;&#x67B6;&#x5206;&#x4E3A;&#x4E09;&#x4E2A;&#x5B50;&#x5143;&#x7D20;&#xFF1A;</p>
+<p>&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x6570;&#x7EC4;&#xFF08;Local Variable Array&#xFF09;&#xFF1A;&#x4E0E;&#x65B9;&#x6CD5;&#x76F8;&#x5173;&#xFF0C;&#x6D89;&#x53CA;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#xFF0C;&#x5E76;&#x5728;&#x6B64;&#x5B58;&#x50A8;&#x76F8;&#x5E94;&#x7684;&#x503C;<br>&#x64CD;&#x4F5C;&#x6570;&#x5806;&#x6808;&#xFF08;Operand stack&#xFF09;&#xFF1A;&#x5982;&#x679C;&#x9700;&#x8981;&#x6267;&#x884C;&#x4EFB;&#x4F55;&#x4E2D;&#x95F4;&#x64CD;&#x4F5C;&#xFF0C;&#x64CD;&#x4F5C;&#x6570;&#x5806;&#x6808;&#x5C06;&#x5145;&#x5F53;&#x8FD0;&#x884C;&#x65F6;&#x5DE5;&#x4F5C;&#x7A7A;&#x95F4;&#x6765;&#x6267;&#x884C;&#x64CD;&#x4F5C;<br>&#x5E27;&#x6570;&#x636E;&#xFF08;Frame Data&#xFF09;&#xFF1A;&#x5BF9;&#x5E94;&#x4E8E;&#x65B9;&#x6CD5;&#x7684;&#x6240;&#x6709;&#x7B26;&#x53F7;&#x5B58;&#x50A8;&#x5728;&#x6B64;&#x5904;&#x3002;&#x5728;&#x4EFB;&#x4F55;&#x5F02;&#x5E38;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6355;&#x83B7;&#x7684;&#x533A;&#x5757;&#x4FE1;&#x606F;&#x5C06;&#x88AB;&#x4FDD;&#x6301;&#x5728;&#x5E27;&#x6570;&#x636E;&#x4E2D;&#xFF1B;<br>(4) PC&#x5BC4;&#x5B58;&#x5668;&#xFF08;PC Registers&#xFF09;&#xFF1A;&#x6BCF;&#x4E2A;&#x7EBF;&#x7A0B;&#x90FD;&#x6709;&#x5355;&#x72EC;&#x7684;PC&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x7528;&#x4E8E;&#x4FDD;&#x5B58;&#x5F53;&#x524D;&#x6267;&#x884C;&#x6307;&#x4EE4;&#x7684;&#x5730;&#x5740;&#x3002;&#x4E00;&#x65E6;&#x6267;&#x884C;&#x6307;&#x4EE4;&#xFF0C;PC&#x5BC4;&#x5B58;&#x5668;&#x5C06;&#x88AB;&#x4E0B;&#x4E00;&#x6761;&#x6307;&#x4EE4;&#x66F4;&#x65B0;&#xFF1B;</p>
+<p>(5) &#x672C;&#x5730;&#x65B9;&#x6CD5;&#x5806;&#x6808;&#xFF08;Native Method stacks&#xFF09;&#xFF1A;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x5806;&#x6808;&#x4FDD;&#x5B58;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x4FE1;&#x606F;&#x3002;&#x5BF9;&#x4E8E;&#x6BCF;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF0C;&#x5C06;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x5806;&#x6808;&#x3002;</p>
+<p>3 &#x6267;&#x884C;&#x5F15;&#x64CE;</p>
+<p>&#x5206;&#x914D;&#x7ED9;&#x8FD0;&#x884C;&#x65F6;&#x6570;&#x636E;&#x533A;&#x7684;&#x5B57;&#x8282;&#x7801;&#x5C06;&#x7531;&#x6267;&#x884C;&#x5F15;&#x64CE;&#x6267;&#x884C;&#xFF0C;&#x6267;&#x884C;&#x5F15;&#x64CE;&#x8BFB;&#x53D6;&#x5B57;&#x8282;&#x7801;&#x5E76;&#x9010;&#x4E2A;&#x6267;&#x884C;&#x3002;</p>
+<p>(1) &#x89E3;&#x91CA;&#x5668;&#xFF1A;&#x89E3;&#x91CA;&#x5668;&#x66F4;&#x5FEB;&#x5730;&#x89E3;&#x91CA;&#x5B57;&#x8282;&#x7801;&#xFF0C;&#x4F46;&#x6267;&#x884C;&#x7F13;&#x6162;&#x3002;&#x89E3;&#x91CA;&#x5668;&#x7684;&#x7F3A;&#x70B9;&#x662F;&#x5F53;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x88AB;&#x8C03;&#x7528;&#x591A;&#x6B21;&#x65F6;&#xFF0C;&#x6BCF;&#x6B21;&#x90FD;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x89E3;&#x91CA;&#xFF1B;</p>
+<p>(2) JIT&#x7F16;&#x8BD1;&#x5668;&#xFF1A;JIT&#x7F16;&#x8BD1;&#x5668;&#x6D88;&#x9664;&#x4E86;&#x89E3;&#x91CA;&#x5668;&#x7684;&#x7F3A;&#x70B9;&#x3002;&#x6267;&#x884C;&#x5F15;&#x64CE;&#x5C06;&#x5728;&#x8F6C;&#x6362;&#x5B57;&#x8282;&#x7801;&#x65F6;&#x4F7F;&#x7528;&#x89E3;&#x91CA;&#x5668;&#x7684;&#x5E2E;&#x52A9;&#xFF0C;&#x4F46;&#x662F;&#x5F53;&#x5B83;&#x53D1;&#x73B0;&#x91CD;&#x590D;&#x7684;&#x4EE3;&#x7801;&#x65F6;&#xFF0C;&#x5C06;&#x4F7F;&#x7528;JIT&#x7F16;&#x8BD1;&#x5668;&#xFF0C;&#x5B83;&#x7F16;&#x8BD1;&#x6574;&#x4E2A;&#x5B57;&#x8282;&#x7801;&#x5E76;&#x5C06;&#x5176;&#x66F4;&#x6539;&#x4E3A;&#x672C;&#x5730;&#x4EE3;&#x7801;&#x3002;&#x8FD9;&#x4E2A;&#x672C;&#x5730;&#x4EE3;&#x7801;&#x5C06;&#x76F4;&#x63A5;&#x7528;&#x4E8E;&#x91CD;&#x590D;&#x7684;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#xFF0C;&#x8FD9;&#x63D0;&#x9AD8;&#x4E86;&#x7CFB;&#x7EDF;&#x7684;&#x6027;&#x80FD;&#x3002;JIT&#x7684;&#x6784;&#x6210;&#x7EC4;&#x4EF6;&#x4E3A;&#xFF1A;</p>
+<p>&#x4E2D;&#x95F4;&#x4EE3;&#x7801;&#x751F;&#x6210;&#x5668;&#xFF08;Intermediate Code Generator&#xFF09;&#xFF1A;&#x751F;&#x6210;&#x4E2D;&#x95F4;&#x4EE3;&#x7801;<br>&#x4EE3;&#x7801;&#x4F18;&#x5316;&#x5668;&#xFF08;Code Optimizer&#xFF09;&#xFF1A;&#x8D1F;&#x8D23;&#x4F18;&#x5316;&#x4E0A;&#x9762;&#x751F;&#x6210;&#x7684;&#x4E2D;&#x95F4;&#x4EE3;&#x7801;<br>&#x76EE;&#x6807;&#x4EE3;&#x7801;&#x751F;&#x6210;&#x5668;&#xFF08;Target Code Generator&#xFF09;&#xFF1A;&#x8D1F;&#x8D23;&#x751F;&#x6210;&#x673A;&#x5668;&#x4EE3;&#x7801;&#x6216;&#x672C;&#x5730;&#x4EE3;&#x7801;<br>&#x5206;&#x6790;&#x5668;&#xFF08;Profiler&#xFF09;&#xFF1A;&#x4E00;&#x4E2A;&#x7279;&#x6B8A;&#x7EC4;&#x4EF6;&#xFF0C;&#x8D1F;&#x8D23;&#x67E5;&#x627E;&#x70ED;&#x70B9;&#xFF0C;&#x5373;&#x8BE5;&#x65B9;&#x6CD5;&#x662F;&#x5426;&#x88AB;&#x591A;&#x6B21;&#x8C03;&#x7528;&#xFF1B;</p>
+<p>(3) &#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;(Garbage Collector)&#xFF1A;&#x6536;&#x96C6;&#x548C;&#x5220;&#x9664;&#x672A;&#x5F15;&#x7528;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8C03;&#x7528;&#x201C;System.gc&#xFF08;&#xFF09;&#x201D;&#x89E6;&#x53D1;&#x5783;&#x573E;&#x6536;&#x96C6;&#xFF0C;&#x4F46;&#x4E0D;&#x80FD;&#x4FDD;&#x8BC1;&#x6267;&#x884C;&#x3002;JVM&#x7684;&#x5783;&#x573E;&#x56DE;&#x6536;&#x5BF9;&#x8C61;&#x662F;&#x5DF2;&#x521B;&#x5EFA;&#x7684;&#x5BF9;&#x8C61;&#x3002;</p>
+<p>Java&#x672C;&#x673A;&#x63A5;&#x53E3;&#xFF08;JNI&#xFF09;&#xFF1A;JNI&#x5C06;&#x4E0E;&#x672C;&#x673A;&#x65B9;&#x6CD5;&#x5E93;&#x8FDB;&#x884C;&#x4EA4;&#x4E92;&#xFF0C;&#x5E76;&#x63D0;&#x4F9B;&#x6267;&#x884C;&#x5F15;&#x64CE;&#x6240;&#x9700;&#x7684;&#x672C;&#x673A;&#x5E93;&#x3002;</p>
+<p>&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x5E93;&#xFF08;Native Method Libraries&#xFF09;&#xFF1A;&#x5B83;&#x662F;&#x6267;&#x884C;&#x5F15;&#x64CE;&#x6240;&#x9700;&#x7684;&#x672C;&#x673A;&#x5E93;&#x7684;&#x96C6;&#x5408;&#x3002;</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/05/想法idea/" data-id="cj03q3v9b0041d0uo55t96fov" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/05/JVM架构解析/" data-id="cj03q5vom002gduuoc0q9b8yd" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/idea/">idea</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
 
     </footer>
   </div>
@@ -138,7 +173,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/11/10/Linux运维相关/" data-id="cj03q3v8d0030d0uoagg5c1tg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/11/10/Linux运维相关/" data-id="cj03q5vp60030duuo9oluv84s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -195,7 +230,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/11/08/Android-7.0多窗口实现/" data-id="cj03q3v61000rd0uoob1vshc7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/11/08/Android-7.0多窗口实现/" data-id="cj03q5vmi000qduuocb6tq5eo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -240,7 +275,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/11/01/JavaWeb_tomcat搭建文件服务器/" data-id="cj03q3v84002pd0uo0hvfk5tk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/11/01/JavaWeb_tomcat搭建文件服务器/" data-id="cj03q5vox002tduuolqhjv893" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
@@ -283,7 +318,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/18/Android_百分比框架/" data-id="cj03q3v75001pd0uoqhaf7dme" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/18/Android_百分比框架/" data-id="cj03q5vnn001rduuogykn9glh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -323,10 +358,59 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/14/Android_常用开源/" data-id="cj03q3v71001id0uo17qxqgy5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/14/Android_常用开源/" data-id="cj03q5vnb001eduuoep80itpx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JavaWeb_cookie和session的理解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/14/JavaWeb_cookie和session的理解/" class="article-date">
+  <time datetime="2016-10-14T13:26:18.000Z" itemprop="datePublished">2016-10-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/14/JavaWeb_cookie和session的理解/">cookie和session的理解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&#x8DE8;&#x9875;&#x9762;&#x4F20;&#x503C;<br>&#x5185;&#x7F6E;&#x5BF9;&#x8C61;&#xFF1A;&#x4E3A;&#x4E86;&#x8DE8;&#x9875;&#x9762;&#x4F20;&#x503C;&#x548C;&#x72B6;&#x6001;&#x4FDD;&#x6301;&#x3002;&#x2192;HTTP&#x7684;&#x65E0;&#x72B6;&#x6001;&#x6027;</p>
+<p>Session&#xFF1A;&#x6BCF;&#x4E00;&#x53F0;&#x7535;&#x8111;&#x8BBF;&#x95EE;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x90FD;&#x4F1A;&#x662F;&#x72EC;&#x7ACB;&#x7684;&#x4E00;&#x5957;session&#xFF0C;key&#x503C;&#x90FD;&#x4E00;&#x6837;&#xFF0C;&#x4F46;&#x662F;&#x5185;&#x5BB9;&#x90FD;&#x662F;&#x4E0D;&#x4E00;&#x6837;&#x7684;</p>
+<p>&#x4E0D;&#x4E00;&#x6837;&#xFF1A;</p>
+<h3 id="1-Session&#x7684;&#x4FDD;&#x5B58;&#x4F4D;&#x7F6E;&#x662F;&#x4FDD;&#x5B58;&#x5728;&#x670D;&#x52A1;&#x5668;&#x4E0A;"><a href="#1-Session&#x7684;&#x4FDD;&#x5B58;&#x4F4D;&#x7F6E;&#x662F;&#x4FDD;&#x5B58;&#x5728;&#x670D;&#x52A1;&#x5668;&#x4E0A;" class="headerlink" title="1,Session&#x7684;&#x4FDD;&#x5B58;&#x4F4D;&#x7F6E;&#x662F;&#x4FDD;&#x5B58;&#x5728;&#x670D;&#x52A1;&#x5668;&#x4E0A;"></a>1,Session&#x7684;&#x4FDD;&#x5B58;&#x4F4D;&#x7F6E;&#x662F;&#x4FDD;&#x5B58;&#x5728;&#x670D;&#x52A1;&#x5668;&#x4E0A;</h3><h3 id="2-Session&#x6CA1;&#x6709;&#x6301;&#x4E45;&#x7684;&#xFF0C;&#x5B83;&#x7684;&#x4FDD;&#x5B58;&#x5468;&#x671F;&#x5C31;&#x662F;20&#x5206;&#x949F;"><a href="#2-Session&#x6CA1;&#x6709;&#x6301;&#x4E45;&#x7684;&#xFF0C;&#x5B83;&#x7684;&#x4FDD;&#x5B58;&#x5468;&#x671F;&#x5C31;&#x662F;20&#x5206;&#x949F;" class="headerlink" title="2,Session&#x6CA1;&#x6709;&#x6301;&#x4E45;&#x7684;&#xFF0C;&#x5B83;&#x7684;&#x4FDD;&#x5B58;&#x5468;&#x671F;&#x5C31;&#x662F;20&#x5206;&#x949F;."></a>2,Session&#x6CA1;&#x6709;&#x6301;&#x4E45;&#x7684;&#xFF0C;&#x5B83;&#x7684;&#x4FDD;&#x5B58;&#x5468;&#x671F;&#x5C31;&#x662F;20&#x5206;&#x949F;.</h3><p>session &#x4FDD;&#x5B58;&#x5728;&#x670D;&#x52A1;&#x5668;&#x5185;&#x5B58;&#x4E2D;&#xFF0C;&#x7531;&#x7528;&#x6237;&#x7B2C;&#x4E00;&#x6B21;&#x8BBF;&#x95EE;&#x670D;&#x52A1;&#x5668;&#x65F6;&#x521B;&#x5EFA;&#xFF0C;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x53EA;&#x6709;&#x8BBF;&#x95EE;JSP&#x3001;Servlet&#x7B49;&#x7A0B;&#x5E8F;&#x65F6;&#x624D;&#x4F1A;&#x521B;&#x5EFA;Session&#xFF0C;&#x53EA;&#x8BBF;&#x95EE;HTML&#x3001;IMAGE&#x7B49;&#x9759;&#x6001;&#x8D44;&#x6E90;&#x5E76;&#x4E0D;&#x4F1A;&#x521B;&#x5EFA;Session&#xFF0C;&#x53EF;&#x8C03;&#x7528;request.getSession(true)&#x5F3A;&#x5236;&#x751F;&#x6210;Session&#x3002;</p>
+<p>Session&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x5931;&#x6548;&#xFF1F;</p>
+<h3 id="1-&#x670D;&#x52A1;&#x5668;&#x4F1A;&#x628A;&#x957F;&#x65F6;&#x95F4;&#x6CA1;&#x6709;&#x6D3B;&#x52A8;&#x7684;Session&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x5185;&#x5B58;&#x4E2D;&#x6E05;&#x9664;&#xFF0C;&#x6B64;&#x65F6;Session&#x4FBF;&#x5931;&#x6548;&#x3002;Tomcat&#x4E2D;Session&#x7684;&#x9ED8;&#x8BA4;&#x5931;&#x6548;&#x65F6;&#x95F4;&#x4E3A;20&#x5206;&#x949F;&#x3002;"><a href="#1-&#x670D;&#x52A1;&#x5668;&#x4F1A;&#x628A;&#x957F;&#x65F6;&#x95F4;&#x6CA1;&#x6709;&#x6D3B;&#x52A8;&#x7684;Session&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x5185;&#x5B58;&#x4E2D;&#x6E05;&#x9664;&#xFF0C;&#x6B64;&#x65F6;Session&#x4FBF;&#x5931;&#x6548;&#x3002;Tomcat&#x4E2D;Session&#x7684;&#x9ED8;&#x8BA4;&#x5931;&#x6548;&#x65F6;&#x95F4;&#x4E3A;20&#x5206;&#x949F;&#x3002;" class="headerlink" title="1,&#x670D;&#x52A1;&#x5668;&#x4F1A;&#x628A;&#x957F;&#x65F6;&#x95F4;&#x6CA1;&#x6709;&#x6D3B;&#x52A8;&#x7684;Session&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x5185;&#x5B58;&#x4E2D;&#x6E05;&#x9664;&#xFF0C;&#x6B64;&#x65F6;Session&#x4FBF;&#x5931;&#x6548;&#x3002;Tomcat&#x4E2D;Session&#x7684;&#x9ED8;&#x8BA4;&#x5931;&#x6548;&#x65F6;&#x95F4;&#x4E3A;20&#x5206;&#x949F;&#x3002;"></a>1,&#x670D;&#x52A1;&#x5668;&#x4F1A;&#x628A;&#x957F;&#x65F6;&#x95F4;&#x6CA1;&#x6709;&#x6D3B;&#x52A8;&#x7684;Session&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x5185;&#x5B58;&#x4E2D;&#x6E05;&#x9664;&#xFF0C;&#x6B64;&#x65F6;Session&#x4FBF;&#x5931;&#x6548;&#x3002;Tomcat&#x4E2D;Session&#x7684;&#x9ED8;&#x8BA4;&#x5931;&#x6548;&#x65F6;&#x95F4;&#x4E3A;20&#x5206;&#x949F;&#x3002;</h3><h3 id="2-&#x8C03;&#x7528;Session&#x7684;invalidate&#x65B9;&#x6CD5;&#x3002;"><a href="#2-&#x8C03;&#x7528;Session&#x7684;invalidate&#x65B9;&#x6CD5;&#x3002;" class="headerlink" title="2,&#x8C03;&#x7528;Session&#x7684;invalidate&#x65B9;&#x6CD5;&#x3002;"></a>2,&#x8C03;&#x7528;Session&#x7684;invalidate&#x65B9;&#x6CD5;&#x3002;</h3><p>  session &#x9700;&#x8981;&#x5BA2;&#x6237;&#x7AEF;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x652F;&#x6301;&#xFF0C;&#x56E0;&#x4E3A;Session&#x9700;&#x8981;&#x4F7F;&#x7528;Cookie&#x4F5C;&#x4E3A;&#x8BC6;&#x522B;&#x6807;&#x5FD7;&#x3002;http&#x534F;&#x8BAE;&#x662F;&#x65E0;&#x72B6;&#x6001;&#x7684;&#xFF0C;session&#x4E0D;&#x80FD;&#x4F9D;&#x636E;http&#x8FDE;&#x63A5;&#x6765;&#x5224;&#x65AD;&#x662F;&#x5426;&#x4E3A;&#x540C;&#x4E00;&#x5BA2;&#x6237;&#xFF0C;&#x56E0;&#x6B64;&#x670D;&#x52A1;&#x5668;&#x5411;&#x5BA2;&#x6237;&#x7AEF;&#x6D4F;&#x89C8;&#x5668;&#x53D1;&#x9001;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;JSESSIONID&#x7684;Cookie&#xFF0C;&#x5B83;&#x7684;&#x503C;&#x4E3A;&#x8BE5;Session&#x7684;id&#xFF08;&#x4E5F;&#x5C31;&#x662F;HttpSession.getId()&#x7684;&#x8FD4;&#x56DE;&#x503C;&#xFF09;&#x3002;Session&#x4F9D;&#x636E;&#x8BE5;Cookie&#x6765;&#x8BC6;&#x522B;&#x662F;&#x5426;&#x4E3A;&#x540C;&#x4E00;&#x7528;&#x6237;&#x3002;</p>
+<p>  &#x8BE5;Cookie&#x4E3A;&#x670D;&#x52A1;&#x5668;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x7684;&#xFF0C;&#x5B83;&#x7684;maxAge&#x5C5E;&#x6027;&#x4E00;&#x822C;&#x4E3A;-1&#xFF0C;&#x8868;&#x793A;&#x4EC5;&#x5F53;&#x524D;&#x6D4F;&#x89C8;&#x5668;&#x5185;&#x6709;&#x6548;&#xFF0C;&#x5E76;&#x4E14;&#x5404;&#x6D4F;&#x89C8;&#x5668;&#x7A97;&#x53E3;&#x95F4;&#x4E0D;&#x5171;&#x4EAB;&#xFF0C;&#x5173;&#x95ED;&#x6D4F;&#x89C8;&#x5668;&#x5C31;&#x4F1A;&#x5931;&#x6548;&#x3002;&#x56E0;&#x6B64;&#x540C;&#x4E00;&#x673A;&#x5668;&#x7684;&#x4E24;&#x4E2A;&#x6D4F;&#x89C8;&#x5668;&#x7A97;&#x53E3;&#x8BBF;&#x95EE;&#x670D;&#x52A1;&#x5668;&#x65F6;&#xFF0C;&#x4F1A;&#x751F;&#x6210;&#x4E24;&#x4E2A;&#x4E0D;&#x540C;&#x7684;Session&#x3002;&#x4F46;&#x662F;&#x7531;&#x6D4F;&#x89C8;&#x5668;&#x7A97;&#x53E3;&#x5185;&#x7684;&#x94FE;&#x63A5;&#x3001;&#x811A;&#x672C;&#x7B49;&#x6253;&#x5F00;&#x7684;&#x65B0;&#x7A97;&#x53E3;&#xFF08;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x4E0D;&#x662F;&#x53CC;&#x51FB;&#x684C;&#x9762;&#x6D4F;&#x89C8;&#x5668;&#x56FE;&#x6807;&#x7B49;&#x6253;&#x5F00;&#x7684;&#x7A97;&#x53E3;&#xFF09;&#x9664;&#x5916;&#x3002;&#x8FD9;&#x7C7B;&#x5B50;&#x7A97;&#x53E3;&#x4F1A;&#x5171;&#x4EAB;&#x7236;&#x7A97;&#x53E3;&#x7684;Cookie&#xFF0C;&#x56E0;&#x6B64;&#x4F1A;&#x5171;&#x4EAB;&#x4E00;&#x4E2A;Session&#x3002;</p>
+<p>  &#x6CE8;&#x610F;&#xFF1A;&#x65B0;&#x5F00;&#x7684;&#x6D4F;&#x89C8;&#x5668;&#x7A97;&#x53E3;&#x4F1A;&#x751F;&#x6210;&#x65B0;&#x7684;Session&#xFF0C;&#x4F46;&#x5B50;&#x7A97;&#x53E3;&#x9664;&#x5916;&#x3002;&#x5B50;&#x7A97;&#x53E3;&#x4F1A;&#x5171;&#x7528;&#x7236;&#x7A97;&#x53E3;&#x7684;Session&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5728;&#x94FE;&#x63A5;&#x4E0A;&#x53F3;&#x51FB;&#xFF0C;&#x5728;&#x5F39;&#x51FA;&#x7684;&#x5FEB;&#x6377;&#x83DC;&#x5355;&#x4E2D;&#x9009;&#x62E9;&#x201D;&#x5728;&#x65B0;&#x7A97;&#x53E3;&#x4E2D;&#x6253;&#x5F00;&#x201D;&#x65F6;&#xFF0C;&#x5B50;&#x7A97;&#x53E3;&#x4FBF;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x7236;&#x7A97;&#x53E3;&#x7684;Session&#x3002;</p>
+<p>  &#x5982;&#x679C;&#x5BA2;&#x6237;&#x7AEF;&#x6D4F;&#x89C8;&#x5668;&#x5C06;Cookie&#x529F;&#x80FD;&#x7981;&#x7528;&#xFF0C;&#x6216;&#x8005;&#x4E0D;&#x652F;&#x6301;Cookie&#x600E;&#x4E48;&#x529E;&#xFF1F;&#x4F8B;&#x5982;&#xFF0C;&#x7EDD;&#x5927;&#x591A;&#x6570;&#x7684;&#x624B;&#x673A;&#x6D4F;&#x89C8;&#x5668;&#x90FD;&#x4E0D;&#x652F;&#x6301;Cookie&#x3002;Java Web&#x63D0;&#x4F9B;&#x4E86;&#x53E6;&#x4E00;&#x79CD;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;URL&#x5730;&#x5740;&#x91CD;&#x5199;&#x3002;</p>
+<p>  URL&#x5730;&#x5740;&#x91CD;&#x5199;&#x662F;&#x5BF9;&#x5BA2;&#x6237;&#x7AEF;&#x4E0D;&#x652F;&#x6301;Cookie&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x3002;URL&#x5730;&#x5740;&#x91CD;&#x5199;&#x7684;&#x539F;&#x7406;&#x662F;&#x5C06;&#x8BE5;&#x7528;&#x6237;Session&#x7684;id&#x4FE1;&#x606F;&#x91CD;&#x5199;&#x5230;URL&#x5730;&#x5740;&#x4E2D;&#x3002;&#x670D;&#x52A1;&#x5668;&#x80FD;&#x591F;&#x89E3;&#x6790;&#x91CD;&#x5199;&#x540E;&#x7684;URL&#x83B7;&#x53D6;Session&#x7684;id&#x3002;&#x8FD9;&#x6837;&#x5373;&#x4F7F;&#x5BA2;&#x6237;&#x7AEF;&#x4E0D;&#x652F;&#x6301;Cookie&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Session&#x6765;&#x8BB0;&#x5F55;&#x7528;&#x6237;&#x72B6;&#x6001;&#x3002;HttpServletResponse&#x7C7B;&#x63D0;&#x4F9B;&#x4E86;encodeURL(String url)&#x5B9E;&#x73B0;URL&#x5730;&#x5740;&#x91CD;&#x5199;&#xFF0C;&#x8BE5;&#x65B9;&#x6CD5;&#x4F1A;&#x81EA;&#x52A8;&#x5224;&#x65AD;&#x5BA2;&#x6237;&#x7AEF;&#x662F;&#x5426;&#x652F;&#x6301;Cookie&#x3002;&#x5982;&#x679C;&#x5BA2;&#x6237;&#x7AEF;&#x652F;&#x6301;Cookie&#xFF0C;&#x4F1A;&#x5C06;URL&#x539F;&#x5C01;&#x4E0D;&#x52A8;&#x5730;&#x8F93;&#x51FA;&#x6765;&#x3002;&#x5982;&#x679C;&#x5BA2;&#x6237;&#x7AEF;&#x4E0D;&#x652F;&#x6301;Cookie&#xFF0C;&#x5219;&#x4F1A;&#x5C06;&#x7528;&#x6237;Session&#x7684;id&#x91CD;&#x5199;&#x5230;URL&#x4E2D;&#x3002;</p>
+<p>  &#x6CE8;&#x610F;&#xFF1A;TOMCAT&#x5224;&#x65AD;&#x5BA2;&#x6237;&#x7AEF;&#x6D4F;&#x89C8;&#x5668;&#x662F;&#x5426;&#x652F;&#x6301;Cookie&#x7684;&#x4F9D;&#x636E;&#x662F;&#x8BF7;&#x6C42;&#x4E2D;&#x662F;&#x5426;&#x542B;&#x6709;Cookie&#x3002;&#x5C3D;&#x7BA1;&#x5BA2;&#x6237;&#x7AEF;&#x53EF;&#x80FD;&#x4F1A;&#x652F;&#x6301;Cookie&#xFF0C;&#x4F46;&#x662F;&#x7531;&#x4E8E;&#x7B2C;&#x4E00;&#x6B21;&#x8BF7;&#x6C42;&#x65F6;&#x4E0D;&#x4F1A;&#x643A;&#x5E26;&#x4EFB;&#x4F55;Cookie&#xFF08;&#x56E0;&#x4E3A;&#x5E76;&#x65E0;&#x4EFB;&#x4F55;Cookie&#x53EF;&#x4EE5;&#x643A;&#x5E26;&#xFF09;&#xFF0C;URL&#x5730;&#x5740;&#x91CD;&#x5199;&#x540E;&#x7684;&#x5730;&#x5740;&#x4E2D;&#x4ECD;&#x7136;&#x4F1A;&#x5E26;&#x6709;jsessionid&#x3002;&#x5F53;&#x7B2C;&#x4E8C;&#x6B21;&#x8BBF;&#x95EE;&#x65F6;&#x670D;&#x52A1;&#x5668;&#x5DF2;&#x7ECF;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x4E2D;&#x5199;&#x5165;Cookie&#x4E86;&#xFF0C;&#x56E0;&#x6B64;URL&#x5730;&#x5740;&#x91CD;&#x5199;&#x540E;&#x7684;&#x5730;&#x5740;&#x4E2D;&#x5C31;&#x4E0D;&#x4F1A;&#x5E26;&#x6709;jsessionid&#x4E86;&#x3002;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/10/14/JavaWeb_cookie和session的理解/" data-id="cj03q5vor002kduuoo02ozp67" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
 
     </footer>
   </div>
@@ -419,7 +503,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/14/Android_gradle的使用/" data-id="cj03q3v6f0016d0uohryhag8p" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/14/Android_gradle的使用/" data-id="cj03q5vng001jduuo94l27rv3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -460,56 +544,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/14/JavaWeb_encodeURI来解决URL传递时的中文问题/" data-id="cj03q3v81002ld0uoe0j1yztg" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JavaWeb_cookie和session的理解" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/10/14/JavaWeb_cookie和session的理解/" class="article-date">
-  <time datetime="2016-10-14T13:26:18.000Z" itemprop="datePublished">2016-10-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/14/JavaWeb_cookie和session的理解/">cookie和session的理解</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&#x8DE8;&#x9875;&#x9762;&#x4F20;&#x503C;<br>&#x5185;&#x7F6E;&#x5BF9;&#x8C61;&#xFF1A;&#x4E3A;&#x4E86;&#x8DE8;&#x9875;&#x9762;&#x4F20;&#x503C;&#x548C;&#x72B6;&#x6001;&#x4FDD;&#x6301;&#x3002;&#x2192;HTTP&#x7684;&#x65E0;&#x72B6;&#x6001;&#x6027;</p>
-<p>Session&#xFF1A;&#x6BCF;&#x4E00;&#x53F0;&#x7535;&#x8111;&#x8BBF;&#x95EE;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x90FD;&#x4F1A;&#x662F;&#x72EC;&#x7ACB;&#x7684;&#x4E00;&#x5957;session&#xFF0C;key&#x503C;&#x90FD;&#x4E00;&#x6837;&#xFF0C;&#x4F46;&#x662F;&#x5185;&#x5BB9;&#x90FD;&#x662F;&#x4E0D;&#x4E00;&#x6837;&#x7684;</p>
-<p>&#x4E0D;&#x4E00;&#x6837;&#xFF1A;</p>
-<h3 id="1-Session&#x7684;&#x4FDD;&#x5B58;&#x4F4D;&#x7F6E;&#x662F;&#x4FDD;&#x5B58;&#x5728;&#x670D;&#x52A1;&#x5668;&#x4E0A;"><a href="#1-Session&#x7684;&#x4FDD;&#x5B58;&#x4F4D;&#x7F6E;&#x662F;&#x4FDD;&#x5B58;&#x5728;&#x670D;&#x52A1;&#x5668;&#x4E0A;" class="headerlink" title="1,Session&#x7684;&#x4FDD;&#x5B58;&#x4F4D;&#x7F6E;&#x662F;&#x4FDD;&#x5B58;&#x5728;&#x670D;&#x52A1;&#x5668;&#x4E0A;"></a>1,Session&#x7684;&#x4FDD;&#x5B58;&#x4F4D;&#x7F6E;&#x662F;&#x4FDD;&#x5B58;&#x5728;&#x670D;&#x52A1;&#x5668;&#x4E0A;</h3><h3 id="2-Session&#x6CA1;&#x6709;&#x6301;&#x4E45;&#x7684;&#xFF0C;&#x5B83;&#x7684;&#x4FDD;&#x5B58;&#x5468;&#x671F;&#x5C31;&#x662F;20&#x5206;&#x949F;"><a href="#2-Session&#x6CA1;&#x6709;&#x6301;&#x4E45;&#x7684;&#xFF0C;&#x5B83;&#x7684;&#x4FDD;&#x5B58;&#x5468;&#x671F;&#x5C31;&#x662F;20&#x5206;&#x949F;" class="headerlink" title="2,Session&#x6CA1;&#x6709;&#x6301;&#x4E45;&#x7684;&#xFF0C;&#x5B83;&#x7684;&#x4FDD;&#x5B58;&#x5468;&#x671F;&#x5C31;&#x662F;20&#x5206;&#x949F;."></a>2,Session&#x6CA1;&#x6709;&#x6301;&#x4E45;&#x7684;&#xFF0C;&#x5B83;&#x7684;&#x4FDD;&#x5B58;&#x5468;&#x671F;&#x5C31;&#x662F;20&#x5206;&#x949F;.</h3><p>session &#x4FDD;&#x5B58;&#x5728;&#x670D;&#x52A1;&#x5668;&#x5185;&#x5B58;&#x4E2D;&#xFF0C;&#x7531;&#x7528;&#x6237;&#x7B2C;&#x4E00;&#x6B21;&#x8BBF;&#x95EE;&#x670D;&#x52A1;&#x5668;&#x65F6;&#x521B;&#x5EFA;&#xFF0C;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x53EA;&#x6709;&#x8BBF;&#x95EE;JSP&#x3001;Servlet&#x7B49;&#x7A0B;&#x5E8F;&#x65F6;&#x624D;&#x4F1A;&#x521B;&#x5EFA;Session&#xFF0C;&#x53EA;&#x8BBF;&#x95EE;HTML&#x3001;IMAGE&#x7B49;&#x9759;&#x6001;&#x8D44;&#x6E90;&#x5E76;&#x4E0D;&#x4F1A;&#x521B;&#x5EFA;Session&#xFF0C;&#x53EF;&#x8C03;&#x7528;request.getSession(true)&#x5F3A;&#x5236;&#x751F;&#x6210;Session&#x3002;</p>
-<p>Session&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x5931;&#x6548;&#xFF1F;</p>
-<h3 id="1-&#x670D;&#x52A1;&#x5668;&#x4F1A;&#x628A;&#x957F;&#x65F6;&#x95F4;&#x6CA1;&#x6709;&#x6D3B;&#x52A8;&#x7684;Session&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x5185;&#x5B58;&#x4E2D;&#x6E05;&#x9664;&#xFF0C;&#x6B64;&#x65F6;Session&#x4FBF;&#x5931;&#x6548;&#x3002;Tomcat&#x4E2D;Session&#x7684;&#x9ED8;&#x8BA4;&#x5931;&#x6548;&#x65F6;&#x95F4;&#x4E3A;20&#x5206;&#x949F;&#x3002;"><a href="#1-&#x670D;&#x52A1;&#x5668;&#x4F1A;&#x628A;&#x957F;&#x65F6;&#x95F4;&#x6CA1;&#x6709;&#x6D3B;&#x52A8;&#x7684;Session&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x5185;&#x5B58;&#x4E2D;&#x6E05;&#x9664;&#xFF0C;&#x6B64;&#x65F6;Session&#x4FBF;&#x5931;&#x6548;&#x3002;Tomcat&#x4E2D;Session&#x7684;&#x9ED8;&#x8BA4;&#x5931;&#x6548;&#x65F6;&#x95F4;&#x4E3A;20&#x5206;&#x949F;&#x3002;" class="headerlink" title="1,&#x670D;&#x52A1;&#x5668;&#x4F1A;&#x628A;&#x957F;&#x65F6;&#x95F4;&#x6CA1;&#x6709;&#x6D3B;&#x52A8;&#x7684;Session&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x5185;&#x5B58;&#x4E2D;&#x6E05;&#x9664;&#xFF0C;&#x6B64;&#x65F6;Session&#x4FBF;&#x5931;&#x6548;&#x3002;Tomcat&#x4E2D;Session&#x7684;&#x9ED8;&#x8BA4;&#x5931;&#x6548;&#x65F6;&#x95F4;&#x4E3A;20&#x5206;&#x949F;&#x3002;"></a>1,&#x670D;&#x52A1;&#x5668;&#x4F1A;&#x628A;&#x957F;&#x65F6;&#x95F4;&#x6CA1;&#x6709;&#x6D3B;&#x52A8;&#x7684;Session&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x5185;&#x5B58;&#x4E2D;&#x6E05;&#x9664;&#xFF0C;&#x6B64;&#x65F6;Session&#x4FBF;&#x5931;&#x6548;&#x3002;Tomcat&#x4E2D;Session&#x7684;&#x9ED8;&#x8BA4;&#x5931;&#x6548;&#x65F6;&#x95F4;&#x4E3A;20&#x5206;&#x949F;&#x3002;</h3><h3 id="2-&#x8C03;&#x7528;Session&#x7684;invalidate&#x65B9;&#x6CD5;&#x3002;"><a href="#2-&#x8C03;&#x7528;Session&#x7684;invalidate&#x65B9;&#x6CD5;&#x3002;" class="headerlink" title="2,&#x8C03;&#x7528;Session&#x7684;invalidate&#x65B9;&#x6CD5;&#x3002;"></a>2,&#x8C03;&#x7528;Session&#x7684;invalidate&#x65B9;&#x6CD5;&#x3002;</h3><p>  session &#x9700;&#x8981;&#x5BA2;&#x6237;&#x7AEF;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x652F;&#x6301;&#xFF0C;&#x56E0;&#x4E3A;Session&#x9700;&#x8981;&#x4F7F;&#x7528;Cookie&#x4F5C;&#x4E3A;&#x8BC6;&#x522B;&#x6807;&#x5FD7;&#x3002;http&#x534F;&#x8BAE;&#x662F;&#x65E0;&#x72B6;&#x6001;&#x7684;&#xFF0C;session&#x4E0D;&#x80FD;&#x4F9D;&#x636E;http&#x8FDE;&#x63A5;&#x6765;&#x5224;&#x65AD;&#x662F;&#x5426;&#x4E3A;&#x540C;&#x4E00;&#x5BA2;&#x6237;&#xFF0C;&#x56E0;&#x6B64;&#x670D;&#x52A1;&#x5668;&#x5411;&#x5BA2;&#x6237;&#x7AEF;&#x6D4F;&#x89C8;&#x5668;&#x53D1;&#x9001;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;JSESSIONID&#x7684;Cookie&#xFF0C;&#x5B83;&#x7684;&#x503C;&#x4E3A;&#x8BE5;Session&#x7684;id&#xFF08;&#x4E5F;&#x5C31;&#x662F;HttpSession.getId()&#x7684;&#x8FD4;&#x56DE;&#x503C;&#xFF09;&#x3002;Session&#x4F9D;&#x636E;&#x8BE5;Cookie&#x6765;&#x8BC6;&#x522B;&#x662F;&#x5426;&#x4E3A;&#x540C;&#x4E00;&#x7528;&#x6237;&#x3002;</p>
-<p>  &#x8BE5;Cookie&#x4E3A;&#x670D;&#x52A1;&#x5668;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x7684;&#xFF0C;&#x5B83;&#x7684;maxAge&#x5C5E;&#x6027;&#x4E00;&#x822C;&#x4E3A;-1&#xFF0C;&#x8868;&#x793A;&#x4EC5;&#x5F53;&#x524D;&#x6D4F;&#x89C8;&#x5668;&#x5185;&#x6709;&#x6548;&#xFF0C;&#x5E76;&#x4E14;&#x5404;&#x6D4F;&#x89C8;&#x5668;&#x7A97;&#x53E3;&#x95F4;&#x4E0D;&#x5171;&#x4EAB;&#xFF0C;&#x5173;&#x95ED;&#x6D4F;&#x89C8;&#x5668;&#x5C31;&#x4F1A;&#x5931;&#x6548;&#x3002;&#x56E0;&#x6B64;&#x540C;&#x4E00;&#x673A;&#x5668;&#x7684;&#x4E24;&#x4E2A;&#x6D4F;&#x89C8;&#x5668;&#x7A97;&#x53E3;&#x8BBF;&#x95EE;&#x670D;&#x52A1;&#x5668;&#x65F6;&#xFF0C;&#x4F1A;&#x751F;&#x6210;&#x4E24;&#x4E2A;&#x4E0D;&#x540C;&#x7684;Session&#x3002;&#x4F46;&#x662F;&#x7531;&#x6D4F;&#x89C8;&#x5668;&#x7A97;&#x53E3;&#x5185;&#x7684;&#x94FE;&#x63A5;&#x3001;&#x811A;&#x672C;&#x7B49;&#x6253;&#x5F00;&#x7684;&#x65B0;&#x7A97;&#x53E3;&#xFF08;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x4E0D;&#x662F;&#x53CC;&#x51FB;&#x684C;&#x9762;&#x6D4F;&#x89C8;&#x5668;&#x56FE;&#x6807;&#x7B49;&#x6253;&#x5F00;&#x7684;&#x7A97;&#x53E3;&#xFF09;&#x9664;&#x5916;&#x3002;&#x8FD9;&#x7C7B;&#x5B50;&#x7A97;&#x53E3;&#x4F1A;&#x5171;&#x4EAB;&#x7236;&#x7A97;&#x53E3;&#x7684;Cookie&#xFF0C;&#x56E0;&#x6B64;&#x4F1A;&#x5171;&#x4EAB;&#x4E00;&#x4E2A;Session&#x3002;</p>
-<p>  &#x6CE8;&#x610F;&#xFF1A;&#x65B0;&#x5F00;&#x7684;&#x6D4F;&#x89C8;&#x5668;&#x7A97;&#x53E3;&#x4F1A;&#x751F;&#x6210;&#x65B0;&#x7684;Session&#xFF0C;&#x4F46;&#x5B50;&#x7A97;&#x53E3;&#x9664;&#x5916;&#x3002;&#x5B50;&#x7A97;&#x53E3;&#x4F1A;&#x5171;&#x7528;&#x7236;&#x7A97;&#x53E3;&#x7684;Session&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5728;&#x94FE;&#x63A5;&#x4E0A;&#x53F3;&#x51FB;&#xFF0C;&#x5728;&#x5F39;&#x51FA;&#x7684;&#x5FEB;&#x6377;&#x83DC;&#x5355;&#x4E2D;&#x9009;&#x62E9;&#x201D;&#x5728;&#x65B0;&#x7A97;&#x53E3;&#x4E2D;&#x6253;&#x5F00;&#x201D;&#x65F6;&#xFF0C;&#x5B50;&#x7A97;&#x53E3;&#x4FBF;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x7236;&#x7A97;&#x53E3;&#x7684;Session&#x3002;</p>
-<p>  &#x5982;&#x679C;&#x5BA2;&#x6237;&#x7AEF;&#x6D4F;&#x89C8;&#x5668;&#x5C06;Cookie&#x529F;&#x80FD;&#x7981;&#x7528;&#xFF0C;&#x6216;&#x8005;&#x4E0D;&#x652F;&#x6301;Cookie&#x600E;&#x4E48;&#x529E;&#xFF1F;&#x4F8B;&#x5982;&#xFF0C;&#x7EDD;&#x5927;&#x591A;&#x6570;&#x7684;&#x624B;&#x673A;&#x6D4F;&#x89C8;&#x5668;&#x90FD;&#x4E0D;&#x652F;&#x6301;Cookie&#x3002;Java Web&#x63D0;&#x4F9B;&#x4E86;&#x53E6;&#x4E00;&#x79CD;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;URL&#x5730;&#x5740;&#x91CD;&#x5199;&#x3002;</p>
-<p>  URL&#x5730;&#x5740;&#x91CD;&#x5199;&#x662F;&#x5BF9;&#x5BA2;&#x6237;&#x7AEF;&#x4E0D;&#x652F;&#x6301;Cookie&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x3002;URL&#x5730;&#x5740;&#x91CD;&#x5199;&#x7684;&#x539F;&#x7406;&#x662F;&#x5C06;&#x8BE5;&#x7528;&#x6237;Session&#x7684;id&#x4FE1;&#x606F;&#x91CD;&#x5199;&#x5230;URL&#x5730;&#x5740;&#x4E2D;&#x3002;&#x670D;&#x52A1;&#x5668;&#x80FD;&#x591F;&#x89E3;&#x6790;&#x91CD;&#x5199;&#x540E;&#x7684;URL&#x83B7;&#x53D6;Session&#x7684;id&#x3002;&#x8FD9;&#x6837;&#x5373;&#x4F7F;&#x5BA2;&#x6237;&#x7AEF;&#x4E0D;&#x652F;&#x6301;Cookie&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Session&#x6765;&#x8BB0;&#x5F55;&#x7528;&#x6237;&#x72B6;&#x6001;&#x3002;HttpServletResponse&#x7C7B;&#x63D0;&#x4F9B;&#x4E86;encodeURL(String url)&#x5B9E;&#x73B0;URL&#x5730;&#x5740;&#x91CD;&#x5199;&#xFF0C;&#x8BE5;&#x65B9;&#x6CD5;&#x4F1A;&#x81EA;&#x52A8;&#x5224;&#x65AD;&#x5BA2;&#x6237;&#x7AEF;&#x662F;&#x5426;&#x652F;&#x6301;Cookie&#x3002;&#x5982;&#x679C;&#x5BA2;&#x6237;&#x7AEF;&#x652F;&#x6301;Cookie&#xFF0C;&#x4F1A;&#x5C06;URL&#x539F;&#x5C01;&#x4E0D;&#x52A8;&#x5730;&#x8F93;&#x51FA;&#x6765;&#x3002;&#x5982;&#x679C;&#x5BA2;&#x6237;&#x7AEF;&#x4E0D;&#x652F;&#x6301;Cookie&#xFF0C;&#x5219;&#x4F1A;&#x5C06;&#x7528;&#x6237;Session&#x7684;id&#x91CD;&#x5199;&#x5230;URL&#x4E2D;&#x3002;</p>
-<p>  &#x6CE8;&#x610F;&#xFF1A;TOMCAT&#x5224;&#x65AD;&#x5BA2;&#x6237;&#x7AEF;&#x6D4F;&#x89C8;&#x5668;&#x662F;&#x5426;&#x652F;&#x6301;Cookie&#x7684;&#x4F9D;&#x636E;&#x662F;&#x8BF7;&#x6C42;&#x4E2D;&#x662F;&#x5426;&#x542B;&#x6709;Cookie&#x3002;&#x5C3D;&#x7BA1;&#x5BA2;&#x6237;&#x7AEF;&#x53EF;&#x80FD;&#x4F1A;&#x652F;&#x6301;Cookie&#xFF0C;&#x4F46;&#x662F;&#x7531;&#x4E8E;&#x7B2C;&#x4E00;&#x6B21;&#x8BF7;&#x6C42;&#x65F6;&#x4E0D;&#x4F1A;&#x643A;&#x5E26;&#x4EFB;&#x4F55;Cookie&#xFF08;&#x56E0;&#x4E3A;&#x5E76;&#x65E0;&#x4EFB;&#x4F55;Cookie&#x53EF;&#x4EE5;&#x643A;&#x5E26;&#xFF09;&#xFF0C;URL&#x5730;&#x5740;&#x91CD;&#x5199;&#x540E;&#x7684;&#x5730;&#x5740;&#x4E2D;&#x4ECD;&#x7136;&#x4F1A;&#x5E26;&#x6709;jsessionid&#x3002;&#x5F53;&#x7B2C;&#x4E8C;&#x6B21;&#x8BBF;&#x95EE;&#x65F6;&#x670D;&#x52A1;&#x5668;&#x5DF2;&#x7ECF;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x4E2D;&#x5199;&#x5165;Cookie&#x4E86;&#xFF0C;&#x56E0;&#x6B64;URL&#x5730;&#x5740;&#x91CD;&#x5199;&#x540E;&#x7684;&#x5730;&#x5740;&#x4E2D;&#x5C31;&#x4E0D;&#x4F1A;&#x5E26;&#x6709;jsessionid&#x4E86;&#x3002;</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/14/JavaWeb_cookie和session的理解/" data-id="cj03q3v7z002kd0uo8k4nrxxl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/14/JavaWeb_encodeURI来解决URL传递时的中文问题/" data-id="cj03q5voo002iduuo8kwrg9xg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
@@ -662,7 +697,7 @@ release&#x7248;&#x672C;&#x7684;&#x6253;&#x5305;&#xFF1A;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/14/Android_ant自动版本构建/" data-id="cj03q3v6g0018d0uof0ycps28" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/14/Android_ant自动版本构建/" data-id="cj03q5vn30018duuo86lqijlt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
