@@ -57,7 +57,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -102,12 +102,16 @@
 <p>&#x4E0B;&#x9762;&#x5C31;&#x5F00;&#x59CB;&#x914D;&#x7F6E;&#x4E86;<br>&#x6E90;&#x7801;&#x7BA1;&#x7406;<br>&#x4ECE;svn&#x6216;git&#x4E0A;&#x62C9;&#x53D6;</p>
 <p>Build pom.xml<br>Post Steps  push&#x5230;&#x8FDC;&#x7AEF;&#x670D;&#x52A1;&#x5668;<br>&#x76F8;&#x5173;shell</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp -r ~/jenkins_war/target/yispider.jar /data/tomcat_mynovel/yispider/yispider.jar </span><br><span class="line">cd /data/tomcat_mynovel/yispider</span><br><span class="line">nohup java -jar yispider.jar &amp;</span><br></pre></td></tr></table></figure>
+<h3 id="&#x8BF4;&#x70B9;&#x522B;&#x7684;"><a href="#&#x8BF4;&#x70B9;&#x522B;&#x7684;" class="headerlink" title="&#x8BF4;&#x70B9;&#x522B;&#x7684;"></a>&#x8BF4;&#x70B9;&#x522B;&#x7684;</h3><p>gradle&#x4EE5;&#x6267;&#x884C;task&#x4E3A;&#x4E3B;&#x8981;&#x5DE5;&#x4F5C;&#x65B9;&#x5F0F;<br>&#x800C;task&#x6267;&#x884C;&#x7684;&#x987A;&#x5E8F;&#x57FA;&#x672C;&#x4E0A;&#x7531;&#x4EFB;&#x52A1;&#x7684;dependsOn&#x5C5E;&#x6027;&#x8BBE;&#x7F6E; &#xFF08;&#x7C7B;&#x4F3C;ant&#xFF09;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">build.gradle</span><br><span class="line">apply plugin: &#x2018;com.android.application&apos;</span><br></pre></td></tr></table></figure>
+<p>&#x8BE5;&#x63D2;&#x4EF6;&#x5305;&#x542B;&#x8BB8;&#x591A;&#x7684;Android&#x76F8;&#x5173;&#x7684;task&#x3002;&#x6211;&#x4EEC;&#x4E00;&#x822C;&#x6700;&#x4E3B;&#x8981;&#x4F7F;&#x7528;&#x7684;&#x662F;&#xFF1A;assemble&#x3001;clean&#x3001;build&#x7B49;&#x3002;&#x800C;&#x5176;&#x4E2D;assemble&#x662F;&#x6211;&#x4EEC;&#x7528;&#x4E8E;&#x6253;&#x5305;apk&#x6240;&#x4F7F;&#x7528;&#x7684;task&#x3002;&#x5728;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x6253;&#x5305;apk&#x5E76;&#x901A;&#x8FC7;adb&#x5B89;&#x88C5;&#x5230;&#x624B;&#x673A;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x8C03;&#x7528;&#xFF1A;gradle assembleDebug&#xFF0C;&#x5C31;&#x80FD;&#x6839;&#x636E;&#x6E90;&#x4EE3;&#x7801;&#x548C;&#x8D44;&#x6E90;&#x6253;&#x5305;&#x6210;&#x8F93;&#x51FA;&#x6587;&#x4EF6;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GRADLE_HOME=/Users/sweet/code/gradle-4.0</span><br><span class="line">export PATH=$PATH:$GRADLE_HOME/bin</span><br></pre></td></tr></table></figure>
 <p>&#x5B8C;&#x4E8B;&#xFF0C;&#x5176;&#x5B9E;&#x5C31;&#x8FD9;&#x4E48;&#x7B80;&#x5355;~</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/Jenkins centOS搭建/" data-id="cj4e31x10002njws6jbj74dke" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/06/23/Jenkins centOS搭建/" data-id="cj4e356h8002rqks6q2jx6d8d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li></ul>
@@ -391,7 +395,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/06/Android root相关/" data-id="cj4e31wyt000cjws61p3402fn" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/02/06/Android root相关/" data-id="cj4e356dw000cqks60roc5ubg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -559,7 +563,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/19/Android热更新调研汇总/" data-id="cj4e31x0l0024jws6ret2d3ng" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/01/19/Android热更新调研汇总/" data-id="cj4e356gp0025qks6jotl895f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -600,7 +604,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/19/mac快捷键/" data-id="cj4e31x1y003fjws68t4mx976" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/01/19/mac快捷键/" data-id="cj4e356hw003hqks6bdwnnige" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/">mac</a></li></ul>
@@ -649,7 +653,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/18/AS的IntentRun的几种方式/" data-id="cj4e31wy60001jws6vwynhuio" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/01/18/AS的IntentRun的几种方式/" data-id="cj4e356cz0001qks68ypdj2zk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -690,7 +694,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/18/Unity3D和Android交互/" data-id="cj4e31x1e0033jws65bpx6ysz" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/01/18/Unity3D和Android交互/" data-id="cj4e356hm0036qks6yhsu3une" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity3D/">Unity3D</a></li></ul>
@@ -702,9 +706,9 @@
 
 
   
-    <article id="post-Android 文件上传下载" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Android jar包class修改重新打包" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/01/12/Android 文件上传下载/" class="article-date">
+    <a href="/2017/01/12/Android jar包class修改重新打包/" class="article-date">
   <time datetime="2017-01-12T08:17:05.000Z" itemprop="datePublished">2017-01-12</time>
 </a>
     
@@ -716,7 +720,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/12/Android 文件上传下载/">Android 文件上传下载</a>
+      <a class="article-title" href="/2017/01/12/Android jar包class修改重新打包/">Android jar包class修改重新打包</a>
     </h1>
   
 
@@ -724,16 +728,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&#x6700;&#x8FD1;&#x6709;&#x4E2A;&#x9700;&#x6C42;&#x662F;&#x56FE;&#x7247;&#x7684;&#x4E0A;&#x4F20;&#x4E0B;&#x8F7D;&#xFF0C;&#x56E0;&#x4E3A;&#x662F;&#x5C0F;&#x529F;&#x80FD;&#x70B9;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x6253;&#x7B97;&#x7528;&#x6846;&#x67B6;&#x5199;&#x4E86;&#xFF0C;&#x5C31;httpurlconnnection+threadpool&#x8BF7;&#x6C42;&#x4E00;&#x4E0B;&#x5C31;&#x5B8C;&#x4E8B;&#x4E86;&#xFF0C;&#x4E4B;&#x524D;&#x8C03;&#x4E86;&#x4E00;&#x9635;&#xFF0C;&#x7ED3;&#x679C;&#x4E0B;&#x8F7D;&#x7684;&#x56FE;&#x7247;&#x5927;&#x5C0F;&#x90FD;&#x662F;0k&#xFF0C;&#x8FD8;&#x6CA1;&#x627E;&#x5230;&#x539F;&#x56E0;&#xFF0C;&#x8FD9;&#x91CC;&#x5907;&#x4EFD;&#x4E00;&#x4E0B;&#x6700;&#x540E;&#x7684;&#x4EE3;&#x7801;&#x3002;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">package com.example.testwebview.http;</span><br><span class="line"></span><br><span class="line">import com.example.testwebview.moudle.DebugLog;</span><br><span class="line">import com.example.testwebview.moudle.Environment;</span><br><span class="line">import com.example.testwebview.moudle.common.Const;</span><br><span class="line"></span><br><span class="line">import java.io.BufferedReader;</span><br><span class="line">import java.io.ByteArrayOutputStream;</span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.io.InputStreamReader;</span><br><span class="line">import java.io.OutputStream;</span><br><span class="line">import java.net.HttpURLConnection;</span><br><span class="line">import java.net.URL;</span><br><span class="line"></span><br><span class="line">public class HttpPostUploadUtil {</span><br><span class="line"></span><br><span class="line">    public static String upload() {</span><br><span class="line">        try {</span><br><span class="line">            String path = Environment.getInstance().getExternalStorageDirectory() + &quot;/&quot; + Const.FILE_PATH_NAME;</span><br><span class="line">            DebugLog.v(&quot;path&quot;, &quot;path:&quot; + path);</span><br><span class="line">            File file = new File(path);</span><br><span class="line">            String ur = &quot;http://192.168.253.1:8088/groovy/ocr.groovy&quot;;</span><br><span class="line">            URL url = new URL(ur);</span><br><span class="line"></span><br><span class="line">            HttpURLConnection uc = (HttpURLConnection) url.openConnection();</span><br><span class="line">            uc.setRequestProperty(&quot;Accept&quot;, &quot;image/gif,   image/x-xbitmap,   image/jpeg,   image/pjpeg,   application/vnd.ms-excel,   application/vnd.ms-powerpoint,   application/msword,   application/x-shockwave-flash,   application/x-quickviewplus,   */*&quot;);</span><br><span class="line">            uc.setRequestProperty(&quot;Accept-Language&quot;, &quot;zh-cn&quot;);</span><br><span class="line">            uc.setRequestProperty(&quot;Content-type&quot;, &quot;multipart/form-data;   boundary=---------------------------7d318fd100112&quot;);</span><br><span class="line">            uc.setRequestProperty(&quot;Accept-Encoding&quot;, &quot;gzip,   deflate&quot;);</span><br><span class="line">            uc.setRequestProperty(&quot;User-Agent&quot;, &quot;Mozilla/4.0   (compatible;   MSIE   6.0;   Windows   NT   5.1)&quot;);</span><br><span class="line">            uc.setRequestProperty(&quot;Connection&quot;, &quot;Keep-Alive&quot;);</span><br><span class="line">            uc.setDoOutput(true);</span><br><span class="line">            uc.setUseCaches(true);</span><br><span class="line">            int size = (int) file.length();</span><br><span class="line">            byte[] data = new byte[size];</span><br><span class="line">            FileInputStream fis = new FileInputStream(file);</span><br><span class="line">            OutputStream out = uc.getOutputStream();</span><br><span class="line">            fis.read(data, 0, size);</span><br><span class="line"></span><br><span class="line">            out.write(data);</span><br><span class="line">            out.flush();</span><br><span class="line">            out.close();</span><br><span class="line">            fis.close();</span><br><span class="line"></span><br><span class="line">            int code = uc.getResponseCode();</span><br><span class="line">            String sCurrentLine = &quot;&quot;;</span><br><span class="line">            String sTotalString = &quot;&quot;;</span><br><span class="line">            if (code == 200) {</span><br><span class="line">                java.io.InputStream is = uc.getInputStream();</span><br><span class="line">                BufferedReader reader = new BufferedReader(</span><br><span class="line">                        new InputStreamReader(is));</span><br><span class="line">                while ((sCurrentLine = reader.readLine()) != null)</span><br><span class="line">                    if (sCurrentLine.length() &gt; 0)</span><br><span class="line">                        sTotalString = sTotalString + sCurrentLine.trim();</span><br><span class="line">            } else {</span><br><span class="line">                sTotalString = &quot;&#x9519;&#x8BEF;:&quot; + code;</span><br><span class="line">            }</span><br><span class="line">            return sTotalString;</span><br><span class="line">        } catch (Exception e) {</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        }</span><br><span class="line">        return null;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    public static void downLoadFromUrl(String urlStr, String fileName, String savePath) throws IOException {</span><br><span class="line">        URL url = new URL(urlStr);</span><br><span class="line">        HttpURLConnection conn = (HttpURLConnection) url.openConnection();</span><br><span class="line">        conn.setConnectTimeout(3 * 1000);  //&#x8BBE;&#x7F6E;&#x8D85;&#x65F6;&#x95F4;&#x4E3A;3&#x79D2;</span><br><span class="line">        conn.setRequestProperty(&quot;User-Agent&quot;, &quot;Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)&quot;);  //&#x9632;&#x6B62;&#x5C4F;&#x853D;&#x7A0B;&#x5E8F;&#x6293;&#x53D6;&#x800C;&#x8FD4;&#x56DE;403&#x9519;&#x8BEF;</span><br><span class="line">        InputStream inputStream = conn.getInputStream(); //&#x5F97;&#x5230;&#x8F93;&#x5165;&#x6D41;</span><br><span class="line">        byte[] getData = readInputStream(inputStream);   //&#x83B7;&#x53D6;&#x81EA;&#x5DF1;&#x6570;&#x7EC4;</span><br><span class="line"></span><br><span class="line">        File saveDir = new File(savePath);   //&#x6587;&#x4EF6;&#x4FDD;&#x5B58;&#x4F4D;&#x7F6E;</span><br><span class="line">        if (!saveDir.exists()) {</span><br><span class="line">            saveDir.mkdir();</span><br><span class="line">        }</span><br><span class="line">        File file = new File(saveDir + File.separator + fileName);</span><br><span class="line">        FileOutputStream fos = new FileOutputStream(file);</span><br><span class="line">        fos.write(getData);</span><br><span class="line">        if (fos != null) {</span><br><span class="line">            fos.close();</span><br><span class="line">        }</span><br><span class="line">        if (inputStream != null) {</span><br><span class="line">            inputStream.close();</span><br><span class="line">        }</span><br><span class="line">        System.out.println(&quot;info:&quot; + url + &quot; download success&quot;);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    public static byte[] readInputStream(InputStream inputStream) throws IOException {</span><br><span class="line">        byte[] buffer = new byte[1024];</span><br><span class="line">        int len;</span><br><span class="line">        ByteArrayOutputStream bos = new ByteArrayOutputStream();</span><br><span class="line">        while ((len = inputStream.read(buffer)) != -1) {</span><br><span class="line">            bos.write(buffer, 0, len);</span><br><span class="line">        }</span><br><span class="line">        bos.close();</span><br><span class="line">        return bos.toByteArray();</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-
+        <p>&#x9879;&#x76EE;&#x4E2D;&#x4F1A;&#x9047;&#x5230;&#x60F3;&#x8981;&#x628A;apk&#xFF0C;&#x7B2C;&#x4E09;&#x65B9;jar&#x5305;&#xFF0C;&#x6216;&#x8005;sdk&#x7B49;&#x7684;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#xFF0C;&#x6BD4;&#x5982;&#x653E;&#x5F00;&#x65E5;&#x5FD7;&#x6253;&#x5370;&#x5F00;&#x5173;&#x7B49;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x5C31;&#x9700;&#x8981;&#x628A;jar&#x5305;&#x4E2D;&#x7684;class&#x8FDB;&#x884C;&#x53CD;&#x7F16;&#x8BD1;&#x51FA;&#x6765;&#xFF0C;&#x7136;&#x540E;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#x4E4B;&#x540E;&#x91CD;&#x65B0;&#x6253;&#x5305;&#x3002;</p>
+<h2 id="&#x53CD;&#x7F16;&#x8BD1;&#x51FA;class&#x6587;&#x4EF6;"><a href="#&#x53CD;&#x7F16;&#x8BD1;&#x51FA;class&#x6587;&#x4EF6;" class="headerlink" title="&#x53CD;&#x7F16;&#x8BD1;&#x51FA;class&#x6587;&#x4EF6;"></a>&#x53CD;&#x7F16;&#x8BD1;&#x51FA;class&#x6587;&#x4EF6;</h2><p>apk&#x7684;&#x8BDD;&#x7528;dex2jar&#x8FDB;&#x884C;&#x5BF9;dex&#x9006;&#x5411;&#x6210;jar&#x5305;&#x3002;<br>jar&#x5305;&#x7684;&#x8BDD;&#x76F4;&#x63A5;&#x89E3;&#x538B;&#x51FA;class&#x6587;&#x4EF6;&#x3002;<br>&#x4FEE;&#x6539;jar&#x91CC;&#x9762;&#x7684;class&#x6587;&#x4EF6;&#x4E00;&#x822C;&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x3002;</p>
+<h2 id="&#x6B63;&#x5411;"><a href="#&#x6B63;&#x5411;" class="headerlink" title="&#x6B63;&#x5411;"></a>&#x6B63;&#x5411;</h2><p>copy&#x51FA;&#x8981;&#x4FEE;&#x6539;&#x7684;class&#xFF0C;&#x5728;&#x522B;&#x7684;&#x9879;&#x76EE;&#x65B0;&#x5EFA;&#x6587;&#x4EF6;&#xFF0C;&#x4EE3;&#x7801;&#x540C;&#x8981;&#x4FEE;&#x6539;&#x7684;class&#xFF0C;&#x5BFC;&#x5165;&#x9700;&#x8981;&#x7684;&#x4F9D;&#x8D56;&#x7C7B;&#x8D44;&#x6E90;&#x7B49;&#xFF0C;&#x6B63;&#x5411;&#x5BFC;&#x51FA;jar&#x5305;&#xFF0C;&#x7136;&#x540E;&#x89E3;&#x538B;copy&#x51FA;class&#x6587;&#x4EF6;&#xFF0C;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x4E3B;&#x8981;&#x662F;&#x4FEE;&#x6539;&#x5C11;&#x91CF;&#x4EE3;&#x7801;&#xFF0C;&#x76F8;&#x5BF9;&#x72EC;&#x7ACB;&#x4F9D;&#x8D56;&#x8F83;&#x5C11;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x76F8;&#x5BF9;&#x5BB9;&#x6613;&#xFF0C;&#x4E0D;&#x8FC7;&#x4E24;&#x6B21;&#x6253;jar&#x5305;&#x7684;jdk&#x7248;&#x672C;&#x6709;&#x8981;&#x6C42;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x5BFC;&#x81F4;&#x4E0D;&#x517C;&#x5BB9;&#x3002;</p>
+<p>javac&#x547D;&#x4EE4;,&#x7F16;&#x8BD1;&#x4E3A;class&#x5B57;&#x8282;&#x7801;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javac hello.java</span><br></pre></td></tr></table></figure>
+<h2 id="&#x9006;&#x5411;"><a href="#&#x9006;&#x5411;" class="headerlink" title="&#x9006;&#x5411;"></a>&#x9006;&#x5411;</h2><p>jclasslib  &#x8FD9;&#x4E2A;&#x5DE5;&#x5177;&#x8C8C;&#x4F3C;&#x662F;&#x53EF;&#x4EE5;&#x641E;&#x7684;</p>
+<h2 id="&#x8FD8;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x53CD;&#x5C04;&#x8FDB;&#x884C;&#x4FEE;&#x6539;"><a href="#&#x8FD8;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x53CD;&#x5C04;&#x8FDB;&#x884C;&#x4FEE;&#x6539;" class="headerlink" title="&#x8FD8;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x53CD;&#x5C04;&#x8FDB;&#x884C;&#x4FEE;&#x6539;"></a>&#x8FD8;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x53CD;&#x5C04;&#x8FDB;&#x884C;&#x4FEE;&#x6539;</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/12/Android 文件上传下载/" data-id="cj4e31wz1000ijws68gaob6yn" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/01/12/Android jar包class修改重新打包/" data-id="cj4e356dq0009qks60utfo7ww" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android反编译/">Android反编译</a></li></ul>
 
     </footer>
   </div>
@@ -808,7 +816,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/12/Android 查看签名/" data-id="cj4e31wz4000njws64zl1h6qx" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/01/12/Android 查看签名/" data-id="cj4e356e8000lqks66q6i382c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -858,7 +866,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/12/情商低的男生在感情中有哪些表现/" data-id="cj4e31x2h0040jws62yh4cn77" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/01/12/情商低的男生在感情中有哪些表现/" data-id="cj4e356id0041qks6oajljet2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/感触一波/">感触一波</a></li></ul>
@@ -948,7 +956,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/12/互联网时代，我眼中的架构变迁/" data-id="cj4e31x25003njws6dodc2g2q" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/01/12/互联网时代，我眼中的架构变迁/" data-id="cj4e356i1003oqks64y4xhadw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/互联网/">互联网</a></li></ul>
@@ -974,7 +982,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Labels</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-UI/">Android UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android反编译/">Android反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/idea/">idea</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/互联网/">互联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兴趣/">兴趣</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大牛博客/">大牛博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习，师傅/">学习，师傅</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信-Js/">微信 Js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情/">心情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感触一波/">感触一波</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/简历/">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li></ul>
     </div>
@@ -993,7 +1001,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li></ul>
     </div>
@@ -1003,7 +1011,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
