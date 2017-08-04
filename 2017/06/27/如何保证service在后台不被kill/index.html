@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>如何保证service在后台不被kill | 田鹏飞的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;#x4E00;&amp;#x3001;onStartCommand&amp;#x65B9;&amp;#x6CD5;&amp;#xFF0C;&amp;#x8FD4;&amp;#x56DE;START_STICKY
+START_STICKY&amp;#x5728;&amp;#x8FD0;&amp;#x884C;onStartCommand&amp;#x540E;service&amp;#x8FDB;&amp;#x7A0B;&amp;#x88AB;kill&amp;#x540E;&amp;#xFF0C;&amp;#x90A3;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何保证service在后台不被kill">
+<meta property="og:url" content="http://yoursite.com/2017/06/27/如何保证service在后台不被kill/index.html">
+<meta property="og:site_name" content="田鹏飞的个人博客">
+<meta property="og:description" content="&amp;#x4E00;&amp;#x3001;onStartCommand&amp;#x65B9;&amp;#x6CD5;&amp;#xFF0C;&amp;#x8FD4;&amp;#x56DE;START_STICKY
+START_STICKY&amp;#x5728;&amp;#x8FD0;&amp;#x884C;onStartCommand&amp;#x540E;service&amp;#x8FDB;&amp;#x7A0B;&amp;#x88AB;kill&amp;#x540E;&amp;#xFF0C;&amp;#x90A3;">
+<meta property="og:updated_time" content="2017-06-27T08:13:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何保证service在后台不被kill">
+<meta name="twitter:description" content="&amp;#x4E00;&amp;#x3001;onStartCommand&amp;#x65B9;&amp;#x6CD5;&amp;#xFF0C;&amp;#x8FD4;&amp;#x56DE;START_STICKY
+START_STICKY&amp;#x5728;&amp;#x8FD0;&amp;#x884C;onStartCommand&amp;#x540E;service&amp;#x8FDB;&amp;#x7A0B;&amp;#x88AB;kill&amp;#x540E;&amp;#xFF0C;&amp;#x90A3;">
+  
+    <link rel="alternate" href="/atom.xml" title="田鹏飞的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">田鹏飞的个人博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">你若盛开，蝴蝶自来</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-如何保证service在后台不被kill" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/27/如何保证service在后台不被kill/" class="article-date">
+  <time datetime="2017-06-27T07:17:05.000Z" itemprop="datePublished">2017-06-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      如何保证service在后台不被kill
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&#x4E00;&#x3001;onStartCommand&#x65B9;&#x6CD5;&#xFF0C;&#x8FD4;&#x56DE;START_STICKY</p>
+<p>START_STICKY<br>&#x5728;&#x8FD0;&#x884C;onStartCommand&#x540E;service&#x8FDB;&#x7A0B;&#x88AB;kill&#x540E;&#xFF0C;&#x90A3;&#x5C06;&#x4FDD;&#x7559;&#x5728;&#x5F00;&#x59CB;&#x72B6;&#x6001;&#xFF0C;&#x4F46;&#x662F;&#x4E0D;&#x4FDD;&#x7559;&#x90A3;&#x4E9B;&#x4F20;&#x5165;&#x7684;intent&#x3002;&#x4E0D;&#x4E45;&#x540E;service&#x5C31;&#x4F1A;&#x518D;&#x6B21;&#x5C1D;&#x8BD5;&#x91CD;&#x65B0;&#x521B;&#x5EFA;&#xFF0C;&#x56E0;&#x4E3A;&#x4FDD;&#x7559;&#x5728;&#x5F00;&#x59CB;&#x72B6;&#x6001;&#xFF0C;&#x5728;&#x521B;&#x5EFA; service&#x540E;&#x5C06;&#x4FDD;&#x8BC1;&#x8C03;&#x7528;onstartCommand&#x3002;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x4F20;&#x9012;&#x4EFB;&#x4F55;&#x5F00;&#x59CB;&#x547D;&#x4EE4;&#x7ED9;service&#xFF0C;&#x90A3;&#x5C06;&#x83B7;&#x53D6;&#x5230;null&#x7684;intent&#x3002;<br>START_NOT_STICKY<br>&#x5728;&#x8FD0;&#x884C;onStartCommand&#x540E;service&#x8FDB;&#x7A0B;&#x88AB;kill&#x540E;&#xFF0C;&#x5E76;&#x4E14;&#x6CA1;&#x6709;&#x65B0;&#x7684;intent&#x4F20;&#x9012;&#x7ED9;&#x5B83;&#x3002;Service&#x5C06;&#x79FB;&#x51FA;&#x5F00;&#x59CB;&#x72B6;&#x6001;&#xFF0C;&#x5E76;&#x4E14;&#x76F4;&#x5230;&#x65B0;&#x7684;&#x660E;&#x663E;&#x7684;&#x65B9;&#x6CD5;&#xFF08;startService&#xFF09;&#x8C03;&#x7528;&#x624D;&#x91CD;&#x65B0;&#x521B;&#x5EFA;&#x3002;&#x56E0;&#x4E3A;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x4F20;&#x9012;&#x4EFB;&#x4F55;&#x672A;&#x51B3;&#x5B9A;&#x7684;intent&#x90A3;&#x4E48;service&#x662F;&#x4E0D;&#x4F1A;&#x542F;&#x52A8;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x671F;&#x95F4;onstartCommand&#x4E0D;&#x4F1A;&#x63A5;&#x6536;&#x5230;&#x4EFB;&#x4F55;null&#x7684;intent&#x3002;<br>START_REDELIVER_INTENT<br>&#x5728;&#x8FD0;&#x884C;onStartCommand&#x540E;service&#x8FDB;&#x7A0B;&#x88AB;kill&#x540E;&#xFF0C;&#x7CFB;&#x7EDF;&#x5C06;&#x4F1A;&#x518D;&#x6B21;&#x542F;&#x52A8;service&#xFF0C;&#x5E76;&#x4F20;&#x5165;&#x6700;&#x540E;&#x4E00;&#x4E2A;intent&#x7ED9;onstartCommand&#x3002;&#x76F4;&#x5230;&#x8C03;&#x7528;stopSelf(int)&#x624D;&#x505C;&#x6B62;&#x4F20;&#x9012;intent&#x3002;&#x5982;&#x679C;&#x5728;&#x88AB;kill&#x540E;&#x8FD8;&#x6709;&#x672A;&#x5904;&#x7406;&#x597D;&#x7684;intent&#xFF0C;&#x90A3;&#x88AB;kill&#x540E;&#x670D;&#x52A1;&#x8FD8;&#x662F;&#x4F1A;&#x81EA;&#x52A8;&#x542F;&#x52A8;&#x3002;&#x56E0;&#x6B64;onstartCommand&#x4E0D;&#x4F1A;&#x63A5;&#x6536;&#x5230;&#x4EFB;&#x4F55;null&#x7684;intent&#x3002;<br>&#x4E8C;&#x3001;&#x63D0;&#x5347;service&#x4F18;&#x5148;&#x7EA7;</p>
+<p>&#x5728;AndroidManifest.xml&#x6587;&#x4EF6;&#x4E2D;&#x5BF9;&#x4E8E;intent-filter&#x53EF;&#x4EE5;&#x901A;&#x8FC7;android:priority = &#x201C;1000&#x201D;&#x8FD9;&#x4E2A;&#x5C5E;&#x6027;&#x8BBE;&#x7F6E;&#x6700;&#x9AD8;&#x4F18;&#x5148;&#x7EA7;&#xFF0C;1000&#x662F;&#x6700;&#x9AD8;&#x503C;&#xFF0C;&#x5982;&#x679C;&#x6570;&#x5B57;&#x8D8A;&#x5C0F;&#x5219;&#x4F18;&#x5148;&#x7EA7;&#x8D8A;&#x4F4E;&#xFF0C;&#x540C;&#x65F6;&#x9002;&#x7528;&#x4E8E;&#x5E7F;&#x64AD;&#x3002;</p>
+<p>&#x4E09;&#x3001;&#x63D0;&#x5347;service&#x8FDB;&#x7A0B;&#x4F18;&#x5148;&#x7EA7;</p>
+<p>Android&#x4E2D;&#x7684;&#x8FDB;&#x7A0B;&#x662F;&#x6258;&#x7BA1;&#x7684;&#xFF0C;&#x5F53;&#x7CFB;&#x7EDF;&#x8FDB;&#x7A0B;&#x7A7A;&#x95F4;&#x7D27;&#x5F20;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F1A;&#x4F9D;&#x7167;&#x4F18;&#x5148;&#x7EA7;&#x81EA;&#x52A8;&#x8FDB;&#x884C;&#x8FDB;&#x7A0B;&#x7684;&#x56DE;&#x6536;&#x3002;Android&#x5C06;&#x8FDB;&#x7A0B;&#x5206;&#x4E3A;6&#x4E2A;&#x7B49;&#x7EA7;,&#x5B83;&#x4EEC;&#x6309;&#x4F18;&#x5148;&#x7EA7;&#x987A;&#x5E8F;&#x7531;&#x9AD8;&#x5230;&#x4F4E;&#x4F9D;&#x6B21;&#x662F;:</p>
+<p>&#x524D;&#x53F0;&#x8FDB;&#x7A0B;( FOREGROUND_APP)<br>&#x53EF;&#x89C6;&#x8FDB;&#x7A0B;(VISIBLE_APP )<br>&#x6B21;&#x8981;&#x670D;&#x52A1;&#x8FDB;&#x7A0B;(SECONDARY_SERVER )<br>&#x540E;&#x53F0;&#x8FDB;&#x7A0B; (HIDDEN_APP)<br>&#x5185;&#x5BB9;&#x4F9B;&#x5E94;&#x8282;&#x70B9;(CONTENT_PROVIDER)<br>&#x7A7A;&#x8FDB;&#x7A0B;(EMPTY_APP)<br>&#x5F53;service&#x8FD0;&#x884C;&#x5728;&#x4F4E;&#x5185;&#x5B58;&#x7684;&#x73AF;&#x5883;&#x65F6;&#xFF0C;&#x5C06;&#x4F1A;kill&#x6389;&#x4E00;&#x4E9B;&#x5B58;&#x5728;&#x7684;&#x8FDB;&#x7A0B;&#x3002;&#x56E0;&#x6B64;&#x8FDB;&#x7A0B;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#x5C06;&#x4F1A;&#x5F88;&#x91CD;&#x8981;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;startForeground &#x5C06;service&#x653E;&#x5230;&#x524D;&#x53F0;&#x72B6;&#x6001;&#x3002;&#x8FD9;&#x6837;&#x5728;&#x4F4E;&#x5185;&#x5B58;&#x65F6;&#x88AB;kill&#x7684;&#x51E0;&#x7387;&#x4F1A;&#x4F4E;&#x4E00;&#x4E9B;&#x3002;</p>
+<p>&#x56DB;&#x3001;onDestroy&#x65B9;&#x6CD5;&#x91CC;&#x91CD;&#x542F;service</p>
+<p>service +broadcast &#x65B9;&#x5F0F;&#xFF0C;&#x5C31;&#x662F;&#x5F53;service&#x8D70;ondestory&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53D1;&#x9001;&#x4E00;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x5E7F;&#x64AD;&#xFF0C;&#x5F53;&#x6536;&#x5230;&#x5E7F;&#x64AD;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x91CD;&#x65B0;&#x542F;&#x52A8;service&#xFF1B;</p>
+<p>&#x4E94;&#x3001;Application&#x52A0;&#x4E0A;Persistent&#x5C5E;&#x6027;</p>
+<p>&#x516D;&#x3001;&#x76D1;&#x542C;&#x7CFB;&#x7EDF;&#x5E7F;&#x64AD;&#x5224;&#x65AD;Service&#x72B6;&#x6001;</p>
+<p>&#x901A;&#x8FC7;&#x7CFB;&#x7EDF;&#x7684;&#x4E00;&#x4E9B;&#x5E7F;&#x64AD;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;&#x624B;&#x673A;&#x91CD;&#x542F;&#x3001;&#x754C;&#x9762;&#x5524;&#x9192;&#x3001;&#x5E94;&#x7528;&#x72B6;&#x6001;&#x6539;&#x53D8;&#x7B49;&#x7B49;&#x76D1;&#x542C;&#x5E76;&#x6355;&#x83B7;&#x5230;&#xFF0C;&#x7136;&#x540E;&#x5224;&#x65AD;&#x6211;&#x4EEC;&#x7684;Service&#x662F;&#x5426;&#x8FD8;&#x5B58;&#x6D3B;&#xFF0C;&#x522B;&#x5FD8;&#x8BB0;&#x52A0;&#x6743;&#x9650;&#x554A;&#x3002;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/27/如何保证service在后台不被kill/" data-id="cj5xkfju2004oxuuoaymg11gb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/06/27/Android API版本区别/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android API版本区别
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/27/代理和反向代理/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">代理和反向代理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-UI/">Android UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android反编译/">Android反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Http请求流程/">Http请求流程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/idea/">idea</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/互联网/">互联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/产品/">产品</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理/">代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兴趣/">兴趣</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链和比特币/">区块链和比特币</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大牛博客/">大牛博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习，师傅/">学习，师傅</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信-Js/">微信 Js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情/">心情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感触一波/">感触一波</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/简历/">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自动化测试/">自动化测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/鸡汤/">鸡汤</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑客攻防/">黑客攻防</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-UI/" style="font-size: 10px;">Android UI</a> <a href="/tags/Android反编译/" style="font-size: 10px;">Android反编译</a> <a href="/tags/Http请求流程/" style="font-size: 10px;">Http请求流程</a> <a href="/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/JavaWeb/" style="font-size: 17.5px;">JavaWeb</a> <a href="/tags/Jenkins/" style="font-size: 12.5px;">Jenkins</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Unity3D/" style="font-size: 15px;">Unity3D</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/互联网/" style="font-size: 10px;">互联网</a> <a href="/tags/产品/" style="font-size: 15px;">产品</a> <a href="/tags/代理/" style="font-size: 10px;">代理</a> <a href="/tags/兴趣/" style="font-size: 10px;">兴趣</a> <a href="/tags/区块链和比特币/" style="font-size: 10px;">区块链和比特币</a> <a href="/tags/博客/" style="font-size: 12.5px;">博客</a> <a href="/tags/大牛博客/" style="font-size: 10px;">大牛博客</a> <a href="/tags/学习，师傅/" style="font-size: 10px;">学习，师傅</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/微信-Js/" style="font-size: 10px;">微信 Js</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/感触一波/" style="font-size: 10px;">感触一波</a> <a href="/tags/简历/" style="font-size: 10px;">简历</a> <a href="/tags/自动化测试/" style="font-size: 10px;">自动化测试</a> <a href="/tags/面试/" style="font-size: 12.5px;">面试</a> <a href="/tags/鸡汤/" style="font-size: 10px;">鸡汤</a> <a href="/tags/黑客攻防/" style="font-size: 12.5px;">黑客攻防</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Arkiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Siste innlegg</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/04/《风味APP》产品策划方案/">《风味APP》产品策划方案</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/04/《蜗牛APP》产品策划方案/">《蜗牛APP》产品策划方案</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/04/《泼猴APP》产品策划方案/">《泼猴APP》产品策划方案</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/04/《风华APP》产品策划方案/">《风华APP》产品策划方案</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/27/Android 面试点/">Android 面试知识点</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 huanxingxyz<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
