@@ -57,7 +57,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -67,6 +67,75 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-Android 提权root相关" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/14/Android 提权root相关/" class="article-date">
+  <time datetime="2016-05-14T14:14:00.000Z" itemprop="datePublished">2016-05-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/14/Android 提权root相关/">Android 提权root相关</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Github"><a href="#Github" class="headerlink" title=" Github"></a> Github</h2><p>&#x516C;&#x53F8;&#x8981;&#x542F;&#x52A8;&#x5236;&#x4F5C;&#x81EA;&#x5DF1;&#x7684;&#x652F;&#x4ED8;sdk&#x76F8;&#x5173;&#x9879;&#x76EE;&#xFF0C;&#x6240;&#x4EE5;&#x8FD1;&#x671F;&#x5728;&#x8C03;&#x7814;android&#x63D0;&#x6743;root&#x65B9;&#x9762;&#x7684;&#x8D44;&#x6599;&#xFF0C;&#x5927;&#x6982;&#x603B;&#x7ED3;&#x5982;&#x4E0B;&#x3002;</p>
+<h3 id="&#x4F55;&#x8C13;root"><a href="#&#x4F55;&#x8C13;root" class="headerlink" title="&#x4F55;&#x8C13;root"></a>&#x4F55;&#x8C13;root</h3><p>android&#x81EA;&#x5E26;&#x6709;&#x5F88;&#x591A;&#x5B89;&#x5168;&#x673A;&#x5236;&#xFF0C;&#x6BD4;&#x5982;&#x6743;&#x9650;&#x673A;&#x5236;&#xFF0C;&#x8FDB;&#x7A0B;&#x9694;&#x79BB;&#xFF08;&#x6C99;&#x76D2;&#xFF09;&#x673A;&#x5236;,&#x60F3;&#x7ED5;&#x8FC7;&#x8FD9;&#x4E9B;&#x673A;&#x5236;&#x9700;&#x8981;&#x505A;&#x5927;&#x91CF;&#x7684;&#x5DE5;&#x4F5C;&#x3002;<br>&#x5E38;&#x89C1;&#x7684;root&#x5DE5;&#x5177;&#x5305;&#x542B;&#xFF1A;&#x6F0F;&#x6D1E;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#xFF0C;su&#x6587;&#x4EF6;&#xFF0C;superuser.apk&#x6587;&#x4EF6;&#x3002;su&#x6587;&#x4EF6;&#x662F;&#x4E00;&#x4E2A;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#xFF0C;&#x53EF;&#x4EE5;&#x54CD;&#x5E94;&#x7528;&#x6237;&#x53D1;&#x51FA;&#x7684;&#x201D;su&#x201D;&#x547D;&#x4EE4;&#x3002;<br>linux &#x5207;&#x6362;&#x4E3A;root&#x9700;&#x8981;&#x8F93;&#x5165;su&#x547D;&#x4EE4;&#xFF0C;su&#x6587;&#x4EF6;&#x5728;/system/bin&#x76EE;&#x5F55;&#x4E0B;&#xFF0C;android&#x7CFB;&#x7EDF;&#x4E0B;&#x6CA1;&#x6709;su&#x6587;&#x4EF6;&#xFF0C;&#x56E0;&#x6B64;&#x53EA;&#x8981;&#x5C06;su&#x6587;&#x4EF6;&#x653E;&#x5230;&#x8BE5;&#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x5C31;&#x80FD;&#x5207;&#x6362;&#x5230;root&#x4E86;&#x3002;<br>system&#x7CFB;&#x7EDF;&#x76EE;&#x5F55;&#x662F;&#x5199;&#x4FDD;&#x62A4;&#x7684;&#xFF0C;&#x666E;&#x901A;&#x7528;&#x6237;&#x6CA1;&#x6709;&#x5199;&#x6743;&#x9650;&#xFF0C;root&#x6F0F;&#x6D1E;&#x5728;&#x6267;&#x884C;&#x540E;&#x53EF;&#x4EE5;&#x4F7F;&#x8FDB;&#x7A0B;&#x83B7;&#x53D6;&#x4E34;&#x65F6;root&#x6743;&#x9650;&#xFF0C;&#x8FD9;&#x662F;&#x518D;&#x901A;&#x8FC7;remount&#x547D;&#x4EE4;&#x91CD;&#x65B0;&#x6302;&#x8F7D;&#x7CFB;&#x7EDF;&#x4F7F;/system&#x53D8;&#x4E3A;&#x53EF;&#x5199;&#xFF0C;&#x4E4B;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6587;&#x4EF6;&#x62F7;&#x8D1D;&#x547D;&#x4EE4;&#x5C06;su&#x6587;&#x4EF6;&#x653E;&#x5728;system/bin&#x548C;system/xbin &#x76EE;&#x5F55;&#xFF0C;su&#x6587;&#x4EF6;&#x62F7;&#x8D1D;&#x6210;&#x529F;&#x540E;&#xFF0C;&#x5373;&#x4F7F;&#x91CD;&#x542F;&#x624B;&#x673A;&#xFF0C;&#x4EFB;&#x4F55;&#x8FDB;&#x7A0B;&#x4ECD;&#x7136;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8C03;&#x7528;&#x201D;su&#x201D;&#x547D;&#x4EE4;&#x6765;&#x8BF7;&#x6C42;&#xFF0C;&#x800C;&#x8BE5;su&#x6587;&#x4EF6;&#x662F;&#x4E00;&#x4E2A;&#x7279;&#x522B;&#x5B9A;&#x5236;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x5FC5;&#x987B;&#x901A;&#x8FC7;superuser.apk&#x6765;&#x6388;&#x6743;app&#x6743;&#x9650;&#xFF0C;superuser.apk&#x73B0;&#x5728;&#x7531; <strong><em>chainsDD&#x56E2;&#x961F;</em></strong> &#x5347;&#x7EA7;&#x7EF4;&#x62A4;&#x3002;</p>
+<p>&#x603B;&#x7ED3;&#x8D77;&#x6765;&#xFF0C;&#x73B0;&#x5728;&#x4E3B;&#x6D41;&#x7684;root&#x5DE5;&#x5177;&#x7684;&#x505A;&#x6CD5;&#x90FD;&#x662F;&#x5C06;su&#x6587;&#x4EF6;&#x590D;&#x5236;&#x5230;Android&#x7CFB;&#x7EDF;/system/xbin&#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x5C06;&#x6240;&#x6709;&#x8005;&#x66F4;&#x6362;&#x6210;root&#x7528;&#x6237;&#xFF0C;&#x5E76;&#x7528;chmod&#x547D;&#x4EE4;&#x8BBE;&#x7F6E;&#x4E3A;&#x53EF;&#x6267;&#x884C;&#x6743;&#x9650;&#x548C;setuid(s)&#x6743;&#x9650;&#x3002;</p>
+<h3 id="&#x4EE3;&#x7801;&#x5907;&#x4EFD;"><a href="#&#x4EE3;&#x7801;&#x5907;&#x4EFD;" class="headerlink" title="&#x4EE3;&#x7801;&#x5907;&#x4EFD;"></a>&#x4EE3;&#x7801;&#x5907;&#x4EFD;</h3><p>z4root&#x8001;&#x7248;&#x672C;&#x6E90;&#x7801;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/huanxingxyz/z4root/tree/master/z4root-read-only</span><br></pre></td></tr></table></figure>
+<h3 id="&#x5229;&#x7528;&#x6F0F;&#x6D1E;"><a href="#&#x5229;&#x7528;&#x6F0F;&#x6D1E;" class="headerlink" title="&#x5229;&#x7528;&#x6F0F;&#x6D1E;"></a>&#x5229;&#x7528;&#x6F0F;&#x6D1E;</h3><p>android&#x7248;&#x672C;&#x548C;&#x673A;&#x578B;&#x788E;&#x7247;&#x5316;&#x4E25;&#x91CD;&#xFF0C;&#x73B0;&#x5728;&#x4E3B;&#x6D41;&#x7684;root&#x8F6F;&#x4EF6;&#x5927;&#x90FD;&#x662F;&#x5229;&#x7528;linux&#x5185;&#x6838;&#x5C42;&#x6F0F;&#x6D1E;&#xFF0C;&#x6316;&#x6D1E;&#x771F;&#x5FC3;&#x662F;&#x4E2A;&#x6280;&#x672F;&#x6D3B;&#x3002;</p>
+<h3 id="psneuter"><a href="#psneuter" class="headerlink" title="psneuter"></a>psneuter</h3><p>&#x4F5C;&#x8005;&#x662F;scotty2&#xFF0C;root</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/tmzt/g2root-kmod/blob/master/scotty2/psneuter/psneuter.c</span><br></pre></td></tr></table></figure>
+<h3 id="Exploid"><a href="#Exploid" class="headerlink" title="Exploid"></a>Exploid</h3><p>&#x4F5C;&#x8005;&#x662F;Stealth&#xFF0C;root</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://c-skills.blogspot.com/2010/07/android-trickery.html</span><br></pre></td></tr></table></figure>
+<h3 id="GingerBreak"><a href="#GingerBreak" class="headerlink" title="GingerBreak"></a>GingerBreak</h3><p>&#x4F5C;&#x8005;&#x662F;Stealth&#xFF0C;root</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://c-skills.blogspot.com/2011/04/yummy-yummy-gingerbreak.html</span><br></pre></td></tr></table></figure>
+<h3 id="KillingInTheNameOf"><a href="#KillingInTheNameOf" class="headerlink" title="KillingInTheNameOf"></a>KillingInTheNameOf</h3><p>&#x4F5C;&#x8005;&#x662F;Stealth&#xFF0C;root</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://c-skills.blogspot.com/2011/01/adb-trickery-again.html</span><br></pre></td></tr></table></figure>
+<h3 id="Zimperlich"><a href="#Zimperlich" class="headerlink" title="Zimperlich"></a>Zimperlich</h3><p>&#x4F5C;&#x8005;&#x662F;Stealth&#xFF0C;root</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://c-skills.blogspot.com/2011/02/zimperlich-sources.html</span><br></pre></td></tr></table></figure>
+<h3 id="Zergrush"><a href="#Zergrush" class="headerlink" title="Zergrush"></a>Zergrush</h3><p>Revolutionary,root</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/revolutionary/zergRush/blob/master/zergRush.c</span><br></pre></td></tr></table></figure>
+<h3 id="Tacoroot"><a href="#Tacoroot" class="headerlink" title="Tacoroot"></a>Tacoroot</h3><p>jcase,root</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/CunningLogic/TacoRoot</span><br></pre></td></tr></table></figure>
+<h3 id="Nachoroot"><a href="#Nachoroot" class="headerlink" title="Nachoroot"></a>Nachoroot</h3><p>jcase,root</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/CunningLogic/NachoRoot</span><br></pre></td></tr></table></figure>
+<h3 id="Burritoroot"><a href="#Burritoroot" class="headerlink" title="Burritoroot"></a>Burritoroot</h3><p>jcase,root</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/CunningLogic/BurritoRoot</span><br></pre></td></tr></table></figure>
+<h3 id="Gorditaroot"><a href="#Gorditaroot" class="headerlink" title="Gorditaroot"></a>Gorditaroot</h3><p>jcase,install custom recovery or root</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/CunningLogic/GorditaRoot</span><br></pre></td></tr></table></figure>
+<h3 id="Enchilada"><a href="#Enchilada" class="headerlink" title="Enchilada"></a>Enchilada</h3><p>jcase,root</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/CunningLogic/Enchilada</span><br></pre></td></tr></table></figure>
+<p>&#x592A;&#x591A;&#x4E86;&#xFF0C;&#x5199;&#x4E0D;&#x8FC7;&#x6765;&#x4E86;</p>
+<p>Vulnerability/Exploit name<br>author    effect (root, unlock,&#x2026;)    link<br>psneuter    </p>
+<p>scotty2    root    <a href="https://github.com/tmzt/g2root-kmod/blob/master/scotty2/psneuter/psneuter.c" target="_blank" rel="external">https://github.com/tmzt/g2root-kmod/blob/master/scotty2/psneuter/psneuter.c</a><br>Exploid    Stealth    root    <a href="http://c-skills.blogspot.com/2010/07/android-trickery.html" target="_blank" rel="external">http://c-skills.blogspot.com/2010/07/android-trickery.html</a><br>GingerBreak    Stealth    root    <a href="http://c-skills.blogspot.com/2011/04/yummy-yummy-gingerbreak.html" target="_blank" rel="external">http://c-skills.blogspot.com/2011/04/yummy-yummy-gingerbreak.html</a><br>RageAgainstTheCage    Stealth    root<br>KillingInTheNameOf    Stealth    root    <a href="http://c-skills.blogspot.com/2011/01/adb-trickery-again.html" target="_blank" rel="external">http://c-skills.blogspot.com/2011/01/adb-trickery-again.html</a><br>Zimperlich    Stealth        <a href="http://c-skills.blogspot.com/2011/02/zimperlich-sources.html" target="_blank" rel="external">http://c-skills.blogspot.com/2011/02/zimperlich-sources.html</a><br>Zergrush    Revolutionary    root    <a href="https://github.com/revolutionary/zergRush/blob/master/zergRush.c" target="_blank" rel="external">https://github.com/revolutionary/zergRush/blob/master/zergRush.c</a><br>Tacoroot    jcase    root    <a href="https://github.com/CunningLogic/TacoRoot" target="_blank" rel="external">https://github.com/CunningLogic/TacoRoot</a><br>Nachoroot    jcase    root    <a href="https://github.com/CunningLogic/NachoRoot" target="_blank" rel="external">https://github.com/CunningLogic/NachoRoot</a><br>Burritoroot    jcase    root    <a href="https://github.com/CunningLogic/BurritoRoot" target="_blank" rel="external">https://github.com/CunningLogic/BurritoRoot</a><br>Gorditaroot    jcase    install custom recovery or root    <a href="https://github.com/CunningLogic/GorditaRoot" target="_blank" rel="external">https://github.com/CunningLogic/GorditaRoot</a><br>Enchilada    jcase    root    <a href="https://github.com/CunningLogic/Enchilada" target="_blank" rel="external">https://github.com/CunningLogic/Enchilada</a><br>ZTERoot (Avail)    jcase    root    <a href="https://github.com/CunningLogic/ZTERoot" target="_blank" rel="external">https://github.com/CunningLogic/ZTERoot</a><br>ZTERoot (Merrit)    jcase    root    <a href="http://forum.xda-developers.com/showthread.php?t=1714299" target="_blank" rel="external">http://forum.xda-developers.com/showthread.php?t=1714299</a><br>LG ICS Root    jcase    root    <a href="http://forum.xda-developers.com/showthread.php?t=1912277" target="_blank" rel="external">http://forum.xda-developers.com/showthread.php?t=1912277</a><br>DefyXT Root    jcase    root    <a href="http://forum.xda-developers.com/showthread.php?t=2031562" target="_blank" rel="external">http://forum.xda-developers.com/showthread.php?t=2031562</a><br>Cyanide    jcase    root    <a href="https://github.com/CunningLogic/Cyanide" target="_blank" rel="external">https://github.com/CunningLogic/Cyanide</a><br>LG Optimus Logic    jcase    root<br>LG Optmus Elite    jcase    root    <a href="http://www.androidpolice.com/2012/06/12/exclusive-how-to-root-the-virgin-mobile-lg-optimus-elite/" target="_blank" rel="external">http://www.androidpolice.com/2012/06/12/exclusive-how-to-root-the-virgin-mobile-lg-optimus-elite/</a><br>Pantech    jcase    root    unpublished<br>HTC DNA    jcase    enable unlocking    <a href="http://forum.xda-developers.com/showthread.php?t=2011611" target="_blank" rel="external">http://forum.xda-developers.com/showthread.php?t=2011611</a><br>HTC One X AT&amp;T    jcase    root    <a href="http://www.androidpolice.com/2012/05/25/exclusive-how-to-root-the-att-htc-one-x-on-version-1-85-or-earlier/" target="_blank" rel="external">http://www.androidpolice.com/2012/05/25/exclusive-how-to-root-the-att-htc-one-x-on-version-1-85-or-earlier/</a><br>Hisense Pulse    cj_000    root<br>Generic LG    ?    root    unpublished<br>LG ADB Backdoor    Giantpune    root<br>Poot    Giantpune    root<br>Lit    Giantpune    root<br>ZTE Backdoor    &#x201C;Anonymous&#x201D;    root<br>HTC Eris 2.1 Root    wag3slav3    install custom recovery    ? XDA Forums<br>Droid 3 Root    bliss    root    <a href="http://vulnfactory.org/blog/2011/08/25/rooting-the-droid-3/" target="_blank" rel="external">http://vulnfactory.org/blog/2011/08/25/rooting-the-droid-3/</a><br>Motofail    bliss    root    <a href="http://vulnfactory.org/public/motofail_windows.zip" target="_blank" rel="external">http://vulnfactory.org/public/motofail_windows.zip</a><br>XYZ    bliss    root    <a href="http://vulnfactory.org/public/xyz_windows.zip" target="_blank" rel="external">http://vulnfactory.org/public/xyz_windows.zip</a><br>LG Spectrum Root    bliss    root    <a href="http://vulnfactory.org/public/spectrum_root_windows.zip" target="_blank" rel="external">http://vulnfactory.org/public/spectrum_root_windows.zip</a><br>Megatron    bliss    root    <a href="http://vulnfactory.org/blog/2012/02/26/rooting-the-lg-thrill-optimus-3d/" target="_blank" rel="external">http://vulnfactory.org/blog/2012/02/26/rooting-the-lg-thrill-optimus-3d/</a><br>LG Esteem Root    bliss    root    <a href="http://vulnfactory.org/public/LG_Esteem_Root_v2_Windows.zip" target="_blank" rel="external">http://vulnfactory.org/public/LG_Esteem_Root_v2_Windows.zip</a><br>Razr&#x2019;s Edge    bliss    root    <a href="http://vulnfactory.org/public/razrs_edge_windows.zip" target="_blank" rel="external">http://vulnfactory.org/public/razrs_edge_windows.zip</a><br>Razr Blade    bliss    root    <a href="http://vulnfactory.org/public/razr_blade.zip" target="_blank" rel="external">http://vulnfactory.org/public/razr_blade.zip</a><br>X-Factor    bliss    change CID    <a href="http://forum.xda-developers.com/showthread.php?t=1952038" target="_blank" rel="external">http://forum.xda-developers.com/showthread.php?t=1952038</a><br>Samsung Admire Root    bliss    root    <a href="http://vulnfactory.org/blog/2011/09/12/rooting-the-samsung-admire/" target="_blank" rel="external">http://vulnfactory.org/blog/2011/09/12/rooting-the-samsung-admire/</a><br>Thinkpad Tablet    bliss    root    <a href="http://vulnfactory.org/public/Thinkpad_Root_Windows.zip" target="_blank" rel="external">http://vulnfactory.org/public/Thinkpad_Root_Windows.zip</a><br>Sony Tablet S    bliss    root    <a href="http://vulnfactory.org/blog/2012/02/08/rooting-the-sony-tablet-s/" target="_blank" rel="external">http://vulnfactory.org/blog/2012/02/08/rooting-the-sony-tablet-s/</a><br>Xoomfail    bliss    root    <a href="http://vulnfactory.org/blog/2012/02/18/xoom-fe-stupid-bugs-and-more-plagiarism/" target="_blank" rel="external">http://vulnfactory.org/blog/2012/02/18/xoom-fe-stupid-bugs-and-more-plagiarism/</a><br>Motofail2Go    bliss    root    <a href="http://vulnfactory.org/public/motofail2go_windows.zip" target="_blank" rel="external">http://vulnfactory.org/public/motofail2go_windows.zip</a><br>XPRT    bliss    root    <a href="http://vulnfactory.org/public/xprt_root_windows.zip" target="_blank" rel="external">http://vulnfactory.org/public/xprt_root_windows.zip</a><br>Nandpwn    bliss    root    <a href="https://github.com/djrbliss/revue/tree/master/nandpwn" target="_blank" rel="external">https://github.com/djrbliss/revue/tree/master/nandpwn</a><br>Motochopper    bliss    root    <a href="http://vulnfactory.org/public/motochopper.zip" target="_blank" rel="external">http://vulnfactory.org/public/motochopper.zip</a><br>ADB Restore Root    bin4ry    root<br>Exynos-abuse    alephzain    root    <a href="http://forum.xda-developers.com/showthread.php?t=2057818" target="_blank" rel="external">http://forum.xda-developers.com/showthread.php?t=2057818</a><br>IconiaRoot    alephzain    root    <a href="http://forum.xda-developers.com/showthread.php?t=2048511" target="_blank" rel="external">http://forum.xda-developers.com/showthread.php?t=2048511</a><br>fr3vo    Kevin Bruckert    root<br>levitator    Jon Larimer, Jon Oberheide    root    <a href="http://jon.oberheide.org/files/levitator.c" target="_blank" rel="external">http://jon.oberheide.org/files/levitator.c</a><br>mempodroid    saurik/zx2c4    root<br>asroot (Wunderbar?)    zinx    root    <a href="http://code.google.com/p/flashrec/source/browse/#svn%2Ftrunk%2Fandroid-root" target="_blank" rel="external">http://code.google.com/p/flashrec/source/browse/#svn%2Ftrunk%2Fandroid-root</a><br>Samsung Infuse 4G    Michael Coppola    root    <a href="http://www.poppopret.org/?p=22" target="_blank" rel="external">http://www.poppopret.org/?p=22</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/14/Android 提权root相关/" data-id="cj6ap7lvc000qinuodjpn5s2g" class="article-share-link">Delen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-Unity3D研究院之与Android相互传递消息" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -154,7 +223,7 @@ public class Test : MonoBehaviour
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Unity3D研究院之与Android相互传递消息/" data-id="cj5xkn8n7003ldss6smvdc0r3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Unity3D研究院之与Android相互传递消息/" data-id="cj6ap7lz7003pinuozqfgvlmf" class="article-share-link">Delen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity3D/">Unity3D</a></li></ul>
@@ -215,7 +284,7 @@ public class Test : MonoBehaviour
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android gradle常用/" data-id="cj5xkn8jk0009dss6tyvykmtj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android gradle常用/" data-id="cj6ap7luw000cinuol733xz9q" class="article-share-link">Delen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -261,7 +330,7 @@ public class Test : MonoBehaviour
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Unity3D转换eclipse/" data-id="cj5xkn8nh003tdss6rmqhtc1o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Unity3D转换eclipse/" data-id="cj6ap7lz4003oinuou4ot4fun" class="article-share-link">Delen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity3D/">Unity3D</a></li></ul>
@@ -743,7 +812,7 @@ return {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/微信内置浏览器的JsAPI/" data-id="cj5xkn8oa004vdss65nz5kq7y" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/微信内置浏览器的JsAPI/" data-id="cj6ap7m08004yinuoqkzpur6y" class="article-share-link">Delen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信-Js/">微信 Js</a></li></ul>
@@ -1028,7 +1097,7 @@ return {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Unity3D第一人称射击游戏(推荐)/" data-id="cj5xkn8nf003qdss6ategc4vx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Unity3D第一人称射击游戏(推荐)/" data-id="cj6ap7lzd003tinuod63ut0v6" class="article-share-link">Delen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity3D/">Unity3D</a></li></ul>
@@ -1073,7 +1142,7 @@ return {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android-功能开发笔记/" data-id="cj5xkn8ks0019dss6d6ux5emp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android-功能开发笔记/" data-id="cj6ap7lwc0013inuo3f5wfvja" class="article-share-link">Delen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -1117,7 +1186,7 @@ return {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android中通过来电转移实现“电话已关机”-“此号码已停机”等/" data-id="cj5xkn8m10028dss6l1aeglqw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android中通过来电转移实现“电话已关机”-“此号码已停机”等/" data-id="cj6ap7lxp0028inuorjussv6n" class="article-share-link">Delen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -1158,7 +1227,7 @@ return {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android-自动接听来电/" data-id="cj5xkn8la001hdss6vdvy3v8w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android-自动接听来电/" data-id="cj6ap7lwr001hinuovp80ofdc" class="article-share-link">Delen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -1215,49 +1284,7 @@ return {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android_消息推送/" data-id="cj5xkn8lx0022dss6ku5l3tip" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Android_检查是否联网" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/14/Android_检查是否联网/" class="article-date">
-  <time datetime="2016-05-14T13:26:18.000Z" itemprop="datePublished">2016-05-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/14/Android_检查是否联网/">Android_检查是否联网</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&#x68C0;&#x67E5;&#x662F;&#x5426;&#x8054;&#x7F51;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static boolean isNetworkAvailable(Activity mActivity) {</span><br><span class="line"> Context context = mActivity.getApplicationContext();</span><br><span class="line"> ConnectivityManager connectivity = (ConnectivityManager) context</span><br><span class="line">   .getSystemService(Context.CONNECTIVITY_SERVICE);</span><br><span class="line"> if (connectivity == null) {</span><br><span class="line">  return false;</span><br><span class="line"> } else {</span><br><span class="line">  NetworkInfo[] info = connectivity.getAllNetworkInfo();</span><br><span class="line">  if (info != null) {</span><br><span class="line">   for (int i = 0; i &lt; info.length; i++) {</span><br><span class="line">    if (info[i].getState() == NetworkInfo.State.CONNECTED) {</span><br><span class="line">     return true;</span><br><span class="line">    }</span><br><span class="line">   }</span><br><span class="line">  }</span><br><span class="line"> }</span><br><span class="line"> return false;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">public static void HttpTest(final Activity mActivity) {</span><br><span class="line"> if (!isNetworkAvailable(mActivity)) {</span><br><span class="line">  showToast(mActivity);</span><br><span class="line"> }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">public static void showToast(Activity mActivity) {</span><br><span class="line"> Vibrator mVibrator01 = (Vibrator) mActivity.getApplication()</span><br><span class="line">   .getSystemService(Service.VIBRATOR_SERVICE);</span><br><span class="line"> mVibrator01.vibrate(new long[] { 100, 10, 100, 1000 }, -1);</span><br><span class="line"> Toast.makeText(mActivity, &quot;&#x8BF7;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x8054;&#x7F51;&quot;, 500).show();</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<p>&#x5176;&#x4E2D;&#x8FD8;&#x8981;&#x52A0;&#x4E0A;&#x624B;&#x673A;&#x9707;&#x52A8;&#x548C;&#x8054;&#x7F51;&#x7684;&#x6743;&#x9650;&#xFF1A;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt; </span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.VIBRATE&quot;/&gt;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/14/Android_检查是否联网/" data-id="cj5xkn8lt0020dss6wqvilhz0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/14/Android_消息推送/" data-id="cj6ap7lxi0022inuomkj2u4iz" class="article-share-link">Delen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -1283,7 +1310,7 @@ return {
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">Labels</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-UI/">Android UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android反编译/">Android反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Http请求流程/">Http请求流程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/idea/">idea</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/互联网/">互联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/产品/">产品</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理/">代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兴趣/">兴趣</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链和比特币/">区块链和比特币</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大牛博客/">大牛博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习，师傅/">学习，师傅</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信-Js/">微信 Js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情/">心情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感触一波/">感触一波</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/简历/">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自动化测试/">自动化测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/鸡汤/">鸡汤</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑客攻防/">黑客攻防</a></li></ul>
     </div>
@@ -1295,14 +1322,14 @@ return {
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-UI/" style="font-size: 10px;">Android UI</a> <a href="/tags/Android反编译/" style="font-size: 10px;">Android反编译</a> <a href="/tags/Http请求流程/" style="font-size: 10px;">Http请求流程</a> <a href="/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/JavaWeb/" style="font-size: 17.5px;">JavaWeb</a> <a href="/tags/Jenkins/" style="font-size: 12.5px;">Jenkins</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Unity3D/" style="font-size: 15px;">Unity3D</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/互联网/" style="font-size: 10px;">互联网</a> <a href="/tags/产品/" style="font-size: 15px;">产品</a> <a href="/tags/代理/" style="font-size: 10px;">代理</a> <a href="/tags/兴趣/" style="font-size: 10px;">兴趣</a> <a href="/tags/区块链和比特币/" style="font-size: 10px;">区块链和比特币</a> <a href="/tags/博客/" style="font-size: 12.5px;">博客</a> <a href="/tags/大牛博客/" style="font-size: 10px;">大牛博客</a> <a href="/tags/学习，师傅/" style="font-size: 10px;">学习，师傅</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/微信-Js/" style="font-size: 10px;">微信 Js</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/感触一波/" style="font-size: 10px;">感触一波</a> <a href="/tags/简历/" style="font-size: 10px;">简历</a> <a href="/tags/自动化测试/" style="font-size: 10px;">自动化测试</a> <a href="/tags/面试/" style="font-size: 12.5px;">面试</a> <a href="/tags/鸡汤/" style="font-size: 10px;">鸡汤</a> <a href="/tags/黑客攻防/" style="font-size: 12.5px;">黑客攻防</a>
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-UI/" style="font-size: 10px;">Android UI</a> <a href="/tags/Android反编译/" style="font-size: 10px;">Android反编译</a> <a href="/tags/Http请求流程/" style="font-size: 10px;">Http请求流程</a> <a href="/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/JavaWeb/" style="font-size: 17.5px;">JavaWeb</a> <a href="/tags/Jenkins/" style="font-size: 12.5px;">Jenkins</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Unity3D/" style="font-size: 15px;">Unity3D</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/互联网/" style="font-size: 10px;">互联网</a> <a href="/tags/产品/" style="font-size: 15px;">产品</a> <a href="/tags/代理/" style="font-size: 10px;">代理</a> <a href="/tags/兴趣/" style="font-size: 10px;">兴趣</a> <a href="/tags/区块链和比特币/" style="font-size: 10px;">区块链和比特币</a> <a href="/tags/博客/" style="font-size: 12.5px;">博客</a> <a href="/tags/大牛博客/" style="font-size: 10px;">大牛博客</a> <a href="/tags/学习，师傅/" style="font-size: 10px;">学习，师傅</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/微信-Js/" style="font-size: 10px;">微信 Js</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/感触一波/" style="font-size: 10px;">感触一波</a> <a href="/tags/简历/" style="font-size: 10px;">简历</a> <a href="/tags/自动化测试/" style="font-size: 10px;">自动化测试</a> <a href="/tags/面试/" style="font-size: 12.5px;">面试</a> <a href="/tags/鸡汤/" style="font-size: 12.5px;">鸡汤</a> <a href="/tags/黑客攻防/" style="font-size: 12.5px;">黑客攻防</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Arkiv</h3>
+    <h3 class="widget-title">Archieven</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li></ul>
     </div>
@@ -1312,16 +1339,20 @@ return {
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Siste innlegg</h3>
+    <h3 class="widget-title">Recente berichten</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2017/08/04/《风味APP》产品策划方案/">《风味APP》产品策划方案</a>
+            <a href="/2017/08/04/傅盛：年轻人首要考虑的不应是买房，而是这四个关键词/">傅盛：年轻人首要考虑的不应是买房，而是这四个关键词</a>
           </li>
         
           <li>
             <a href="/2017/08/04/《蜗牛APP》产品策划方案/">《蜗牛APP》产品策划方案</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/04/《风味APP》产品策划方案/">《风味APP》产品策划方案</a>
           </li>
         
           <li>
@@ -1330,10 +1361,6 @@ return {
         
           <li>
             <a href="/2017/08/04/《风华APP》产品策划方案/">《风华APP》产品策划方案</a>
-          </li>
-        
-          <li>
-            <a href="/2017/06/27/Android 面试点/">Android 面试知识点</a>
           </li>
         
       </ul>
