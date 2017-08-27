@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="田鹏飞的个人博客">
 <meta property="og:description" content="&amp;#x6DFB;&amp;#x52A0;&amp;#x5FEB;&amp;#x6377;&amp;#x65B9;&amp;#x5F0F;&amp;#x9700;&amp;#x8981;&amp;#x5411;Luncher&amp;#x53D1;&amp;#x9001;&amp;#x8BF7;&amp;#x6C42;&amp;#x751F;&amp;#x6210;&amp;#x5FEB;&amp;#x6377;&amp;#x65B9;&amp;#x5F0F;
 &amp;#x7CFB;&amp;#x7EDF;&amp;#x7684;broadcast receiv">
-<meta property="og:updated_time" content="2016-05-13T10:03:51.000Z">
+<meta property="og:updated_time" content="2017-08-27T14:07:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 应用添加快捷方式">
 <meta name="twitter:description" content="&amp;#x6DFB;&amp;#x52A0;&amp;#x5FEB;&amp;#x6377;&amp;#x65B9;&amp;#x5F0F;&amp;#x9700;&amp;#x8981;&amp;#x5411;Luncher&amp;#x53D1;&amp;#x9001;&amp;#x8BF7;&amp;#x6C42;&amp;#x751F;&amp;#x6210;&amp;#x5FEB;&amp;#x6377;&amp;#x65B9;&amp;#x5F0F;
@@ -61,7 +61,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -99,13 +99,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=&quot;com.android.launcher.permission.INSTALL_SHORTCUT&quot;/&gt;</span><br></pre></td></tr></table></figure>
 <p>&#x521B;&#x5EFA;&#x5FEB;&#x6377;&#x65B9;&#x5F0F;&#x4EE3;&#x7801;</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public void createShortCut(){     </span><br><span class="line">    //&#x521B;&#x5EFA;&#x5FEB;&#x6377;&#x65B9;&#x5F0F;&#x7684;Intent                     </span><br><span class="line">    Intent shortcutintent = new Intent(&quot;com.android.launcher.action.INSTALL_SHORTCUT&quot;);                     </span><br><span class="line">    //&#x4E0D;&#x5141;&#x8BB8;&#x91CD;&#x590D;&#x521B;&#x5EFA;                     </span><br><span class="line">    shortcutintent.putExtra(&quot;duplicate&quot;, false);                     </span><br><span class="line">    //&#x9700;&#x8981;&#x73B0;&#x5B9E;&#x7684;&#x540D;&#x79F0;                     </span><br><span class="line">    shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_NAME, getString(R.string.shortcutname));     </span><br><span class="line">    //&#x5FEB;&#x6377;&#x56FE;&#x7247;                    </span><br><span class="line">    Parcelable icon = Intent.ShortcutIconResource.fromContext(getApplicationContext(), R.drawable.icon);     </span><br><span class="line">    shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, icon);     </span><br><span class="line">    //&#x70B9;&#x51FB;&#x5FEB;&#x6377;&#x56FE;&#x7247;&#xFF0C;&#x8FD0;&#x884C;&#x7684;&#x7A0B;&#x5E8F;&#x4E3B;&#x5165;&#x53E3;                     </span><br><span class="line">    shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, new Intent(getApplicationContext() , EnterActivity.class));                     </span><br><span class="line">    //&#x53D1;&#x9001;&#x5E7F;&#x64AD;&#x3002;OK                     </span><br><span class="line">    sendBroadcast(shortcutintent);     </span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Android-应用添加快捷方式/" data-id="cj6usqm0v0019k62jbufebs49" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/05/13/Android-应用添加快捷方式/" data-id="cj6ut7r40001bnj2jrurfbxlj" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-Framework/">Android_Framework</a></li></ul>
 
     </footer>
   </div>
@@ -114,7 +115,7 @@
 <nav id="article-nav">
   
     <a href="/2016/05/13/GridView常用属性/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Nieuwer</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           GridView常用属性
@@ -124,7 +125,7 @@
   
   
     <a href="/2016/05/13/Hexo在github上构建的博客/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">Hexo在github上构建的博客</div>
     </a>
   
@@ -142,9 +143,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Labels</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-UI/">Android UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android反编译/">Android反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Http请求流程/">Http请求流程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/idea/">idea</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/互联网/">互联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理/">代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兴趣/">兴趣</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链和比特币/">区块链和比特币</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大牛博客/">大牛博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习，师傅/">学习，师傅</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信-Js/">微信 Js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情/">心情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感触一波/">感触一波</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/简历/">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自动化测试/">自动化测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/鸡汤/">鸡汤</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑客攻防/">黑客攻防</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-UI/">Android UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Framework/">Android_Framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android反编译/">Android反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Http请求流程/">Http请求流程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/idea/">idea</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/互联网/">互联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理/">代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兴趣/">兴趣</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链和比特币/">区块链和比特币</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大牛博客/">大牛博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习，师傅/">学习，师傅</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信-Js/">微信 Js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情/">心情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感触一波/">感触一波</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/简历/">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自动化测试/">自动化测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/鸡汤/">鸡汤</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑客攻防/">黑客攻防</a></li></ul>
     </div>
   </div>
 
@@ -154,14 +155,14 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-UI/" style="font-size: 10px;">Android UI</a> <a href="/tags/Android反编译/" style="font-size: 10px;">Android反编译</a> <a href="/tags/Http请求流程/" style="font-size: 10px;">Http请求流程</a> <a href="/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/JavaWeb/" style="font-size: 17.5px;">JavaWeb</a> <a href="/tags/Jenkins/" style="font-size: 12.5px;">Jenkins</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Unity3D/" style="font-size: 15px;">Unity3D</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/互联网/" style="font-size: 10px;">互联网</a> <a href="/tags/代理/" style="font-size: 10px;">代理</a> <a href="/tags/兴趣/" style="font-size: 10px;">兴趣</a> <a href="/tags/区块链和比特币/" style="font-size: 10px;">区块链和比特币</a> <a href="/tags/博客/" style="font-size: 12.5px;">博客</a> <a href="/tags/大牛博客/" style="font-size: 10px;">大牛博客</a> <a href="/tags/学习，师傅/" style="font-size: 10px;">学习，师傅</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/微信-Js/" style="font-size: 10px;">微信 Js</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/感触一波/" style="font-size: 10px;">感触一波</a> <a href="/tags/简历/" style="font-size: 10px;">简历</a> <a href="/tags/自动化测试/" style="font-size: 10px;">自动化测试</a> <a href="/tags/面试/" style="font-size: 12.5px;">面试</a> <a href="/tags/鸡汤/" style="font-size: 12.5px;">鸡汤</a> <a href="/tags/黑客攻防/" style="font-size: 12.5px;">黑客攻防</a>
+      <a href="/tags/Android/" style="font-size: 18px;">Android</a> <a href="/tags/Android-UI/" style="font-size: 10px;">Android UI</a> <a href="/tags/Android-Framework/" style="font-size: 20px;">Android_Framework</a> <a href="/tags/Android反编译/" style="font-size: 10px;">Android反编译</a> <a href="/tags/Http请求流程/" style="font-size: 10px;">Http请求流程</a> <a href="/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/tags/Java/" style="font-size: 14px;">Java</a> <a href="/tags/JavaWeb/" style="font-size: 16px;">JavaWeb</a> <a href="/tags/Jenkins/" style="font-size: 12px;">Jenkins</a> <a href="/tags/Linux/" style="font-size: 12px;">Linux</a> <a href="/tags/Unity3D/" style="font-size: 14px;">Unity3D</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/互联网/" style="font-size: 10px;">互联网</a> <a href="/tags/代理/" style="font-size: 10px;">代理</a> <a href="/tags/兴趣/" style="font-size: 10px;">兴趣</a> <a href="/tags/区块链和比特币/" style="font-size: 10px;">区块链和比特币</a> <a href="/tags/博客/" style="font-size: 12px;">博客</a> <a href="/tags/大牛博客/" style="font-size: 10px;">大牛博客</a> <a href="/tags/学习，师傅/" style="font-size: 10px;">学习，师傅</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/微信-Js/" style="font-size: 10px;">微信 Js</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/感触一波/" style="font-size: 10px;">感触一波</a> <a href="/tags/简历/" style="font-size: 10px;">简历</a> <a href="/tags/自动化测试/" style="font-size: 10px;">自动化测试</a> <a href="/tags/面试/" style="font-size: 12px;">面试</a> <a href="/tags/鸡汤/" style="font-size: 12px;">鸡汤</a> <a href="/tags/黑客攻防/" style="font-size: 12px;">黑客攻防</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li></ul>
     </div>
@@ -171,7 +172,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -184,15 +185,15 @@
           </li>
         
           <li>
-            <a href="/2017/06/27/Android API版本区别/">Android API版本区别</a>
-          </li>
-        
-          <li>
             <a href="/2017/06/27/Android 面试点/">Android 面试知识点</a>
           </li>
         
           <li>
             <a href="/2017/06/27/如何保证service在后台不被kill/">如何保证service在后台不被kill</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/27/Android API版本区别/">Android API版本区别</a>
           </li>
         
       </ul>
