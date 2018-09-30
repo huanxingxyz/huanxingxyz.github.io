@@ -5,18 +5,18 @@
   
   <title>Android root相关调研 | 田鹏飞的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="&amp;#x9700;&amp;#x6C42;&amp;#x8001;&amp;#x5927;&amp;#x7ED9;&amp;#x7684;&amp;#x9700;&amp;#x6C42;1&amp;#xFF0C;sdk/apk&amp;#x62E6;&amp;#x622A;&amp;#x624B;&amp;#x673A;&amp;#x77ED;&amp;#x4FE1;&amp;#xFF0C;&amp;#x5E76;&amp;#x4E14;&amp;#x6E05;&amp;#x9664;&amp;#x624B;&amp;#x673A;&amp;#x7CFB;&amp;#x7EDF;">
+  <meta name="description" content="&amp;#x9700;&amp;#x6C42;&amp;#x8001;&amp;#x5927;&amp;#x7ED9;&amp;#x7684;&amp;#x9700;&amp;#x6C42;1&amp;#xFF0C;sdk/apk&amp;#x62E6;&amp;#x622A;&amp;#x624B;&amp;#x673A;&amp;#x77ED;&amp;#x4FE1;&amp;#xFF0C;&amp;#x5E76;&amp;#x4E14;&amp;#x6E05;&amp;#x9664;&amp;#x624B;&amp;#x673A;&amp;#x7CFB;&amp;#x7EDF">
 <meta name="keywords" content="Android_Framework">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android root相关调研">
 <meta property="og:url" content="http://yoursite.com/2017/02/06/Android root相关/index.html">
 <meta property="og:site_name" content="田鹏飞的个人博客">
-<meta property="og:description" content="&amp;#x9700;&amp;#x6C42;&amp;#x8001;&amp;#x5927;&amp;#x7ED9;&amp;#x7684;&amp;#x9700;&amp;#x6C42;1&amp;#xFF0C;sdk/apk&amp;#x62E6;&amp;#x622A;&amp;#x624B;&amp;#x673A;&amp;#x77ED;&amp;#x4FE1;&amp;#xFF0C;&amp;#x5E76;&amp;#x4E14;&amp;#x6E05;&amp;#x9664;&amp;#x624B;&amp;#x673A;&amp;#x7CFB;&amp;#x7EDF;">
+<meta property="og:description" content="&amp;#x9700;&amp;#x6C42;&amp;#x8001;&amp;#x5927;&amp;#x7ED9;&amp;#x7684;&amp;#x9700;&amp;#x6C42;1&amp;#xFF0C;sdk/apk&amp;#x62E6;&amp;#x622A;&amp;#x624B;&amp;#x673A;&amp;#x77ED;&amp;#x4FE1;&amp;#xFF0C;&amp;#x5E76;&amp;#x4E14;&amp;#x6E05;&amp;#x9664;&amp;#x624B;&amp;#x673A;&amp;#x7CFB;&amp;#x7EDF">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-08-27T13:59:10.000Z">
+<meta property="og:updated_time" content="2018-09-30T08:13:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android root相关调研">
-<meta name="twitter:description" content="&amp;#x9700;&amp;#x6C42;&amp;#x8001;&amp;#x5927;&amp;#x7ED9;&amp;#x7684;&amp;#x9700;&amp;#x6C42;1&amp;#xFF0C;sdk/apk&amp;#x62E6;&amp;#x622A;&amp;#x624B;&amp;#x673A;&amp;#x77ED;&amp;#x4FE1;&amp;#xFF0C;&amp;#x5E76;&amp;#x4E14;&amp;#x6E05;&amp;#x9664;&amp;#x624B;&amp;#x673A;&amp;#x7CFB;&amp;#x7EDF;">
+<meta name="twitter:description" content="&amp;#x9700;&amp;#x6C42;&amp;#x8001;&amp;#x5927;&amp;#x7ED9;&amp;#x7684;&amp;#x9700;&amp;#x6C42;1&amp;#xFF0C;sdk/apk&amp;#x62E6;&amp;#x622A;&amp;#x624B;&amp;#x673A;&amp;#x77ED;&amp;#x4FE1;&amp;#xFF0C;&amp;#x5E76;&amp;#x4E14;&amp;#x6E05;&amp;#x9664;&amp;#x624B;&amp;#x673A;&amp;#x7CFB;&amp;#x7EDF">
   
     <link rel="alternate" href="/atom.xml" title="田鹏飞的个人博客" type="application/atom+xml">
   
@@ -91,7 +91,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="&#x9700;&#x6C42;"><a href="#&#x9700;&#x6C42;" class="headerlink" title="&#x9700;&#x6C42;"></a>&#x9700;&#x6C42;</h3><p>&#x8001;&#x5927;&#x7ED9;&#x7684;&#x9700;&#x6C42;<br>1&#xFF0C;sdk/apk&#x62E6;&#x622A;&#x624B;&#x673A;&#x77ED;&#x4FE1;&#xFF0C;&#x5E76;&#x4E14;&#x6E05;&#x9664;&#x624B;&#x673A;&#x7CFB;&#x7EDF;&#x77ED;&#x4FE1;&#x6536;&#x4EF6;&#x7BB1;&#x8BE5;&#x6761;&#x77ED;&#x4FE1;&#x8BB0;&#x5F55;&#x3002;<br>2&#xFF0C;&#x5B89;&#x88C5;apk&#xFF0C;&#x6700;&#x597D;&#x662F;&#x9759;&#x9ED8;&#x5B89;&#x88C5;</p>
+        <hr>
+<h3 id="&#x9700;&#x6C42;"><a href="#&#x9700;&#x6C42;" class="headerlink" title="&#x9700;&#x6C42;"></a>&#x9700;&#x6C42;</h3><p>&#x8001;&#x5927;&#x7ED9;&#x7684;&#x9700;&#x6C42;<br>1&#xFF0C;sdk/apk&#x62E6;&#x622A;&#x624B;&#x673A;&#x77ED;&#x4FE1;&#xFF0C;&#x5E76;&#x4E14;&#x6E05;&#x9664;&#x624B;&#x673A;&#x7CFB;&#x7EDF;&#x77ED;&#x4FE1;&#x6536;&#x4EF6;&#x7BB1;&#x8BE5;&#x6761;&#x77ED;&#x4FE1;&#x8BB0;&#x5F55;&#x3002;<br>2&#xFF0C;&#x5B89;&#x88C5;apk&#xFF0C;&#x6700;&#x597D;&#x662F;&#x9759;&#x9ED8;&#x5B89;&#x88C5;</p>
 <h3 id="&#x9700;&#x6C42;&#x5206;&#x6790;"><a href="#&#x9700;&#x6C42;&#x5206;&#x6790;" class="headerlink" title="&#x9700;&#x6C42;&#x5206;&#x6790;"></a>&#x9700;&#x6C42;&#x5206;&#x6790;</h3><h3 id="&#x77ED;&#x4FE1;&#x62E6;&#x622A;"><a href="#&#x77ED;&#x4FE1;&#x62E6;&#x622A;" class="headerlink" title="&#x77ED;&#x4FE1;&#x62E6;&#x622A;"></a>&#x77ED;&#x4FE1;&#x62E6;&#x622A;</h3><p>&#x9996;&#x5148;&#x624B;&#x673A;&#x77ED;&#x4FE1;&#x7684;&#x62E6;&#x622A;&#x5E94;&#x8BE5;&#x662F;&#x5F88;&#x597D;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x76EE;&#x524D;&#x7ADE;&#x54C1;&#x4E2D;&#x6709;&#x5F88;&#x591A;&#x5DF2;&#x7ECF;&#x5B9E;&#x73B0;&#x4E86;&#x8BE5;&#x529F;&#x80FD;&#x7684;&#x4EA7;&#x54C1;&#xFF0C;&#x5982;360&#x624B;&#x673A;&#x536B;&#x58EB;&#x7B49;&#x3002;<br>&#x56E0;&#x4E3A;&#x77ED;&#x4FE1;&#x5E7F;&#x64AD;&#x662F;&#x7CFB;&#x7EDF;&#x7EA7;&#x522B;&#x7684;&#x5E7F;&#x64AD;&#xFF0C;&#x53EA;&#x9700;&#x5728;Manifest.xml&#x91CC;&#x52A0;&#x201D;&#x63A5;&#x6536;&#x201D;SMS&#x7684;&#x6743;&#x9650;&#xFF0C;&#x518D;&#x6CE8;&#x518C;&#x4E00;&#x4E2A;receiver&#x4FBF;&#x53EF;&#x4EE5;&#x76D1;&#x542C;&#x5230;&#x77ED;&#x4FE1;&#x7684;&#x6536;&#x53D1;&#xFF0C;&#x81F3;&#x4E8E;&#x62E6;&#x622A;&#x90E8;&#x5206;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;ContentObserver&#x8FDB;&#x884C;&#x62E6;&#x622A;&#x76D1;&#x542C;&#x3002;<br>&#x5728;4.4&#x524D;&#xFF0C;&#x77ED;&#x4FE1;&#x62E6;&#x622A;&#x90FD;&#x662F;&#x901A;&#x8FC7;&#x52A8;&#x6001;&#x6CE8;&#x518C;&#x9AD8;&#x4F18;&#x5148;&#x7EA7;BroadcastReceiver&#x7684;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x62E6;&#x622A;&#x7684;&#xFF0C;&#x4E3B;&#x8981;&#x662F;&#x7528;&#x4E8E;&#x8DDF;&#x7ADE;&#x54C1;&#x8FDB;&#x884C;&#x77ED;&#x4FE1;&#x62A2;&#x5360;&#x3002;&#x800C;&#x73B0;&#x5728;ContenetObserver&#x662F;&#x5E76;&#x884C;&#x901A;&#x77E5;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5982;&#x679C;&#x8FC7;&#x6EE4;&#x903B;&#x8F91;&#x4E0D;&#x591F;&#x5FEB;&#xFF0C;&#x4F9D;&#x7136;&#x6709;&#x53EF;&#x80FD;&#x4F1A;&#x88AB;&#x7ADE;&#x54C1;&#x62A2;&#x5148;&#x628A;&#x77ED;&#x4FE1;&#x5148;&#x5220;&#x9664;&#x6389;&#xFF0C;&#x5BFC;&#x81F4;&#x62FF;&#x5230;&#x7684;&#x6700;&#x540E;&#x4E00;&#x6B21;&#x77ED;&#x4FE1;&#x662F;&#x65E7;&#x7684;&#x77ED;&#x4FE1;&#x3002;&#x5EFA;&#x8BAE;&#x7ED3;&#x5408;BroadcastReceiver&#x548C;ContenetObserver&#x8FDB;&#x884C;&#x62E6;&#x622A;&#xFF0C;BroadcastReceiver&#x505A;&#x5185;&#x5BB9;&#x6821;&#x6B63;&#x548C;&#x540E;&#x5907;&#x6570;&#x636E;&#xFF0C;&#x4EE5;&#x9632;&#x62FF;&#x5230;&#x7684;&#x6700;&#x540E;&#x4E00;&#x6761;&#x77ED;&#x4FE1;&#x662F;&#x65E7;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F9D;&#x7136;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x6B63;&#x5E38;&#x7684;&#x62E6;&#x622A;&#x6D41;&#x7A0B;&#x3002;</p>
 <p>&#x76F8;&#x5173;&#x8D44;&#x6599;&#x4EE3;&#x7801;&#x6709;</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.cnblogs.com/gaojunfeng/articles/3155283.html</span><br></pre></td></tr></table></figure>
@@ -341,7 +342,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/06/Android root相关/" data-id="cjmkeltk1005ctquo0osxpzmr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/06/Android root相关/" data-id="cjmkghzsg005d6ouodgsvc2pj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-Framework/">Android_Framework</a></li></ul>
@@ -352,19 +353,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2017/06/23/Android开发如何有效减小APK的体积/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/06/23/Android 修改IMEI,IMSI,mac等基本信息/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Android开发如何有效减小APK的体积
+          Android 修改IMEI,IMSI,mac等基本信息
         
       </div>
     </a>
   
   
-    <a href="/2017/01/19/Android热更新调研汇总/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/01/19/mac快捷键/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Android热更新调研汇总</div>
+      <div class="article-nav-title">mac快捷键</div>
     </a>
   
 </nav>
@@ -383,7 +384,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-UI/">Android UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Framework/">Android_Framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android反编译/">Android反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Http请求流程/">Http请求流程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux-mysql/">Linux mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/idea/">idea</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/互联网/">互联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理/">代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兴趣/">兴趣</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链和比特币/">区块链和比特币</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大牛博客/">大牛博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习，师傅/">学习，师傅</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信-Js/">微信 Js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情/">心情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感触一波/">感触一波</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/简历/">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自动化测试/">自动化测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机运维/">计算机运维</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/鸡汤/">鸡汤</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑客攻防/">黑客攻防</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-UI/">Android UI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Framework/">Android_Framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android反编译/">Android反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Http请求流程/">Http请求流程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux-mysql/">Linux mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity3D/">Unity3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/idea/">idea</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/互联网/">互联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理/">代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兴趣/">兴趣</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链和比特币/">区块链和比特币</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大牛博客/">大牛博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习，师傅/">学习，师傅</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开源项目/">开源项目</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信-Js/">微信 Js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情/">心情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/简历/">简历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自动化测试/">自动化测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机运维/">计算机运维</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/鸡汤/">鸡汤</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑客攻防/">黑客攻防</a></li></ul>
     </div>
   </div>
 
@@ -393,7 +394,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 17.5px;">Android</a> <a href="/tags/Android-UI/" style="font-size: 10px;">Android UI</a> <a href="/tags/Android-Framework/" style="font-size: 20px;">Android_Framework</a> <a href="/tags/Android反编译/" style="font-size: 10px;">Android反编译</a> <a href="/tags/Http请求流程/" style="font-size: 10px;">Http请求流程</a> <a href="/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/JavaWeb/" style="font-size: 17.5px;">JavaWeb</a> <a href="/tags/Jenkins/" style="font-size: 12.5px;">Jenkins</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Linux-mysql/" style="font-size: 10px;">Linux mysql</a> <a href="/tags/Unity3D/" style="font-size: 15px;">Unity3D</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/互联网/" style="font-size: 10px;">互联网</a> <a href="/tags/代理/" style="font-size: 10px;">代理</a> <a href="/tags/兴趣/" style="font-size: 10px;">兴趣</a> <a href="/tags/区块链和比特币/" style="font-size: 10px;">区块链和比特币</a> <a href="/tags/博客/" style="font-size: 12.5px;">博客</a> <a href="/tags/大牛博客/" style="font-size: 10px;">大牛博客</a> <a href="/tags/学习，师傅/" style="font-size: 10px;">学习，师傅</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/微信-Js/" style="font-size: 10px;">微信 Js</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/感触一波/" style="font-size: 10px;">感触一波</a> <a href="/tags/简历/" style="font-size: 10px;">简历</a> <a href="/tags/自动化测试/" style="font-size: 10px;">自动化测试</a> <a href="/tags/计算机运维/" style="font-size: 10px;">计算机运维</a> <a href="/tags/面试/" style="font-size: 12.5px;">面试</a> <a href="/tags/鸡汤/" style="font-size: 10px;">鸡汤</a> <a href="/tags/黑客攻防/" style="font-size: 12.5px;">黑客攻防</a>
+      <a href="/tags/Android/" style="font-size: 18.33px;">Android</a> <a href="/tags/Android-UI/" style="font-size: 10px;">Android UI</a> <a href="/tags/Android-Framework/" style="font-size: 20px;">Android_Framework</a> <a href="/tags/Android反编译/" style="font-size: 10px;">Android反编译</a> <a href="/tags/Http请求流程/" style="font-size: 10px;">Http请求流程</a> <a href="/tags/IDE/" style="font-size: 10px;">IDE</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/JavaWeb/" style="font-size: 16.67px;">JavaWeb</a> <a href="/tags/Jenkins/" style="font-size: 11.67px;">Jenkins</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Linux-mysql/" style="font-size: 10px;">Linux mysql</a> <a href="/tags/Unity3D/" style="font-size: 13.33px;">Unity3D</a> <a href="/tags/idea/" style="font-size: 10px;">idea</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/互联网/" style="font-size: 10px;">互联网</a> <a href="/tags/代理/" style="font-size: 10px;">代理</a> <a href="/tags/兴趣/" style="font-size: 10px;">兴趣</a> <a href="/tags/区块链和比特币/" style="font-size: 10px;">区块链和比特币</a> <a href="/tags/博客/" style="font-size: 11.67px;">博客</a> <a href="/tags/大牛博客/" style="font-size: 10px;">大牛博客</a> <a href="/tags/学习，师傅/" style="font-size: 10px;">学习，师傅</a> <a href="/tags/开源项目/" style="font-size: 10px;">开源项目</a> <a href="/tags/微信-Js/" style="font-size: 10px;">微信 Js</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/简历/" style="font-size: 10px;">简历</a> <a href="/tags/自动化测试/" style="font-size: 10px;">自动化测试</a> <a href="/tags/计算机运维/" style="font-size: 10px;">计算机运维</a> <a href="/tags/面试/" style="font-size: 11.67px;">面试</a> <a href="/tags/鸡汤/" style="font-size: 10px;">鸡汤</a> <a href="/tags/黑客攻防/" style="font-size: 11.67px;">黑客攻防</a>
     </div>
   </div>
 
@@ -423,15 +424,15 @@
           </li>
         
           <li>
-            <a href="/2017/06/27/Android 面试点/">Android 面试知识点</a>
-          </li>
-        
-          <li>
-            <a href="/2017/06/27/Android API版本区别/">Android API版本区别</a>
-          </li>
-        
-          <li>
             <a href="/2017/06/27/Android ANR和OOM/">Android ANR和OOM</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/27/Android 面试知识点/">Android 面试知识点</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/27/Http请求步骤/">Http请求步骤</a>
           </li>
         
       </ul>
