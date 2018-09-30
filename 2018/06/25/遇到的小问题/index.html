@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="田鹏飞的个人博客">
 <meta property="og:description" content="windows &amp;#x8BFB;&amp;#x4E0D;&amp;#x51FA;mac&amp;#x683C;&amp;#x5F0F;&amp;#x7684;u&amp;#x76D8;&amp;#x4E0B;&amp;#x8F7D;&amp;#x5B89;&amp;#x88C5; paragon.hfs&amp;#x3002;  mac &amp;#x8BFB;&amp;#x4E0D;&amp;#x51FA;windows ntfs&amp;#x683C;&amp;#x5F0F;&amp;#x7684;u&amp;#x76D8;Mou">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-30T07:48:37.000Z">
+<meta property="og:updated_time" content="2018-09-30T09:57:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="遇到的小问题">
 <meta name="twitter:description" content="windows &amp;#x8BFB;&amp;#x4E0D;&amp;#x51FA;mac&amp;#x683C;&amp;#x5F0F;&amp;#x7684;u&amp;#x76D8;&amp;#x4E0B;&amp;#x8F7D;&amp;#x5B89;&amp;#x88C5; paragon.hfs&amp;#x3002;  mac &amp;#x8BFB;&amp;#x4E0D;&amp;#x51FA;windows ntfs&amp;#x683C;&amp;#x5F0F;&amp;#x7684;u&amp;#x76D8;Mou">
@@ -97,14 +97,25 @@
 </li>
 <li><h4 id="mac-&#x8BFB;&#x4E0D;&#x51FA;windows-ntfs&#x683C;&#x5F0F;&#x7684;u&#x76D8;"><a href="#mac-&#x8BFB;&#x4E0D;&#x51FA;windows-ntfs&#x683C;&#x5F0F;&#x7684;u&#x76D8;" class="headerlink" title="mac &#x8BFB;&#x4E0D;&#x51FA;windows ntfs&#x683C;&#x5F0F;&#x7684;u&#x76D8;"></a>mac &#x8BFB;&#x4E0D;&#x51FA;windows ntfs&#x683C;&#x5F0F;&#x7684;u&#x76D8;</h4><p>Mounty&#x514D;&#x8D39;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x4E5F;&#x4F1A;&#x6709;&#x7684;&#x65F6;&#x5019;&#x62BD;&#x98CE;&#x3002;</p>
 </li>
-<li><h4 id="&#x96C6;&#x6210;&#x7B2C;&#x4E09;&#x65B9;so&#x62A5;&#x9519;"><a href="#&#x96C6;&#x6210;&#x7B2C;&#x4E09;&#x65B9;so&#x62A5;&#x9519;" class="headerlink" title="&#x96C6;&#x6210;&#x7B2C;&#x4E09;&#x65B9;so&#x62A5;&#x9519;"></a>&#x96C6;&#x6210;&#x7B2C;&#x4E09;&#x65B9;so&#x62A5;&#x9519;</h4><p>AS&#x662F;&#x4F1A;&#x62BD;&#x98CE;&#x7684;&#xFF0C;&#x6709;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x628A;so&#x538B;&#x7F29;&#xFF0C;&#x53EF;&#x4EE5;&#x628A; local.properties&#x4E2D;&#x7684;ndk.dir&#x6CE8;&#x91CA;&#x6389;&#x3002;</p>
+<li><h4 id="&#x96C6;&#x6210;&#x7B2C;&#x4E09;&#x65B9;so&#x62A5;&#x9519;"><a href="#&#x96C6;&#x6210;&#x7B2C;&#x4E09;&#x65B9;so&#x62A5;&#x9519;" class="headerlink" title="&#x96C6;&#x6210;&#x7B2C;&#x4E09;&#x65B9;so&#x62A5;&#x9519;"></a>&#x96C6;&#x6210;&#x7B2C;&#x4E09;&#x65B9;so&#x62A5;&#x9519;</h4><p>AS&#x662F;&#x4F1A;&#x62BD;&#x98CE;&#x7684;&#xFF0C;&#x6709;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x628A;so&#x538B;&#x7F29;&#xFF0C;&#x53EF;&#x4EE5;&#x628A; local.properties&#x4E2D;&#x7684;ndk.dir&#x6CE8;&#x91CA;&#x6389;&#x3002;<br>&#x6BD4;&#x5982;&#x96C6;&#x6210;&#x79FB;&#x52A8;&#x652F;&#x4ED8;sdk&#x7684;&#x65F6;&#x5019;&#x5C31;&#x4F1A;&#x538B;&#x7F29;so  700k&#x7684;&#x6587;&#x4EF6;&#x538B;&#x7F29;&#x5230;70k&#x3002;<br>&#x89E3;&#x51B3;&#x529E;&#x6CD5;&#xFF1A;</p>
 </li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">packagingOptions {</span><br><span class="line">        doNotStrip &quot;*/armeabi/libmg20pbase.so&quot;</span><br><span class="line">        doNotStrip &quot;*/armeabi-v7a/libmg20pbase.so&quot;</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
+<p>&#x6216;&#x8005;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">local.properties</span><br><span class="line">ndk&#x6CE8;&#x91CA;&#x6389;</span><br><span class="line">ndk.dir=/Users/sweet/code/maincode/sdk/ndk-bundle</span><br><span class="line">sdk.dir=/Users/sweet/code/maincode/sdk</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="git-idea-&#x5F39;&#x4E0D;&#x51FA;&#x8F93;&#x5165;&#x8D26;&#x53F7;&#x5BC6;&#x7801;"><a href="#git-idea-&#x5F39;&#x4E0D;&#x51FA;&#x8F93;&#x5165;&#x8D26;&#x53F7;&#x5BC6;&#x7801;" class="headerlink" title="git idea &#x5F39;&#x4E0D;&#x51FA;&#x8F93;&#x5165;&#x8D26;&#x53F7;&#x5BC6;&#x7801;"></a>git idea &#x5F39;&#x4E0D;&#x51FA;&#x8F93;&#x5165;&#x8D26;&#x53F7;&#x5BC6;&#x7801;</h4></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --system --unset credential.helper</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="css-media&#x5A92;&#x4F53;&#x67E5;&#x8BE2;&#x5931;&#x8D25;"><a href="#css-media&#x5A92;&#x4F53;&#x67E5;&#x8BE2;&#x5931;&#x8D25;" class="headerlink" title="css media&#x5A92;&#x4F53;&#x67E5;&#x8BE2;&#x5931;&#x8D25;"></a>css media&#x5A92;&#x4F53;&#x67E5;&#x8BE2;&#x5931;&#x8D25;</h4></li>
+</ul>
+<p>&#x5A92;&#x4F53;&#x67E5;&#x8BE2;&#x5199;&#x5728;css&#x6700;&#x540E;</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/25/遇到的小问题/" data-id="cjmonzri9003wdiuorp4gjvmk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/25/遇到的小问题/" data-id="cjmooz9fq003xkxuopb5c3y4v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机运维/">计算机运维</a></li></ul>
@@ -125,9 +136,9 @@
     </a>
   
   
-    <a href="/2017/06/27/Android 面试知识点/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/06/27/Android ANR和OOM/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Android 面试知识点</div>
+      <div class="article-nav-title">Android ANR和OOM</div>
     </a>
   
 </nav>
@@ -186,15 +197,15 @@
           </li>
         
           <li>
+            <a href="/2017/06/27/Android ANR和OOM/">Android ANR和OOM</a>
+          </li>
+        
+          <li>
             <a href="/2017/06/27/Android 面试知识点/">Android 面试知识点</a>
           </li>
         
           <li>
             <a href="/2017/06/27/如何保证service在后台不被kill/">如何保证service在后台不被kill</a>
-          </li>
-        
-          <li>
-            <a href="/2017/06/27/Android ANR和OOM/">Android ANR和OOM</a>
           </li>
         
       </ul>
