@@ -5,18 +5,18 @@
   
   <title>使用Gitlab Jenkins Docker建立CI部署方案 | 田鹏飞的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="&amp;#x4F7F;&amp;#x7528;Gitlab jenkins docker&amp;#x5EFA;&amp;#x7ACB;CI&amp;#x90E8;&amp;#x7F72;&amp;#x65B9;&amp;#x6848;&amp;#x672C;&amp;#x6587;Docker&amp;#x90E8;&amp;#x5206;&amp;#x5185;&amp;#x5BB9;&amp;#x5FFD;&amp;#x7565; GitGit&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x5206;&amp;#x5">
+  <meta name="description" content="&amp;#x672C;&amp;#x6587;Docker&amp;#x90E8;&amp;#x5206;&amp;#x5185;&amp;#x5BB9;&amp;#x5FFD;&amp;#x7565; GitGit&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x5206;&amp;#x5E03;&amp;#x5F0F;&amp;#x7248;&amp;#x672C;&amp;#x63A7;&amp;#x5236;&amp;#x8F6F;&amp;#x4EF6;&amp;#xFF0C;&amp;#x4E0E;svn&amp;#x4E0D;">
 <meta name="keywords" content="工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Gitlab Jenkins Docker建立CI部署方案">
 <meta property="og:url" content="http://yoursite.com/2018/07/13/使用Gitlab Jenkins Docker建立CI部署方案/index.html">
 <meta property="og:site_name" content="田鹏飞的个人博客">
-<meta property="og:description" content="&amp;#x4F7F;&amp;#x7528;Gitlab jenkins docker&amp;#x5EFA;&amp;#x7ACB;CI&amp;#x90E8;&amp;#x7F72;&amp;#x65B9;&amp;#x6848;&amp;#x672C;&amp;#x6587;Docker&amp;#x90E8;&amp;#x5206;&amp;#x5185;&amp;#x5BB9;&amp;#x5FFD;&amp;#x7565; GitGit&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x5206;&amp;#x5">
+<meta property="og:description" content="&amp;#x672C;&amp;#x6587;Docker&amp;#x90E8;&amp;#x5206;&amp;#x5185;&amp;#x5BB9;&amp;#x5FFD;&amp;#x7565; GitGit&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x5206;&amp;#x5E03;&amp;#x5F0F;&amp;#x7248;&amp;#x672C;&amp;#x63A7;&amp;#x5236;&amp;#x8F6F;&amp;#x4EF6;&amp;#xFF0C;&amp;#x4E0E;svn&amp;#x4E0D;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-29T06:56:03.000Z">
+<meta property="og:updated_time" content="2019-12-03T10:11:51.144Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Gitlab Jenkins Docker建立CI部署方案">
-<meta name="twitter:description" content="&amp;#x4F7F;&amp;#x7528;Gitlab jenkins docker&amp;#x5EFA;&amp;#x7ACB;CI&amp;#x90E8;&amp;#x7F72;&amp;#x65B9;&amp;#x6848;&amp;#x672C;&amp;#x6587;Docker&amp;#x90E8;&amp;#x5206;&amp;#x5185;&amp;#x5BB9;&amp;#x5FFD;&amp;#x7565; GitGit&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x5206;&amp;#x5">
+<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;Docker&amp;#x90E8;&amp;#x5206;&amp;#x5185;&amp;#x5BB9;&amp;#x5FFD;&amp;#x7565; GitGit&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x5206;&amp;#x5E03;&amp;#x5F0F;&amp;#x7248;&amp;#x672C;&amp;#x63A7;&amp;#x5236;&amp;#x8F6F;&amp;#x4EF6;&amp;#xFF0C;&amp;#x4E0E;svn&amp;#x4E0D;">
   
     <link rel="alternate" href="/atom.xml" title="田鹏飞的个人博客" type="application/atom+xml">
   
@@ -91,7 +91,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="&#x4F7F;&#x7528;Gitlab-jenkins-docker&#x5EFA;&#x7ACB;CI&#x90E8;&#x7F72;&#x65B9;&#x6848;"><a href="#&#x4F7F;&#x7528;Gitlab-jenkins-docker&#x5EFA;&#x7ACB;CI&#x90E8;&#x7F72;&#x65B9;&#x6848;" class="headerlink" title="&#x4F7F;&#x7528;Gitlab jenkins docker&#x5EFA;&#x7ACB;CI&#x90E8;&#x7F72;&#x65B9;&#x6848;"></a>&#x4F7F;&#x7528;Gitlab jenkins docker&#x5EFA;&#x7ACB;CI&#x90E8;&#x7F72;&#x65B9;&#x6848;</h1><p>&#x672C;&#x6587;Docker&#x90E8;&#x5206;&#x5185;&#x5BB9;&#x5FFD;&#x7565;</p>
+        <p>&#x672C;&#x6587;Docker&#x90E8;&#x5206;&#x5185;&#x5BB9;&#x5FFD;&#x7565;</p>
 <h3 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h3><p>Git&#x662F;&#x4E00;&#x4E2A;&#x5206;&#x5E03;&#x5F0F;&#x7248;&#x672C;&#x63A7;&#x5236;&#x8F6F;&#x4EF6;&#xFF0C;&#x4E0E;svn&#x4E0D;&#x540C;&#xFF0C;&#x4E0D;&#x518D;&#x4F9D;&#x8D56;&#x552F;&#x4E00;&#x7684;&#x3001;&#x96C6;&#x4E2D;&#x5F0F;&#x7684;&#x7248;&#x672C;&#x5E93;&#xFF0C;&#x800C;&#x662F;&#x6BCF;&#x4E2A;&#x5F00;&#x53D1;&#x8005;&#x672C;&#x5730;&#x90FD;&#x62E5;&#x6709;&#x4E00;&#x4EFD;&#x5B8C;&#x6574;&#x7684;&#x7248;&#x672C;&#x5E93;&#x3002; Git&#x5E76;&#x4E0D;&#x6392;&#x65A5;&#x96C6;&#x4E2D;&#x5F0F;&#x7684;&#x4F7F;&#x7528;&#x6A21;&#x5F0F;&#xFF0C;&#x4F46;&#x66F4;&#x503E;&#x5411;&#x4E8E;&#x5C06;&#x96C6;&#x4E2D;&#x5F0F;&#x7248;&#x672C;&#x5E93;&#x79F0;&#x4E3A;&#x5171;&#x4EAB;&#x7248;&#x672C;&#x5E93;&#x3002;</p>
 <h3 id="GitLab"><a href="#GitLab" class="headerlink" title="GitLab"></a>GitLab</h3><p>GitLab &#x662F;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x5E93;&#x652F;&#x6301;&#x7684; web &#x5E94;&#x7528;&#xFF0C;&#x4E0E;Github&#x7C7B;&#x4F3C;&#xFF0C;&#x76F8;&#x4FE1;&#x5927;&#x5BB6;&#x90FD;&#x7528;&#x8FC7;Github,&#x90A3;&#x4E48;&#x518D;&#x63A5;&#x89E6;GitLab&#x5C31;&#x5F88;&#x7B80;&#x5355;&#x4E86;&#x3002;</p>
 <h5 id="Docker&#x5B89;&#x88C5;GitLab"><a href="#Docker&#x5B89;&#x88C5;GitLab" class="headerlink" title="Docker&#x5B89;&#x88C5;GitLab"></a>Docker&#x5B89;&#x88C5;GitLab</h5><pre><code>sudo docker pull gitlab/gitlab-ce:latest
@@ -181,7 +181,7 @@ echo &quot;sucess&quot;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/13/使用Gitlab Jenkins Docker建立CI部署方案/" data-id="ck3ppbpqt003karuosie1a9k7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/13/使用Gitlab Jenkins Docker建立CI部署方案/" data-id="ck3ppdu0i003hc8uowwm7o4cg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
