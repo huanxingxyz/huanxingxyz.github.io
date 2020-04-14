@@ -229,129 +229,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/12/Android 沉浸式标题栏/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="huanxingxyz">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="田鹏飞的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/01/12/Android 沉浸式标题栏/" itemprop="url">Android 沉浸式标题栏</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-12T16:17:05+08:00">
-                2017-01-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="&#x8FD9;&#x4E2A;&#x5E93;&#x5B9E;&#x73B0;Android&#x6C89;&#x6D78;&#x5F0F;&#x6807;&#x9898;&#x680F;"><a href="#&#x8FD9;&#x4E2A;&#x5E93;&#x5B9E;&#x73B0;Android&#x6C89;&#x6D78;&#x5F0F;&#x6807;&#x9898;&#x680F;" class="headerlink" title="&#x8FD9;&#x4E2A;&#x5E93;&#x5B9E;&#x73B0;Android&#x6C89;&#x6D78;&#x5F0F;&#x6807;&#x9898;&#x680F;"></a>&#x8FD9;&#x4E2A;&#x5E93;&#x5B9E;&#x73B0;Android&#x6C89;&#x6D78;&#x5F0F;&#x6807;&#x9898;&#x680F;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &apos;com.readystatesoftware.systembartint:systembartint:1.0.3&apos;</span><br></pre></td></tr></table></figure>
-<h3 id="1-&#x6C89;&#x6D78;&#x5F0F;&#x6807;&#x9898;&#x680F;"><a href="#1-&#x6C89;&#x6D78;&#x5F0F;&#x6807;&#x9898;&#x680F;" class="headerlink" title="1,&#x6C89;&#x6D78;&#x5F0F;&#x6807;&#x9898;&#x680F;"></a>1,&#x6C89;&#x6D78;&#x5F0F;&#x6807;&#x9898;&#x680F;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.KITKAT) {</span><br><span class="line">          //&#x900F;&#x660E;&#x72B6;&#x6001;&#x680F;</span><br><span class="line">         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);</span><br><span class="line">          //&#x900F;&#x660E;&#x5BFC;&#x822A;&#x680F;</span><br><span class="line">     getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);</span><br><span class="line">      }</span><br></pre></td></tr></table></figure>
-<h3 id="2-&#x52A8;&#x6001;&#x7684;&#x8BBE;&#x7F6E;&#x72B6;&#x6001;&#x680F;-&#x5B9E;&#x73B0;&#x6C89;&#x6D78;&#x5F0F;&#x72B6;&#x6001;&#x680F;"><a href="#2-&#x52A8;&#x6001;&#x7684;&#x8BBE;&#x7F6E;&#x72B6;&#x6001;&#x680F;-&#x5B9E;&#x73B0;&#x6C89;&#x6D78;&#x5F0F;&#x72B6;&#x6001;&#x680F;" class="headerlink" title="2,&#x52A8;&#x6001;&#x7684;&#x8BBE;&#x7F6E;&#x72B6;&#x6001;&#x680F;  &#x5B9E;&#x73B0;&#x6C89;&#x6D78;&#x5F0F;&#x72B6;&#x6001;&#x680F;"></a>2,&#x52A8;&#x6001;&#x7684;&#x8BBE;&#x7F6E;&#x72B6;&#x6001;&#x680F;  &#x5B9E;&#x73B0;&#x6C89;&#x6D78;&#x5F0F;&#x72B6;&#x6001;&#x680F;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">     * &#x52A8;&#x6001;&#x7684;&#x8BBE;&#x7F6E;&#x72B6;&#x6001;&#x680F;  &#x5B9E;&#x73B0;&#x6C89;&#x6D78;&#x5F0F;&#x72B6;&#x6001;&#x680F;</span><br><span class="line">     *</span><br><span class="line">     */</span><br><span class="line">    private void initState() {</span><br><span class="line"></span><br><span class="line">        //&#x5F53;&#x7CFB;&#x7EDF;&#x7248;&#x672C;&#x4E3A;4.4&#x6216;&#x8005;4.4&#x4EE5;&#x4E0A;&#x65F6;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6C89;&#x6D78;&#x5F0F;&#x72B6;&#x6001;&#x680F;</span><br><span class="line">        if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.KITKAT) {</span><br><span class="line">            //&#x900F;&#x660E;&#x72B6;&#x6001;&#x680F;</span><br><span class="line">            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);</span><br><span class="line">            //&#x900F;&#x660E;&#x5BFC;&#x822A;&#x680F;</span><br><span class="line">            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);</span><br><span class="line">            //</span><br><span class="line">            LinearLayout linear_bar = (LinearLayout) findViewById(R.id.ll_bar);</span><br><span class="line">            linear_bar.setVisibility(View.VISIBLE);</span><br><span class="line">            //&#x83B7;&#x53D6;&#x5230;&#x72B6;&#x6001;&#x680F;&#x7684;&#x9AD8;&#x5EA6;</span><br><span class="line">            int statusHeight = getStatusBarHeight();</span><br><span class="line">            //&#x52A8;&#x6001;&#x7684;&#x8BBE;&#x7F6E;&#x9690;&#x85CF;&#x5E03;&#x5C40;&#x7684;&#x9AD8;&#x5EA6;</span><br><span class="line">            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) linear_bar.getLayoutParams();</span><br><span class="line">            params.height = statusHeight;</span><br><span class="line">            linear_bar.setLayoutParams(params);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * &#x901A;&#x8FC7;&#x53CD;&#x5C04;&#x7684;&#x65B9;&#x5F0F;&#x83B7;&#x53D6;&#x72B6;&#x6001;&#x680F;&#x9AD8;&#x5EA6;</span><br><span class="line">     *</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    private int getStatusBarHeight() {</span><br><span class="line">        try {</span><br><span class="line">            Class&lt;?&gt; c = Class.forName(&quot;com.android.internal.R$dimen&quot;);</span><br><span class="line">            Object obj = c.newInstance();</span><br><span class="line">            Field field = c.getField(&quot;status_bar_height&quot;);</span><br><span class="line">            int x = Integer.parseInt(field.get(obj).toString());</span><br><span class="line">            return getResources().getDimensionPixelSize(x);</span><br><span class="line">        } catch (Exception e) {</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        }</span><br><span class="line">        return 0;</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
-<h3 id="3-&#x8FD8;&#x6709;&#x8FD9;&#x79CD;"><a href="#3-&#x8FD8;&#x6709;&#x8FD9;&#x79CD;" class="headerlink" title="3,&#x8FD8;&#x6709;&#x8FD9;&#x79CD;"></a>3,&#x8FD8;&#x6709;&#x8FD9;&#x79CD;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.KITKAT) {</span><br><span class="line">           //&#x900F;&#x660E;&#x72B6;&#x6001;&#x680F;</span><br><span class="line">           getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);</span><br><span class="line">           //&#x900F;&#x660E;&#x5BFC;&#x822A;&#x680F;</span><br><span class="line">           getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);</span><br><span class="line">           SystemBarTintManager tintManager = new SystemBarTintManager(this);</span><br><span class="line">           // &#x6FC0;&#x6D3B;&#x72B6;&#x6001;&#x680F;</span><br><span class="line">           tintManager.setStatusBarTintEnabled(true);</span><br><span class="line">           // enable navigation bar tint &#x6FC0;&#x6D3B;&#x5BFC;&#x822A;&#x680F;</span><br><span class="line">           tintManager.setNavigationBarTintEnabled(true);</span><br><span class="line">           //&#x8BBE;&#x7F6E;&#x7CFB;&#x7EDF;&#x680F;&#x8BBE;&#x7F6E;&#x989C;&#x8272;</span><br><span class="line">           //tintManager.setTintColor(R.color.red);</span><br><span class="line">           //&#x7ED9;&#x72B6;&#x6001;&#x680F;&#x8BBE;&#x7F6E;&#x989C;&#x8272;</span><br><span class="line">           tintManager.setStatusBarTintResource(R.color.mask_tags_1);</span><br><span class="line">           //Apply the specified drawable or color resource to the system navigation bar.</span><br><span class="line">           //&#x7ED9;&#x5BFC;&#x822A;&#x680F;&#x8BBE;&#x7F6E;&#x8D44;&#x6E90;</span><br><span class="line">           tintManager.setNavigationBarTintResource(R.color.mask_tags_1);</span><br><span class="line">       }</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/12/Android 查看签名/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -463,6 +340,129 @@
 <p>&#x4E3A;&#x4E86;&#x80FD;&#x591F;&#x624B;&#x52A8;&#x5BF9;&#x9F50;&#x7A0B;&#x5E8F;&#x5305;&#xFF0C;Android 1.6&#x53CA;&#x4EE5;&#x540E;&#x7684;SDK&#x7684;tools/&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x90FD;&#x6709;zipalign&#x5DE5;&#x5177;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5B83;&#x6765;&#x5BF9;&#x9F50;&#x4EFB;&#x4F55;&#x7248;&#x672C;&#x4E0B;&#x7684;&#x7A0B;&#x5E8F;&#x5305;&#x3002;&#x4F60;&#x5FC5;&#x987B;&#x5728;&#x7B7E;&#x540D;apk&#x6587;&#x4EF6;&#x540E;&#x8FDB;&#x884C;&#xFF0C;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#xFF1A;zipalign -v 4 source.apk destination.apk</p>
 <p>4&#xFF09;&#x9A8C;&#x8BC1;&#x5BF9;&#x9F50;&#xFF1A;</p>
 <p>zipalign -c -v 4 application.apk</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/12/Android 沉浸式标题栏/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huanxingxyz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="田鹏飞的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/01/12/Android 沉浸式标题栏/" itemprop="url">Android 沉浸式标题栏</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-12T16:17:05+08:00">
+                2017-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="&#x8FD9;&#x4E2A;&#x5E93;&#x5B9E;&#x73B0;Android&#x6C89;&#x6D78;&#x5F0F;&#x6807;&#x9898;&#x680F;"><a href="#&#x8FD9;&#x4E2A;&#x5E93;&#x5B9E;&#x73B0;Android&#x6C89;&#x6D78;&#x5F0F;&#x6807;&#x9898;&#x680F;" class="headerlink" title="&#x8FD9;&#x4E2A;&#x5E93;&#x5B9E;&#x73B0;Android&#x6C89;&#x6D78;&#x5F0F;&#x6807;&#x9898;&#x680F;"></a>&#x8FD9;&#x4E2A;&#x5E93;&#x5B9E;&#x73B0;Android&#x6C89;&#x6D78;&#x5F0F;&#x6807;&#x9898;&#x680F;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &apos;com.readystatesoftware.systembartint:systembartint:1.0.3&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="1-&#x6C89;&#x6D78;&#x5F0F;&#x6807;&#x9898;&#x680F;"><a href="#1-&#x6C89;&#x6D78;&#x5F0F;&#x6807;&#x9898;&#x680F;" class="headerlink" title="1,&#x6C89;&#x6D78;&#x5F0F;&#x6807;&#x9898;&#x680F;"></a>1,&#x6C89;&#x6D78;&#x5F0F;&#x6807;&#x9898;&#x680F;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.KITKAT) {</span><br><span class="line">          //&#x900F;&#x660E;&#x72B6;&#x6001;&#x680F;</span><br><span class="line">         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);</span><br><span class="line">          //&#x900F;&#x660E;&#x5BFC;&#x822A;&#x680F;</span><br><span class="line">     getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);</span><br><span class="line">      }</span><br></pre></td></tr></table></figure>
+<h3 id="2-&#x52A8;&#x6001;&#x7684;&#x8BBE;&#x7F6E;&#x72B6;&#x6001;&#x680F;-&#x5B9E;&#x73B0;&#x6C89;&#x6D78;&#x5F0F;&#x72B6;&#x6001;&#x680F;"><a href="#2-&#x52A8;&#x6001;&#x7684;&#x8BBE;&#x7F6E;&#x72B6;&#x6001;&#x680F;-&#x5B9E;&#x73B0;&#x6C89;&#x6D78;&#x5F0F;&#x72B6;&#x6001;&#x680F;" class="headerlink" title="2,&#x52A8;&#x6001;&#x7684;&#x8BBE;&#x7F6E;&#x72B6;&#x6001;&#x680F;  &#x5B9E;&#x73B0;&#x6C89;&#x6D78;&#x5F0F;&#x72B6;&#x6001;&#x680F;"></a>2,&#x52A8;&#x6001;&#x7684;&#x8BBE;&#x7F6E;&#x72B6;&#x6001;&#x680F;  &#x5B9E;&#x73B0;&#x6C89;&#x6D78;&#x5F0F;&#x72B6;&#x6001;&#x680F;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">     * &#x52A8;&#x6001;&#x7684;&#x8BBE;&#x7F6E;&#x72B6;&#x6001;&#x680F;  &#x5B9E;&#x73B0;&#x6C89;&#x6D78;&#x5F0F;&#x72B6;&#x6001;&#x680F;</span><br><span class="line">     *</span><br><span class="line">     */</span><br><span class="line">    private void initState() {</span><br><span class="line"></span><br><span class="line">        //&#x5F53;&#x7CFB;&#x7EDF;&#x7248;&#x672C;&#x4E3A;4.4&#x6216;&#x8005;4.4&#x4EE5;&#x4E0A;&#x65F6;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6C89;&#x6D78;&#x5F0F;&#x72B6;&#x6001;&#x680F;</span><br><span class="line">        if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.KITKAT) {</span><br><span class="line">            //&#x900F;&#x660E;&#x72B6;&#x6001;&#x680F;</span><br><span class="line">            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);</span><br><span class="line">            //&#x900F;&#x660E;&#x5BFC;&#x822A;&#x680F;</span><br><span class="line">            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);</span><br><span class="line">            //</span><br><span class="line">            LinearLayout linear_bar = (LinearLayout) findViewById(R.id.ll_bar);</span><br><span class="line">            linear_bar.setVisibility(View.VISIBLE);</span><br><span class="line">            //&#x83B7;&#x53D6;&#x5230;&#x72B6;&#x6001;&#x680F;&#x7684;&#x9AD8;&#x5EA6;</span><br><span class="line">            int statusHeight = getStatusBarHeight();</span><br><span class="line">            //&#x52A8;&#x6001;&#x7684;&#x8BBE;&#x7F6E;&#x9690;&#x85CF;&#x5E03;&#x5C40;&#x7684;&#x9AD8;&#x5EA6;</span><br><span class="line">            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) linear_bar.getLayoutParams();</span><br><span class="line">            params.height = statusHeight;</span><br><span class="line">            linear_bar.setLayoutParams(params);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * &#x901A;&#x8FC7;&#x53CD;&#x5C04;&#x7684;&#x65B9;&#x5F0F;&#x83B7;&#x53D6;&#x72B6;&#x6001;&#x680F;&#x9AD8;&#x5EA6;</span><br><span class="line">     *</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    private int getStatusBarHeight() {</span><br><span class="line">        try {</span><br><span class="line">            Class&lt;?&gt; c = Class.forName(&quot;com.android.internal.R$dimen&quot;);</span><br><span class="line">            Object obj = c.newInstance();</span><br><span class="line">            Field field = c.getField(&quot;status_bar_height&quot;);</span><br><span class="line">            int x = Integer.parseInt(field.get(obj).toString());</span><br><span class="line">            return getResources().getDimensionPixelSize(x);</span><br><span class="line">        } catch (Exception e) {</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        }</span><br><span class="line">        return 0;</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
+<h3 id="3-&#x8FD8;&#x6709;&#x8FD9;&#x79CD;"><a href="#3-&#x8FD8;&#x6709;&#x8FD9;&#x79CD;" class="headerlink" title="3,&#x8FD8;&#x6709;&#x8FD9;&#x79CD;"></a>3,&#x8FD8;&#x6709;&#x8FD9;&#x79CD;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.KITKAT) {</span><br><span class="line">           //&#x900F;&#x660E;&#x72B6;&#x6001;&#x680F;</span><br><span class="line">           getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);</span><br><span class="line">           //&#x900F;&#x660E;&#x5BFC;&#x822A;&#x680F;</span><br><span class="line">           getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);</span><br><span class="line">           SystemBarTintManager tintManager = new SystemBarTintManager(this);</span><br><span class="line">           // &#x6FC0;&#x6D3B;&#x72B6;&#x6001;&#x680F;</span><br><span class="line">           tintManager.setStatusBarTintEnabled(true);</span><br><span class="line">           // enable navigation bar tint &#x6FC0;&#x6D3B;&#x5BFC;&#x822A;&#x680F;</span><br><span class="line">           tintManager.setNavigationBarTintEnabled(true);</span><br><span class="line">           //&#x8BBE;&#x7F6E;&#x7CFB;&#x7EDF;&#x680F;&#x8BBE;&#x7F6E;&#x989C;&#x8272;</span><br><span class="line">           //tintManager.setTintColor(R.color.red);</span><br><span class="line">           //&#x7ED9;&#x72B6;&#x6001;&#x680F;&#x8BBE;&#x7F6E;&#x989C;&#x8272;</span><br><span class="line">           tintManager.setStatusBarTintResource(R.color.mask_tags_1);</span><br><span class="line">           //Apply the specified drawable or color resource to the system navigation bar.</span><br><span class="line">           //&#x7ED9;&#x5BFC;&#x822A;&#x680F;&#x8BBE;&#x7F6E;&#x8D44;&#x6E90;</span><br><span class="line">           tintManager.setNavigationBarTintResource(R.color.mask_tags_1);</span><br><span class="line">       }</span><br></pre></td></tr></table></figure>
 
           
         
