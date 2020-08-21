@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="&amp;#x6307;&amp;#x5B9A;&amp;#x7279;&amp;#x5B9A;&amp;#x8FDE;&amp;#x63A5;&amp;#x8BBE;&amp;#x5907;1234$ adb devicesList of devices attachedcf264b8f deviceemulator-5554 device &amp;#x542F;&amp;#x52A8;/&amp;#x505C;&amp;#x6B62; adb12adb start-serveradb">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="adb常用命令">
+<meta property="og:url" content="http://yoursite.com/2017/01/05/Android adb命令/index.html">
+<meta property="og:site_name" content="田鹏飞的个人博客">
+<meta property="og:description" content="&amp;#x6307;&amp;#x5B9A;&amp;#x7279;&amp;#x5B9A;&amp;#x8FDE;&amp;#x63A5;&amp;#x8BBE;&amp;#x5907;1234$ adb devicesList of devices attachedcf264b8f deviceemulator-5554 device &amp;#x542F;&amp;#x52A8;/&amp;#x505C;&amp;#x6B62; adb12adb start-serveradb">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-01-19T06:56:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="adb常用命令">
+<meta name="twitter:description" content="&amp;#x6307;&amp;#x5B9A;&amp;#x7279;&amp;#x5B9A;&amp;#x8FDE;&amp;#x63A5;&amp;#x8BBE;&amp;#x5907;1234$ adb devicesList of devices attachedcf264b8f deviceemulator-5554 device &amp;#x542F;&amp;#x52A8;/&amp;#x505C;&amp;#x6B62; adb12adb start-serveradb">
+
+<link rel="canonical" href="http://yoursite.com/2017/01/05/Android adb命令/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>adb常用命令 | 田鹏飞的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">田鹏飞的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">你若盛开，蝴蝶自来</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/05/Android adb命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="huanxingxyz">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="田鹏飞的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          adb常用命令
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-05 22:17:05" itemprop="dateCreated datePublished" datetime="2017-01-05T22:17:05+08:00">2017-01-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2017-01-19 14:56:23" itemprop="dateModified" datetime="2017-01-19T14:56:23+08:00">2017-01-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="&#x6307;&#x5B9A;&#x7279;&#x5B9A;&#x8FDE;&#x63A5;&#x8BBE;&#x5907;"><a href="#&#x6307;&#x5B9A;&#x7279;&#x5B9A;&#x8FDE;&#x63A5;&#x8BBE;&#x5907;" class="headerlink" title="&#x6307;&#x5B9A;&#x7279;&#x5B9A;&#x8FDE;&#x63A5;&#x8BBE;&#x5907;"></a>&#x6307;&#x5B9A;&#x7279;&#x5B9A;&#x8FDE;&#x63A5;&#x8BBE;&#x5907;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ adb devices</span><br><span class="line">List of devices attached</span><br><span class="line">cf264b8f device</span><br><span class="line">emulator-5554 device</span><br></pre></td></tr></table></figure>
+<h3 id="&#x542F;&#x52A8;-&#x505C;&#x6B62;-adb"><a href="#&#x542F;&#x52A8;-&#x505C;&#x6B62;-adb" class="headerlink" title="&#x542F;&#x52A8;/&#x505C;&#x6B62; adb"></a>&#x542F;&#x52A8;/&#x505C;&#x6B62; adb</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb start-server</span><br><span class="line">adb kill-server</span><br></pre></td></tr></table></figure>
+<h3 id="&#x83B7;&#x53D6;&#x624B;&#x673A;&#x4E0A;&#x5B89;&#x88C5;&#x7684;&#x5E94;&#x7528;&#x5217;&#x8868;"><a href="#&#x83B7;&#x53D6;&#x624B;&#x673A;&#x4E0A;&#x5B89;&#x88C5;&#x7684;&#x5E94;&#x7528;&#x5217;&#x8868;" class="headerlink" title="&#x83B7;&#x53D6;&#x624B;&#x673A;&#x4E0A;&#x5B89;&#x88C5;&#x7684;&#x5E94;&#x7528;&#x5217;&#x8868;"></a>&#x83B7;&#x53D6;&#x624B;&#x673A;&#x4E0A;&#x5B89;&#x88C5;&#x7684;&#x5E94;&#x7528;&#x5217;&#x8868;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm list packages</span><br></pre></td></tr></table></figure>
+<h3 id="&#x5B89;&#x88C5;-&#x5378;&#x8F7D;-&#x5E94;&#x7528;"><a href="#&#x5B89;&#x88C5;-&#x5378;&#x8F7D;-&#x5E94;&#x7528;" class="headerlink" title="&#x5B89;&#x88C5;/&#x5378;&#x8F7D; &#x5E94;&#x7528;"></a>&#x5B89;&#x88C5;/&#x5378;&#x8F7D; &#x5E94;&#x7528;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb install APK&#x7684;&#x8DEF;&#x5F84;</span><br><span class="line">adb uninstall APK&#x7684;&#x5305;&#x540D;</span><br></pre></td></tr></table></figure>
+<h3 id="&#x6E05;&#x9664;APK&#x7684;&#x6570;&#x636E;"><a href="#&#x6E05;&#x9664;APK&#x7684;&#x6570;&#x636E;" class="headerlink" title="&#x6E05;&#x9664;APK&#x7684;&#x6570;&#x636E;"></a>&#x6E05;&#x9664;APK&#x7684;&#x6570;&#x636E;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm clear &#x5305;&#x540D;</span><br></pre></td></tr></table></figure>
+<h3 id="&#x5217;&#x51FA;&#x524D;&#x53F0;-Activity"><a href="#&#x5217;&#x51FA;&#x524D;&#x53F0;-Activity" class="headerlink" title="&#x5217;&#x51FA;&#x524D;&#x53F0; Activity"></a>&#x5217;&#x51FA;&#x524D;&#x53F0; Activity</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys activity activities | grep mFocusedActivity</span><br></pre></td></tr></table></figure>
+<h3 id="&#x8C03;&#x8D77;&#x6307;&#x5B9A;&#x7684;Activity-Service&#xFF0C;&#x53D1;&#x9001;&#x6307;&#x5B9A;&#x5E7F;&#x64AD;"><a href="#&#x8C03;&#x8D77;&#x6307;&#x5B9A;&#x7684;Activity-Service&#xFF0C;&#x53D1;&#x9001;&#x6307;&#x5B9A;&#x5E7F;&#x64AD;" class="headerlink" title="&#x8C03;&#x8D77;&#x6307;&#x5B9A;&#x7684;Activity/Service&#xFF0C;&#x53D1;&#x9001;&#x6307;&#x5B9A;&#x5E7F;&#x64AD;"></a>&#x8C03;&#x8D77;&#x6307;&#x5B9A;&#x7684;Activity/Service&#xFF0C;&#x53D1;&#x9001;&#x6307;&#x5B9A;&#x5E7F;&#x64AD;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start -n com.tencent.mm/.ui.LauncherUI</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am broadcast -a android.intent.action.BOOT_COMPLETED -n com.lee.test/.CompleteReceiver</span><br></pre></td></tr></table></figure>
+<h3 id="&#x5F3A;&#x884C;&#x505C;&#x6B62;&#x5E94;&#x7528;"><a href="#&#x5F3A;&#x884C;&#x505C;&#x6B62;&#x5E94;&#x7528;" class="headerlink" title="&#x5F3A;&#x884C;&#x505C;&#x6B62;&#x5E94;&#x7528;"></a>&#x5F3A;&#x884C;&#x505C;&#x6B62;&#x5E94;&#x7528;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am force-stop -n &#x5305;&#x540D;</span><br></pre></td></tr></table></figure>
+<h3 id="PC&#x4E0E;&#x624B;&#x673A;&#x4E92;&#x4F20;&#x6587;&#x4EF6;"><a href="#PC&#x4E0E;&#x624B;&#x673A;&#x4E92;&#x4F20;&#x6587;&#x4EF6;" class="headerlink" title="PC&#x4E0E;&#x624B;&#x673A;&#x4E92;&#x4F20;&#x6587;&#x4EF6;"></a>PC&#x4E0E;&#x624B;&#x673A;&#x4E92;&#x4F20;&#x6587;&#x4EF6;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb pull &#x624B;&#x673A;&#x6587;&#x4EF6;&#x8DEF;&#x5F84; &#x7535;&#x8111;&#x4E0A;&#x76EE;&#x5F55;</span><br></pre></td></tr></table></figure>
+<h3 id="&#x6A21;&#x62DF;&#x6309;&#x952E;-&#x8F93;&#x5165;"><a href="#&#x6A21;&#x62DF;&#x6309;&#x952E;-&#x8F93;&#x5165;" class="headerlink" title="&#x6A21;&#x62DF;&#x6309;&#x952E;/&#x8F93;&#x5165;"></a>&#x6A21;&#x62DF;&#x6309;&#x952E;/&#x8F93;&#x5165;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input keyevent &#x5177;&#x4F53;&#x6570;&#x503C;</span><br></pre></td></tr></table></figure>
+<h3 id="Android-&#x65E5;&#x5FD7;"><a href="#Android-&#x65E5;&#x5FD7;" class="headerlink" title="Android &#x65E5;&#x5FD7;"></a>Android &#x65E5;&#x5FD7;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb logcat [&lt;option&gt;] ... [&lt;filter-spec&gt;] ...</span><br></pre></td></tr></table></figure>
+<h3 id="&#x67E5;&#x770B;IMEI&#x53F7;"><a href="#&#x67E5;&#x770B;IMEI&#x53F7;" class="headerlink" title="&#x67E5;&#x770B;IMEI&#x53F7;"></a>&#x67E5;&#x770B;IMEI&#x53F7;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell</span><br><span class="line">su</span><br><span class="line">service call iphonesubinfo 1</span><br></pre></td></tr></table></figure>
+<h3 id="&#x67E5;&#x770B;&#x7CFB;&#x7EDF;&#x5C5E;&#x6027;"><a href="#&#x67E5;&#x770B;&#x7CFB;&#x7EDF;&#x5C5E;&#x6027;" class="headerlink" title="&#x67E5;&#x770B;&#x7CFB;&#x7EDF;&#x5C5E;&#x6027;"></a>&#x67E5;&#x770B;&#x7CFB;&#x7EDF;&#x5C5E;&#x6027;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell cat /system/build.prop</span><br></pre></td></tr></table></figure>
+<h3 id="&#x5C4F;&#x5E55;&#x622A;&#x56FE;&#x5E76;&#x4F20;&#x5230;&#x7535;&#x8111;&#x7AEF;"><a href="#&#x5C4F;&#x5E55;&#x622A;&#x56FE;&#x5E76;&#x4F20;&#x5230;&#x7535;&#x8111;&#x7AEF;" class="headerlink" title="&#x5C4F;&#x5E55;&#x622A;&#x56FE;&#x5E76;&#x4F20;&#x5230;&#x7535;&#x8111;&#x7AEF;"></a>&#x5C4F;&#x5E55;&#x622A;&#x56FE;&#x5E76;&#x4F20;&#x5230;&#x7535;&#x8111;&#x7AEF;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell screencap -p /sdcard/hello.png</span><br></pre></td></tr></table></figure>
+<h3 id="&#x5F55;&#x5236;&#x5C4F;&#x5E55;"><a href="#&#x5F55;&#x5236;&#x5C4F;&#x5E55;" class="headerlink" title="&#x5F55;&#x5236;&#x5C4F;&#x5E55;"></a>&#x5F55;&#x5236;&#x5C4F;&#x5E55;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell screenrecord /sdcard/lee.mp4</span><br></pre></td></tr></table></figure>
+<h3 id="&#x91CD;&#x542F;&#x673A;&#x5668;"><a href="#&#x91CD;&#x542F;&#x673A;&#x5668;" class="headerlink" title="&#x91CD;&#x542F;&#x673A;&#x5668;"></a>&#x91CD;&#x542F;&#x673A;&#x5668;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb reboot</span><br></pre></td></tr></table></figure>
+<h3 id="Monkey-&#x538B;&#x529B;&#x6D4B;&#x8BD5;"><a href="#Monkey-&#x538B;&#x529B;&#x6D4B;&#x8BD5;" class="headerlink" title="Monkey &#x538B;&#x529B;&#x6D4B;&#x8BD5;"></a>Monkey &#x538B;&#x529B;&#x6D4B;&#x8BD5;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell monkey -p &#x5305;&#x540D; -v 500</span><br></pre></td></tr></table></figure>
+<h3 id="&#x67E5;&#x770B;&#x8FDB;&#x7A0B;"><a href="#&#x67E5;&#x770B;&#x8FDB;&#x7A0B;" class="headerlink" title="&#x67E5;&#x770B;&#x8FDB;&#x7A0B;"></a>&#x67E5;&#x770B;&#x8FDB;&#x7A0B;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell ps</span><br></pre></td></tr></table></figure>
+<h3 id="&#x5F55;&#x5C4F;-&#x5F00;&#x59CB;&#x5F55;&#x5236;"><a href="#&#x5F55;&#x5C4F;-&#x5F00;&#x59CB;&#x5F55;&#x5236;" class="headerlink" title="&#x5F55;&#x5C4F;(&#x5F00;&#x59CB;&#x5F55;&#x5236;)"></a>&#x5F55;&#x5C4F;(&#x5F00;&#x59CB;&#x5F55;&#x5236;)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell screenrecord /sdcard/demo.mp4</span><br></pre></td></tr></table></figure>
+<p>&#x9650;&#x5236;&#x5F55;&#x5236;&#x65F6;&#x95F4;:</p>
+<p>&#x53C2;&#x6570;: &#x2013;time-limit</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell screenrecord  --time-limit 10 /sdcard/demo.mp4</span><br></pre></td></tr></table></figure>
+<p>&#x8BF4;&#x660E;:&#x9650;&#x5236;&#x89C6;&#x9891;&#x5F55;&#x5236;&#x65F6;&#x95F4;&#x4E3A;10s,&#x5982;&#x679C;&#x4E0D;&#x9650;&#x5236;,&#x9ED8;&#x8BA4;180s</p>
+<p>&#x6307;&#x5B9A;&#x89C6;&#x9891;&#x5206;&#x8FA8;&#x7387;&#x5927;&#x5C0F;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell screenrecord --size 1280*720 /sdcard/demo.mp4</span><br></pre></td></tr></table></figure>
+<p>&#x6307;&#x5B9A;&#x89C6;&#x9891;&#x7684;&#x6BD4;&#x7279;&#x7387;:<br>&#x53C2;&#x6570;: &#x2013;bit-rate</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell screenrecord --bit-rate 6000000 /sdcard/demo.mp4</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Android/" rel="tag"># Android</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/01/05/JVM架构解析/" rel="prev" title="JVM架构解析">
+      <i class="fa fa-chevron-left"></i> JVM架构解析
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/01/05/eclipse mac快捷键/" rel="next" title="eclipse mac快捷键">
+      eclipse mac快捷键 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#指定特定连接设备"><span class="nav-number">1.</span> <span class="nav-text">指定特定连接设备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动-停止-adb"><span class="nav-number">2.</span> <span class="nav-text">启动/停止 adb</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取手机上安装的应用列表"><span class="nav-number">3.</span> <span class="nav-text">获取手机上安装的应用列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-卸载-应用"><span class="nav-number">4.</span> <span class="nav-text">安装/卸载 应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#清除APK的数据"><span class="nav-number">5.</span> <span class="nav-text">清除APK的数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列出前台-Activity"><span class="nav-number">6.</span> <span class="nav-text">列出前台 Activity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调起指定的Activity-Service，发送指定广播"><span class="nav-number">7.</span> <span class="nav-text">调起指定的Activity/Service，发送指定广播</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强行停止应用"><span class="nav-number">8.</span> <span class="nav-text">强行停止应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PC与手机互传文件"><span class="nav-number">9.</span> <span class="nav-text">PC与手机互传文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟按键-输入"><span class="nav-number">10.</span> <span class="nav-text">模拟按键/输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android-日志"><span class="nav-number">11.</span> <span class="nav-text">Android 日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看IMEI号"><span class="nav-number">12.</span> <span class="nav-text">查看IMEI号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看系统属性"><span class="nav-number">13.</span> <span class="nav-text">查看系统属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#屏幕截图并传到电脑端"><span class="nav-number">14.</span> <span class="nav-text">屏幕截图并传到电脑端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#录制屏幕"><span class="nav-number">15.</span> <span class="nav-text">录制屏幕</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重启机器"><span class="nav-number">16.</span> <span class="nav-text">重启机器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Monkey-压力测试"><span class="nav-number">17.</span> <span class="nav-text">Monkey 压力测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看进程"><span class="nav-number">18.</span> <span class="nav-text">查看进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#录屏-开始录制"><span class="nav-number">19.</span> <span class="nav-text">录屏(开始录制)</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">huanxingxyz</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huanxingxyz</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

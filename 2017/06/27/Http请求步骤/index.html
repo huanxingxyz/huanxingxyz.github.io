@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="&amp;#x5EFA;&amp;#x7ACB;TCP/IP&amp;#x8FDE;&amp;#x63A5;&amp;#xFF0C;&amp;#x5BA2;&amp;#x6237;&amp;#x7AEF;&amp;#x4E0E;&amp;#x670D;&amp;#x52A1;&amp;#x5668;&amp;#x901A;&amp;#x8FC7;socket&amp;#xFF0C;&amp;#x4E09;&amp;#x6B21;&amp;#x63E1;&amp;#x624B;&amp;#x8FDB;&amp;#x884C;&amp;#x8FDE;&amp;#x63A5; &amp;">
+<meta name="keywords" content="Http请求流程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Http请求步骤">
+<meta property="og:url" content="http://yoursite.com/2017/06/27/Http请求步骤/index.html">
+<meta property="og:site_name" content="田鹏飞的个人博客">
+<meta property="og:description" content="&amp;#x5EFA;&amp;#x7ACB;TCP/IP&amp;#x8FDE;&amp;#x63A5;&amp;#xFF0C;&amp;#x5BA2;&amp;#x6237;&amp;#x7AEF;&amp;#x4E0E;&amp;#x670D;&amp;#x52A1;&amp;#x5668;&amp;#x901A;&amp;#x8FC7;socket&amp;#xFF0C;&amp;#x4E09;&amp;#x6B21;&amp;#x63E1;&amp;#x624B;&amp;#x8FDB;&amp;#x884C;&amp;#x8FDE;&amp;#x63A5; &amp;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-30T07:56:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Http请求步骤">
+<meta name="twitter:description" content="&amp;#x5EFA;&amp;#x7ACB;TCP/IP&amp;#x8FDE;&amp;#x63A5;&amp;#xFF0C;&amp;#x5BA2;&amp;#x6237;&amp;#x7AEF;&amp;#x4E0E;&amp;#x670D;&amp;#x52A1;&amp;#x5668;&amp;#x901A;&amp;#x8FC7;socket&amp;#xFF0C;&amp;#x4E09;&amp;#x6B21;&amp;#x63E1;&amp;#x624B;&amp;#x8FDB;&amp;#x884C;&amp;#x8FDE;&amp;#x63A5; &amp;">
+
+<link rel="canonical" href="http://yoursite.com/2017/06/27/Http请求步骤/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Http请求步骤 | 田鹏飞的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">田鹏飞的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">你若盛开，蝴蝶自来</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/27/Http请求步骤/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="huanxingxyz">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="田鹏飞的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Http请求步骤
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-06-27 14:17:05" itemprop="dateCreated datePublished" datetime="2017-06-27T14:17:05+08:00">2017-06-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-09-30 15:56:54" itemprop="dateModified" datetime="2018-09-30T15:56:54+08:00">2018-09-30</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <hr>
+<ol>
+<li>&#x5EFA;&#x7ACB;TCP/IP&#x8FDE;&#x63A5;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x4E0E;&#x670D;&#x52A1;&#x5668;&#x901A;&#x8FC7;socket&#xFF0C;&#x4E09;&#x6B21;&#x63E1;&#x624B;&#x8FDB;&#x884C;&#x8FDE;&#x63A5;</li>
+<li>&#x5BA2;&#x6237;&#x7AEF;&#x5411;&#x670D;&#x52A1;&#x7AEF;&#x53D1;&#x9001;HTTP&#x8BF7;&#x6C42;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;GET/1.HTML HTTP/1.1</li>
+<li>&#x5BA2;&#x6237;&#x7AEF;&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#x5934;&#x4FE1;&#x606F;&#xFF0C;&#x8BF7;&#x6C42;&#x5185;&#x5BB9;&#xFF0C;&#x6700;&#x540E;&#x4F1A;&#x53D1;&#x4E00;&#x7A7A;&#x767D;&#x884C;&#xFF0C;&#x6807;&#x8BC6;&#x5BA2;&#x6237;&#x7AEF;&#x8BF7;&#x6C42;&#x5B8C;&#x6BD5;</li>
+<li>&#x670D;&#x52A1;&#x5668;&#x4F1A;&#x505A;&#x51FA;&#x5E94;&#x7B54;&#xFF0C;&#x8868;&#x793A;&#x5BF9;&#x5BA2;&#x6237;&#x7AEF;&#x8BF7;&#x6C42;&#x7684;&#x5E94;&#x7B54;&#xFF0C;&#x4F8B;&#xFF1A;HTTP/1.1 200 OK</li>
+<li>&#x670D;&#x52A1;&#x5668;&#x5411;&#x5BA2;&#x6237;&#x7AEF;&#x53D1;&#x9001;&#x5E94;&#x7B54;&#x5934;&#x4FE1;&#x606F;</li>
+<li>&#x670D;&#x52A1;&#x5668;&#x5411;&#x5BA2;&#x6237;&#x7AEF;&#x53D1;&#x9001;&#x5E94;&#x7B54;&#x5934;&#x4FE1;&#x606F;&#x540E;&#xFF0C;&#x4E5F;&#x4F1A;&#x53D1;&#x9001;&#x4E00;&#x7A7A;&#x767D;&#x884C;&#xFF0C;&#x8868;&#x793A;&#x5E94;&#x7B54;&#x5934;&#x4FE1;&#x606F;&#x53D1;&#x9001;&#x5B8C;&#x6BD5;&#xFF0C;&#x63A5;&#x7740;&#x5C31;&#x4EE5;Content-typey&#x8981;&#x6C42;&#x7684;&#x6570;&#x636E;&#x683C;&#x5F0F;&#x53D1;&#x9001;&#x6570;&#x636E;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;</li>
+<li>&#x670D;&#x52A1;&#x5668;&#x5173;&#x95ED;TCP&#x8FDE;&#x63A5;&#xFF0C;&#x5982;&#x679C;&#x670D;&#x52A1;&#x5668;&#x6216;&#x5BA2;&#x6237;&#x7AEF;&#x589E;&#x52A0; Connetion:keep-alive&#x5C31;&#x8868;&#x793A;&#x5BA2;&#x6237;&#x7AEF;&#x4E0E;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x7EE7;&#x7EED;&#x4FDD;&#x5B58;&#x8FDE;&#x63A5;&#xFF0C;&#x4E0B;&#x6B21;&#x8BF7;&#x6C42;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x4F7F;&#x7528;&#x6B64;&#x6B21;&#x8FDE;&#x63A5;</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Http请求流程/" rel="tag"># Http请求流程</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/06/27/代理和反向代理/" rel="prev" title="代理和反向代理">
+      <i class="fa fa-chevron-left"></i> 代理和反向代理
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/06/27/代理和反向代理的副本/" rel="next" title="代理和反向代理2">
+      代理和反向代理2 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">huanxingxyz</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huanxingxyz</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

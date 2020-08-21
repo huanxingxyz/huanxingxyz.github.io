@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="&amp;#x529F;&amp;#x80FD;&amp;#x6D4B;&amp;#x8BD5; &amp;#x5355;&amp;#x5143;&amp;#x6D4B;&amp;#x8BD5;&amp;#x5E38;&amp;#x7528;&amp;#x7684;Robolectric&amp;#xFF0C;&amp;#x5177;&amp;#x4F53;&amp;#x5B9E;&amp;#x73B0;&amp;#x65B9;&amp;#x6848;&amp;#x662F;&amp;#x901A;&amp;#x8FC7;&amp;#x5B9E;&amp;#x73B0;&amp;#x">
+<meta name="keywords" content="自动化测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 自动化测试">
+<meta property="og:url" content="http://yoursite.com/2017/06/23/Android 自动化测试/index.html">
+<meta property="og:site_name" content="田鹏飞的个人博客">
+<meta property="og:description" content="&amp;#x529F;&amp;#x80FD;&amp;#x6D4B;&amp;#x8BD5; &amp;#x5355;&amp;#x5143;&amp;#x6D4B;&amp;#x8BD5;&amp;#x5E38;&amp;#x7528;&amp;#x7684;Robolectric&amp;#xFF0C;&amp;#x5177;&amp;#x4F53;&amp;#x5B9E;&amp;#x73B0;&amp;#x65B9;&amp;#x6848;&amp;#x662F;&amp;#x901A;&amp;#x8FC7;&amp;#x5B9E;&amp;#x73B0;&amp;#x">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-30T08:02:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 自动化测试">
+<meta name="twitter:description" content="&amp;#x529F;&amp;#x80FD;&amp;#x6D4B;&amp;#x8BD5; &amp;#x5355;&amp;#x5143;&amp;#x6D4B;&amp;#x8BD5;&amp;#x5E38;&amp;#x7528;&amp;#x7684;Robolectric&amp;#xFF0C;&amp;#x5177;&amp;#x4F53;&amp;#x5B9E;&amp;#x73B0;&amp;#x65B9;&amp;#x6848;&amp;#x662F;&amp;#x901A;&amp;#x8FC7;&amp;#x5B9E;&amp;#x73B0;&amp;#x">
+
+<link rel="canonical" href="http://yoursite.com/2017/06/23/Android 自动化测试/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Android 自动化测试 | 田鹏飞的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">田鹏飞的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">你若盛开，蝴蝶自来</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/23/Android 自动化测试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="huanxingxyz">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="田鹏飞的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Android 自动化测试
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-06-23 20:26:18" itemprop="dateCreated datePublished" datetime="2017-06-23T20:26:18+08:00">2017-06-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-09-30 16:02:56" itemprop="dateModified" datetime="2018-09-30T16:02:56+08:00">2018-09-30</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <hr>
+<h4 id="&#x529F;&#x80FD;&#x6D4B;&#x8BD5;"><a href="#&#x529F;&#x80FD;&#x6D4B;&#x8BD5;" class="headerlink" title="&#x529F;&#x80FD;&#x6D4B;&#x8BD5;"></a>&#x529F;&#x80FD;&#x6D4B;&#x8BD5;</h4><ol>
+<li><p>&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x5E38;&#x7528;&#x7684;Robolectric&#xFF0C;&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#x65B9;&#x6848;&#x662F;&#x901A;&#x8FC7;&#x5B9E;&#x73B0;&#x4E00;&#x5957;JVM&#x80FD;&#x8FD0;&#x884C;&#x7684;Android&#x4EE3;&#x7801;&#xFF0C;&#x7136;&#x540E;&#x5728;unit test&#x8FD0;&#x884C;&#x7684;&#x65F6;&#x5019;&#x53BB;&#x622A;&#x53D6;android&#x76F8;&#x5173;&#x7684;&#x4EE3;&#x7801;&#x8C03;&#x7528;&#xFF0C;&#x8F6C;&#x5230;&#x4ED6;&#x4EEC;&#x7684;&#x5B9E;&#x73B0;&#x7684;&#x4EE3;&#x7801;&#x53BB;&#x6267;&#x884C;&#x8FD9;&#x4E2A;&#x8C03;&#x7528;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x5E76;&#x4E14;&#x5728;android&#x6807;&#x51C6;&#x7C7B;&#x57FA;&#x7840;&#x4E0A;&#x53C8;&#x4E30;&#x5BCC;&#x4E86;&#x5F88;&#x591A;&#x6269;&#x5C55;&#x63A5;&#x53E3;&#xFF0C;&#x8FD9;&#x786E;&#x5B9E;&#x6781;&#x5927;&#x4FBF;&#x5229;&#x4E86;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x8FC7;&#x7A0B;&#xFF0C;&#x4F46;&#x662F;&#x5BF9;&#x4E8E;&#x6211;&#x4EEC;&#x5173;&#x6CE8;&#x529F;&#x80FD;&#x5C42;&#x9762;&#x7684;&#x6D4B;&#x8BD5;&#x540C;&#x5B66;&#x786E;&#x5B9E;&#x6709;&#x4E9B;&#x9EBB;&#x722A;&#x554A;&#xFF0C;&#x5B9E;&#x8DF5;&#x610F;&#x4E49;&#x4E0D;&#x662F;&#x5F88;&#x5927;&#x3002;</p>
+</li>
+<li><p>Monkey&#x662F;Android&#x7CFB;&#x7EDF;&#x81EA;&#x5E26;&#x7684;&#x4E00;&#x6B3E;&#x7A33;&#x5B9A;&#x6027;&#x6D4B;&#x8BD5;&#x5DE5;&#x5177;&#xFF0C;&#x5F88;&#x591A;&#x5382;&#x5546;&#x4E5F;&#x5C06;&#x5176;&#x4F5C;&#x4E3A;&#x5185;&#x7F6E;&#x4EA7;&#x54C1;&#x7684;&#x7A33;&#x5B9A;&#x6027;&#x9A8C;&#x6536;&#x8861;&#x91CF;&#x5DE5;&#x5177;&#xFF0C;&#x4ED6;&#x867D;&#x7136;&#x7B80;&#x5355;&#x6613;&#x7528;&#x65B9;&#x4FBF;&#x5FEB;&#x6377;&#xFF0C;&#x4F46;&#x662F;&#x6B63;&#x5982;&#x5176;&#x540D;&#x4E00;&#x6837;&#xFF0C;&#x7334;&#x5B50;&#x6BD5;&#x7ADF;&#x8FD8;&#x662F;&#x7334;&#x5B50;&#x662F;&#x65E0;&#x6CD5;&#x5B8C;&#x6210;&#x786E;&#x5B9A;&#x529F;&#x80FD;&#x7528;&#x4F8B;&#x7684;&#x6D4B;&#x8BD5;&#x8FC7;&#x7A0B;&#xFF0C;&#x9057;&#x61BE;&#x554A;&#xFF0C;&#x7B49;&#x7740;&#x7334;&#x5B50;&#x8FDB;&#x5316;&#x6210;&#x4EBA;&#x5427;&#x3002;</p>
+</li>
+<li><p>UIAutomator&#x662F;&#x4E3A;&#x6570;&#x4E0D;&#x591A;&#x7684;Android&#x5B98;&#x65B9;&#x652F;&#x6301;&#x7684;&#x81EA;&#x52A8;&#x5316;&#x6D4B;&#x8BD5;&#x6846;&#x67B6;&#x4E4B;&#x4E00;&#xFF0C;&#x6700;&#x65E9;&#x53D1;&#x5E03;&#x7684;&#x7248;&#x672C;&#x4E3A;API Level17&#x3002;&#x4F5C;&#x4E3A;&#x57FA;&#x4E8E;&#x63A7;&#x4EF6;&#x7684;&#x81EA;&#x52A8;&#x5316;&#x6846;&#x67B6;&#xFF0C;UIAutomator&#x786E;&#x5B9E;&#x63A5;&#x53E3;&#x660E;&#x6670;&#x5BB9;&#x6613;&#x4E0A;&#x624B;&#xFF0C;&#x57FA;&#x4E8E;UIAutomator&#x4E5F;&#x53D1;&#x5C55;&#x51FA;&#x4E86;&#x9F0E;&#x9F0E;&#x5927;&#x540D;&#x7684;Appium&#x5F00;&#x6E90;&#x81EA;&#x52A8;&#x5316;&#x6846;&#x67B6;&#xFF0C;&#x4E1A;&#x754C;&#x5730;&#x4F4D;&#x5927;&#x6709;&#x820D;&#x6211;&#x5176;&#x8C01;&#x4E4B;&#x52BF;&#x3002;&#x7136;&#x800C;&#x4F7F;&#x7528;UIAutomator&#x7684;&#x524D;&#x63D0;&#x662F;&#x53EF;&#x4EE5;&#x7528;UIAutomatorViewer&#x67E5;&#x770B;&#x5230;&#x6211;&#x4EEC;&#x9884;&#x64CD;&#x4F5C;&#x63A7;&#x4EF6;&#x7684;&#x5C5E;&#x6027;&#x4FE1;&#x606F;&#xFF0C;&#x4E0A;&#x9762;&#x5206;&#x6790;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x770B;&#x5230;&#xFF0C;&#x5C0F;&#x7A0B;&#x5E8F;&#x90E8;&#x5206;&#x63A7;&#x4EF6;&#x7684;&#x7236;&#x5BB9;&#x5668;&#x662F;webview&#xFF0C;&#x6B64;webview&#x8FD8;&#x975E;&#x6807;&#x51C6;&#x7ED3;&#x6784;&#xFF0C;&#x5E94;&#x8BE5;&#x662F;&#x817E;&#x8BAF;&#x81EA;&#x7814;&#x7684;X5&#x5185;&#x6838;&#x3002;&#x60F3;&#x7528;appium UIAutomator&#x8DD1;&#x81EA;&#x52A8;&#x5316;&#x7684;&#x5FF5;&#x5934;&#x81EA;&#x6B64;&#x6253;&#x6D88;&#x4E86;&#x3002;</p>
+</li>
+<li><p>&#x8FD8;&#x6709;Instrumentation&#x8FD9;&#x79CD;Android&#x57FA;&#x56E0;&#x578B;&#x6D4B;&#x8BD5;&#x65B9;&#x6848;&#x53EF;&#x4EE5;&#x8003;&#x8651;&#xFF0C;&#x8457;&#x540D;&#x7684;Robotium&#x81EA;&#x52A8;&#x5316;&#x6D4B;&#x8BD5;&#x6846;&#x67B6;&#x5C31;&#x8BDE;&#x751F;&#x4E8E;&#x6B64;&#xFF0C;&#x4F46;&#x662F;&#x7ECF;&#x8FC7;&#x4E00;&#x756A;&#x4E86;&#x89E3;&#x540E;&#xFF0C;&#x9010;&#x6E10;&#x660E;&#x767D;Instrumentation&#x4E5F;&#x597D;robotium&#x4E5F;&#x597D;&#xFF0C;&#x9700;&#x8981;&#x6709;&#x4EA7;&#x54C1;&#x6E90;&#x7801;&#x6216;&#x8005;&#x7B7E;&#x540D;&#xFF0C;&#x6D4B;&#x8BD5;&#x5DE5;&#x7A0B;&#x901A;&#x5E38;&#x662F;&#x4E0E;&#x4EA7;&#x54C1;&#x6E90;&#x7801;&#x653E;&#x5728;&#x76F8;&#x540C;&#x9879;&#x76EE;&#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x90A3;&#x4E48;&#x95EE;&#x9898;&#x6765;&#x4E86;&#xFF0C;&#x8C01;&#x80FD;&#x628A;&#x5FAE;&#x4FE1;&#x7684;&#x6E90;&#x7801;&#x7ED9;&#x6211;&#xFF0C;&#x7B7E;&#x540D;&#x4E5F;&#x884C;&#x554A;&#xFF0C;&#x5582;&#xFF0C;&#x5927;&#x54E5;&#x4F60;&#x6709;&#x4E48;&#xFF1F;&#x5582;&#xFF0C;&#x5582;&#xFF0C;&#x6709;&#x4EBA;&#x80FD;&#x542C;&#x5230;&#x5417;&#xFF1F;!@#@%&amp;^</p>
+</li>
+<li><p>&#x65E9;&#x671F;&#x8FD8;&#x6709;&#x4E00;&#x79CD;&#x901A;&#x8FC7;&#x7CFB;&#x7EDF;&#x63D0;&#x6743;&#x6CE8;&#x5165;&#x5B9E;&#x73B0;&#x7684;&#x81EA;&#x52A8;&#x5316;&#x6D4B;&#x8BD5;&#x80FD;&#x529B;&#xFF0C;&#x4F8B;&#x5982;&#x767E;&#x5EA6;&#x7684;caf&#xE9;&#xFF0C;&#x963F;&#x91CC;&#x7684;arthrun&#xFF0C;&#x5927;&#x591A;copy&#x4E86;xposed&#x67B6;&#x6784;&#x6A21;&#x5F0F;&#xFF0C;&#x5177;&#x6709;&#x5F3A;&#x5927;&#x7684;&#x7CFB;&#x7EDF;&#x63A7;&#x5236;&#x80FD;&#x529B;&#x3002;&#x7136;&#x800C;&#x8BD5;&#x95EE;&#x8FD9;&#x4E9B;&#x6846;&#x67B6;&#x4ECA;&#x4F55;&#x5728;&#x554A;&#xFF0C;&#x539F;&#x6765;&#x56E0;&#x4E3A;android root&#x96BE;&#x5EA6;&#x8D8A;&#x6765;&#x6108;&#x9AD8;&#xFF0C;&#x5230;&#x76EE;&#x524D;6.0&#x7248;&#x672C;&#x51E0;&#x4E4E;&#x6210;&#x4E3A;&#x4E0D;&#x53EF;&#x80FD;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x7C7B;&#x5F00;&#x6E90;&#x6846;&#x67B6;&#x65E9;&#x5728;2014&#x5E74;&#x5DE6;&#x53F3;&#x5C31;&#x505C;&#x6B62;&#x7EF4;&#x62A4;&#x4E86;&#xFF0C;&#x4E0D;&#x9760;&#x8C31;&#x9760;&#x4E0D;&#x4F4F;&#xFF0C;&#x8FD8;&#x5F97;&#x53E6;&#x8C0B;&#x4ED6;&#x6CD5;&#x3002;</p>
+</li>
+<li><p>&#x57FA;&#x4E8E;&#x56FE;&#x50CF;&#x8BC6;&#x522B;&#x4E5F;&#x6709;&#x4E00;&#x4E9B;&#x81EA;&#x52A8;&#x5316;&#x6D4B;&#x8BD5;&#x6846;&#x67B6;&#xFF0C;&#x4F8B;&#x5982;sikuli&#x8FD8;&#x6709;testin&#x7684;&#x81EA;&#x52A8;&#x5316;&#x5DE5;&#x5177;&#xFF0C;&#x7136;&#x800C;&#x5C0F;&#x751F;&#x4E4B;&#x6240;&#x4EE5;&#x76F4;&#x63A5;&#x5C31;&#x628A;&#x8FD9;&#x7C7B;&#x6846;&#x67B6;pass&#x6389;&#x662F;&#x56E0;&#x4E3A;&#x8FD9;&#x79CD;&#x6D4B;&#x8BD5;&#x811A;&#x672C;&#x57FA;&#x672C;&#x4E0D;&#x5177;&#x5907;&#x6269;&#x5C55;&#x6027;&#xFF0C;&#x7CFB;&#x7EDF;ui&#x98CE;&#x683C;&#x53D8;&#x66F4;&#xFF0C;&#x60F3;&#x8981;&#x505A;&#x65AD;&#x8A00;&#x9A8C;&#x8BC1;&#xFF0C;&#x4EE5;&#x53CA;&#x65E5;&#x540E;&#x7528;&#x4F8B;&#x7EF4;&#x62A4;&#x7B49;&#x7B49;&#xFF0C;&#x60F3;&#x90FD;&#x4E0D;&#x6562;&#x60F3;&#x3002;</p>
+</li>
+</ol>
+<h4 id="&#x6D4B;&#x8BD5;"><a href="#&#x6D4B;&#x8BD5;" class="headerlink" title="&#x6D4B;&#x8BD5;"></a>&#x6D4B;&#x8BD5;</h4><ol>
+<li><p>monkey<br>android shell monkey -p &#x4F60;&#x60F3;&#x6D4B;&#x8BD5;&#x7A0B;&#x5E8F;&#x7684;&#x5305;&#x540D; -v 500</p>
+</li>
+<li><p>Monkeyrunner  python&#x6D4B;&#x8BD5;</p>
+</li>
+<li><p>UiAutomator</p>
+</li>
+<li><p>adb shell &#x662F;adbd &#x5B88;&#x62A4;&#x8FDB;&#x7A0B;&#x6267;&#x884C;&#x7684;</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/自动化测试/" rel="tag"># 自动化测试</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/06/23/黑客攻击方式/" rel="prev" title="黑客攻击方式">
+      <i class="fa fa-chevron-left"></i> 黑客攻击方式
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/06/23/注入攻击/" rel="next" title="注入攻击">
+      注入攻击 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#功能测试"><span class="nav-number">1.</span> <span class="nav-text">功能测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试"><span class="nav-number">2.</span> <span class="nav-text">测试</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">huanxingxyz</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huanxingxyz</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="apk&amp;#x5D29;&amp;#x6E83;&amp;#x60C5;&amp;#x5F62; &amp;#x524D;&amp;#x53F0;&amp;#x65F6;&amp;#x5D29;&amp;#x6E83;1&amp;#x3001;&amp;#x754C;&amp;#x9762;&amp;#x4E00;&amp;#x521B;&amp;#x5EFA;&amp;#x5C31;&amp;#x5D29;&amp;#x6E83;&amp;#xFF0C;&amp;#x53EF;&amp;#x80FD;&amp;#x5728;onCreate&amp;#x7B49;&amp;#x">
+<meta name="keywords" content="Android_Framework">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android crash恢复">
+<meta property="og:url" content="http://yoursite.com/2017/01/12/Android crash恢复/index.html">
+<meta property="og:site_name" content="田鹏飞的个人博客">
+<meta property="og:description" content="apk&amp;#x5D29;&amp;#x6E83;&amp;#x60C5;&amp;#x5F62; &amp;#x524D;&amp;#x53F0;&amp;#x65F6;&amp;#x5D29;&amp;#x6E83;1&amp;#x3001;&amp;#x754C;&amp;#x9762;&amp;#x4E00;&amp;#x521B;&amp;#x5EFA;&amp;#x5C31;&amp;#x5D29;&amp;#x6E83;&amp;#xFF0C;&amp;#x53EF;&amp;#x80FD;&amp;#x5728;onCreate&amp;#x7B49;&amp;#x">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-27T13:59:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android crash恢复">
+<meta name="twitter:description" content="apk&amp;#x5D29;&amp;#x6E83;&amp;#x60C5;&amp;#x5F62; &amp;#x524D;&amp;#x53F0;&amp;#x65F6;&amp;#x5D29;&amp;#x6E83;1&amp;#x3001;&amp;#x754C;&amp;#x9762;&amp;#x4E00;&amp;#x521B;&amp;#x5EFA;&amp;#x5C31;&amp;#x5D29;&amp;#x6E83;&amp;#xFF0C;&amp;#x53EF;&amp;#x80FD;&amp;#x5728;onCreate&amp;#x7B49;&amp;#x">
+
+<link rel="canonical" href="http://yoursite.com/2017/01/12/Android crash恢复/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Android crash恢复 | 田鹏飞的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">田鹏飞的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">你若盛开，蝴蝶自来</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/12/Android crash恢复/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="huanxingxyz">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="田鹏飞的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Android crash恢复
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-12 16:17:05" itemprop="dateCreated datePublished" datetime="2017-01-12T16:17:05+08:00">2017-01-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2017-08-27 21:59:45" itemprop="dateModified" datetime="2017-08-27T21:59:45+08:00">2017-08-27</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>apk&#x5D29;&#x6E83;&#x60C5;&#x5F62;</p>
+<h3 id="&#x524D;&#x53F0;&#x65F6;&#x5D29;&#x6E83;"><a href="#&#x524D;&#x53F0;&#x65F6;&#x5D29;&#x6E83;" class="headerlink" title="&#x524D;&#x53F0;&#x65F6;&#x5D29;&#x6E83;"></a>&#x524D;&#x53F0;&#x65F6;&#x5D29;&#x6E83;</h3><p>1&#x3001;&#x754C;&#x9762;&#x4E00;&#x521B;&#x5EFA;&#x5C31;&#x5D29;&#x6E83;&#xFF0C;&#x53EF;&#x80FD;&#x5728;onCreate&#x7B49;&#x65B9;&#x6CD5;&#x4E2D;&#x8BFB;&#x53D6;&#x6570;&#x636E;&#x9020;&#x6210;&#x7684;Crash<br>2&#x3001;&#x754C;&#x9762;&#x521B;&#x5EFA;&#x4E14;&#x7ED8;&#x5236;&#x5B8C;&#x6210;&#x6B63;&#x5E38;&#x663E;&#x793A;&#xFF0C;&#x5728;&#x7528;&#x6237;&#x6267;&#x884C;&#x67D0;&#x4E2A;&#x64CD;&#x4F5C;&#xFF0C;&#x5982;&#x70B9;&#x51FB;&#x6309;&#x94AE;&#x6267;&#x884C;&#x67D0;&#x4E2A;&#x64CD;&#x4F5C;&#x7B49;&#x9020;&#x6210;&#x7684;Crash<br>3&#x3001;&#x5176;&#x5B83;&#x5F02;&#x6B65;&#x7EBF;&#x7A0B;&#x3001;&#x670D;&#x52A1;&#x7B49;&#x5728;&#x540E;&#x53F0;&#x6267;&#x884C;&#x4EFB;&#x52A1;&#x65F6;&#x5BFC;&#x81F4;&#x7684;Crash.</p>
+<p>&#x4E0A;&#x9762;&#x7684;&#x60C5;&#x51B5;&#x90FD;&#x5E94;&#x6062;&#x590D;&#x7ED8;&#x5236;&#x5B8C;&#x6210;&#x540E;&#x7684;&#x754C;&#x9762;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x6808;&#x9876;Activity&#x662F;&#x5728;Crash&#x4E4B;&#x524D;&#x7528;&#x6237;&#x6240;&#x770B;&#x5230;&#x7684;&#x754C;&#x9762;&#xFF0C;&#x800C;&#x4E4B;&#x524D;&#x521B;&#x5EFA;&#x4E14;&#x672A;&#x9500;&#x6BC1;&#x7684;Activity&#x4E5F;&#x5E94;&#x8BE5;&#x8FDB;&#x884C;&#x6062;&#x590D;&#x3002;</p>
+<h3 id="&#x540E;&#x53F0;&#x65F6;&#x5D29;&#x6E83;"><a href="#&#x540E;&#x53F0;&#x65F6;&#x5D29;&#x6E83;" class="headerlink" title="&#x540E;&#x53F0;&#x65F6;&#x5D29;&#x6E83;"></a>&#x540E;&#x53F0;&#x65F6;&#x5D29;&#x6E83;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1&#x3001;&#x8FDB;&#x7A0B;&#x672A;&#x6302;&#xFF0C;&#x65E0;&#x975E;&#x5C31;&#x662F;&#x5F02;&#x6B65;&#x7EBF;&#x7A0B;&#x3001;server&#x7B49;&#x540E;&#x53F0;&#x4EFB;&#x52A1;&#x53D1;&#x751F;&#x5F02;&#x5E38;&#x65F6;&#x5BFC;&#x81F4;&#x7684;Crash</span><br><span class="line">2&#x3001;&#x8FDB;&#x7A0B;&#x5DF2;&#x6302;&#xFF0C;&#x8FDB;&#x7A0B;&#x88AB;360&#x7B49;&#x5DE5;&#x5177;&#x6740;&#x6B7B;&#x4E86;&#xFF0C;&#x5E38;&#x89C1;&#x7684;&#x662F;push&#x8FC7;&#x6765;&#x4E86;&#x7136;&#x540E;&#x5524;&#x8D77;App&#x8FDB;&#x7A0B;&#xFF0C;&#x5728;&#x89E3;&#x6790;push&#x4FE1;&#x606F;&#x65F6;&#x5019;&#x5BFC;&#x81F4;Crash</span><br></pre></td></tr></table></figure>
+<p>ActivityStack&#x6062;&#x590D;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x90FD;&#x662F;&#x5148;&#x6062;&#x590D;&#x6808;&#x4E2D;&#x7684;Activity&#xFF0C;&#x65E0;Activity&#x65F6;&#x5219;&#x91CD;&#x542F;&#x5E94;&#x7528;</p>
+<h3 id="&#x4E3B;&#x9875;&#x7684;&#x56DE;&#x9000;"><a href="#&#x4E3B;&#x9875;&#x7684;&#x56DE;&#x9000;" class="headerlink" title="&#x4E3B;&#x9875;&#x7684;&#x56DE;&#x9000;"></a>&#x4E3B;&#x9875;&#x7684;&#x56DE;&#x9000;</h3><p>&#x5728;&#x8FDB;&#x884C;&#x6062;&#x590D;Activity&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x53EA;&#x662F;&#x6062;&#x590D;&#x6808;&#x9876;Activity&#xFF0C;&#x5F53;&#x7528;&#x6237;&#x5728;&#x8FD9;&#x4E2A;&#x754C;&#x9762;&#x4E0D;&#x8FDB;&#x884C;&#x8DF3;&#x8F6C;&#x64CD;&#x4F5C;&#x800C;&#x662F;&#x76F4;&#x63A5;&#x6309;&#x8FD4;&#x56DE;&#x952E;&#xFF0C;&#x8FD9;&#x5C06;&#x5BFC;&#x81F4;&#x76F4;&#x63A5;&#x9000;&#x51FA;&#x7A0B;&#x5E8F;&#xFF0C;&#x6240;&#x4EE5;&#x5BF9;&#x4E8E;&#x8FD9;&#x4E2A;&#x60C5;&#x51B5;&#x5E94;&#x8BE5;&#x662F;&#x56DE;&#x9000;&#x5230;&#x5E94;&#x7528;&#x7684;&#x4E3B;&#x9875;&#xFF0C;Recovery&#x4E2D;&#x6709;&#x4E2A;&#x53C2;&#x6570;mainPage&#xFF0C;&#x5982;&#x679C;&#x8BBE;&#x7F6E;&#x4E86;&#x5C31;&#x8868;&#x793A;&#x9700;&#x8981;&#x56DE;&#x9000;&#x5230;&#x4E3B;&#x9875;&#xFF0C;&#x6CA1;&#x6709;&#x8BBE;&#x7F6E;&#x5219;&#x4E0D;&#x8FDB;&#x884C;&#x56DE;&#x9000;</p>
+<p>&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x4E2D;&#x6D89;&#x53CA;&#x5230;&#x83B7;&#x53D6;App&#x5185;Activity&#x6808;&#x5185;&#x7684;&#x6570;&#x91CF;&#x548C;&#x6808;&#x5E95;Activity&#xFF0C;&#x662F;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x5E94;&#x8BE5;&#x90FD;&#x77E5;&#x9053;&#x83B7;&#x53D6;&#x8FD9;&#x4E24;&#x4E2A;&#x4FE1;&#x606F;&#x662F;&#x901A;&#x8FC7;getRunningTasks&#x6765;&#x83B7;&#x53D6;&#xFF0C;&#x4E0D;&#x8FC7;&#x53EF;&#x60DC;&#xFF0C;&#x5728;5.0&#x4EE5;&#x540E;Google&#x5BF9;&#x6743;&#x9650;&#x8FDB;&#x884C;&#x4E86;&#x6536;&#x655B;&#xFF0C;&#x76EE;&#x5730;&#x662F;&#x4FDD;&#x62A4;App&#x7684;&#x4FE1;&#x606F;&#x5B89;&#x5168;&#xFF0C;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x5728;5.0&#x4EE5;&#x540E;&#x5C06;&#x5931;&#x6548;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x517C;&#x5BB9;&#xFF0C;&#x4E8E;&#x662F;&#x4E4E;&#x770B;6.0&#x6E90;&#x7801;&#x53C8;&#x53D1;&#x73B0;Google&#x5728;5.0&#x6536;&#x655B;&#x4E86;&#x6574;&#x4E2A;&#x6743;&#x9650;&#xFF0C;&#x5BFC;&#x81F4;&#x672C;App&#x7684;&#x90FD;&#x83B7;&#x53D6;&#x4E0D;&#x5230;&#xFF0C;&#x4F46;&#x662F;&#x5728;6.0&#x53C8;&#x653E;&#x51FA;&#x6765;&#x4E86;&#xFF0C;&#x4E0D;&#x8FC7;&#x53EA;&#x80FD;&#x83B7;&#x53D6;&#x672C;&#x5E94;&#x7528;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x6240;&#x4EE5;&#x517C;&#x5BB9;&#x7684;&#x7B56;&#x7565;&#x662F;5.0~6.0&#x81EA;&#x5DF1;&#x7EF4;&#x62A4;&#x4E00;&#x4E2A;ActivityStack</p>
+<h3 id="&#x8FDE;&#x7EED;Crash&#x7684;&#x5904;&#x7406;"><a href="#&#x8FDE;&#x7EED;Crash&#x7684;&#x5904;&#x7406;" class="headerlink" title="&#x8FDE;&#x7EED;Crash&#x7684;&#x5904;&#x7406;"></a>&#x8FDE;&#x7EED;Crash&#x7684;&#x5904;&#x7406;</h3><p>&#x5982;&#x679C;&#x4E00;&#x5206;&#x949F;&#x5185;&#x8FDB;&#x884C;&#x4E86;&#x4E24;&#x6B21;&#x6062;&#x590D;&#x540E;&#x8FD8;&#x5BFC;&#x81F4;Crash&#xFF0C;&#x5219;&#x4E0D;&#x8FDB;&#x884C;&#x6062;&#x590D;&#x800C;&#x662F;&#x91CD;&#x542F;&#x5E94;&#x7528;&#xFF0C;&#x6216;&#x8005;&#x91CD;&#x542F;&#x5E76;&#x6E05;&#x7A7A;&#x7F13;&#x5B58;&#xFF0C;&#x4EE5;&#x4FBF;&#x6062;&#x590D;App&#x521A;&#x5B89;&#x88C5;&#x65F6;&#x7684;&#x72B6;&#x6001;</p>
+<h3 id="&#x9879;&#x76EE;&#x5730;&#x5740;"><a href="#&#x9879;&#x76EE;&#x5730;&#x5740;" class="headerlink" title="&#x9879;&#x76EE;&#x5730;&#x5740;"></a>&#x9879;&#x76EE;&#x5730;&#x5740;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/Sunzxyong/Recovery</span><br></pre></td></tr></table></figure>
+<p>but~ &#x6211;&#x89C9;&#x5F97;&#x8FD9;&#x4E2A;&#x9879;&#x76EE;&#x8FD8;&#x662F;&#x6709;&#x70B9;&#x9E21;&#x808B;&#x7684;&#xFF0C;&#x81EA;&#x5DF1;&#x76D1;&#x542C;&#x5C31;&#x597D;&#x4E86;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">private static class MyUncaughtExceptionHandler implements</span><br><span class="line">            Thread.UncaughtExceptionHandler {</span><br><span class="line"></span><br><span class="line">        private Context mContext;</span><br><span class="line"></span><br><span class="line">        public MyUncaughtExceptionHandler(Context context) {</span><br><span class="line">            mContext = context;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void uncaughtException(Thread thread, final Throwable ex) {</span><br><span class="line">            new Thread() {</span><br><span class="line"></span><br><span class="line">                @Override</span><br><span class="line">                public void run() {</span><br><span class="line">                    Looper.prepare();</span><br><span class="line">                    Toast.makeText(mContext, &quot;&#x5F88;&#x62B1;&#x6B49;,&#x7A0B;&#x5E8F;&#x5F02;&#x5E38;&quot;,</span><br><span class="line">                            Toast.LENGTH_LONG).show();</span><br><span class="line">                    Looper.loop();</span><br><span class="line">                }</span><br><span class="line">            }.start();</span><br><span class="line"></span><br><span class="line">            ThreadPoolManager.EXECUTOR.execute(new Runnable() {</span><br><span class="line"></span><br><span class="line">                @Override</span><br><span class="line">                public void run() {</span><br><span class="line"></span><br><span class="line">                    Log.e(&quot;DebugLog&quot;, &quot;exception:&quot; + getExceptionTrace(ex));</span><br><span class="line">                    ex.printStackTrace();</span><br><span class="line"></span><br><span class="line">                    AlarmManager mgr = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);</span><br><span class="line"></span><br><span class="line">                    Intent intent = new Intent(mContext, SplashActivity.class);</span><br><span class="line">                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</span><br><span class="line">                    intent.putExtra(&quot;crash&quot;, true);</span><br><span class="line">                    PendingIntent restartIntent = PendingIntent.getActivity(mContext, 0, intent, PendingIntent.FLAG_ONE_SHOT);</span><br><span class="line">                    mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 1000, restartIntent); // 1&#x79D2;&#x949F;&#x540E;&#x91CD;&#x542F;&#x5E94;&#x7528;</span><br><span class="line"></span><br><span class="line">                    Process.killProcess(Process.myPid());</span><br><span class="line">                    System.exit(0);</span><br><span class="line">                }</span><br><span class="line">            });</span><br><span class="line">        }</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Android-Framework/" rel="tag"># Android_Framework</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/01/12/Android jar包class修改重新打包/" rel="prev" title="Android jar包class修改重新打包">
+      <i class="fa fa-chevron-left"></i> Android jar包class修改重新打包
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/01/18/Unity3D和Android交互/" rel="next" title="Unity3D和Android交互">
+      Unity3D和Android交互 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前台时崩溃"><span class="nav-number">1.</span> <span class="nav-text">前台时崩溃</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后台时崩溃"><span class="nav-number">2.</span> <span class="nav-text">后台时崩溃</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主页的回退"><span class="nav-number">3.</span> <span class="nav-text">主页的回退</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连续Crash的处理"><span class="nav-number">4.</span> <span class="nav-text">连续Crash的处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目地址"><span class="nav-number">5.</span> <span class="nav-text">项目地址</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">huanxingxyz</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huanxingxyz</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

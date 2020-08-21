@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="&amp;#x6BCF;&amp;#x4E2A;Java&amp;#x5F00;&amp;#x53D1;&amp;#x4EBA;&amp;#x5458;&amp;#x90FD;&amp;#x77E5;&amp;#x9053;&amp;#x5B57;&amp;#x8282;&amp;#x7801;&amp;#x7ECF;&amp;#x7531;JRE&amp;#xFF08;Java&amp;#x8FD0;&amp;#x884C;&amp;#x65F6;&amp;#x73AF;&amp;#x5883;&amp;#xFF09;&amp;#x6267;&amp;#x884C;&amp;#x30">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM架构解析">
+<meta property="og:url" content="http://yoursite.com/2017/01/05/JVM架构解析/index.html">
+<meta property="og:site_name" content="田鹏飞的个人博客">
+<meta property="og:description" content="&amp;#x6BCF;&amp;#x4E2A;Java&amp;#x5F00;&amp;#x53D1;&amp;#x4EBA;&amp;#x5458;&amp;#x90FD;&amp;#x77E5;&amp;#x9053;&amp;#x5B57;&amp;#x8282;&amp;#x7801;&amp;#x7ECF;&amp;#x7531;JRE&amp;#xFF08;Java&amp;#x8FD0;&amp;#x884C;&amp;#x65F6;&amp;#x73AF;&amp;#x5883;&amp;#xFF09;&amp;#x6267;&amp;#x884C;&amp;#x30">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-01-09T01:48:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JVM架构解析">
+<meta name="twitter:description" content="&amp;#x6BCF;&amp;#x4E2A;Java&amp;#x5F00;&amp;#x53D1;&amp;#x4EBA;&amp;#x5458;&amp;#x90FD;&amp;#x77E5;&amp;#x9053;&amp;#x5B57;&amp;#x8282;&amp;#x7801;&amp;#x7ECF;&amp;#x7531;JRE&amp;#xFF08;Java&amp;#x8FD0;&amp;#x884C;&amp;#x65F6;&amp;#x73AF;&amp;#x5883;&amp;#xFF09;&amp;#x6267;&amp;#x884C;&amp;#x30">
+
+<link rel="canonical" href="http://yoursite.com/2017/01/05/JVM架构解析/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JVM架构解析 | 田鹏飞的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">田鹏飞的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">你若盛开，蝴蝶自来</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/05/JVM架构解析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="huanxingxyz">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="田鹏飞的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JVM架构解析
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-05 22:17:05" itemprop="dateCreated datePublished" datetime="2017-01-05T22:17:05+08:00">2017-01-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2017-01-09 09:48:36" itemprop="dateModified" datetime="2017-01-09T09:48:36+08:00">2017-01-09</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>&#x6BCF;&#x4E2A;Java&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x90FD;&#x77E5;&#x9053;&#x5B57;&#x8282;&#x7801;&#x7ECF;&#x7531;JRE&#xFF08;Java&#x8FD0;&#x884C;&#x65F6;&#x73AF;&#x5883;&#xFF09;&#x6267;&#x884C;&#x3002;&#x4F46;&#x4ED6;&#x4EEC;&#x6216;&#x8BB8;&#x4E0D;&#x77E5;&#x9053;JRE&#x5176;&#x5B9E;&#x662F;&#x7531;Java&#x865A;&#x62DF;&#x673A;&#xFF08;JVM&#xFF09;&#x5B9E;&#x73B0;&#xFF0C;JVM&#x5206;&#x6790;&#x5B57;&#x8282;&#x7801;&#xFF0C;&#x89E3;&#x91CA;&#x5E76;&#x6267;&#x884C;&#x5B83;&#x3002;&#x4F5C;&#x4E3A;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#xFF0C;&#x4E86;&#x89E3;JVM&#x7684;&#x67B6;&#x6784;&#x662F;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4F7F;&#x6211;&#x4EEC;&#x80FD;&#x591F;&#x7F16;&#x5199;&#x51FA;&#x66F4;&#x9AD8;&#x6548;&#x7684;&#x4EE3;&#x7801;&#x3002;&#x672C;&#x6587;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x6DF1;&#x5165;&#x4E86;&#x89E3;Java&#x4E2D;&#x7684;JVM&#x67B6;&#x6784;&#x548C;JVM&#x7684;&#x5404;&#x4E2A;&#x7EC4;&#x4EF6;&#x3002;</p>
+<h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><p>&#x865A;&#x62DF;&#x673A;&#x662F;&#x7269;&#x7406;&#x673A;&#x7684;&#x8F6F;&#x4EF6;&#x5B9E;&#x73B0;&#x3002;Java&#x7684;&#x8BBE;&#x8BA1;&#x7406;&#x5FF5;&#x662F;WORA&#xFF08;Write Once Run Anywhere&#xFF0C;&#x4E00;&#x6B21;&#x7F16;&#x5199;&#x968F;&#x5904;&#x8FD0;&#x884C;&#xFF09;&#x3002;&#x7F16;&#x8BD1;&#x5668;&#x5C06;Java&#x6587;&#x4EF6;&#x7F16;&#x8BD1;&#x4E3A;Java .class&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x540E;&#x5C06;.class&#x6587;&#x4EF6;&#x8F93;&#x5165;&#x5230;JVM&#x4E2D;&#xFF0C;JVM&#x6267;&#x884C;&#x7C7B;&#x6587;&#x4EF6;&#x7684;&#x52A0;&#x8F7D;&#x548C;&#x6267;&#x884C;&#x7684;&#x64CD;&#x4F5C;&#x3002;</p>
+<h3 id="JVM&#x662F;&#x5982;&#x4F55;&#x5DE5;&#x4F5C;&#x7684;&#xFF1F;"><a href="#JVM&#x662F;&#x5982;&#x4F55;&#x5DE5;&#x4F5C;&#x7684;&#xFF1F;" class="headerlink" title="JVM&#x662F;&#x5982;&#x4F55;&#x5DE5;&#x4F5C;&#x7684;&#xFF1F;"></a>JVM&#x662F;&#x5982;&#x4F55;&#x5DE5;&#x4F5C;&#x7684;&#xFF1F;</h3><p>JVM&#x5206;&#x4E3A;&#x4E09;&#x4E2A;&#x4E3B;&#x8981;&#x5B50;&#x7CFB;&#x7EDF;&#xFF1A;<br>&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x5B50;&#x7CFB;&#x7EDF;&#xFF08;Class Loader Subsystem&#xFF09;<br>&#x8FD0;&#x884C;&#x65F6;&#x6570;&#x636E;&#x533A;&#xFF08;Runtime Data Area&#xFF09;<br>&#x6267;&#x884C;&#x5F15;&#x64CE;&#xFF08;Execution Engine&#xFF09;</p>
+<ol>
+<li>&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x5B50;&#x7CFB;&#x7EDF;</li>
+</ol>
+<p>Java&#x7684;&#x52A8;&#x6001;&#x7C7B;&#x52A0;&#x8F7D;&#x529F;&#x80FD;&#x7531;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x5B50;&#x7CFB;&#x7EDF;&#x5904;&#x7406;&#xFF0C;&#x5904;&#x7406;&#x8FC7;&#x7A0B;&#x5305;&#x62EC;&#x52A0;&#x8F7D;&#x548C;&#x94FE;&#x63A5;&#xFF0C;&#x5E76;&#x5728;&#x7C7B;&#x6587;&#x4EF6;&#x8FD0;&#x884C;&#x65F6;&#xFF0C;&#x9996;&#x6B21;&#x5F15;&#x7528;&#x7C7B;&#x65F6;&#x5C31;&#x5F00;&#x59CB;&#x5B9E;&#x4F8B;&#x5316;&#x7C7B;&#x6587;&#x4EF6;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x8FDB;&#x884C;&#x3002;</p>
+<p>1.1 &#x52A0;&#x8F7D;</p>
+<p>Boot Strap&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF0C;Extension&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x548C;Application&#xFF08;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x662F;&#x5B9E;&#x73B0;&#x7C7B;&#x52A0;&#x8F7D;&#x8FC7;&#x7A0B;&#x7684;&#x4E09;&#x4E2A;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x3002;</p>
+<p>(1) Boot Strap&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF1A;&#x8D1F;&#x8D23;&#x4ECE;&#x5F15;&#x5BFC;&#x7C7B;&#x8DEF;&#x5F84;&#x52A0;&#x8F7D;&#x7C7B;&#xFF0C;&#x9664;&#x4E86;rt.jar&#xFF0C;&#x5B83;&#x5177;&#x6709;&#x6700;&#x9AD8;&#x4F18;&#x5148;&#x7EA7;&#xFF1B;</p>
+<p>(2) Extension &#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF1A;&#x8D1F;&#x8D23;&#x52A0;&#x8F7D;ext&#x6587;&#x4EF6;&#x5939;&#xFF08;jre \ lib&#xFF09;&#x4E2D;&#x7684;&#x7C7B;&#xFF1B;</p>
+<p>(3) Application&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF1A;&#x8D1F;&#x8D23;&#x52A0;&#x8F7D;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7EA7;&#x7C7B;&#x8DEF;&#x5F84;&#xFF0C;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x4E2D;&#x6307;&#x5B9A;&#x7684;&#x8DEF;&#x5F84;&#x7B49;&#x4FE1;&#x606F;&#x3002;</p>
+<p>&#x4E0A;&#x9762;&#x7684;&#x7C7B;&#x88C5;&#x8F7D;&#x5668;&#x5728;&#x52A0;&#x8F7D;&#x7C7B;&#x6587;&#x4EF6;&#x65F6;&#x9075;&#x5FAA;&#x59D4;&#x6258;&#x5C42;&#x6B21;&#x7B97;&#x6CD5;&#xFF08;Delegation Hierarchy Algorithm&#xFF09;&#x3002;</p>
+<p>1.2 &#x94FE;&#x63A5;</p>
+<p>(1) &#x9A8C;&#x8BC1;&#xFF08;Verify&#xFF09;&#xFF1A;&#x5B57;&#x8282;&#x7801;&#x9A8C;&#x8BC1;&#x5668;&#x5C06;&#x9A8C;&#x8BC1;&#x751F;&#x6210;&#x7684;&#x5B57;&#x8282;&#x7801;&#x662F;&#x5426;&#x6B63;&#x786E;&#xFF0C;&#x5982;&#x679C;&#x9A8C;&#x8BC1;&#x5931;&#x8D25;&#xFF0C;&#x5C06;&#x63D0;&#x793A;&#x9A8C;&#x8BC1;&#x9519;&#x8BEF;&#xFF1B;</p>
+<p>(2) &#x51C6;&#x5907;&#xFF08;Prepare&#xFF09;&#xFF1A;&#x5BF9;&#x4E8E;&#x6240;&#x6709;&#x9759;&#x6001;&#x53D8;&#x91CF;&#xFF0C;&#x5185;&#x5B58;&#x5C06;&#x4F1A;&#x4EE5;&#x9ED8;&#x8BA4;&#x503C;&#x8FDB;&#x884C;&#x5206;&#x914D;&#xFF1B;</p>
+<p>(3) &#x89E3;&#x91CA;&#xFF08;Resolve&#xFF09;&#xFF1A;&#x6709;&#x7B26;&#x53F7;&#x5B58;&#x50A8;&#x5668;&#x5F15;&#x7528;&#x90FD;&#x5C06;&#x66FF;&#x6362;&#x4E3A;&#x6765;&#x81EA;&#x65B9;&#x6CD5;&#x533A;&#xFF08;Method Area&#xFF09;&#x7684;&#x539F;&#x59CB;&#x5F15;&#x7528;&#x3002;</p>
+<p>1.3 &#x521D;&#x59CB;&#x5316;</p>
+<p>&#x8FD9;&#x662F;&#x7C7B;&#x52A0;&#x8F7D;&#x7684;&#x6700;&#x540E;&#x9636;&#x6BB5;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x9759;&#x6001;&#x53D8;&#x91CF;&#x90FD;&#x5C06;&#x88AB;&#x8D4B;&#x4E88;&#x539F;&#x59CB;&#x503C;&#xFF0C;&#x5E76;&#x4E14;&#x9759;&#x6001;&#x533A;&#x5757;&#x5C06;&#x88AB;&#x6267;&#x884C;&#x3002;</p>
+<ol>
+<li>&#x8FD0;&#x884C;&#x65F6;&#x6570;&#x636E;&#x533A;</li>
+</ol>
+<p>&#x8FD0;&#x884C;&#x65F6;&#x6570;&#x636E;&#x533A;&#x53EF;&#x5206;&#x4E3A;5&#x4E2A;&#x4E3B;&#x8981;&#x7EC4;&#x4EF6;&#xFF1A;</p>
+<p>(1) &#x65B9;&#x6CD5;&#x533A;&#xFF08;Method Area&#xFF09;&#xFF1A;&#x6240;&#x6709;&#x7684;&#x7C7B;&#x7EA7;&#x6570;&#x636E;&#x5C06;&#x5B58;&#x50A8;&#x5728;&#x8FD9;&#x91CC;&#xFF0C;&#x5305;&#x62EC;&#x9759;&#x6001;&#x53D8;&#x91CF;&#x3002;&#x6BCF;&#x4E2A;JVM&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x533A;&#xFF0C;&#x5B83;&#x662F;&#x4E00;&#x4E2A;&#x5171;&#x4EAB;&#x8D44;&#x6E90;&#xFF1B;</p>
+<p>(2) &#x5806;&#x533A;&#x57DF;&#xFF08;Heap Area&#xFF09;&#xFF1A;&#x6240;&#x6709;&#x5BF9;&#x8C61;&#x53CA;&#x5176;&#x5BF9;&#x5E94;&#x7684;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#x548C;&#x6570;&#x7EC4;&#x5C06;&#x5B58;&#x50A8;&#x5728;&#x8FD9;&#x91CC;&#x3002;&#x6BCF;&#x4E2A;JVM&#x4E5F;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x5806;&#x533A;&#x57DF;&#x3002;&#x7531;&#x4E8E;&#x65B9;&#x6CD5;&#x548C;&#x5806;&#x533A;&#x57DF;&#x5171;&#x4EAB;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x6240;&#x5B58;&#x50A8;&#x7684;&#x6570;&#x636E;&#x4E0D;&#x662F;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#xFF1B;</p>
+<p>(3) &#x5806;&#x6808;&#x533A;&#xFF08;Stack Area&#xFF09;&#xFF1A;&#x5BF9;&#x4E8E;&#x6BCF;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF0C;&#x5C06;&#x521B;&#x5EFA;&#x5355;&#x72EC;&#x7684;&#x8FD0;&#x884C;&#x65F6;&#x5806;&#x6808;&#x3002;&#x5BF9;&#x4E8E;&#x6BCF;&#x4E2A;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#xFF0C;&#x5C06;&#x5728;&#x5806;&#x6808;&#x5B58;&#x50A8;&#x5668;&#x4E2D;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x6761;&#x76EE;&#xFF0C;&#x79F0;&#x4E3A;&#x5806;&#x6808;&#x5E27;&#x3002;&#x6240;&#x6709;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x5C06;&#x5728;&#x5806;&#x6808;&#x5185;&#x5B58;&#x4E2D;&#x521B;&#x5EFA;&#x3002;&#x5806;&#x6808;&#x533A;&#x57DF;&#x662F;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4E0D;&#x5171;&#x4EAB;&#x8D44;&#x6E90;&#x3002;&#x5806;&#x6808;&#x6846;&#x67B6;&#x5206;&#x4E3A;&#x4E09;&#x4E2A;&#x5B50;&#x5143;&#x7D20;&#xFF1A;</p>
+<p>&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x6570;&#x7EC4;&#xFF08;Local Variable Array&#xFF09;&#xFF1A;&#x4E0E;&#x65B9;&#x6CD5;&#x76F8;&#x5173;&#xFF0C;&#x6D89;&#x53CA;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#xFF0C;&#x5E76;&#x5728;&#x6B64;&#x5B58;&#x50A8;&#x76F8;&#x5E94;&#x7684;&#x503C;<br>&#x64CD;&#x4F5C;&#x6570;&#x5806;&#x6808;&#xFF08;Operand stack&#xFF09;&#xFF1A;&#x5982;&#x679C;&#x9700;&#x8981;&#x6267;&#x884C;&#x4EFB;&#x4F55;&#x4E2D;&#x95F4;&#x64CD;&#x4F5C;&#xFF0C;&#x64CD;&#x4F5C;&#x6570;&#x5806;&#x6808;&#x5C06;&#x5145;&#x5F53;&#x8FD0;&#x884C;&#x65F6;&#x5DE5;&#x4F5C;&#x7A7A;&#x95F4;&#x6765;&#x6267;&#x884C;&#x64CD;&#x4F5C;<br>&#x5E27;&#x6570;&#x636E;&#xFF08;Frame Data&#xFF09;&#xFF1A;&#x5BF9;&#x5E94;&#x4E8E;&#x65B9;&#x6CD5;&#x7684;&#x6240;&#x6709;&#x7B26;&#x53F7;&#x5B58;&#x50A8;&#x5728;&#x6B64;&#x5904;&#x3002;&#x5728;&#x4EFB;&#x4F55;&#x5F02;&#x5E38;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6355;&#x83B7;&#x7684;&#x533A;&#x5757;&#x4FE1;&#x606F;&#x5C06;&#x88AB;&#x4FDD;&#x6301;&#x5728;&#x5E27;&#x6570;&#x636E;&#x4E2D;&#xFF1B;<br>(4) PC&#x5BC4;&#x5B58;&#x5668;&#xFF08;PC Registers&#xFF09;&#xFF1A;&#x6BCF;&#x4E2A;&#x7EBF;&#x7A0B;&#x90FD;&#x6709;&#x5355;&#x72EC;&#x7684;PC&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x7528;&#x4E8E;&#x4FDD;&#x5B58;&#x5F53;&#x524D;&#x6267;&#x884C;&#x6307;&#x4EE4;&#x7684;&#x5730;&#x5740;&#x3002;&#x4E00;&#x65E6;&#x6267;&#x884C;&#x6307;&#x4EE4;&#xFF0C;PC&#x5BC4;&#x5B58;&#x5668;&#x5C06;&#x88AB;&#x4E0B;&#x4E00;&#x6761;&#x6307;&#x4EE4;&#x66F4;&#x65B0;&#xFF1B;</p>
+<p>(5) &#x672C;&#x5730;&#x65B9;&#x6CD5;&#x5806;&#x6808;&#xFF08;Native Method stacks&#xFF09;&#xFF1A;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x5806;&#x6808;&#x4FDD;&#x5B58;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x4FE1;&#x606F;&#x3002;&#x5BF9;&#x4E8E;&#x6BCF;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF0C;&#x5C06;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x5806;&#x6808;&#x3002;</p>
+<p>3 &#x6267;&#x884C;&#x5F15;&#x64CE;</p>
+<p>&#x5206;&#x914D;&#x7ED9;&#x8FD0;&#x884C;&#x65F6;&#x6570;&#x636E;&#x533A;&#x7684;&#x5B57;&#x8282;&#x7801;&#x5C06;&#x7531;&#x6267;&#x884C;&#x5F15;&#x64CE;&#x6267;&#x884C;&#xFF0C;&#x6267;&#x884C;&#x5F15;&#x64CE;&#x8BFB;&#x53D6;&#x5B57;&#x8282;&#x7801;&#x5E76;&#x9010;&#x4E2A;&#x6267;&#x884C;&#x3002;</p>
+<p>(1) &#x89E3;&#x91CA;&#x5668;&#xFF1A;&#x89E3;&#x91CA;&#x5668;&#x66F4;&#x5FEB;&#x5730;&#x89E3;&#x91CA;&#x5B57;&#x8282;&#x7801;&#xFF0C;&#x4F46;&#x6267;&#x884C;&#x7F13;&#x6162;&#x3002;&#x89E3;&#x91CA;&#x5668;&#x7684;&#x7F3A;&#x70B9;&#x662F;&#x5F53;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x88AB;&#x8C03;&#x7528;&#x591A;&#x6B21;&#x65F6;&#xFF0C;&#x6BCF;&#x6B21;&#x90FD;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x89E3;&#x91CA;&#xFF1B;</p>
+<p>(2) JIT&#x7F16;&#x8BD1;&#x5668;&#xFF1A;JIT&#x7F16;&#x8BD1;&#x5668;&#x6D88;&#x9664;&#x4E86;&#x89E3;&#x91CA;&#x5668;&#x7684;&#x7F3A;&#x70B9;&#x3002;&#x6267;&#x884C;&#x5F15;&#x64CE;&#x5C06;&#x5728;&#x8F6C;&#x6362;&#x5B57;&#x8282;&#x7801;&#x65F6;&#x4F7F;&#x7528;&#x89E3;&#x91CA;&#x5668;&#x7684;&#x5E2E;&#x52A9;&#xFF0C;&#x4F46;&#x662F;&#x5F53;&#x5B83;&#x53D1;&#x73B0;&#x91CD;&#x590D;&#x7684;&#x4EE3;&#x7801;&#x65F6;&#xFF0C;&#x5C06;&#x4F7F;&#x7528;JIT&#x7F16;&#x8BD1;&#x5668;&#xFF0C;&#x5B83;&#x7F16;&#x8BD1;&#x6574;&#x4E2A;&#x5B57;&#x8282;&#x7801;&#x5E76;&#x5C06;&#x5176;&#x66F4;&#x6539;&#x4E3A;&#x672C;&#x5730;&#x4EE3;&#x7801;&#x3002;&#x8FD9;&#x4E2A;&#x672C;&#x5730;&#x4EE3;&#x7801;&#x5C06;&#x76F4;&#x63A5;&#x7528;&#x4E8E;&#x91CD;&#x590D;&#x7684;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#xFF0C;&#x8FD9;&#x63D0;&#x9AD8;&#x4E86;&#x7CFB;&#x7EDF;&#x7684;&#x6027;&#x80FD;&#x3002;JIT&#x7684;&#x6784;&#x6210;&#x7EC4;&#x4EF6;&#x4E3A;&#xFF1A;</p>
+<p>&#x4E2D;&#x95F4;&#x4EE3;&#x7801;&#x751F;&#x6210;&#x5668;&#xFF08;Intermediate Code Generator&#xFF09;&#xFF1A;&#x751F;&#x6210;&#x4E2D;&#x95F4;&#x4EE3;&#x7801;<br>&#x4EE3;&#x7801;&#x4F18;&#x5316;&#x5668;&#xFF08;Code Optimizer&#xFF09;&#xFF1A;&#x8D1F;&#x8D23;&#x4F18;&#x5316;&#x4E0A;&#x9762;&#x751F;&#x6210;&#x7684;&#x4E2D;&#x95F4;&#x4EE3;&#x7801;<br>&#x76EE;&#x6807;&#x4EE3;&#x7801;&#x751F;&#x6210;&#x5668;&#xFF08;Target Code Generator&#xFF09;&#xFF1A;&#x8D1F;&#x8D23;&#x751F;&#x6210;&#x673A;&#x5668;&#x4EE3;&#x7801;&#x6216;&#x672C;&#x5730;&#x4EE3;&#x7801;<br>&#x5206;&#x6790;&#x5668;&#xFF08;Profiler&#xFF09;&#xFF1A;&#x4E00;&#x4E2A;&#x7279;&#x6B8A;&#x7EC4;&#x4EF6;&#xFF0C;&#x8D1F;&#x8D23;&#x67E5;&#x627E;&#x70ED;&#x70B9;&#xFF0C;&#x5373;&#x8BE5;&#x65B9;&#x6CD5;&#x662F;&#x5426;&#x88AB;&#x591A;&#x6B21;&#x8C03;&#x7528;&#xFF1B;</p>
+<p>(3) &#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;(Garbage Collector)&#xFF1A;&#x6536;&#x96C6;&#x548C;&#x5220;&#x9664;&#x672A;&#x5F15;&#x7528;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8C03;&#x7528;&#x201C;System.gc&#xFF08;&#xFF09;&#x201D;&#x89E6;&#x53D1;&#x5783;&#x573E;&#x6536;&#x96C6;&#xFF0C;&#x4F46;&#x4E0D;&#x80FD;&#x4FDD;&#x8BC1;&#x6267;&#x884C;&#x3002;JVM&#x7684;&#x5783;&#x573E;&#x56DE;&#x6536;&#x5BF9;&#x8C61;&#x662F;&#x5DF2;&#x521B;&#x5EFA;&#x7684;&#x5BF9;&#x8C61;&#x3002;</p>
+<p>Java&#x672C;&#x673A;&#x63A5;&#x53E3;&#xFF08;JNI&#xFF09;&#xFF1A;JNI&#x5C06;&#x4E0E;&#x672C;&#x673A;&#x65B9;&#x6CD5;&#x5E93;&#x8FDB;&#x884C;&#x4EA4;&#x4E92;&#xFF0C;&#x5E76;&#x63D0;&#x4F9B;&#x6267;&#x884C;&#x5F15;&#x64CE;&#x6240;&#x9700;&#x7684;&#x672C;&#x673A;&#x5E93;&#x3002;</p>
+<p>&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x5E93;&#xFF08;Native Method Libraries&#xFF09;&#xFF1A;&#x5B83;&#x662F;&#x6267;&#x884C;&#x5F15;&#x64CE;&#x6240;&#x9700;&#x7684;&#x672C;&#x673A;&#x5E93;&#x7684;&#x96C6;&#x5408;&#x3002;</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/01/05/想法idea/" rel="prev" title="想法idea">
+      <i class="fa fa-chevron-left"></i> 想法idea
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/01/05/Android adb命令/" rel="next" title="adb常用命令">
+      adb常用命令 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM"><span class="nav-number">1.</span> <span class="nav-text">JVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM是如何工作的？"><span class="nav-number">2.</span> <span class="nav-text">JVM是如何工作的？</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">huanxingxyz</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huanxingxyz</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

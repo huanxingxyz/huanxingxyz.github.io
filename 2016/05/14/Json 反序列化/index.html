@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="/**  * &amp;#x7531;&amp;#x5B57;&amp;#x7B26;&amp;#x4E32;&amp;#x53CD;&amp;#x5E8F;&amp;#x5217;&amp;#x5316;&amp;#x6210;&amp;#x5B9E;&amp;#x4F53;&amp;#x7C7B;  &amp;#x9488;&amp;#x5BF9;&amp;#x7684;&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x5B9E;&amp;#x4F53;&amp;#xFF0C;&amp;#x6B64;&amp;#x5B9E;&amp;#x4F">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Json反序列化">
+<meta property="og:url" content="http://yoursite.com/2016/05/14/Json 反序列化/index.html">
+<meta property="og:site_name" content="田鹏飞的个人博客">
+<meta property="og:description" content="/**  * &amp;#x7531;&amp;#x5B57;&amp;#x7B26;&amp;#x4E32;&amp;#x53CD;&amp;#x5E8F;&amp;#x5217;&amp;#x5316;&amp;#x6210;&amp;#x5B9E;&amp;#x4F53;&amp;#x7C7B;  &amp;#x9488;&amp;#x5BF9;&amp;#x7684;&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x5B9E;&amp;#x4F53;&amp;#xFF0C;&amp;#x6B64;&amp;#x5B9E;&amp;#x4F">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2016-05-14T14:00:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Json反序列化">
+<meta name="twitter:description" content="/**  * &amp;#x7531;&amp;#x5B57;&amp;#x7B26;&amp;#x4E32;&amp;#x53CD;&amp;#x5E8F;&amp;#x5217;&amp;#x5316;&amp;#x6210;&amp;#x5B9E;&amp;#x4F53;&amp;#x7C7B;  &amp;#x9488;&amp;#x5BF9;&amp;#x7684;&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x5B9E;&amp;#x4F53;&amp;#xFF0C;&amp;#x6B64;&amp;#x5B9E;&amp;#x4F">
+
+<link rel="canonical" href="http://yoursite.com/2016/05/14/Json 反序列化/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Json反序列化 | 田鹏飞的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">田鹏飞的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">你若盛开，蝴蝶自来</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/14/Json 反序列化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="huanxingxyz">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="田鹏飞的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Json反序列化
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2016-05-14 21:26:18 / 修改时间：22:00:08" itemprop="dateCreated datePublished" datetime="2016-05-14T21:26:18+08:00">2016-05-14</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <pre><code>  /**
+ * &#x7531;&#x5B57;&#x7B26;&#x4E32;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x6210;&#x5B9E;&#x4F53;&#x7C7B;  &#x9488;&#x5BF9;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x5B9E;&#x4F53;&#xFF0C;&#x6B64;&#x5B9E;&#x4F53;&#x4E2D;&#x7684;&#x5C5E;&#x6027;&#x4E0D;&#x5305;&#x62EC;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x5982;Teacher&#x7C7B;&#x578B;&#xFF0C;&#x6216;&#x8005;List&lt;Teacher&gt;&#x7C7B;&#x578B; 
+ * @param source &#x4F20;&#x5165;json&#x4E2D;&#x7684;&#x5B57;&#x7B26;&#x4E32;
+ * @param beanClass &#x5B9E;&#x4F53;&#x7C7B;&#x7684;&#x7C7B;&#x578B;
+ * @return &#x5B9E;&#x4F53;&#x7C7B;
+ */
+public static Object getObjFromJsonArrStr(String source,Class beanClass)
+{
+    JSONObject jsonObject = (JSONObject) JSONSerializer.toJSON(source);
+    return  JSONObject.toBean(jsonObject,beanClass);       
+}
+/**
+ * &#x7531;&#x5B57;&#x7B26;&#x4E32;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x6210;&#x5B9E;&#x4F53;&#x7C7B;  &#x9488;&#x5BF9;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x5B9E;&#x4F53;&#xFF0C;&#x6B64;&#x5B9E;&#x4F53;&#x4E2D;&#x7684;&#x5C5E;&#x6027;&#x5305;&#x62EC;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x5982;Teacher&#x7C7B;&#x578B;&#xFF0C;&#x6216;&#x8005;List&lt;Teacher&gt;&#x7C7B;&#x578B;
+ * @param jsonArrStr
+ * @param clazz
+ * @param classMap
+ * @return
+ */
+public static Object getObjFromJsonArrStr(String jsonArrStr, Class clazz, Map classMap) 
+{ 
+    JSONObject jsonObj = JSONObject.fromObject(jsonArrStr);  
+            return JSONObject.toBean(jsonObj, clazz, classMap);            
+}
+
+
+/**
+ * &#x5C06;string&#x8F6C;&#x6362;&#x6210;listBean
+ * @param jsonArrStr &#x9700;&#x8981;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x7684;&#x5B57;&#x7B26;&#x4E32;
+ * @param clazz &#x88AB;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x4E4B;&#x540E;&#x7684;&#x7C7B;
+ * @return &#x5B9E;&#x4F53;list
+ */
+@SuppressWarnings(&quot;unchecked&quot;)
+public static List getListFromJsonArrStr(String jsonArrStr, Class clazz) {  
+    JSONArray jsonArr = JSONArray.fromObject(jsonArrStr);  
+    List list = new ArrayList(); 
+    for (int i = 0; i &lt; jsonArr.size(); i++) 
+    { 
+        list.add(JSONObject.toBean(jsonArr.getJSONObject(i), clazz));  
+    } 
+    return list; 
+}
+
+/**
+ * &#x5C06;string&#x8F6C;&#x6362;&#x6210;listBean &#x5C5E;&#x6027;&#x4E2D;&#x5305;&#x542B;&#x5B9E;&#x4F53;&#x7C7B;&#x7B49; &#x5982;List&lt;Student&gt; &#x800C;Student&#x4E2D;&#x542B;&#x6709;&#x5C5E;&#x6027;List&lt;Teacher&gt;
+ * @param jsonArrStr &#x9700;&#x8981;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x7684;&#x5B57;&#x7B26;&#x4E32;
+ * @param clazz &#x53CD;&#x5E8F;&#x5217;&#x5316;&#x540E;&#x7684;&#x7C7B;
+ * @param classMap &#x5C06;&#x5C5E;&#x6027;&#x4E2D;&#x5305;&#x542B;&#x7684;&#x5982;Teacher&#x52A0;&#x5165;&#x5230;&#x4E00;&#x4E2A;Map&#x4E2D;&#xFF0C;&#x683C;&#x5F0F;&#x5982;map.put(&quot;teacher&quot;,Teacher.class)
+ * @return &#x53CD;&#x5E8F;&#x5217;&#x5316;&#x540E;&#x7684;&#x5B57;&#x7B26;&#x4E32;
+ * &#x4F7F;&#x7528;&#x793A;&#x4F8B;&#xFF1A;
+    Map classMap = new HashMap();
+    //&#x5FC5;&#x987B;&#x8981;&#x5BF9;Parent&#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316; &#x5426;&#x5219;&#x4E0D;&#x8BC6;&#x522B;
+    Teacher p = new Teacher();
+    classMap.put(&quot;teacher&quot;, p.getClass());
+    List mlist = JSONTransfer.getListFromJsonArrStr(resultStr, Student.class, classMap);
+ */
+@SuppressWarnings(&quot;unchecked&quot;)
+public static List getListFromJsonArrStr(String jsonArrStr, Class clazz, Map classMap) 
+{ 
+   JSONArray jsonArr = JSONArray.fromObject(jsonArrStr);  
+   List list = new ArrayList(); 
+   for (int i = 0; i &lt; jsonArr.size(); i++) 
+   {          
+       list.add(JSONObject.toBean(jsonArr.getJSONObject(i), clazz, classMap));  
+   } 
+   return list; 
+}
+
+/**
+ * &#x5E8F;&#x5217;&#x5316;&#x64CD;&#x4F5C;&#xFF0C;&#x65E0;&#x8BBA;&#x662F;&#x5355;&#x4E2A;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x8FD8;&#x662F;list&#xFF0C;&#x6291;&#x6216;&#x662F;list&#x4E2D;&#x7684;&#x5C5E;&#x6027;&#x4ECD;&#x5305;&#x542B;list&#xFF0C;&#x90FD;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5E8F;&#x5217;&#x5316;&#x6210;String&#x7C7B;&#x578B;
+ * @param obj &#x9700;&#x8981;&#x88AB;&#x5E8F;&#x5217;&#x5316;&#x7684;&#x5BF9;&#x8C61;
+ * @return &#x5E8F;&#x5217;&#x5316;&#x4E4B;&#x540E;&#x7684;&#x5B57;&#x7B26;&#x4E32;
+ */
+@SuppressWarnings(&quot;unchecked&quot;)
+public static String getJsonArrStrFromList(Object obj) 
+{
+    //&#x8FD4;&#x56DE;&#x7D50;&#x679C;
+    String jsonStr = null; 
+    //&#x5224;&#x7A7A;
+    if (obj == null) {  
+        return &quot;{}&quot;; 
+    } 
+    //Json&#x914D;&#x7F6E;     
+    JsonConfig jsonCfg = new JsonConfig(); 
+
+    //&#x6CE8;&#x518C;&#x65E5;&#x671F;&#x5904;&#x7406;&#x5668; 
+    jsonCfg.registerJsonValueProcessor(java.util.Date.class, 
+            new JsonDateValueProcessor(SystemConstants.DateFormat)); 
+
+    //&#x5224;&#x65AD;&#x662F;&#x5426;&#x662F;list
+    if (objinstanceof Collection || obj instanceof Object[]) {  
+        jsonStr = JSONArray.fromObject(obj, jsonCfg).toString();  
+    }else { 
+        jsonStr = JSONObject.fromObject(obj, jsonCfg).toString();  
+    }    
+    return jsonStr;
+}
+</code></pre><p>&#x5173;&#x4E8E;Java&#x5E8F;&#x5217;&#x5316;&#xFF0C;ITEye&#x4E0A;&#x6709;&#x4E00;&#x7BC7;&#x8BA8;&#x8BBA;&#x7684;&#x5E16;&#x5B50;&#x6BD4;&#x8F83;&#x597D;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;http://www.iteye.com/topic/14707&quot;&gt;http://www.iteye.com/topic/14707&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Android/" rel="tag"># Android</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/05/14/Linux-mysql权限问题/" rel="prev" title="Linux-mysql权限问题">
+      <i class="fa fa-chevron-left"></i> Linux-mysql权限问题
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2016/05/14/Android 检查是否联网/" rel="next" title="Android_检查是否联网">
+      Android_检查是否联网 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">huanxingxyz</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huanxingxyz</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
