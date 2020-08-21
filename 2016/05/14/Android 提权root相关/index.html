@@ -1,26 +1,85 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.7.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
 
-  <meta name="description" content="Github&amp;#x516C;&amp;#x53F8;&amp;#x8981;&amp;#x542F;&amp;#x52A8;&amp;#x5236;&amp;#x4F5C;&amp;#x81EA;&amp;#x5DF1;&amp;#x7684;&amp;#x652F;&amp;#x4ED8;sdk&amp;#x76F8;&amp;#x5173;&amp;#x9879;&amp;#x76EE;&amp;#xFF0C;&amp;#x6240;&amp;#x4EE5;&amp;#x8FD1;&amp;#x671F;&amp;#x5728;&amp;#x8C03;&amp;#x781">
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android_Framework," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Github&amp;#x516C;&amp;#x53F8;&amp;#x8981;&amp;#x542F;&amp;#x52A8;&amp;#x5236;&amp;#x4F5C;&amp;#x81EA;&amp;#x5DF1;&amp;#x7684;&amp;#x652F;&amp;#x4ED8;sdk&amp;#x76F8;&amp;#x5173;&amp;#x9879;&amp;#x76EE;&amp;#xFF0C;&amp;#x6240;&amp;#x4EE5;&amp;#x8FD1;&amp;#x671F;&amp;#x5728;&amp;#x8C03;&amp;#x781">
 <meta name="keywords" content="Android_Framework">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 提权root相关">
@@ -33,18 +92,39 @@
 <meta name="twitter:title" content="Android 提权root相关">
 <meta name="twitter:description" content="Github&amp;#x516C;&amp;#x53F8;&amp;#x8981;&amp;#x542F;&amp;#x52A8;&amp;#x5236;&amp;#x4F5C;&amp;#x81EA;&amp;#x5DF1;&amp;#x7684;&amp;#x652F;&amp;#x4ED8;sdk&amp;#x76F8;&amp;#x5173;&amp;#x9879;&amp;#x76EE;&amp;#xFF0C;&amp;#x6240;&amp;#x4EE5;&amp;#x8FD1;&amp;#x671F;&amp;#x5728;&amp;#x8C03;&amp;#x781">
 
-<link rel="canonical" href="http://yoursite.com/2016/05/14/Android 提权root相关/">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
   };
 </script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/05/14/Android 提权root相关/"/>
+
+
+
+
 
   <title>Android 提权root相关 | 田鹏飞的个人博客</title>
   
@@ -54,146 +134,190 @@
 
 
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">田鹏飞的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">你若盛开，蝴蝶自来</p>
+      
+  </div>
+
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">田鹏飞的个人博客</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">你若盛开，蝴蝶自来</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
   </div>
 </div>
 
-
-
-
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
         <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+      
+    </ul>
+  
 
-  </li>
-  </ul>
+  
 </nav>
 
 
 
-
-</div>
+ </div>
     </header>
 
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
+    <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
+          <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
     
+
+  
+
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/14/Android 提权root相关/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="huanxingxyz">
       <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="田鹏飞的个人博客">
     </span>
+
+    
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Android 提权root相关
-        </h1>
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android 提权root相关</h1>
+        
 
         <div class="post-meta">
-            <span class="post-meta-item">
+          <span class="post-time">
+            
               <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
+                <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">发表于</span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-14T22:14:00+08:00">
+                2016-05-14
+              </time>
+            
 
-              <time title="创建时间：2016-05-14 22:14:00" itemprop="dateCreated datePublished" datetime="2016-05-14T22:14:00+08:00">2016-05-14</time>
-            </span>
-              <span class="post-meta-item">
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
+                  <i class="fa fa-comment-o"></i>
                 </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2017-08-27 21:59:26" itemprop="dateModified" datetime="2017-08-27T21:59:26+08:00">2017-08-27</time>
+                <a href="/2016/05/14/Android 提权root相关/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2016/05/14/Android 提权root相关/" itemprop="commentCount"></span>
+                </a>
               </span>
+            
+          
+
+          
+          
+
+          
+
+          
 
           
 
         </div>
       </header>
+    
 
     
     
     
     <div class="post-body" itemprop="articleBody">
+
+      
+      
 
       
         <h2 id="Github"><a href="#Github" class="headerlink" title=" Github"></a> Github</h2><p>&#x516C;&#x53F8;&#x8981;&#x542F;&#x52A8;&#x5236;&#x4F5C;&#x81EA;&#x5DF1;&#x7684;&#x652F;&#x4ED8;sdk&#x76F8;&#x5173;&#x9879;&#x76EE;&#xFF0C;&#x6240;&#x4EE5;&#x8FD1;&#x671F;&#x5728;&#x8C03;&#x7814;android&#x63D0;&#x6743;root&#x65B9;&#x9762;&#x7684;&#x8D44;&#x6599;&#xFF0C;&#x5927;&#x6982;&#x603B;&#x7ED3;&#x5982;&#x4E0B;&#x3002;</p>
@@ -228,143 +352,215 @@
 <p>Vulnerability/Exploit name<br>author    effect (root, unlock,&#x2026;)    link<br>psneuter    </p>
 <p>scotty2    root    <a href="https://github.com/tmzt/g2root-kmod/blob/master/scotty2/psneuter/psneuter.c" target="_blank" rel="noopener">https://github.com/tmzt/g2root-kmod/blob/master/scotty2/psneuter/psneuter.c</a><br>Exploid    Stealth    root    <a href="http://c-skills.blogspot.com/2010/07/android-trickery.html" target="_blank" rel="noopener">http://c-skills.blogspot.com/2010/07/android-trickery.html</a><br>GingerBreak    Stealth    root    <a href="http://c-skills.blogspot.com/2011/04/yummy-yummy-gingerbreak.html" target="_blank" rel="noopener">http://c-skills.blogspot.com/2011/04/yummy-yummy-gingerbreak.html</a><br>RageAgainstTheCage    Stealth    root<br>KillingInTheNameOf    Stealth    root    <a href="http://c-skills.blogspot.com/2011/01/adb-trickery-again.html" target="_blank" rel="noopener">http://c-skills.blogspot.com/2011/01/adb-trickery-again.html</a><br>Zimperlich    Stealth        <a href="http://c-skills.blogspot.com/2011/02/zimperlich-sources.html" target="_blank" rel="noopener">http://c-skills.blogspot.com/2011/02/zimperlich-sources.html</a><br>Zergrush    Revolutionary    root    <a href="https://github.com/revolutionary/zergRush/blob/master/zergRush.c" target="_blank" rel="noopener">https://github.com/revolutionary/zergRush/blob/master/zergRush.c</a><br>Tacoroot    jcase    root    <a href="https://github.com/CunningLogic/TacoRoot" target="_blank" rel="noopener">https://github.com/CunningLogic/TacoRoot</a><br>Nachoroot    jcase    root    <a href="https://github.com/CunningLogic/NachoRoot" target="_blank" rel="noopener">https://github.com/CunningLogic/NachoRoot</a><br>Burritoroot    jcase    root    <a href="https://github.com/CunningLogic/BurritoRoot" target="_blank" rel="noopener">https://github.com/CunningLogic/BurritoRoot</a><br>Gorditaroot    jcase    install custom recovery or root    <a href="https://github.com/CunningLogic/GorditaRoot" target="_blank" rel="noopener">https://github.com/CunningLogic/GorditaRoot</a><br>Enchilada    jcase    root    <a href="https://github.com/CunningLogic/Enchilada" target="_blank" rel="noopener">https://github.com/CunningLogic/Enchilada</a><br>ZTERoot (Avail)    jcase    root    <a href="https://github.com/CunningLogic/ZTERoot" target="_blank" rel="noopener">https://github.com/CunningLogic/ZTERoot</a><br>ZTERoot (Merrit)    jcase    root    <a href="http://forum.xda-developers.com/showthread.php?t=1714299" target="_blank" rel="noopener">http://forum.xda-developers.com/showthread.php?t=1714299</a><br>LG ICS Root    jcase    root    <a href="http://forum.xda-developers.com/showthread.php?t=1912277" target="_blank" rel="noopener">http://forum.xda-developers.com/showthread.php?t=1912277</a><br>DefyXT Root    jcase    root    <a href="http://forum.xda-developers.com/showthread.php?t=2031562" target="_blank" rel="noopener">http://forum.xda-developers.com/showthread.php?t=2031562</a><br>Cyanide    jcase    root    <a href="https://github.com/CunningLogic/Cyanide" target="_blank" rel="noopener">https://github.com/CunningLogic/Cyanide</a><br>LG Optimus Logic    jcase    root<br>LG Optmus Elite    jcase    root    <a href="http://www.androidpolice.com/2012/06/12/exclusive-how-to-root-the-virgin-mobile-lg-optimus-elite/" target="_blank" rel="noopener">http://www.androidpolice.com/2012/06/12/exclusive-how-to-root-the-virgin-mobile-lg-optimus-elite/</a><br>Pantech    jcase    root    unpublished<br>HTC DNA    jcase    enable unlocking    <a href="http://forum.xda-developers.com/showthread.php?t=2011611" target="_blank" rel="noopener">http://forum.xda-developers.com/showthread.php?t=2011611</a><br>HTC One X AT&amp;T    jcase    root    <a href="http://www.androidpolice.com/2012/05/25/exclusive-how-to-root-the-att-htc-one-x-on-version-1-85-or-earlier/" target="_blank" rel="noopener">http://www.androidpolice.com/2012/05/25/exclusive-how-to-root-the-att-htc-one-x-on-version-1-85-or-earlier/</a><br>Hisense Pulse    cj_000    root<br>Generic LG    ?    root    unpublished<br>LG ADB Backdoor    Giantpune    root<br>Poot    Giantpune    root<br>Lit    Giantpune    root<br>ZTE Backdoor    &#x201C;Anonymous&#x201D;    root<br>HTC Eris 2.1 Root    wag3slav3    install custom recovery    ? XDA Forums<br>Droid 3 Root    bliss    root    <a href="http://vulnfactory.org/blog/2011/08/25/rooting-the-droid-3/" target="_blank" rel="noopener">http://vulnfactory.org/blog/2011/08/25/rooting-the-droid-3/</a><br>Motofail    bliss    root    <a href="http://vulnfactory.org/public/motofail_windows.zip" target="_blank" rel="noopener">http://vulnfactory.org/public/motofail_windows.zip</a><br>XYZ    bliss    root    <a href="http://vulnfactory.org/public/xyz_windows.zip" target="_blank" rel="noopener">http://vulnfactory.org/public/xyz_windows.zip</a><br>LG Spectrum Root    bliss    root    <a href="http://vulnfactory.org/public/spectrum_root_windows.zip" target="_blank" rel="noopener">http://vulnfactory.org/public/spectrum_root_windows.zip</a><br>Megatron    bliss    root    <a href="http://vulnfactory.org/blog/2012/02/26/rooting-the-lg-thrill-optimus-3d/" target="_blank" rel="noopener">http://vulnfactory.org/blog/2012/02/26/rooting-the-lg-thrill-optimus-3d/</a><br>LG Esteem Root    bliss    root    <a href="http://vulnfactory.org/public/LG_Esteem_Root_v2_Windows.zip" target="_blank" rel="noopener">http://vulnfactory.org/public/LG_Esteem_Root_v2_Windows.zip</a><br>Razr&#x2019;s Edge    bliss    root    <a href="http://vulnfactory.org/public/razrs_edge_windows.zip" target="_blank" rel="noopener">http://vulnfactory.org/public/razrs_edge_windows.zip</a><br>Razr Blade    bliss    root    <a href="http://vulnfactory.org/public/razr_blade.zip" target="_blank" rel="noopener">http://vulnfactory.org/public/razr_blade.zip</a><br>X-Factor    bliss    change CID    <a href="http://forum.xda-developers.com/showthread.php?t=1952038" target="_blank" rel="noopener">http://forum.xda-developers.com/showthread.php?t=1952038</a><br>Samsung Admire Root    bliss    root    <a href="http://vulnfactory.org/blog/2011/09/12/rooting-the-samsung-admire/" target="_blank" rel="noopener">http://vulnfactory.org/blog/2011/09/12/rooting-the-samsung-admire/</a><br>Thinkpad Tablet    bliss    root    <a href="http://vulnfactory.org/public/Thinkpad_Root_Windows.zip" target="_blank" rel="noopener">http://vulnfactory.org/public/Thinkpad_Root_Windows.zip</a><br>Sony Tablet S    bliss    root    <a href="http://vulnfactory.org/blog/2012/02/08/rooting-the-sony-tablet-s/" target="_blank" rel="noopener">http://vulnfactory.org/blog/2012/02/08/rooting-the-sony-tablet-s/</a><br>Xoomfail    bliss    root    <a href="http://vulnfactory.org/blog/2012/02/18/xoom-fe-stupid-bugs-and-more-plagiarism/" target="_blank" rel="noopener">http://vulnfactory.org/blog/2012/02/18/xoom-fe-stupid-bugs-and-more-plagiarism/</a><br>Motofail2Go    bliss    root    <a href="http://vulnfactory.org/public/motofail2go_windows.zip" target="_blank" rel="noopener">http://vulnfactory.org/public/motofail2go_windows.zip</a><br>XPRT    bliss    root    <a href="http://vulnfactory.org/public/xprt_root_windows.zip" target="_blank" rel="noopener">http://vulnfactory.org/public/xprt_root_windows.zip</a><br>Nandpwn    bliss    root    <a href="https://github.com/djrbliss/revue/tree/master/nandpwn" target="_blank" rel="noopener">https://github.com/djrbliss/revue/tree/master/nandpwn</a><br>Motochopper    bliss    root    <a href="http://vulnfactory.org/public/motochopper.zip" target="_blank" rel="noopener">http://vulnfactory.org/public/motochopper.zip</a><br>ADB Restore Root    bin4ry    root<br>Exynos-abuse    alephzain    root    <a href="http://forum.xda-developers.com/showthread.php?t=2057818" target="_blank" rel="noopener">http://forum.xda-developers.com/showthread.php?t=2057818</a><br>IconiaRoot    alephzain    root    <a href="http://forum.xda-developers.com/showthread.php?t=2048511" target="_blank" rel="noopener">http://forum.xda-developers.com/showthread.php?t=2048511</a><br>fr3vo    Kevin Bruckert    root<br>levitator    Jon Larimer, Jon Oberheide    root    <a href="http://jon.oberheide.org/files/levitator.c" target="_blank" rel="noopener">http://jon.oberheide.org/files/levitator.c</a><br>mempodroid    saurik/zx2c4    root<br>asroot (Wunderbar?)    zinx    root    <a href="http://code.google.com/p/flashrec/source/browse/#svn%2Ftrunk%2Fandroid-root" target="_blank" rel="noopener">http://code.google.com/p/flashrec/source/browse/#svn%2Ftrunk%2Fandroid-root</a><br>Samsung Infuse 4G    Michael Coppola    root    <a href="http://www.poppopret.org/?p=22" target="_blank" rel="noopener">http://www.poppopret.org/?p=22</a></p>
 
+      
     </div>
-
     
     
     
 
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Android-Framework/" rel="tag"># Android_Framework</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2016/05/14/Unity3D转换eclipse/" rel="prev" title="Unity3D转换eclipse">
-      <i class="fa fa-chevron-left"></i> Unity3D转换eclipse
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2016/05/14/Android gradle常用/" rel="next" title="Android gradle常用">
-      Android gradle常用 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
     
-  </article>
-  
-  
-  
 
+    
 
+    
 
-          </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
           
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
+            <a href="/tags/Android-Framework/" rel="tag"># Android_Framework</a>
+          
         </div>
-          
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/14/Android gradle常用/" rel="next" title="Android gradle常用">
+                <i class="fa fa-chevron-left"></i> Android gradle常用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/14/Linux常用命令/" rel="prev" title="Linux常用命令">
+                Linux常用命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
   
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
-  <aside class="sidebar">
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
+      
 
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">huanxingxyz</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
       <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Github"><span class="nav-number">1.</span> <span class="nav-text"> Github</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#何谓root"><span class="nav-number">1.1.</span> <span class="nav-text">何谓root</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码备份"><span class="nav-number">1.2.</span> <span class="nav-text">代码备份</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用漏洞"><span class="nav-number">1.3.</span> <span class="nav-text">利用漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#psneuter"><span class="nav-number">1.4.</span> <span class="nav-text">psneuter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exploid"><span class="nav-number">1.5.</span> <span class="nav-text">Exploid</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GingerBreak"><span class="nav-number">1.6.</span> <span class="nav-text">GingerBreak</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KillingInTheNameOf"><span class="nav-number">1.7.</span> <span class="nav-text">KillingInTheNameOf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zimperlich"><span class="nav-number">1.8.</span> <span class="nav-text">Zimperlich</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zergrush"><span class="nav-number">1.9.</span> <span class="nav-text">Zergrush</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tacoroot"><span class="nav-number">1.10.</span> <span class="nav-text">Tacoroot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nachoroot"><span class="nav-number">1.11.</span> <span class="nav-text">Nachoroot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Burritoroot"><span class="nav-number">1.12.</span> <span class="nav-text">Burritoroot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gorditaroot"><span class="nav-number">1.13.</span> <span class="nav-text">Gorditaroot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Enchilada"><span class="nav-number">1.14.</span> <span class="nav-text">Enchilada</span></a></li></ol></li></ol></div>
-      </div>
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Github"><span class="nav-number">1.</span> <span class="nav-text"> Github</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#何谓root"><span class="nav-number">1.1.</span> <span class="nav-text">何谓root</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码备份"><span class="nav-number">1.2.</span> <span class="nav-text">代码备份</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用漏洞"><span class="nav-number">1.3.</span> <span class="nav-text">利用漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#psneuter"><span class="nav-number">1.4.</span> <span class="nav-text">psneuter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exploid"><span class="nav-number">1.5.</span> <span class="nav-text">Exploid</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GingerBreak"><span class="nav-number">1.6.</span> <span class="nav-text">GingerBreak</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KillingInTheNameOf"><span class="nav-number">1.7.</span> <span class="nav-text">KillingInTheNameOf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zimperlich"><span class="nav-number">1.8.</span> <span class="nav-text">Zimperlich</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zergrush"><span class="nav-number">1.9.</span> <span class="nav-text">Zergrush</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tacoroot"><span class="nav-number">1.10.</span> <span class="nav-text">Tacoroot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nachoroot"><span class="nav-number">1.11.</span> <span class="nav-text">Nachoroot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Burritoroot"><span class="nav-number">1.12.</span> <span class="nav-text">Burritoroot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gorditaroot"><span class="nav-number">1.13.</span> <span class="nav-text">Gorditaroot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Enchilada"><span class="nav-number">1.14.</span> <span class="nav-text">Enchilada</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
       <!--/noindex-->
+      
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">huanxingxyz</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">76</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">29</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
+      
 
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
 
 
+        
       </div>
     </main>
 
-    <footer class="footer">
+    <footer id="footer" class="footer">
       <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">huanxingxyz</span>
+
+  
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
-  </div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
 
         
 
@@ -374,18 +570,34 @@
 
 
 
-
+        
       </div>
     </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
   </div>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/muse.js"></script>
-<script src="/js/next-boot.js"></script>
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
 
 
 
@@ -402,8 +614,133 @@
 
 
 
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'bYq7Ata5d0bKNhSF3lRbvkSw-gzGzoHsz',
+        appKey: 'OkxHrgPHiUDlaiQpzi7J8QDA',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
 
   
 
