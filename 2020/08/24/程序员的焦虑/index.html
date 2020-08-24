@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="职业规划," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;#x5F88;&amp;#x957F;&amp;#x65F6;&amp;#x95F4;&amp;#x4E00;&amp;#x76F4;&amp;#x60F3;&amp;#x5199;&amp;#x8FD9;&amp;#x4E2A;&amp;#x8BDD;&amp;#x9898;&amp;#xFF0C;&amp;#x5C31;&amp;#x662F;&amp;#x7A0B;&amp;#x5E8F;&amp;#x5458;&amp;#x7684;&amp;#x7126;&amp;#x8651;&amp;#x3002; &amp;#x4E92;&amp;#x8054;&amp;#x7F5">
+<meta name="keywords" content="职业规划">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程序员的焦虑">
+<meta property="og:url" content="http://yoursite.com/2020/08/24/程序员的焦虑/index.html">
+<meta property="og:site_name" content="HELLO沃德">
+<meta property="og:description" content="&amp;#x5F88;&amp;#x957F;&amp;#x65F6;&amp;#x95F4;&amp;#x4E00;&amp;#x76F4;&amp;#x60F3;&amp;#x5199;&amp;#x8FD9;&amp;#x4E2A;&amp;#x8BDD;&amp;#x9898;&amp;#xFF0C;&amp;#x5C31;&amp;#x662F;&amp;#x7A0B;&amp;#x5E8F;&amp;#x5458;&amp;#x7684;&amp;#x7126;&amp;#x8651;&amp;#x3002; &amp;#x4E92;&amp;#x8054;&amp;#x7F5">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-08-24T04:41:06.771Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="程序员的焦虑">
+<meta name="twitter:description" content="&amp;#x5F88;&amp;#x957F;&amp;#x65F6;&amp;#x95F4;&amp;#x4E00;&amp;#x76F4;&amp;#x60F3;&amp;#x5199;&amp;#x8FD9;&amp;#x4E2A;&amp;#x8BDD;&amp;#x9898;&amp;#xFF0C;&amp;#x5C31;&amp;#x662F;&amp;#x7A0B;&amp;#x5E8F;&amp;#x5458;&amp;#x7684;&amp;#x7126;&amp;#x8651;&amp;#x3002; &amp;#x4E92;&amp;#x8054;&amp;#x7F5">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/08/24/程序员的焦虑/"/>
+
+
+
+
+
+  <title>程序员的焦虑 | HELLO沃德</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HELLO沃德</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">你若盛开，蝴蝶自来</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/24/程序员的焦虑/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huanxingxyz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HELLO沃德">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">程序员的焦虑</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-24T14:17:05+08:00">
+                2020-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/24/程序员的焦虑/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/24/程序员的焦虑/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>&#x5F88;&#x957F;&#x65F6;&#x95F4;&#x4E00;&#x76F4;&#x60F3;&#x5199;&#x8FD9;&#x4E2A;&#x8BDD;&#x9898;&#xFF0C;&#x5C31;&#x662F;&#x7A0B;&#x5E8F;&#x5458;&#x7684;&#x7126;&#x8651;&#x3002;</p>
+<p>&#x4E92;&#x8054;&#x7F51;&#x662F;&#x4E2A;&#x98DE;&#x901F;&#x53D1;&#x5C55;&#x7684;&#x884C;&#x4E1A;&#xFF0C;&#x5927;&#x6C5F;&#x5927;&#x6CB3;&#x80CC;&#x540E;&#xFF0C;&#x4E5F;&#x6709;&#x6D6E;&#x8E81;&#x548C;&#x7126;&#x8651;&#x3002;</p>
+<p>35&#x5C81;&#x884C;&#x4E1A;&#x5C3D;&#x5934;&#x7684;&#x8BF4;&#x6CD5;&#x5DF2;&#x7ECF;&#x558A;&#x4E86;&#x597D;&#x591A;&#x5E74;&#x4E86;&#xFF0C;&#x6211;&#x89C9;&#x5F97;&#x8FD9;&#x4E2A;&#x8BF4;&#x6CD5;&#x4E0D;&#x80FD;&#x4E00;&#x68D2;&#x5B50;&#x6253;&#x6B7B;&#xFF0C;&#x73B0;&#x5728;&#x7684;&#x4E92;&#x8054;&#x7F51;&#x884C;&#x4E1A;&#x7684;&#x7684;&#x786E;&#x786E;&#x6709;&#x8FD9;&#x79CD;&#x73B0;&#x8C61;&#x3002;</p>
+<p>&#x5BF9;&#x5927;&#x90E8;&#x5206;&#x4EBA;&#x6765;&#x8BF4;&#xFF0C;&#x7A0B;&#x5E8F;&#x5458;&#x7684;&#x5DC5;&#x5CF0;&#x5728;22&#x5C81;-37&#x5C81;&#x4E4B;&#x95F4;&#xFF0C;&#x4E5F;&#x5C31;15&#x5E74;&#x3002;&#x6240;&#x4EE5;&#xFF0C;35&#x5C81;&#x7684;&#x8F6C;&#x578B;&#x51E0;&#x4E4E;&#x662F;&#x521A;&#x9700;&#x3002;</p>
+<p>&#x6839;&#x636E;&#x8212;&#x4F2F;&#x7684;&#x804C;&#x4E1A;&#x751F;&#x6DAF;&#x9636;&#x6BB5;&#x7406;&#x8BBA;&#xFF0C;31~44&#x5C81;&#x662F;&#x5B89;&#x5B9A;&#x671F;&#xFF0C;&#x7A0B;&#x5E8F;&#x5458;&#x5E94;&#x8BE5;&#x7A33;&#x5B9A;&#x4E8E;&#x4E00;&#x9879;&#x5DE5;&#x4F5C;&#xFF0C;&#x53D1;&#x73B0;&#x9002;&#x5F53;&#x7684;&#x664B;&#x5347;&#x901A;&#x9053;&#xFF0C;&#x786E;&#x7ACB;&#x81EA;&#x5DF1;&#x5C06;&#x6765;&#x7684;&#x4FDD;&#x969C;&#x3002;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x5E94;&#x8BE5;&#x600E;&#x4E48;&#x770B;&#x5F85;&#x6216;&#x8005;&#x5E94;&#x5BF9;&#x8FD9;&#x4EF6;&#x4E8B;&#x5462;&#xFF1F;</p>
+<h2 id="&#x5E72;&#x4E00;&#x8F88;&#x5B50;&#x6280;&#x672F;"><a href="#&#x5E72;&#x4E00;&#x8F88;&#x5B50;&#x6280;&#x672F;" class="headerlink" title="&#x5E72;&#x4E00;&#x8F88;&#x5B50;&#x6280;&#x672F;"></a>&#x5E72;&#x4E00;&#x8F88;&#x5B50;&#x6280;&#x672F;</h2><p>&#x9996;&#x5148;&#xFF0C;&#x6211;&#x89C9;&#x5F97;&#x5228;&#x53BB;&#x4E2A;&#x4F8B;&#xFF0C;&#x5F88;&#x591A;&#x725B;&#x903C;&#x7684;&#x7A0B;&#x5E8F;&#x5458;&#xFF0C;&#x6BD4;&#x5982;&#x8001;&#x5916;&#xFF0C;&#x4ED6;&#x4EEC;&#x7684;&#x6838;&#x5FC3;&#x7ADE;&#x4E89;&#x529B;&#x975E;&#x5E38;&#x660E;&#x663E;&#xFF0C;&#x53EF;&#x4EE5;&#x8BF4;&#x4E13;&#x5BB6;&#x7EA7;&#x7684;&#x5927;&#x725B;&#x6709;&#x81EA;&#x8EAB;&#x7684;&#x884C;&#x4E1A;&#x4E0D;&#x53EF;&#x66FF;&#x4EE3;&#x6027;&#xFF0C;&#x540E;&#x6D6A;&#x4EEC;&#x5DF2;&#x7ECF;&#x65E0;&#x6CD5;&#x8F7B;&#x6613;&#x66FF;&#x4EE3;&#xFF0C;&#x8FD9;&#x79CD;&#x4EBA;&#x201C;&#x5343;&#x4E07;&#x4E0D;&#x8981;&#x4E00;&#x8F88;&#x5B50;&#x9760;&#x6280;&#x672F;&#x751F;&#x5B58;&#x201D;&#x5DF2;&#x7ECF;&#x4E0D;&#x9002;&#x5408;&#x4E86;&#x3002;</p>
+<p>&#x4E00;&#x822C;&#x8FD9;&#x7C7B;&#x8D70;&#x7EAF;&#x6280;&#x672F;&#x901A;&#x9053;&#x7684;&#xFF0C;&#x90FD;&#x662F;&#x5728;&#x5927;&#x5382;&#xFF0C;&#x6709;&#x7EAF;&#x6280;&#x672F;&#x4E0A;&#x5347;&#x901A;&#x9053;&#xFF0C;&#x5728;&#x5927;&#x516C;&#x53F8;&#x624D;&#x80FD;&#x5B9E;&#x73B0;&#x4EF7;&#x503C;&#x3002;</p>
+<p>&#x6280;&#x672F;&#x65B9;&#x5411;&#x7684;&#x7814;&#x53D1;&#x4F53;&#x7CFB;</p>
+<ol>
+<li>&#x7B97;&#x6CD5;&#x7C7B;</li>
+<li>&#x67B6;&#x6784;&#x7C7B;</li>
+<li>&#x5DE5;&#x7A0B;&#x7C7B;</li>
+</ol>
+<p>&#x8FD8;&#x6709;&#x4E00;&#x7C7B;&#x662F;&#x884C;&#x4E1A;&#x65B9;&#x5411;&#x81EA;&#x5E26;buff&#xFF0C;&#x6709;&#x4E9B;&#x6280;&#x672F;&#x5C97;&#x672C;&#x8EAB;&#x5C31;&#x6709;&#x4E00;&#x4E9B;&#x5C5E;&#x6027;&#x662F;&#x8D8A;&#x8001;&#x8D8A;&#x5403;&#x9999;&#x7684;&#xFF0C;&#x6BD4;&#x5982;</p>
+<ol>
+<li>DBA</li>
+<li>&#x79FB;&#x52A8;&#x7AEF;&#x5B89;&#x5168;&#xFF0C;&#x6570;&#x636E;&#x5B89;&#x5168;</li>
+<li>&#x8FD0;&#x7EF4;</li>
+<li>&#x7B97;&#x6CD5;</li>
+</ol>
+<h2 id="&#x8F6C;&#x7BA1;&#x7406;"><a href="#&#x8F6C;&#x7BA1;&#x7406;" class="headerlink" title="&#x8F6C;&#x7BA1;&#x7406;"></a>&#x8F6C;&#x7BA1;&#x7406;</h2><p>&#x7BA1;&#x7406;&#x5C97;&#x6211;&#x8BA4;&#x4E3A;&#x53EF;&#x4EE5;&#x5206;&#x4E3A;&#x6280;&#x672F;&#x7ECF;&#x7406;&#xFF0C;&#x9879;&#x76EE;&#x7ECF;&#x7406;&#xFF0C;&#x67B6;&#x6784;&#x5E08;&#x7B49;&#xFF0C;&#x6240;&#x8C13;&#x5B66;&#x800C;&#x4F18;&#x5219;&#x4ED5;&#xFF0C;&#x4E00;&#x5B9A;&#x662F;&#x6280;&#x672F;&#x725B;&#x903C;&#x624D;&#x4F1A;&#x8F6C;&#x7BA1;&#x7406;&#xFF0C;&#x800C;&#x4E14;&#x6280;&#x672F;&#x7ECF;&#x7406;&#x7684;&#x8F6F;&#x5B9E;&#x529B;&#x4E5F;&#x8981;&#x6C42;&#x5F88;&#x9AD8;&#xFF0C;&#x8981;&#x5BF9;&#x9879;&#x76EE;&#x8FDB;&#x5EA6;&#x8FDB;&#x884C;&#x628A;&#x63A7;&#x7EDF;&#x7B79;&#xFF0C;&#x8981;&#x5BF9;&#x4EBA;&#x5458;&#x8FDB;&#x884C;&#x7BA1;&#x7406;&#xFF0C;&#x6280;&#x672F;&#x67B6;&#x6784;&#x9009;&#x578B;&#x7B49;&#x3002;&#x7EBF;&#x8DEF;&#x4E00;&#x5B9A;&#x662F;&#x6280;&#x672F;-&#x7BA1;&#x7406;-&#x6280;&#x672F;&#x7684;&#x8FC7;&#x7A0B;&#x3002;</p>
+<p>&#x963F;&#x91CC;&#x7684;P7&#x5230;&#x5C0F;&#x516C;&#x53F8;&#x505A;cto&#xFF1B;</p>
+<p>Google&#x7684;&#x6280;&#x672F;&#x53EF;&#x4EE5;&#x5230;BAT&#x505A;&#x6280;&#x672F;&#x7BA1;&#x7406;&#xFF1B;</p>
+<h2 id="&#x8F6C;&#x4EA7;&#x54C1;"><a href="#&#x8F6C;&#x4EA7;&#x54C1;" class="headerlink" title="&#x8F6C;&#x4EA7;&#x54C1;"></a>&#x8F6C;&#x4EA7;&#x54C1;</h2><p>&#x8FD9;&#x7C7B;&#x8EAB;&#x8FB9;&#x6709;&#x597D;&#x591A;&#xFF0C;&#x5199;&#x4E0D;&#x52A8;&#x4EE3;&#x7801;&#x4E86;&#x5C31;&#x8F6C;&#x4EA7;&#x54C1;&#x5F00;&#x59CB;Axure&#x5F00;&#x59CB;&#x753B;&#x539F;&#x578B;&#xFF0C;&#x6211;&#x89C9;&#x5F97;&#x8FD9;&#x7C7B;&#x5176;&#x5B9E;&#x6CA1;&#x95EE;&#x9898;&#xFF0C;&#x4E3B;&#x8981;&#x770B;&#x81EA;&#x5DF1;&#x7684;&#x559C;&#x597D;&#x4E86;&#x3002;</p>
+<h2 id="&#x57F9;&#x8BAD;&#x8BB2;&#x5E08;"><a href="#&#x57F9;&#x8BAD;&#x8BB2;&#x5E08;" class="headerlink" title="&#x57F9;&#x8BAD;&#x8BB2;&#x5E08;"></a>&#x57F9;&#x8BAD;&#x8BB2;&#x5E08;</h2><p>&#x8FD9;&#x7C7B;&#x4E5F;&#x53EF;&#x4EE5;&#xFF0C;&#x4E5F;&#x662F;&#x6BD4;&#x8F83;&#x63A8;&#x8350;&#x7684;&#xFF0C;&#x4F46;&#x4E5F;&#x56E0;&#x4EBA;&#x800C;&#x5F02;&#xFF0C;&#x9700;&#x8981;&#x6F14;&#x8BB2;&#x624D;&#x80FD;&#x7B49;&#x8F6F;&#x5B9E;&#x529B;&#x3002;</p>
+<h2 id="&#x521B;&#x4E1A;&#x5408;&#x4F19;&#x4EBA;"><a href="#&#x521B;&#x4E1A;&#x5408;&#x4F19;&#x4EBA;" class="headerlink" title="&#x521B;&#x4E1A;&#x5408;&#x4F19;&#x4EBA;"></a>&#x521B;&#x4E1A;&#x5408;&#x4F19;&#x4EBA;</h2><p>&#x81EA;&#x5DF1;&#x5F53;&#x8001;&#x677F;&#x7684;&#x6210;&#x529F;&#x7387;&#x5F88;&#x4F4E;&#xFF0C;&#x771F;&#x6B63;&#x80FD;&#x505A;&#x8D77;&#x6765;&#x771F;&#x7684;&#x662F;&#x5FAE;&#x4E4E;&#x5176;&#x5FAE;&#xFF0C;</p>
+<h2 id="&#x552E;&#x524D;&#xFF0C;&#x5B9E;&#x65BD;"><a href="#&#x552E;&#x524D;&#xFF0C;&#x5B9E;&#x65BD;" class="headerlink" title="&#x552E;&#x524D;&#xFF0C;&#x5B9E;&#x65BD;"></a>&#x552E;&#x524D;&#xFF0C;&#x5B9E;&#x65BD;</h2><h2 id="Hr&#xFF0C;&#x730E;&#x5934;"><a href="#Hr&#xFF0C;&#x730E;&#x5934;" class="headerlink" title="Hr&#xFF0C;&#x730E;&#x5934;"></a>Hr&#xFF0C;&#x730E;&#x5934;</h2><h2 id="&#x516C;&#x52A1;&#x5458;-&#x4F53;&#x5236;&#x5185;"><a href="#&#x516C;&#x52A1;&#x5458;-&#x4F53;&#x5236;&#x5185;" class="headerlink" title="&#x516C;&#x52A1;&#x5458;,&#x4F53;&#x5236;&#x5185;"></a>&#x516C;&#x52A1;&#x5458;,&#x4F53;&#x5236;&#x5185;</h2><h2 id="&#x600E;&#x4E48;&#x5E94;&#x5BF9;"><a href="#&#x600E;&#x4E48;&#x5E94;&#x5BF9;" class="headerlink" title="&#x600E;&#x4E48;&#x5E94;&#x5BF9;?"></a>&#x600E;&#x4E48;&#x5E94;&#x5BF9;?</h2><ol>
+<li>&#x6CE8;&#x610F;&#x5065;&#x5EB7;<ol>
+<li>&#x8EAB;&#x4F53;&#x662F;&#x9769;&#x547D;&#x7684;&#x672C;&#x94B1;&#xFF0C;&#x8FD8;&#x662F;&#x8981;&#x625B;&#x5F97;&#x4F4F;&#xFF0C;&#x4E0D;&#x8981;&#x7B49;&#x5230;30&#x5DE6;&#x53F3;&#x5C31;&#x4E00;&#x8EAB;&#x6BDB;&#x75C5;&#xFF0C;&#x5230;&#x65F6;&#x5019;&#x60F3;&#x594B;&#x6597;&#x90FD;&#x7531;&#x4E0D;&#x5F97;&#x4F60;&#x4E86;&#x3002;</li>
+<li>&#x5065;&#x5EB7;&#x89C4;&#x5F8B;&#x7684;</li>
+</ol>
+</li>
+<li>&#x63D0;&#x5347;&#x80FD;&#x529B;<ol>
+<li>&#x8FD9;&#x91CC;&#x7684;&#x80FD;&#x529B;&#x6709;&#x8BB8;&#x591A;&#xFF0C;&#x7B2C;&#x4E00;&#xFF0C;&#x4F5C;&#x4E3A;&#x7A0B;&#x5E8F;&#x5458;&#xFF0C;&#x5B66;&#x4E60;&#x80FD;&#x529B;&#x662F;&#x6700;&#x6838;&#x5FC3;&#x7684;&#x7ADE;&#x4E89;&#x529B;&#xFF0C;&#x591A;&#x770B;&#x6280;&#x672F;&#xFF0C;&#x6E90;&#x7801;</li>
+<li>&#x6F14;&#x8BB2;&#x80FD;&#x529B;</li>
+<li>&#x7BA1;&#x7406;&#x80FD;&#x529B;</li>
+<li>&#x6C9F;&#x901A;&#x6280;&#x5DE7;</li>
+</ol>
+</li>
+<li>&#x63D0;&#x5347;&#x4E2A;&#x4EBA;&#x5F71;&#x54CD;&#x529B;<ol>
+<li>&#x6709;&#x5F88;&#x591A;</li>
+<li>github</li>
+<li>&#x5199;&#x535A;&#x5BA2;</li>
+<li>&#x591A;&#x6DF7;&#x5927;&#x5382;&#x80CC;&#x4E66;</li>
+<li>&#x5C3D;&#x53EF;&#x80FD;&#x6DF7;&#x5B66;&#x5386;</li>
+<li>leadership &#x7684;&#x57F9;&#x517B;&#xFF0C;&#x53EF;&#x4EE5;&#x8BF4;30&#x5C81;&#x5DE6;&#x53F3;&#x5C31;&#x5E94;&#x8BE5;&#x5F00;&#x59CB;&#x663E;&#x73B0;&#x4E86;&#xFF0C;&#x9886;&#x8896;&#x6C14;&#x8D28;&#x4E5F;&#x662F;&#x7ED9;&#x522B;&#x4EBA;&#x89E3;&#x51B3;&#x80FD;&#x529B;&#x7684;&#x80FD;&#x529B;</li>
+</ol>
+</li>
+<li>&#x7ECF;&#x5E38;&#x79EF;&#x7D2F;&#xFF0C;&#x5B9A;&#x671F;&#x8BA1;&#x5212;&#x548C;&#x590D;&#x76D8;<ol>
+<li>&#x6280;&#x672F;&#x5F88;&#x91CD;&#x8981;&#xFF0C;&#x6267;&#x884C;&#x529B;&#x548C;&#x4E13;&#x6CE8;&#x5EA6;&#x4E5F;&#x5F88;&#x91CD;&#x8981;</li>
+</ol>
+</li>
+<li>&#x4EBA;&#x8109;&#x7684;&#x79EF;&#x7D2F;<ol>
+<li>&#x5C11;&#x8FDB;&#x884C;&#x65E0;&#x6548;&#x793E;&#x4EA4;&#xFF0C;&#x4E00;&#x5B9A;&#x662F;&#x5BF9;&#x7B49;&#x7684;&#x4F9B;&#x9700;&#x793E;&#x4EA4;&#x624D;&#x6709;&#x610F;&#x4E49;&#x3002;&#x4E00;&#x5473;&#x7684;&#x6500;&#x7740;&#x6240;&#x8C13;&#x7684;&#x725B;&#x4EBA;&#xFF0C;&#x6709;&#x65F6;&#x5019;&#x4EBA;&#x5BB6;&#x771F;&#x7684;&#x4E0D;care&#x4F60;&#xFF0C;&#x6211;&#x89C9;&#x5F97;&#x8FD9;&#x4E2A;&#x8DDF;&#x8DEA;&#x8214;&#x5973;&#x795E;&#x7684;&#x6027;&#x8D28;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x8FD8;&#x662F;&#x8981;&#x6709;&#x81EA;&#x5DF1;&#x7684;&#x4EF7;&#x503C;&#x5B9E;&#x73B0;&#xFF0C;&#x5BF9;&#x5176;&#x4ED6;&#x4EBA;&#x5B9E;&#x73B0;&#x4F9B;&#x624D;&#x6709;&#x6548;&#x679C;</li>
+</ol>
+</li>
+<li>&#x524D;&#x671F;&#x8D44;&#x672C;&#x7684;&#x79EF;&#x7D2F;<ol>
+<li>&#x65E9;&#x70B9;&#x4E70;&#x623F;&#xFF0C;&#x8D81;&#x7740;&#x8FD8;&#x80FD;&#x6323;&#x94B1;&#xFF0C;&#x591A;&#x8FDB;&#x884C;&#x8D44;&#x672C;&#x79EF;&#x7D2F;&#xFF0C;&#x591A;&#x6512;&#x70B9;&#x94B1;</li>
+</ol>
+</li>
+<li>&#x7BA1;&#x7406;&#x80FD;&#x529B;&#x7B49;&#x8F6F;&#x5B9E;&#x529B;&#x63D0;&#x5347;</li>
+<li>&#x7B2C;&#x4E8C;&#x804C;&#x4E1A;&#xFF0C;&#x659C;&#x6760;&#x9752;&#x5E74;<ol>
+<li>&#x505A;&#x526F;&#x4E1A;&#x8981;&#x770B;&#x51C6;&#xFF0C;&#x4E0D;&#x8981;&#x4EC0;&#x4E48;&#x79C1;&#x6D3B;&#x90FD;&#x63A5;&#xFF0C;&#x4E0D;&#x7136;&#x53EA;&#x4F1A;&#x8BA9;&#x4F60;&#x5F97;&#x4E0D;&#x507F;&#x5931;</li>
+<li>&#x8FD9;&#x4E00;&#x70B9;&#x53EF;&#x4EE5;&#x591A;&#x505A;&#x4E00;&#x4E9B;&#x957F;&#x7EBF;&#x7684;&#x4EA7;&#x54C1;&#xFF0C;&#x65E2;&#x53EF;&#x4EE5;&#x63D0;&#x5347;&#x4E2A;&#x4EBA;&#x7684;&#x5F71;&#x54CD;&#x529B;&#xFF0C;&#x6709;&#x65F6;&#x5019;&#x4E5F;&#x53EF;&#x80FD;&#x4EA7;&#x751F;&#x610F;&#x60F3;&#x4E0D;&#x5230;&#x7684;&#x60CA;&#x559C;</li>
+</ol>
+</li>
+<li>&#x7761;&#x540E;&#x6536;&#x5165;<ol>
+<li>&#x4E4B;&#x524D;&#x6709;&#x670B;&#x53CB;&#x5C31;&#x662F;&#x81EA;&#x5DF1;&#x5199;android &#x9879;&#x76EE;&#xFF0C;&#x83B7;&#x5F97;&#x7528;&#x6237;&#x6536;&#x53D6;&#x4F1A;&#x5458;&#x8D39;</li>
+<li>&#x8003;&#x5404;&#x79CD;&#x8BC1;&#xFF0C;&#x8FDB;&#x884C;&#x6302;&#x9760;</li>
+<li>&#x4E13;&#x680F;&#xFF0C;&#x516C;&#x4F17;&#x53F7;&#xFF08;&#x559C;&#x6B22;&#x5199;&#x4E1C;&#x897F;&#xFF0C;&#x559C;&#x6B22;&#x6574;&#x7406;&#xFF09;</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/职业规划/" rel="tag"># 职业规划</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/14/自律/" rel="next" title="自律方法">
+                <i class="fa fa-chevron-left"></i> 自律方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">huanxingxyz</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#干一辈子技术"><span class="nav-number">1.</span> <span class="nav-text">干一辈子技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转管理"><span class="nav-number">2.</span> <span class="nav-text">转管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转产品"><span class="nav-number">3.</span> <span class="nav-text">转产品</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#培训讲师"><span class="nav-number">4.</span> <span class="nav-text">培训讲师</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创业合伙人"><span class="nav-number">5.</span> <span class="nav-text">创业合伙人</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#售前，实施"><span class="nav-number">6.</span> <span class="nav-text">售前，实施</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hr，猎头"><span class="nav-number">7.</span> <span class="nav-text">Hr，猎头</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公务员-体制内"><span class="nav-number">8.</span> <span class="nav-text">公务员,体制内</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么应对"><span class="nav-number">9.</span> <span class="nav-text">怎么应对?</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huanxingxyz</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'bYq7Ata5d0bKNhSF3lRbvkSw-gzGzoHsz',
+        appKey: 'OkxHrgPHiUDlaiQpzi7J8QDA',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
