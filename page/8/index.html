@@ -239,7 +239,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/14/Android 检查是否联网/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/14/Json 反序列化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="huanxingxyz">
@@ -258,7 +258,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/05/14/Android 检查是否联网/" itemprop="url">Android_检查是否联网</a></h1>
+                <a class="post-title-link" href="/2016/05/14/Json 反序列化/" itemprop="url">Json反序列化</a></h1>
         
 
         <div class="post-meta">
@@ -289,8 +289,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/05/14/Android 检查是否联网/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2016/05/14/Android 检查是否联网/" itemprop="commentCount"></span>
+                <a href="/2016/05/14/Json 反序列化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2016/05/14/Json 反序列化/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -320,11 +320,104 @@
       
         
           
-            <p>&#x68C0;&#x67E5;&#x662F;&#x5426;&#x8054;&#x7F51;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static boolean isNetworkAvailable(Activity mActivity) {</span><br><span class="line"> Context context = mActivity.getApplicationContext();</span><br><span class="line"> ConnectivityManager connectivity = (ConnectivityManager) context</span><br><span class="line">   .getSystemService(Context.CONNECTIVITY_SERVICE);</span><br><span class="line"> if (connectivity == null) {</span><br><span class="line">  return false;</span><br><span class="line"> } else {</span><br><span class="line">  NetworkInfo[] info = connectivity.getAllNetworkInfo();</span><br><span class="line">  if (info != null) {</span><br><span class="line">   for (int i = 0; i &lt; info.length; i++) {</span><br><span class="line">    if (info[i].getState() == NetworkInfo.State.CONNECTED) {</span><br><span class="line">     return true;</span><br><span class="line">    }</span><br><span class="line">   }</span><br><span class="line">  }</span><br><span class="line"> }</span><br><span class="line"> return false;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">public static void HttpTest(final Activity mActivity) {</span><br><span class="line"> if (!isNetworkAvailable(mActivity)) {</span><br><span class="line">  showToast(mActivity);</span><br><span class="line"> }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">public static void showToast(Activity mActivity) {</span><br><span class="line"> Vibrator mVibrator01 = (Vibrator) mActivity.getApplication()</span><br><span class="line">   .getSystemService(Service.VIBRATOR_SERVICE);</span><br><span class="line"> mVibrator01.vibrate(new long[] { 100, 10, 100, 1000 }, -1);</span><br><span class="line"> Toast.makeText(mActivity, &quot;&#x8BF7;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x8054;&#x7F51;&quot;, 500).show();</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<p>&#x5176;&#x4E2D;&#x8FD8;&#x8981;&#x52A0;&#x4E0A;&#x624B;&#x673A;&#x9707;&#x52A8;&#x548C;&#x8054;&#x7F51;&#x7684;&#x6743;&#x9650;&#xFF1A;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt; </span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.VIBRATE&quot;/&gt;</span><br></pre></td></tr></table></figure>
+            <pre><code>  /**
+ * &#x7531;&#x5B57;&#x7B26;&#x4E32;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x6210;&#x5B9E;&#x4F53;&#x7C7B;  &#x9488;&#x5BF9;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x5B9E;&#x4F53;&#xFF0C;&#x6B64;&#x5B9E;&#x4F53;&#x4E2D;&#x7684;&#x5C5E;&#x6027;&#x4E0D;&#x5305;&#x62EC;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x5982;Teacher&#x7C7B;&#x578B;&#xFF0C;&#x6216;&#x8005;List&lt;Teacher&gt;&#x7C7B;&#x578B; 
+ * @param source &#x4F20;&#x5165;json&#x4E2D;&#x7684;&#x5B57;&#x7B26;&#x4E32;
+ * @param beanClass &#x5B9E;&#x4F53;&#x7C7B;&#x7684;&#x7C7B;&#x578B;
+ * @return &#x5B9E;&#x4F53;&#x7C7B;
+ */
+public static Object getObjFromJsonArrStr(String source,Class beanClass)
+{
+    JSONObject jsonObject = (JSONObject) JSONSerializer.toJSON(source);
+    return  JSONObject.toBean(jsonObject,beanClass);       
+}
+/**
+ * &#x7531;&#x5B57;&#x7B26;&#x4E32;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x6210;&#x5B9E;&#x4F53;&#x7C7B;  &#x9488;&#x5BF9;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x5B9E;&#x4F53;&#xFF0C;&#x6B64;&#x5B9E;&#x4F53;&#x4E2D;&#x7684;&#x5C5E;&#x6027;&#x5305;&#x62EC;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x5982;Teacher&#x7C7B;&#x578B;&#xFF0C;&#x6216;&#x8005;List&lt;Teacher&gt;&#x7C7B;&#x578B;
+ * @param jsonArrStr
+ * @param clazz
+ * @param classMap
+ * @return
+ */
+public static Object getObjFromJsonArrStr(String jsonArrStr, Class clazz, Map classMap) 
+{ 
+    JSONObject jsonObj = JSONObject.fromObject(jsonArrStr);  
+            return JSONObject.toBean(jsonObj, clazz, classMap);            
+}
 
+
+/**
+ * &#x5C06;string&#x8F6C;&#x6362;&#x6210;listBean
+ * @param jsonArrStr &#x9700;&#x8981;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x7684;&#x5B57;&#x7B26;&#x4E32;
+ * @param clazz &#x88AB;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x4E4B;&#x540E;&#x7684;&#x7C7B;
+ * @return &#x5B9E;&#x4F53;list
+ */
+@SuppressWarnings(&quot;unchecked&quot;)
+public static List getListFromJsonArrStr(String jsonArrStr, Class clazz) {  
+    JSONArray jsonArr = JSONArray.fromObject(jsonArrStr);  
+    List list = new ArrayList(); 
+    for (int i = 0; i &lt; jsonArr.size(); i++) 
+    { 
+        list.add(JSONObject.toBean(jsonArr.getJSONObject(i), clazz));  
+    } 
+    return list; 
+}
+
+/**
+ * &#x5C06;string&#x8F6C;&#x6362;&#x6210;listBean &#x5C5E;&#x6027;&#x4E2D;&#x5305;&#x542B;&#x5B9E;&#x4F53;&#x7C7B;&#x7B49; &#x5982;List&lt;Student&gt; &#x800C;Student&#x4E2D;&#x542B;&#x6709;&#x5C5E;&#x6027;List&lt;Teacher&gt;
+ * @param jsonArrStr &#x9700;&#x8981;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x7684;&#x5B57;&#x7B26;&#x4E32;
+ * @param clazz &#x53CD;&#x5E8F;&#x5217;&#x5316;&#x540E;&#x7684;&#x7C7B;
+ * @param classMap &#x5C06;&#x5C5E;&#x6027;&#x4E2D;&#x5305;&#x542B;&#x7684;&#x5982;Teacher&#x52A0;&#x5165;&#x5230;&#x4E00;&#x4E2A;Map&#x4E2D;&#xFF0C;&#x683C;&#x5F0F;&#x5982;map.put(&quot;teacher&quot;,Teacher.class)
+ * @return &#x53CD;&#x5E8F;&#x5217;&#x5316;&#x540E;&#x7684;&#x5B57;&#x7B26;&#x4E32;
+ * &#x4F7F;&#x7528;&#x793A;&#x4F8B;&#xFF1A;
+    Map classMap = new HashMap();
+    //&#x5FC5;&#x987B;&#x8981;&#x5BF9;Parent&#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316; &#x5426;&#x5219;&#x4E0D;&#x8BC6;&#x522B;
+    Teacher p = new Teacher();
+    classMap.put(&quot;teacher&quot;, p.getClass());
+    List mlist = JSONTransfer.getListFromJsonArrStr(resultStr, Student.class, classMap);
+ */
+@SuppressWarnings(&quot;unchecked&quot;)
+public static List getListFromJsonArrStr(String jsonArrStr, Class clazz, Map classMap) 
+{ 
+   JSONArray jsonArr = JSONArray.fromObject(jsonArrStr);  
+   List list = new ArrayList(); 
+   for (int i = 0; i &lt; jsonArr.size(); i++) 
+   {          
+       list.add(JSONObject.toBean(jsonArr.getJSONObject(i), clazz, classMap));  
+   } 
+   return list; 
+}
+
+/**
+ * &#x5E8F;&#x5217;&#x5316;&#x64CD;&#x4F5C;&#xFF0C;&#x65E0;&#x8BBA;&#x662F;&#x5355;&#x4E2A;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x8FD8;&#x662F;list&#xFF0C;&#x6291;&#x6216;&#x662F;list&#x4E2D;&#x7684;&#x5C5E;&#x6027;&#x4ECD;&#x5305;&#x542B;list&#xFF0C;&#x90FD;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5E8F;&#x5217;&#x5316;&#x6210;String&#x7C7B;&#x578B;
+ * @param obj &#x9700;&#x8981;&#x88AB;&#x5E8F;&#x5217;&#x5316;&#x7684;&#x5BF9;&#x8C61;
+ * @return &#x5E8F;&#x5217;&#x5316;&#x4E4B;&#x540E;&#x7684;&#x5B57;&#x7B26;&#x4E32;
+ */
+@SuppressWarnings(&quot;unchecked&quot;)
+public static String getJsonArrStrFromList(Object obj) 
+{
+    //&#x8FD4;&#x56DE;&#x7D50;&#x679C;
+    String jsonStr = null; 
+    //&#x5224;&#x7A7A;
+    if (obj == null) {  
+        return &quot;{}&quot;; 
+    } 
+    //Json&#x914D;&#x7F6E;     
+    JsonConfig jsonCfg = new JsonConfig(); 
+
+    //&#x6CE8;&#x518C;&#x65E5;&#x671F;&#x5904;&#x7406;&#x5668; 
+    jsonCfg.registerJsonValueProcessor(java.util.Date.class, 
+            new JsonDateValueProcessor(SystemConstants.DateFormat)); 
+
+    //&#x5224;&#x65AD;&#x662F;&#x5426;&#x662F;list
+    if (objinstanceof Collection || obj instanceof Object[]) {  
+        jsonStr = JSONArray.fromObject(obj, jsonCfg).toString();  
+    }else { 
+        jsonStr = JSONObject.fromObject(obj, jsonCfg).toString();  
+    }    
+    return jsonStr;
+}
+</code></pre><p>&#x5173;&#x4E8E;Java&#x5E8F;&#x5217;&#x5316;&#xFF0C;ITEye&#x4E0A;&#x6709;&#x4E00;&#x7BC7;&#x8BA8;&#x8BBA;&#x7684;&#x5E16;&#x5B50;&#x6BD4;&#x8F83;&#x597D;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;http://www.iteye.com/topic/14707&quot;&gt;http://www.iteye.com/topic/14707&lt;/a&gt;</span><br></pre></td></tr></table></figure>
           
         
       
