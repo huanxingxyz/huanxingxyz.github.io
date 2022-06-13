@@ -1678,154 +1678,6 @@ echo &quot;sucess&quot;
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/27/Android 面试知识点/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="huanxingxyz">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HELLO沃德">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/27/Android 面试知识点/" itemprop="url">Android 面试知识点</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-27T15:17:05+08:00">
-                2017-06-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/27/Android 面试知识点/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/06/27/Android 面试知识点/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<h3 id="Requestlayout&#xFF0C;OnLayout&#xFF0C;OnDraw&#xFF0C;DrawChild&#x533A;&#x522B;&#x4E0E;&#x8054;&#x7CFB;"><a href="#Requestlayout&#xFF0C;OnLayout&#xFF0C;OnDraw&#xFF0C;DrawChild&#x533A;&#x522B;&#x4E0E;&#x8054;&#x7CFB;" class="headerlink" title="Requestlayout&#xFF0C;OnLayout&#xFF0C;OnDraw&#xFF0C;DrawChild&#x533A;&#x522B;&#x4E0E;&#x8054;&#x7CFB;"></a>Requestlayout&#xFF0C;OnLayout&#xFF0C;OnDraw&#xFF0C;DrawChild&#x533A;&#x522B;&#x4E0E;&#x8054;&#x7CFB;</h3><ul>
-<li>requestLayout()&#x65B9;&#x6CD5; &#xFF1A;&#x4F1A;&#x5BFC;&#x81F4;&#x8C03;&#x7528;measure()&#x8FC7;&#x7A0B; &#x548C; layout()&#x8FC7;&#x7A0B; &#x3002;&#x8BF4;&#x660E;&#xFF1A;&#x53EA;&#x662F;&#x5BF9;View&#x6811;&#x91CD;&#x65B0;&#x5E03;&#x5C40;layout&#x8FC7;&#x7A0B;&#x5305;&#x62EC;measure()&#x548C;layout()&#x8FC7;&#x7A0B;&#xFF0C;&#x4E0D;&#x4F1A;&#x8C03;&#x7528;draw()&#x8FC7;&#x7A0B;&#xFF0C;&#x4F46;&#x4E0D;&#x4F1A;&#x91CD;&#x65B0;&#x7ED8;&#x5236;&#x4EFB;&#x4F55;&#x89C6;&#x56FE;&#x5305;&#x62EC;&#x8BE5;&#x8C03;&#x7528;&#x8005;&#x672C;&#x8EAB;&#x3002;</li>
-<li>onLayout()&#x65B9;&#x6CD5;(&#x5982;&#x679C;&#x8BE5;View&#x662F;ViewGroup&#x5BF9;&#x8C61;&#xFF0C;&#x9700;&#x8981;&#x5B9E;&#x73B0;&#x8BE5;&#x65B9;&#x6CD5;&#xFF0C;&#x5BF9;&#x6BCF;&#x4E2A;&#x5B50;&#x89C6;&#x56FE;&#x8FDB;&#x884C;&#x5E03;&#x5C40;)</li>
-<li>onDraw()&#x65B9;&#x6CD5;&#x7ED8;&#x5236;&#x89C6;&#x56FE;&#x672C;&#x8EAB; (&#x6BCF;&#x4E2A;View&#x90FD;&#x9700;&#x8981;&#x91CD;&#x8F7D;&#x8BE5;&#x65B9;&#x6CD5;&#xFF0C;ViewGroup&#x4E0D;&#x9700;&#x8981;&#x5B9E;&#x73B0;&#x8BE5;&#x65B9;&#x6CD5;)</li>
-<li>drawChild()&#x53BB;&#x91CD;&#x65B0;&#x56DE;&#x8C03;&#x6BCF;&#x4E2A;&#x5B50;&#x89C6;&#x56FE;&#x7684;draw()&#x65B9;&#x6CD5;&#x3002;</li>
-</ul>
-<h3 id="Android&#x4E3A;&#x6BCF;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5206;&#x914D;&#x7684;&#x5185;&#x5B58;&#x5927;&#x5C0F;&#x662F;&#x591A;&#x5C11;&#xFF1F;"><a href="#Android&#x4E3A;&#x6BCF;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5206;&#x914D;&#x7684;&#x5185;&#x5B58;&#x5927;&#x5C0F;&#x662F;&#x591A;&#x5C11;&#xFF1F;" class="headerlink" title="Android&#x4E3A;&#x6BCF;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5206;&#x914D;&#x7684;&#x5185;&#x5B58;&#x5927;&#x5C0F;&#x662F;&#x591A;&#x5C11;&#xFF1F;"></a>Android&#x4E3A;&#x6BCF;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5206;&#x914D;&#x7684;&#x5185;&#x5B58;&#x5927;&#x5C0F;&#x662F;&#x591A;&#x5C11;&#xFF1F;</h3><p>android&#x7A0B;&#x5E8F;&#x5185;&#x5B58;&#x4E00;&#x822C;&#x9650;&#x5236;&#x5728;16M&#xFF0C;&#x4E5F;&#x6709;&#x7684;&#x662F;24M&#x3002;</p>
-<h3 id="Android-View&#x5237;&#x65B0;&#x673A;&#x5236;"><a href="#Android-View&#x5237;&#x65B0;&#x673A;&#x5236;" class="headerlink" title="Android View&#x5237;&#x65B0;&#x673A;&#x5236;"></a>Android View&#x5237;&#x65B0;&#x673A;&#x5236;</h3><p>&#x7531;ViewRoot&#x5BF9;&#x8C61;&#x7684;performTraversals()&#x65B9;&#x6CD5;&#x8C03;&#x7528;draw()&#x65B9;&#x6CD5;&#x53D1;&#x8D77;&#x7ED8;&#x5236;&#x8BE5;View&#x6811;&#xFF0C;&#x503C;&#x5F97;&#x6CE8;&#x610F;&#x7684;&#x662F;&#x6BCF;&#x6B21;&#x53D1;&#x8D77;&#x7ED8;&#x56FE;&#x65F6;&#xFF0C;&#x5E76;&#x4E0D;&#x4F1A;&#x91CD;&#x65B0;&#x7ED8;&#x5236;&#x6BCF;&#x4E2A;View&#x6811;&#x7684;&#x89C6;&#x56FE;&#xFF0C;&#x800C;&#x53EA;&#x4F1A;&#x91CD;&#x65B0;&#x7ED8;&#x5236;&#x90A3;&#x4E9B;&#x201C;&#x9700;&#x8981;&#x91CD;&#x7ED8;&#x201D;&#x7684;&#x89C6;&#x56FE;&#xFF0C;View&#x7C7B;&#x5185;&#x90E8;&#x53D8;&#x91CF;&#x5305;&#x542B;&#x4E86;&#x4E00;&#x4E2A;&#x6807;&#x5FD7;&#x4F4D;DRAWN&#xFF0C;&#x5F53;&#x8BE5;&#x89C6;&#x56FE;&#x9700;&#x8981;&#x91CD;&#x7ED8;&#x65F6;&#xFF0C;&#x5C31;&#x4F1A;&#x4E3A;&#x8BE5;View&#x6DFB;&#x52A0;&#x8BE5;&#x6807;&#x5FD7;&#x4F4D;&#x3002;<br>&#x8C03;&#x7528;&#x6D41;&#x7A0B; &#xFF1A;</p>
-<ul>
-<li>mView.draw()&#x5F00;&#x59CB;&#x7ED8;&#x5236;&#xFF0C;draw()&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#x7684;&#x529F;&#x80FD;&#x5982;&#x4E0B;&#xFF1A;&#x7ED8;&#x5236;&#x8BE5;View&#x7684;&#x80CC;&#x666F;&#x4E3A;&#x663E;&#x793A;&#x6E10;&#x53D8;&#x6846;&#x505A;&#x4E00;&#x4E9B;&#x51C6;&#x5907;&#x64CD;&#x4F5C;&#x3002;</li>
-<li>&#x8C03;&#x7528;onDraw()&#x65B9;&#x6CD5;&#x7ED8;&#x5236;&#x89C6;&#x56FE;&#x672C;&#x8EAB; (&#x6BCF;&#x4E2A;View&#x90FD;&#x9700;&#x8981;&#x91CD;&#x8F7D;&#x8BE5;&#x65B9;&#x6CD5;&#xFF0C;ViewGroup&#x4E0D;&#x9700;&#x8981;&#x5B9E;&#x73B0;&#x8BE5;&#x65B9;&#x6CD5;)</li>
-<li>&#x8C03;&#x7528;dispatchDraw ()&#x65B9;&#x6CD5;&#x7ED8;&#x5236;&#x5B50;&#x89C6;&#x56FE;(&#x5982;&#x679C;&#x8BE5;View&#x7C7B;&#x578B;&#x4E0D;&#x4E3A;ViewGroup&#xFF0C;&#x5373;&#x4E0D;&#x5305;&#x542B;&#x5B50;&#x89C6;&#x56FE;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x91CD;&#x8F7D;&#x8BE5;&#x65B9;&#x6CD5;)&#x503C;&#x5F97;&#x8BF4;&#x660E;&#x7684;&#x662F;&#xFF0C;ViewGroup&#x7C7B;&#x5DF2;&#x7ECF;&#x4E3A;&#x6211;&#x4EEC;&#x91CD;&#x5199;&#x4E86;dispatchDraw ()&#x7684;&#x529F;&#x80FD;&#x5B9E;&#x73B0;&#xFF0C;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4E00;&#x822C;&#x4E0D;&#x9700;&#x8981;&#x91CD;&#x5199;&#x8BE5;&#x65B9;&#x6CD5;&#xFF0C;&#x4F46;&#x53EF;&#x4EE5;&#x91CD;&#x8F7D;&#x7236;&#x7C7B;&#x51FD;&#x6570;&#x5B9E;&#x73B0;&#x5177;&#x4F53;&#x7684;&#x529F;&#x80FD;&#x3002;</li>
-</ul>
-<h3 id="LinearLayout&#x5BF9;&#x6BD4;RelativeLayout"><a href="#LinearLayout&#x5BF9;&#x6BD4;RelativeLayout" class="headerlink" title="LinearLayout&#x5BF9;&#x6BD4;RelativeLayout"></a>LinearLayout&#x5BF9;&#x6BD4;RelativeLayout</h3><ul>
-<li>RelativeLayout&#x4F1A;&#x8BA9;&#x5B50;View&#x8C03;&#x7528;2&#x6B21;onMeasure&#xFF0C;LinearLayout &#x5728;&#x6709;weight&#x65F6;&#xFF0C;&#x4E5F;&#x4F1A;&#x8C03;&#x7528;&#x5B50;View2&#x6B21;onMeasure</li>
-<li>RelativeLayout&#x7684;&#x5B50;View&#x5982;&#x679C;&#x9AD8;&#x5EA6;&#x548C;RelativeLayout&#x4E0D;&#x540C;&#xFF0C;&#x5219;&#x4F1A;&#x5F15;&#x53D1;&#x6548;&#x7387;&#x95EE;&#x9898;&#xFF0C;&#x5F53;&#x5B50;View&#x5F88;&#x590D;&#x6742;&#x65F6;&#xFF0C;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x4F1A;&#x66F4;&#x52A0;&#x4E25;&#x91CD;&#x3002;&#x5982;&#x679C;&#x53EF;&#x4EE5;&#xFF0C;&#x5C3D;&#x91CF;&#x4F7F;&#x7528;padding&#x4EE3;&#x66FF;margin&#x3002;<br>&#x5728;&#x4E0D;&#x5F71;&#x54CD;&#x5C42;&#x7EA7;&#x6DF1;&#x5EA6;&#x7684;&#x60C5;&#x51B5;&#x4E0B;,&#x4F7F;&#x7528;LinearLayout&#x548C;FrameLayout&#x800C;&#x4E0D;&#x662F;RelativeLayout&#x3002;</li>
-</ul>
-<p>&#x4E3A;&#x4EC0;&#x4E48;Google&#x7ED9;&#x5F00;&#x53D1;&#x8005;&#x9ED8;&#x8BA4;&#x65B0;&#x5EFA;&#x4E86;&#x4E2A;RelativeLayout&#xFF0C;&#x800C;&#x81EA;&#x5DF1;&#x5374;&#x5728;DecorView&#x4E2D;&#x7528;&#x4E86;&#x4E2A;LinearLayout&#x3002;&#x56E0;&#x4E3A;DecorView&#x7684;&#x5C42;&#x7EA7;&#x6DF1;&#x5EA6;&#x662F;&#x5DF2;&#x77E5;&#x800C;&#x4E14;&#x56FA;&#x5B9A;&#x7684;&#xFF0C;&#x4E0A;&#x9762;&#x4E00;&#x4E2A;&#x6807;&#x9898;&#x680F;&#xFF0C;&#x4E0B;&#x9762;&#x4E00;&#x4E2A;&#x5185;&#x5BB9;&#x680F;&#x3002;&#x91C7;&#x7528;RelativeLayout&#x5E76;&#x4E0D;&#x4F1A;&#x964D;&#x4F4E;&#x5C42;&#x7EA7;&#x6DF1;&#x5EA6;&#xFF0C;&#x6240;&#x4EE5;&#x6B64;&#x65F6;&#x5728;&#x6839;&#x8282;&#x70B9;&#x4E0A;&#x7528;LinearLayout&#x662F;&#x6548;&#x7387;&#x6700;&#x9AD8;&#x7684;&#x3002;&#x800C;&#x4E4B;&#x6240;&#x4EE5;&#x7ED9;&#x5F00;&#x53D1;&#x8005;&#x9ED8;&#x8BA4;&#x65B0;&#x5EFA;&#x4E86;&#x4E2A;RelativeLayout&#x662F;&#x5E0C;&#x671B;&#x5F00;&#x53D1;&#x8005;&#x80FD;&#x91C7;&#x7528;&#x5C3D;&#x91CF;&#x5C11;&#x7684;View&#x5C42;&#x7EA7;&#x6765;&#x8868;&#x8FBE;&#x5E03;&#x5C40;&#x4EE5;&#x5B9E;&#x73B0;&#x6027;&#x80FD;&#x6700;&#x4F18;&#xFF0C;&#x56E0;&#x4E3A;&#x590D;&#x6742;&#x7684;View&#x5D4C;&#x5957;&#x5BF9;&#x6027;&#x80FD;&#x7684;&#x5F71;&#x54CD;&#x4F1A;&#x66F4;&#x5927;&#x4E00;&#x4E9B;&#x3002;</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/27/如何保证service在后台不被kill/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1916,6 +1768,158 @@ echo &quot;sucess&quot;
 <p>&#x524D;&#x53F0;&#x8FDB;&#x7A0B;( FOREGROUND_APP)<br>&#x53EF;&#x89C6;&#x8FDB;&#x7A0B;(VISIBLE_APP )<br>&#x6B21;&#x8981;&#x670D;&#x52A1;&#x8FDB;&#x7A0B;(SECONDARY_SERVER )<br>&#x540E;&#x53F0;&#x8FDB;&#x7A0B; (HIDDEN_APP)<br>&#x5185;&#x5BB9;&#x4F9B;&#x5E94;&#x8282;&#x70B9;(CONTENT_PROVIDER)<br>&#x7A7A;&#x8FDB;&#x7A0B;(EMPTY_APP)<br>&#x5F53;service&#x8FD0;&#x884C;&#x5728;&#x4F4E;&#x5185;&#x5B58;&#x7684;&#x73AF;&#x5883;&#x65F6;&#xFF0C;&#x5C06;&#x4F1A;kill&#x6389;&#x4E00;&#x4E9B;&#x5B58;&#x5728;&#x7684;&#x8FDB;&#x7A0B;&#x3002;&#x56E0;&#x6B64;&#x8FDB;&#x7A0B;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#x5C06;&#x4F1A;&#x5F88;&#x91CD;&#x8981;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;startForeground &#x5C06;service&#x653E;&#x5230;&#x524D;&#x53F0;&#x72B6;&#x6001;&#x3002;&#x8FD9;&#x6837;&#x5728;&#x4F4E;&#x5185;&#x5B58;&#x65F6;&#x88AB;kill&#x7684;&#x51E0;&#x7387;&#x4F1A;&#x4F4E;&#x4E00;&#x4E9B;&#x3002;</p>
 <h3 id="onDestroy&#x65B9;&#x6CD5;&#x91CC;&#x91CD;&#x542F;service"><a href="#onDestroy&#x65B9;&#x6CD5;&#x91CC;&#x91CD;&#x542F;service" class="headerlink" title="onDestroy&#x65B9;&#x6CD5;&#x91CC;&#x91CD;&#x542F;service"></a>onDestroy&#x65B9;&#x6CD5;&#x91CC;&#x91CD;&#x542F;service</h3><p>service +broadcast &#x65B9;&#x5F0F;&#xFF0C;&#x5C31;&#x662F;&#x5F53;service&#x8D70;ondestory&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53D1;&#x9001;&#x4E00;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x5E7F;&#x64AD;&#xFF0C;&#x5F53;&#x6536;&#x5230;&#x5E7F;&#x64AD;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x91CD;&#x65B0;&#x542F;&#x52A8;service&#xFF1B;</p>
 <h3 id="Application&#x52A0;&#x4E0A;Persistent&#x5C5E;&#x6027;"><a href="#Application&#x52A0;&#x4E0A;Persistent&#x5C5E;&#x6027;" class="headerlink" title="Application&#x52A0;&#x4E0A;Persistent&#x5C5E;&#x6027;"></a>Application&#x52A0;&#x4E0A;Persistent&#x5C5E;&#x6027;</h3><h3 id="&#x76D1;&#x542C;&#x7CFB;&#x7EDF;&#x5E7F;&#x64AD;&#x5224;&#x65AD;Service&#x72B6;&#x6001;"><a href="#&#x76D1;&#x542C;&#x7CFB;&#x7EDF;&#x5E7F;&#x64AD;&#x5224;&#x65AD;Service&#x72B6;&#x6001;" class="headerlink" title="&#x76D1;&#x542C;&#x7CFB;&#x7EDF;&#x5E7F;&#x64AD;&#x5224;&#x65AD;Service&#x72B6;&#x6001;"></a>&#x76D1;&#x542C;&#x7CFB;&#x7EDF;&#x5E7F;&#x64AD;&#x5224;&#x65AD;Service&#x72B6;&#x6001;</h3><p>&#x901A;&#x8FC7;&#x7CFB;&#x7EDF;&#x7684;&#x4E00;&#x4E9B;&#x5E7F;&#x64AD;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;&#x624B;&#x673A;&#x91CD;&#x542F;&#x3001;&#x754C;&#x9762;&#x5524;&#x9192;&#x3001;&#x5E94;&#x7528;&#x72B6;&#x6001;&#x6539;&#x53D8;&#x7B49;&#x7B49;&#x76D1;&#x542C;&#x5E76;&#x6355;&#x83B7;&#x5230;&#xFF0C;&#x7136;&#x540E;&#x5224;&#x65AD;&#x6211;&#x4EEC;&#x7684;Service&#x662F;&#x5426;&#x8FD8;&#x5B58;&#x6D3B;&#xFF0C;&#x522B;&#x5FD8;&#x8BB0;&#x52A0;&#x6743;&#x9650;&#x554A;&#x3002;</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/27/Android ANR和OOM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huanxingxyz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HELLO沃德">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/27/Android ANR和OOM/" itemprop="url">Android ANR和OOM</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-27T15:17:05+08:00">
+                2017-06-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/27/Android ANR和OOM/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/06/27/Android ANR和OOM/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<h3 id="ANR&#x51FA;&#x73B0;"><a href="#ANR&#x51FA;&#x73B0;" class="headerlink" title="ANR&#x51FA;&#x73B0;"></a>ANR&#x51FA;&#x73B0;</h3><p>&#x5982;&#x679C;&#x5F00;&#x53D1;&#x673A;&#x5668;&#x4E0A;&#x51FA;&#x73B0;&#x95EE;&#x9898;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x67E5;&#x770B;/data/anr/traces.txt&#x5373;&#x53EF;&#xFF0C;&#x6700;&#x65B0;&#x7684;ANR&#x4FE1;&#x606F;&#x5728;&#x6700;&#x5F00;&#x59CB;&#x90E8;&#x5206;&#x3002;</p>
+<ol>
+<li>&#x4E3B;&#x7EBF;&#x7A0B;&#x88AB;IO&#x64CD;&#x4F5C;&#xFF08;&#x4ECE;4.0&#x4E4B;&#x540E;&#x7F51;&#x7EDC;IO&#x4E0D;&#x5141;&#x8BB8;&#x5728;&#x4E3B;&#x7EBF;&#x7A0B;&#x4E2D;&#xFF09;&#x963B;&#x585E;&#x3002;</li>
+<li>&#x4E3B;&#x7EBF;&#x7A0B;&#x4E2D;&#x5B58;&#x5728;&#x8017;&#x65F6;&#x7684;&#x8BA1;&#x7B97;</li>
+<li>&#x4E3B;&#x7EBF;&#x7A0B;&#x4E2D;&#x9519;&#x8BEF;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x6BD4;&#x5982;Thread.wait&#x6216;&#x8005;Thread.sleep&#x7B49;&#xFF0C;Android&#x7CFB;&#x7EDF;&#x4F1A;&#x76D1;&#x63A7;&#x7A0B;&#x5E8F;&#x7684;&#x54CD;&#x5E94;&#x72B6;&#x51B5;&#xFF0C;&#x4E00;&#x65E6;&#x51FA;&#x73B0;&#x4E0B;&#x9762;&#x4E24;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x5219;&#x5F39;&#x51FA;ANR&#x5BF9;&#x8BDD;&#x6846;</li>
+<li>&#x5E94;&#x7528;&#x5728;5&#x79D2;&#x5185;&#x672A;&#x54CD;&#x5E94;&#x7528;&#x6237;&#x7684;&#x8F93;&#x5165;&#x4E8B;&#x4EF6;&#xFF08;&#x5982;&#x6309;&#x952E;&#x6216;&#x8005;&#x89E6;&#x6478;&#xFF09;</li>
+<li>BroadcastReceiver&#x672A;&#x5728;10&#x79D2;&#x5185;&#x5B8C;&#x6210;&#x76F8;&#x5173;&#x7684;&#x5904;&#x7406;</li>
+<li>Service&#x5728;&#x7279;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x5185;&#x65E0;&#x6CD5;&#x5904;&#x7406;&#x5B8C;&#x6210; 20&#x79D2;</li>
+<li>&#x4F7F;&#x7528;AsyncTask&#x5904;&#x7406;&#x8017;&#x65F6;IO&#x64CD;&#x4F5C;&#x3002;</li>
+<li>&#x4F7F;&#x7528;Thread&#x6216;&#x8005;HandlerThread&#x65F6;&#xFF0C;&#x8C03;&#x7528;Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND)&#x8BBE;&#x7F6E;&#x4F18;&#x5148;&#x7EA7;&#xFF0C;&#x5426;&#x5219;&#x4ECD;&#x7136;&#x4F1A;&#x964D;&#x4F4E;&#x7A0B;&#x5E8F;&#x54CD;&#x5E94;&#xFF0C;&#x56E0;&#x4E3A;&#x9ED8;&#x8BA4;Thread&#x7684;&#x4F18;&#x5148;&#x7EA7;&#x548C;&#x4E3B;&#x7EBF;&#x7A0B;&#x76F8;&#x540C;&#x3002;</li>
+<li>&#x4F7F;&#x7528;Handler&#x5904;&#x7406;&#x5DE5;&#x4F5C;&#x7EBF;&#x7A0B;&#x7ED3;&#x679C;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x4F7F;&#x7528;Thread.wait()&#x6216;&#x8005;Thread.sleep()&#x6765;&#x963B;&#x585E;&#x4E3B;&#x7EBF;&#x7A0B;&#x3002;</li>
+<li>Activity&#x7684;onCreate&#x548C;onResume&#x56DE;&#x8C03;&#x4E2D;&#x5C3D;&#x91CF;&#x907F;&#x514D;&#x8017;&#x65F6;&#x7684;&#x4EE3;&#x7801;</li>
+<li>BroadcastReceiver&#x4E2D;onReceive&#x4EE3;&#x7801;&#x4E5F;&#x8981;&#x5C3D;&#x91CF;&#x51CF;&#x5C11;&#x8017;&#x65F6;&#xFF0C;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;IntentService&#x5904;&#x7406;&#x3002;</li>
+</ol>
+<h3 id="&#x907F;&#x514D;&#x51FA;&#x73B0;OOM"><a href="#&#x907F;&#x514D;&#x51FA;&#x73B0;OOM" class="headerlink" title="&#x907F;&#x514D;&#x51FA;&#x73B0;OOM"></a>&#x907F;&#x514D;&#x51FA;&#x73B0;OOM</h3><ol>
+<li>&#x4F7F;&#x7528;&#x66F4;&#x52A0;&#x8F7B;&#x91CF;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;</li>
+<li>Android&#x91CC;&#x9762;&#x4F7F;&#x7528;Enum</li>
+<li>Bitmap&#x5BF9;&#x8C61;&#x7684;&#x5185;&#x5B58;&#x5360;&#x7528;</li>
+<li>&#x66F4;&#x5927;&#x7684;&#x56FE;&#x7247;</li>
+<li>onDraw&#x65B9;&#x6CD5;&#x91CC;&#x9762;&#x6267;&#x884C;&#x5BF9;&#x8C61;&#x7684;&#x521B;&#x5EFA;</li>
+<li>StringBuilder</li>
+</ol>
 
           
         
